@@ -5,6 +5,9 @@
   "dependencies": {
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
+    "@fortawesome/fontawesome-svg-core": "^6.2.1",
+    "@fortawesome/free-solid-svg-icons": "^6.2.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.8.7",
     "@mui/styled-engine-sc": "^5.8.0",
     "@mui/x-data-grid": "^5.12.3",
@@ -22,7 +25,7 @@
     "react-bootstrap": "^2.4.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
-    "react-icons": "^4.6.0",
+    "react-icons": "^4.7.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.5",
@@ -36,7 +39,7 @@
     "build": "CI=false && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "react" : "react-scripts start"
+    "react": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [

@@ -2,6 +2,7 @@ import { LayoutPage } from '../../common/layout';
 import { homeApp } from './home-app';
 
 export const WelcomePage = (props: any) => {
+
     const ui = () => {
         return (
             <LayoutPage microApp={homeApp} routeItem={{ name: '' }}>
@@ -13,6 +14,7 @@ export const WelcomePage = (props: any) => {
                         </div>
                     </div>
                 </div>
+               
             </LayoutPage>
         )
     }

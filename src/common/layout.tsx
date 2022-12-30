@@ -1,6 +1,6 @@
 
 import React, { Component, useState } from "react";
-import { Row, Col, Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
 import { securityManager } from "./security/security-manager";
 import { useNavigate } from "react-router-dom";
 import "./layout.css";

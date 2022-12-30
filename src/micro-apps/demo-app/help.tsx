@@ -1,14 +1,14 @@
 
 import { Toast } from 'react-bootstrap';
 import { LayoutPage } from '../../common/layout'
-import { carbonApp } from './cdc-app';
+import { demoApp } from './demo-app';
 
 ;
 
 export const Help = (props: any) => {
     const ui = () => {
         return (
-            <LayoutPage microApp={carbonApp} withAppHeader={true} routeItem={{ name: '' }}>
+            <LayoutPage microApp={demoApp} withAppHeader={true} routeItem={{ name: '' }}>
                 <div className="home-body">
                     <div className="home-body-nav">
                         <Toast >

@@ -11,6 +11,7 @@ import { dataSourceManager } from './micro-apps/dm-app/dm-app';
 import { greenHouseApp } from './micro-apps/ghg-app/ghg-app';
 import { securityApp } from './micro-apps/security/security-app';
 import { inventoryConfigApp } from './micro-apps/inventory-app/inventory-app';
+import { demoApp } from './micro-apps/demo-app/demo-app';
 
 function App(props: any) {
   const [state] = useState<UserContextType>(securityManager.getUserContext());
@@ -24,6 +25,7 @@ function App(props: any) {
             {greenHouseApp.getRoutes()}
             {securityApp.getRoutes()}
             {inventoryConfigApp.getRoutes()}
+            {demoApp.getRoutes()}
           </Routes>
         </Router>
       </div>

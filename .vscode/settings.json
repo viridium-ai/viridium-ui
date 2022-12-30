@@ -1,0 +1,11 @@
+{
+    "cSpell.words": [
+        "Offcanvas",
+        "Viridium"
+    ],
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "None"
+}

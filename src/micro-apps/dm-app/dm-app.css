@@ -1,0 +1,90 @@
+.dm-app .home-body-nav {
+    padding: 4px;
+}
+
+.dm-app .home-body-main {
+    padding: 4px;
+}
+
+.dm-app .item {
+    border-bottom: 1px solid rgb(251, 249, 249);
+    padding: 4px;
+}
+
+.dm-app .sub-item {
+    padding: 0 14px;
+}
+
+.dm-app .chart-item {
+    height: 200px;
+}
+
+.dm-app .dashboard-panel {
+    margin-top: 0.0rem;
+    margin-bottom: 1rem;
+}
+
+.dm-app .pie-chart {
+    max-width: 200px;
+}
+
+.dm-app .nav-chart-item {
+    height: 160px;
+
+    overflow: hidden;
+}
+
+.dm-app .panel-chart-item {
+    height: 320px;
+    width:600px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.dm-app .panel-pie-item {
+    height: 300px;
+    width: 250px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.dm-app .sub-panel {
+    text-align: center;
+}
+
+.dm-app .row {
+    flex-wrap: nowrap;
+    overflow: scroll;
+
+}
+
+.dm-app .settings-icon {
+    margin-left: .2rem;
+}
+
+.test-ok {
+    padding: 40px 80px;
+}
+
+.dm-app .filters {
+    margin: 1rem;
+}
+
+.dm-app .me-end {
+    margin-right: 1rem;
+}
+
+.dm-app .progress {
+    padding: 1px;
+    background-color: white;
+}
+
+.toast-body .col-3 {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.toast-body .col-2 {
+    overflow: hidden;
+    white-space: nowrap;
+}

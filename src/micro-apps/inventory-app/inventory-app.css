@@ -1,0 +1,132 @@
+.inventory-app .company-details{
+    padding: .5rem;
+    margin-top: 1em;
+}
+.inventory-app .inventory-summary {
+    font-size: small;
+    font-weight: 600;
+    padding: .5rem 1.5rem;
+}
+.inventory-app .details-line {
+    padding: .2rem;
+}
+
+.inventory-app .inventory-title {
+    padding-top:2em;
+    padding-left: 1.4rem;
+    font-size: medium;
+    font-weight: 600;
+}
+.inventory-app .selected-questions {
+    padding: 1em;
+    background-color: rgb(231, 231, 231);
+
+    border: 1px lightgray solid;
+
+}
+
+.inventory-app .selected-question {
+    padding: 0.5em;
+    margin-bottom: 0.2rem;
+    color: rgb(64, 64, 64);
+    border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.inventory-app .search-box {
+    width: 50%;
+}
+
+
+.inventory-app .new-question-form {
+    background-color: beige;
+}
+.inventory-app .scope-category-box {
+     padding: 1em;
+}
+
+.inventory-app .scope-category-content {
+    height: 300px;
+    overflow-y: scroll;
+    padding: 1rem 1.5rem;
+}
+.inventory-app .scope-category-header {
+    font-size: large;
+    font-weight: 600;
+    padding: .5rem;
+}
+ 
+.inventory-app .wizard-body {
+    display: flex;
+    gap: 0.5rem;
+    padding:  2.0rem 12.0rem;
+}
+.inventory-app .wizard-summary {
+    padding:  2.0rem 0.5rem;
+    font-size: large;
+}
+.inventory-app .wizard-body-main {
+    flex: 80%;
+    padding: 0.5rem;
+}
+
+.inventory-app .wizard-body-help {
+    flex: 20%;
+    padding: 0.5rem;
+    display: none;
+}
+
+.inventory-app .wizard-actions {
+    display: flex;
+    padding: 2rem 1rem;
+    border-bottom: 1px solid rgb(237, 237, 237);
+}
+
+.inventory-app .wizard-question {
+    padding: 0.2rem 1rem;
+    border-bottom: 1px solid rgb(237, 237, 237);
+}
+
+.inventory-app .wizard-sub-questions {
+    margin-top: 0.1em;
+    padding: 0.5rem;
+    background-color: rgb(244, 244, 244);
+}
+
+.inventory-app .wizard-form-row {
+    padding: 0.2rem;
+}
+
+.inventory-app .wizard-form-label {
+    padding: 1.4rem 1.2rem;
+    /* background-color: aquamarine; */
+    font-size: large;
+}
+
+
+.inventory-app .wizard-form-input {
+    padding: 1.0rem 1.2rem;
+}
+.inventory-app .wizard-checkbox {
+    padding: 1em;
+}
+
+.inventory-app .inventory-filters {
+    height: 6em;
+}
+.inventory-app .analytic-table {
+    border: 1px rgb(130, 130, 130) solid;
+    border-radius: 1em;
+}
+
+.inventory-app .analytic-table .analytic-header {
+    padding: 1.5em 0.2rem;
+    background-color: lightgray;
+}
+
+.inventory-app .analytic-table .analytic-col-0 {
+    width: 25%;
+}
+
+.inventory-app .component-action {
+    margin: 0.5rem;
+}

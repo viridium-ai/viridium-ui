@@ -1,0 +1,63 @@
+{
+    "users": [
+        {
+            "id": "1",
+            "username": "anpwang@gmail.com",
+            "password": "welcome.1234",
+            "roles": [
+                "admin",
+                "user"
+            ],
+            "firstName": "Tim",
+            "lastName": "Wang",
+            "title" : "Engineer",
+            "avatar": "./anping.png",
+            "gender": "m",
+            "email": "anpwang@gmail.com",
+            "phone": "650-576-2123"
+        },
+        {
+            "id": "2",
+            "username": "niraj.deo@viridium.ai",
+            "password": "welcome",
+            "roles": [
+                "user"
+            ],
+            "firstName": "Niraj",
+            "lastName": "Deo",
+            "title" : "CEO",
+            "avatar": "./niraj.png",
+            "gender": "m",
+            "email": "niraj.deo@viridium.ai",
+            "phone": "412-576-2123"
+        }
+    ],
+    "roles": [
+        {
+            "id": "1",
+            "name": "admin"
+        }
+    ],
+    "permissions": [
+        {
+            "id": "1",
+            "role": "admin",
+            "resources": [
+                "*"
+            ],
+            "actions": [
+                "*"
+            ]
+        },
+        {
+            "id": "2",
+            "role": "user",
+            "resources": [
+                "*"
+            ],
+            "actions": [
+                "read"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,49 @@
+.security-app {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+    margin: auto;
+}
+
+.security-app a {
+    color: rgb(97, 97, 97);
+    font-size: small;
+}
+
+.security-app .login {
+    width: 600px;
+    margin-top: 10em;
+    margin-bottom: 20em;
+    border-radius: 12px 12px 0px 0px;
+    background-color: rgb(239, 239, 239);
+    box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
+}
+
+.security-app .panel-header {
+    border-radius: 12px 12px 0px 0px;
+    background-color: rgb(164, 164, 164);
+    padding: 1rem;
+    color: wheat;
+}
+
+.security-app .panel-body {
+    padding: 1rem;
+}
+
+.security-app .panel-footer {
+    padding: 0px;
+}
+
+.security-app .panel-header-title {
+    margin-top: 4px;
+    font-size: large;
+    font-weight: bold;
+}
+
+.security-app .panel-header-actions {
+    text-align: right;
+    font-size: large;
+}
+
+.security-app .form-buttons {
+    padding: .5rem;
+}

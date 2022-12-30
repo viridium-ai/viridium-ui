@@ -1,0 +1,120 @@
+.cdc-app .home-body {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.0rem;
+}
+
+.cdc-app .home-body-main {
+    flex: 70%;
+    padding: 0.5rem;
+}
+
+.cdc-app .home-body-nav {
+    padding: 0.2rem;
+    border: 0px;
+}
+ 
+.cdc-app .nav-icon {
+    width: 1.4rem;
+    margin-right: 4px;
+}
+
+.cdc-app .toast {
+    margin-bottom: 0.5rem;
+    width: 100%;
+}
+
+.cdc-app .item {
+    border-bottom: 1px solid rgb(251, 249, 249);
+    padding: 4px;
+}
+
+.cdc-app .sub-item {
+    padding: 0 14px;
+}
+
+.cdc-app .chart-item {
+    height: 200px;
+}
+
+.cdc-app .dashboard-panel {
+    margin-top: 0.0rem;
+    margin-bottom: 1rem;
+}
+
+.cdc-app .pie-chart {
+    max-width: 200px;
+}
+
+.cdc-app .row {
+   overflow: scroll;
+    
+}
+.cdc-app .pie-charts-container {
+    overflow: hidden;
+    flex-wrap: nowrap;
+}
+
+.cdc-app .nav-chart-item {
+    height: 160px;
+
+    overflow: hidden;
+}
+
+.cdc-app .panel-chart-item {
+    height: 320px;
+    width:600px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.cdc-app .panel-pie-item {
+    height: 45%;
+    width: 250px;
+    overflow: hidden;
+    margin: 0px auto;
+}
+
+.cdc-app .sub-panel {
+    text-align: center;
+}
+
+.cdc-app .notifications-icon {
+    background-color:rgba(255, 0, 0, 0.802);
+    color :white;
+    padding:2px;
+    margin-left: .2rem;
+
+}
+
+.cdc-app .settings-icon {
+    margin-left: .2rem;
+}
+
+.test-ok {
+    padding: 40px 80px;
+}
+
+.cdc-app .filters {
+    margin: 1rem;
+}
+
+.cdc-app .me-end {
+    margin-right: 1rem;
+}
+
+.cdc-app .progress {
+    padding: 1px;
+    background-color: white;
+}
+
+.toast-body .col-3 {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.toast-body .col-2 {
+    overflow: hidden;
+    white-space: nowrap;
+}

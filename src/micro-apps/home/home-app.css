@@ -1,0 +1,103 @@
+.home-app .home-content {
+    padding: 1rem;
+}
+
+.welcome-page {
+    width: 100%;
+    height: 100vh;
+}
+
+.welcome-page .viridium-logo {
+    width: 36px;
+    margin-top:  -10px;
+}
+
+.welcome-name {
+    text-align: left;
+    font-weight: 600;
+    font-size: 1.5em;
+    padding-left: 0px;
+}
+
+.welcome-header a {
+    text-decoration: none;
+    color:white;
+    display: inline-block;
+    margin-left: 0.5em;
+}
+
+.welcome-links {
+    text-align: right;
+    font-weight: 400;
+    padding: 0.3em;
+}
+
+.welcome-content {
+    background-image: url("../../../public/resources/home-bg.jpg");
+    background-size: 100%;
+    color: rgb(237, 237, 237);
+    width: 100%;
+    height: 90vh;
+}
+
+.welcome-splash {
+    height: 100%;
+    width: 100%;
+    padding: 30vh;
+    text-align: center;
+    font-size: 2.5em;
+    font-weight: 600;
+}
+
+.welcome-title {
+    padding: 1em 0em;
+    box-shadow: 0px 2px 2px -2px rgba(241, 241, 241, 0.5);
+}
+
+.welcome-header {
+    padding: 0px 42px;
+}
+
+.welcome-footer {
+    color: white;
+    width: 100%;
+    height: 10vh;
+    padding: 4vh;
+    text-align: center;
+    background-color: black;
+}
+
+.home-app .home-header {
+    padding: 1rem;
+    font-size: larger;
+    font-weight: bold;
+    background-color: rgb(214, 214, 214);
+}
+
+.home-app .home-content {
+    padding: 0.5rem 1.5rem;
+}
+
+.home-app .home-panel {
+    padding: 0.8rem;
+    margin: 0px 6px;
+    background-color: aliceblue;
+    border: 0px solid rgb(209, 157, 157);
+    border-radius: 0.5em;
+}
+
+.home-app .summary {
+    padding: 0.5rem;
+    height: 300px;
+
+}
+
+.home-app .about {
+    border: 1px solid whitesmoke;
+    padding: 0.5rem;
+    height: 300px;
+}
+
+.home-app .toast {
+    width: 100%;
+}

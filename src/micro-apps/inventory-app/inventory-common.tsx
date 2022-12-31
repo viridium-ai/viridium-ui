@@ -27,3 +27,8 @@ export const updateInventoryItem = (report : InventoryItem) => {
 export const getInventoryItem = ()  : InventoryItem => {
     return localCache.get("InventoryItem", new InventoryItem())
 }
+
+export interface NamedObject {
+    id: string,
+    name: string
+}

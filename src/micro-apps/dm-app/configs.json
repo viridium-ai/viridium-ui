@@ -1,0 +1,289 @@
+{
+    "description": "jobs are ones that is runnable, it pull the data from source, and transform, and sink it into a different location",
+    "jobs": [
+        {
+            "name": "daily-travel-job",
+            "type": "etl",
+            "source": {
+                "name": "BussinessTravel"
+            },
+            "transformer": {},
+            "sink": {
+                "name": "BussinessTravel",
+                "config": {}
+            },
+            "schedule": {}
+        }
+    ],
+    "sources": [
+        {
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "connector": {
+                "name": "amazon-s3",
+                "driver": "com.viridium.connector.aws.FileSource",
+                "config": {
+                    "bucket": "string",
+                    "directory": "string",
+                    "partition": "string"
+                }
+            }
+        },
+        {
+            "name": "Oracle Database Table",
+            "description": "Oracle Database",
+            "connector": {
+                "name": "oracle-database",
+                "driver": "com.viridium.connector.oracle.TableSource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "table": "string",
+                    "fileds": "array",
+                    "sql": "string"
+                }
+            }
+        },
+        {
+            "name": "SAP BAPI",
+            "description": "SAP API",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.sap.BAPISource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "fileds": "array"
+                }
+            }
+        },
+        {
+            "name": "Hadoop HDFS",
+            "description": "Apache Hadoop File System",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.hadoop.PartitionSource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "partitionBy": "string",
+                    "format": "csv|tsv|parquet",
+                    "fileds": "array"
+                }
+            }
+        }
+    ],
+    "transformers": [
+        {
+            "name": "BussinessTravel",
+            "description": "Map business travel dataset",
+            "connector": {
+                "name": "",
+                "driver": "com.viridium.mapper.BusinessTravelMapper"
+            },
+            "mapping": [
+                {
+                    "dateFrom": "01-01-2021",
+                    "dateTo": "01-01-2022",
+                    "category": "",
+                    "miles": 23145154
+                }
+            ]
+        }
+    ],
+    "sinks": [
+        {
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "connector": {
+                "name": "amazon-s3",
+                "driver": "com.viridium.connector.aws.FileSink",
+                "config": {
+                    "bucket": "string",
+                    "directory": "string",
+                    "partition": "string"
+                }
+            }
+        },
+        {
+            "name": "Oracle Database Table",
+            "description": "Oracle Database",
+            "connector": {
+                "name": "oracle-database",
+                "driver": "com.viridium.connector.oracle.TableSink",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "table": "string",
+                    "fileds": "array",
+                    "sql": "string"
+                }
+            }
+        },
+        {
+            "name": "SAP BAPI",
+            "description": "SAP API",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.sap.BAPISink",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "fileds": "array"
+                }
+            }
+        },
+        {
+            "name": "Hadoop HDFS",
+            "description": "Apache Hadoop File System",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.hadoop.PartitionSink",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "partitionBy": "string",
+                    "format": "csv|tsv|parquet",
+                    "fileds": "array"
+                }
+            }
+        }
+    ],
+    "inventory": [
+        {
+            "id": "1",
+            "name": "Data Inventory for Big City Airport - Uploaded by Virdium.AI - User ID=Val",
+            "items": [
+                {
+                    "id": "1",
+                    "dataSourceName": "Test",
+                    "description": "Apache Hadoop File System",
+                    "notes": "This is what we needed"
+                },
+                {
+                    "id": "2",
+                    "dataSourceName": "Travel",
+                    "description": "Oracle DB",
+                    "notes": "This is what we needed"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Data Inventory for Big Drinking Party - Uploaded by Virdium.AI - User ID=Val",
+            "items": [
+                {
+                    "id": "3",
+                    "dataSourceName": "Test 3",
+                    "description": "Apache Hadoop File System",
+                    "notes": "This is what we needed"
+                },
+                {
+                    "id": "3",
+                    "dataSourceName": "Travel 2",
+                    "description": "Oracle DB",
+                    "notes": "This is what we needed"
+                }
+            ]
+        }
+    ],
+    "manageDataSource": [
+        {
+            "text": "Import Data Inventory",
+            "selected" : true,
+            "selecable" : true
+        },
+        {
+            "text": "Setup",
+            "children": [
+                {
+                    "text": "Create Data Inventory"
+                },
+                {
+                    "text": "Manage Data Inventory"
+                }
+            ]
+        }
+    ],
+    "manageData": [
+        {
+            "text": "Data Integration",
+            "children": [
+                {
+                    "text": "Sources >"
+                }
+            ]
+        },
+        {
+            "text": "Integrations",
+            "children": [
+                {
+                    "text": "Microsoft Sustainability >"
+                },
+                {
+                    "text": "SAP Carbon Data Network >"
+                },
+                {
+                    "text": "Salesforce Net Zero Cloud >"
+                },
+                {
+                    "text": "Mapping >"
+                }
+            ]
+        },
+        {
+            "text": "Data Lakes",
+            "children": [
+                {
+                    "text": "Reporting"
+                }
+            ]
+        },
+        {
+            "text": "Data Quality",
+            "children": [
+                {
+                    "text": "Dashboard"
+                }
+            ]
+        },
+        {
+            "text": "Data Processing",
+            "children": [
+                {
+                    "text": "Jobs >"
+                },
+                {
+                    "text": "Enrichment >"
+                },
+                {
+                    "text": "Aggregation >"
+                }
+            ]
+        },
+        {
+            "text": "Setup",
+            "children": [
+                {
+                    "text": "Unit Conversions"
+                },
+                {
+                    "text": "Rules"
+                },
+                {
+                    "text": "Alerts"
+                }
+            ]
+        }
+    ]
+}

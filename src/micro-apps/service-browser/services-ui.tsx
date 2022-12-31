@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { restClient } from "../../common/rest-client"
 import { EntityList, EntityDetails, EntityForm } from './service-component';
-import { LayoutPage, MyOffcanvas } from '../../components/layout'
+import { LayoutPage, ViridiumOffcanvas } from '../../components/layout'
 import { Service, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 
@@ -13,12 +13,6 @@ export const HomePage = (props: any) => {
         </div>)
 }
 
-/**
- * The service page, a service corresponds to a Rest Service, for example, Restaurants
- * 
- * @param props 
- * @returns 
- */
 export const SchemaBrowser = (props: any) => {
 
     const [entities, updateEntities] = useState<any[]>([]);
@@ -90,12 +84,12 @@ export const SchemaBrowser = (props: any) => {
                         }]} />
                 }
             </LayoutPage>
-            <MyOffcanvas onHide={setShowForm} showForm={showForm} title={schema.getLabel()} >
+            <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={schema.getLabel()} >
                 <EntityForm title='' entity={selectedObject ? selectedObject : schema?.getEmptyObject()}
                     listUpdated={listUpdated}
                     path={service.path!}
                     mode={showForm.mode}
                     fieldDefs={fieldDefs} />
-            </MyOffcanvas>
+            </ViridiumOffcanvas>
         </div>)
 }

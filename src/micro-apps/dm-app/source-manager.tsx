@@ -1,72 +1,65 @@
-import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
-import { LayoutPage} from '../../components/layout';
+import { useState } from 'react';
+import { Toast, Table, Form, Col, Row, Button } from 'react-bootstrap';
+import { LayoutPage } from '../../components/layout';
+import TreeView from '../../components/tree-view';
+import { NamedObject } from '../inventory-app/inventory-common';
 import { dataSourceManager } from './dm-app';
 
+interface Inventory {
+    id: string,
+    name: string,
+    items: Array<InventoryItem>
+}
+interface InventoryItem {
+    id: string,
+    dataSourceName: string,
+    description: string,
+    notes: string
+}
+
 export const SourceManager = (props: any) => {
+    const [selectedInventory, setInventory] = useState<Inventory>();
+
+    var configs = require('./configs.json');
+
+    var manageDataSource = configs.manageDataSource;
+    var manageData = configs.manageData;
+
+    const inventories: Array<Inventory> = configs.inventory;
+
+    const onSelectInventory = (evt: any) => {
+        let invenotryId = evt.target.value;
+        let inventory = inventories.find((inv: any) => invenotryId === inv.id);
+        if (inventory) {
+            console.log(inventory);
+            setInventory(inventory);
+        }
+    }
+
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader = {true} >
+            <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
                 <div className="home-body">
                     <div className="home-body-nav">
                         <Toast >
                             <Toast.Body>
-                                <div className="item">
-                                    Data In
-                                    <div className="sub-item">
-                                        Sources
-                                    </div>
-                                    <div className="sub-item">
-                                        Integration
-                                    </div>
-                                    <div className="sub-item">
-                                        Mapping
-                                    </div>
+                                <div className="header">
+                                    Manage Data Sources
                                 </div>
                                 <div className="item">
-                                    Data Progress
-                                    <div className="sub-item">
-                                        Jobs
-                                    </div>
-                                    <div className="sub-item">
-                                        Enrichment
-                                    </div>
-                                    <div className="sub-item">
-                                        Aggregation
-                                    </div>
+                                    <TreeView data={manageDataSource} options={{ selectable: false, enableLinks: false }} />
                                 </div >
-                                <div className="item">
-                                    Data Out
-                                    <div className="sub-item">
-                                        Data lakes
-                                    </div>
-                                    <div className="sub-item">
-                                        Reporting
-                                    </div>
+                            </Toast.Body>
+                        </Toast>
+                        <Toast >
+                            <Toast.Body>
+                                <div className="header">
+                                    Manage Data
                                 </div>
                                 <div className="item">
-                                    Data Quality
-                                    <div className="sub-item">
-                                        Dashboard
-                                    </div>
-                                </div>
-                                <div className="item">
-                                    Setup
-                                    <div className="sub-item">
-                                        Net-Zero Glossary
-                                    </div>
-                                    <div className="sub-item">
-                                        Unit Conversions
-                                    </div>
-                                    <div className="sub-item">
-                                        Rules
-                                    </div>
-                                    <div className="sub-item">
-                                        Alerts
-                                    </div>
-                                    <div className="sub-item">
-                                        Retention
-                                    </div>
-                                </div>
+                                    <TreeView data={manageData} options={{ selectable: false, enableLinks: false }} />
+                                </div >
+
                             </Toast.Body>
                         </Toast>
                     </div>
@@ -74,64 +67,40 @@ export const SourceManager = (props: any) => {
                         <div className="dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Data Quality - Completeness</strong>
+                                    <strong className="me-auto">Import Data Inventory</strong>
                                 </Toast.Header>
                                 <Toast.Body>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Purchase goods and services
+                                    <Row>
+                                        <Col sm={4}>
+                                            Import Data Inventory
                                         </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="warning" now={40} />
+                                        <Col sm={8}>
+                                            <Form.Select value={selectedInventory?.id} onChange={onSelectInventory} aria-label="">
+                                                <option >Select an inventory</option>
+                                                {
+                                                    inventories.map((v, idx) =>
+                                                        <option key={"cat-" + idx} value={"" + v.id}>{v.name}</option>
+                                                    )
+                                                }
+                                            </Form.Select>
                                         </Col>
-
                                     </Row>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Capital goods
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="warning" now={60} />
-                                        </Col>
+                                    <Row>
+                                        <Col sm={4}>
 
+                                        </Col>
+                                        <Col sm={8} className="inventory-summary">
+                                            Last Updated: Yesterday
+                                        </Col>
                                     </Row>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Gas and Energy Related activities
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="danger" now={40} />
-                                        </Col>
+                                    <Row>
+                                        <Col sm={4}>
 
+                                        </Col>
+                                        <Col sm={8} className="inventory-summary">
+                                            Notes: This is final onboarding data inventory for Big City Airport
+                                        </Col>
                                     </Row>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Upstream Transportation
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="danger" now={20} />
-                                        </Col>
-
-                                    </Row>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Business Travel
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="success" now={80} />
-                                        </Col>
-
-                                    </Row>
-                                    <Row >
-                                        <Col xs={3}>
-                                            Employee consumption
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="success" now={80} />
-                                        </Col>
-
-                                    </Row>
-
                                 </Toast.Body>
                             </Toast>
                         </div>
@@ -141,35 +110,117 @@ export const SourceManager = (props: any) => {
                         <div className="dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Data In Progress Out</strong>
+                                    <strong className="me-auto">Data Inventory</strong>
                                 </Toast.Header>
                                 <Toast.Body>
                                     <Table striped bordered hover size="sm">
                                         <thead>
                                             <tr>
-                                                <th>Progress</th>
-                                                <th>tCO2e</th>
-                                                <th>Scope</th>
+                                                <th>Select</th>
+                                                <th>Data Source Name</th>
+                                                <th>Description</th>
+                                                <th>Notes</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <td >Larry the Bird</td>
-                                                <td>Thornton</td>
-                                                <td>@twitter</td>
-                                            </tr>
+                                            {
+                                                selectedInventory ? selectedInventory.items.map((item: any) => {
+                                                    return <tr>
+                                                        <td><Form.Check type="checkbox" /></td>
+                                                        <td>{item.dataSourceName}</td>
+                                                        <td>{item.description}</td>
+                                                        <td>{item.notes}</td>
+                                                    </tr>
+                                                }) : ""
+                                            }
                                         </tbody>
                                     </Table>
+                                    <div className="details-box">
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>Data Source Name
+                                            </Col>
+                                            <Col className="details-value"  sm={9}>
+                                                Transport System
+                                            </Col>
+                                        </Row>
+
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>Description
+                                            </Col>
+                                            <Col className="details-value"  sm={9}>
+                                                All Purchased Goods Transportation US, Canada
+                                            </Col>
+                                        </Row>
+
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>Current Topics
+                                            </Col>
+                                            <Col className="details-value" style={{fontWeight:'bold'}} sm={4}>
+                                                Environmental Sustainability Category
+                                            </Col>
+                                            <Col className="details-value" style={{fontWeight:'bold'}}  sm={5}>
+                                                Scope of Data Coverage
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>
+                                            </Col>
+                                            <Col className="details-control"  sm={4}>
+                                                <Form.Check type="checkbox" id="carbon" checked={true} label={"Carbon"} />
+                                            </Col>
+                                            <Col className="details-control"  sm={5}>
+                                                <Form.Check type="checkbox" id="coporate" checked={true} label={'Coporate'}/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>
+                                            </Col>
+                                            <Col className="details-control"  sm={4}>
+                                                <Form.Check type="checkbox" id="water"   label={"Water"} />
+                                            </Col>
+                                            <Col className="details-control"  sm={5}>
+                                                <Form.Check type="checkbox" id="product" label={'Product'}/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>
+                                            </Col>
+                                            <Col className="details-control"  sm={4}>
+                                                <Form.Check type="checkbox" id="waster" label={"Waste"} />
+                                            </Col>
+                                            <Col className="details-control"  sm={5}>
+                                                <Form.Check type="checkbox" id="process" label={'Process'}/>
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>View Sample Data
+                                            </Col>
+                                            <Col className="details-value" sm={9}>
+                                                <a href="/">Click here to see sample data</a>
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>Review and approve
+                                            </Col>
+                                            <Col className="details-value" sm={9}>
+                                                <a href="/">Classification and mapping by Viridium.AI</a>
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label"  sm={3}>Notes
+                                            </Col>
+                                            <Col className="details-value"  sm={9}>
+                                                <Form.Control as="textarea" rows={2} />
+                                            </Col>
+                                        </Row>
+                                        <Row className="details-row">
+                                            <Col className="details-label" sm={8}>
+                                            </Col>
+                                            <Col className="details-btn" sm={4}>
+                                                <Button >Submit Data Request</Button>
+                                            </Col>
+                                        </Row>
+                                    </div>
                                 </Toast.Body>
                             </Toast>
                         </div>

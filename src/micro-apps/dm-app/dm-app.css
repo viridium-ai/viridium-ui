@@ -7,8 +7,10 @@
 }
 
 .dm-app .item {
-    border-bottom: 1px solid rgb(251, 249, 249);
-    padding: 4px;
+    padding: 12px 1px 12px 1px;
+    font-size: medium;
+    font-weight: 400;
+    border-bottom: 1px solid lightgray;
 }
 
 .dm-app .sub-item {
@@ -43,7 +45,7 @@
 
 .dm-app .panel-pie-item {
     height: 300px;
-    width: 250px;
+    width: 200px;
     overflow: hidden;
     margin: 0px auto;
 }
@@ -87,4 +89,43 @@
 .toast-body .col-2 {
     overflow: hidden;
     white-space: nowrap;
+}
+
+.inventory-summary {
+    padding: 0.5em 1.8em;
+}
+
+.header {
+    padding: 2px 1px 12px 1px;
+    font-size: large;
+    font-weight: 600;
+    border-bottom: 1px solid lightgray;
+}
+
+.dm-app .details-row {
+    padding: 1px;
+    margin: 1px;
+}
+
+.dm-app .details-label {
+    padding: 2px;
+}
+
+.dm-app .details-value {
+    padding: 2px;
+}
+
+.dm-app .details-value {
+    padding: 0px 2px;
+}
+
+.dm-app .details-box {
+    padding: 4px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.dm-app .details-btn {
+    text-align: right;
 }

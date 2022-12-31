@@ -1,6 +1,6 @@
 import { Component, useState } from "react";
 import { Toast, Form, Button, Col, Row, Offcanvas } from "react-bootstrap";
-import { LayoutPage, MyOffcanvas } from "../../../components/layout";
+import { LayoutPage, ViridiumOffcanvas } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
 import { greenHouseApp } from "../ghg-app";
 import { Emission, EmissionTypes, InventoryReport, getReport, AnalyticTable, EmissionRow } from "../ghg-common";
@@ -234,12 +234,12 @@ export const EmissionData = (props: any) => {
                         </div>
                     </LayoutPage >
                 </div>
-                <MyOffcanvas onHide={setShowForm} showForm={showForm} title={`Emission Activity`} >
+                <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={`Emission Activity`} >
                     <EmissionForm onCreate={handleCreate} />
-                </MyOffcanvas>
-                <MyOffcanvas onHide={setShowUpload} showForm={showUpload} title={`Upload Emission Activities`} >
+                </ViridiumOffcanvas>
+                <ViridiumOffcanvas onHide={setShowUpload} showForm={showUpload} title={`Upload Emission Activities`} >
                     <EmissionUpload onCreate={handleCreate} />
-                </MyOffcanvas>
+                </ViridiumOffcanvas>
             </LayoutPage>
         )
     }

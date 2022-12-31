@@ -7,7 +7,7 @@ import { LayoutPage } from '../../../components/layout';
 import { securityManager } from '../../../common/security/security-manager';
 import { Action, Question } from '../../../components/wizard';
 import { inventoryConfigApp } from '../inventory-app';
-import { InventoryItem, getInventoryItem, updateInventoryItem } from '../inventory-common';
+import { InventoryItem, getInventoryItem, updateInventoryItem , NamedObject} from '../inventory-common';
 
 class Company  {
     id: string = "";
@@ -48,25 +48,15 @@ export const CompanyDetails = (props: any) => {
     return props.entity ? ui() : null;
 }
 
-interface NamedObject {
-    id: string,
-    name: string
-}
-
 export const DataCollectionWizard = (props: any) => {
-    const navigate = useNavigate();
     const [report, setInventoryItem] = useState<InventoryItem>(getInventoryItem());
     const [company, setCompany] = useState<Company>();
     
     const configs = require('./configs.json');
     const companies: Array<Company> = configs.companyDetails;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
-
     useEffect(() => {
-        if(!securityManager.isSignedIn()) {
-            console.log("redirect to login");
-            navigate("/login?from=/inventory-app");
-        } else {
+       
             let r = getInventoryItem();
             if(r) {
                 if (companies) {
@@ -75,8 +65,7 @@ export const DataCollectionWizard = (props: any) => {
                 }
                 setInventoryItem(r);
             }
-        }
-    }, [companies, navigate]);
+    }, [companies]);
 
 
     const onSelectCompany = (evt: any) => {

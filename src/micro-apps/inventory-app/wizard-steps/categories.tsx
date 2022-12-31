@@ -14,11 +14,14 @@ export const FunctionalTable = (props: any) => {
                     <thead>
                         <tr>
                             {
+                                props.selectable ? <th className={"analytic-header analytic-col-checkbox"}>Select</th> : ""
+                                
+                            }
+                            {
                                 props.headers.map((header: any, idx: number) =>
                                     <th key={"header-" + idx} className={"analytic-header analytic-col-" + idx}>{header}</th>
                                 )
                             }
-
                         </tr>
                     </thead>
                     <tbody>
@@ -36,6 +39,9 @@ export const FunctionalRow = (props: any) => {
         return (
             <tr className="analytic-row" >
                 {
+                    props.selectable ? <td><Form.Check type="checkbox" onChange={props.onSelect} /> </td> : ""
+                }
+                {
                     props.cols.map((dim: any, idx: number) =>
                         <td key={"col-" + idx} className={"analytic-dim-" + idx}>{dim}</td>
                     )
@@ -44,7 +50,6 @@ export const FunctionalRow = (props: any) => {
     }
     return ui();
 }
-
 
 export const FunctionCategories = (props: any) => {
     var configs = require('./configs.json');
@@ -72,7 +77,9 @@ export const FunctionCategories = (props: any) => {
     const onSelectFunction = (event: any) => {
         setSelectedFunction(event.target.value);
     }
+    const onSelectFunctionCateegory = (event: any) => {
 
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
@@ -132,10 +139,10 @@ export const FunctionCategories = (props: any) => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <FunctionalTable title="Function categories" headers={configs.functionCategories.headers}>
+                                        <FunctionalTable title="Function categories" headers={configs.functionCategories.headers} selectable={true}>
                                             {
                                                 configs.functionCategories.values.map((row: any, idx: number) => {
-                                                    return <FunctionalRow
+                                                    return <FunctionalRow onChange={onSelectFunctionCateegory} selectable={true}
                                                         key={"row-" + idx} cols={row} />
                                                 })
                                             }

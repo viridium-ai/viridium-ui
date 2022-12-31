@@ -32,7 +32,7 @@ class HomeApp implements MicroApp {
     new RouteItem().init("Solutions", "Solutions", undefined, "/solutions"),
     new RouteItem().init("Industries", "Industries", undefined, "/industries"),
     new RouteItem().init("Company", "Company", undefined, "/company"),
-    new RouteItem().init("Demo App", "Demo App", undefined, "/demo-app"),
+    new RouteItem().init("Request Demo", "Request Demo", undefined, "/demo-app"),
     new RouteItem().init("Sign In", "Sign In", undefined, "/login?from=/")
   ];
 

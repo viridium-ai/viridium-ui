@@ -1,13 +1,16 @@
 
-import React, { Component, useState } from "react";
+import React, { Component, useEffect, useState } from "react";
 import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
 import { securityManager } from "../common/security/security-manager";
 import { useNavigate } from "react-router-dom";
-import "./layout.css";
+
 import { IRouteItem, MicroApp } from "../common/micro-app";
 import { VscMail } from "react-icons/vsc";
 
-export const MyOffcanvas = (props: any) => {
+import "./layout.css";
+import { getInventoryItem } from "../micro-apps/inventory-app/inventory-common";
+
+export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;
     let onHide = props.onHide;
     return (
@@ -42,6 +45,12 @@ const NavItem = (props: any) => {
 
 export const ApplicationHeader = (props: any) => {
     const navigate = useNavigate();
+    useEffect(() => {
+        if(!securityManager.isSignedIn()) {
+            navigate(`/login?from=/${props.microApp.getName()}`);
+        } 
+    }, [navigate]);
+
     if (securityManager.isSignedIn()) {
         let user = securityManager.getUserContext().user!;
         const ui = () => (
@@ -191,4 +200,3 @@ export const LayoutPage = (props: any) => {
         </div>
     );
 }
-

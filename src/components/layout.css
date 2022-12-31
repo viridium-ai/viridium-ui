@@ -62,6 +62,7 @@
 
 .layout .list-group-item {
     border: 0px;
+    padding: 2px;
 }
 
 .layout ul {

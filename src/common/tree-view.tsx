@@ -1,7 +1,6 @@
-import { width } from "@mui/system";
-import { BlockList } from "net";
 import React from "react";
-import { VscRemove, VscAdd, VscPrimitiveSquare, VscEmptyWindow } from "react-icons/vsc";
+
+import { VscRemove, VscAdd, VscPrimitiveSquare, VscCheck } from "react-icons/vsc";
 
 let treeviewSpanStyle = {
     "width": "1rem",
@@ -9,7 +8,6 @@ let treeviewSpanStyle = {
     "marginLeft": "0px",
     "marginRight": "0px",
 };
-
 
 let treeviewSpanIndentStyle = treeviewSpanStyle;
 
@@ -97,6 +95,7 @@ interface TreeViewProperty {
     onNodeRemoved?: Function;
     data: any[];
     allowNew?: boolean;
+    options? : any
 }
 
 interface TreeViewState {
@@ -133,7 +132,8 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
                     expanded: childNode.state ? !!childNode.state.expanded : false
                 },
                 text: childNode.text,
-                icon: childNode.icon
+                icon: childNode.icon,
+                href: childNode.href
             });
             return newNode;
         });
@@ -200,10 +200,8 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             node.state.selected = selected;
-
             this.setChildrenState(node.children, node.state);
             this.setState({ data: this.state.data });
-
             if (this.props.onClick) {
                 this.props.onClick(this.state.data, node);
             }
@@ -285,7 +283,7 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
                     onNodeDoubleClicked: this.nodeDoubleClicked,
                     addNode: this.addNode,
                     removeNode: this.removeNode,
-                    options: this.props,
+                    options: this.props.options,
                     allowNew: this.props.allowNew ? this.props.allowNew : false
                 }));
             });
@@ -372,10 +370,16 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     render() {
         let node = new Node();
         Object.assign(node, this.props.node);
+        console.log(this.props.node);
         let options: NodeOptions = defaultOptions;
+
         Object.assign(options, this.props.options);
+        
         let cssStyle: any;
-        if (this.props.options.selectable) node.icon = (node.state.selected) ? options.selectedIcon : options.unselectedIcon;
+
+        if (this.props.options.selectable) {
+            node.icon = (node.state.selected) ? options.selectedIcon : options.unselectedIcon;
+        }
 
         if (!this.props.visible) {
 
@@ -417,26 +421,28 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         if (node.children) {
             if (!this.state.expanded) {
                 expandCollapseIcon = (
-                    <VscAdd style={treeviewSpanStyle} onClick={this.toggleExpanded}/>
+                    <VscAdd style={treeviewSpanStyle} onClick={this.toggleExpanded} />
                 )
             }
             else {
                 expandCollapseIcon = (
-                    <VscRemove style={treeviewSpanStyle} onClick={this.toggleExpanded}/>
+                    <VscRemove style={treeviewSpanStyle} onClick={this.toggleExpanded} />
                 )
             }
         }
         else {
             expandCollapseIcon = (
-                <span style={{display:"inline-block", width: "1rem", height:"1rem", "marginLeft" : "2px"}}></span>
+                <span style={{ display: "inline-block", width: "1rem", height: "1rem", "marginLeft": "2px" }}></span>
             )
         }
-
-        let nodeIcon = (node.icon || options.nodeIcon) ? (
-            <VscPrimitiveSquare onClick={this.toggleSelected} style={treeviewSpanIconStyle}/>
-            // <span className={'icon'} onClick={this.toggleSelected} style={treeviewSpanIconStyle}> <i
-            //     className={node.icon || options.nodeIcon}> </i> </span>
-        ) : "";
+        let nodeIcon;
+        if (options.selectable && (node.icon || options.nodeIcon)) {
+            nodeIcon = node.state.selected ?
+                (<VscCheck onClick={this.toggleSelected} style={treeviewSpanIconStyle} />) :
+                (<VscPrimitiveSquare onClick={this.toggleSelected} style={treeviewSpanIconStyle} />);
+        } else {
+            nodeIcon = "";
+        };
 
         let nodeText;
         if (options.enableLinks) {
@@ -500,11 +506,8 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         cssStyle["cursor"] = "pointer";
 
         let treeNode = (
-            <li className="list-group-item"
-                style={cssStyle}
-                onDoubleClick={this.doubleClicked}
-                key={node.id}>
-                {indents}
+            <li className="list-group-item" style={cssStyle} onDoubleClick={this.doubleClicked} key={node.id}>
+               
                 {expandCollapseIcon}
                 {nodeIcon}
                 {removeButton}

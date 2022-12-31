@@ -64,6 +64,9 @@
     border: 0px;
 }
 
+.layout ul {
+    padding-inline-start: 4px;
+}
 .layout .application-header {
     background-color: rgb(214, 214, 214);
     margin-bottom: 4px;

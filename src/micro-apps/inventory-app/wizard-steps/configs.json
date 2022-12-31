@@ -237,6 +237,24 @@
             "lastName": "Bro",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314"
+        },
+        {
+            "id": "VA12312i5",
+            "name": "Big University",
+            "industry": "Education",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Niraj Way",
+            "city": "Seattle",
+            "state": "WA",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314"
         }
     ]
 }

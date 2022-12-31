@@ -118,8 +118,8 @@ export const DataCollectionWizard = (props: any) => {
                                 <Form.Select value={report.companyId} onChange={onSelectCompany} aria-label="">
                                     <option>Select a company</option>
                                     {
-                                        companies.map((v, idx) =>
-                                            <option key={"company-" + idx} value={"" + v.id}>{v.name}</option>
+                                        companies.map((campany, idx) =>
+                                            <option key={"company-" + idx} value={"" + campany.id}>{campany.name}</option>
                                         )
                                     }
                                 </Form.Select>

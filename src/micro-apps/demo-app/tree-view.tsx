@@ -13,7 +13,8 @@ export const TreeViewDemo = (props: any) => {
                     text: "Child 1",
                     children: [
                         {
-                            text: "Grandchild 1"
+                            text: "Grandchild with href",
+                            href: "/"
                         },
                         {
                             text: "Grandchild 2"
@@ -36,7 +37,7 @@ export const TreeViewDemo = (props: any) => {
                     <div className="demo-body-main">
                         <Toast className="demo-panel">
                             <Toast.Body>
-                                <TreeView data={treeData} />
+                                <TreeView data={treeData}  options={{selectable:false, enableLinks:true}}/>
                             </Toast.Body>
                         </Toast>
                         <div className="demo-panel">

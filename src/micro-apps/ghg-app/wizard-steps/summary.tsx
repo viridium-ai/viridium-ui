@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 import { Toast, Form, Button } from 'react-bootstrap';
-import { LayoutPage } from '../../../common/layout';
+import { LayoutPage } from '../../../components/layout';
 import { greenHouseApp } from '../ghg-app';
 
 

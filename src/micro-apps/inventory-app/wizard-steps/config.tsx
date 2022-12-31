@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../common/layout";
-import { Question, Action } from "../../../common/wizard";
+import { LayoutPage } from "../../../components/layout";
+import { Question, Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
 import { InventoryItem, getInventoryItem, updateInventoryItem } from "../inventory-common";
 

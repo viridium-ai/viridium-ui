@@ -1,6 +1,6 @@
 
 import { Row, Col } from 'react-bootstrap';
-import { LayoutPage } from '../../common/layout'
+import { LayoutPage } from '../../components/layout'
 import { homeApp } from './home-app';
 
 export const Solutions = (props: any) => {

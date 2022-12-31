@@ -1,10 +1,10 @@
 
 import React, { Component, useState } from "react";
 import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
-import { securityManager } from "./security/security-manager";
+import { securityManager } from "../common/security/security-manager";
 import { useNavigate } from "react-router-dom";
 import "./layout.css";
-import { IRouteItem, MicroApp } from "./micro-app";
+import { IRouteItem, MicroApp } from "../common/micro-app";
 import { VscMail } from "react-icons/vsc";
 
 export const MyOffcanvas = (props: any) => {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { restClient } from "../../common/rest-client"
 import { EntityList, EntityDetails, EntityForm } from './service-component';
-import { LayoutPage, MyOffcanvas } from '../../common/layout'
+import { LayoutPage, MyOffcanvas } from '../../components/layout'
 import { Service, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 

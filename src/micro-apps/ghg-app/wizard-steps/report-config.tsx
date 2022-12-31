@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Question, Action } from "../../../common/wizard";
+import { Question, Action } from "../../../components/wizard";
 import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../common/layout";
+import { LayoutPage } from "../../../components/layout";
 import { greenHouseApp } from "../ghg-app";
 import { InventoryReport, getReport, DateRange, updateReport } from "../ghg-common";
 

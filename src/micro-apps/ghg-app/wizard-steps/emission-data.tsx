@@ -1,7 +1,7 @@
 import { Component, useState } from "react";
 import { Toast, Form, Button, Col, Row, Offcanvas } from "react-bootstrap";
-import { LayoutPage, MyOffcanvas } from "../../../common/layout";
-import { Action } from "../../../common/wizard";
+import { LayoutPage, MyOffcanvas } from "../../../components/layout";
+import { Action } from "../../../components/wizard";
 import { greenHouseApp } from "../ghg-app";
 import { Emission, EmissionTypes, InventoryReport, getReport, AnalyticTable, EmissionRow } from "../ghg-common";
 

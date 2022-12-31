@@ -1,6 +1,6 @@
 
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../common/layout';
+import { LayoutPage } from '../../components/layout';
 import { dataSourceManager } from './dm-app';
 
 export const Help = (props: any) => {

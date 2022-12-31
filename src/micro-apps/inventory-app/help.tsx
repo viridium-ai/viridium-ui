@@ -1,6 +1,6 @@
 
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../common/layout';
+import { LayoutPage } from '../../components/layout';
 import { inventoryConfigApp } from './inventory-app';
 
 export const Help = (props: any) => {

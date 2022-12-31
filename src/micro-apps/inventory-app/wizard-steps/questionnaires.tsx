@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row, Toast } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { LayoutPage } from "../../../common/layout";
+import { LayoutPage } from "../../../components/layout";
 import { securityManager } from "../../../common/security/security-manager";
-import { Action } from "../../../common/wizard";
+import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
 import { InventoryItem, getInventoryItem, Question, updateInventoryItem } from "../inventory-common";
 

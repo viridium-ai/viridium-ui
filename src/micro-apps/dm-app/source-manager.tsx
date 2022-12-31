@@ -1,5 +1,5 @@
 import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
-import { LayoutPage} from '../../common/layout';
+import { LayoutPage} from '../../components/layout';
 import { dataSourceManager } from './dm-app';
 
 export const SourceManager = (props: any) => {

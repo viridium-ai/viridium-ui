@@ -1,5 +1,5 @@
 
-import { LayoutPage } from '../../common/layout'
+import { LayoutPage } from '../../components/layout'
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { homeApp } from './home-app';
 

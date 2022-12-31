@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../common/layout";
-import { Question, Action } from "../../../common/wizard";
+import { LayoutPage } from "../../../components/layout";
+import { Question, Action } from "../../../components/wizard";
 import { greenHouseApp } from "../ghg-app";
 import { InventoryReport, Verifier, getReport, updateReport } from "../ghg-common";
 

@@ -177,7 +177,6 @@ class SecurityManager {
     }
 
     public isSignedIn = () => {
-        console.log(this.getUserName());
         return this.getUserName() !== 'Not Signed In';
     }
 

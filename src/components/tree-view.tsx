@@ -79,7 +79,7 @@ class Node {
     children?: Node[];
     tags?: [];
     parent?: Node;
-    state: NodeState = { selected: false, expanded: false };
+    state: NodeState = { selected: false, expanded: true };
     icon?: string;
     color?: string;
     bgColor?: string;
@@ -317,7 +317,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     //state : {node: Node, expanded:boolean, selected : boolean};
     constructor(props: TreeNodeProperty) {
         super(props);
-        this.state = { node: props.node, expanded: true };
+        this.state = { node: props.node, expanded: props.node.state ===undefined || props.node.state.expanded };
         this.selected = props.node.state && props.node.state.selected;
     }
 
@@ -370,7 +370,6 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     render() {
         let node = new Node();
         Object.assign(node, this.props.node);
-        console.log(this.props.node);
         let options: NodeOptions = defaultOptions;
 
         Object.assign(options, this.props.options);

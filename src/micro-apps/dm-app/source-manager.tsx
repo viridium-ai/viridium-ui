@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Toast, Table, Form, Col, Row, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout';
 import TreeView from '../../components/tree-view';
-import { NamedObject } from '../inventory-app/inventory-common';
 import { dataSourceManager } from './dm-app';
 
 interface Inventory {
@@ -10,6 +9,7 @@ interface Inventory {
     name: string,
     items: Array<InventoryItem>
 }
+
 interface InventoryItem {
     id: string,
     dataSourceName: string,
@@ -31,11 +31,16 @@ export const SourceManager = (props: any) => {
         let invenotryId = evt.target.value;
         let inventory = inventories.find((inv: any) => invenotryId === inv.id);
         if (inventory) {
-            console.log(inventory);
             setInventory(inventory);
         }
     }
 
+    const onUpdateScope = (evt : any) => {
+
+    }
+    const onUpdateCategory = (evt : any) => {
+
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
@@ -70,7 +75,7 @@ export const SourceManager = (props: any) => {
                                     <strong className="me-auto">Import Data Inventory</strong>
                                 </Toast.Header>
                                 <Toast.Body>
-                                    <Row>
+                                    {<Row>
                                         <Col sm={4}>
                                             Import Data Inventory
                                         </Col>
@@ -85,22 +90,28 @@ export const SourceManager = (props: any) => {
                                             </Form.Select>
                                         </Col>
                                     </Row>
-                                    <Row>
-                                        <Col sm={4}>
+                                    }
+                                    {
+                                        selectedInventory ? <>
+                                            <Row>
+                                                <Col sm={4}>
 
-                                        </Col>
-                                        <Col sm={8} className="inventory-summary">
-                                            Last Updated: Yesterday
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col sm={4}>
+                                                </Col>
+                                                <Col sm={8} className="inventory-summary">
+                                                    Last Updated: Yesterday
+                                                </Col>
+                                            </Row>
+                                            <Row>
+                                                <Col sm={4}>
 
-                                        </Col>
-                                        <Col sm={8} className="inventory-summary">
-                                            Notes: This is final onboarding data inventory for Big City Airport
-                                        </Col>
-                                    </Row>
+                                                </Col>
+                                                <Col sm={8} className="inventory-summary">
+                                                    Notes: This is final onboarding data inventory for Big City Airport
+                                                </Col>
+                                            </Row>
+                                        </> : <></>
+                                    }
+
                                 </Toast.Body>
                             </Toast>
                         </div>
@@ -108,121 +119,123 @@ export const SourceManager = (props: any) => {
 
                         </div>
                         <div className="dashboard-panel">
-                            <Toast >
-                                <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Data Inventory</strong>
-                                </Toast.Header>
-                                <Toast.Body>
-                                    <Table striped bordered hover size="sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Select</th>
-                                                <th>Data Source Name</th>
-                                                <th>Description</th>
-                                                <th>Notes</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            {
-                                                selectedInventory ? selectedInventory.items.map((item: any) => {
-                                                    return <tr>
-                                                        <td><Form.Check type="checkbox" /></td>
-                                                        <td>{item.dataSourceName}</td>
-                                                        <td>{item.description}</td>
-                                                        <td>{item.notes}</td>
-                                                    </tr>
-                                                }) : ""
-                                            }
-                                        </tbody>
-                                    </Table>
-                                    <div className="details-box">
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>Data Source Name
-                                            </Col>
-                                            <Col className="details-value"  sm={9}>
-                                                Transport System
-                                            </Col>
-                                        </Row>
+                            {
+                                selectedInventory ? <Toast >
+                                    <Toast.Header closeButton={false}>
+                                        <strong className="me-auto">Data Inventory</strong>
+                                    </Toast.Header>
+                                    <Toast.Body>
+                                        <Table striped bordered hover size="sm">
+                                            <thead>
+                                                <tr>
+                                                    <th>Select</th>
+                                                    <th>Data Source Name</th>
+                                                    <th>Description</th>
+                                                    <th>Notes</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {
+                                                    selectedInventory ? selectedInventory.items.map((item: any, idx: number) => {
+                                                        return <tr key={'r'+idx}>
+                                                            <td><Form.Check type="checkbox" /></td>
+                                                            <td>{item.dataSourceName}</td>
+                                                            <td>{item.description}</td>
+                                                            <td>{item.notes}</td>
+                                                        </tr>
+                                                    }) : ""
+                                                }
+                                            </tbody>
+                                        </Table>
+                                        <div className="details-box">
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>Data Source Name
+                                                </Col>
+                                                <Col className="details-value" sm={9}>
+                                                    Transport System
+                                                </Col>
+                                            </Row>
 
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>Description
-                                            </Col>
-                                            <Col className="details-value"  sm={9}>
-                                                All Purchased Goods Transportation US, Canada
-                                            </Col>
-                                        </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>Description
+                                                </Col>
+                                                <Col className="details-value" sm={9}>
+                                                    All Purchased Goods Transportation US, Canada
+                                                </Col>
+                                            </Row>
 
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>Current Topics
-                                            </Col>
-                                            <Col className="details-value" style={{fontWeight:'bold'}} sm={4}>
-                                                Environmental Sustainability Category
-                                            </Col>
-                                            <Col className="details-value" style={{fontWeight:'bold'}}  sm={5}>
-                                                Scope of Data Coverage
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>
-                                            </Col>
-                                            <Col className="details-control"  sm={4}>
-                                                <Form.Check type="checkbox" id="carbon" checked={true} label={"Carbon"} />
-                                            </Col>
-                                            <Col className="details-control"  sm={5}>
-                                                <Form.Check type="checkbox" id="coporate" checked={true} label={'Coporate'}/>
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>
-                                            </Col>
-                                            <Col className="details-control"  sm={4}>
-                                                <Form.Check type="checkbox" id="water"   label={"Water"} />
-                                            </Col>
-                                            <Col className="details-control"  sm={5}>
-                                                <Form.Check type="checkbox" id="product" label={'Product'}/>
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>
-                                            </Col>
-                                            <Col className="details-control"  sm={4}>
-                                                <Form.Check type="checkbox" id="waster" label={"Waste"} />
-                                            </Col>
-                                            <Col className="details-control"  sm={5}>
-                                                <Form.Check type="checkbox" id="process" label={'Process'}/>
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>View Sample Data
-                                            </Col>
-                                            <Col className="details-value" sm={9}>
-                                                <a href="/">Click here to see sample data</a>
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>Review and approve
-                                            </Col>
-                                            <Col className="details-value" sm={9}>
-                                                <a href="/">Classification and mapping by Viridium.AI</a>
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label"  sm={3}>Notes
-                                            </Col>
-                                            <Col className="details-value"  sm={9}>
-                                                <Form.Control as="textarea" rows={2} />
-                                            </Col>
-                                        </Row>
-                                        <Row className="details-row">
-                                            <Col className="details-label" sm={8}>
-                                            </Col>
-                                            <Col className="details-btn" sm={4}>
-                                                <Button >Submit Data Request</Button>
-                                            </Col>
-                                        </Row>
-                                    </div>
-                                </Toast.Body>
-                            </Toast>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>Current Topics
+                                                </Col>
+                                                <Col className="details-value" style={{ fontWeight: 'bold' }} sm={4}>
+                                                    Environmental Sustainability Category
+                                                </Col>
+                                                <Col className="details-value" style={{ fontWeight: 'bold' }} sm={5}>
+                                                    Scope of Data Coverage
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>
+                                                </Col>
+                                                <Col className="details-control" sm={4}>
+                                                    <Form.Check type="checkbox" id="carbon"  onChange={onUpdateCategory}  checked={true} label={"Carbon"} />
+                                                </Col>
+                                                <Col className="details-control" sm={5}>
+                                                    <Form.Check type="checkbox" id="coporate"  onChange={onUpdateScope}  checked={true} label={'Coporate'} />
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>
+                                                </Col>
+                                                <Col className="details-control" sm={4}>
+                                                    <Form.Check type="checkbox"  onChange={onUpdateCategory}  id="water" label={"Water"} />
+                                                </Col>
+                                                <Col className="details-control" sm={5}>
+                                                    <Form.Check type="checkbox"  onChange={onUpdateScope}  id="product" label={'Product'} />
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>
+                                                </Col>
+                                                <Col className="details-control" sm={4}>
+                                                    <Form.Check type="checkbox" onChange={onUpdateCategory} id="waster" label={"Waste"} />
+                                                </Col>
+                                                <Col className="details-control" sm={5}>
+                                                    <Form.Check type="checkbox"  onChange={onUpdateScope}  id="process" label={'Process'} />
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>View Sample Data
+                                                </Col>
+                                                <Col className="details-value" sm={9}>
+                                                    <a href="/">Click here to see sample data</a>
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>Review and approve
+                                                </Col>
+                                                <Col className="details-value" sm={9}>
+                                                    <a href="/">Classification and mapping by Viridium.AI</a>
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={3}>Notes
+                                                </Col>
+                                                <Col className="details-value" sm={9}>
+                                                    <Form.Control as="textarea" rows={2} />
+                                                </Col>
+                                            </Row>
+                                            <Row className="details-row">
+                                                <Col className="details-label" sm={8}>
+                                                </Col>
+                                                <Col className="details-btn" sm={4}>
+                                                    <Button >Submit Data Request</Button>
+                                                </Col>
+                                            </Row>
+                                        </div>
+                                    </Toast.Body>
+                                </Toast> : <div></div>
+                            }
                         </div>
                     </div>
                 </div>

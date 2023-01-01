@@ -200,11 +200,16 @@
     "manageDataSource": [
         {
             "text": "Import Data Inventory",
-            "selected" : true,
-            "selecable" : true
+            "state" : {
+                "selected" : true,
+                "selecable" : true
+            }
         },
         {
             "text": "Setup",
+            "state" : {
+                "expanded" : true
+            },
             "children": [
                 {
                     "text": "Create Data Inventory"
@@ -218,6 +223,9 @@
     "manageData": [
         {
             "text": "Data Integration",
+            "state" : {
+                "expanded" : true
+            },
             "children": [
                 {
                     "text": "Sources >"
@@ -226,6 +234,9 @@
         },
         {
             "text": "Integrations",
+            "state" : {
+                "expanded" : true
+            },
             "children": [
                 {
                     "text": "Microsoft Sustainability >"
@@ -243,6 +254,9 @@
         },
         {
             "text": "Data Lakes",
+            "state" : {
+                "expanded" : false
+            },
             "children": [
                 {
                     "text": "Reporting"
@@ -251,6 +265,9 @@
         },
         {
             "text": "Data Quality",
+            "state" : {
+                "expanded" : false
+            },
             "children": [
                 {
                     "text": "Dashboard"
@@ -259,6 +276,9 @@
         },
         {
             "text": "Data Processing",
+            "state" : {
+                "expanded" : false
+            },
             "children": [
                 {
                     "text": "Jobs >"
@@ -273,6 +293,9 @@
         },
         {
             "text": "Setup",
+            "state" : {
+                "expanded" : false
+            },
             "children": [
                 {
                     "text": "Unit Conversions"

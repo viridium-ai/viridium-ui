@@ -136,3 +136,9 @@
     padding: 0em 1.5em;
 }
 
+.dm-app .data-cell-button {
+    text-align: center;
+}
+.dm-app .data-cell-checkbox {
+    text-align: center;
+}

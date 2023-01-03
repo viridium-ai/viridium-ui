@@ -71,7 +71,7 @@ class DataTable extends React.Component<DataTableProps, DataTableState> {
                             return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
                                 {
                                     row.cols.map((col: any, jdx: number) => {
-                                        return <td key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" />
+                                        return <td className={"data-cell-"+col.type} key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" />
                                             : (col.type === 'button' ? <Button onClick={col.onClick} >{col.text}</Button>
                                                 : col.text)
                                         }</td>
@@ -429,9 +429,7 @@ export const SourceManager = (props: any) => {
                                 </Toast.Header>
                                 <Toast.Body>
                                     {<Row>
-                                        <Col sm={4}>
-                                            Import Data Inventory
-                                        </Col>
+                                        <Col sm={4}>Import Data Inventory</Col>
                                         <Col sm={8}>
                                             <Form.Select value={selectedInventory?.id} onChange={onSelectInventory} aria-label="">
                                                 <option >Select an inventory</option>
@@ -445,17 +443,13 @@ export const SourceManager = (props: any) => {
                                     {
                                         selectedInventory ? <>
                                             <Row>
-                                                <Col sm={4}>
-
-                                                </Col>
+                                                <Col sm={4}></Col>
                                                 <Col sm={8} className="inventory-summary">
                                                     {selectedInventory.status} at {selectedInventory.updatedAt} by {selectedInventory.updatedBy}
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col sm={4}>
-
-                                                </Col>
+                                                <Col sm={4}></Col>
                                                 <Col sm={8} className="inventory-summary">
                                                     Notes: {selectedInventory ? selectedInventory.notes : " "}
                                                 </Col>

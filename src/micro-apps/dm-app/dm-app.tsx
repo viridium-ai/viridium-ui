@@ -12,7 +12,7 @@ class DataSourceManager implements MicroApp {
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Dashboard", "Dashboard", "Data Management", "/dm-app/dashboard"),
     new RouteItem().init("Data Sources", "Source", "Data Management", "/dm-app/source"),
-    new RouteItem().init("Sceduler", "Sceduler", "Data Management", "/dm-app/scheduler"),
+    new RouteItem().init("Scheduler", "Scheduler", "Data Management", "/dm-app/scheduler"),
     new RouteItem().init("Connectors", "Connector", "Data Management", "/dm-app/marketplace"),
     new RouteItem().init("Analytics", "Analytics", "Data Management", "/dm-app/analytics"),
     new RouteItem().init("Help", "Help", "Data Management", "/dm-app/help")

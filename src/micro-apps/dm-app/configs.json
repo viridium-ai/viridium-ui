@@ -1,22 +1,19 @@
 {
     "description": "jobs are ones that is runnable, it pull the data from source, and transform, and sink it into a different location",
-    "jobs": [
-        {
-            "name": "daily-travel-job",
-            "type": "etl",
-            "source": {
-                "name": "BussinessTravel"
-            },
-            "transformer": {},
-            "sink": {
-                "name": "BussinessTravel",
-                "config": {}
-            },
-            "schedule": {}
-        }
-    ],
-    "sources": [
-        {
+    "jobs": [{
+        "name": "daily-travel-job",
+        "type": "etl",
+        "source": {
+            "name": "BusinessTravel"
+        },
+        "transformer": {},
+        "sink": {
+            "name": "BusinessTravel",
+            "config": {}
+        },
+        "schedule": {}
+    }],
+    "sources": [{
             "name": "Amazon S3",
             "description": "AWS cloud storage",
             "connector": {
@@ -41,7 +38,7 @@
                     "password": "string",
                     "schema": "string",
                     "table": "string",
-                    "fileds": "array",
+                    "fields": "array",
                     "sql": "string"
                 }
             }
@@ -57,7 +54,7 @@
                     "username": "string",
                     "password": "string",
                     "schema": "string",
-                    "fileds": "array"
+                    "fields": "array"
                 }
             }
         },
@@ -73,31 +70,26 @@
                     "password": "string",
                     "partitionBy": "string",
                     "format": "csv|tsv|parquet",
-                    "fileds": "array"
+                    "fields": "array"
                 }
             }
         }
     ],
-    "transformers": [
-        {
-            "name": "BussinessTravel",
-            "description": "Map business travel dataset",
-            "connector": {
-                "name": "",
-                "driver": "com.viridium.mapper.BusinessTravelMapper"
-            },
-            "mapping": [
-                {
-                    "dateFrom": "01-01-2021",
-                    "dateTo": "01-01-2022",
-                    "category": "",
-                    "miles": 23145154
-                }
-            ]
-        }
-    ],
-    "sinks": [
-        {
+    "transformers": [{
+        "name": "BusinessTravel",
+        "description": "Map business travel dataset",
+        "connector": {
+            "name": "",
+            "driver": "com.viridium.mapper.BusinessTravelMapper"
+        },
+        "mapping": [{
+            "dateFrom": "01-01-2021",
+            "dateTo": "01-01-2022",
+            "category": "",
+            "miles": 23145154
+        }]
+    }],
+    "sinks": [{
             "name": "Amazon S3",
             "description": "AWS cloud storage",
             "connector": {
@@ -122,7 +114,7 @@
                     "password": "string",
                     "schema": "string",
                     "table": "string",
-                    "fileds": "array",
+                    "fields": "array",
                     "sql": "string"
                 }
             }
@@ -138,7 +130,7 @@
                     "username": "string",
                     "password": "string",
                     "schema": "string",
-                    "fileds": "array"
+                    "fields": "array"
                 }
             }
         },
@@ -154,64 +146,115 @@
                     "password": "string",
                     "partitionBy": "string",
                     "format": "csv|tsv|parquet",
-                    "fileds": "array"
+                    "fields": "array"
                 }
             }
         }
     ],
-    "inventory": [
-        {
+    "inventory": [{
             "id": "1",
-            "name": "Data Inventory for Big City Airport - Uploaded by Virdium.AI - User ID=Val",
-            "items": [
-                {
+            "name": "Data Inventory for Big City Airport",
+            "updatedAt": "26/12/2022",
+            "status": "Uploaded",
+            "updatedBy": "Val",
+            "notes" : "This is final onboarding data inventory for Big City Airport",
+            "items": [{
                     "id": "1",
-                    "dataSourceName": "Test",
-                    "description": "Apache Hadoop File System",
-                    "notes": "This is what we needed"
+                    "dataSourceName": "Building Mgmt System",
+                    "description": "Non Tenant Buildings",
+                    "notes": "Added by Viridium",
+                    "tech": "Schneider",
+                    "type": "CSV File",
+                    "status": 2,
+                    "configuration": {
+
+                    }
                 },
                 {
                     "id": "2",
-                    "dataSourceName": "Travel",
-                    "description": "Oracle DB",
-                    "notes": "This is what we needed"
+                    "dataSourceName": "Central APU system",
+                    "description": "Landside Terminal",
+                    "notes": "Added by Viridium",
+                    "tech": "SAP",
+                    "type": "API",
+                    "Integration Status": 1,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "3",
+                    "dataSourceName": "Transportation System",
+                    "description": "All Purchased Goods Transportation US-Canada",
+                    "notes": "Added by Viridium",
+                    "tech": "Oracle",
+                    "type": "API",
+                    "Integration Status": 2,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "4",
+                    "dataSourceName": "Custom App DB",
+                    "description": "On chain dataset for ?",
+                    "notes": "Added by Viridium",
+                    "tech": "Block Chain",
+                    "type": "HyperLedger API",
+                    "status": 0,
+                    "configuration": {
+
+                    }
                 }
             ]
         },
         {
             "id": "2",
-            "name": "Data Inventory for Big Drinking Party - Uploaded by Virdium.AI - User ID=Val",
-            "items": [
-                {
-                    "id": "3",
-                    "dataSourceName": "Test 3",
+            "name": "Data Inventory for Big Drinking Party",
+            "updatedAt": "30/12/2022",
+            "status": "Reviewed",
+            "updatedBy": "Val",
+            "notes" : "Data inventory for Big Drinking Party",
+            "items": [{
+                    "id": "1",
+                    "dataSourceName": "Business Travel Activity",
                     "description": "Apache Hadoop File System",
-                    "notes": "This is what we needed"
+                    "notes": "",
+                    "tech": "Apache HDFS",
+                    "type": "TSV File",
+                    "status": 1,
+                    "configuration": {
+
+                    }
                 },
                 {
-                    "id": "3",
-                    "dataSourceName": "Travel 2",
+                    "id": "2",
+                    "dataSourceName": "Truck Fuel Usage",
                     "description": "Oracle DB",
-                    "notes": "This is what we needed"
+                    "notes": "",
+                    "tech": "Oracle",
+                    "type": "Database",
+                    "status": 2,
+                    "configuration": {
+
+                    }
                 }
             ]
         }
     ],
-    "manageDataSource": [
-        {
+    "manageDataSource": [{
             "text": "Import Data Inventory",
-            "state" : {
-                "selected" : true,
-                "selecable" : true
+            "state": {
+                "selected": true,
+                "selectable": true
             }
         },
         {
             "text": "Setup",
-            "state" : {
-                "expanded" : true
+            "state": {
+                "expanded": true
             },
-            "children": [
-                {
+            "children": [{
                     "text": "Create Data Inventory"
                 },
                 {
@@ -220,25 +263,21 @@
             ]
         }
     ],
-    "manageData": [
-        {
+    "manageData": [{
             "text": "Data Integration",
-            "state" : {
-                "expanded" : true
+            "state": {
+                "expanded": true
             },
-            "children": [
-                {
-                    "text": "Sources >"
-                }
-            ]
+            "children": [{
+                "text": "Sources >"
+            }]
         },
         {
             "text": "Integrations",
-            "state" : {
-                "expanded" : true
+            "state": {
+                "expanded": true
             },
-            "children": [
-                {
+            "children": [{
                     "text": "Microsoft Sustainability >"
                 },
                 {
@@ -254,33 +293,28 @@
         },
         {
             "text": "Data Lakes",
-            "state" : {
-                "expanded" : false
+            "state": {
+                "expanded": false
             },
-            "children": [
-                {
-                    "text": "Reporting"
-                }
-            ]
+            "children": [{
+                "text": "Reporting"
+            }]
         },
         {
             "text": "Data Quality",
-            "state" : {
-                "expanded" : false
+            "state": {
+                "expanded": false
             },
-            "children": [
-                {
-                    "text": "Dashboard"
-                }
-            ]
+            "children": [{
+                "text": "Dashboard"
+            }]
         },
         {
             "text": "Data Processing",
-            "state" : {
-                "expanded" : false
+            "state": {
+                "expanded": false
             },
-            "children": [
-                {
+            "children": [{
                     "text": "Jobs >"
                 },
                 {
@@ -293,11 +327,10 @@
         },
         {
             "text": "Setup",
-            "state" : {
-                "expanded" : false
+            "state": {
+                "expanded": false
             },
-            "children": [
-                {
+            "children": [{
                     "text": "Unit Conversions"
                 },
                 {

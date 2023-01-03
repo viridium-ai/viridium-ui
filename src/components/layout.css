@@ -21,7 +21,6 @@
     max-width: 300px;
     background-color: rgba(255, 255, 255, 0.889);
     height: calc(100vh - 110px);
-    box-shadow: 3px 3px 3px rgb(241, 241, 241);
 }
 
 .layout .home-body-nav a {

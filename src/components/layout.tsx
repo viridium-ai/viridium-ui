@@ -8,7 +8,6 @@ import { IRouteItem, MicroApp } from "../common/micro-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./layout.css";
-import { getInventoryItem } from "../micro-apps/inventory-app/inventory-common";
 
 export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;

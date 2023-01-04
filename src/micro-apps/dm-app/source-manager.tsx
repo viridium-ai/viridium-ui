@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
-import { Toast, Table, Form, Col, Row, Button } from 'react-bootstrap';
+import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
+import { DataTable, TableData } from '../../components/data-table';
 import { LayoutPage } from '../../components/layout';
 import TreeView from '../../components/tree-view';
 import { dataSourceManager } from './dm-app';
@@ -25,65 +26,6 @@ interface SourceDetailsState {
 }
 interface SourceDetailsProps {
     row: any
-}
-
-interface DataTableProps {
-    data: any,
-    onSelectRow: Function
-}
-interface DataTableState {
-    data: any
-}
-class DataTable extends React.Component<DataTableProps, DataTableState> {
-    constructor(props: DataTableProps) {
-        super(props);
-        this.state = { data: props.data };
-    }
-    componentDidUpdate = (data: DataTableProps) => {
-        if (this.props.data.id !== data.data.id) {
-            this.setState({ data: this.props.data });
-        }
-    }
-    onSelectRow = (evt: any) => {
-        evt.preventDefault();
-        evt.stopePropagation();
-        if (this.props.onSelectRow) {
-            this.props.onSelectRow(evt.currentTarget.id);
-        }
-    }
-    render = () => {
-        let tableData = this.state.data;
-        return (
-            <Table bordered hover size="sm">
-                <thead>
-                    <tr >
-                        {
-                            tableData.headers.map((col: any, idx: number) => {
-                                return <th key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
-                                }</th>
-                            })
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        tableData.rows.map((row: any, idx: number) => {
-                            return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
-                                {
-                                    row.cols.map((col: any, jdx: number) => {
-                                        return <td className={"data-cell-"+col.type} key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" />
-                                            : (col.type === 'button' ? <Button onClick={col.onClick} >{col.text}</Button>
-                                                : col.text)
-                                        }</td>
-                                    })
-                                }
-                            </tr>
-                        })
-                    }
-                </tbody>
-            </Table>
-        );
-    }
 }
 class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsState> {
     constructor(props: SourceDetailsProps) {
@@ -315,9 +257,9 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
         console.log('button clicked');
     }
 
-    getTableData = () => {
+    getTableData = (): TableData => {
         let selectedInventory: Inventory = this.state.inventory;
-        return selectedInventory.status === 'Uploaded' ? {
+        return selectedInventory.status === 'Uploaded' ? DataTable.new({
             id: selectedInventory.id,
             headers: [
                 { type: "text", text: "Select" },
@@ -326,7 +268,8 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                 { type: "text", text: "Notes" }],
             rows: selectedInventory.items.map((item: any, idx: number) => {
                 return {
-                    cols: [
+                    id: selectedInventory.id + "_" + idx,
+                    cells: [
                         { type: "checkbox", text: "", value: false },
                         { type: "text", text: item.dataSourceName },
                         { type: "text", text: item.description },
@@ -334,7 +277,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                     ]
                 }
             })
-        } : {
+        }) : DataTable.new({
             id: selectedInventory.id,
             headers: [
                 { type: "text", text: "Select" },
@@ -345,7 +288,8 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                 { type: "text", text: "Action" }],
             rows: selectedInventory.items.map((item: any, idx: number) => {
                 return {
-                    cols: [
+                    id: selectedInventory.id + "_" + idx,
+                    cells: [
                         { type: "checkbox", text: "", value: false },
                         { type: "text", text: item.dataSourceName },
                         { type: "text", text: item.type },
@@ -355,7 +299,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                     ]
                 }
             })
-        }
+        });
     }
     render() {
         let selectedInventory: Inventory = this.state.inventory;

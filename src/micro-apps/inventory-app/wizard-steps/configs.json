@@ -126,20 +126,20 @@
             },
             {
                 "id": "2",
-                "value": "Something else",
+                "value": "Shopping",
                 "functions": [
-                    "function1",
-                    "function2",
-                    "function3"
+                    "Transport",
+                    "Manufacture",
+                    "Waste"
                 ]
             }
         ],
         "headers": [
-            "Function Cagtegory",
+            "Function Category",
             "Function 1.0",
             "Function 1.1",
             "GHG Scope",
-            "Direct or Indiect",
+            "Direct or Indirect",
             "CWsWt"
         ],
         "values": [
@@ -153,7 +153,7 @@
             ],
             [
                 "Landside",
-                "Airport",
+                "Airline",
                 "Building Management",
                 "Scope 1",
                 "Direct",
@@ -169,7 +169,7 @@
             ],
             [
                 "Landside",
-                "Airport",
+                "Manufacture",
                 "Business Travel",
                 "Scope 1",
                 "Direct",
@@ -192,12 +192,36 @@
                 "CWs"
             ],
             [
-                "Landside",
-                "Airport",
+                "Shopping",
+                "Transport",
                 "Baggage Handling",
                 "Scope 1",
                 "Direct",
                 "CWs"
+            ],
+            [
+                "Shopping",
+                "Waste",
+                "Building Construction",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Building Management",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Suppliers",
+                "Scope 1",
+                "Direct",
+                "C"
             ]
         ]
     },

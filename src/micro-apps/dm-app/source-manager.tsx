@@ -34,7 +34,7 @@ interface DataTableProps {
 interface DataTableState {
     data: any
 }
-class DataTable extends React.Component<DataTableProps, DataTableState> {
+export class DataTable extends React.Component<DataTableProps, DataTableState> {
     constructor(props: DataTableProps) {
         super(props);
         this.state = { data: props.data };
@@ -53,13 +53,16 @@ class DataTable extends React.Component<DataTableProps, DataTableState> {
     }
     render = () => {
         let tableData = this.state.data;
+        if (!tableData) {
+            return <div>No data available</div>
+        }
         return (
             <Table bordered hover size="sm">
                 <thead>
                     <tr >
                         {
                             tableData.headers.map((col: any, idx: number) => {
-                                return <th key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
+                                return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
                                 }</th>
                             })
                         }
@@ -357,6 +360,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
             })
         }
     }
+
     render() {
         let selectedInventory: Inventory = this.state.inventory;
         return (
@@ -380,6 +384,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
         );
     }
 }
+
 export const SourceManager = (props: any) => {
     const [selectedInventory, setInventory] = useState<Inventory>();
     var configs = require('./configs.json');

@@ -46,7 +46,7 @@ class InventoryConfigApp implements MicroApp {
         <Route path="/inventory-app/items" element={<InventoryItems />} />
         <Route path="/inventory-app/sources" element={<DataSources />} />
         <Route path="/inventory-app/categories" element={<FunctionCategories />} />
-        <Route path="/inventory-app/questionnairs" element={<Questionnaires />} />
+        <Route path="/inventory-app/questionnaires" element={<Questionnaires />} />
         <Route path="/inventory-app/help" element={<Help />} />
       </>
     );

@@ -1,0 +1,145 @@
+{
+
+    "companies": [{
+        "id": "1",
+        "name": "Tesla Co."
+    }],
+    "sites": [{
+            "id": "1",
+            "CompanyId": "1",
+            "name": "Giga Factory TX",
+            "location": "TX",
+            "country": "USA",
+            "zipCode": "86345"
+        },
+        {
+            "id": "2",
+            "name": "Giga Factory CA",
+            "CompanyId": "1",
+            "location": "CA",
+            "country": "USA",
+            "zipCode": "94560"
+        },
+        {
+            "id": "3",
+            "name": "Giga Factory NV",
+            "CompanyId": "1",
+            "location": "NV",
+            "country": "USA",
+            "zipCode": "86345"
+        },
+        {
+            "id": "4",
+            "name": "Corporate",
+            "CompanyId": "1",
+            "location": "TX",
+            "country": "USA",
+            "zipCode": "79804"
+        }
+    ],
+    "consumptionCategories": [{
+            "id": "1",
+            "name": "Stationary Combustion"
+        },
+        {
+            "id": "2",
+            "name": "Mobile Combustion"
+        },
+        {
+            "id": "3",
+            "name": "Purchased Electricity"
+        }
+    ],
+    "consumptionTypes": [{
+            "id": "1",
+            "category": "2",
+            "name": "Honda Accord",
+            "maker": "Honda",
+            "brand": "Accord",
+            "type": "light",
+            "unit": "miles",
+            "fuelType": "gas",
+            "year": ""
+        },
+        {
+            "id": "2",
+            "category": "2",
+            "name": "Toyota Lexus",
+            "maker": "Toyota",
+            "brand": "Lexus",
+            "type": "suv",
+            "unit": "miles",
+            "fuelType": "gas",
+            "year": ""
+        },
+        {
+            "id": "3",
+            "category": "2",
+            "name": "Tesla Semi",
+            "maker": "Tesla",
+            "brand": "Semi",
+            "type": "heavy_truck",
+            "unit": "miles",
+            "fuelType": "electricity",
+            "year": ""
+        },
+        {
+            "id": "4",
+            "category": "2",
+            "name": "Ford F50",
+            "maker": "Ford",
+            "brand": "F50",
+            "type": "light_truck",
+            "unit": "miles",
+            "fuelType": "gas",
+            "year": ""
+        },
+        {
+            "id": "6",
+            "category": "1",
+            "maker": "Siemens",
+            "brand": "G345-3",
+            "type": "AirCon",
+            "fuelType": "gas",
+            "year": ""
+        },
+        {
+            "id": "7",
+            "category": "1",
+            "name": "GE Max 500",
+            "maker": "GE",
+            "brand": "Max500",
+            "type": "Generator",
+            "fuelType": "gas",
+            "year": ""
+        },
+        {
+            "id": "8",
+            "category": "3",
+            "name": "Location based Electricity",
+            "maker": "PG/E",
+            "type": "location-based",
+            "fuelType": "electricity",
+            "year": ""
+        },
+        {
+            "id": "9",
+            "category": "3",
+            "name": "Location based Electricity",
+            "maker": "PG/E",
+            "brand": "Max500",
+            "type": "contract-based",
+            "fuelType": "electricity",
+            "year": ""
+        }
+    ],
+    "inventoryItems": [{
+        "id": "1",
+        "scope": "1",
+        "level": "corporate",
+        "industry": "airport",
+        "name": "Stationary Combustion",
+        "siteId": "",
+        "consumptionType": ""
+    }]
+}

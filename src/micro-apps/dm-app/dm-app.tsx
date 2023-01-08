@@ -14,7 +14,7 @@ class DataSourceManager implements MicroApp {
     new RouteItem().init("Data Sources", "Source", "Data Management", "/dm-app/source"),
     new RouteItem().init("Scheduler", "Scheduler", "Data Management", "/dm-app/scheduler"),
     new RouteItem().init("Connectors", "Connector", "Data Management", "/dm-app/marketplace"),
-    new RouteItem().init("Analytics", "Analytics", "Data Management", "/dm-app/analytics"),
+    new RouteItem().init("Reports", "Reports", "Data Management", "/dm-app/analytics"),
     new RouteItem().init("Help", "Help", "Data Management", "/dm-app/help")
   ];
 

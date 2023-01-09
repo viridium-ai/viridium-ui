@@ -6,7 +6,6 @@ import { MicroApp, RouteItem } from "../../common/micro-app";
 import './ghg-app.css';
 import { Help } from "../dm-app/help";
 import { CompanyConfig } from "./inventory-builder/company-config";
-import { DataSources } from "./inventory-builder/data-sources";
 import { MappingCategories } from "./inventory-builder/inventory-categories";
 import { InventoryConfig } from "./inventory-builder/inventory-config";
 import { InventoryExport } from "./inventory-builder/inventory-export";
@@ -42,7 +41,6 @@ class GreenHouseApp implements MicroApp {
         <Route path="/ghg-app/company" element={<CompanyConfig next={'/ghg-app/config'}  />} />
         <Route path="/ghg-app/config" element={<InventoryConfig next={'/ghg-app/items'} prev={'/ghg-app/company'}/>} />
         <Route path="/ghg-app/items" element={<InventoryItemsView  next={'/ghg-app/mappings'} prev={'/ghg-app/config'}/>} />
-        <Route path="/ghg-app/addItem" element={<DataSources prev={'/ghg-app/items'}/>} />
         <Route path="/ghg-app/mappings" element={<MappingCategories next={'/ghg-app/summary'} prev={'/ghg-app/items'} />} />
         <Route path="/ghg-app/summary" element={<InventorySummary  next={'/ghg-app/export'} prev={'/ghg-app/mappings'} />} />
         <Route path="/ghg-app/export" element={<InventoryExport prev={'/ghg-app/summary'}/>} />

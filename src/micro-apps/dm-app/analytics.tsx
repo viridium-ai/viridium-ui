@@ -16,7 +16,8 @@ export const Analytics = (props: any) => {
             ],
             rows: [
                 {
-                    id: "1", cols: [{ type: "text", text: "Shipping" },
+                    id: "1", 
+                    cols: [{ type: "text", text: "Shipping" },
                     { type: "text", text: "1000" },
                     { type: "text", text: "Scope 1" }
                     ]

@@ -3,12 +3,12 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
-import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
+import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
+import { getConfigs } from "./model";
 
-export const InventoryItems = (props: any) => {
-    var configs = require('./configs.json');
-
+export const InventoryTypes = (props: any) => {
+    const configs = getConfigs();
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
 
     const onSelectScope1 = (evt: any) => {

@@ -1,0 +1,449 @@
+{
+    "frequences": [
+        {
+            "id": "monthly",
+            "name": "Monthly"
+        },
+        {
+            "id": "quartly",
+            "name": "Quartly"
+        },
+        {
+            "id": "yearly",
+            "name": "Yearly"
+        }
+    ],
+    "inventoryTypes": [
+        {
+            "id": "monthly",
+            "name": "Monthly"
+        },
+        {
+            "id": "quartly",
+            "name": "Quartly"
+        },
+        {
+            "id": "yearly",
+            "name": "Yearly"
+        }
+    ],
+    "viridiumIndustries": [
+        {
+            "id": "1",
+            "name": "Transportation: Airport"
+        },
+        {
+            "id": "2",
+            "name": "Transportation: Airline"
+        },
+        {
+            "id": "3",
+            "name": "Transportation: Manufacture"
+        }
+    ],
+    "scopes": [
+        {
+            "id": "1",
+            "name" : "Scope 1",
+            "categories": [
+                {
+                    "id": "1",
+                    "name": "Stationary Combustion",
+                    "types": [
+                        "Cooling",
+                        "Heating",
+                        "Generation"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "name": "Mobile Combustion",
+                    "types": [
+                        "Cars",
+                        "Trucks",
+                        "Ships",
+                        "Trains",
+                        "Plans"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "name": "Electricity",
+                    "types": [
+                        "Cars",
+                        "Trucks",
+                        "Ships",
+                        "Trains",
+                        "Plans"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name" : "Scope 2",
+            "categories": [
+                {
+                    "id": "1",
+                    "name": "Transportation",
+                    "types": [
+                        "Cars",
+                        "Trucks",
+                        "Ship",
+                        "Trains",
+                        "Plans"
+                    ]
+                },
+                {
+                    "id": "2",
+                    "name": "Electricity",
+                    "types": [
+                        "Fossil Fuel",
+                        "Used in Buildings",
+                        "Used in Industry"
+                    ]
+                },
+                {
+                    "id": "3",
+                    "name": "Industry",
+                    "types": [
+                        "Fuel",
+                        "Chemical Reactions"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "name" : "Scope 3",
+            "categories": [
+                {
+                    "id": "1",
+                    "name": "Purchased Goods and Services"
+                },
+                {
+                    "id": "2",
+                    "name": "Capital Goods"
+                },
+                {
+                    "id": "3",
+                    "name": "Fuel and Energy related activities (not included in scope 1 or 2)"
+                },
+                {
+                    "id": "4",
+                    "name": "Upstream transportation and distribution"
+                },
+                {
+                    "id": "5",
+                    "name": "Waste generated in operations"
+                },
+                {
+                    "id": "6",
+                    "name": "Business Travel"
+                },
+                {
+                    "id": "7",
+                    "name": "Employee commuting"
+                },
+                {
+                    "id": "8",
+                    "name": "Upstream leased Assets"
+                },
+                {
+                    "id": "9",
+                    "name": "Transportation and distribution of sold products"
+                },
+                {
+                    "id": "10",
+                    "name": "Transportation and distribution of sold products"
+                },
+                {
+                    "id": "11",
+                    "name": "Processing of Sold Products"
+                },
+                {
+                    "id": "12",
+                    "name": "Use of sold products"
+                },
+                {
+                    "id": "13",
+                    "name": "End of life treatment of sold products"
+                },
+                {
+                    "id": "14",
+                    "name": "Downstream leased assets"
+                },
+                {
+                    "id": "14",
+                    "name": "Franchises"
+                },
+                {
+                    "id": "14",
+                    "name": "Investments"
+                }
+            ]
+        }
+    ],
+    "dataSources": [
+        "Oracle ERP Financial Management",
+        "Oracle ERP Procurement",
+        "Oracle ERP Project Management",
+        "Oracle ERP Risk Management and Compliance",
+        "Oracle ERP Enterprise Performance Management",
+        "Oracle SCM Supply Chain Planning",
+        "Oracle SCM Inventory Management",
+        "Oracle SCM Manufacturing",
+        "SAP IS Airlines & Defense",
+        "SAP Manufacturing",
+        "SAP Plant Maintenance(PM)",
+        "SAP Production Planning(PP)",
+        "SAP Product Lifecycle Costing(PLC)",
+        "SAP Profitability and Cost Management(PCM)",
+        "SAP Project System(PS)",
+        "SAP Rapid Deployment Solutions(RDS)",
+        "SAP Service and Asset Management",
+        "Microsoft Dynamics 365 Finance",
+        "Microsoft Dynamics 365 Business Central",
+        "Microsoft Dynamics 365 Sales",
+        "Data management",
+        "Azure Data Explorer",
+        "Cosmos DB",
+        "Azure SQL Database",
+        "Azure Synapse Analytics",
+        "Azure Data Factory",
+        "Azure Data Lake",
+        "Azure HDInsight",
+        "Salesforce Sales Cloud",
+        "Salesforce Service Cloud",
+        "Salesforce Marketing Cloud",
+        "Salesforce Commerce Cloud",
+        "Salesforce Experience Cloud",
+        "Salesforce 360 Platform"
+    ],
+    "functionCategories": {
+        "lookups": [
+            {
+                "id": "0",
+                "value": "Select a Category",
+                "functions": [
+                    ""
+                ]
+            },
+            {
+                "id": "1",
+                "value": "Landside",
+                "functions": [
+                    "Airport",
+                    "Airline",
+                    "Manufacture"
+                ]
+            },
+            {
+                "id": "2",
+                "value": "Shopping",
+                "functions": [
+                    "Transport",
+                    "Manufacture",
+                    "Waste"
+                ]
+            }
+        ],
+        "headers": [
+            "Function Category",
+            "Function 1.0",
+            "Function 1.1",
+            "GHG Scope",
+            "Direct or Indirect",
+            "CWsWt"
+        ],
+        "values": [
+            [
+                "Landside",
+                "Airport",
+                "Building Construction",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airline",
+                "Building Management",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Suppliers",
+                "Scope 1",
+                "Direct",
+                "C"
+            ],
+            [
+                "Landside",
+                "Manufacture",
+                "Business Travel",
+                "Scope 1",
+                "Direct",
+                "C"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Security",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Parking",
+                "Scope 1",
+                "Direct",
+                "CWs"
+            ],
+            [
+                "Shopping",
+                "Transport",
+                "Baggage Handling",
+                "Scope 1",
+                "Direct",
+                "CWs"
+            ],
+            [
+                "Shopping",
+                "Waste",
+                "Building Construction",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Building Management",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Suppliers",
+                "Scope 1",
+                "Direct",
+                "C"
+            ]
+        ]
+    },
+    "companies": [
+        {
+            "id": "VA12312i3",
+            "name": "Big Airport",
+            "industry": "Transportation",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "SF123141",
+            "source": "Source CRM Account ID",
+            "street1": "555, Airport Way",
+            "city": "Big City",
+            "state": "CA",
+            "zipCode": "45678",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.deo@viridium.ai",
+            "phone": "425-456-7896",
+            "sites" :[
+                {
+                    "id":"2",
+                    "name":"Site 2",
+                    "companyId":"VA12312i3"
+                },
+                {
+                    "id":"3",
+                    "name":"Site 3",
+                    "companyId":"VA12312i3"
+                },
+                {
+                    "id":"1",
+                    "name":"Site 1",
+                    "companyId":"VA12312i3"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i4",
+            "name": "Drink Away",
+            "industry": "Process",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Water Way",
+            "city": "Las Vegas",
+            "state": "NV",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites" :[
+                {
+                    "id":"2",
+                    "name":"Site 2",
+                    "companyId":"VA12312i4"
+                },
+                {
+                    "id":"3",
+                    "name":"Site 3",
+                    "companyId":"VA12312i4"
+                },
+                {
+                    "id":"1",
+                    "name":"Site 1",
+                    "companyId":"VA12312i4"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i5",
+            "name": "Big University",
+            "industry": "Education",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Niraj Way",
+            "city": "Seattle",
+            "state": "WA",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites" :[
+                {
+                    "id":"2",
+                    "name":"Site 2",
+                    "companyId":"VA12312i5"
+                },
+                {
+                    "id":"3",
+                    "name":"Site 3",
+                    "companyId":"VA12312i5"
+                },
+                {
+                    "id":"1",
+                    "name":"Site 1",
+                    "companyId":"VA12312i5"
+                }
+            ]
+        }
+    ]
+}

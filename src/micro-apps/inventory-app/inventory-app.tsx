@@ -1,17 +1,14 @@
-
-
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/micro-app";
- 
 import './inventory-app.css';
-
-import { InventoryItemConfig } from "./wizard-steps/config";
-import { InventoryItems } from "./wizard-steps/items";
 import { DataSources } from "./wizard-steps/sources";
 import { DataCollectionWizard } from "./wizard-steps/summary";
 import { FunctionCategories } from "./wizard-steps/categories";
 import { Questionnaires } from "./wizard-steps/questionnaires";
 import { Help } from "./help";
+import { InventoryItems } from "./wizard-steps/items";
+import { InventoryConfig } from "./wizard-steps/config";
+
 
 
 class InventoryConfigApp implements MicroApp {
@@ -42,15 +39,16 @@ class InventoryConfigApp implements MicroApp {
     return (
       <>
         <Route path="/inventory-app" element={<DataCollectionWizard  />} />
-        <Route path="/inventory-app/config" element={<InventoryItemConfig />} />
+        <Route path="/inventory-app/config" element={<InventoryConfig />} />
         <Route path="/inventory-app/items" element={<InventoryItems />} />
         <Route path="/inventory-app/sources" element={<DataSources />} />
         <Route path="/inventory-app/categories" element={<FunctionCategories />} />
-        <Route path="/inventory-app/questionnaires" element={<Questionnaires />} />
+        <Route path="/inventory-app/questionnairs" element={<Questionnaires/>} />
         <Route path="/inventory-app/help" element={<Help />} />
       </>
     );
   }
+  
 }
 
 export const inventoryConfigApp: InventoryConfigApp = new InventoryConfigApp();

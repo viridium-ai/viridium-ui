@@ -3,13 +3,15 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
-import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
+import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
+import { getConfigs } from "./model";
 
 export const DataSources = (props: any) => {
-    var configs = require('./configs.json');
+    const configs = getConfigs();
     const item = getQuestionnaire();
     const [report, setQuestionnaire] = useState<Questionnaire>(item);
+    const [query, setQuery] = useState<string>("");
 
     const ds = configs.dataSources.map((value: string, idx: number) => {
         return { id: "" + (idx + 1), label: value }
@@ -37,7 +39,10 @@ export const DataSources = (props: any) => {
             );
             setDataSources([...filteredDSs]);
         }
+        setQuery(key);
     }
+
+
 
     const ds1 = (): Array<{ id: string, label: string }> => {
         return datasources.filter((value, idx: number) => {

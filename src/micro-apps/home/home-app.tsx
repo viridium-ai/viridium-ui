@@ -23,7 +23,7 @@ class HomeApp implements MicroApp {
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Inventory Config", "Inventory Config", undefined, "/inventory-app"),
     new RouteItem().init("Data Manager", "Data Manager", undefined, "/dm-app"),
-    new RouteItem().init("GHG Reports", "GHG Reports", undefined, "/wizard")
+    new RouteItem().init("GHG Reports", "GHG Reports", undefined, "/ghg-app")
   ];
 
   private routeItems1: Array<RouteItem> = [

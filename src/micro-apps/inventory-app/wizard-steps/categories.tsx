@@ -4,7 +4,7 @@ import { Toast, Table, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire } from "../inventory-common";
 
 export const FunctionalTable = (props: any) => {
     const ui = () => {
@@ -54,7 +54,7 @@ export const FunctionalRow = (props: any) => {
 export const FunctionCategories = (props: any) => {
     var configs = require('./configs.json');
 
-    const [report] = useState<InventoryItem>(getInventoryItem());
+    const [report] = useState<Questionnaire>(getQuestionnaire());
     const [categoryFunctions, setCategoryFunctions] = useState<Array<{ id: string, value: string }>>([]);
     const [selectedCategory, setCategory] = useState("");
 

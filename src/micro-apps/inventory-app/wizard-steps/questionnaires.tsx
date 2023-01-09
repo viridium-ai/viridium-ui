@@ -5,11 +5,11 @@ import { LayoutPage } from "../../../components/layout";
 import { securityManager } from "../../../common/security/security-manager";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem, Question, updateInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-common";
 
 export const Questionnaires = (props: any) => {
 
-    const [report, setInventoryItem] = useState<InventoryItem>(getInventoryItem());
+    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
     const [selectedQuestion, selectQuestion] = useState("");
     const [selectedQuestions, setSelectedQuestions] = useState<Array<Question>>([]);
     const [unselectedQuestions, setUnselectedQuestions] = useState<Array<Question>>([]);
@@ -26,9 +26,9 @@ export const Questionnaires = (props: any) => {
             console.log("redirect to login");
             navigate("/login?from=/inventory-app");
         } else {
-            let r = getInventoryItem();
+            let r = getQuestionnaire();
             if (r) {
-                setInventoryItem(r);
+                setQuestionnaire(r);
                 if (r.questions) {
                     setSelectedQuestions(r.questions);
                     setUnselectedQuestions(questions.filter((q) => {
@@ -71,8 +71,8 @@ export const Questionnaires = (props: any) => {
             setUnselectedQuestions([...unselectedQuestions.filter(q => q.id !== selectedQuestion)]);
             let clone = { ...report };
             clone.questions = [...qs];
-            setInventoryItem(clone);
-            updateInventoryItem(clone);
+            setQuestionnaire(clone);
+            updateQuestionnaire(clone);
         }
     }
 

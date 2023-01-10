@@ -257,9 +257,9 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
         console.log('button clicked');
     }
 
-    getTableData = (): TableData => {
+    getTableData = () => {
         let selectedInventory: Inventory = this.state.inventory;
-        return selectedInventory.status === 'Uploaded' ? DataTable.new({
+        return selectedInventory.status === 'Uploaded' ? {
             id: selectedInventory.id,
             headers: [
                 { type: "text", text: "Select" },
@@ -268,8 +268,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                 { type: "text", text: "Notes" }],
             rows: selectedInventory.items.map((item: any, idx: number) => {
                 return {
-                    id: selectedInventory.id + "_" + idx,
-                    cells: [
+                    cols: [
                         { type: "checkbox", text: "", value: false },
                         { type: "text", text: item.dataSourceName },
                         { type: "text", text: item.description },
@@ -277,7 +276,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                     ]
                 }
             })
-        }) : DataTable.new({
+        } : {
             id: selectedInventory.id,
             headers: [
                 { type: "text", text: "Select" },
@@ -288,8 +287,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                 { type: "text", text: "Action" }],
             rows: selectedInventory.items.map((item: any, idx: number) => {
                 return {
-                    id: selectedInventory.id + "_" + idx,
-                    cells: [
+                    cols: [
                         { type: "checkbox", text: "", value: false },
                         { type: "text", text: item.dataSourceName },
                         { type: "text", text: item.type },
@@ -299,7 +297,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                     ]
                 }
             })
-        });
+        }
     }
 
     render() {

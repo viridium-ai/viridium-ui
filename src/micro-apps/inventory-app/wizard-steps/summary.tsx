@@ -1,35 +1,13 @@
 import { useEffect, useState } from 'react';
 
 import { Toast, Form } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 import { LayoutPage } from '../../../components/layout';
-import { securityManager } from '../../../common/security/security-manager';
 import { Action, Question } from '../../../components/wizard';
 import { inventoryConfigApp } from '../inventory-app';
-import { InventoryItem, getInventoryItem, updateInventoryItem , NamedObject} from '../inventory-common';
+import { Company } from '../../ghg-app/inventory-builder/model';
+import { Questionnaire, getQuestionnaire, updateQuestionnaire , NamedObject} from '../inventory-common';
 
-class Company  {
-    id: string = "";
-    name: string = "";
-    industry?: string;
-    viridiumCategory?: string;
-    lastUpdatedDate?: Date;
-    lastUpdatedBy?: string;
-    sourceId?: string;
-    source?: string;
-    street1?: string;
-    city?: string;
-    state?: string;
-    zipCode?: string;
-    firstName?: string;
-    lastName?: string;
-    email?: string;
-    phone?: string;   
-    getAddress = () => {
-        return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
-    }
-}
 
 export const CompanyDetails = (props: any) => {
     const ui = () => {
@@ -49,7 +27,7 @@ export const CompanyDetails = (props: any) => {
 }
 
 export const DataCollectionWizard = (props: any) => {
-    const [report, setInventoryItem] = useState<InventoryItem>(getInventoryItem());
+    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
     const [company, setCompany] = useState<Company>();
     
     const configs = require('./configs.json');
@@ -57,13 +35,13 @@ export const DataCollectionWizard = (props: any) => {
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
     useEffect(() => {
        
-            let r = getInventoryItem();
+            let r = getQuestionnaire();
             if(r) {
                 if (companies) {
                     let company = companies.find((c) => c.id === r.companyId);
                     setCompany(company);
                 }
-                setInventoryItem(r);
+                setQuestionnaire(r);
             }
     }, [companies]);
 
@@ -74,8 +52,8 @@ export const DataCollectionWizard = (props: any) => {
         if (company) {
             clone.companyId = company.id;
             clone.companyName = company.name;
-            setInventoryItem(clone);
-            updateInventoryItem(clone);
+            setQuestionnaire(clone);
+            updateQuestionnaire(clone);
             setCompany(company);
         }
     }
@@ -84,15 +62,15 @@ export const DataCollectionWizard = (props: any) => {
         let clone = { ...report };
         clone.categoryId = evt.target.value;
         clone.category = viridiumIndustries.find(v=>v.id === clone.categoryId)?.name;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
 
     const onUpdateNotes = (evt: any) => {
         let clone = { ...report };
         clone.description = evt.target.value;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
     return (
         <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >

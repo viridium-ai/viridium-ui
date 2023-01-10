@@ -11,3 +11,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.me-auto {
+  font-size: large;
+  font-weight: 600;
+}
+
+button {
+  min-width: 120px;
+}

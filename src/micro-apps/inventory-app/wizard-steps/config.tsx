@@ -4,36 +4,36 @@ import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem, updateInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
 
-export const InventoryItemConfig = (props: any) => {
+export const InventoryConfig = (props: any) => {
 
-    const [report, setInventoryItem] = useState<InventoryItem>(getInventoryItem());
+    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
 
     const onSelectContext = (evt: any) => {
         let clone = { ...report };
         clone.context = evt.target.value;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
     const onSelectType = (evt: any) => {
         let clone = { ...report };
         clone.type = evt.target.value;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
 
     const onSelectStandard = (evt: any) => {
         let clone = { ...report };
         clone.standard = evt.target.value;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
     const onSelectRegulation = (evt: any) => {
         let clone = { ...report };
         clone.regulation = evt.target.value;
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
 
     const ui = () => {
@@ -114,8 +114,8 @@ export const InventoryItemConfig = (props: any) => {
                                     </Form.Select>
                                 </Question>
                                 <Action report={report}
-                                    next={{ label: "Next", path: "/inventory-app/categories" }}
-                                    prev={{ label: "Back", path: "/inventory-app" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

@@ -4,7 +4,7 @@ import { Toast, Table, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire } from "../inventory-common";
 
 export const FunctionalTable = (props: any) => {
     const ui = () => {
@@ -15,7 +15,7 @@ export const FunctionalTable = (props: any) => {
                         <tr>
                             {
                                 props.selectable ? <th className={"analytic-header analytic-col-checkbox"}>Select</th> : ""
-                                
+
                             }
                             {
                                 props.headers.map((header: any, idx: number) =>
@@ -54,11 +54,11 @@ export const FunctionalRow = (props: any) => {
 export const FunctionCategories = (props: any) => {
     var configs = require('./configs.json');
 
-    const [report] = useState<InventoryItem>(getInventoryItem());
+    const [report] = useState<Questionnaire>(getQuestionnaire());
     const [categoryFunctions, setCategoryFunctions] = useState<Array<{ id: string, value: string }>>([]);
     const [selectedCategory, setCategory] = useState("");
 
-    const [selectedFunction, setSelectedFunction] = useState();
+    const [selectedFunction, setSelectedFunction] = useState("");
 
     const categories: Array<{ id: string, value: string, functions: Array<string> }> = configs.functionCategories.lookups;
 
@@ -77,7 +77,7 @@ export const FunctionCategories = (props: any) => {
     const onSelectFunction = (event: any) => {
         setSelectedFunction(event.target.value);
     }
-    const onSelectFunctionCateegory = (event: any) => {
+    const onSelectFunctionCategory = (event: any) => {
 
     }
     const ui = () => {
@@ -139,19 +139,25 @@ export const FunctionCategories = (props: any) => {
                                 </Row>
                                 <Row>
                                     <Col>
-                                        <FunctionalTable title="Function categories" headers={configs.functionCategories.headers} selectable={true}>
-                                            {
-                                                configs.functionCategories.values.map((row: any, idx: number) => {
-                                                    return <FunctionalRow onChange={onSelectFunctionCateegory} selectable={true}
-                                                        key={"row-" + idx} cols={row} />
-                                                })
-                                            }
-                                        </FunctionalTable>
+                                        {selectedCategory !== "" ?
+                                            <FunctionalTable title="Function categories" headers={configs.functionCategories.headers} selectable={true}>
+                                                {
+                                                    configs.functionCategories.values.filter((row: any) => {
+                                                        const category = categories.find((cat) => selectedCategory === cat.id);
+                                                        const f = categoryFunctions.find((f)=> selectedFunction === f.id);
+                                                        return category?.value === row[0] && (f === undefined ? true : f.value === row[1]);
+                                                    }).map((row: any, idx: number) => {
+                                                        return <FunctionalRow onChange={onSelectFunctionCategory} selectable={true}
+                                                            key={"row-" + idx} cols={row} />
+                                                    })
+                                                }
+                                            </FunctionalTable> : <div>Please select a category</div>
+                                        }
                                     </Col>
                                 </Row>
                                 <Action
-                                    next={{ label: "Next", path: "/inventory-app/items" }}
-                                    prev={{ label: "Back", path: "/inventory-app/config" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

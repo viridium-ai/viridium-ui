@@ -84,7 +84,7 @@ class Node {
     color?: string;
     bgColor?: string;
     isLeaf = (): boolean => {
-        return this.children?.length === 0;
+        return this.children !== undefined ? this.children.length === 0 : true;
     }
 }
 
@@ -93,9 +93,9 @@ interface TreeViewProperty {
     onClick?: Function;
     onNodeAdded?: Function;
     onNodeRemoved?: Function;
-    data: any[];
+    data: any;
     allowNew?: boolean;
-    options? : any
+    options?: any
 }
 
 interface TreeViewState {
@@ -109,22 +109,18 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
     constructor(props: TreeViewProperty) {
         super(props);
         this.nodesQuantity = 0;
-        let root = new Node();
-        root.children = this.props.data;
-        this.state = { selected: false, expanded: false, data: this.setNodeId(root) };
+        this.state = { selected: false, expanded: false, data: this.setNodeId(this.props.data) };
     }
 
     componentWillReceiveProps = (nextProps: TreeViewProperty) => {
-        let root = new Node();
-        root.children = this.props.data;
-        this.setState({ data: this.setNodeId(root) });
+        this.setState({ data: this.setNodeId(this.props.data) });
     }
 
     setNodeId = (node: Node): Node[] | undefined => {
         return node.children?.map((childNode: Node) => {
             let newNode = new Node();
             Object.assign(newNode, {
-                id: this.nodesQuantity++,
+                id: childNode.id,
                 children: this.setNodeId(childNode),
                 parent: node,
                 state: {
@@ -137,7 +133,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             });
             return newNode;
         });
-
     }
 
     findNodeById = (nodes: Node[] | undefined, id: any): Node | undefined => {
@@ -213,7 +208,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         if (this.props.onDoubleClick) {
             this.props.onDoubleClick(this.state.data, node);
         }
-
     }
 
     convert = (nodes: Node[] | undefined) => {
@@ -317,7 +311,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     //state : {node: Node, expanded:boolean, selected : boolean};
     constructor(props: TreeNodeProperty) {
         super(props);
-        this.state = { node: props.node, expanded: props.node.state ===undefined || props.node.state.expanded };
+        this.state = { node: props.node, expanded: props.node.state === undefined || props.node.state.expanded };
         this.selected = props.node.state && props.node.state.selected;
     }
 
@@ -373,7 +367,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         let options: NodeOptions = defaultOptions;
 
         Object.assign(options, this.props.options);
-        
+
         let cssStyle: any;
 
         if (this.props.options.selectable) {
@@ -417,7 +411,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         }
 
         let expandCollapseIcon;
-        if (node.children) {
+        if (!node.isLeaf()) {
             if (!this.state.expanded) {
                 expandCollapseIcon = (
                     <VscAdd style={treeviewSpanStyle} onClick={this.toggleExpanded} />
@@ -442,7 +436,6 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         } else {
             nodeIcon = "";
         };
-
         let nodeText;
         if (options.enableLinks) {
             nodeText = (
@@ -451,7 +444,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         }
         else {
             nodeText = (
-                <span style={treeviewSpanStyle}> {node.text} </span>
+                <span onClick={this.toggleSelected} style={treeviewSpanStyle}> {node.text} </span>
             )
         }
 
@@ -506,7 +499,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
 
         let treeNode = (
             <li className="list-group-item" style={cssStyle} onDoubleClick={this.doubleClicked} key={node.id}>
-               
+
                 {expandCollapseIcon}
                 {nodeIcon}
                 {removeButton}

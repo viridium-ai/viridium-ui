@@ -4,13 +4,12 @@ import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem, updateInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
 
 export const DataSources = (props: any) => {
     var configs = require('./configs.json');
-    const item = getInventoryItem();
-    const [report, setInventoryItem] = useState<InventoryItem>(item);
-    const [query, setQuery] = useState<string>("");
+    const item = getQuestionnaire();
+    const [report, setQuestionnaire] = useState<Questionnaire>(item);
 
     const ds = configs.dataSources.map((value: string, idx: number) => {
         return { id: "" + (idx + 1), label: value }
@@ -23,8 +22,8 @@ export const DataSources = (props: any) => {
             report.dataSources.push(evt.target.id);
         }
         let clone = { ...report };
-        setInventoryItem(clone);
-        updateInventoryItem(clone);
+        setQuestionnaire(clone);
+        updateQuestionnaire(clone);
     }
 
     const onSearch = (evt: any) => {
@@ -38,10 +37,7 @@ export const DataSources = (props: any) => {
             );
             setDataSources([...filteredDSs]);
         }
-        setQuery(key);
     }
-
-
 
     const ds1 = (): Array<{ id: string, label: string }> => {
         return datasources.filter((value, idx: number) => {
@@ -123,8 +119,8 @@ export const DataSources = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action report={report}
-                                    next={{ label: "Next", path: "/inventory-app/questionnairs" }}
-                                    prev={{ label: "Back", path: "/inventory-app/items" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev}} />
                             </Toast.Body>
                         </Toast>
                     </div>

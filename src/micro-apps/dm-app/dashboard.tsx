@@ -1,25 +1,8 @@
 
 import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout'
+import { QuickLine, QuickPie } from '../../components/quick-charts';
 import { dataSourceManager } from './dm-app';
-
-import {
-    Chart as ChartJS, ArcElement, CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title, Tooltip, Legend
-} from 'chart.js';
-import { Line, Pie } from 'react-chartjs-2';
-
-
-ChartJS.register(ArcElement, CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Legend);
 
 /**
  * Main page for a user profile.
@@ -28,7 +11,6 @@ ChartJS.register(ArcElement, CategoryScale,
  * @returns 
  */
 export const Dashboard = (props: any) => {
-     
     const options = {
         responsive: true,
         plugins: {
@@ -136,7 +118,7 @@ export const Dashboard = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <div className="nav-chart-item">
-                                    <Line options={options} data={line_data} />
+                                    <QuickLine options={options} data={line_data} />
                                 </div >
                                 <div className="item">
                                     Sources
@@ -205,7 +187,7 @@ export const Dashboard = (props: any) => {
                                                 <Row >
                                                     <Col>
                                                         <div className="panel-chart-item">
-                                                            <Line options={options} data={line_data_2} />
+                                                            <QuickLine options={options} data={line_data_2} />
                                                         </div>
                                                     </Col>
                                                 </Row>
@@ -221,7 +203,7 @@ export const Dashboard = (props: any) => {
                                                 <Row>
                                                     <Col className="sub-panel">
                                                         <div className="panel-pie-item">
-                                                            <Pie options={options} data={data} />
+                                                            <QuickPie options={options} data={data} />
                                                         </div>
                                                         <div>
                                                             Scope Distribution
@@ -229,7 +211,7 @@ export const Dashboard = (props: any) => {
                                                     </Col>
                                                     <Col className="sub-panel">
                                                         <div className="panel-pie-item">
-                                                            <Pie options={options} data={data} />
+                                                            <QuickPie options={options} data={data} />
                                                         </div>
                                                         <div>
                                                             Process Distribution

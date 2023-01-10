@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
-import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
+import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
+import { getConfigs } from "./model";
 
-export const InventoryItems = (props: any) => {
-    var configs = require('./configs.json');
+export const EmissionFactorView = (props: any) => {
+    var configs = getConfigs();
 
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
 
@@ -105,8 +106,8 @@ export const InventoryItems = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action report={report}
-                                    next={{ label: "Next", path: props.next }}
-                                    prev={{ label: "Back", path: props.prev }} />
+                                    next={{ label: "Next", path: "/inventory-app/sources" }}
+                                    prev={{ label: "Back", path: "/inventory-app/categories" }} />
                             </Toast.Body>
                         </Toast>
                     </div>

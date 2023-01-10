@@ -3,20 +3,23 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
-import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
+import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
+import { getConfigs } from "./model";
 
-export const InventoryItems = (props: any) => {
-    var configs = require('./configs.json');
+export const InventoryTypeFactors = (props: any) => {
+    
+    const configs = getConfigs();
 
-    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
+    const [report, setReport] = useState<Questionnaire>(getQuestionnaire());
 
     const onSelectScope1 = (evt: any) => {
         if (!report.scope1Needs.includes(evt.target.id)) {
             report.scope1Needs.push(evt.target.id);
         }
+        
         let clone = { ...report };
-        setQuestionnaire(clone);
+        setReport(clone);
         updateQuestionnaire(clone);
     }
 
@@ -25,7 +28,7 @@ export const InventoryItems = (props: any) => {
             report.scope3Needs.push(evt.target.id);
         }
         let clone = { ...report };
-        setQuestionnaire(clone);
+        setReport(clone);
         updateQuestionnaire(clone);
     }
 
@@ -105,8 +108,8 @@ export const InventoryItems = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action report={report}
-                                    next={{ label: "Next", path: props.next }}
-                                    prev={{ label: "Back", path: props.prev }} />
+                                    next={{ label: "Next", path: "/inventory-app/sources" }}
+                                    prev={{ label: "Back", path: "/inventory-app/categories" }} />
                             </Toast.Body>
                         </Toast>
                     </div>

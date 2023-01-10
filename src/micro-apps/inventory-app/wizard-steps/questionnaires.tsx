@@ -5,20 +5,17 @@ import { LayoutPage } from "../../../components/layout";
 import { securityManager } from "../../../common/security/security-manager";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
-import { InventoryItem, getInventoryItem, Question, updateInventoryItem } from "../inventory-common";
+import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-common";
 
 export const Questionnaires = (props: any) => {
-
-    const [report, setInventoryItem] = useState<InventoryItem>(getInventoryItem());
+    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
     const [selectedQuestion, selectQuestion] = useState("");
     const [selectedQuestions, setSelectedQuestions] = useState<Array<Question>>([]);
     const [unselectedQuestions, setUnselectedQuestions] = useState<Array<Question>>([]);
     const [newName, setName] = useState<string>("");
     const [newNotes, setNotes] = useState<string>("");
     const navigate = useNavigate();
-
     var configs = require('./configs.json');
-
     const questions: Array<Question> = configs.questions;
     useEffect(() => {
         setUnselectedQuestions(configs.questions);
@@ -26,9 +23,9 @@ export const Questionnaires = (props: any) => {
             console.log("redirect to login");
             navigate("/login?from=/inventory-app");
         } else {
-            let r = getInventoryItem();
+            let r = getQuestionnaire();
             if (r) {
-                setInventoryItem(r);
+                setQuestionnaire(r);
                 if (r.questions) {
                     setSelectedQuestions(r.questions);
                     setUnselectedQuestions(questions.filter((q) => {
@@ -71,8 +68,8 @@ export const Questionnaires = (props: any) => {
             setUnselectedQuestions([...unselectedQuestions.filter(q => q.id !== selectedQuestion)]);
             let clone = { ...report };
             clone.questions = [...qs];
-            setInventoryItem(clone);
-            updateInventoryItem(clone);
+            setQuestionnaire(clone);
+            updateQuestionnaire(clone);
         }
     }
 
@@ -102,10 +99,8 @@ export const Questionnaires = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Col>
-                                    <Col sm={1} className="inventory-summary">
-                                        <Button onClick={addToList}>
-                                            +
-                                        </Button>
+                                    <Col sm={1} style={{textAlign:'left'}} className="inventory-summary">
+                                        <Button style={{ minWidth:'1px', height:'36px', paddingTop:"4px", position:'relative', left:'-40px'}} onClick={addToList}>+</Button>
                                     </Col>
                                 </Row>
                                 <Row className="inventory-questions">
@@ -151,8 +146,8 @@ export const Questionnaires = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action
-                                    prev={{ label: "Back", path: "/inventory-app/sources" }}
-                                    next={{ label: "Download Questionnaire", path: "/inventory-app/save" }} />
+                                    next={{ label: "Download Questionnaire", path: "/inventory-app/save" }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

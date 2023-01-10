@@ -1,0 +1,155 @@
+import { report } from "process";
+import { Component, useState } from "react";
+
+import { Toast, Form, Row, Col, Button } from "react-bootstrap";
+import { LayoutPage } from "../../../components/layout";
+import { Action } from "../../../components/wizard";
+import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { updateQuestionnaire, Questionnaire, getQuestionnaire } from "../../inventory-app/inventory-common";
+import { Company, getConfigs, Site } from "./model";
+
+type AddressViewProps = {
+    site: any,
+}
+type AddressViewState = {
+    site: any,
+}
+export class AddressView extends Component<AddressViewProps, AddressViewState> {
+    render = () => {
+        return <div>Address form here</div>
+    }
+}
+
+type CompanySitesProps = {
+    company: any,
+}
+
+export class CompanySites extends Component<CompanySitesProps, AddressViewState> {
+    company: Company;
+    constructor(props: CompanySitesProps) {
+        super(props);
+        this.company = props.company;
+        this.state = { site: new Site() }
+    }
+
+    onAdd = (evt: any) => {
+      
+    }
+
+    render = () => {
+        const configs = getConfigs();
+        return (
+            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
+
+                <div className="wizard-body">
+                    <div className="wizard-body-main">
+                        <Toast >
+                            <Toast.Header closeButton={false}>
+                                <span className="me-auto">
+                                    {this.company?.name}
+                                </span>
+                                Viridium Industry:   {this.company?.industry}
+                            </Toast.Header>
+                            <Toast.Body>
+                                <Row>
+                                    <Col className="inventory-summary">
+                                        Name
+                                    </Col>
+                                    <Col className="inventory-summary">
+
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="inventory-summary">
+                                        Location
+                                    </Col>
+                                    <Col className="inventory-summary">
+                                        <AddressView site={this.state.site} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="inventory-title">
+                                        Select Data Source Based on your knowledge of the Account
+                                    </Col>
+                                </Row>
+                                
+                                <Button onClick={this.onAdd} >Add</Button>
+                            </Toast.Body>
+                        </Toast>
+                    </div>
+                </div>
+            </LayoutPage >
+        )
+    }
+}
+
+type CompanyProps = {
+
+}
+
+type CompanyState = {
+    company: Company;
+}
+export class CompanyView extends Component<CompanyProps, CompanyState> {
+
+    constructor(props: CompanySitesProps) {
+        super(props);
+        this.state = { company: new Company() }
+    }
+
+    onAdd = (evt: any) => {
+
+    }
+
+    render = () => {
+        const configs = getConfigs();
+        return (
+            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
+
+                <div className="wizard-body">
+                    <div className="wizard-body-main">
+                        <Toast >
+                            <Toast.Header closeButton={false}>
+                                <span className="me-auto">
+                                    Add a Company
+                                </span>
+
+                            </Toast.Header>
+                            <Toast.Body>
+                                <Row>
+                                    <Col className="inventory-summary">
+                                        Name
+                                    </Col>
+                                    <Col className="inventory-summary">
+
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="inventory-summary">
+                                        Location
+                                    </Col>
+                                    <Col className="inventory-summary">
+                                        <AddressView site={this.state.company} />
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col className="scope-category-box">
+
+                                        <div className="scope-category-content">
+
+                                        </div>
+                                    </Col>
+                                    <Col className="scope-category-box">
+
+
+                                    </Col>
+                                </Row>
+                                <Button onClick={this.onAdd} >Add</Button>
+                            </Toast.Body>
+                        </Toast>
+                    </div>
+                </div>
+            </LayoutPage >
+        )
+    }
+}

@@ -31,7 +31,6 @@ class CacheManager {
         let keyStr = JSON.stringify(key);
         const stored = this.storage.getItem(keyStr);
         if (!stored) {
-            //console.log("Not found, returning default", defaultValue);
             if (defaultValue) {
                 this.set(key, defaultValue, -1);
             }

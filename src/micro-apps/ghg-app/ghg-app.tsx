@@ -2,18 +2,18 @@
 
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/micro-app";
- 
-import './ghg-app.css';
 
-import { GreenHouseWizard } from "./wizard-steps/summary";
-import { InventoryConfig } from "./wizard-steps/inventory-config";
-import { ReportConfig } from "./wizard-steps/report-config";
-import { EmissionData } from "./wizard-steps/emission-data";
-import { Analytics } from "./wizard-steps/analytics";
-import { OffsetData } from "./wizard-steps/offset-data";
+import './ghg-app.css';
+import { Help } from "../dm-app/help";
+import { CompanyConfig } from "./inventory-builder/company-config";
+import { MappingCategories } from "./inventory-builder/inventory-categories";
+import { InventoryConfig } from "./inventory-builder/inventory-config";
+import { InventoryExport } from "./inventory-builder/inventory-export";
+import { InventoryItemsView } from "./inventory-builder/inventory-items";
+import { InventorySummary } from "./inventory-builder/inventory-summary";
 
 class GreenHouseApp implements MicroApp {
- 
+
   public getTitle = () => {
     return "Green House Gas"
   }
@@ -23,7 +23,7 @@ class GreenHouseApp implements MicroApp {
   }
 
   private routeItems: Array<RouteItem> = [
-    new RouteItem().init("Data Manager", "Data Manager", undefined, "/dm-app")
+    new RouteItem().init("Data Manager", "Data Manager", undefined, "/ghg-app")
   ];
 
   public getRouteItems = () => {
@@ -37,12 +37,14 @@ class GreenHouseApp implements MicroApp {
   public getRoutes = () => {
     return (
       <>
-        <Route path="/wizard" element={<GreenHouseWizard  />} />
-        <Route path="/wizard/1" element={<InventoryConfig />} />
-        <Route path="/wizard/2" element={<ReportConfig />} />
-        <Route path="/wizard/3" element={<EmissionData />} />
-        <Route path="/wizard/4" element={<Analytics />} />
-        <Route path="/wizard/5" element={<OffsetData />} />
+        <Route path="/ghg-app" element={<CompanyConfig next={'/ghg-app/config'} />} />
+        <Route path="/ghg-app/company" element={<CompanyConfig next={'/ghg-app/config'}  />} />
+        <Route path="/ghg-app/config" element={<InventoryConfig next={'/ghg-app/items'} prev={'/ghg-app/company'}/>} />
+        <Route path="/ghg-app/items" element={<InventoryItemsView  next={'/ghg-app/mappings'} prev={'/ghg-app/config'}/>} />
+        <Route path="/ghg-app/mappings" element={<MappingCategories next={'/ghg-app/summary'} prev={'/ghg-app/items'} />} />
+        <Route path="/ghg-app/summary" element={<InventorySummary  next={'/ghg-app/export'} prev={'/ghg-app/mappings'} />} />
+        <Route path="/ghg-app/export" element={<InventoryExport prev={'/ghg-app/summary'}/>} />
+        <Route path="/ghg-app/help" element={<Help />} />
       </>
     );
   }

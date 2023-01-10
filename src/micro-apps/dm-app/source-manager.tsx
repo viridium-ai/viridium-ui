@@ -1,8 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
 import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
-import { DataTable, TableData } from '../../components/data-table';
 import { LayoutPage } from '../../components/layout';
+import { DataTable } from '../../components/table';
 import TreeView from '../../components/tree-view';
 import { dataSourceManager } from './dm-app';
 interface Inventory {
@@ -301,6 +301,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
             })
         });
     }
+
     render() {
         let selectedInventory: Inventory = this.state.inventory;
         return (
@@ -324,11 +325,11 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
         );
     }
 }
+
 export const SourceManager = (props: any) => {
     const [selectedInventory, setInventory] = useState<Inventory>();
     var configs = require('./configs.json');
-    var manageDataSource = configs.manageDataSource;
-    var manageData = configs.manageData;
+ 
     const inventories: Array<Inventory> = configs.inventory;
 
     const onSelectInventory = (evt: any) => {
@@ -339,6 +340,20 @@ export const SourceManager = (props: any) => {
         }
     }
 
+    const getManagedSources = () => {
+        return {
+            id: "Managed Sources",
+            text:"Managed Source",
+            children:configs.manageDataSource
+        }
+    }
+    const getManagedData = () => {
+        return {
+            id: "Managed Data",
+            text:"Managed Data",
+            children:configs.manageData
+        }
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
@@ -350,7 +365,7 @@ export const SourceManager = (props: any) => {
                                     Manage Data Sources
                                 </div>
                                 <div className="item">
-                                    <TreeView data={manageDataSource} options={{ selectable: false, enableLinks: false }} />
+                                    <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>
@@ -360,7 +375,7 @@ export const SourceManager = (props: any) => {
                                     Manage Data
                                 </div>
                                 <div className="item">
-                                    <TreeView data={manageData} options={{ selectable: false, enableLinks: false }} />
+                                    <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>

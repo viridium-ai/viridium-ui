@@ -97,14 +97,13 @@
 }
 
 .inventory-app .wizard-form-label {
-    padding: 1.4rem 1.2rem;
-    /* background-color: aquamarine; */
-    font-size: large;
+    padding: 0.7rem;
+    font-size: medium;
 }
 
 
 .inventory-app .wizard-form-input {
-    padding: 1.0rem 1.2rem;
+    padding: 0.2rem;
 }
 .inventory-app .wizard-checkbox {
     padding: 1em;
@@ -129,4 +128,35 @@
 
 .inventory-app .component-action {
     margin: 0.5rem;
+}
+
+
+.inventory-app .form-btn {
+    padding: 0.2em;
+    text-align: right;
+}
+.inventory-app .form-btn button{
+   min-width: 50%;
+}
+.inventory-app .mode-form-btn {
+    padding: 1em;
+}
+
+.inventory-app .mode-form-btn button {
+    padding: .5em;
+    width: 100%;
+}
+
+.inventory-app .import-container {
+    padding: 20px 20px;
+    background-color: rgb(241, 240, 238);
+    border-radius: 0.4em;
+    height: 320px;
+    width: 100%;
+    overflow-y:scroll;
+}
+
+
+.inventory-app .tab-content {
+    padding: 10px;
 }

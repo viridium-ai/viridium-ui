@@ -1,9 +1,9 @@
 import { Component, useState } from "react";
 
-import { Toast, Form, Row, Col, Button, Tab, Tabs, Table } from "react-bootstrap";
+import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
+import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
-import { DataTable } from "../../dm-app/source-manager";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { getConfigs, getInventory, Inventory, InventoryItem, updateInventory } from "./model";
 
@@ -13,8 +13,8 @@ type ItemState = {
     typeId: string,
     siteId: string,
     frequency: string,
-    scope?:string,
-    category?:string
+    scope?: string,
+    category?: string
 }
 
 type ItemProps = {
@@ -29,7 +29,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         this.state = { name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" };
     }
     componentDidMount(): void {
-        this.setState( { name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" })
+        this.setState({ name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" })
     }
     onFreqChange = (evt: any) => {
         this.setState({ frequency: evt.target.value });
@@ -50,16 +50,14 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         let item = new InventoryItem();
         Object.assign(item, this.state);
         let inventory = this.props.inventory;
-        inventory.items.push(item)
+        inventory.addItem(item)
         this.props.onUpdate(inventory);
     }
     render = () => {
         let configs = getConfigs();
         let inventory = this.props.inventory;
-        let scope = configs.scopes.find((s:any) => s.id===this.props.scope);
-        let category = scope.categories.find((c:any)=> c.id===this.props.category);
-
-        console.log(scope, category);
+        let scope = configs.scopes.find((s: any) => s.id === this.props.scope);
+        let category = scope.categories.find((c: any) => c.id === this.props.category);
         return (
             <div className="import-container">
                 <Row>
@@ -76,7 +74,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                         <>
                             <option value="">Select a frequency</option>
                             {
-                                configs.frequences?.map((freq: any, idx: number) => {
+                                configs.frequencies?.map((freq: any, idx: number) => {
                                     return <option key={'freq' + idx} value={freq.id}>{freq.name}</option>
                                 })
                             }
@@ -91,7 +89,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                             <option value="">Select a type</option>
                             {
                                 category.types?.map((type: any, idx: number) => {
-                                    return <option key={'type' + idx} value={type}>{category.name +" " +type}</option>
+                                    return <option key={'type' + idx} value={type.id}>{category.name + " " + type.name}</option>
                                 })
                             }
                         </>
@@ -102,21 +100,21 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                     <Col className="wizard-form-label">Site</Col>
                     <Col className="wizard-form-input">
                         <Form.Select key="itemSite" value={this.state.siteId} onChange={this.onSiteChange}>
-                        <>
-                            <option value="">Select a site</option>
-                            {
-                                inventory.company?.sites?.map((site: any, idx: number) => {
-                                    return <option key={'site' + idx} value={site.id}>{site.name}</option>
-                                })
-                            }
-                        </>
-                    </Form.Select>
+                            <>
+                                <option value="">Select a site</option>
+                                {
+                                    inventory.company?.sites?.map((site: any, idx: number) => {
+                                        return <option key={'site' + idx} value={site.id}>{site.name}</option>
+                                    })
+                                }
+                            </>
+                        </Form.Select>
                     </Col>
                 </Row>
                 <Row>
                     <Col></Col>
                     <Col className="form-btn">
-                        <Button  disabled={true} onClick={this.onAddItem}>Add</Button>
+                        <Button disabled={true} onClick={this.onAddItem}>Add</Button>
                     </Col>
                 </Row>
             </div>
@@ -136,9 +134,8 @@ export const FileUploader = (props: any) => {
     };
     return ui();
 }
+
 export const ConnectorConfig = (props: any) => {
-    let configs = getConfigs();
-    let inventory: Inventory = props.inventory;
     const ui = () => {
         return (
             <div className="import-container">
@@ -209,8 +206,9 @@ export const InventoryItemsView = (props: any) => {
     }
 
     const onUpdate = (inventory: Inventory) => {
-        setInventory({ ...inventory });
-        updateInventory(inventory);
+        let newInv = Inventory.new(inventory)!
+        setInventory(newInv);
+        updateInventory(newInv)
     }
 
     const getInventoryItemsData = () => {
@@ -248,7 +246,7 @@ export const InventoryItemsView = (props: any) => {
                 <div className="wizard-body">
                     <Toast >
                         <Toast.Header closeButton={false}>
-                        <span className="me-auto">
+                            <span className="me-auto">
                                 Manage Items
                             </span>
                             {inventory.company.name}

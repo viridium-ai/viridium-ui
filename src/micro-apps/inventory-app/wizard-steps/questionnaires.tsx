@@ -8,7 +8,6 @@ import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-common";
 
 export const Questionnaires = (props: any) => {
-
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
     const [selectedQuestion, selectQuestion] = useState("");
     const [selectedQuestions, setSelectedQuestions] = useState<Array<Question>>([]);
@@ -16,9 +15,7 @@ export const Questionnaires = (props: any) => {
     const [newName, setName] = useState<string>("");
     const [newNotes, setNotes] = useState<string>("");
     const navigate = useNavigate();
-
     var configs = require('./configs.json');
-
     const questions: Array<Question> = configs.questions;
     useEffect(() => {
         setUnselectedQuestions(configs.questions);
@@ -102,10 +99,8 @@ export const Questionnaires = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Col>
-                                    <Col sm={1} className="inventory-summary">
-                                        <Button onClick={addToList}>
-                                            +
-                                        </Button>
+                                    <Col sm={1} style={{textAlign:'left'}} className="inventory-summary">
+                                        <Button style={{ minWidth:'1px', height:'36px', paddingTop:"4px", position:'relative', left:'-40px'}} onClick={addToList}>+</Button>
                                     </Col>
                                 </Row>
                                 <Row className="inventory-questions">
@@ -151,8 +146,8 @@ export const Questionnaires = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action
-                                    prev={{ label: "Back", path: "/inventory-app/sources" }}
-                                    next={{ label: "Download Questionnaire", path: "/inventory-app/save" }} />
+                                    next={{ label: "Download Questionnaire", path: "/inventory-app/save" }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

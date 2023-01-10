@@ -3,19 +3,17 @@ import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Inventory, getInventory, updateInventory, getConfigs } from "./model";
+import { Inventory, getConfigs } from "./model";
 export const InventoryExport = (props: any) => {
     const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
+    const [inventory, setInventory] = useState<Inventory>(props.inventory);
     const onSelectContext = (evt: any) => {
         let clone = { ...inventory };
         clone.context = evt.target.value;
         setInventory(clone);
-        updateInventory(clone);
     }
 
     const ui = () => {
-        let company = inventory.company;
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
                 <div className="wizard-body">

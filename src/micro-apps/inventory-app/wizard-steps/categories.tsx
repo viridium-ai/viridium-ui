@@ -156,8 +156,8 @@ export const FunctionCategories = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action
-                                    next={{ label: "Next", path: "/inventory-app/items" }}
-                                    prev={{ label: "Back", path: "/inventory-app/config" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

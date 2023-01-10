@@ -1,34 +1,31 @@
 {
-    "frequences": [
-        {
+    "frequencies": [{
             "id": "monthly",
             "name": "Monthly"
         },
         {
-            "id": "quartly",
-            "name": "Quartly"
+            "id": "quarterly",
+            "name": "quarterly"
         },
         {
             "id": "yearly",
             "name": "Yearly"
         }
     ],
-    "inventoryTypes": [
-        {
+    "inventoryTypes": [{
             "id": "monthly",
             "name": "Monthly"
         },
         {
-            "id": "quartly",
-            "name": "Quartly"
+            "id": "quarterly",
+            "name": "quarterly"
         },
         {
             "id": "yearly",
             "name": "Yearly"
         }
     ],
-    "viridiumIndustries": [
-        {
+    "viridiumIndustries": [{
             "id": "1",
             "name": "Transportation: Airport"
         },
@@ -41,30 +38,48 @@
             "name": "Transportation: Manufacture"
         }
     ],
-    "scopes": [
-        {
+    "scopes": [{
             "id": "1",
-            "name" : "Scope 1",
-            "categories": [
-                {
+            "name": "Scope 1",
+            "categories": [{
                     "id": "1",
                     "name": "Stationary Combustion",
-                    "types": [
-                        "Cooling",
-                        "Heating",
-                        "Generation"
-                    ]
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
                 },
                 {
                     "id": "2",
                     "name": "Mobile Combustion",
-                    "types": [
-                        "Cars",
-                        "Trucks",
-                        "Ships",
-                        "Trains",
-                        "Plans"
-                    ]
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
                 },
                 {
                     "id": "3",
@@ -81,49 +96,119 @@
         },
         {
             "id": "2",
-            "name" : "Scope 2",
-            "categories": [
-                {
+            "name": "Scope 2",
+            "categories": [{
                     "id": "1",
                     "name": "Transportation",
-                    "types": [
-                        "Cars",
-                        "Trucks",
-                        "Ship",
-                        "Trains",
-                        "Plans"
-                    ]
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
                 },
                 {
                     "id": "2",
                     "name": "Electricity",
-                    "types": [
-                        "Fossil Fuel",
-                        "Used in Buildings",
-                        "Used in Industry"
+                    "types": [{
+                            "id": "Fossil Fuel",
+                            "name": "Fossil Fuel"
+                        },
+                        {
+                            "id": "Used in Buildings",
+                            "name": "Used in Buildings"
+                        },
+                        {
+                            "id": "Used in Buildings",
+                            "name": "Used in Industry"
+                        }
                     ]
                 },
                 {
                     "id": "3",
                     "name": "Industry",
-                    "types": [
-                        "Fuel",
-                        "Chemical Reactions"
+                    "types": [{
+                            "id": "Fuel",
+                            "name": "Fuel"
+                        },
+                        {
+                            "id": "Chemical",
+                            "name": "Chemical Reactions"
+                        }
                     ]
                 }
             ]
         },
         {
             "id": "3",
-            "name" : "Scope 3",
-            "categories": [
-                {
+            "name": "Scope 3",
+            "categories": [{
                     "id": "1",
-                    "name": "Purchased Goods and Services"
+                    "name": "Purchased Goods and Services",
+                    "types": [{
+                            "id": "cement",
+                            "name": "Cement"
+                        },
+                        {
+                            "id": "plaster",
+                            "name": "Plaster"
+                        },
+                        {
+                            "id": "Paint",
+                            "name": "Paint"
+                        },
+                        {
+                            "id": "Timber",
+                            "name": "Timber"
+                        },
+                        {
+                            "id": "Concrete",
+                            "name": "Concrete"
+                        },
+                        {
+                            "id": "Cotton",
+                            "name": "Cotton"
+                        }
+                    ]
                 },
                 {
                     "id": "2",
-                    "name": "Capital Goods"
+                    "name": "Capital Goods",
+                    "types": [{
+                            "id": "cement",
+                            "name": "Cement"
+                        },
+                        {
+                            "id": "plaster",
+                            "name": "Plaster"
+                        },
+                        {
+                            "id": "Paint",
+                            "name": "Paint"
+                        },
+                        {
+                            "id": "Timber",
+                            "name": "Timber"
+                        },
+                        {
+                            "id": "Concrete",
+                            "name": "Concrete"
+                        },
+                        {
+                            "id": "Cotton",
+                            "name": "Cotton"
+                        }
+                    ]
                 },
                 {
                     "id": "3",
@@ -185,162 +270,22 @@
         }
     ],
     "dataSources": [
-        "Oracle ERP Financial Management",
-        "Oracle ERP Procurement",
-        "Oracle ERP Project Management",
-        "Oracle ERP Risk Management and Compliance",
-        "Oracle ERP Enterprise Performance Management",
-        "Oracle SCM Supply Chain Planning",
-        "Oracle SCM Inventory Management",
-        "Oracle SCM Manufacturing",
-        "SAP IS Airlines & Defense",
-        "SAP Manufacturing",
-        "SAP Plant Maintenance(PM)",
-        "SAP Production Planning(PP)",
-        "SAP Product Lifecycle Costing(PLC)",
-        "SAP Profitability and Cost Management(PCM)",
-        "SAP Project System(PS)",
-        "SAP Rapid Deployment Solutions(RDS)",
-        "SAP Service and Asset Management",
-        "Microsoft Dynamics 365 Finance",
-        "Microsoft Dynamics 365 Business Central",
-        "Microsoft Dynamics 365 Sales",
-        "Data management",
+        "Oracle ERP",
+        "Oracle SCM",
+        "Oracle CRM",
+        "Oracle DB",
+        "My SQL",
+        "SAP ERP",
+        "Microsoft Dynamics 365",
+        "Data Management",
         "Azure Data Explorer",
         "Cosmos DB",
         "Azure SQL Database",
-        "Azure Synapse Analytics",
-        "Azure Data Factory",
         "Azure Data Lake",
-        "Azure HDInsight",
         "Salesforce Sales Cloud",
-        "Salesforce Service Cloud",
-        "Salesforce Marketing Cloud",
-        "Salesforce Commerce Cloud",
-        "Salesforce Experience Cloud",
-        "Salesforce 360 Platform"
+        "AWS Cloud DB"
     ],
-    "functionCategories": {
-        "lookups": [
-            {
-                "id": "0",
-                "value": "Select a Category",
-                "functions": [
-                    ""
-                ]
-            },
-            {
-                "id": "1",
-                "value": "Landside",
-                "functions": [
-                    "Airport",
-                    "Airline",
-                    "Manufacture"
-                ]
-            },
-            {
-                "id": "2",
-                "value": "Shopping",
-                "functions": [
-                    "Transport",
-                    "Manufacture",
-                    "Waste"
-                ]
-            }
-        ],
-        "headers": [
-            "Function Category",
-            "Function 1.0",
-            "Function 1.1",
-            "GHG Scope",
-            "Direct or Indirect",
-            "CWsWt"
-        ],
-        "values": [
-            [
-                "Landside",
-                "Airport",
-                "Building Construction",
-                "Scope 1",
-                "Direct",
-                "CWsWt"
-            ],
-            [
-                "Landside",
-                "Airline",
-                "Building Management",
-                "Scope 1",
-                "Direct",
-                "CWsWt"
-            ],
-            [
-                "Landside",
-                "Airport",
-                "Suppliers",
-                "Scope 1",
-                "Direct",
-                "C"
-            ],
-            [
-                "Landside",
-                "Manufacture",
-                "Business Travel",
-                "Scope 1",
-                "Direct",
-                "C"
-            ],
-            [
-                "Landside",
-                "Airport",
-                "Security",
-                "Scope 1",
-                "Direct",
-                "CWsWt"
-            ],
-            [
-                "Landside",
-                "Airport",
-                "Parking",
-                "Scope 1",
-                "Direct",
-                "CWs"
-            ],
-            [
-                "Shopping",
-                "Transport",
-                "Baggage Handling",
-                "Scope 1",
-                "Direct",
-                "CWs"
-            ],
-            [
-                "Shopping",
-                "Waste",
-                "Building Construction",
-                "Scope 1",
-                "Direct",
-                "CWsWt"
-            ],
-            [
-                "Shopping",
-                "Manufacture",
-                "Building Management",
-                "Scope 1",
-                "Direct",
-                "CWsWt"
-            ],
-            [
-                "Shopping",
-                "Manufacture",
-                "Suppliers",
-                "Scope 1",
-                "Direct",
-                "C"
-            ]
-        ]
-    },
-    "companies": [
-        {
+    "companies": [{
             "id": "VA12312i3",
             "name": "Big Airport",
             "industry": "Transportation",
@@ -357,21 +302,20 @@
             "lastName": "Doe",
             "email": "john.deo@viridium.ai",
             "phone": "425-456-7896",
-            "sites" :[
-                {
-                    "id":"2",
-                    "name":"Site 2",
-                    "companyId":"VA12312i3"
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i3"
                 },
                 {
-                    "id":"3",
-                    "name":"Site 3",
-                    "companyId":"VA12312i3"
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i3"
                 },
                 {
-                    "id":"1",
-                    "name":"Site 1",
-                    "companyId":"VA12312i3"
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i3"
                 }
             ]
         },
@@ -392,21 +336,20 @@
             "lastName": "Bro",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314",
-            "sites" :[
-                {
-                    "id":"2",
-                    "name":"Site 2",
-                    "companyId":"VA12312i4"
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i4"
                 },
                 {
-                    "id":"3",
-                    "name":"Site 3",
-                    "companyId":"VA12312i4"
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i4"
                 },
                 {
-                    "id":"1",
-                    "name":"Site 1",
-                    "companyId":"VA12312i4"
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i4"
                 }
             ]
         },
@@ -427,21 +370,20 @@
             "lastName": "Bro",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314",
-            "sites" :[
-                {
-                    "id":"2",
-                    "name":"Site 2",
-                    "companyId":"VA12312i5"
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i5"
                 },
                 {
-                    "id":"3",
-                    "name":"Site 3",
-                    "companyId":"VA12312i5"
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i5"
                 },
                 {
-                    "id":"1",
-                    "name":"Site 1",
-                    "companyId":"VA12312i5"
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i5"
                 }
             ]
         }

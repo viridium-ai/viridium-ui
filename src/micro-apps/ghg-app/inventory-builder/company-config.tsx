@@ -3,11 +3,12 @@ import { useEffect, useState } from 'react';
 import { Toast, Form } from 'react-bootstrap';
 
 import { LayoutPage } from '../../../components/layout';
+import { DataTable } from '../../../components/table';
 import { Action, Question } from '../../../components/wizard';
 import { inventoryConfigApp } from '../../inventory-app/inventory-app';
 import { NamedObject } from '../../inventory-app/inventory-common';
 
-import { Company, getConfigs, getInventory, Inventory, updateConfigs, updateInventory } from './model';
+import { Company, getCompany, getConfigs, updateCompany, updateConfigs } from './model';
 
 export const CompanyDetails = (props: any) => {
     const ui = () => {
@@ -26,55 +27,53 @@ export const CompanyDetails = (props: any) => {
 }
 
 export const CompanyConfig = (props: any) => {
+
     const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
     const [company, setCompany] = useState<Company>();
     const companies: Array<Company> = configs.companies;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
+
     useEffect(() => {
-        let r = getInventory();
+        let r = getCompany(companies[0].id);
         if (r) {
-            setInventory(r);
-            if (companies) {
-                let c = companies.find((c) => c.id === r.companyId);
-                if (c) {
-                    r.company = c;
-                    setCompany(c);
-                }
+            let c = companies.find((c) => c.id === r.companyId);
+            if (c) {
+                setCompany(Company.new(c));
             }
-            setInventory(r);
         }
-    }, []);
+    }, [companies]);
 
 
     const onSelectCompany = (evt: any) => {
-        let clone = { ...inventory };
         let c = companies.find((c) => c.id === evt.target.value);
         if (c) {
-            clone.companyId = c.id;
-            clone.company = c;
-            setInventory(clone);
+            const saved = getCompany(c.id);
+            if (saved) {
+                c = Company.new(saved);
+            } else {
+                c = Company.new(c);
+            }
             setCompany(c);
-            updateInventory(clone);
+            updateCompany(c);
         }
     }
 
     const onSelectIndustry = (evt: any) => {
-        let c = configs.companies.find((c: any) => c.id === company?.id);
-        if (c) {
+        if (company) {
+            const c = Company.new(company)!;
             c.industry = evt.target.value;
+            setCompany(c);
+            updateCompany(c);
         }
-        setCompany(c);
-        updateConfigs(configs);
     }
 
     const onUpdateNotes = (evt: any) => {
-        let c = configs.companies.find((c: any) => c.id === company?.id);
-        if (c) {
+        if (company) {
+            const c = Company.new(company)!;
             c.description = evt.target.value;
+            setCompany(c);
+            updateCompany(c);
         }
-        setCompany(c);
-        updateConfigs(configs);
     }
     return (
         <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
@@ -94,11 +93,17 @@ export const CompanyConfig = (props: any) => {
                                 <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
                                     <option>Select a company</option>
                                     {
-                                        companies.map((campany, idx) =>
-                                            <option key={"company-" + idx} value={"" + campany.id}>{campany.name}</option>
+                                        companies.map((c, idx) =>
+                                            <option key={"company-" + idx} value={"" + c.id}>{c.name}</option>
                                         )
                                     }
                                 </Form.Select>
+                                <div className="company-details">
+                                    <CompanyDetails entity={company} />
+                                </div>
+                                {
+                                    company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                                }
                             </Question>
                             <Question label="Viridium Industry">
                                 <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
@@ -109,9 +114,6 @@ export const CompanyConfig = (props: any) => {
                                         )
                                     }
                                 </Form.Select>
-                                <div className="company-details">
-                                    <CompanyDetails entity={company} />
-                                </div>
                             </Question>
                             <Question label="Notes">
                                 <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />

@@ -7,7 +7,7 @@ import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
 import { getConfigs } from "./model";
 
-export const InventoryTypes = (props: any) => {
+export const EmissionFactorView = (props: any) => {
     var configs = getConfigs();
 
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());

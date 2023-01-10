@@ -1,9 +1,9 @@
 
 import { Row, Col, Toast, Tabs, Tab, Form, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout'
+import { DataTable } from '../../components/table';
 
 import { dataSourceManager } from './dm-app';
-import { DataTable } from './source-manager';
 
 export const Analytics = (props: any) => {
     const getData = () => {

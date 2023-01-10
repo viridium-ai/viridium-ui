@@ -1,14 +1,14 @@
 import { useState } from "react";
 import { Toast, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
+import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
-import { DataTable } from "../../dm-app/source-manager";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Inventory, getInventory, updateInventory, getConfigs } from "./model";
+import { Inventory, getConfigs } from "./model";
 
 export const InventorySummary = (props: any) => {
     const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
+    const [inventory, setInventory] = useState<Inventory>(props.inventory);
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
     const onSelectScope = (evt: any) => {
@@ -20,7 +20,6 @@ export const InventorySummary = (props: any) => {
 
     const onUpdate = (inventory: Inventory) => {
         setInventory({ ...inventory });
-        updateInventory(inventory);
     }
 
     const getInventoryItemsData = () => {

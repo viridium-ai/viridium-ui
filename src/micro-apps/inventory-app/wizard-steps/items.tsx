@@ -105,8 +105,8 @@ export const InventoryItems = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action report={report}
-                                    next={{ label: "Next", path: "/inventory-app/sources" }}
-                                    prev={{ label: "Back", path: "/inventory-app/categories" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

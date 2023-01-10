@@ -89,13 +89,15 @@
             "miles": 23145154
         }]
     }],
-    "sinks": [{
+    "managedConnectors": [
+        {
+            "id" : "1",
             "name": "Amazon S3",
             "description": "AWS cloud storage",
-            "connector": {
-                "name": "amazon-s3",
+            "status":"active",
+            "config": {
                 "driver": "com.viridium.connector.aws.FileSink",
-                "config": {
+                "properties": {
                     "bucket": "string",
                     "directory": "string",
                     "partition": "string"
@@ -103,12 +105,13 @@
             }
         },
         {
+            "id" : "2",
             "name": "Oracle Database Table",
             "description": "Oracle Database",
-            "connector": {
-                "name": "oracle-database",
+            "status":"active",
+            "config": {
                 "driver": "com.viridium.connector.oracle.TableSink",
-                "config": {
+                "properties": {
                     "url": "string",
                     "username": "string",
                     "password": "string",
@@ -120,12 +123,13 @@
             }
         },
         {
+            "id":"3",
             "name": "SAP BAPI",
             "description": "SAP API",
-            "connector": {
-                "name": "SAP API",
+            "status":"active",
+            "config": {
                 "driver": "com.viridium.connector.sap.BAPISink",
-                "config": {
+                "properties": {
                     "url": "string",
                     "username": "string",
                     "password": "string",
@@ -135,8 +139,10 @@
             }
         },
         {
+            "id":"4",
             "name": "Hadoop HDFS",
             "description": "Apache Hadoop File System",
+            "status":"active",
             "connector": {
                 "name": "SAP API",
                 "driver": "com.viridium.connector.hadoop.PartitionSink",

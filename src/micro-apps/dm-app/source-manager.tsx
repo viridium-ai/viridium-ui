@@ -1,7 +1,8 @@
 import React from 'react';
 import { useState } from 'react';
-import { Toast, Table, Form, Col, Row, Button } from 'react-bootstrap';
+import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout';
+import { DataTable } from '../../components/table';
 import TreeView from '../../components/tree-view';
 import { dataSourceManager } from './dm-app';
 interface Inventory {
@@ -25,68 +26,6 @@ interface SourceDetailsState {
 }
 interface SourceDetailsProps {
     row: any
-}
-
-interface DataTableProps {
-    data: any,
-    onSelectRow: Function
-}
-interface DataTableState {
-    data: any
-}
-export class DataTable extends React.Component<DataTableProps, DataTableState> {
-    constructor(props: DataTableProps) {
-        super(props);
-        this.state = { data: props.data };
-    }
-    componentDidUpdate = (data: DataTableProps) => {
-        if (this.props.data.id !== data.data.id) {
-            this.setState({ data: this.props.data });
-        }
-    }
-    onSelectRow = (evt: any) => {
-        evt.preventDefault();
-        evt.stopePropagation();
-        if (this.props.onSelectRow) {
-            this.props.onSelectRow(evt.currentTarget.id);
-        }
-    }
-    render = () => {
-        let tableData = this.state.data;
-        if (!tableData) {
-            return <div>No data available</div>
-        }
-        return (
-            <Table bordered hover size="sm">
-                <thead>
-                    <tr >
-                        {
-                            tableData.headers.map((col: any, idx: number) => {
-                                return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
-                                }</th>
-                            })
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        tableData.rows.map((row: any, idx: number) => {
-                            return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
-                                {
-                                    row.cols.map((col: any, jdx: number) => {
-                                        return <td className={"data-cell-"+col.type} key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" />
-                                            : (col.type === 'button' ? <Button onClick={col.onClick} >{col.text}</Button>
-                                                : col.text)
-                                        }</td>
-                                    })
-                                }
-                            </tr>
-                        })
-                    }
-                </tbody>
-            </Table>
-        );
-    }
 }
 class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsState> {
     constructor(props: SourceDetailsProps) {
@@ -388,8 +327,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
 export const SourceManager = (props: any) => {
     const [selectedInventory, setInventory] = useState<Inventory>();
     var configs = require('./configs.json');
-    var manageDataSource = configs.manageDataSource;
-    var manageData = configs.manageData;
+ 
     const inventories: Array<Inventory> = configs.inventory;
 
     const onSelectInventory = (evt: any) => {
@@ -400,6 +338,20 @@ export const SourceManager = (props: any) => {
         }
     }
 
+    const getManagedSources = () => {
+        return {
+            id: "Managed Sources",
+            text:"Managed Source",
+            children:configs.manageDataSource
+        }
+    }
+    const getManagedData = () => {
+        return {
+            id: "Managed Data",
+            text:"Managed Data",
+            children:configs.manageData
+        }
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
@@ -411,7 +363,7 @@ export const SourceManager = (props: any) => {
                                     Manage Data Sources
                                 </div>
                                 <div className="item">
-                                    <TreeView data={manageDataSource} options={{ selectable: false, enableLinks: false }} />
+                                    <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>
@@ -421,7 +373,7 @@ export const SourceManager = (props: any) => {
                                     Manage Data
                                 </div>
                                 <div className="item">
-                                    <TreeView data={manageData} options={{ selectable: false, enableLinks: false }} />
+                                    <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>

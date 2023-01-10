@@ -1,6 +1,5 @@
 import { localCache } from "../../../utils/cache-manager";
 
-
 export const getConfigs = (): any => {
     let configs = localCache.get("Inventory.Config");
     if (configs === undefined) {
@@ -14,13 +13,29 @@ export const updateConfigs = (config: any) => {
     localCache.set("Inventory.Config", config);
 }
 
-export const updateInventory = (inventory: Inventory) => {
-    localCache.set("Inventory", inventory);
+export const updateCompany = (company?: Company) => {
+    if (company) {
+        localCache.set("Company" + company.id, company);
+        localCache.set("Company", company);
+    }
 }
 
-export const getInventory = () => {
-    return localCache.get("Inventory", new Inventory())
+export const getCompany = (id: string | undefined = undefined) => {
+    if (id === undefined) {
+        return localCache.get("Company");
+    }
+    return localCache.get("Company" + id)
 }
+export const updateInventory = (inv : Inventory) => {
+
+    return localCache.set("Inventory", inv);
+}
+ 
+export const getInventory = () => {
+
+    return localCache.get("Inventory")
+}
+ 
 
 export class Address {
     id = "";
@@ -49,9 +64,46 @@ export class Company {
     lastName?: string;
     email?: string;
     phone?: string;
-    sites : Array<Site> = [];
+    sites: Array<Site> = [];
+    inventories: Array<Inventory> = [];
+    static new = (data: any) => {
+        if (data) {
+            const c = new Company();
+            Object.assign(c, data);
+            c.sites = data.sites.map((d: any) => {
+                return Site.new(d);
+            })
+            c.inventories = data.inventories?data.inventories.map((i: any) => {
+                return Inventory.new(i);
+            }) : [];
+            return c;
+        }
+    }
     getAddress = () => {
         return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
+    }
+    getInventory = (scope: string) => {
+        return this.inventories.find((inventory) => inventory.scope === scope);
+    }
+    getSitesData = () => {
+        return {
+            id: this.id,
+            headers: [
+                { type: "text", text: "Id" },
+                { type: "text", text: "Name" },
+                { type: "text", text: "Location" }
+            ],
+            rows: this.sites.map((site, idx) => {
+                return {
+                    id: site.id,
+                    cols: [{ type: "text", text: site.id },
+                    { type: "text", text: site.name },
+                    { type: "text", text: site.getAddress() }
+                    ]
+                }
+            }
+            )
+        }
     }
 }
 
@@ -62,6 +114,16 @@ export class Site {
     type: string = "";
     description = "";
     addressId: string = ""
+    getAddress = () => {
+        return this.addressId;
+    }
+    static new = (data: any) => {
+        if (data) {
+            const c = new Site();
+            Object.assign(c, data);
+            return c;
+        }
+    }
 }
 
 export class Vendor {
@@ -71,8 +133,7 @@ export class Vendor {
 }
 
 export class Inventory {
-    id = "";
-    companyId: string = "Test";
+    id = crypto.randomUUID();
     standard: string = "";
     regulation: string = "";
     scope: string = ""; //1, 2, 3
@@ -81,6 +142,22 @@ export class Inventory {
     company: Company = new Company();
     description: string = "";
     items: Array<InventoryItem> = [];
+    addItem = (item: InventoryItem) => {
+        item.companyId = this.company.id;
+        item.scope = this.scope;
+        this.items.push(item);
+    }
+    static new = (data: any) => {
+        if (data) {
+            const c = new Inventory();
+            Object.assign(c, data);
+            c.items = data.items?.map((d: any) => {
+                return InventoryItem.new(d);
+            });
+            return c;
+        }
+
+    }
 }
 
 export class InventoryCategory {
@@ -99,11 +176,20 @@ export class InventoryType {
 
 export class InventoryItem {
     id = crypto.randomUUID();
-    name = "";
-    typeId = "";
+    companyId = "";
     siteId = "";
+    name = "";
+    scope = "";
+    category = "";
+    unit = "";
+    typeId = "";
     quantity: number = 0;
-    frequency = "yearly"
+    frequency = "yearly";
+    static new = (data: any) => {
+        const c = new InventoryItem();
+        Object.assign(c, data);
+        return c;
+    }
 }
 
 export class EmissionFactor {
@@ -115,7 +201,7 @@ export class EmissionFactor {
     type = ""
 }
 
-export class InvetoryTypeFactorMapping {
+export class InventoryTypeFactorMapping {
     id = "";
     factorId = "";
     typeId = "";

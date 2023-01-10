@@ -119,8 +119,8 @@ export const DataSources = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Action report={report}
-                                    next={{ label: "Next", path: "/inventory-app/questionnairs" }}
-                                    prev={{ label: "Back", path: "/inventory-app/items" }} />
+                                    next={{ label: "Next", path: props.next }}
+                                    prev={{ label: "Back", path: props.prev}} />
                             </Toast.Body>
                         </Toast>
                     </div>

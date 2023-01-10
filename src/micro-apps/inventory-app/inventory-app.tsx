@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/micro-app";
-import './inventory-app.css';
+
 import { DataSources } from "./wizard-steps/sources";
 import { DataCollectionWizard } from "./wizard-steps/summary";
 import { FunctionCategories } from "./wizard-steps/categories";
@@ -8,8 +8,7 @@ import { Questionnaires } from "./wizard-steps/questionnaires";
 import { Help } from "./help";
 import { InventoryItems } from "./wizard-steps/items";
 import { InventoryConfig } from "./wizard-steps/config";
-
-
+import './inventory-app.css';
 
 class InventoryConfigApp implements MicroApp {
  
@@ -23,7 +22,7 @@ class InventoryConfigApp implements MicroApp {
   }
 
   private routeItems: Array<RouteItem> = [
-    new RouteItem().init("Help", "Help", undefined, "/inventory-app/help"),
+    new RouteItem().init("Help", "Help", undefined, "/inventory-app/help")
   ];
 
   
@@ -38,17 +37,16 @@ class InventoryConfigApp implements MicroApp {
   public getRoutes = () => {
     return (
       <>
-        <Route path="/inventory-app" element={<DataCollectionWizard  />} />
-        <Route path="/inventory-app/config" element={<InventoryConfig />} />
-        <Route path="/inventory-app/items" element={<InventoryItems />} />
-        <Route path="/inventory-app/sources" element={<DataSources />} />
-        <Route path="/inventory-app/categories" element={<FunctionCategories />} />
-        <Route path="/inventory-app/questionnairs" element={<Questionnaires/>} />
+        <Route path="/inventory-app" element={<DataCollectionWizard next={'/inventory-app/config'} />} />
+        <Route path="/inventory-app/config" element={<InventoryConfig next={'/inventory-app/items'} prev='/inventory-app' />} />
+        <Route path="/inventory-app/items" element={<InventoryItems next={'/inventory-app/sources'} prev='/inventory-app/config' />} />
+        <Route path="/inventory-app/sources" element={<DataSources next={'/inventory-app/categories'} prev='/inventory-app/items' />} />
+        <Route path="/inventory-app/categories" element={<FunctionCategories next={'/inventory-app/questionnaires'} prev='/inventory-app/sources' />} />
+        <Route path="/inventory-app/questionnaires" element={<Questionnaires prev='/inventory-app/categories'/>} />
         <Route path="/inventory-app/help" element={<Help />} />
       </>
     );
   }
-  
 }
 
 export const inventoryConfigApp: InventoryConfigApp = new InventoryConfigApp();

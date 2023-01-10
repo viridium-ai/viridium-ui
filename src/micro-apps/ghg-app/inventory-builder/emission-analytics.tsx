@@ -2,9 +2,9 @@ import { useState } from "react";
 import { Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Questionnaire, getQuestionnaire } from "../../inventory-app/inventory-common";
-import { getConfigs } from "./model";
 
 export const Analytics = (props: any) => { 
     const configs = getConfigs();

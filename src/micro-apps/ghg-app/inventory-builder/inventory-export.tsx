@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Inventory, getConfigs } from "./model";
+import { Inventory } from "./model";
 export const InventoryExport = (props: any) => {
     const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(props.inventory);

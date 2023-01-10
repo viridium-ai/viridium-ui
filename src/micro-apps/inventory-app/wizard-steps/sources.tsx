@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-common";
 
 export const DataSources = (props: any) => {
-    var configs = require('./configs.json');
+    const configs = getConfigs();
     const item = getQuestionnaire();
     const [report, setQuestionnaire] = useState<Questionnaire>(item);
 
@@ -15,7 +16,7 @@ export const DataSources = (props: any) => {
         return { id: "" + (idx + 1), label: value }
     }).filter((value: any) => value !== null);
 
-    const [datasources, setDataSources] = useState<Array<{ id: string, label: string }>>(ds);
+    const [dataSources, setDataSources] = useState<Array<{ id: string, label: string }>>(ds);
 
     const onSelectItem = (evt: any) => {
         if (!report.dataSources.includes(evt.target.id)) {
@@ -40,13 +41,13 @@ export const DataSources = (props: any) => {
     }
 
     const ds1 = (): Array<{ id: string, label: string }> => {
-        return datasources.filter((value, idx: number) => {
+        return dataSources.filter((value, idx: number) => {
             return idx < configs.dataSources.length / 2
         });
     };
 
     const ds2 = (): Array<{ id: string, label: string }> => {
-        return datasources.filter((value, idx: number) => {
+        return dataSources.filter((value, idx: number) => {
             return idx >= configs.dataSources.length / 2
         });
     };

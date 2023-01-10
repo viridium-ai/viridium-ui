@@ -3,8 +3,9 @@ import { Toast, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Inventory, getConfigs } from "./model";
+import { Inventory } from "./model";
 
 export const InventorySummary = (props: any) => {
     const configs = getConfigs();

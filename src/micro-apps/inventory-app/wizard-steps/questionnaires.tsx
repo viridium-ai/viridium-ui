@@ -6,6 +6,7 @@ import { securityManager } from "../../../common/security/security-manager";
 import { Action } from "../../../components/wizard";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-common";
+import { getConfigs } from "../../../config/viridium-config";
 
 export const Questionnaires = (props: any) => {
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
@@ -15,7 +16,7 @@ export const Questionnaires = (props: any) => {
     const [newName, setName] = useState<string>("");
     const [newNotes, setNotes] = useState<string>("");
     const navigate = useNavigate();
-    var configs = require('./configs.json');
+    var configs = getConfigs();
     const questions: Array<Question> = configs.questions;
     useEffect(() => {
         setUnselectedQuestions(configs.questions);

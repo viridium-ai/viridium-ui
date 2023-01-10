@@ -3,11 +3,12 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
 
 export const InventoryTypes = (props: any) => {
-    const configs = require('./configs.json');
+    var configs = getConfigs();
 
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
 

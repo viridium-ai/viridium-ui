@@ -4,8 +4,9 @@ import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
+import { getConfigs, getInventory, updateInventory } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { getConfigs, getInventory, Inventory, InventoryItem, updateInventory } from "./model";
+import { Inventory, InventoryItem } from "./model";
 
 type ItemState = {
     name: string,

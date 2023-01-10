@@ -7,6 +7,7 @@ import { Action, Question } from '../../../components/wizard';
 import { inventoryConfigApp } from '../inventory-app';
 import { Company } from '../../ghg-app/inventory-builder/model';
 import { Questionnaire, getQuestionnaire, updateQuestionnaire , NamedObject} from '../inventory-common';
+import { getConfigs } from '../../../config/viridium-config';
 
 
 export const CompanyDetails = (props: any) => {
@@ -30,8 +31,8 @@ export const DataCollectionWizard = (props: any) => {
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
     const [company, setCompany] = useState<Company>();
     
-    const configs = require('./configs.json');
-    const companies: Array<Company> = configs.companyDetails;
+    const configs = getConfigs();
+    const companies: Array<Company> = configs.companies;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
     useEffect(() => {
        
@@ -85,8 +86,8 @@ export const DataCollectionWizard = (props: any) => {
                                 <Form.Select value={report.companyId} onChange={onSelectCompany} aria-label="">
                                     <option>Select a company</option>
                                     {
-                                        companies.map((campany, idx) =>
-                                            <option key={"company-" + idx} value={"" + campany.id}>{campany.name}</option>
+                                        companies.map((company, idx) =>
+                                            <option key={"company-" + idx} value={"" + company.id}>{company.name}</option>
                                         )
                                     }
                                 </Form.Select>

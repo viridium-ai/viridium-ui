@@ -5,10 +5,11 @@ import { Toast, Form } from 'react-bootstrap';
 import { LayoutPage } from '../../../components/layout';
 import { DataTable } from '../../../components/table';
 import { Action, Question } from '../../../components/wizard';
+import { getConfigs, getCompany, updateCompany } from '../../../config/viridium-config';
 import { inventoryConfigApp } from '../../inventory-app/inventory-app';
 import { NamedObject } from '../../inventory-app/inventory-common';
 
-import { Company, getCompany, getConfigs, updateCompany, updateConfigs } from './model';
+import { Company } from './model';
 
 export const CompanyDetails = (props: any) => {
     const ui = () => {

@@ -4,6 +4,7 @@ import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout';
 import { DataTable } from '../../components/table';
 import TreeView from '../../components/tree-view';
+import { getConfigs } from '../../config/viridium-config';
 import { dataSourceManager } from './dm-app';
 interface Inventory {
     id: string,
@@ -312,7 +313,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                         <Toast.Body>
                             <DataTable data={this.getTableData()} onSelectRow={this.onSelectInventoryItem} />
                             {
-                                selectedInventory.status === 'Uploaded' ?
+                                selectedInventory.status !== 'Uploaded' ?
                                     <SourceConfigDetails row={{ ...this.state.selectedRow }} /> :
                                     <SourceDetails row={{ ...this.state.selectedRow }} />
                             }
@@ -326,7 +327,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
 
 export const SourceManager = (props: any) => {
     const [selectedInventory, setInventory] = useState<Inventory>();
-    var configs = require('./configs.json');
+    var configs = getConfigs();
  
     const inventories: Array<Inventory> = configs.inventory;
 
@@ -342,14 +343,14 @@ export const SourceManager = (props: any) => {
         return {
             id: "Managed Sources",
             text:"Managed Source",
-            children:configs.manageDataSource
+            children:configs.managedDataSource
         }
     }
     const getManagedData = () => {
         return {
             id: "Managed Data",
             text:"Managed Data",
-            children:configs.manageData
+            children:configs.managedData
         }
     }
     const ui = () => {

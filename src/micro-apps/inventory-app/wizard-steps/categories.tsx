@@ -2,11 +2,13 @@ import { useState } from "react";
 
 import { Toast, Table, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
+import { DimensionView } from "../../../components/table";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire } from "../inventory-common";
 
-export const FunctionalTable = (props: any) => {
+export const CategoryTable = (props: any) => {
     const ui = () => {
         return (
             <Table className="analytic-table">
@@ -34,7 +36,7 @@ export const FunctionalTable = (props: any) => {
     return ui();
 }
 
-export const FunctionalRow = (props: any) => {
+export const CategoryRow = (props: any) => {
     const ui = () => {
         return (
             <tr className="analytic-row" >
@@ -52,30 +54,33 @@ export const FunctionalRow = (props: any) => {
 }
 
 export const FunctionCategories = (props: any) => {
-    var configs = require('./configs.json');
+    var configs = getConfigs();
 
     const [report] = useState<Questionnaire>(getQuestionnaire());
-    const [categoryFunctions, setCategoryFunctions] = useState<Array<{ id: string, value: string }>>([]);
+    const [subCategories, setSubCategories] = useState<Array<{ id: string, label: string }>>([]);
     const [selectedCategory, setCategory] = useState("");
 
-    const [selectedFunction, setSelectedFunction] = useState("");
+    const [selectedSubCategory, setSubCategory] = useState("");
 
-    const categories: Array<{ id: string, value: string, functions: Array<string> }> = configs.functionCategories.lookups;
+    const categories: Array<{ id: string, label: string, categories: Array<{id: string, label: string}> }> = configs.valueChain.categories;
 
-    const selectCategory = (value: string) => {
-        let cat = categories.find(cat => cat.id === value);
-        if (cat) {
-            setCategoryFunctions(cat.functions.map(f => { return { id: f, value: f } }));
-            setCategory(cat.id);
+    const selectCategory = (v: any) => {
+        let c = categories.find(cat => cat.id === v.id);
+        if (c) {
+            setSubCategories(c.categories);
+            setCategory(c.id);
+        } else {
+            setCategory("");
+            setSubCategories([]);
         }
     }
 
-    const onSelectCategory = (event: any) => {
-        selectCategory(event.target.value);
+    const onSelectCategory = (v: any) => {
+        selectCategory(v);
     }
 
-    const onSelectFunction = (event: any) => {
-        setSelectedFunction(event.target.value);
+    const onSelectSubCategory = (v: any) => {
+        setSubCategory(v.id);
     }
     const onSelectFunctionCategory = (event: any) => {
 
@@ -105,53 +110,38 @@ export const FunctionCategories = (props: any) => {
                                     </Col>
                                     <Col className="inventory-summary">Regulations: N/A</Col>
                                 </Row>
-                                <Row>
-                                    <Col> &nbsp;</Col>
-                                </Row>
                                 <Row className="inventory-filters">
-                                    <Col className="inventory-summary">Viridium.AI's Airport Value Chain:
+                                    <Col className="inventory-summary">Airport Value Chain:
                                     </Col>
                                     <Col className="inventory-summary">
                                         <Row>
                                             <Col>
-                                                Function Category:
-                                                <Form.Select value={selectedCategory} onChange={onSelectCategory} aria-label="">
-                                                    {
-                                                        categories.map((v, idx) =>
-                                                            <option key={"cat-" + idx} value={"" + v.id}>{v.value}</option>
-                                                        )
-                                                    }
-                                                </Form.Select>
+                                                <DimensionView data={categories} value={selectedCategory} placeHolder="select a Category" label="Master Categories" onSelectValue={onSelectCategory} />
                                             </Col>
                                             <Col>
-                                                Function 1.0:
-                                                <Form.Select value={selectedFunction} onChange={onSelectFunction} aria-label="">
-                                                    <option key={"func-0"} value={""}>Select a Function</option>
-                                                    {
-                                                        categoryFunctions.map((v, idx) =>
-                                                            <option key={"func-" + idx} value={"" + v.value}>{v.value}</option>
-                                                        )
-                                                    }
-                                                </Form.Select>
+                                                <DimensionView data={subCategories} value={selectedSubCategory}  placeHolder="select a Sub Category" label="Sub Categories" onSelectValue={onSelectSubCategory} />
                                             </Col>
                                         </Row>
                                     </Col>
                                 </Row>
                                 <Row>
+                                    <Col> &nbsp;</Col>
+                                </Row>
+                                <Row >
                                     <Col>
                                         {selectedCategory !== "" ?
-                                            <FunctionalTable title="Function categories" headers={configs.functionCategories.headers} selectable={true}>
+                                            <CategoryTable title="Categories" headers={configs.valueChain.headers} selectable={true}>
                                                 {
-                                                    configs.functionCategories.values.filter((row: any) => {
+                                                    configs.valueChain.values.filter((row: any) => {
                                                         const category = categories.find((cat) => selectedCategory === cat.id);
-                                                        const f = categoryFunctions.find((f)=> selectedFunction === f.id);
-                                                        return category?.value === row[0] && (f === undefined ? true : f.value === row[1]);
+                                                        const f = subCategories.find((f) => selectedSubCategory === f.id);
+                                                        return category?.label === row[0] && (f === undefined ? true : f.label === row[1]);
                                                     }).map((row: any, idx: number) => {
-                                                        return <FunctionalRow onChange={onSelectFunctionCategory} selectable={true}
+                                                        return <CategoryRow onChange={onSelectFunctionCategory} selectable={true}
                                                             key={"row-" + idx} cols={row} />
                                                     })
                                                 }
-                                            </FunctionalTable> : <div>Please select a category</div>
+                                            </CategoryTable> : <div>Please select a category</div>
                                         }
                                     </Col>
                                 </Row>

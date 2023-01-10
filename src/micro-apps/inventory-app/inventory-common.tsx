@@ -22,6 +22,7 @@ export class Questionnaire {
 }
 
 export const updateQuestionnaire = (report: Questionnaire) => {
+    console.log(report);
     localCache.set("Questionnaire", report);
 }
 

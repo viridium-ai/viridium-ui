@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout';
 import TreeView from '../../components/tree-view';
+import { getConfigs } from '../../config/viridium-config';
 import { dataSourceManager } from './dm-app';
 
 type Connector = {
@@ -134,7 +135,7 @@ class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewSta
 
 export const ConnectManagerView = (props: any) => {
     const [connector, setConnector] = useState<Connector>();
-    var configs = require('./configs.json');
+    var configs = getConfigs();
     var managedConnectors : Array<Connector> = configs.managedConnectors;
     //const connectors: Array<Connector> = configs.connector;
 

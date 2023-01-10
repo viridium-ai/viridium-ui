@@ -1,0 +1,1076 @@
+{
+    "description": "jobs are ones that is runnable, it pull the data from source, and transform, and sink it into a different location",
+    "jobs": [{
+        "name": "daily-travel-job",
+        "type": "etl",
+        "source": {
+            "name": "BusinessTravel"
+        },
+        "transformer": {},
+        "sink": {
+            "name": "BusinessTravel",
+            "config": {}
+        },
+        "schedule": {}
+    }],
+    "sources": [{
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "connector": {
+                "name": "amazon-s3",
+                "driver": "com.viridium.connector.aws.FileSource",
+                "config": {
+                    "bucket": "string",
+                    "directory": "string",
+                    "partition": "string"
+                }
+            }
+        },
+        {
+            "name": "Oracle Database Table",
+            "description": "Oracle Database",
+            "connector": {
+                "name": "oracle-database",
+                "driver": "com.viridium.connector.oracle.TableSource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "table": "string",
+                    "fields": "array",
+                    "sql": "string"
+                }
+            }
+        },
+        {
+            "name": "SAP BAPI",
+            "description": "SAP API",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.sap.BAPISource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "fields": "array"
+                }
+            }
+        },
+        {
+            "name": "Hadoop HDFS",
+            "description": "Apache Hadoop File System",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.hadoop.PartitionSource",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "partitionBy": "string",
+                    "format": "csv|tsv|parquet",
+                    "fields": "array"
+                }
+            }
+        }
+    ],
+    "transformers": [{
+        "name": "BusinessTravel",
+        "description": "Map business travel dataset",
+        "connector": {
+            "name": "",
+            "driver": "com.viridium.mapper.BusinessTravelMapper"
+        },
+        "mapping": [{
+            "dateFrom": "01-01-2021",
+            "dateTo": "01-01-2022",
+            "category": "",
+            "miles": 23145154
+        }]
+    }],
+    "managedConnectors": [
+        {
+            "id" : "1",
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "status":"active",
+            "config": {
+                "driver": "com.viridium.connector.aws.FileSink",
+                "properties": {
+                    "bucket": "string",
+                    "directory": "string",
+                    "partition": "string"
+                }
+            }
+        },
+        {
+            "id" : "2",
+            "name": "Oracle Database Table",
+            "description": "Oracle Database",
+            "status":"active",
+            "config": {
+                "driver": "com.viridium.connector.oracle.TableSink",
+                "properties": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "table": "string",
+                    "fields": "array",
+                    "sql": "string"
+                }
+            }
+        },
+        {
+            "id":"3",
+            "name": "SAP BAPI",
+            "description": "SAP API",
+            "status":"active",
+            "config": {
+                "driver": "com.viridium.connector.sap.BAPISink",
+                "properties": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "schema": "string",
+                    "fields": "array"
+                }
+            }
+        },
+        {
+            "id":"4",
+            "name": "Hadoop HDFS",
+            "description": "Apache Hadoop File System",
+            "status":"active",
+            "connector": {
+                "name": "SAP API",
+                "driver": "com.viridium.connector.hadoop.PartitionSink",
+                "config": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string",
+                    "partitionBy": "string",
+                    "format": "csv|tsv|parquet",
+                    "fields": "array"
+                }
+            }
+        }
+    ],
+    "inventory": [{
+            "id": "1",
+            "name": "Data Inventory for Big City Airport",
+            "updatedAt": "26/12/2022",
+            "status": "Uploaded",
+            "updatedBy": "Val",
+            "notes" : "This is final onboarding data inventory for Big City Airport",
+            "items": [{
+                    "id": "1",
+                    "dataSourceName": "Building Mgmt System",
+                    "description": "Non Tenant Buildings",
+                    "notes": "Added by Viridium",
+                    "tech": "Schneider",
+                    "type": "CSV File",
+                    "status": 2,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "2",
+                    "dataSourceName": "Central APU system",
+                    "description": "Landside Terminal",
+                    "notes": "Added by Viridium",
+                    "tech": "SAP",
+                    "type": "API",
+                    "Integration Status": 1,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "3",
+                    "dataSourceName": "Transportation System",
+                    "description": "All Purchased Goods Transportation US-Canada",
+                    "notes": "Added by Viridium",
+                    "tech": "Oracle",
+                    "type": "API",
+                    "Integration Status": 2,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "4",
+                    "dataSourceName": "Custom App DB",
+                    "description": "On chain dataset for ?",
+                    "notes": "Added by Viridium",
+                    "tech": "Block Chain",
+                    "type": "HyperLedger API",
+                    "status": 0,
+                    "configuration": {
+
+                    }
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Data Inventory for Big Drinking Party",
+            "updatedAt": "30/12/2022",
+            "status": "Reviewed",
+            "updatedBy": "Val",
+            "notes" : "Data inventory for Big Drinking Party",
+            "items": [{
+                    "id": "1",
+                    "dataSourceName": "Business Travel Activity",
+                    "description": "Apache Hadoop File System",
+                    "notes": "",
+                    "tech": "Apache HDFS",
+                    "type": "TSV File",
+                    "status": 1,
+                    "configuration": {
+
+                    }
+                },
+                {
+                    "id": "2",
+                    "dataSourceName": "Truck Fuel Usage",
+                    "description": "Oracle DB",
+                    "notes": "",
+                    "tech": "Oracle",
+                    "type": "Database",
+                    "status": 2,
+                    "configuration": {
+
+                    }
+                }
+            ]
+        }
+    ],
+    "managedDataSource": [{
+            "text": "Import Data Inventory",
+            "state": {
+                "selected": true,
+                "selectable": true
+            }
+        },
+        {
+            "text": "Setup",
+            "state": {
+                "expanded": true
+            },
+            "children": [{
+                    "text": "Create Data Inventory"
+                },
+                {
+                    "text": "Manage Data Inventory"
+                }
+            ]
+        }
+    ],
+    "managedData": [{
+            "text": "Data Integration",
+            "state": {
+                "expanded": true
+            },
+            "children": [{
+                "text": "Sources >"
+            }]
+        },
+        {
+            "text": "Integrations",
+            "state": {
+                "expanded": true
+            },
+            "children": [{
+                    "text": "Microsoft Sustainability >"
+                },
+                {
+                    "text": "SAP Carbon Data Network >"
+                },
+                {
+                    "text": "Salesforce Net Zero Cloud >"
+                },
+                {
+                    "text": "Mapping >"
+                }
+            ]
+        },
+        {
+            "text": "Data Lakes",
+            "state": {
+                "expanded": false
+            },
+            "children": [{
+                "text": "Reporting"
+            }]
+        },
+        {
+            "text": "Data Quality",
+            "state": {
+                "expanded": false
+            },
+            "children": [{
+                "text": "Dashboard"
+            }]
+        },
+        {
+            "text": "Data Processing",
+            "state": {
+                "expanded": false
+            },
+            "children": [{
+                    "text": "Jobs >"
+                },
+                {
+                    "text": "Enrichment >"
+                },
+                {
+                    "text": "Aggregation >"
+                }
+            ]
+        },
+        {
+            "text": "Setup",
+            "state": {
+                "expanded": false
+            },
+            "children": [{
+                    "text": "Unit Conversions"
+                },
+                {
+                    "text": "Rules"
+                },
+                {
+                    "text": "Alerts"
+                }
+            ]
+        }
+    ],
+    "dataCoverageScopes": [{
+            "id": "1",
+            "value": "Cooperate",
+            "label": "Cooperate"
+        },
+        {
+            "id": "2",
+            "value": "Product",
+            "label": "Product"
+        },
+        {
+            "id": "3",
+            "value": "Process_Activity",
+            "label": "Process/Activity"
+        }
+    ],
+    "environmentalCategories": [{
+            "id": "1",
+            "value": "Carbon",
+            "label": "Carbon"
+        },
+        {
+            "id": "2",
+            "value": "Water",
+            "label": "Water"
+        },
+        {
+            "id": "3",
+            "value": "Waste",
+            "label": "Waste"
+        }
+    ],
+    "valueChainMasterCategories": [{
+            "id": "1",
+            "value": "Landside",
+            "label": "Landside"
+        },
+        {
+            "id": "2",
+            "value": "Shipping",
+            "label": "Shipping"
+        },
+        {
+            "id": "3",
+            "value": "Waste",
+            "label": "Waste"
+        }
+    ],
+    "valueChainCategories": [{
+            "id": "1",
+            "value": "Landside",
+            "label": "Landside"
+        },
+        {
+            "id": "2",
+            "value": "Shipping",
+            "label": "Shipping"
+        },
+        {
+            "id": "3",
+            "value": "Waste",
+            "label": "Waste"
+        }
+    ],
+    "valueChainSubCategories": [{
+            "id": "1",
+            "value": "Landside",
+            "label": "Landside"
+        },
+        {
+            "id": "2",
+            "value": "Shipping",
+            "label": "Shipping"
+        },
+        {
+            "id": "3",
+            "value": "Waste",
+            "label": "Waste"
+        }
+    ],
+    "standards": [{
+            "id": "1",
+            "label": "ISSB"
+        },
+        {
+            "id": "2",
+            "label": "EU-PEF and EU-PEFCR"
+        },
+        {
+            "id": "3",
+            "label": "ISO/DIS 14067"
+        },
+        {
+            "id": "4",
+            "label": "GHG Protocol"
+        },
+        {
+            "id": "5",
+            "label": "PAS 2050"
+        },
+        {
+            "id": "6",
+            "label": "EPD"
+        }
+    ],
+    "regulations": [{
+            "id": "1",
+            "label": "NFRD (Non Financial Reporting Directive)"
+        },
+        {
+            "id": "2",
+            "label": "SFDR (Sustainable Finance Disclosure Regulation )"
+        },
+        {
+            "id": "3",
+            "label": "CRFD (Climate-related Financial Disclosure)"
+        },
+        {
+            "id": "4",
+            "label": "CBAM (Carbon Border Adjustment Mechanism)"
+        },
+        {
+            "id": "5",
+            "label": "ETS"
+        },
+        {
+            "id": "6",
+            "label": "Effort Sharing Regulation"
+        },
+        {
+            "id": "7",
+            "label": "Low Carbon Benchmark Regulation"
+        }
+    ],
+    "questions": [{
+            "id": "1",
+            "name": "question 1"
+        },
+        {
+            "id": "2",
+            "name": "question 2"
+        },
+        {
+            "id": "3",
+            "name": "question 3"
+        }
+    ],
+    "viridiumIndustries": [{
+            "id": "1",
+            "name": "Transportation: Airport"
+        },
+        {
+            "id": "2",
+            "name": "Transportation: Airline"
+        },
+        {
+            "id": "3",
+            "name": "Transportation: Manufacture"
+        }
+    ],
+    "categories": {
+        "scope1": [
+            "Transportation Cars",
+            "Transportation Trucks",
+            "Transportation Ships",
+            "Transportation Trains",
+            "Transportation Planes",
+            "Electricity Fossil Fuel",
+            "Electricity Used in Buildings",
+            "Electricity Used in Industry",
+            "Industry Fuel",
+            "IndustryChemical Reactions"
+        ],
+        "scope2": [
+            "Transportation Cars",
+            "Transportation Trucks",
+            "Transportation Ships",
+            "Transportation Trains",
+            "Transportation Planes",
+            "Electricity Fossil Fuel",
+            "Electricity Used in Buildings",
+            "Electricity Used in Industry",
+            "Industry Fuel",
+            "IndustryChemical Reactions"
+        ],
+        "scope3": [
+            "Purchased Goods and Services",
+            "Capital Goods",
+            "Fuel and Energy related activities (not included in scope 1 or 2)",
+            "Upstream transportation and distribution",
+            "Waste generated in operations",
+            "Business Travel",
+            "Employee commuting",
+            "Upstream leased Assets",
+            "Transportation and distribution of sold products",
+            "Processing of Sold Products",
+            "Use of sold products",
+            "End of life treatment of sold products ",
+            "Downstream leased assets",
+            "Franchises",
+            "Investments"
+        ]
+    },
+    "dataSources": [
+        "Oracle ERP Financial Management",
+        "Oracle ERP Procurement",
+        "Oracle ERP Project Management",
+        "Oracle ERP Risk Management and Compliance",
+        "Oracle ERP Enterprise Performance Management",
+        "Oracle SCM Supply Chain Planning",
+        "Oracle SCM Inventory Management",
+        "Oracle SCM Manufacturing",
+        "SAP IS Airlines & Defense",
+        "SAP Manufacturing",
+        "SAP Plant Maintenance(PM)",
+        "SAP Production Planning(PP)",
+        "SAP Product Lifecycle Costing(PLC)",
+        "SAP Profitability and Cost Management(PCM)",
+        "SAP Project System(PS)",
+        "SAP Rapid Deployment Solutions(RDS)",
+        "SAP Service and Asset Management",
+        "Microsoft Dynamics 365 Finance",
+        "Microsoft Dynamics 365 Business Central",
+        "Microsoft Dynamics 365 Sales",
+        "Data management",
+        "Azure Data Explorer",
+        "Cosmos DB",
+        "Azure SQL Database",
+        "Azure Synapse Analytics",
+        "Azure Data Factory",
+        "Azure Data Lake",
+        "Azure HDInsight",
+        "Salesforce Sales Cloud",
+        "Salesforce Service Cloud",
+        "Salesforce Marketing Cloud",
+        "Salesforce Commerce Cloud",
+        "Salesforce Experience Cloud",
+        "Salesforce 360 Platform"
+    ],
+    "valueChain": {
+        "categories": [
+            {
+                "id": "1",
+                "label": "Landside",
+                "categories": [{
+                        "id": "0",
+                        "label": "Airport"
+                    },
+                    {
+                        "id": "1",
+                        "label": "Airline"
+                    }, {
+                        "id": "2",
+                        "label": "Manufacture"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "label": "Shopping",
+                "categories": [{
+                        "id": "0",
+                        "label": "Transport"
+                    },
+                    {
+                        "id": "1",
+                        "label": "Manufacture"
+                    }, {
+                        "id": "2",
+                        "label": "Waste"
+                    }
+                ]
+            }
+        ],
+        "headers": [
+            "Function Category",
+            "Function 1.0",
+            "Function 1.1",
+            "GHG Scope",
+            "Direct or Indirect",
+            "CWsWt"
+        ],
+        "values": [
+            [
+                "Landside",
+                "Airport",
+                "Building Construction",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airline",
+                "Building Management",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Suppliers",
+                "Scope 1",
+                "Direct",
+                "C"
+            ],
+            [
+                "Landside",
+                "Manufacture",
+                "Business Travel",
+                "Scope 1",
+                "Direct",
+                "C"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Security",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Landside",
+                "Airport",
+                "Parking",
+                "Scope 1",
+                "Direct",
+                "CWs"
+            ],
+            [
+                "Shopping",
+                "Transport",
+                "Baggage Handling",
+                "Scope 1",
+                "Direct",
+                "CWs"
+            ],
+            [
+                "Shopping",
+                "Waste",
+                "Building Construction",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Building Management",
+                "Scope 1",
+                "Direct",
+                "CWsWt"
+            ],
+            [
+                "Shopping",
+                "Manufacture",
+                "Suppliers",
+                "Scope 1",
+                "Direct",
+                "C"
+            ]
+        ]
+    },
+    "frequencies": [{
+            "id": "monthly",
+            "name": "Monthly"
+        },
+        {
+            "id": "quarterly",
+            "name": "quarterly"
+        },
+        {
+            "id": "yearly",
+            "name": "Yearly"
+        }
+    ],
+    "inventoryTypes": [{
+            "id": "monthly",
+            "name": "Monthly"
+        },
+        {
+            "id": "quarterly",
+            "name": "quarterly"
+        },
+        {
+            "id": "yearly",
+            "name": "Yearly"
+        }
+    ],
+    "scopes": [{
+            "id": "1",
+            "name": "Scope 1",
+            "categories": [{
+                    "id": "1",
+                    "name": "Stationary Combustion",
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
+                },
+                {
+                    "id": "2",
+                    "name": "Mobile Combustion",
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
+                },
+                {
+                    "id": "3",
+                    "name": "Electricity",
+                    "types": [
+                        "Cars",
+                        "Trucks",
+                        "Ships",
+                        "Trains",
+                        "Plans"
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "name": "Scope 2",
+            "categories": [{
+                    "id": "1",
+                    "name": "Transportation",
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans"
+                    }]
+                },
+                {
+                    "id": "2",
+                    "name": "Electricity",
+                    "types": [{
+                            "id": "Fossil Fuel",
+                            "name": "Fossil Fuel"
+                        },
+                        {
+                            "id": "Used in Buildings",
+                            "name": "Used in Buildings"
+                        },
+                        {
+                            "id": "Used in Buildings",
+                            "name": "Used in Industry"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "name": "Industry",
+                    "types": [{
+                            "id": "Fuel",
+                            "name": "Fuel"
+                        },
+                        {
+                            "id": "Chemical",
+                            "name": "Chemical Reactions"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "name": "Scope 3",
+            "categories": [{
+                    "id": "1",
+                    "name": "Purchased Goods and Services",
+                    "types": [{
+                            "id": "cement",
+                            "name": "Cement"
+                        },
+                        {
+                            "id": "plaster",
+                            "name": "Plaster"
+                        },
+                        {
+                            "id": "Paint",
+                            "name": "Paint"
+                        },
+                        {
+                            "id": "Timber",
+                            "name": "Timber"
+                        },
+                        {
+                            "id": "Concrete",
+                            "name": "Concrete"
+                        },
+                        {
+                            "id": "Cotton",
+                            "name": "Cotton"
+                        }
+                    ]
+                },
+                {
+                    "id": "2",
+                    "name": "Capital Goods",
+                    "types": [{
+                            "id": "cement",
+                            "name": "Cement"
+                        },
+                        {
+                            "id": "plaster",
+                            "name": "Plaster"
+                        },
+                        {
+                            "id": "Paint",
+                            "name": "Paint"
+                        },
+                        {
+                            "id": "Timber",
+                            "name": "Timber"
+                        },
+                        {
+                            "id": "Concrete",
+                            "name": "Concrete"
+                        },
+                        {
+                            "id": "Cotton",
+                            "name": "Cotton"
+                        }
+                    ]
+                },
+                {
+                    "id": "3",
+                    "name": "Fuel and Energy related activities (not included in scope 1 or 2)"
+                },
+                {
+                    "id": "4",
+                    "name": "Upstream transportation and distribution"
+                },
+                {
+                    "id": "5",
+                    "name": "Waste generated in operations"
+                },
+                {
+                    "id": "6",
+                    "name": "Business Travel"
+                },
+                {
+                    "id": "7",
+                    "name": "Employee commuting"
+                },
+                {
+                    "id": "8",
+                    "name": "Upstream leased Assets"
+                },
+                {
+                    "id": "9",
+                    "name": "Transportation and distribution of sold products"
+                },
+                {
+                    "id": "10",
+                    "name": "Transportation and distribution of sold products"
+                },
+                {
+                    "id": "11",
+                    "name": "Processing of Sold Products"
+                },
+                {
+                    "id": "12",
+                    "name": "Use of sold products"
+                },
+                {
+                    "id": "13",
+                    "name": "End of life treatment of sold products"
+                },
+                {
+                    "id": "14",
+                    "name": "Downstream leased assets"
+                },
+                {
+                    "id": "14",
+                    "name": "Franchises"
+                },
+                {
+                    "id": "14",
+                    "name": "Investments"
+                }
+            ]
+        }
+    ],
+    "companies": [{
+            "id": "VA12312i3",
+            "name": "Big Airport",
+            "industry": "Transportation",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "SF123141",
+            "source": "Source CRM Account ID",
+            "street1": "555, Airport Way",
+            "city": "Big City",
+            "state": "CA",
+            "zipCode": "45678",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.deo@viridium.ai",
+            "phone": "425-456-7896",
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i3"
+                },
+                {
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i3"
+                },
+                {
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i3"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i4",
+            "name": "Drink Away",
+            "industry": "Process",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Water Way",
+            "city": "Las Vegas",
+            "state": "NV",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i4"
+                },
+                {
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i4"
+                },
+                {
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i4"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i5",
+            "name": "Big University",
+            "industry": "Education",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Niraj Way",
+            "city": "Seattle",
+            "state": "WA",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites": [{
+                    "id": "2",
+                    "name": "Site 2",
+                    "companyId": "VA12312i5"
+                },
+                {
+                    "id": "3",
+                    "name": "Site 3",
+                    "companyId": "VA12312i5"
+                },
+                {
+                    "id": "1",
+                    "name": "Site 1",
+                    "companyId": "VA12312i5"
+                }
+            ]
+        }
+    ]
+}

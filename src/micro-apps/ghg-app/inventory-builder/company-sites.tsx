@@ -1,12 +1,11 @@
-import { report } from "process";
-import { Component, useState } from "react";
 
-import { Toast, Form, Row, Col, Button } from "react-bootstrap";
+import { Component } from "react";
+
+import { Toast, Row, Col, Button } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
-import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { updateQuestionnaire, Questionnaire, getQuestionnaire } from "../../inventory-app/inventory-common";
-import { Company, getConfigs, Site } from "./model";
+import { Company, Site } from "./model";
 
 type AddressViewProps = {
     site: any,

@@ -4,8 +4,9 @@ import { Toast, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { getConfigs, Inventory } from "./model";
+import { Inventory } from "./model";
 
 export const MappingCategories = (props: any) => {
     const configs = getConfigs();

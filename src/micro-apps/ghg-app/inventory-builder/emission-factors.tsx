@@ -3,10 +3,10 @@ import { useState } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Action } from "../../../components/wizard";
+import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
-import { getConfigs } from "./model";
-
+ 
 export const EmissionFactorView = (props: any) => {
     var configs = getConfigs();
 

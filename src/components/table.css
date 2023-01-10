@@ -1,0 +1,12 @@
+.dimension-title {
+    padding: 5px;
+    font-size: medium;
+    font-weight: bold;
+}
+.dimension-select {
+    padding: 5px;
+}
+
+.dimension-container {
+    margin-bottom: 15px;
+}

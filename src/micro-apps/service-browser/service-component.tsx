@@ -139,7 +139,7 @@ export class EntityForm extends Component<FormProp> {
 
     getOptions = (fieldName: string) => {
         console.log(fieldName);
-        let test: any = [];//require("./sp500.json");
+        let test: any = []; 
         return test.map((item: any) => {
             return { value: item.Symbol, label: item.Name }
         });

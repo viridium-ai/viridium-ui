@@ -27,13 +27,19 @@ export const getCompany = (id: string | undefined = undefined) => {
     }
     return localCache.get("Company" + id)
 }
-export const updateInventory = (inv : Inventory) => {
 
+export const updateInventory = (inv: Inventory) => {
     return localCache.set("Inventory", inv);
 }
- 
-export const getInventory = () => {
 
-    return localCache.get("Inventory")
+export const getInventory = () => {
+    return Inventory.new(localCache.get("Inventory"));
 }
- 
+
+export const saveState = (id: string, entity: any) => {
+    localCache.set(id, entity);
+}
+
+export const getState = (id: string, defaultEntity: any) => {
+    return localCache.get(id, defaultEntity);
+}

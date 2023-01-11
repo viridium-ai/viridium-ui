@@ -53,19 +53,19 @@ export const InventoryConfig = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <Question label="Sustainability Category">
-                                    <DimensionView data={configs.environmentalCategories} value={questionnaire.context} placeHolder={"Select a category"} onSelectValue={onSetCategory} />
+                                    <DimensionView data={configs.environmentalCategories} options={{value: questionnaire.context, placeHolder:"Select a category", onSelectValue: onSetCategory}} />
                                 </Question>
 
                                 <Question label="Scope of Data Coverage">
-                                    <DimensionView data={configs.dataCoverageScopes} value={questionnaire.type} placeHolder={"Select a coverage"} onSelectValue={onSelectCoverage} />
+                                    <DimensionView data={configs.dataCoverageScopes} options={{value:questionnaire.type, placeHolder:"Select a coverage", onSelectValue: onSelectCoverage}} />
                                 </Question>
 
                                 <Question label="Standards">
-                                    <DimensionView data={configs.standards} value={questionnaire.standard} placeHolder={"Select a standard"} onSelectValue={onSelectStandard} />
+                                    <DimensionView data={configs.standards} options={{value : questionnaire.standard, placeHolder : "Select a standard", onSelectValue : onSelectStandard}} />
 
                                 </Question>
                                 <Question label="Regulations">
-                                    <DimensionView data={configs.regulations} value={questionnaire.regulation} placeHolder={"Select a regulation"} onSelectValue={onSelectRegulation} />
+                                    <DimensionView data={configs.regulations} options={{value:questionnaire.regulation, placeHolder:"Select a regulation", onSelectValue:onSelectRegulation}} />
                                 </Question>
                                 <Action report={questionnaire}
                                     next={{ label: "Next", path: props.next }}

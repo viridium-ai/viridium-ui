@@ -27,7 +27,6 @@ export const InventorySummary = (props: any) => {
         return {
             id: inventory.id,
             headers: [
-                { type: "text", text: "Name" },
                 { type: "text", text: "Quantity" },
                 { type: "text", text: "Frequency" },
                 { type: "text", text: "Type" },
@@ -36,11 +35,11 @@ export const InventorySummary = (props: any) => {
             rows: inventory.items.map((item, idx) => {
                 return {
                     id: item.id,
-                    cols: [{ type: "text", text: item.name },
-                    { type: "text", text: item.quantity },
-                    { type: "text", text: item.frequency },
-                    { type: "text", text: item.typeId },
-                    { type: "text", text: item.siteId }
+                    cols: [
+                        { type: "text", text: item.siteId },
+                        { type: "text", text: item.quantity },
+                        { type: "text", text: item.frequency },
+                        { type: "text", text: item.typeId },
                     ]
                 }
             }
@@ -58,10 +57,10 @@ export const InventorySummary = (props: any) => {
                 <div className="wizard-body">
                     <Toast >
                         <Toast.Header closeButton={false}>
-                        <span className="me-auto">
+                            <span className="me-auto">
                                 Summary and Review
                             </span>
-                            {inventory.company.name}
+                            {inventory.company?.name}
                         </Toast.Header>
                         <Toast.Body>
                             <Row>

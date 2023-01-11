@@ -59,7 +59,7 @@ export class Company {
                     id: site.id,
                     cols: [{ type: "text", text: site.id },
                     { type: "text", text: site.name },
-                    { type: "text", text: site.getAddress() }
+                    { type: "text", text: site.location }
                     ]
                 }
             }
@@ -74,9 +74,10 @@ export class Site {
     name: string = "";
     type: string = "";
     description = "";
-    addressId: string = ""
+    addressId: string = "";
+    location : string = "";
     getAddress = () => {
-        return this.addressId;
+        return this.location;
     }
     static new = (data: any) => {
         if (data) {
@@ -100,11 +101,11 @@ export class Inventory {
     scope: string = ""; //1, 2, 3
     type: string = "";
     context: string = ""; //corporation, product, activity 
-    company: Company = new Company();
+    company?: Company = new Company();
     description: string = "";
     items: Array<InventoryItem> = [];
     addItem = (item: InventoryItem) => {
-        item.companyId = this.company.id;
+        item.companyId = this.company!.id;
         item.scope = this.scope;
         this.items.push(item);
     }
@@ -115,9 +116,11 @@ export class Inventory {
             c.items = data.items?.map((d: any) => {
                 return InventoryItem.new(d);
             });
+            c.company = Company.new(data.company);
             return c;
+        } else {
+            return new Inventory();
         }
-
     }
 }
 
@@ -139,7 +142,6 @@ export class InventoryItem {
     id = crypto.randomUUID();
     companyId = "";
     siteId = "";
-    name = "";
     scope = "";
     category = "";
     unit = "";

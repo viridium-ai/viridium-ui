@@ -17,13 +17,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 #### Install Node
 brew install node
 
-#### Java and Maven
-brew install maven
-brew install mysql
-
-brew install openjdk@11
-sudo ln -sfn /opt/homebrew/opt/openjdk@11/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk-11.jdk
-echo 'export PATH="/opt/homebrew/opt/openjdk@11/bin:$PATH"' >> ~/.zshrc
+### Install MS Code
 
 ## Build and Run
 
@@ -36,16 +30,18 @@ cd ~/github/viridium-ai
 
 git clone https://github.com/viridium-ai/viridium-ui.git
 
+git checkout master
+
 cd viridium-ui
 
 npm install
 
-npm start
+npm start react
 
-http://localhost:3000/carbon/dashboard
+http://localhost:3000
 
 ```
-## Development
+
 
 
 

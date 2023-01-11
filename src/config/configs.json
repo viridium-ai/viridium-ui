@@ -1,5 +1,5 @@
 {
-    "description": "jobs are ones that is runnable, it pull the data from source, and transform, and sink it into a different location",
+    "description": "POC configuration for Viridium Data Platform",
     "jobs": [{
         "name": "daily-travel-job",
         "type": "etl",
@@ -89,14 +89,13 @@
             "miles": 23145154
         }]
     }],
-    "managedConnectors": [
-        {
-            "id" : "1",
-            "name": "Amazon S3",
-            "description": "AWS cloud storage",
-            "status":"active",
+    "managedConnectors": [{
+            "id": "1",
+            "name": "Microsoft PowerBI",
+            "description": "Microsoft cloud analytic platform",
+            "status": "active",
             "config": {
-                "driver": "com.viridium.connector.aws.FileSink",
+                "driver": "com.viridium.connector.microsoft.PowerBISink",
                 "properties": {
                     "bucket": "string",
                     "directory": "string",
@@ -105,10 +104,10 @@
             }
         },
         {
-            "id" : "2",
+            "id": "2",
             "name": "Oracle Database Table",
             "description": "Oracle Database",
-            "status":"active",
+            "status": "active",
             "config": {
                 "driver": "com.viridium.connector.oracle.TableSink",
                 "properties": {
@@ -123,10 +122,10 @@
             }
         },
         {
-            "id":"3",
+            "id": "3",
             "name": "SAP BAPI",
             "description": "SAP API",
-            "status":"active",
+            "status": "active",
             "config": {
                 "driver": "com.viridium.connector.sap.BAPISink",
                 "properties": {
@@ -139,20 +138,61 @@
             }
         },
         {
-            "id":"4",
+            "id": "4",
             "name": "Hadoop HDFS",
             "description": "Apache Hadoop File System",
-            "status":"active",
-            "connector": {
+            "status": "active",
+            "config": {
                 "name": "SAP API",
                 "driver": "com.viridium.connector.hadoop.PartitionSink",
-                "config": {
+                "properties": {
                     "url": "string",
                     "username": "string",
                     "password": "string",
                     "partitionBy": "string",
                     "format": "csv|tsv|parquet",
                     "fields": "array"
+                }
+            }
+        },
+        {
+            "id": "5",
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "status": "active",
+            "config": {
+                "driver": "com.viridium.connector.aws.FileSink",
+                "properties": {
+                    "bucket": "string",
+                    "directory": "string",
+                    "partition": "string"
+                }
+            }
+        },
+        {
+            "id": "6",
+            "name": "SFTP File",
+            "description": "FTP File",
+            "status": "active",
+            "config": {
+                "driver": "com.viridium.connector.ftp.FileSink",
+                "properties": {
+                    "url": "string",
+                    "username": "string",
+                    "password": "string"
+                }
+            }
+        },
+        {
+            "id": "7",
+            "name": "Download File",
+            "description": "Download File",
+            "status": "active",
+            "config": {
+                "driver": "com.viridium.connector.ftp.FileSink",
+                "properties": {
+                    "format": "string",
+                    "directory": "string"
                 }
             }
         }
@@ -163,7 +203,7 @@
             "updatedAt": "26/12/2022",
             "status": "Uploaded",
             "updatedBy": "Val",
-            "notes" : "This is final onboarding data inventory for Big City Airport",
+            "notes": "This is final onboarding data inventory for Big City Airport",
             "items": [{
                     "id": "1",
                     "dataSourceName": "Building Mgmt System",
@@ -220,7 +260,7 @@
             "updatedAt": "30/12/2022",
             "status": "Reviewed",
             "updatedBy": "Val",
-            "notes" : "Data inventory for Big Drinking Party",
+            "notes": "Data inventory for Big Drinking Party",
             "items": [{
                     "id": "1",
                     "dataSourceName": "Business Travel Activity",
@@ -350,8 +390,8 @@
     ],
     "dataCoverageScopes": [{
             "id": "1",
-            "value": "Cooperate",
-            "label": "Cooperate"
+            "value": "Company",
+            "label": "Company"
         },
         {
             "id": "2",
@@ -484,15 +524,15 @@
     ],
     "questions": [{
             "id": "1",
-            "name": "question 1"
+            "name": "Where do we get fuel usage data"
         },
         {
             "id": "2",
-            "name": "question 2"
+            "name": "Where do we get electricity usage data"
         },
         {
             "id": "3",
-            "name": "question 3"
+            "name": "How do we get procurement data"
         }
     ],
     "viridiumIndustries": [{
@@ -588,8 +628,7 @@
         "Salesforce 360 Platform"
     ],
     "valueChain": {
-        "categories": [
-            {
+        "categories": [{
                 "id": "1",
                 "label": "Landside",
                 "categories": [{
@@ -747,19 +786,24 @@
                     "name": "Stationary Combustion",
                     "types": [{
                         "id": "Cars",
-                        "name": "Cars"
+                        "name": "Cars",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trucks",
-                        "name": "Trucks"
+                        "name": "Trucks",
+                        "unit" : "Miles"
                     }, {
                         "id": "Ship",
-                        "name": "Ship"
+                        "name": "Ship",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trains",
-                        "name": "Trains"
+                        "name": "Trains",
+                        "unit" : "Miles"
                     }, {
                         "id": "Plans",
-                        "name": "Plans"
+                        "name": "Plans",
+                        "unit" : "Miles"
                     }]
                 },
                 {
@@ -767,19 +811,24 @@
                     "name": "Mobile Combustion",
                     "types": [{
                         "id": "Cars",
-                        "name": "Cars"
+                        "name": "Cars",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trucks",
-                        "name": "Trucks"
+                        "name": "Trucks",
+                        "unit" : "Miles"
                     }, {
                         "id": "Ship",
-                        "name": "Ship"
+                        "name": "Ship",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trains",
-                        "name": "Trains"
+                        "name": "Trains",
+                        "unit" : "Miles"
                     }, {
                         "id": "Plans",
-                        "name": "Plans"
+                        "name": "Plans",
+                        "unit" : "Miles"
                     }]
                 },
                 {
@@ -803,19 +852,24 @@
                     "name": "Transportation",
                     "types": [{
                         "id": "Cars",
-                        "name": "Cars"
+                        "name": "Cars",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trucks",
-                        "name": "Trucks"
+                        "name": "Trucks",
+                        "unit" : "Miles"
                     }, {
                         "id": "Ship",
-                        "name": "Ship"
+                        "name": "Ship",
+                        "unit" : "Miles"
                     }, {
                         "id": "Trains",
-                        "name": "Trains"
+                        "name": "Trains",
+                        "unit" : "Miles"
                     }, {
                         "id": "Plans",
-                        "name": "Plans"
+                        "name": "Plans",
+                        "unit" : "Miles"
                     }]
                 },
                 {
@@ -823,15 +877,18 @@
                     "name": "Electricity",
                     "types": [{
                             "id": "Fossil Fuel",
-                            "name": "Fossil Fuel"
+                            "name": "Fossil Fuel",
+                            "unit" : "MWH"
                         },
                         {
                             "id": "Used in Buildings",
-                            "name": "Used in Buildings"
+                            "name": "Used in Buildings",
+                            "unit" : "MWH"
                         },
                         {
                             "id": "Used in Buildings",
-                            "name": "Used in Industry"
+                            "name": "Used in Industry",
+                            "unit" : "MWH"
                         }
                     ]
                 },
@@ -840,11 +897,13 @@
                     "name": "Industry",
                     "types": [{
                             "id": "Fuel",
-                            "name": "Fuel"
+                            "name": "Fuel",
+                            "unit" : "MWH"
                         },
                         {
                             "id": "Chemical",
-                            "name": "Chemical Reactions"
+                            "name": "Chemical Reactions",
+                            "unit" : "MWH"
                         }
                     ]
                 }
@@ -858,27 +917,33 @@
                     "name": "Purchased Goods and Services",
                     "types": [{
                             "id": "cement",
-                            "name": "Cement"
+                            "name": "Cement",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "plaster",
-                            "name": "Plaster"
+                            "name": "Plaster",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Paint",
-                            "name": "Paint"
+                            "name": "Paint",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Timber",
-                            "name": "Timber"
+                            "name": "Timber",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Concrete",
-                            "name": "Concrete"
+                            "name": "Concrete",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Cotton",
-                            "name": "Cotton"
+                            "name": "Cotton",
+                            "unit" : "Kg"
                         }
                     ]
                 },
@@ -887,27 +952,33 @@
                     "name": "Capital Goods",
                     "types": [{
                             "id": "cement",
-                            "name": "Cement"
+                            "name": "Cement",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "plaster",
-                            "name": "Plaster"
+                            "name": "Plaster",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Paint",
-                            "name": "Paint"
+                            "name": "Paint",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Timber",
-                            "name": "Timber"
+                            "name": "Timber",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Concrete",
-                            "name": "Concrete"
+                            "name": "Concrete",
+                            "unit" : "Kg"
                         },
                         {
                             "id": "Cotton",
-                            "name": "Cotton"
+                            "name": "Cotton",
+                            "unit" : "Kg"
                         }
                     ]
                 },
@@ -989,17 +1060,17 @@
             "phone": "425-456-7896",
             "sites": [{
                     "id": "2",
-                    "name": "Site 2",
+                    "name": "San Jose",
                     "companyId": "VA12312i3"
                 },
                 {
                     "id": "3",
-                    "name": "Site 3",
+                    "name": "Dallas",
                     "companyId": "VA12312i3"
                 },
                 {
                     "id": "1",
-                    "name": "Site 1",
+                    "name": "Chicago",
                     "companyId": "VA12312i3"
                 }
             ]
@@ -1023,54 +1094,148 @@
             "phone": "345-456-2314",
             "sites": [{
                     "id": "2",
-                    "name": "Site 2",
+                    "name": "Georgia",
                     "companyId": "VA12312i4"
                 },
                 {
                     "id": "3",
-                    "name": "Site 3",
+                    "name": "Denver",
                     "companyId": "VA12312i4"
                 },
                 {
                     "id": "1",
-                    "name": "Site 1",
+                    "name": "Paris",
                     "companyId": "VA12312i4"
                 }
             ]
         },
         {
             "id": "VA12312i5",
-            "name": "Big University",
-            "industry": "Education",
+            "name": "Tesla",
+            "industry": "Manufactory",
             "viridiumCategory": "",
             "lastUpdatedDate": 12213212312,
             "lastUpdatedBy": "vid",
             "sourceId": "CRM23145",
             "source": "Source CRM Account ID",
-            "street1": "555, Niraj Way",
-            "city": "Seattle",
-            "state": "WA",
+            "street1": "555, Tesla Way",
+            "city": "Austin",
+            "state": "TX",
             "zipCode": "56789",
-            "firstName": "Joe",
-            "lastName": "Bro",
+            "firstName": "Elon",
+            "lastName": "Dusk",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314",
             "sites": [{
+                    "id": "1",
+                    "name": "Headquarters",
+                    "companyId": "VA12312i5",
+                    "location": "Austin TX, USA"
+                }, {
                     "id": "2",
-                    "name": "Site 2",
-                    "companyId": "VA12312i5"
+                    "name": "Giga-Factory Fremont",
+                    "companyId": "VA12312i5",
+                    "location": "Fremont CA, USA"
                 },
                 {
                     "id": "3",
-                    "name": "Site 3",
-                    "companyId": "VA12312i5"
+                    "name": "Giga-Factory Berlin",
+                    "companyId": "VA12312i5",
+                    "location": "Berlin, DEU"
+                },
+
+                {
+                    "id": "4",
+                    "name": "Giga-Factory Shanghai",
+                    "companyId": "VA12312i5",
+                    "location": "Shanghai, China"
                 },
                 {
-                    "id": "1",
-                    "name": "Site 1",
-                    "companyId": "VA12312i5"
+                    "id": "5",
+                    "name": "Giga-Factory Austin",
+                    "companyId": "VA12312i5",
+                    "location": "Austin TX, USA"
                 }
             ]
         }
-    ]
+    ],
+    "reportMockData": {
+        "id": "1",
+        "headers": [{
+                "type": "text",
+                "text": "Progress"
+            },
+            {
+                "type": "text",
+                "text": "tCO2e"
+            },
+            {
+                "type": "text",
+                "text": "Scope"
+            }
+        ],
+        "rows": [{
+                "id": "1",
+                "cols": [{
+                        "type": "text",
+                        "text": "Shipping"
+                    },
+                    {
+                        "type": "text",
+                        "text": "1000"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Scope 1"
+                    }
+                ]
+            },
+            {
+                "id": "2",
+                "cols": [{
+                        "type": "text",
+                        "text": "Business Travel"
+                    },
+                    {
+                        "type": "text",
+                        "text": "1000"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Scope 1"
+                    }
+                ]
+            }, {
+                "id": "3",
+                "cols": [{
+                        "type": "text",
+                        "text": "Employee Commute"
+                    },
+                    {
+                        "type": "text",
+                        "text": "1000"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Scope 3"
+                    }
+                ]
+            }, {
+                "id": "4",
+                "cols": [{
+                        "type": "text",
+                        "text": "Customer Commute"
+                    },
+                    {
+                        "type": "text",
+                        "text": "1000"
+                    },
+                    {
+                        "type": "text",
+                        "text": "Scope 3"
+                    }
+                ]
+            }
+        ]
+    }
 }

@@ -56,6 +56,7 @@ export const CompanyConfig = (props: any) => {
             }
             setCompany(c);
             updateCompany(c);
+            console.log(c);
         }
     }
 
@@ -76,54 +77,54 @@ export const CompanyConfig = (props: any) => {
             updateCompany(c);
         }
     }
-    return (
-        <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-            <div className="wizard-body">
-                <div className="wizard-body-main">
-                    <Toast >
-                        <Toast.Header closeButton={false}>
-                            <span className="me-auto">
-                                Config Company
-                            </span>
-                            {
-                                company ? company.name : ""
-                            }
-                        </Toast.Header>
-                        <Toast.Body>
-                            <Question label="Customer Name">
-                                <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
-                                    <option>Select a company</option>
-                                    {
-                                        companies.map((c, idx) =>
-                                            <option key={"company-" + idx} value={"" + c.id}>{c.name}</option>
-                                        )
-                                    }
-                                </Form.Select>
-                                <div className="company-details">
-                                    <CompanyDetails entity={company} />
-                                </div>
+
+    return <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
+        <div className="wizard-body">
+            <div className="wizard-body-main">
+                <Toast >
+                    <Toast.Header closeButton={false}>
+                        <span className="me-auto">
+                            Config Company
+                        </span>
+                        {
+                            company ? company.name : ""
+                        }
+                    </Toast.Header>
+                    <Toast.Body>
+                        <Question label="Customer Name">
+                            <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
+                                <option>Select a company</option>
                                 {
-                                    company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                                    companies.map((c, idx) =>
+                                        <option key={"company-" + idx} value={"" + c.id}>{c.name}</option>
+                                    )
                                 }
-                            </Question>
-                            <Question label="Viridium Industry">
-                                <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
-                                    <option>Select a category</option>
-                                    {
-                                        viridiumIndustries.map((v, idx) =>
-                                            <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
-                                        )
-                                    }
-                                </Form.Select>
-                            </Question>
-                            <Question label="Notes">
-                                <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
-                            </Question>
-                            <Action next={{ label: "Next", path: props.next }} />
-                        </Toast.Body>
-                    </Toast>
-                </div>
+                            </Form.Select>
+                            <div className="company-details">
+                                <CompanyDetails entity={company} />
+                            </div>
+                            {
+                                company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                            }
+                        </Question>
+                        <Question label="Viridium Industry">
+                            <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
+                                <option>Select a category</option>
+                                {
+                                    viridiumIndustries.map((v, idx) =>
+                                        <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
+                                    )
+                                }
+                            </Form.Select>
+                        </Question>
+                        <Question label="Notes">
+                            <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
+                        </Question>
+                        <Action next={{ label: "Next", path: props.next }} />
+                    </Toast.Body>
+                </Toast>
             </div>
-        </LayoutPage >
-    )
+        </div>
+    </LayoutPage >
+
 }

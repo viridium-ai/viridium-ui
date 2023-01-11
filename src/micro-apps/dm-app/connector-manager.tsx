@@ -14,12 +14,24 @@ type Connector = {
     config: any;
     notes?: string;
     updatedBy: string;
+    updatedAt?: Date,
+    instances : Array<ConnectorInstance>;
+}
+
+type ConnectorInstance = {
+    id: string;
+    name: string;
+    description: string;
+    status?: string;
+    config: any;
+    updatedBy: string;
     updatedAt?: Date
 }
 
 interface ConnectorViewState {
     connector: Connector
 }
+
 interface ConnectorViewProps {
     connector: Connector
 }
@@ -36,6 +48,7 @@ class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewSta
             this.setState({ connector: this.props.connector });
         }
     }
+    
     notesChanged = (evt: any) => {
 
     }
@@ -194,32 +207,6 @@ export const ConnectManagerView = (props: any) => {
                         </Toast>
                     </div>
                     <div className="home-body-main">
-                        <div className="dashboard-panel">
-                            <Toast >
-                                <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Edit Connector</strong>
-                                </Toast.Header>
-                                <Toast.Body>
-                                    {
-                                        connector ? <>
-                                            <Row>
-                                                <Col sm={4}></Col>
-                                                <Col sm={8} className="connector-summary">
-                                                    {connector.status + 'at connector.updatedAt by' + connector.updatedBy}
-                                                </Col>
-
-                                            </Row>
-                                            <Row>
-                                                <Col sm={4}></Col>
-                                                <Col sm={8} className="connector-summary">
-                                                    Notes: {connector.notes}
-                                                </Col>
-                                            </Row>
-                                        </> : <div>Select a connector</div>
-                                    }
-                                </Toast.Body>
-                            </Toast>
-                        </div>
                         <div className="dashboard-panel">
                             {
                                 connector ? <ConnectorView connector={connector} /> : <div />

@@ -116,10 +116,10 @@ export const FunctionCategories = (props: any) => {
                                     <Col className="inventory-summary">
                                         <Row>
                                             <Col>
-                                                <DimensionView data={categories} value={selectedCategory} placeHolder="select a Category" label="Master Categories" onSelectValue={onSelectCategory} />
+                                                <DimensionView data={categories} options={{value: selectedCategory, placeHolder:"select a Category",label: "Master Categories", onSelectValue:onSelectCategory}} />
                                             </Col>
                                             <Col>
-                                                <DimensionView data={subCategories} value={selectedSubCategory}  placeHolder="select a Sub Category" label="Sub Categories" onSelectValue={onSelectSubCategory} />
+                                                <DimensionView data={subCategories} options={{value:selectedSubCategory, placeHolder: "select a Sub Category", label:"Sub Categories", onSelectValue:onSelectSubCategory}} />
                                             </Col>
                                         </Row>
                                     </Col>

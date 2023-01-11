@@ -4,9 +4,9 @@ import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
-import { getConfigs, getInventory, updateInventory } from "../../../config/viridium-config";
+import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Inventory, InventoryItem } from "./model";
+import { Company, Inventory, InventoryItem } from "./model";
 
 type ItemState = {
     name: string,
@@ -30,7 +30,8 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         this.state = { name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" };
     }
     componentDidMount(): void {
-        this.setState({ name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" })
+        this.setState({ name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" });
+        console.log(this.props.inventory);
     }
     onFreqChange = (evt: any) => {
         this.setState({ frequency: evt.target.value });
@@ -41,37 +42,53 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
     onTypeChange = (evt: any) => {
         this.setState({ typeId: evt.target.value });
     }
-    onNameChange = (evt: any) => {
-        this.setState({ name: evt.target.value });
-    }
+
     onQuantityChange = (evt: any) => {
         this.setState({ quantity: evt.target.value });
     }
     onAddItem = () => {
         let item = new InventoryItem();
+        item.scope = this.props.scope;
+        item.category = this.props.category;
         Object.assign(item, this.state);
-        let inventory = this.props.inventory;
-        inventory.addItem(item)
-        this.props.onUpdate(inventory);
+        let inv = getInventory();
+        inv.addItem(item);
+        this.props.onUpdate(inv);
     }
     render = () => {
         let configs = getConfigs();
-        let inventory = this.props.inventory;
+        let company = getCompany();
         let scope = configs.scopes.find((s: any) => s.id === this.props.scope);
         let category = scope.categories.find((c: any) => c.id === this.props.category);
+        let type = category.types?.find((t:any) => t.id === this.state.typeId);
         return (
             <div className="import-container">
                 <Row>
-                    <Col className="wizard-form-label">Name</Col>
-                    <Col className="wizard-form-input"><Form.Control placeholder="Item Name" value={this.state.name} type="text" onChange={this.onNameChange}></Form.Control></Col>
+                    <Col sm={3} className="wizard-form-label">Type</Col>
+                    <Col sm={8} className="wizard-form-input"><Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
+                        <>
+                            <option value="">Select a type</option>
+                            {
+                                category.types?.map((type: any, idx: number) => {
+                                    return <option key={'type' + idx} value={type.id}>{type.name}</option>
+                                })
+                            }
+                        </>
+                    </Form.Select>
+                    </Col>
+                    <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col className="wizard-form-label">Quantity</Col>
-                    <Col className="wizard-form-input"><Form.Control placeholder="Quantity" value={this.state.quantity} type="text" onChange={this.onQuantityChange}></Form.Control></Col>
+                    <Col sm={3} className="wizard-form-label">Quantity</Col>
+                    <Col sm={7} className="wizard-form-input">
+                        <Form.Control placeholder="Quantity" value={this.state.quantity} type="text" onChange={this.onQuantityChange}></Form.Control>
+                    </Col>
+                    <Col sm={1} className="wizard-form-label">{type?.unit ? type.unit : ""}</Col>
+                    <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col className="wizard-form-label">Frequency</Col>
-                    <Col className="wizard-form-input"><Form.Select key="itemFreq" value={this.state.frequency} onChange={this.onFreqChange}>
+                    <Col sm={3} className="wizard-form-label">Frequency</Col>
+                    <Col sm={8} className="wizard-form-input"><Form.Select key="itemFreq" value={this.state.frequency} onChange={this.onFreqChange}>
                         <>
                             <option value="">Select a frequency</option>
                             {
@@ -82,41 +99,30 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                         </>
                     </Form.Select>
                     </Col>
+                    <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col className="wizard-form-label">Type</Col>
-                    <Col className="wizard-form-input"><Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
-                        <>
-                            <option value="">Select a type</option>
-                            {
-                                category.types?.map((type: any, idx: number) => {
-                                    return <option key={'type' + idx} value={type.id}>{category.name + " " + type.name}</option>
-                                })
-                            }
-                        </>
-                    </Form.Select>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="wizard-form-label">Site</Col>
-                    <Col className="wizard-form-input">
+                    <Col sm={3} className="wizard-form-label">Site</Col>
+                    <Col sm={8} className="wizard-form-input">
                         <Form.Select key="itemSite" value={this.state.siteId} onChange={this.onSiteChange}>
                             <>
                                 <option value="">Select a site</option>
                                 {
-                                    inventory.company?.sites?.map((site: any, idx: number) => {
+                                    company?.sites?.map((site: any, idx: number) => {
                                         return <option key={'site' + idx} value={site.id}>{site.name}</option>
                                     })
                                 }
                             </>
                         </Form.Select>
                     </Col>
+                    <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col></Col>
+                    <Col sm={3}></Col>
                     <Col className="form-btn">
-                        <Button disabled={true} onClick={this.onAddItem}>Add</Button>
+                        <Button disabled={false} onClick={this.onAddItem}>Add</Button>
                     </Col>
+                    <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
             </div>
         )
@@ -124,8 +130,6 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
 }
 
 export const FileUploader = (props: any) => {
-    const [item, setItem] = useState<InventoryItem>(new InventoryItem());
-
     const ui = () => {
         return (
             <div className="import-container">
@@ -153,11 +157,10 @@ export const InventoryItemView = (props: any) => {
     const rowUI = () => {
         return (
             <Row>
-                <Col>{item.name}</Col>
+                <Col>{item.typeId}</Col>
                 <Col>{item.quantity}</Col>
                 <Col>{item.frequency}</Col>
                 <Col>{item.siteId}</Col>
-                <Col>{item.typeId}</Col>
             </Row>
         )
     };
@@ -169,11 +172,7 @@ export const InventoryItemView = (props: any) => {
                     <Col>{item.id}</Col>
                 </Row>
                 <Row>
-                    <Col>Name</Col>
-                    <Col>{item.name}</Col>
-                </Row>
-                <Row>
-                    <Col>Quantitiy</Col>
+                    <Col>Quantity</Col>
                     <Col>{item.quantity}</Col>
                 </Row>
                 <Row>
@@ -197,15 +196,16 @@ export const InventoryItemView = (props: any) => {
 export const InventoryItemsView = (props: any) => {
     const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(getInventory());
+    const [company] = useState<Company>(getCompany());
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
+
     const onSelectScope = (evt: any) => {
         setScope(evt.target.value);
     }
     const onSelectCategory = (evt: any) => {
         setCategory(evt.target.value);
     }
-
     const onUpdate = (inventory: Inventory) => {
         let newInv = Inventory.new(inventory)!
         setInventory(newInv);
@@ -216,19 +216,18 @@ export const InventoryItemsView = (props: any) => {
         return {
             id: inventory.id,
             headers: [
-                { type: "text", text: "Name" },
+                { type: "text", text: "Type" },
                 { type: "text", text: "Quantity" },
                 { type: "text", text: "Frequency" },
-                { type: "text", text: "Type" },
                 { type: "text", text: "Site" }
             ],
             rows: inventory.items.map((item, idx) => {
                 return {
                     id: item.id,
-                    cols: [{ type: "text", text: item.name },
+                    cols: [
+                    { type: "text", text: item.typeId },
                     { type: "text", text: item.quantity },
                     { type: "text", text: item.frequency },
-                    { type: "text", text: item.typeId },
                     { type: "text", text: item.siteId }
                     ]
                 }
@@ -242,6 +241,7 @@ export const InventoryItemsView = (props: any) => {
         let selectedScope = scopes.find((s: any) => s.id === scope);
         let categories = selectedScope?.categories;
         let items = inventory.items;
+
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
                 <div className="wizard-body">
@@ -250,7 +250,7 @@ export const InventoryItemsView = (props: any) => {
                             <span className="me-auto">
                                 Manage Items
                             </span>
-                            {inventory.company.name}
+                            {company.name}
                         </Toast.Header>
                         <Toast.Body>
                             <Row>

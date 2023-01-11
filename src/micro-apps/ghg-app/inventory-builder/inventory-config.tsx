@@ -9,28 +9,7 @@ export const InventoryConfig = (props: any) => {
     const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(getInventory());
     const [company, setCompany] = useState<Company>(getCompany());
-    useEffect(() => {
-        let r = getCompany();
-        if (r) {
-            if (configs.companies) {
-                let c = Company.new(r);
-                if (c) {
-                    if (c.inventories && c.inventories.length > 0) {
-                        setInventory(c.inventories[0]);
-                        updateInventory(c.inventories[0]);
-                    } else {
-                        const inv = new Inventory();
-                        inv.scope = "1";
-                        c.inventories.push(inv);
-                        setInventory(inv);
-                        updateInventory(inv);
-                    }
-                    setCompany(c);
-                    updateCompany(c);
-                }
-            }
-        }
-    }, []);
+ 
 
     const onSelectContext = (evt: any) => {
         let clone = company?.inventories.find((i) => i.id === inventory?.id);

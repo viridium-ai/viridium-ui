@@ -2,18 +2,16 @@ import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
-import { getConfigs } from "../../../config/viridium-config";
+import { getInventory } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Inventory } from "./model";
 export const InventoryExport = (props: any) => {
-    const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>(props.inventory);
+    const [inventory, setInventory] = useState<Inventory>(getInventory());
     const onSelectContext = (evt: any) => {
         let clone = { ...inventory };
         clone.context = evt.target.value;
         setInventory(clone);
     }
-
     const ui = () => {
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
@@ -24,7 +22,7 @@ export const InventoryExport = (props: any) => {
                             <span className="me-auto">
                                 Export Inventory
                             </span>
-                            {inventory.company.name}
+                            {inventory.company?.name}
                             </Toast.Header>
                             <Toast.Body>
                                 <Question label="Export To">

@@ -3,27 +3,14 @@ import { Button, Form, Table } from "react-bootstrap";
 
 import "./table.css";
 
-const defaultOptions = {
-    selectable: true,
-    expandIcon: 'glyphicon glyphicon-plus',
-    collapseIcon: 'glyphicon glyphicon-minus',
-    emptyIcon: 'glyphicon',
-    color: "#428bca",
-    bgColor: undefined,
-    borderColor: undefined,
-    onHoverColor: '#F5F5F5',
-    selectedColor: '#000000',
-    selectedBgColor: '#FFFFFF',
-    highlightSelected: true,
-    showBorder: true
-};
-
 interface DimensionViewProps {
     data: Array<{ id: string, label: string }>,
-    onSelectValue?: Function,
-    value?: any;
-    label?: string,
-    placeHolder?: string
+    options?: {
+        onSelectValue?: Function,
+        value?: any;
+        label?: string,
+        placeHolder?: string
+    }
 }
 
 interface DimensionViewState {
@@ -33,25 +20,27 @@ interface DimensionViewState {
 export class DimensionView extends React.Component<DimensionViewProps, DimensionViewState> {
     constructor(props: DimensionViewProps) {
         super(props);
-        this.state = { selected: props.value };
+        this.state = { selected: props.options?.value };
     }
 
     onSelectDim = (evt: any) => {
+        const options = this.props.options;
         let v = this.props.data.find((v: any) => v.id === evt.target.value);
-        if (v !== undefined && this.props.onSelectValue) {
-            this.setState({selected : evt.target.value});
-            this.props.onSelectValue(v);
+        if (v !== undefined && options?.onSelectValue) {
+            this.setState({ selected: evt.target.value });
+            options.onSelectValue(v);
         }
         evt.stopPropagation();
     }
     render = () => {
+        const options = this.props.options;
         return (
             <div className="dimension-container">
                 {
-                    this.props.label ? <div className="dimension-title">{this.props.label}</div> : ""
+                    options?.label ? <div className="dimension-title">{options.label}</div> : ""
                 }
                 <Form.Select className="dimension-select" value={this.state.selected} onChange={this.onSelectDim}>
-                    <option value="" >{this.props.placeHolder} </option>
+                    <option value="" >{options?.placeHolder} </option>
                     {
                         this.props.data.map((v: any, idx: number) => <option key={idx} value={v.id} >{v.label}</option>)
                     }
@@ -74,9 +63,10 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         super(props);
         this.state = { data: props.data };
     }
-    componentDidUpdate = (data: DataTableProps) => {
-        if (this.props.data.id !== data.data.id) {
-            this.setState({ data: this.props.data });
+    componentDidUpdate = (nextProps: DataTableProps) => {
+        //TODO need more work
+        if (this.props.data.rows.length !== nextProps.data.rows.length) {
+            this.setState({ data: nextProps.data });
         }
     }
     onSelectRow = (evt: any) => {

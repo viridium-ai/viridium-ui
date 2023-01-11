@@ -62,17 +62,23 @@ export const FunctionCategories = (props: any) => {
 
     const [selectedSubCategory, setSubCategory] = useState("");
 
-    const categories: Array<{ id: string, label: string, categories: Array<{id: string, label: string}> }> = configs.valueChain.categories;
+    const categories: Array<{ id: string, label: string, categories: Array<{ id: string, label: string }> }> = configs.valueChain.categories;
 
     const selectCategory = (v: any) => {
-        let c = categories.find(cat => cat.id === v.id);
-        if (c) {
-            setSubCategories(c.categories);
-            setCategory(c.id);
+        if (v) {
+            let c = categories.find(cat => cat.id === v.id);
+            if (c) {
+                setSubCategories(c.categories);
+                setCategory(c.id);
+            } else {
+                setCategory("");
+                setSubCategories([]);
+            }
         } else {
             setCategory("");
             setSubCategories([]);
         }
+
     }
 
     const onSelectCategory = (v: any) => {
@@ -80,7 +86,7 @@ export const FunctionCategories = (props: any) => {
     }
 
     const onSelectSubCategory = (v: any) => {
-        setSubCategory(v.id);
+        setSubCategory(v ? v.id : "");
     }
     const onSelectFunctionCategory = (event: any) => {
 
@@ -116,10 +122,10 @@ export const FunctionCategories = (props: any) => {
                                     <Col className="inventory-summary">
                                         <Row>
                                             <Col>
-                                                <DimensionView data={categories} options={{value: selectedCategory, placeHolder:"select a Category",label: "Master Categories", onSelectValue:onSelectCategory}} />
+                                                <DimensionView data={categories} options={{ value: selectedCategory, placeHolder: "Select a Category", label: "Master Categories", onSelectValue: onSelectCategory }} />
                                             </Col>
                                             <Col>
-                                                <DimensionView data={subCategories} options={{value:selectedSubCategory, placeHolder: "select a Sub Category", label:"Sub Categories", onSelectValue:onSelectSubCategory}} />
+                                                <DimensionView data={subCategories} options={{ value: selectedSubCategory, placeHolder: "Select a Category", label: "Categories", onSelectValue: onSelectSubCategory }} />
                                             </Col>
                                         </Row>
                                     </Col>

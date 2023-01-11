@@ -40,12 +40,15 @@ export class Company {
             return c;
         }
     }
+    
     getAddress = () => {
         return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
     }
-    getInventory = (scope: string) => {
-        return this.inventories.find((inventory) => inventory.scope === scope);
+
+    getSite = (siteId : string) => {
+        return this.sites?.find((s) => s.id === siteId);
     }
+
     getSitesData = () => {
         return {
             id: this.id,
@@ -98,7 +101,6 @@ export class Inventory {
     id = crypto.randomUUID();
     standard: string = "";
     regulation: string = "";
-    scope: string = ""; //1, 2, 3
     type: string = "";
     context: string = ""; //corporation, product, activity 
     company?: Company = new Company();
@@ -106,7 +108,6 @@ export class Inventory {
     items: Array<InventoryItem> = [];
     addItem = (item: InventoryItem) => {
         item.companyId = this.company!.id;
-        item.scope = this.scope;
         this.items.push(item);
     }
     static new = (data: any) => {

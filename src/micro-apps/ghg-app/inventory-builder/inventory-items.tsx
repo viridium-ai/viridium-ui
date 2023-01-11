@@ -27,11 +27,7 @@ type ItemProps = {
 export class InventoryItemForm extends Component<ItemProps, ItemState> {
     constructor(props: any) {
         super(props);
-        this.state = { name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" };
-    }
-    componentDidMount(): void {
-        this.setState({ name: "", quantity: 0, frequency: "yearly", siteId: "", typeId: "" });
-        console.log(this.props.inventory);
+        this.state = { name: "", quantity: 1000, frequency: "yearly", siteId: "1", typeId: "1" };
     }
     onFreqChange = (evt: any) => {
         this.setState({ frequency: evt.target.value });
@@ -48,9 +44,9 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
     }
     onAddItem = () => {
         let item = new InventoryItem();
+        Object.assign(item, this.state);
         item.scope = this.props.scope;
         item.category = this.props.category;
-        Object.assign(item, this.state);
         let inv = getInventory();
         inv.addItem(item);
         this.props.onUpdate(inv);
@@ -60,12 +56,13 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         let company = getCompany();
         let scope = configs.scopes.find((s: any) => s.id === this.props.scope);
         let category = scope.categories.find((c: any) => c.id === this.props.category);
-        let type = category.types?.find((t:any) => t.id === this.state.typeId);
+        let type = category.types?.find((t: any) => t.id === this.state.typeId);
         return (
             <div className="import-container">
                 <Row>
                     <Col sm={3} className="wizard-form-label">Type</Col>
-                    <Col sm={8} className="wizard-form-input"><Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
+                    <Col sm={8} className="wizard-form-input">
+                        <Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
                         <>
                             <option value="">Select a type</option>
                             {
@@ -120,7 +117,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                 <Row>
                     <Col sm={3}></Col>
                     <Col className="form-btn">
-                        <Button disabled={false} onClick={this.onAddItem}>Add</Button>
+                        <Button disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
                     </Col>
                     <Col sm={1} className="wizard-form-label"></Col>
                 </Row>
@@ -196,7 +193,7 @@ export const InventoryItemView = (props: any) => {
 export const InventoryItemsView = (props: any) => {
     const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(getInventory());
-    const [company] = useState<Company>(getCompany());
+    const [company] = useState<Company | undefined>(Company.new(getCompany()));
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
 
@@ -212,23 +209,43 @@ export const InventoryItemsView = (props: any) => {
         updateInventory(newInv)
     }
 
+    const clearItems = () => {
+        let newInv = Inventory.new(inventory)!
+        newInv.items = [];
+        setInventory(newInv);
+        updateInventory(newInv)
+    }
+
     const getInventoryItemsData = () => {
         return {
             id: inventory.id,
             headers: [
                 { type: "text", text: "Type" },
                 { type: "text", text: "Quantity" },
+                { type: "text", text: "Unit" },
+                { type: "text", text: "Scope" },
+                { type: "text", text: "Category" },
                 { type: "text", text: "Frequency" },
                 { type: "text", text: "Site" }
             ],
             rows: inventory.items.map((item, idx) => {
+                const site = company?.getSite(item.siteId);
+                const frequency = configs.frequencies.find((f:any) => f.id === item.frequency);
+                const quantity = item.quantity;
+                const scope = configs.scopes.find((scope:any) => scope.id === item.scope);
+                const category = scope.categories?.find((cat:any) => cat.id ===item.category);
+                const type = category?.types?.find((t:any) => t.id === item.typeId);
+
                 return {
                     id: item.id,
                     cols: [
-                    { type: "text", text: item.typeId },
-                    { type: "text", text: item.quantity },
-                    { type: "text", text: item.frequency },
-                    { type: "text", text: item.siteId }
+                        { type: "text", text: type?.name },
+                        { type: "text", text: quantity },
+                        { type: "text", text: type?.unit },
+                        { type: "text", text: scope.name },
+                        { type: "text", text: category?.name },
+                        { type: "text", text: frequency?.name },
+                        { type: "text", text: site?.name }
                     ]
                 }
             }
@@ -236,78 +253,84 @@ export const InventoryItemsView = (props: any) => {
         }
     }
 
-    const ui = () => {
+    const itemForm = () => {
         let scopes = configs.scopes;
         let selectedScope = scopes.find((s: any) => s.id === scope);
         let categories = selectedScope?.categories;
-        let items = inventory.items;
+        return (<>
+            <Row>
+                <Col className="inventory-summary">
+                    <Form.Select value={scope} onChange={onSelectScope}>
+                        <>
+                            <option value=''>Select a Scope</option>
+                            {
+                                scopes.map((scope: any, idx: number) => {
+                                    return (
+                                        <option key={`cat-${idx}`} className="mb-2" value={scope.id}>
+                                            {scope.name}
+                                        </option>
+                                    )
+                                })
 
+                            }
+                        </>
+                    </Form.Select>
+                </Col>
+                <Col className="inventory-summary">
+                    <Form.Select value={category} onChange={onSelectCategory}>
+                        <>
+                            <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
+                            {
+                                categories?.map((category: any, idx: number) => {
+                                    return (
+                                        <option key={`cat-${idx}`} className="mb-2" value={category.id}>
+                                            {category.name}
+                                        </option>
+                                    )
+                                })
+                            }
+                        </>
+                    </Form.Select>
+                </Col>
+            </Row>
+            <Row>
+                <Col>
+                    <Tabs defaultActiveKey="manual">
+                        <Tab eventKey="manual" title="Manual">
+                            <InventoryItemForm inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                        </Tab>
+                        <Tab eventKey="file" title="File Uploader">
+                            <FileUploader inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                        </Tab>
+                        <Tab eventKey="connector" title="Connector">
+                            <ConnectorConfig inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                        </Tab>
+                    </Tabs>
+
+                </Col>
+            </Row></>)
+    }
+
+    const ui = () => {
+        let items = inventory.items;
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
                 <div className="wizard-body">
                     <Toast >
                         <Toast.Header closeButton={false}>
                             <span className="me-auto">
-                                Manage Items
+                                Manage Inventory Items
                             </span>
-                            {company.name}
+                            <span className="button" onClick={clearItems}>Clear All</span>
                         </Toast.Header>
                         <Toast.Body>
-                            <Row>
-                                <Col className="inventory-summary">
-                                    <Form.Select value={scope} onChange={onSelectScope}>
-                                        <>
-                                            <option value=''>Select a Scope</option>
-                                            {
-                                                scopes.map((scope: any, idx: number) => {
-                                                    return (
-                                                        <option key={`cat-${idx}`} className="mb-2" value={scope.id}>
-                                                            {scope.name}
-                                                        </option>
-                                                    )
-                                                })
-
-                                            }
-                                        </>
-                                    </Form.Select>
-                                </Col>
-                                <Col className="inventory-summary">
-                                    <Form.Select value={category} onChange={onSelectCategory}>
-                                        <>
-                                            <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
-                                            {
-                                                categories?.map((category: any, idx: number) => {
-                                                    return (
-                                                        <option key={`cat-${idx}`} className="mb-2" value={category.id}>
-                                                            {category.name}
-                                                        </option>
-                                                    )
-                                                })
-                                            }
-                                        </>
-                                    </Form.Select>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col>
-                                    <Tabs defaultActiveKey="manual">
-                                        <Tab eventKey="manual" title="Manual">
-                                            <InventoryItemForm inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
-                                        </Tab>
-                                        <Tab eventKey="file" title="File Uploader">
-                                            <FileUploader inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
-                                        </Tab>
-                                        <Tab eventKey="connector" title="Connector">
-                                            <ConnectorConfig inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
-                                        </Tab>
-                                    </Tabs>
-
-                                </Col>
-                            </Row>
+                            {
+                                itemForm()
+                            }
                             {
                                 items.length > 0 ? <Row>
                                     <Col>
-                                        <DataTable data={getInventoryItemsData()} onSelectRow={() => { }} />
+                                        <DataTable data={getInventoryItemsData()} />
                                     </Col>
                                 </Row> : ""
                             }

@@ -5,7 +5,7 @@ export const getConfigs = (): any => {
     let configs = localCache.get("Viridium.Config");
     if (configs === undefined) {
         configs = require("./configs.json");
-        localCache.set("Inventory.Config", configs);
+        localCache.set("Viridium.Config", configs);
     }
     return configs;
 }

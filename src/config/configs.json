@@ -662,9 +662,9 @@
             }
         ],
         "headers": [
-            "Function Category",
-            "Function 1.0",
-            "Function 1.1",
+            "Master Category",
+            "Category",
+            "Sub Category",
             "GHG Scope",
             "Direct or Indirect",
             "CWsWt"
@@ -834,12 +834,27 @@
                 {
                     "id": "3",
                     "name": "Electricity",
-                    "types": [
-                        "Cars",
-                        "Trucks",
-                        "Ships",
-                        "Trains",
-                        "Plans"
+                    "types": [{
+                        "id": "Cars",
+                        "name": "Cars",
+                        "unit" : "Miles"
+                    }, {
+                        "id": "Trucks",
+                        "name": "Trucks",
+                        "unit" : "Miles"
+                    }, {
+                        "id": "Ship",
+                        "name": "Ship",
+                        "unit" : "Miles"
+                    }, {
+                        "id": "Trains",
+                        "name": "Trains",
+                        "unit" : "Miles"
+                    }, {
+                        "id": "Plans",
+                        "name": "Plans",
+                        "unit" : "Miles"
+                    }
                     ]
                 }
             ]

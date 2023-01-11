@@ -85,18 +85,14 @@
     background-color: white;
 }
 
-.toast-body .col-3 {
+.dm-app .toast-body .col-3 {
     overflow: hidden;
     white-space: nowrap;
 }
 
-.toast-body .col-2 {
+.dm-app .toast-body .col-2 {
     overflow: hidden;
     white-space: nowrap;
-}
-
-.inventory-summary {
-    padding: 0.5em 1.8em;
 }
 
 .header {

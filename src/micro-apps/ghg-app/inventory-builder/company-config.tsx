@@ -1,7 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Toast, Form } from 'react-bootstrap';
-
 import { LayoutPage } from '../../../components/layout';
 import { DataTable } from '../../../components/table';
 import { Action, Question } from '../../../components/wizard';
@@ -11,7 +10,7 @@ import { NamedObject } from '../../inventory-app/inventory-common';
 
 import { Company } from './model';
 
-export const CompanyDetails = (props: any) => {
+export const CompanyDetailsView = (props: any) => {
     const ui = () => {
         const company = new Company();
         Object.assign(company, props.entity);
@@ -28,22 +27,10 @@ export const CompanyDetails = (props: any) => {
 }
 
 export const CompanyConfig = (props: any) => {
-
     const configs = getConfigs();
-    const [company, setCompany] = useState<Company>();
+    const [company, setCompany] = useState<Company|undefined>(Company.new(getCompany()));
     const companies: Array<Company> = configs.companies;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
-
-    useEffect(() => {
-        let r = getCompany(companies[0].id);
-        if (r) {
-            let c = companies.find((c) => c.id === r.companyId);
-            if (c) {
-                setCompany(Company.new(c));
-            }
-        }
-    }, [companies]);
-
 
     const onSelectCompany = (evt: any) => {
         let c = companies.find((c) => c.id === evt.target.value);
@@ -54,9 +41,10 @@ export const CompanyConfig = (props: any) => {
             } else {
                 c = Company.new(c);
             }
-            setCompany(c);
-            updateCompany(c);
-            console.log(c);
+            if (c) {
+                setCompany(c);
+                updateCompany(c);
+            }
         }
     }
 
@@ -101,7 +89,7 @@ export const CompanyConfig = (props: any) => {
                                 }
                             </Form.Select>
                             <div className="company-details">
-                                <CompanyDetails entity={company} />
+                                <CompanyDetailsView entity={company} />
                             </div>
                             {
                                 company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""

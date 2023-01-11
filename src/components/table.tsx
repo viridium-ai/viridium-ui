@@ -26,8 +26,8 @@ export class DimensionView extends React.Component<DimensionViewProps, Dimension
     onSelectDim = (evt: any) => {
         const options = this.props.options;
         let v = this.props.data.find((v: any) => v.id === evt.target.value);
-        if (v !== undefined && options?.onSelectValue) {
-            this.setState({ selected: evt.target.value });
+        this.setState({ selected: evt.target.value });
+        if (options?.onSelectValue) {
             options.onSelectValue(v);
         }
         evt.stopPropagation();
@@ -53,7 +53,8 @@ export class DimensionView extends React.Component<DimensionViewProps, Dimension
 
 interface DataTableProps {
     data: any,
-    onSelectRow?: Function
+    onSelectRow?: Function,
+    options?: any
 }
 interface DataTableState {
     data: any
@@ -63,15 +64,18 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         super(props);
         this.state = { data: props.data };
     }
-    componentDidUpdate = (nextProps: DataTableProps) => {
-        //TODO need more work
-        if (this.props.data.rows.length !== nextProps.data.rows.length) {
+    componentDidMount(): void {
+        this.setState({ data: this.props.data });
+    }
+    shouldComponentUpdate = (nextProps: DataTableProps, nextState: DataTableState, nextContext: any): boolean => {
+        if (this.state.data.rows.length !== nextProps.data.rows.length) {
             this.setState({ data: nextProps.data });
+            return true;
         }
+        return false;
     }
     onSelectRow = (evt: any) => {
-        evt.preventDefault();
-        evt.stopePropagation();
+        evt.stopPropagation();
         if (this.props.onSelectRow) {
             this.props.onSelectRow(evt.currentTarget.id);
         }

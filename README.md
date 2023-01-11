@@ -36,7 +36,7 @@ cd viridium-ui
 
 npm install
 
-npm start react
+npm run react
 
 http://localhost:3000
 

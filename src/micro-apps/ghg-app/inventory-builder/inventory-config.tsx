@@ -2,55 +2,42 @@ import { useEffect, useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
-import { getConfigs, getInventory, getCompany, updateInventory, updateCompany } from "../../../config/viridium-config";
+import { getInventory } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Company, Inventory } from "./model";
+import { Inventory } from "./model";
 export const InventoryConfig = (props: any) => {
-    const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(getInventory());
-    const [company, setCompany] = useState<Company>(getCompany());
- 
+
+    const updateInventory = (clone : any) => {
+        setInventory(Inventory.new(clone)!);
+        updateInventory(clone);
+    }
 
     const onSelectContext = (evt: any) => {
-        let clone = company?.inventories.find((i) => i.id === inventory?.id);
-        if (clone) {
-            clone.context = evt.target.value;
-            setInventory(Inventory.new(clone)!);
-            updateCompany(company);
-            updateInventory(clone);
-        }
-
+        let clone = { ...inventory };
+        clone.context = evt.target.value;
+        updateInventory(clone);
     }
     const onSelectType = (evt: any) => {
-        let clone = company?.inventories.find((i) => i.id === inventory?.id);
-        if (clone) {
-            clone.type = evt.target.value;
-            setInventory(Inventory.new(clone)!);
-            updateCompany(company);
-            updateInventory(clone);
-        }
+        let clone = { ...inventory };
+        clone.type = evt.target.value;
+        updateInventory(clone);
     }
     const onSelectStandard = (evt: any) => {
-        let clone = company?.inventories.find((i) => i.id === inventory?.id);
+        let clone = { ...inventory };
+        clone.standard = evt.target.value;
+        updateInventory(clone);
+    }
 
-        if (clone) {
-            clone.standard = evt.target.value;
-            setInventory(Inventory.new(clone)!);
-            updateCompany(company);
-            updateInventory(clone);
-        }
-    }
     const onSelectRegulation = (evt: any) => {
-        let clone = company?.inventories.find((i) => i.id === inventory?.id);
-        if (clone) {
-            clone.regulation = evt.target.value;
-            setInventory(Inventory.new(clone)!);
-            updateCompany(company);
-        }
+        let clone = { ...inventory };
+        clone.regulation = evt.target.value;
+        updateInventory(clone);
     }
+
     const ui = () => {
-        let company = inventory?.company;
-        console.log(company);
+        console.log(inventory.context);
+
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
                 <div className="wizard-body">
@@ -61,7 +48,7 @@ export const InventoryConfig = (props: any) => {
                                     <span className="me-auto">
                                         Config Inventory
                                     </span>
-                                    {company?.name}
+                                    {inventory.company?.name}
                                 </Toast.Header>
                                 <Toast.Body>
                                     <Question label="Sustainability Category">

@@ -4,13 +4,13 @@ import { Toast, Form, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
-import { getConfigs } from "../../../config/viridium-config";
+import { getConfigs, getInventory } from "../../../config/viridium-config";
 import { greenHouseApp } from "../ghg-app";
 import { Inventory } from "./model";
 
 export const MappingCategories = (props: any) => {
     const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>();
+    const [inventory, setInventory] = useState<Inventory>(getInventory());
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
     const onSelectScope = (evt: any) => {
@@ -58,7 +58,7 @@ export const MappingCategories = (props: any) => {
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
                 <div className="v-body">
                     {
-                        inventory ? <Toast >
+                        <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
                                     Mapping Categories
@@ -112,7 +112,7 @@ export const MappingCategories = (props: any) => {
                                     next={{ label: "Next", path: props.next }}
                                     prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
-                        </Toast> : ""
+                        </Toast>
                     }
                 </div>
             </LayoutPage >

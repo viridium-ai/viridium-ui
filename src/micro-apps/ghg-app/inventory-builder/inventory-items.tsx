@@ -63,15 +63,15 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                     <Col sm={3} className="main-form-label">Type</Col>
                     <Col sm={8} className="main-form-input">
                         <Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
-                        <>
-                            <option value="">Select a type</option>
-                            {
-                                category.types?.map((type: any, idx: number) => {
-                                    return <option key={'type' + idx} value={type.id}>{type.name}</option>
-                                })
-                            }
-                        </>
-                    </Form.Select>
+                            <>
+                                <option value="">Select a type</option>
+                                {
+                                    category.types?.map((type: any, idx: number) => {
+                                        return <option key={'type' + idx} value={type.id}>{type.name}</option>
+                                    })
+                                }
+                            </>
+                        </Form.Select>
                     </Col>
                     <Col sm={1} className="main-form-label"></Col>
                 </Row>
@@ -116,8 +116,8 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                 </Row>
                 <Row>
                     <Col sm={3}></Col>
-                    <Col className="form-btn">
-                        <Button disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
+                    <Col className="connector-config-form-btns">
+                        <Button variant="light" disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
                     </Col>
                     <Col sm={1} className="main-form-label"></Col>
                 </Row>
@@ -126,40 +126,104 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
     };
 }
 
-export const FileUploader = (props: any) => {
-    const doUpload = () => {
-        let ele = document?.getElementById("file");
-        if (ele) {
-            let data = (ele as any).files[0];
-            var fr=new FileReader();
-            fr.onload=function(){
-                console.log(fr.result);
-            }
-            fr.readAsText(data);
-            
-        }
-        
-    }
-    const ui = () => {
-        return (
-            <div className="import-container">
-                <input type="file" name="file" id="file"></input>
-                <button onClick={doUpload} name="submit">Upload File</button>
-            </div>
-        )
-    };
-    return ui();
+type FileUploaderProps = {
+    onReceiveData: Function,
+    buttonTxt?: string
 }
 
-export const ConnectorConfig = (props: any) => {
-    const ui = () => {
+export class FileUploader extends Component<FileUploaderProps, any> {
+    guid: string = crypto.randomUUID();
+    doUpload = () => {
+        let ele = document?.getElementById(this.guid);
+        if (ele) {
+            let data = (ele as any).files[0];
+            var fr = new FileReader();
+            fr.onload = () => {
+                this.props.onReceiveData(fr.result)
+            }
+            fr.readAsText(data);
+        }
+    }
+    render = () => {
         return (
             <div className="import-container">
-                Select Viridium Connectors
+                <Form.Group className="mb-3">
+                    <Form.Label>Upload File</Form.Label>
+                    <Form.Control id={this.guid} type="file" />
+                </Form.Group>
+                <Form.Group className="connector-config-form-btns">
+
+                <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Upload File"}</Button>
+                </Form.Group>
             </div>
         )
     };
-    return ui();
+}
+
+type ConnectorConfigState = {
+    connector: any
+}
+
+export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfigState> {
+    guid: string = crypto.randomUUID();
+
+    constructor(props: FileUploaderProps) {
+        super(props);
+        this.state = { connector: "1" }
+    }
+
+    doUpload = () => {
+        this.props.onReceiveData("Received data");
+    }
+    onSelectConnector = (evt: any) => {
+        let c = evt.target.value;
+        this.setState({ connector: c });
+    }
+    render = () => {
+        let configs = getConfigs();
+        let connector = configs.managedConnectors.find((c: any, idx: number) => c.id === this.state.connector);
+        return (
+            <div className="import-container">
+                <Form.Select onChange={this.onSelectConnector} value={this.state.connector}>
+                    {configs.managedConnectors.map((c: any, idx: number) => {
+                        return <option key={'c-' + idx} value={c.id}>{c.name}</option>
+                    })}
+                </Form.Select>
+                <Row>
+                    <Col>
+                        {
+                            connector ? <div className="connector-config-form">
+                                <Form.Group className="connector-config-form-field">
+                                    <Form.Label>URL</Form.Label>
+                                    <Form.Control id={this.guid + '-url'} type="text" />
+                                </Form.Group>
+                                <Form.Group className="connector-config-form-field">
+                                    <Form.Label>Username</Form.Label>
+                                    <Form.Control id={this.guid + '-username'} type="text" />
+                                </Form.Group>
+                                <Form.Group className="connector-config-form-field">
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control id={this.guid + '-password'} type="secret" />
+                                </Form.Group>
+                                <Form.Group className="connector-config-form-btns">
+                                <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Export"}</Button>
+                                </Form.Group>
+                                
+                            </div> : <div>Please select a connector for your data</div>
+                        }
+                    </Col>
+
+                    <Col >
+                        <div className="connector-config-form">
+                            {connector.name} <p />
+                            {connector.description} <p />
+                        </div>
+                    </Col>
+                </Row>
+
+            </div>
+        )
+    };
 }
 
 export const InventoryItemView = (props: any) => {
@@ -213,6 +277,7 @@ export const InventoryItemsView = (props: any) => {
 
     const onSelectScope = (evt: any) => {
         setScope(evt.target.value);
+        setCategory("1");
     }
     const onSelectCategory = (evt: any) => {
         setCategory(evt.target.value);
@@ -221,6 +286,10 @@ export const InventoryItemsView = (props: any) => {
         let newInv = Inventory.new(inventory)!
         setInventory(newInv);
         updateInventory(newInv)
+    }
+
+    const onReceiveData = (data: any) => {
+        console.log(data);
     }
 
     const clearItems = () => {
@@ -244,11 +313,11 @@ export const InventoryItemsView = (props: any) => {
             ],
             rows: inventory.items.map((item, idx) => {
                 const site = company?.getSite(item.siteId);
-                const frequency = configs.frequencies.find((f:any) => f.id === item.frequency);
+                const frequency = configs.frequencies.find((f: any) => f.id === item.frequency);
                 const quantity = item.quantity;
-                const scope = configs.scopes.find((scope:any) => scope.id === item.scope);
-                const category = scope.categories?.find((cat:any) => cat.id ===item.category);
-                const type = category?.types?.find((t:any) => t.id === item.typeId);
+                const scope = configs.scopes.find((scope: any) => scope.id === item.scope);
+                const category = scope.categories?.find((cat: any) => cat.id === item.category);
+                const type = category?.types?.find((t: any) => t.id === item.typeId);
 
                 return {
                     id: item.id,
@@ -314,10 +383,10 @@ export const InventoryItemsView = (props: any) => {
                             <InventoryItemForm inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
                         </Tab>
                         <Tab eventKey="file" title="File Uploader">
-                            <FileUploader inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                            <FileUploader onReceiveData={onReceiveData} />
                         </Tab>
                         <Tab eventKey="connector" title="Connector">
-                            <ConnectorConfig inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                            <ConnectorConfig onReceiveData={onReceiveData} />
                         </Tab>
                     </Tabs>
 

@@ -1,15 +1,14 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
-import { getInventory } from "../../../config/viridium-config";
-import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { getInventory, updateInventory } from "../../../config/viridium-config";
 import { greenHouseApp } from "../ghg-app";
 import { Inventory } from "./model";
 export const InventoryConfig = (props: any) => {
     const [inventory, setInventory] = useState<Inventory>(getInventory());
 
-    const updateInventory = (clone : any) => {
+    const updateInv = (clone: any) => {
         setInventory(Inventory.new(clone)!);
         updateInventory(clone);
     }
@@ -17,28 +16,26 @@ export const InventoryConfig = (props: any) => {
     const onSelectContext = (evt: any) => {
         let clone = { ...inventory };
         clone.context = evt.target.value;
-        updateInventory(clone);
+        updateInv(clone);
     }
     const onSelectType = (evt: any) => {
         let clone = { ...inventory };
         clone.type = evt.target.value;
-        updateInventory(clone);
+        updateInv(clone);
     }
     const onSelectStandard = (evt: any) => {
         let clone = { ...inventory };
         clone.standard = evt.target.value;
-        updateInventory(clone);
+        updateInv(clone);
     }
 
     const onSelectRegulation = (evt: any) => {
         let clone = { ...inventory };
         clone.regulation = evt.target.value;
-        updateInventory(clone);
+        updateInv(clone);
     }
 
     const ui = () => {
-        console.log(inventory.context);
-
         return (
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
                 <div className="v-body">
@@ -64,7 +61,6 @@ export const InventoryConfig = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Question>
-
                                     <Question label="Scope of Data Coverage">
                                         <Form.Select value={inventory.type} onChange={onSelectType} aria-label="">
                                             <option>Select a scope</option>
@@ -79,7 +75,6 @@ export const InventoryConfig = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Question>
-
                                     <Question label="Standards">
                                         <Form.Select value={inventory.standard} onChange={onSelectStandard} aria-label="">
                                             <option>Select a standard</option>

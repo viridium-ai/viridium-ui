@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
-import { Question, Action } from "../../../components/wizard";
-import { getInventory } from "../../../config/viridium-config";
+import { Action } from "../../../components/wizard";
+import { getCompany, getInventory } from "../../../config/viridium-config";
 import { greenHouseApp } from "../ghg-app";
+import { ConnectorConfig } from "./inventory-items";
 import { Inventory } from "./model";
 export const InventoryExport = (props: any) => {
     const [inventory, setInventory] = useState<Inventory>(getInventory());
@@ -19,27 +20,14 @@ export const InventoryExport = (props: any) => {
                     <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
-                            <span className="me-auto">
-                                Export Inventory
-                            </span>
-                            {inventory.company?.name}
+                                <span className="me-auto">
+                                    Export Metrics
+                                </span>
+                                {getCompany().name}
                             </Toast.Header>
                             <Toast.Body>
-                                <Question label="Export To">
-                                    <Form.Select value={inventory.context} onChange={onSelectContext} aria-label="">
-                                        <option>Select a Destination</option>
-                                        {
-                                            [{ id: "AzuerPowerBI", label: "Azure Power BI" },
-                                            { id: "Snowflake", label: "Snowflake" },
-                                            { id: "sap", label: "SAP Sustainable" },
-                                            { id: "file", label: "CSV file" }].map((v, idx) =>
-                                                <option key={"type-" + idx} value={"" + v.id}>{v.label}</option>
-                                            )
-                                        }
-                                    </Form.Select>
-                                </Question>
-                                <Action inventory={inventory}
-                                    prev={{ label: "Back", path: props.prev }} />
+                                <ConnectorConfig onReceiveData={(data: any) => { console.log(data) }} />
+                                <Action inventory={inventory} prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>
                         </Toast>
                     </div>

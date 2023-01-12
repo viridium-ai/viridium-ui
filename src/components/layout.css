@@ -10,6 +10,8 @@
 .layout .home-body {
     display: flex;
     gap: 0.5rem;
+    width: 100%;
+    padding: 0.5rem;
 }
 
 .layout .layout-header-end {

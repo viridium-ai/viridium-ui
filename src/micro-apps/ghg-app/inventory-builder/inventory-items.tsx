@@ -5,7 +5,7 @@ import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
 import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/viridium-config";
-import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { greenHouseApp } from "../ghg-app";
 import { Company, Inventory, InventoryItem } from "./model";
 
 type ItemState = {
@@ -60,8 +60,8 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         return (
             <div className="import-container">
                 <Row>
-                    <Col sm={3} className="wizard-form-label">Type</Col>
-                    <Col sm={8} className="wizard-form-input">
+                    <Col sm={3} className="main-form-label">Type</Col>
+                    <Col sm={8} className="main-form-input">
                         <Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
                         <>
                             <option value="">Select a type</option>
@@ -73,19 +73,19 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                         </>
                     </Form.Select>
                     </Col>
-                    <Col sm={1} className="wizard-form-label"></Col>
+                    <Col sm={1} className="main-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="wizard-form-label">Quantity</Col>
-                    <Col sm={7} className="wizard-form-input">
+                    <Col sm={3} className="main-form-label">Quantity</Col>
+                    <Col sm={7} className="main-form-input">
                         <Form.Control placeholder="Quantity" value={this.state.quantity} type="text" onChange={this.onQuantityChange}></Form.Control>
                     </Col>
-                    <Col sm={1} className="wizard-form-label">{type?.unit ? type.unit : ""}</Col>
-                    <Col sm={1} className="wizard-form-label"></Col>
+                    <Col sm={1} className="main-form-label">{type?.unit ? type.unit : ""}</Col>
+                    <Col sm={1} className="main-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="wizard-form-label">Frequency</Col>
-                    <Col sm={8} className="wizard-form-input"><Form.Select key="itemFreq" value={this.state.frequency} onChange={this.onFreqChange}>
+                    <Col sm={3} className="main-form-label">Frequency</Col>
+                    <Col sm={8} className="main-form-input"><Form.Select key="itemFreq" value={this.state.frequency} onChange={this.onFreqChange}>
                         <>
                             <option value="">Select a frequency</option>
                             {
@@ -96,11 +96,11 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                         </>
                     </Form.Select>
                     </Col>
-                    <Col sm={1} className="wizard-form-label"></Col>
+                    <Col sm={1} className="main-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="wizard-form-label">Site</Col>
-                    <Col sm={8} className="wizard-form-input">
+                    <Col sm={3} className="main-form-label">Site</Col>
+                    <Col sm={8} className="main-form-input">
                         <Form.Select key="itemSite" value={this.state.siteId} onChange={this.onSiteChange}>
                             <>
                                 <option value="">Select a site</option>
@@ -112,14 +112,14 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                             </>
                         </Form.Select>
                     </Col>
-                    <Col sm={1} className="wizard-form-label"></Col>
+                    <Col sm={1} className="main-form-label"></Col>
                 </Row>
                 <Row>
                     <Col sm={3}></Col>
                     <Col className="form-btn">
                         <Button disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
                     </Col>
-                    <Col sm={1} className="wizard-form-label"></Col>
+                    <Col sm={1} className="main-form-label"></Col>
                 </Row>
             </div>
         )
@@ -273,7 +273,7 @@ export const InventoryItemsView = (props: any) => {
         let categories = selectedScope?.categories;
         return (<>
             <Row>
-                <Col className="inventory-summary">
+                <Col className="v-summary">
                     <Form.Select value={scope} onChange={onSelectScope}>
                         <>
                             <option value=''>Select a Scope</option>
@@ -290,7 +290,7 @@ export const InventoryItemsView = (props: any) => {
                         </>
                     </Form.Select>
                 </Col>
-                <Col className="inventory-summary">
+                <Col className="v-summary">
                     <Form.Select value={category} onChange={onSelectCategory}>
                         <>
                             <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
@@ -328,8 +328,8 @@ export const InventoryItemsView = (props: any) => {
     const ui = () => {
         let items = inventory.items;
         return (
-            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-                <div className="wizard-body">
+            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+                <div className="v-body">
                     <Toast >
                         <Toast.Header closeButton={false}>
                             <span className="me-auto">

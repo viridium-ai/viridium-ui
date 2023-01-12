@@ -5,7 +5,7 @@ import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
 import { getConfigs } from "../../../config/viridium-config";
-import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { greenHouseApp } from "../ghg-app";
 import { Inventory } from "./model";
 
 export const MappingCategories = (props: any) => {
@@ -55,8 +55,8 @@ export const MappingCategories = (props: any) => {
         let categories = selectedScope?.categories;
         let items = inventory?.items;
         return (
-            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-                <div className="wizard-body">
+            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+                <div className="v-body">
                     {
                         inventory ? <Toast >
                             <Toast.Header closeButton={false}>
@@ -67,7 +67,7 @@ export const MappingCategories = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         <Form.Select value={scope} onChange={onSelectScope}>
                                             <>
                                                 <option value=''>Select a Scope</option>
@@ -84,7 +84,7 @@ export const MappingCategories = (props: any) => {
                                             </>
                                         </Form.Select>
                                     </Col>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         <Form.Select value={category} onChange={onSelectCategory}>
                                             <>
                                                 <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>

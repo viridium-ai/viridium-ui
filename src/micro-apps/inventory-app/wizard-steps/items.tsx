@@ -44,8 +44,8 @@ export const InventoryItems = (props: any) => {
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
                 
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -55,19 +55,19 @@ export const InventoryItems = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Environmental Sustainability Category: {report.context}
                                     </Col>
-                                    <Col className="inventory-summary">Scope of Data Coverage: {report.type}</Col>
+                                    <Col className="v-summary">Scope of Data Coverage: {report.type}</Col>
                                 </Row>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Standards: {report.standard}
                                     </Col>
-                                    <Col className="inventory-summary">Regulations: N/A</Col>
+                                    <Col className="v-summary">Regulations: N/A</Col>
                                 </Row>
                                 <Row>
-                                    <Col className="inventory-title">
+                                    <Col className="v-title">
                                         Select Data Source Based on your knowledge of the Account
                                     </Col>
                                 </Row>

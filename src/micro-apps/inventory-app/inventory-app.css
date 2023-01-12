@@ -1,23 +1,3 @@
-.inventory-app .company-details{
-    padding: .5rem;
-    margin-top: 1em;
-}
-.inventory-app .inventory-summary {
-    font-size: small;
-    font-weight: 600;
-    padding: .5rem 1.5rem;
-}
-.inventory-app .details-line {
-    padding: .2rem;
-}
-
-.inventory-app .inventory-title {
-    padding-top:2em;
-    padding-left: 1.4rem;
-    font-size: medium;
-    font-weight: 600;
-}
-
 .inventory-app .selected-questions {
     padding: 0.5em;
     margin: 1em;
@@ -60,63 +40,10 @@
     padding: .5rem;
 }
  
-.inventory-app .wizard-body {
-    display: flex;
-    gap: 0.5rem;
-    padding:  2.0rem 12.0rem;
-}
-.inventory-app .wizard-summary {
-    padding:  2.0rem 0.5rem;
-    font-size: large;
-}
-.inventory-app .wizard-body-main {
-    flex: 80%;
-    padding: 0.5rem;
-}
-
-.inventory-app .wizard-body-help {
-    flex: 20%;
-    padding: 0.5rem;
-    display: none;
-}
-
-.inventory-app .wizard-actions {
-    display: flex;
-    padding: 2rem 1rem;
-    border-bottom: 1px solid rgb(237, 237, 237);
-}
-
-.inventory-app .wizard-question {
-    padding: 0.2rem 1rem;
-    border-bottom: 1px solid rgb(237, 237, 237);
-}
-
-.inventory-app .wizard-sub-questions {
-    margin-top: 0.1em;
-    padding: 0.5rem;
-    background-color: rgb(244, 244, 244);
-}
-
-.inventory-app .wizard-form-row {
-    padding: 0.2rem;
-}
-
-.inventory-app .wizard-form-label {
-    padding: 0.7rem;
-    font-size: medium;
-}
-
-
-.inventory-app .wizard-form-input {
-    padding: 0.2rem;
-}
-.inventory-app .wizard-checkbox {
-    padding: 1em;
-}
-
 .inventory-app .inventory-filters {
     height: 6em;
 }
+
 .inventory-app .analytic-table {
     border: 1px rgb(130, 130, 130) solid;
     border-radius: 1em;
@@ -135,7 +62,6 @@
     margin: 0.5rem;
 }
 
-
 .inventory-app .form-btn {
     padding: 0.2em;
     text-align: right;
@@ -150,23 +76,14 @@
     width: 100%;
 }
 
-.inventory-app .import-container {
-    padding: 20px 20px;
-    background-color: rgb(241, 240, 238);
-    border-radius: 0.4em;
-    min-height: 240px;
-    width: 100%;
-    overflow-y:scroll;
-}
-
-
 .inventory-app .tab-content {
     padding: 10px;
 }
 
-.inventory-app .inventory-summary {
+.inventory-app .v-summary {
     padding: 0.5em 1.8em;
 }
+
 .inventory-app .inventory-label {
     padding: 1.0em;
 }

@@ -45,9 +45,9 @@ const NavItem = (props: any) => {
 export const ApplicationHeader = (props: any) => {
     const navigate = useNavigate();
     useEffect(() => {
-        if(!securityManager.isSignedIn()) {
+        if (!securityManager.isSignedIn()) {
             navigate(`/login?from=/${props.microApp.getName()}`);
-        } 
+        }
     }, [navigate]);
 
     if (securityManager.isSignedIn()) {
@@ -55,7 +55,7 @@ export const ApplicationHeader = (props: any) => {
         const ui = () => (
             <Navbar id="application-header" bg="none" className="application-header" expand="lg">
                 <Navbar.Brand as='span'>
-                      {user.firstName} {user.lastName} - {user.title} 
+                    {user.firstName} {user.lastName} - {user.title}
                 </Navbar.Brand>
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
@@ -118,17 +118,6 @@ export const LayoutHeader = (props: any) => {
 export interface WrapperProps {
     children?: React.ReactNode
 }
-
-export class LayoutBody extends Component<WrapperProps> {
-    render() {
-        return (
-            <div className="home-body">
-                {this.props.children}
-            </div>
-        );
-    }
-};
-
 export interface BodyNavProps {
     children?: React.ReactNode,
     routeItems: IRouteItem[];
@@ -143,16 +132,6 @@ export class LayoutBodyNav extends Component<BodyNavProps> {
                         .map((routeItem, idx) => <NavItem service={routeItem} key={"home-body-nav-" + idx}></NavItem>)
                 }
             </ListGroup>
-        )
-    }
-}
-
-export class LayoutBodyMain extends Component<WrapperProps> {
-    render() {
-        return (
-            <div className="home-body-main">
-                {this.props.children}
-            </div>
         )
     }
 }
@@ -184,17 +163,15 @@ export const LayoutPage = (props: any) => {
 
     //UI 
     return (
-        <div className={"layout " + microApp.getName()}>
+        <div className={"layout"}>
             <LayoutHeader microApp={microApp} routeItem={routeItem} />
             {
                 withAppHeader ? <ApplicationHeader microApp={microApp} /> : ""
             }
-            <LayoutBody>
+            <div className={`${microApp.getName()} home-body`}>
                 {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
-                <LayoutBodyMain>
-                    {props.children}
-                </LayoutBodyMain>
-            </LayoutBody>
+                {props.children}
+            </div>
             <LayoutFooter />
         </div>
     );

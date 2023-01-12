@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 export const Question = (props: any) => {
     const ui = () => {
         return (
-            <div className="wizard-question">
-                <Form.Group as={Row} className="wizard-form-row" controlId={props.id}>
-                    <Form.Label className="wizard-form-label" column sm="4">{props.label}</Form.Label>
-                    <Col className="wizard-form-input" sm="8">
+            <div className="main-question">
+                <Form.Group as={Row} className="main-form-row" controlId={props.id}>
+                    <Form.Label className="main-form-label" column sm="4">{props.label}</Form.Label>
+                    <Col className="main-form-input" sm="8">
                         {props.children}
                     </Col>
                 </Form.Group>
@@ -35,7 +35,7 @@ export const Action = (props: any) => {
     const ui = () => {
         return (
             <div >
-                <Form.Group className="wizard-actions" controlId="formButtons">
+                <Form.Group className="main-actions" controlId="formButtons">
                     {props.prev ? <Button onClick={handlePrevAction}>
                         {props.prev.label}
                     </Button> : ""}

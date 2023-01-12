@@ -5,6 +5,7 @@ import { Toast, Row, Col, Button } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { getConfigs } from "../../../config/viridium-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { greenHouseApp } from "../ghg-app";
 import { Company, Site } from "./model";
 
 type AddressViewProps = {
@@ -40,8 +41,8 @@ export class CompanySites extends Component<CompanySitesProps, AddressViewState>
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
 
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -51,23 +52,23 @@ export class CompanySites extends Component<CompanySitesProps, AddressViewState>
                             </Toast.Header>
                             <Toast.Body>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Name
                                     </Col>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
 
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Location
                                     </Col>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         <AddressView site={this.state.site} />
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="inventory-title">
+                                    <Col className="v-title">
                                         Select Data Source Based on your knowledge of the Account
                                     </Col>
                                 </Row>
@@ -103,10 +104,10 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
     render = () => {
         const configs = getConfigs();
         return (
-            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
 
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -116,18 +117,18 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
                             </Toast.Header>
                             <Toast.Body>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Name
                                     </Col>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
 
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         Location
                                     </Col>
-                                    <Col className="inventory-summary">
+                                    <Col className="v-summary">
                                         <AddressView site={this.state.company} />
                                     </Col>
                                 </Row>

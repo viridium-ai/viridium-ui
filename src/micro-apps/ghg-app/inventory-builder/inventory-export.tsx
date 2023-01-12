@@ -3,7 +3,7 @@ import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/layout";
 import { Question, Action } from "../../../components/wizard";
 import { getInventory } from "../../../config/viridium-config";
-import { inventoryConfigApp } from "../../inventory-app/inventory-app";
+import { greenHouseApp } from "../ghg-app";
 import { Inventory } from "./model";
 export const InventoryExport = (props: any) => {
     const [inventory, setInventory] = useState<Inventory>(getInventory());
@@ -14,9 +14,9 @@ export const InventoryExport = (props: any) => {
     }
     const ui = () => {
         return (
-            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                             <span className="me-auto">

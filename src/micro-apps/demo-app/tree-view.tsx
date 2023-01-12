@@ -1,35 +1,81 @@
-import { Toast, Stack, Form } from 'react-bootstrap';
+import { Toast } from 'react-bootstrap';
 import { LayoutPage } from '../../components/layout'
 import TreeView from '../../components/tree-view';
 import { demoApp } from './demo-app';
 
 
 export const TreeViewDemo = (props: any) => {
-    const treeData = [
-        {
-            text: "Parent 1",
-            children: [
-                {
-                    text: "Child 1",
-                    children: [
-                        {
-                            text: "Grandchild with href",
-                            href: "/"
-                        },
-                        {
-                            text: "Grandchild 2"
-                        }
-                    ]
+    const treeData = {
+        id: "demo-root", 
+        children: [
+            {
+                id: "p-1",
+                text: "Parent 1",
+                state: {
+                    selected: false,
+                    expanded: false
                 },
-                {
-                    text: "Child 2"
-                }
-            ]
-        },
-        {
-            text: "Parent 2"
-        }
-    ];
+                children: [
+                    {
+                        id: "demo-1",
+                        text: "Child 1",
+                        state: {
+                            selected: false,
+                            expanded: false
+                        },
+                        children: [
+                            {
+                                id: "demo-1.1",
+                                text: "Grandchild with href",
+                                href: "/", state: {
+                                    selected: false,
+                                    expanded: false
+                                },
+                            },
+                            {
+                                id: "demo1.2",
+                                text: "Grandchild 2",
+                                state: {
+                                    selected: false,
+                                    expanded: false
+                                },
+                            }
+                        ]
+                    },
+                    {
+                        id : "test",
+                        text: "Child 2"
+                    }
+                ]
+            },
+            {
+                id: "p-2",
+                text: "Parent 2",
+                state: {
+                    selected: false,
+                    expanded: false
+                },
+                children: [
+                    {
+                        id: "demo-2.1",
+                        text: "Grandchild with href",
+                        href: "/", state: {
+                            selected: false,
+                            expanded: false
+                        },
+                    },
+                    {
+                        id: "demo2.2",
+                        text: "Grandchild 2",
+                        state: {
+                            selected: false,
+                            expanded: false
+                        },
+                    }
+                ]
+            }
+        ]
+    };
     const ui = () => {
         return (
             <LayoutPage microApp={demoApp} >
@@ -37,33 +83,9 @@ export const TreeViewDemo = (props: any) => {
                     <div className="demo-body-main">
                         <Toast className="demo-panel">
                             <Toast.Body>
-                                <TreeView data={treeData}  options={{selectable:false, enableLinks:true}}/>
+                                <TreeView data={treeData} options={{ selectable: false, enableLinks: true }} />
                             </Toast.Body>
                         </Toast>
-                        <div className="demo-panel">
-                            <Stack direction="horizontal" gap={3}>
-                                <div >Select a Template (optional)</div>
-                                <div className="ms-auto"></div>
-                                <div className="ms-end">
-                                    <Form.Select aria-label="Default select example">
-                                        <option>Select a type</option>
-                                        <option value="1">Transportation</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </Form.Select>
-                                </div>
-                                <div className="vr" />
-                                <div className=" ms-end">
-                                    <Form.Select aria-label="Default select example">
-                                        <option>Select a source</option>
-                                        <option value="1">Air flight</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
-                                    </Form.Select></div>
-                                <div className="vr" />
-                                <div >Preview template</div>
-                            </Stack>
-                        </div>
                     </div>
                 </div>
             </LayoutPage >

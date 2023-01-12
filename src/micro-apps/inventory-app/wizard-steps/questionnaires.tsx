@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row, Toast } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { LayoutPage } from "../../../components/layout";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-common";
@@ -28,7 +27,7 @@ export const Questionnaires = (props: any) => {
                 }));
             }
         }
-    }, []);
+    }, [configs.questions, questions]);
     const onSelectQuestion = (event: any) => {
         selectQuestion(event.target.value);
     }
@@ -93,8 +92,8 @@ export const Questionnaires = (props: any) => {
     const ui = () => {
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -106,7 +105,7 @@ export const Questionnaires = (props: any) => {
                                 <Row className="inventory-questions">
                                     <Col sm={3} className="inventory-label">Select a Question
                                     </Col>
-                                    <Col sm={8} className="inventory-summary">
+                                    <Col sm={8} className="v-summary">
                                         <Form.Select value={selectedQuestion} onChange={onSelectQuestion} aria-label="">
                                             <option key={"type-" + 10} value={""}>Select a question to add</option>
                                             {
@@ -116,7 +115,7 @@ export const Questionnaires = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Col>
-                                    <Col sm={1} style={{ textAlign: 'left' }} className="inventory-summary">
+                                    <Col sm={1} style={{ textAlign: 'left' }} className="v-summary">
                                         <Button style={{ minWidth: '1px', height: '36px', paddingTop: "4px", position: 'relative', left: '-40px' }} onClick={addToList}>+</Button>
                                     </Col>
                                 </Row>
@@ -137,24 +136,24 @@ export const Questionnaires = (props: any) => {
                                     <Col sm={3} className="inventory-label">
                                         <span onClick={onToggleAdd}>Add a Question</span>
                                     </Col>
-                                    <Col sm={8} className="inventory-summary">
+                                    <Col sm={8} className="v-summary">
                                         {addQuestion ? <div className="new-question-form">
                                             <Row>
-                                                <Col className="inventory-summary">
+                                                <Col className="v-summary">
                                                     <Form.Label>Name</Form.Label>
                                                     <Form.Control value={newName} type="text" onChange={onUpdateNewName} aria-label="">
                                                     </Form.Control>
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col className="inventory-summary">
+                                                <Col className="v-summary">
                                                     <Form.Label>Notes</Form.Label>
                                                     <Form.Control value={newNotes} as="textarea" rows={3} onChange={onUpdateNewDesc} aria-label="">
                                                     </Form.Control>
                                                 </Col>
                                             </Row>
                                             <Row>
-                                                <Col className="inventory-summary">
+                                                <Col className="v-summary">
                                                     <Button onClick={addNew}>
                                                         Add
                                                     </Button>
@@ -164,7 +163,7 @@ export const Questionnaires = (props: any) => {
                                         }
                                     </Col>
                                 </Row>
-                                <Form.Group className="wizard-actions" controlId="formButtons">
+                                <Form.Group className="main-actions" controlId="formButtons">
                                     <Button as="a" href={props.prev}>Back</Button> &nbsp;
                                     <Button as="a" href={"data:'" + getDownloadData() + "'"} download={`${questionnaire.companyName}-questionnaire.json`}>Download Questionnaire</Button>
                                 </Form.Group>

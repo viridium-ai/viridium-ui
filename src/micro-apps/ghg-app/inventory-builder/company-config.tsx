@@ -5,8 +5,8 @@ import { LayoutPage } from '../../../components/layout';
 import { DataTable } from '../../../components/table';
 import { Action, Question } from '../../../components/wizard';
 import { getConfigs, getCompany, updateCompany } from '../../../config/viridium-config';
-import { inventoryConfigApp } from '../../inventory-app/inventory-app';
 import { NamedObject } from '../../inventory-app/inventory-common';
+import { greenHouseApp } from '../ghg-app';
 
 import { Company } from './model';
 
@@ -66,9 +66,9 @@ export const CompanyConfig = (props: any) => {
         }
     }
 
-    return <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-        <div className="wizard-body">
-            <div className="wizard-body-main">
+    return <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+        <div className="v-body">
+            <div className="v-body-main">
                 <Toast >
                     <Toast.Header closeButton={false}>
                         <span className="me-auto">

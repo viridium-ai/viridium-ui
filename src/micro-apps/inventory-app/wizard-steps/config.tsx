@@ -42,8 +42,8 @@ export const InventoryConfig = (props: any) => {
         console.log(questionnaire);
         return (
             <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
-                <div className="wizard-body">
-                    <div className="wizard-body-main">
+                <div className="v-body">
+                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <strong className="me-auto">

@@ -402,13 +402,13 @@ export const SourceManager = (props: any) => {
                                         selectedInventory ? <>
                                             <Row>
                                                 <Col sm={4}></Col>
-                                                <Col sm={8} className="inventory-summary">
+                                                <Col sm={8} className="v-summary">
                                                     {selectedInventory.status} at {selectedInventory.updatedAt} by {selectedInventory.updatedBy}
                                                 </Col>
                                             </Row>
                                             <Row>
                                                 <Col sm={4}></Col>
-                                                <Col sm={8} className="inventory-summary">
+                                                <Col sm={8} className="v-summary">
                                                     Notes: {selectedInventory ? selectedInventory.notes : " "}
                                                 </Col>
                                             </Row>

@@ -1,98 +1,12 @@
-.ghg-app .toast {
+.ghg-app .import-container {
+    padding: 20px 20px;
+    background-color: rgb(241, 240, 238);
+    border-radius: 0.4em;
+    min-height: 240px;
     width: 100%;
+    overflow-y:scroll;
 }
 
-.ghg-app .wizard-body {
-    display: flex;
-    gap: 0.5rem;
-    padding:  2.0rem 12.0rem;
-}
-.ghg-app .wizard-summary {
-    padding:  2.0rem 0.5rem;
-    font-size: large;
-}
-.ghg-app .wizard-body-main {
-    flex: 80%;
-    padding: 0.5rem;
-}
-
-.ghg-app .wizard-body-help {
-    flex: 20%;
-    padding: 0.5rem;
-    display: block;
-}
-
-.ghg-app .wizard-actions {
-    display: flex;
-    padding: 2rem 1rem;
-    border-bottom: 1px solid rgb(237, 237, 237);
-}
-
-.ghg-app .wizard-question {
-    padding: 0.2rem 1rem;
-    border-bottom: 1px solid rgb(237, 237, 237);
-}
-
-.ghg-app .wizard-sub-questions {
-    margin-top: 0.1em;
-    padding: 0.5rem;
-    background-color: rgb(244, 244, 244);
-}
-
-.ghg-app .wizard-form-row {
-    padding: 0.2rem;
-}
-
-.ghg-app .wizard-form-label {
-    padding: 1.4rem 1.2rem;
-    /* background-color: aquamarine; */
-    font-size: large;
-}
-
-
-.ghg-app .wizard-form-input {
-    padding: 1.0rem 1.2rem;
-}
-.ghg-app .wizard-checkbox {
-    padding: 1em;
-}
-.ghg-app .analytic-col-0 {
-    width: 60%;
-}
-
-.ghg-app .analytic-col-1 {
-    width: 40%;
-}
-
-.ghg-app .emission-table .analytic-col-0 {
-    width: 20%;
-}
-
-.ghg-app .emission-table .analytic-col-1 {
-    width: 15%;
-}
-
-.ghg-app .component-action {
-    margin: 0.5rem;
-}
-
-.offcanvas {
-    width:30%;
-}
-
-.offcanvas .form-help-text {
-    padding: 1.0rem;
-    color: rgb(151, 151, 151);
-    background-color: rgb(245, 245, 245);
-    margin: 0px 0px 1.0rem 0px;
-}
-
-.offcanvas .form-actions {
-    padding: 0.5em;
-    background-color: rgb(236, 236, 236);
-}
-
-.offcanvas .form-action {
-    display: flex;
-    margin-left: auto;
+.ghg-app .row {
+    padding: 6px;
 }

@@ -112,9 +112,9 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         this.state = { selected: false, expanded: false, data: this.setNodeId(this.props.data) };
     }
 
-    componentWillReceiveProps = (nextProps: TreeViewProperty) => {
-        this.setState({ data: this.setNodeId(this.props.data) });
-    }
+    // componentDidUpdate = (nextProps: TreeViewProperty) => {
+    //     this.setState({ data: this.setNodeId(this.props.data) });
+    // }
 
     setNodeId = (node: Node): Node[] | undefined => {
         return node.children?.map((childNode: Node) => {
@@ -270,7 +270,7 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             data.forEach((node: Node) => {
                 children.push(React.createElement(TreeNode, {
                     node: node,
-                    key: node.id,
+                    key: node.id ? node.id : crypto.randomUUID(),
                     level: 1,
                     visible: true,
                     onSelectedStatusChanged: this.nodeSelected,
@@ -315,10 +315,10 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         this.selected = props.node.state && props.node.state.selected;
     }
 
-    componentWillReceiveProps(nextProps: TreeNodeProperty) {
-        this.setState({ node: nextProps.node, expanded: true });
-        this.selected = nextProps.node.state.selected
-    }
+    // componentDidUpdate(nextProps: TreeNodeProperty) {
+    //     this.setState({ node: nextProps.node, expanded: true });
+    //     this.selected = nextProps.node.state.selected
+    // }
 
     toggleExpanded = (event: any) => {
         this.setState({ expanded: !this.state.expanded });
@@ -462,7 +462,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
             node.children.forEach((node: Node) => {
                 children.push(React.createElement(TreeNode, {
                     node: node,
-                    key: node.id,
+                    key: node.id ? node.id : crypto.randomUUID(),
                     level: this.props.level + 1,
                     visible: this.state.expanded && this.props.visible,
                     onSelectedStatusChanged: this.props.onSelectedStatusChanged,
@@ -496,10 +496,9 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         }
 
         cssStyle["cursor"] = "pointer";
-
+        let key = node.id ? node.id : crypto.randomUUID();
         let treeNode = (
-            <li className="list-group-item" style={cssStyle} onDoubleClick={this.doubleClicked} key={node.id}>
-
+            <li className="list-group-item" style={cssStyle} onDoubleClick={this.doubleClicked} key={key}>
                 {expandCollapseIcon}
                 {nodeIcon}
                 {removeButton}

@@ -43,15 +43,76 @@ body {
   }
 }
 
-.viridium-app .container {
-  background-color: white;
-  max-width: 98%;
+.viridium-app .v-body {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  padding:  2.0rem 12.0rem;
 }
 
-.viridium-app a:hover {
-  color : rgb(0, 103, 0);
+.viridium-app .v-summary {
+  padding:  2.0rem 0.5rem;
+  font-size: large;
 }
 
-.viridium-app a {
-  text-decoration: none;
+.viridium-app .v-body-main {
+  flex: 80%;
+  padding: 0.5rem;
+}
+
+.viridium-app .v-body-help {
+  flex: 20%;
+  padding: 0.5rem;
+  display: none;
+}
+
+.viridium-app .v-actions {
+  display: flex;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+
+.viridium-app .v-question {
+  padding: 0.2rem 1rem;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+
+.viridium-app .v-sub-questions {
+  margin-top: 0.1em;
+  padding: 0.5rem;
+  background-color: rgb(244, 244, 244);
+}
+
+.viridium-app .main-form-row {
+  padding: 0.2rem;
+}
+
+.viridium-app .main-form-label {
+  padding: 0.7rem;
+  font-size: medium;
+}
+
+.viridium-app .main-form-input {
+  padding: 0.2rem;
+}
+.viridium-app .main-checkbox {
+  padding: 1em;
+}
+
+.viridium-app .company-details{
+  padding: .5rem;
+  margin-top: .5em;
+}
+
+.viridium-app .v-summary {
+  font-size: small;
+  font-weight: 600;
+  padding: .5rem 1.5rem;
+}
+
+.viridium-app .v-title {
+  padding-top:2em;
+  padding-left: 1.4rem;
+  font-size: medium;
+  font-weight: 600;
 }

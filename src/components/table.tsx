@@ -80,6 +80,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             this.props.onSelectRow(evt.currentTarget.id);
         }
     }
+    onRowChecked = (evt: any) => {
+        console.log(evt);
+    }
     render = () => {
         let tableData = this.state.data;
         if (!tableData) {
@@ -103,7 +106,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                             return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
                                 {
                                     row.cols.map((col: any, jdx: number) => {
-                                        return <td className={"data-cell-" + col.type} key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" />
+                                        return <td className={"data-cell-" + col.type} key={'c' + jdx}>{col.type === 'checkbox' ? <Form.Check checked={col.value} type="checkbox" onChange={this.onRowChecked} />
                                             : (col.type === 'button' ? <Button onClick={col.onClick} >{col.text}</Button>
                                                 : col.text)
                                         }</td>

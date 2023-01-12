@@ -127,10 +127,24 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
 }
 
 export const FileUploader = (props: any) => {
+    const doUpload = () => {
+        let ele = document?.getElementById("file");
+        if (ele) {
+            let data = (ele as any).files[0];
+            var fr=new FileReader();
+            fr.onload=function(){
+                console.log(fr.result);
+            }
+            fr.readAsText(data);
+            
+        }
+        
+    }
     const ui = () => {
         return (
             <div className="import-container">
-                TSV file uploader here<p />
+                <input type="file" name="file" id="file"></input>
+                <button onClick={doUpload} name="submit">Upload File</button>
             </div>
         )
     };

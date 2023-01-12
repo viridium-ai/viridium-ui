@@ -61,7 +61,7 @@ const defaultOptions = {
     selectedColor: '#000000',
     selectedBgColor: '#FFFFFF',
     enableLinks: false,
-    highlightSelected: true,
+    highlightSelected: false,
     showBorder: true,
     showTags: false,
 };
@@ -111,10 +111,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         this.nodesQuantity = 0;
         this.state = { selected: false, expanded: false, data: this.setNodeId(this.props.data) };
     }
-
-    // componentDidUpdate = (nextProps: TreeViewProperty) => {
-    //     this.setState({ data: this.setNodeId(this.props.data) });
-    // }
 
     setNodeId = (node: Node): Node[] | undefined => {
         return node.children?.map((childNode: Node) => {
@@ -375,13 +371,11 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         }
 
         if (!this.props.visible) {
-
             cssStyle = {
                 display: 'none'
             };
         }
         else {
-
             if (options.highlightSelected && node.state.selected) {
                 cssStyle = {
                     color: options.selectedColor,
@@ -394,7 +388,6 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
                     backgroundColor: node.bgColor || options.bgColor
                 };
             }
-
             if (!options.showBorder) {
                 cssStyle.border = 'none';
             }
@@ -402,14 +395,12 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
                 cssStyle.border = '1px solid ' + options.borderColor;
             }
         }
-
         let indents = [];
         for (let i = 0; i < this.props.level - 1; i++) {
             indents.push(
                 <span className={'indent'} style={treeviewSpanIndentStyle} key={i}> </span>
             )
         }
-
         let expandCollapseIcon;
         if (!node.isLeaf()) {
             if (!this.state.expanded) {

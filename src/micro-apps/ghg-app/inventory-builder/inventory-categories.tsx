@@ -58,7 +58,7 @@ export const MappingCategories = (props: any) => {
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
                 <div className="v-body">
                     {
-                        <Toast >
+                        <Toast>
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
                                     Mapping Categories
@@ -108,7 +108,8 @@ export const MappingCategories = (props: any) => {
                                         </Col>
                                     </Row> : ""
                                 }
-                                <Action inventory={inventory}
+                                
+                            <Action inventory={inventory}
                                     next={{ label: "Next", path: props.next }}
                                     prev={{ label: "Back", path: props.prev }} />
                             </Toast.Body>

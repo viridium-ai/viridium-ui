@@ -57,8 +57,6 @@
     overflow: scroll;
 }
 
-.schema-app .panel-content {}
-
 .schema-app .panel-container {
     border: 1px rgb(214, 230, 241) solid;
     border-radius: 0px;

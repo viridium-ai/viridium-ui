@@ -24,3 +24,19 @@
 .ghg-app .connector-config-form-btns {
     text-align: right;
 }
+
+.ghg-app .v-body {
+    min-height: 720px;
+    min-width: 1280px;
+}
+
+.ghg-app .toast {
+    height: 100%;
+    position: relative;
+}
+
+.ghg-app .actions {
+    position: absolute;
+    bottom: 10px;
+    padding: 4px;
+}

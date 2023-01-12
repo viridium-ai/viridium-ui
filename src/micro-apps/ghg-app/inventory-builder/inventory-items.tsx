@@ -1,6 +1,7 @@
 import { Component, useState } from "react";
 
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
+import { VscTypeHierarchySub } from "react-icons/vsc";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
@@ -130,16 +131,28 @@ type FileUploaderProps = {
     onReceiveData: Function,
     buttonTxt?: string
 }
-
-export class FileUploader extends Component<FileUploaderProps, any> {
+type FileUploaderState = {
+    status : string
+}
+export class FileUploader extends Component<FileUploaderProps, FileUploaderState> {
     guid: string = crypto.randomUUID();
+    constructor(props : FileUploaderProps) {
+        super(props);
+        this.state = {status: "Choose File"}
+    }
+    onChooseFile = (evt : any) => {
+        this.setState({status:"Preview"});
+    }
+
     doUpload = () => {
         let ele = document?.getElementById(this.guid);
         if (ele) {
             let data = (ele as any).files[0];
+            
             var fr = new FileReader();
             fr.onload = () => {
-                this.props.onReceiveData(fr.result)
+                this.props.onReceiveData(fr.result);
+                this.setState({status:"Import"});
             }
             fr.readAsText(data);
         }
@@ -149,11 +162,10 @@ export class FileUploader extends Component<FileUploaderProps, any> {
             <div className="import-container">
                 <Form.Group className="mb-3">
                     <Form.Label>Upload File</Form.Label>
-                    <Form.Control id={this.guid} type="file" />
+                    <Form.Control id={this.guid} type="file" onChange={this.onChooseFile} />
                 </Form.Group>
                 <Form.Group className="connector-config-form-btns">
-
-                <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Upload File"}</Button>
+                    <Button disabled= {this.state.status === "Choose File"} variant="light" onClick={this.doUpload} name="submit">{this.state.status}</Button>
                 </Form.Group>
             </div>
         )
@@ -206,9 +218,9 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
                                     <Form.Control id={this.guid + '-password'} type="secret" />
                                 </Form.Group>
                                 <Form.Group className="connector-config-form-btns">
-                                <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Export"}</Button>
+                                    <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Export"}</Button>
                                 </Form.Group>
-                                
+
                             </div> : <div>Please select a connector for your data</div>
                         }
                     </Col>
@@ -386,7 +398,7 @@ export const InventoryItemsView = (props: any) => {
                             <FileUploader onReceiveData={onReceiveData} />
                         </Tab>
                         <Tab eventKey="connector" title="Connector">
-                            <ConnectorConfig onReceiveData={onReceiveData} />
+                            <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import"/>
                         </Tab>
                     </Tabs>
 
@@ -417,6 +429,7 @@ export const InventoryItemsView = (props: any) => {
                                     </Col>
                                 </Row> : ""
                             }
+
                             <Action inventory={inventory}
                                 next={{ label: "Next", path: props.next }}
                                 prev={{ label: "Back", path: props.prev }} />

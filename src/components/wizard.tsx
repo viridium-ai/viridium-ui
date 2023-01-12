@@ -34,8 +34,8 @@ export const Action = (props: any) => {
 
     const ui = () => {
         return (
-            <div >
-                <Form.Group className="main-actions" controlId="formButtons">
+            <div className="actions" >
+                <Form.Group controlId="formButtons">
                     {props.prev ? <Button onClick={handlePrevAction}>
                         {props.prev.label}
                     </Button> : ""}

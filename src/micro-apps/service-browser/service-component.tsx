@@ -1,11 +1,9 @@
 import { Component } from 'react';
-import { Form, Button, Container, Row, Table, Col, Toast, ToastContainer, Offcanvas } from 'react-bootstrap';
+import { Form, Button, Container, Row, Table, Col, Toast, ToastContainer } from 'react-bootstrap';
 import { FieldValue, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 import './service-component.css';
 import { restClient } from '../../common/rest-client';
-
-
 import { TitleProp, Action } from '../../common/micro-app';
 
 export class Title extends Component<TitleProp> {
@@ -38,6 +36,22 @@ export class Title extends Component<TitleProp> {
             </Row>
         )
     }
+}
+
+const entityToArray = (entity: any, path: string = ""): Array<any> => {
+    let fieldDefs = Object.keys(entity).map(key => {
+        let value = entity[key];
+        let name = path !== "" ? path + "." + key : key;
+        if (value instanceof Object) {
+            return entityToArray(value, key);
+        }
+        return {
+            name: name,
+            type: typeof value,
+            value: value
+        }
+    });
+    return fieldDefs;
 }
 
 export interface FormFieldProp {
@@ -95,7 +109,7 @@ interface FormProp {
     entity: any;
     mode: string;
     path: string;
-    fieldDefs: Function;
+    fieldDefs?: Function;
 }
 
 export class EntityForm extends Component<FormProp> {
@@ -139,7 +153,7 @@ export class EntityForm extends Component<FormProp> {
 
     getOptions = (fieldName: string) => {
         console.log(fieldName);
-        let test: any = []; 
+        let test: any = [];
         return test.map((item: any) => {
             return { value: item.Symbol, label: item.Name }
         });
@@ -147,7 +161,7 @@ export class EntityForm extends Component<FormProp> {
 
     renderFields = () => {
         let newState: any = this.state;
-        let fieldDefs = this.props.fieldDefs(newState);
+        let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(newState) : entityToArray(newState);
         return (
             fieldDefs.filter((def: FieldDefinition) => !def.readonly)
                 .map((def: FieldDefinition, idx: number) => {
@@ -192,31 +206,37 @@ export class EntityForm extends Component<FormProp> {
 interface EntityDetailsProp {
     entity: any,
     title: string,
-    fieldDefs: Function,
+    fieldDefs?: Function,
     show?: boolean,
     actions?: Array<any>
 }
 
 export class EntityDetails extends Component<EntityDetailsProp> {
+    renderField = (field: {name?:string, value:any}) => {
+        return (
+            <Row className='entity-value'>
+                <Col sm={3} className='field-label'>{field.name}</Col>
+                <Col sm={9} className='field-value'>{field.value}</Col>
+            </Row>
+        )
+    }
 
     renderFields = () => {
         let entity = this.props.entity;
-        let fieldDefs = this.props.fieldDefs(entity);
+        let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(entity) : entityToArray(entity);
         return (
-            fieldDefs.filter((def: any) => !['password', 'lov'].includes(def.type))
-                .map((def: FieldDefinition, idx: number) =>
-                    <Row key={idx.toString()} className='entity-value'>
-                        <Col sm={3} className='field-label'>{def.getLabel()}</Col>
-                        <Col sm={9} className='field-value'>{entity[def.name]}</Col>
-                    </Row>
-                )
+            fieldDefs.filter((def: any) => !(['password', 'lov'].includes(def.type)) || entity[def.name] instanceof Array)
+                .map((def: FieldDefinition, idx: number) => {
+                    return this.renderField({name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name]})
+                }
+            )
         )
     }
 
     render() {
         let actions = this.props.actions ? [...this.props.actions] : [];
         return (
-            <div className="panel-container">
+            <div className="schema-app panel-container">
                 <Title title={this.props.title} actions={actions} />
                 <div className="panel-body">
                     {this.renderFields()}

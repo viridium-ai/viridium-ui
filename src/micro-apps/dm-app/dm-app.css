@@ -132,34 +132,3 @@
     margin: .5em 0em;
     padding: 0em 0.5em;
 }
-
-
-.dm-app .data-cell-button {
-    text-align: center;
-}
-
-.dm-app .data-cell-select {
-    padding:0.2em;
-    text-align: center;
-    min-width: 120px;
-    width: 12.5%;
-}
-.dm-app .data-cell-checkbox {
-    text-align: center;
-    padding:1em;
-}
-
-.dm-app .data-cell-header {
-    font: 1em sans-serif;
-    padding: 1em;
-    font-size: large;
-    background-color: azure;
-}
-
-.dm-app .data-cell-text {
-    padding:1.2em;
-}
-.dm-app .data-cell-label {
-    padding: 0.8em;
-    width: 12.5%;
-}

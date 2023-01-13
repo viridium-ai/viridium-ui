@@ -10,3 +10,37 @@
 .dimension-container {
     margin-bottom: 15px;
 }
+
+.v-table .data-cell-button {
+    text-align: center;
+}
+
+.v-table .data-cell-select {
+    text-align: center;
+    min-width: 120px;
+    width: 12.5%;
+}
+.v-table .data-cell-input {
+    text-align: center;
+    min-width: 120px;
+    width: 12.5%;
+}
+.v-table .data-cell-checkbox {
+    text-align: center;
+    padding:1em;
+}
+
+.v-table .data-cell-header {
+    font: 1em sans-serif;
+    padding: 1em;
+    font-size: large;
+    background-color: azure;
+}
+
+.v-table .data-cell-text {
+    padding:1em;
+}
+.v-table .data-cell-label {
+    padding: 0.4em;
+    width: 12.5%;
+}

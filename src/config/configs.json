@@ -1011,11 +1011,42 @@
                 },
                 {
                     "id": "6",
-                    "name": "Business Travel"
+                    "name": "Business Travel",
+                    "types": [{
+                        "id": "plan",
+                        "name": "Plan",
+                        "unit" : "miles"
+                    },
+                    {
+                        "id": "car",
+                        "name": "Car",
+                        "unit" : "miles"
+                    },
+                    {
+                        "id": "train",
+                        "name": "Train",
+                        "unit" : "miles"
+                    }
+                ]
                 },
                 {
                     "id": "7",
-                    "name": "Employee commuting"
+                    "name": "Employee commuting",
+                    "types": [{
+                        "id": "plan",
+                        "name": "Plan",
+                        "unit" : "miles"
+                    },
+                    {
+                        "id": "car",
+                        "name": "Car",
+                        "unit" : "miles"
+                    },
+                    {
+                        "id": "train",
+                        "name": "Train",
+                        "unit" : "miles"
+                    }]
                 },
                 {
                     "id": "8",
@@ -1027,22 +1058,18 @@
                 },
                 {
                     "id": "10",
-                    "name": "Transportation and distribution of sold products"
-                },
-                {
-                    "id": "11",
                     "name": "Processing of Sold Products"
                 },
                 {
-                    "id": "12",
+                    "id": "11",
                     "name": "Use of sold products"
                 },
                 {
-                    "id": "13",
+                    "id": "12",
                     "name": "End of life treatment of sold products"
                 },
                 {
-                    "id": "14",
+                    "id": "13",
                     "name": "Downstream leased assets"
                 },
                 {
@@ -1050,7 +1077,7 @@
                     "name": "Franchises"
                 },
                 {
-                    "id": "14",
+                    "id": "15",
                     "name": "Investments"
                 }
             ]

@@ -27,7 +27,7 @@ export const Questionnaires = (props: any) => {
                 }));
             }
         }
-    }, [configs.questions, questions]);
+    }, []);
     const onSelectQuestion = (event: any) => {
         selectQuestion(event.target.value);
     }
@@ -163,7 +163,7 @@ export const Questionnaires = (props: any) => {
                                         }
                                     </Col>
                                 </Row>
-                                <Form.Group className="main-actions" controlId="formButtons">
+                                <Form.Group className="v-actions" controlId="formButtons">
                                     <Button as="a" href={props.prev}>Back</Button> &nbsp;
                                     <Button as="a" href={"data:'" + getDownloadData() + "'"} download={`${questionnaire.companyName}-questionnaire.json`}>Download Questionnaire</Button>
                                 </Form.Group>

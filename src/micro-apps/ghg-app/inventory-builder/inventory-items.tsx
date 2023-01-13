@@ -1,7 +1,6 @@
 import { Component, useState } from "react";
 
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
-import { VscTypeHierarchySub } from "react-icons/vsc";
 import { LayoutPage } from "../../../components/layout";
 import { DataTable } from "../../../components/table";
 import { Action } from "../../../components/wizard";
@@ -132,31 +131,93 @@ type FileUploaderProps = {
     buttonTxt?: string
 }
 type FileUploaderState = {
-    status : string
+    status: string,
+    data: any
 }
 export class FileUploader extends Component<FileUploaderProps, FileUploaderState> {
     guid: string = crypto.randomUUID();
-    constructor(props : FileUploaderProps) {
+    constructor(props: FileUploaderProps) {
         super(props);
-        this.state = {status: "Choose File"}
+        this.state = { status: "Choose File", data: undefined }
     }
-    onChooseFile = (evt : any) => {
-        this.setState({status:"Preview"});
+
+    csvToTableData = (text: string) => {
+        let headers: Array<string> = [];
+        let data: Array<Array<string>> = [];
+        let lines = text.toString().split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            const line = lines[i];
+            if (i === 0) {
+                headers = [...line.split(",")];
+            }
+            else {
+
+                data.push(line.split(","));
+            }
+        }
+        return {
+            headers: headers.map((h) => { return { type: "text", text: h } }
+            ),
+            rows: data.map((r, idx: number) => { return { id: 'r' + idx, cols: r.map(c => { return { type: "text", text: c } }) } })
+        };
+    }
+    onChooseFile = (evt: any) => {
+        this.setState({ status: "Preview" });
     }
 
     doUpload = () => {
         let ele = document?.getElementById(this.guid);
-        if (ele) {
+        if (ele !== null) {
             let data = (ele as any).files[0];
-            
             var fr = new FileReader();
             fr.onload = () => {
-                this.props.onReceiveData(fr.result);
-                this.setState({status:"Import"});
+                let text = fr.result;
+                if (text !== null) {
+                    if (this.state.status === "Preview") {
+                        this.setState({ data: this.csvToTableData(text.toString()) });
+                        this.setState({ status: "Mapping" });
+                    }
+                    if (this.state.status === "Import") {
+                        this.props.onReceiveData(fr.result);
+                        this.setState({ status: "Choose File" });
+                        this.setState({ data: undefined });
+                        (ele as any).value = null;
+                    }
+                }
             }
             fr.readAsText(data);
         }
     }
+    onValueChange = (v: any) => {
+        console.log(v.target.value, v.target.id);
+    }
+    onScopeChange = (v: any) => {
+        console.log(v.target.value, v.target.id);
+    }
+
+    mappingData = () => {
+        let newRows = this.state.data.rows.map((r: any, idx: number) => {
+            return {
+                cols: [...r.cols,
+                { type: "input", text: "", id: "scope" + idx, onChange: this.onValueChange },
+                {
+                    type: "select", text: "", value: "", onChange: this.onScopeChange, id: "scope" + idx, options:
+                        [{ value: "", text: "Select a value" }, { value: "scope1", text: "Scope 1" }, { value: "scope2", text: "Scope 2" }, { value: "scope3", text: "Scope 3" }]
+                }]
+            }
+        })
+        let mappingData = {
+            headers: [...this.state.data.headers, { text: "Category", type: "text" }, { text: "Scope", type: "text" }],
+            rows: newRows
+        }
+        console.log(mappingData);
+        return <DataTable data={mappingData} options={{ show: 3 }} />
+    }
+
+    preview = () => {
+        return this.state.data ? <DataTable data={this.state.data} options={{ show: 3 }} /> : ""
+    }
+
     render = () => {
         return (
             <div className="import-container">
@@ -165,8 +226,14 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
                     <Form.Control id={this.guid} type="file" onChange={this.onChooseFile} />
                 </Form.Group>
                 <Form.Group className="connector-config-form-btns">
-                    <Button disabled= {this.state.status === "Choose File"} variant="light" onClick={this.doUpload} name="submit">{this.state.status}</Button>
+                    <Button disabled={this.state.status === "Choose File"} variant="light" onClick={this.doUpload} name="submit">{this.state.status}</Button>
                 </Form.Group>
+                <div className="preview-container">
+                    {
+                        this.state.status === "Mapping" ? this.mappingData() : this.state.status === "Preview" ? this.preview() : ""
+                    }
+                </div>
+
             </div>
         )
     };
@@ -398,7 +465,7 @@ export const InventoryItemsView = (props: any) => {
                             <FileUploader onReceiveData={onReceiveData} />
                         </Tab>
                         <Tab eventKey="connector" title="Connector">
-                            <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import"/>
+                            <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import" />
                         </Tab>
                     </Tabs>
 

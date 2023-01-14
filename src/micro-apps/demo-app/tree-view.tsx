@@ -1,19 +1,19 @@
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/v-layout'
-import TreeView from '../../components/v-tree-view';
+import { LayoutPage } from '../../components/v-layout/v-layout'
+import TreeView from '../../components/v-tree-view/v-tree-view';
 import { demoApp } from './demo-app';
 
 
 export const TreeViewDemo = (props: any) => {
     const treeData = {
-        id: "demo-root", 
+        id: "demo-root",
         children: [
             {
                 id: "p-1",
                 text: "Parent 1",
                 state: {
-                    selected: false,
-                    expanded: false
+                    selected: true,
+                    expanded: true
                 },
                 children: [
                     {
@@ -21,13 +21,14 @@ export const TreeViewDemo = (props: any) => {
                         text: "Child 1",
                         state: {
                             selected: false,
-                            expanded: false
+                            expanded: true
                         },
                         children: [
                             {
                                 id: "demo-1.1",
                                 text: "Grandchild with href",
-                                href: "/", state: {
+                                href: "/",
+                                state: {
                                     selected: false,
                                     expanded: false
                                 },
@@ -43,7 +44,7 @@ export const TreeViewDemo = (props: any) => {
                         ]
                     },
                     {
-                        id : "test",
+                        id: "test",
                         text: "Child 2"
                     }
                 ]
@@ -83,7 +84,7 @@ export const TreeViewDemo = (props: any) => {
                     <div className="demo-body-main">
                         <Toast className="demo-panel">
                             <Toast.Body>
-                                <TreeView data={treeData} options={{ selectable: false, enableLinks: true }} />
+                                <TreeView data={treeData} options={{ selectable: true, enableLinks: true, selectChildren: true }} />
                             </Toast.Body>
                         </Toast>
                     </div>

@@ -1,14 +1,14 @@
 
 import React, { Component, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
-import { securityManager } from "../common/security/v-security-manager";
+import { securityManager } from "../../common/security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
-import { IMicroApp, IRouteItem, MicroApp } from "../common/v-app";
+import { IMicroApp, IRouteItem, MicroApp } from "../../common/v-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";
-import { getConfigs } from "../config/v-config";
+import { getConfigs } from "../../config/v-config";
 
 export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;

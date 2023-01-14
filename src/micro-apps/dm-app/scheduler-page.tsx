@@ -1,5 +1,5 @@
 import { Row, Col, Toast, Stack, Form, Container } from 'react-bootstrap';
-import { LayoutPage} from '../../components/v-layout';
+import { LayoutPage} from '../../components/v-layout/v-layout';
 import { dataSourceManager } from './dm-app';
 
 export const SchedulerPage = (props: any) => {

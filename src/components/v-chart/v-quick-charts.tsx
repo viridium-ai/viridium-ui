@@ -9,7 +9,6 @@ import {
 import { Component } from 'react';
 import { Line, Pie } from 'react-chartjs-2';
 
-
 ChartJS.register(ArcElement, CategoryScale,
     LinearScale,
     PointElement,

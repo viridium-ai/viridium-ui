@@ -18,6 +18,12 @@ class HomeApp extends MicroApp {
   public isSecure = () : boolean =>  {
     return false;
   }
+  getHeader = () : any  =>{
+    return {
+        title:this.getTitle(),
+        visible:false
+    };
+}
 
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Inventory Config", "Inventory Config", undefined, "/inventory-app"),

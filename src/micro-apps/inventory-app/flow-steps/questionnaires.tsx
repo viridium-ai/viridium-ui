@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Col, Form, Row, Toast } from "react-bootstrap";
-import { LayoutPage } from "../../../components/v-layout";
+import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-questionaire";
 import { getConfigs, updateConfigs } from "../../../config/v-config";

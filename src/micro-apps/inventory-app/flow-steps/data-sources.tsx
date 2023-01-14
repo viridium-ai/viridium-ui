@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
-import { LayoutPage } from "../../../components/v-layout";
+import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";

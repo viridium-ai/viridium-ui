@@ -1,8 +1,8 @@
 import { useState } from 'react';
 
 import { Toast, Form } from 'react-bootstrap';
-import { LayoutPage } from '../../../components/v-layout';
-import { DataTable } from '../../../components/v-table';
+import { LayoutPage } from '../../../components/v-layout/v-layout';
+import { DataTable } from '../../../components/v-table/v-table';
 import { Action, Question } from '../../../components/v-wizard';
 import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
 import { NamedObject } from '../../inventory-app/inventory-questionaire';

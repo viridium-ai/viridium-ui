@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 
 import { restClient } from "../../common/v-client"
 import { EntityList, EntityDetails, EntityForm } from './service-component';
-import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout'
+import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout/v-layout'
 import { Service, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 

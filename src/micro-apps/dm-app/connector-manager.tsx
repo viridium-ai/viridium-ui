@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/v-layout';
-import TreeView from '../../components/v-tree-view';
+import { LayoutPage } from '../../components/v-layout/v-layout';
+import TreeView from '../../components/v-tree-view/v-tree-view';
 import { getConfigs } from '../../config/v-config';
 import { EntityDetails } from '../service-browser/service-component';
 import { dataSourceManager } from './dm-app';

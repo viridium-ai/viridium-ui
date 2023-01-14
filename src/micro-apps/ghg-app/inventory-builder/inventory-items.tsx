@@ -1,8 +1,8 @@
 import { Component, useState } from "react";
 
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
-import { LayoutPage } from "../../../components/v-layout";
-import { DataTable } from "../../../components/v-table";
+import { LayoutPage } from "../../../components/v-layout/v-layout";
+import { DataTable } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
 import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/v-config";
 import { ConnectorView } from "../../dm-app/connector-manager";

@@ -19,6 +19,9 @@ class DemoApp extends MicroApp {
     return "Component Demo";
   }
 
+  public isSecure = () => {
+    return false;
+  };
   public getName = () => {
     return "demo-app";
   }

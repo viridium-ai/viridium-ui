@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import { Toast, Table, Form, Col, Row } from "react-bootstrap";
-import { LayoutPage } from "../../../components/v-layout";
-import { DimensionView } from "../../../components/v-table";
+import { LayoutPage } from "../../../components/v-layout/v-layout";
+import { DimensionView } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";

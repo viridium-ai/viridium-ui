@@ -1,7 +1,7 @@
 
 import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
-import { LayoutPage } from '../../components/v-layout'
-import { QuickLine, QuickPie } from '../../components/v-quick-charts';
+import { LayoutPage } from '../../components/v-layout/v-layout'
+import { QuickLine, QuickPie } from '../../components/v-chart/v-quick-charts';
 import { dataSourceManager } from './dm-app';
 
 /**

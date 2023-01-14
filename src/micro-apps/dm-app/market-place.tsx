@@ -1,6 +1,6 @@
 
 import { Row, Col, Toast, Form, Button } from 'react-bootstrap';
-import { LayoutPage} from '../../components/v-layout'
+import { LayoutPage} from '../../components/v-layout/v-layout'
 import { dataSourceManager } from './dm-app';
 
 export const MarketPlace = (props: any) => {

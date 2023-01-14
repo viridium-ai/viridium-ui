@@ -4,7 +4,7 @@ import { Route, useNavigate, useSearchParams } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
 
 
-import { LayoutPage } from "../../components/v-layout";
+import { LayoutPage } from "../../components/v-layout/v-layout";
 import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/v-security-manager";
 import './security-app.css';
 import { homeApp } from "../home/home-app";

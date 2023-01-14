@@ -88,6 +88,12 @@ class Node {
     }
 }
 
+interface TreeViewOption {
+    selectable: boolean,
+    selectChildren?: boolean,
+    enableLinks: boolean,
+}
+
 interface TreeViewProperty {
     onDoubleClick?: Function;
     onClick?: Function;
@@ -95,7 +101,7 @@ interface TreeViewProperty {
     onNodeRemoved?: Function;
     data: any;
     allowNew?: boolean;
-    options?: any
+    options?: TreeViewOption
 }
 
 interface TreeViewState {
@@ -191,7 +197,9 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             node.state.selected = selected;
-            //this.setChildrenState(node.children, node.state);
+            if(this.props.options?.selectChildren) {
+                this.setChildrenState(node.children, node.state);
+            }
             this.setState({ data: this.state.data });
             if (this.props.onClick) {
                 this.props.onClick(this.state.data, node);
@@ -426,8 +434,7 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
             nodeText = (
                 <a href={node.href}> {node.text} </a>
             )
-        }
-        else {
+        } else {
             nodeText = (
                 <span onClick={this.toggleSelected} style={treeviewSpanStyle}> {node.text} </span>
             )

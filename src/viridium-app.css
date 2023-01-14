@@ -47,7 +47,6 @@ body {
   width: 100%;
   display: flex;
   gap: 0.5rem;
-  padding:  2.0rem 12.0rem;
 }
 
 .viridium-app .v-summary {
@@ -83,16 +82,16 @@ body {
   background-color: rgb(244, 244, 244);
 }
 
-.viridium-app .main-form-row {
+.viridium-app .v-form-row {
   padding: 0.2rem;
 }
 
-.viridium-app .main-form-label {
+.viridium-app .v-form-label {
   padding: 0.7rem;
   font-size: medium;
 }
 
-.viridium-app .main-form-input {
+.viridium-app .v-form-input {
   padding: 0.2rem;
 }
 .viridium-app .main-checkbox {

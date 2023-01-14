@@ -126,10 +126,10 @@ export interface BodyNavProps {
 export class LayoutBodyNav extends Component<BodyNavProps> {
     render() {
         return (
-            <ListGroup as="ul" className="home-body-nav">
+            <ListGroup as="ul" className="v-body-nav">
                 {
                     this.props.routeItems
-                        .map((routeItem, idx) => <NavItem service={routeItem} key={"home-body-nav-" + idx}></NavItem>)
+                        .map((routeItem, idx) => <NavItem service={routeItem} key={"v-body-nav-" + idx}></NavItem>)
                 }
             </ListGroup>
         )
@@ -139,7 +139,7 @@ export class LayoutBodyNav extends Component<BodyNavProps> {
 export class LayoutFooter extends Component {
     render() {
         return (
-            <div className="home-footer .bg-light">
+            <div className="v-footer .bg-light">
                 Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.
             </div>
         )
@@ -151,19 +151,10 @@ export const LayoutPage = (props: any) => {
     const withAppHeader = props.withAppHeader !== undefined ? props.withAppHeader : false;
 
     const routeItem: IRouteItem = props.routeItem;
-    const [showForm, setShowForm] = useState({ show: false, mode: 'create' });
-
-    const listUpdated = () => {
-
-    }
-    const showOffcavas = (event: any) => {
-        event.preventDefault();
-        setShowForm({ show: true, mode: 'create' });
-    }
 
     //UI 
     return (
-        <div className={"layout"}>
+        <div className="v-layout">
             <LayoutHeader microApp={microApp} routeItem={routeItem} />
             {
                 withAppHeader ? <ApplicationHeader microApp={microApp} /> : ""

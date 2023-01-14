@@ -38,10 +38,10 @@ export const MappingCategories = (props: any) => {
                     id: item.id,
                     cols: [
 
-                    { type: "text", text: item.typeId },
-                    { type: "text", text: item.quantity },
-                    { type: "text", text: item.frequency },
-                    { type: "text", text: item.siteId }
+                        { type: "text", text: item.typeId },
+                        { type: "text", text: item.quantity },
+                        { type: "text", text: item.frequency },
+                        { type: "text", text: item.siteId }
                     ]
                 }
             }
@@ -56,66 +56,64 @@ export const MappingCategories = (props: any) => {
         let items = inventory?.items;
         return (
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
-                <div className="v-body">
-                    {
-                        <Toast>
-                            <Toast.Header closeButton={false}>
-                                <span className="me-auto">
-                                    Mapping Categories
-                                </span>
-                                {inventory.company?.name}
-                            </Toast.Header>
-                            <Toast.Body>
-                                <Row>
-                                    <Col className="v-summary">
-                                        <Form.Select value={scope} onChange={onSelectScope}>
-                                            <>
-                                                <option value=''>Select a Scope</option>
-                                                {
-                                                    scopes.map((scope: any, idx: number) => {
-                                                        return (
-                                                            <option key={`cat-${idx}`} className="mb-2" value={scope.id}>
-                                                                {scope.name}
-                                                            </option>
-                                                        )
-                                                    })
+                {
+                    <Toast>
+                        <Toast.Header closeButton={false}>
+                            <span className="me-auto">
+                                Mapping Categories
+                            </span>
+                            {inventory.company?.name}
+                        </Toast.Header>
+                        <Toast.Body>
+                            <Row>
+                                <Col className="v-summary">
+                                    <Form.Select value={scope} onChange={onSelectScope}>
+                                        <>
+                                            <option value=''>Select a Scope</option>
+                                            {
+                                                scopes.map((scope: any, idx: number) => {
+                                                    return (
+                                                        <option key={`cat-${idx}`} className="mb-2" value={scope.id}>
+                                                            {scope.name}
+                                                        </option>
+                                                    )
+                                                })
 
-                                                }
-                                            </>
-                                        </Form.Select>
+                                            }
+                                        </>
+                                    </Form.Select>
+                                </Col>
+                                <Col className="v-summary">
+                                    <Form.Select value={category} onChange={onSelectCategory}>
+                                        <>
+                                            <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
+                                            {
+                                                categories?.map((category: any, idx: number) => {
+                                                    return (
+                                                        <option key={`cat-${idx}`} className="mb-2" value={category.id}>
+                                                            {category.name}
+                                                        </option>
+                                                    )
+                                                })
+                                            }
+                                        </>
+                                    </Form.Select>
+                                </Col>
+                            </Row>
+                            {
+                                items && items.length > 0 ? <Row>
+                                    <Col>
+                                        <DataTable data={getInventoryItemsData()} />
                                     </Col>
-                                    <Col className="v-summary">
-                                        <Form.Select value={category} onChange={onSelectCategory}>
-                                            <>
-                                                <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
-                                                {
-                                                    categories?.map((category: any, idx: number) => {
-                                                        return (
-                                                            <option key={`cat-${idx}`} className="mb-2" value={category.id}>
-                                                                {category.name}
-                                                            </option>
-                                                        )
-                                                    })
-                                                }
-                                            </>
-                                        </Form.Select>
-                                    </Col>
-                                </Row>
-                                {
-                                    items && items.length > 0 ? <Row>
-                                        <Col>
-                                            <DataTable data={getInventoryItemsData()} />
-                                        </Col>
-                                    </Row> : ""
-                                }
-                                
-                            <Action inventory={inventory}
-                                    next={{ label: "Next", path: props.next }}
-                                    prev={{ label: "Back", path: props.prev }} />
-                            </Toast.Body>
-                        </Toast>
-                    }
-                </div>
+                                </Row> : ""
+                            }
+                        </Toast.Body>
+
+                        <Action inventory={inventory}
+                            next={{ label: "Next", path: props.next }}
+                            prev={{ label: "Back", path: props.prev }} />
+                    </Toast>
+                }
             </LayoutPage >
         )
     }

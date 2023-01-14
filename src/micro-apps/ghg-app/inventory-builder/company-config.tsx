@@ -67,8 +67,6 @@ export const CompanyConfig = (props: any) => {
     }
 
     return <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
-        <div className="v-body">
-            <div className="v-body-main">
                 <Toast >
                     <Toast.Header closeButton={false}>
                         <span className="me-auto">
@@ -108,11 +106,10 @@ export const CompanyConfig = (props: any) => {
                         <Question label="Notes">
                             <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
                         </Question>
-                        <Action next={{ label: "Next", path: props.next }} />
                     </Toast.Body>
+
+                    <Action next={{ label: "Next", path: props.next }} />
                 </Toast>
-            </div>
-        </div>
     </LayoutPage >
 
 }

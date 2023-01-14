@@ -16,8 +16,6 @@ export const InventoryExport = (props: any) => {
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
-                <div className="v-body">
-                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -27,11 +25,10 @@ export const InventoryExport = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <ConnectorConfig onReceiveData={(data: any) => { console.log(data) }} />
-                                <Action inventory={inventory} prev={{ label: "Back", path: props.prev }} />
+                                
                             </Toast.Body>
+                            <Action inventory={inventory} prev={{ label: "Back", path: props.prev }} />
                         </Toast>
-                    </div>
-                </div>
             </LayoutPage >
         )
     }

@@ -477,7 +477,6 @@ export const InventoryItemsView = (props: any) => {
         let items = inventory.items;
         return (
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
-                <div className="v-body">
                     <Toast >
                         <Toast.Header closeButton={false}>
                             <span className="me-auto">
@@ -497,12 +496,12 @@ export const InventoryItemsView = (props: any) => {
                                 </Row> : ""
                             }
 
-                            <Action inventory={inventory}
+                        </Toast.Body>
+
+                        <Action inventory={inventory}
                                 next={{ label: "Next", path: props.next }}
                                 prev={{ label: "Back", path: props.prev }} />
-                        </Toast.Body>
                     </Toast>
-                </div>
             </LayoutPage >
         )
     }

@@ -103,7 +103,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
         return (
             <LayoutPage microApp={dataSourceManager} withAppHeader={true} routeItem={{ name: "" }}>
                 <div className="home-body">
-                    <div className="home-body-nav">
+                    <div className="v-body-nav">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <h4>Data Filters</h4>

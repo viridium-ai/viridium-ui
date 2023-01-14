@@ -1,13 +1,13 @@
-.dimension-title {
+.v-dimension-title {
     padding: 5px;
     font-size: medium;
     font-weight: bold;
 }
-.dimension-select {
+.v-dimension-select {
     padding: 5px;
 }
 
-.dimension-container {
+.v-dimension-container {
     margin-bottom: 15px;
 }
 

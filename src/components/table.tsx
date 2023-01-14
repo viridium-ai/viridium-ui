@@ -35,9 +35,9 @@ export class DimensionView extends React.Component<DimensionViewProps, Dimension
     render = () => {
         const options = this.props.options;
         return (
-            <div className="dimension-container">
+            <div className="v-dimension-container">
                 {
-                    options?.label ? <div className="dimension-title">{options.label}</div> : ""
+                    options?.label ? <div className="v-dimension-title">{options.label}</div> : ""
                 }
                 <Form.Select className="dimension-select" value={this.state.selected} onChange={this.onSelectDim}>
                     <option value="" >{options?.placeHolder} </option>

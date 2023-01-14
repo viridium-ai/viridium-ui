@@ -10,7 +10,7 @@ export const Help = (props: any) => {
         return (
             <LayoutPage microApp={demoApp} withAppHeader={true} routeItem={{ name: '' }}>
                 <div className="home-body">
-                    <div className="home-body-nav">
+                    <div className="v-body-nav">
                         <Toast >
                             <Toast.Body>
                                 <div className="item">

@@ -38,8 +38,6 @@ export const InventoryConfig = (props: any) => {
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
-                <div className="v-body">
-                    <div className="v-body-main">
                         {
                             inventory ? <Toast >
                                 <Toast.Header closeButton={false}>
@@ -110,14 +108,13 @@ export const InventoryConfig = (props: any) => {
                                             }
                                         </Form.Select>
                                     </Question>
-                                    <Action inventory={inventory}
+                                    
+                                </Toast.Body>
+                                <Action inventory={inventory}
                                         next={{ label: "Next", path: props.next }}
                                         prev={{ label: "Back", path: props.prev }} />
-                                </Toast.Body>
                             </Toast> : ""
                         }
-                    </div>
-                </div>
             </LayoutPage >
         )
     }

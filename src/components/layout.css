@@ -1,40 +1,39 @@
-.layout .navbar-brand {
+.v-layout .navbar-brand {
     margin-left: 1.2em;
 }
 
-.layout .nav-link {
+.v-layout .nav-link {
 
     margin-right: 0.0em;
 }
 
-.layout .home-body {
+.v-layout .home-body {
     display: flex;
     gap: 0.5rem;
     width: 100%;
-    padding: 0.5rem;
 }
 
-.layout .layout-header-end {
+.v-layout .v-layout-header-end {
     margin-right: 1em;
 }
 
-.layout .home-body-nav {
+.v-layout .v-body-nav {
     flex: 30%;
     max-width: 300px;
     background-color: rgba(255, 255, 255, 0.889);
     height: calc(100vh - 110px);
 }
 
-.layout .home-body-nav a {
+.v-layout .v-body-nav a {
     text-decoration: none;
 }
 
-.layout .home-body-main {
+.v-layout .home-body-main {
     flex: 70%;
     overflow: scroll;
 }
 
-.layout .home-footer {
+.v-layout .v-footer {
     padding: 12px;
     background-color: rgb(240, 238, 238);
     position: fixed;
@@ -44,73 +43,72 @@
     width: 100%;
 }
 
-.layout .viridium-logo {
+.v-layout .viridium-logo {
     width: 36px;
     margin-right: 4px;
 }
 
-.layout .nav-icon {
+.v-layout .nav-icon {
     width: 1.4rem;
     margin-right: 4px;
 }
 
-.layout .search-input {
+.v-layout .search-input {
     min-width: 24rem;
     border: 1px solid lightblue;
     padding: 0.2rem 0.4rem;
     border-radius: 0.2rem;
 }
 
-.layout .list-group-item {
+.v-layout .list-group-item {
     border: 0px;
     padding: 2px;
 }
 
-.layout ul {
+.v-layout ul {
     padding-inline-start: 4px;
 }
-.layout .application-header {
+.v-layout .application-header {
     background-color: rgb(214, 214, 214);
-    margin-bottom: 4px;
 }
 
-.layout .notifications-icon {
+.v-layout .notifications-icon {
     background-color:rgba(255, 0, 0, 0.802);
     color :white;
     padding:2px;
     margin-left: .2rem;
 
 }
-.layout .actions-menu {
+.v-layout .actions-menu {
     margin-right: 1em;
 }
 
-.layout .toast {
+.v-layout .toast {
     width: 100%;
 }
 
-.layout .home-body-nav .toast {
+.v-layout .v-body-nav .toast {
     margin-bottom: 1rem;
 }
 
 
-.layout .offcanvas {
+.v-layout .offcanvas {
     width:30%;
 }
 
-.layout .offcanvas .form-help-text {
+.v-layout .offcanvas .form-help-text {
     padding: 1.0rem;
     color: rgb(151, 151, 151);
     background-color: rgb(245, 245, 245);
     margin: 0px 0px 1.0rem 0px;
 }
 
-.layout .offcanvas .form-actions {
+.v-layout .offcanvas .form-actions {
     padding: 0.5em;
     background-color: rgb(236, 236, 236);
 }
 
-.layout .offcanvas .form-action {
+.v-layout .offcanvas .form-action {
     display: flex;
     margin-left: auto;
 }

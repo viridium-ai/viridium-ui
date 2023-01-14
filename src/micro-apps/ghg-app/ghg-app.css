@@ -46,7 +46,7 @@
     height: 100%;
     position: relative;
     border-radius: 0px;
-    min-height: 700px;
+    min-height: 720px;
     margin-top: 1px;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .ghg-app .toast-body {
-    max-height: 560px;
+    max-height: 600px;
     overflow-y: scroll;
 }
 

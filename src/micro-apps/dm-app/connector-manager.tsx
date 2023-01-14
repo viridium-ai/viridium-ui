@@ -66,7 +66,7 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
     render() {
         let connector = this.state.connector;
         return (
-            <div className="details-box">
+            <div className="v-panel-container">
                 <Row>
                     <EntityDetails entity={connector} title={"Properties"} />
                 </Row>

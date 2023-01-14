@@ -17,17 +17,7 @@
     padding: 2px 20px;
 }
 
-.schema-app .field-label {
-    padding: 0.5rem;
-    height: 2rem;
-    background-color: azure;
-}
 
-.schema-app .field-value {
-    padding: 0.5rem;
-    height: 2rem;
-    border-bottom: 1px solid azure;
-}
 
 .schema-app .component-actions {
     font-size: 14px;
@@ -51,17 +41,9 @@
     border-radius: 0.0rem;
 }
 
-.schema-app .panel-body {
+.schema-app .v-body {
     padding: .4rem;
     overflow: scroll;
-}
-
-.schema-app .panel-container {
-    border: 1px rgb(214, 230, 241) solid;
-    border-radius: 0px;
-    margin-top: 4px;
-    margin-bottom: 8px;
-    overflow: hidden;
 }
 
 .sfOption {

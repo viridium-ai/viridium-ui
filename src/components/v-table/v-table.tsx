@@ -54,7 +54,7 @@ export class DimensionView extends React.Component<DimensionViewProps, Dimension
 interface DataTableProps {
     data: any,
     onSelectRow?: Function,
-    onDataChanged?:Function,
+    onDataChanged?: Function,
     options?: any
 }
 interface DataTableState {
@@ -70,7 +70,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     }
 
     shouldComponentUpdate = (nextProps: DataTableProps, nextState: DataTableState, nextContext: any): boolean => {
-        if (this.state.data.rows.length !== nextProps.data.rows.length ) {
+        if (this.state.data.rows.length !== nextProps.data.rows.length) {
             this.setState({ data: nextProps.data });
             return true;
         }
@@ -92,10 +92,10 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         let row_col = evt.target.id.split(".");
         const row = parseInt(row_col[0]);
         const col = parseInt(row_col[1]);
-        let newData = {...this.state.data};
+        let newData = { ...this.state.data };
         newData.rows[row].cols[col].value = evt.target.value;
-        this.setState({data: newData});
-        if(this.props.options.onDataChanged) {
+        this.setState({ data: newData });
+        if (this.props.options.onDataChanged) {
             this.props.options.onDataChanged(this.state.data);
         }
         this.forceUpdate();
@@ -118,35 +118,39 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         }
         let rowsToShow = tableData.rows.filter((row: any, idx: number) => this.props.options && this.props.options.show ? idx < this.props.options.show : true);
         return (
-            <Table className="v-table" bordered hover size="sm">
-                <thead>
-                    <tr >
-                        {
-                            tableData.headers.map((col: any, idx: number) => {
-                                return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
-                                }</th>
-                            })
-                        }
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        rowsToShow.map((row: any, idx: number) => {
-                            return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
+            <div className="v-table" >
+                <div className="v-table-container" >
+                    <Table bordered hover size="sm">
+                        <thead>
+                            <tr >
                                 {
-                                    row.cols.map((col: any, jdx: number) => {
-                                        return <td className={"data-cell-" + col.type} key={'c' + jdx}>
-                                            {
-                                                this.renderCell(col, idx, jdx)
-                                            }
-                                        </td>
+                                    tableData.headers.map((col: any, idx: number) => {
+                                        return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
+                                        }</th>
                                     })
                                 }
                             </tr>
-                        })
-                    }
-                </tbody>
-            </Table>
+                        </thead>
+                        <tbody>
+                            {
+                                rowsToShow.map((row: any, idx: number) => {
+                                    return <tr key={'r' + idx} onClick={this.onSelectRow} id={row.id}>
+                                        {
+                                            row.cols.map((col: any, jdx: number) => {
+                                                return <td className={"data-cell-" + col.type} key={'c' + jdx}>
+                                                    {
+                                                        this.renderCell(col, idx, jdx)
+                                                    }
+                                                </td>
+                                            })
+                                        }
+                                    </tr>
+                                })
+                            }
+                        </tbody>
+                    </Table>
+                </div>
+            </div>
         );
     }
 }

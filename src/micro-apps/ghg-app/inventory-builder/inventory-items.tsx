@@ -61,7 +61,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         return (
             <div className="import-container">
                 <Row>
-                    <Col sm={3} className="main-form-label">Type</Col>
+                    <Col sm={3} className="v-form-label">Type</Col>
                     <Col sm={8} className="main-form-input">
                         <Form.Select key="itemType" value={this.state.typeId} onChange={this.onTypeChange}>
                             <>
@@ -74,18 +74,18 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                             </>
                         </Form.Select>
                     </Col>
-                    <Col sm={1} className="main-form-label"></Col>
+                    <Col sm={1} className="v-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="main-form-label">Quantity</Col>
+                    <Col sm={3} className="v-form-label">Quantity</Col>
                     <Col sm={7} className="main-form-input">
                         <Form.Control placeholder="Quantity" value={this.state.quantity} type="text" onChange={this.onQuantityChange}></Form.Control>
                     </Col>
-                    <Col sm={1} className="main-form-label">{type?.unit ? type.unit : ""}</Col>
-                    <Col sm={1} className="main-form-label"></Col>
+                    <Col sm={1} className="v-form-label">{type?.unit ? type.unit : ""}</Col>
+                    <Col sm={1} className="v-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="main-form-label">Frequency</Col>
+                    <Col sm={3} className="v-form-label">Frequency</Col>
                     <Col sm={8} className="main-form-input"><Form.Select key="itemFreq" value={this.state.frequency} onChange={this.onFreqChange}>
                         <>
                             <option value="">Select a frequency</option>
@@ -97,10 +97,10 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                         </>
                     </Form.Select>
                     </Col>
-                    <Col sm={1} className="main-form-label"></Col>
+                    <Col sm={1} className="v-form-label"></Col>
                 </Row>
                 <Row>
-                    <Col sm={3} className="main-form-label">Site</Col>
+                    <Col sm={3} className="v-form-label">Site</Col>
                     <Col sm={8} className="main-form-input">
                         <Form.Select key="itemSite" value={this.state.siteId} onChange={this.onSiteChange}>
                             <>
@@ -113,14 +113,14 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                             </>
                         </Form.Select>
                     </Col>
-                    <Col sm={1} className="main-form-label"></Col>
+                    <Col sm={1} className="v-form-label"></Col>
                 </Row>
                 <Row>
                     <Col sm={3}></Col>
                     <Col className="connector-config-form-btns">
                         <Button variant="light" disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
                     </Col>
-                    <Col sm={1} className="main-form-label"></Col>
+                    <Col sm={1} className="v-form-label"></Col>
                 </Row>
             </div>
         )
@@ -272,9 +272,9 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
                 <Row>
                     <Col >
                         <div className="connector-config-form">
-                                {
-                                    connector ? <ConnectorView connector={connector} /> : <div />
-                                }
+                            {
+                                connector ? <ConnectorView connector={connector} /> : <div />
+                            }
                         </div>
                     </Col>
                     <Col>
@@ -478,31 +478,31 @@ export const InventoryItemsView = (props: any) => {
         let items = inventory.items;
         return (
             <LayoutPage microApp={greenHouseApp}  >
-                    <Toast >
-                        <Toast.Header closeButton={false}>
-                            <span className="me-auto">
-                                Manage Inventory Items
-                            </span>
-                            <span className="button" onClick={clearItems}>Clear All</span>
-                        </Toast.Header>
-                        <Toast.Body>
-                            {
-                                itemForm()
-                            }
-                            {
-                                items.length > 0 ? <Row>
-                                    <Col>
-                                        <DataTable data={getInventoryItemsData()} />
-                                    </Col>
-                                </Row> : ""
-                            }
+                <Toast >
+                    <Toast.Header closeButton={false}>
+                        <span className="me-auto">
+                            Manage Inventory Items
+                        </span>
+                        <span className="v-button" onClick={clearItems}>Clear All</span>
+                    </Toast.Header>
+                    <Toast.Body>
+                        {
+                            itemForm()
+                        }
+                        {
+                            items.length > 0 ? <Row>
+                                <Col>
+                                    <DataTable data={getInventoryItemsData()} />
+                                </Col>
+                            </Row> : ""
+                        }
 
-                        </Toast.Body>
+                    </Toast.Body>
 
-                        <Action inventory={inventory}
-                                next={{ label: "Next", path: props.next }}
-                                prev={{ label: "Back", path: props.prev }} />
-                    </Toast>
+                    <Action inventory={inventory}
+                        next={{ label: "Next", path: props.next }}
+                        prev={{ label: "Back", path: props.prev }} />
+                </Toast>
             </LayoutPage >
         )
     }

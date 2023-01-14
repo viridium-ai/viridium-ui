@@ -3,17 +3,12 @@
 }
 
 .v-layout .nav-link {
-
-    margin-right: 0.0em;
-}
-
-.v-layout .v-body {
-    gap: 0.5rem;
-    width: 100%;
+    margin-right: 1.0em;
+    margin-left: -1em;
 }
 
 .v-layout .v-layout-header-end {
-    margin-right: 1em;
+    margin-right: 2em;
 }
 
 .v-layout .v-body-nav {
@@ -32,19 +27,11 @@
     overflow: scroll;
 }
 
-.v-layout .v-footer {
-    padding: 12px;
-    background-color: rgb(240, 238, 238);
-    position: fixed;
-    bottom: 0;
-    font-size: small;
-    color: rgb(144, 144, 144);
-    width: 100%;
-}
-
 .v-layout .viridium-logo {
     width: 36px;
     margin-right: 4px;
+
+    margin-top: -8px;
 }
 
 .v-layout .nav-icon {
@@ -71,12 +58,34 @@
     background-color: rgb(214, 214, 214);
 }
 
+.v-layout .v-page-header {
+    width: 100%;
+}
+
+.v-layout .v-page-body {
+    width: 100%;
+    display:flex;
+}
+
+.v-layout .v-page-footer {
+    padding: 12px;
+    background-color: rgb(240, 238, 238);
+    position: fixed;
+    bottom: 0;
+    font-size: small;
+    color: rgb(144, 144, 144);
+    width: 100%;
+}
+
 .v-layout .notifications-icon {
     background-color:rgba(255, 0, 0, 0.802);
+    border-radius: 6px;
     color :white;
     padding:2px;
     margin-left: .2rem;
-
+    position: relative;
+    top:-10px;
+    left:-6px;
 }
 .v-layout .actions-menu {
     margin-right: 1em;

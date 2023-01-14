@@ -107,14 +107,14 @@ export const LoginForm = (props: any) => {
                 {
                     ctxValue => {
                         return <LayoutPage microApp={homeApp} >
-                            <div className="security-app">
-                                <Container className='login'>
-                                    <Row className='panel-header' >
-                                        <Col className='panel-header-title'>
+                            <div id="security-app" className="security-app">
+                                <Container className='v-form'>
+                                    <Row className='v-header' >
+                                        <Col className="v-title">
                                             Sign In
                                         </Col>
                                     </Row>
-                                    <Row className='panel-body'>
+                                    <Row className='v-body'>
                                         <Form ref={(form: any) => messageForm = form} onSubmit={(event) => {
                                             event.preventDefault();
                                             submit(ctxValue);
@@ -141,7 +141,7 @@ export const LoginForm = (props: any) => {
                                                     }}
                                                     placeholder="Password" />
                                             </Form.Group>
-                                            <Form.Group className="form-buttons" >
+                                            <Form.Group className="v-buttons" >
                                                 <Button variant="primary" type="submit">
                                                     Sign in
                                                 </Button>{' '}
@@ -151,12 +151,12 @@ export const LoginForm = (props: any) => {
                                             </Form.Group>
                                         </Form>
                                     </Row>
-                                    <Row className='panel-body'>
-                                        <Col className='panel-link'>
+                                    <Row className='v-footer'>
+                                        <Col className='v-link'>
                                             <NavLink as="a" href="/signup">Don't have account yet?</NavLink>
                                         </Col>
                                     </Row>
-                                    <Row className='panel-footer'>
+                                    <Row>
                                         <div className='warning-box' >
                                             <Alert show={state.message !== ''} variant='danger'>
                                                 {state.message}
@@ -224,14 +224,14 @@ export const SignupForm = (props: any) => {
                 {
                     ctxValue => {
                         return <LayoutPage microApp={homeApp} >
-                            <div className="security-app">
-                                <Container className='login'>
-                                    <Row className='panel-header'>
-                                        <Col className='panel-header-title'>
+                            <div id="signup-app" className="security-app">
+                                <Container className='v-form'>
+                                    <Row className='v-header'>
+                                        <Col className='v-title'>
                                             Sign Up
                                         </Col>
                                     </Row>
-                                    <Row className='panel-body'>
+                                    <Row className='v-body'>
                                         <Form ref={(form: any) => messageForm = form} onSubmit={(event) => {
                                             event.preventDefault();
                                             signupAction(ctxValue);
@@ -269,7 +269,7 @@ export const SignupForm = (props: any) => {
                                                     placeholder="Retry Password" />
                                             </Form.Group>
 
-                                            <Form.Group className="form-buttons" >
+                                            <Form.Group className="v-buttons" >
                                                 <Button variant="primary" type="submit">
                                                     Submit
                                                 </Button>{' '}
@@ -279,8 +279,8 @@ export const SignupForm = (props: any) => {
                                             </Form.Group>
                                         </Form>
                                     </Row>
-                                    <Row className='panel-body'>
-                                        <Col className='panel-link'>
+                                    <Row className='v-footer'>
+                                        <Col className='v-link'>
                                             <NavLink as="a" href="/login">Already have an account?</NavLink>
                                         </Col>
                                     </Row>

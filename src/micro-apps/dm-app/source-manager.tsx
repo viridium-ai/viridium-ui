@@ -49,7 +49,7 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
     }
     render() {
         return (
-            <div className="details-box">
+            <div className="v-panel-container">
                 <Row className="details-row">
                     <Col className="details-label" sm={3}>Data Source Name
                     </Col>
@@ -157,7 +157,7 @@ class SourceConfigDetails extends React.Component<SourceDetailsProps, SourceDeta
     }
     render() {
         return (
-            <div className="details-box">
+            <div className="v-panel-container">
                 <Row className="details-row">
                     <Col className="details-label" sm={3}>Data Source Name</Col>
                     <Col className="details-value" sm={9}>{this.state.row.dataSourceName}</Col>

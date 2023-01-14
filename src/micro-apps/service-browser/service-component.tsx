@@ -182,7 +182,7 @@ export class EntityForm extends Component<FormProp> {
 
     render() {
         return (
-            <Container className="panel-container">
+            <Container className="v-container">
                 <Title title={this.props.title} />
                 <Row>
                     <Form ref={(form: any) => this.messageForm = form} onSubmit={this.onSubmit}>
@@ -211,32 +211,30 @@ interface EntityDetailsProp {
 }
 
 export class EntityDetails extends Component<EntityDetailsProp> {
-    renderField = (field: {name?:string, value:any}) => {
+    renderField = (field: { name?: string, value: any }) => {
         return (
             <Row className='entity-value'>
-                <Col sm={3} className='field-label'>{field.name}</Col>
-                <Col sm={9} className='field-value'>{field.value}</Col>
+                <Col sm={3} className='v-field-label'>{field.name}</Col>
+                <Col sm={9} className='v-field-value'>{field.value}</Col>
             </Row>
         )
     }
-
     renderFields = () => {
         let entity = this.props.entity;
         let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(entity) : entityToArray(entity);
+        let rows = fieldDefs.filter((def: any) => {
+            return !(['password', 'lov'].includes(def.type) || def instanceof Array);
+        });
         return (
-            fieldDefs.filter((def: any) => !(['password', 'lov'].includes(def.type)) || entity[def.name] instanceof Array)
-                .map((def: FieldDefinition, idx: number) => {
-                    return this.renderField({name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name]})
-                }
+            rows.map((def: FieldDefinition, idx: number) =>
+                this.renderField({ name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name] })
             )
         )
     }
-
     render() {
-        let actions = this.props.actions ? [...this.props.actions] : [];
         return (
-            <div className="schema-app panel-container">
-                <div className="panel-body">
+            <div className="schema-app v-container">
+                <div className="v-body">
                     {this.renderFields()}
                 </div>
             </div>
@@ -326,10 +324,10 @@ export class EntityList extends Component<ListTableProp> {
         });
 
         return (
-            <div className="schema-app panel-container">
+            <div className="schema-app v-panel-container">
                 <Title title={state.title} actions={actions} />
-                <div className='panel-body'>
-                    <div className='panel-content'>
+                <div className='v-body'>
+                    <div className='v-panel-content'>
                         {
                             entities.length > 0 ? this.viewMode === 'Table' ?
                                 <Table striped bordered hover>

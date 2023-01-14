@@ -47,9 +47,6 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
     let signedIn = securityManager.isSignedIn();
     let headerOps = props.microApp.getHeader();
-    const profile = () => {
-
-    }
     const ui = () => (
         headerOps.visible ? <Navbar id="app-header" bg="none" className="v-app-header" expand="lg">
             <Navbar.Brand as='span'>
@@ -62,12 +59,12 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                 </Nav>
                 {
                     signedIn ? <>
-                        <Nav className="me-end">
-                            <span>Notifications</span>
+                        <Nav className="actions-menu" >
+                            Notifications
                             <VscMail className="notifications-icon" />
                         </Nav>
-                        <Nav className="me-end">
-                            <NavDropdown className="actions-menu" title={securityManager.getProfileName()} id="profile-nav-dropdown">
+                        <Nav className="actions-menu" >
+                            <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
                                 <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={(e: any) => {
@@ -75,7 +72,6 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                                     navigate("/", { replace: true });
                                 }}> Sign out</NavDropdown.Item>
                             </NavDropdown>
-
                         </Nav>
                     </> : <></>
                 }
@@ -138,16 +134,16 @@ export class LayoutBodyNav extends Component<BodyNavProps> {
 export class LayoutFooter extends Component {
     render() {
         return (
-            <div className="v-footer .bg-light">
+            <div className="v-page-footer .bg-light">
                 Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.
             </div>
         )
     }
 }
 
-export const LayoutPage = (props: {microApp:IMicroApp, children:any}) => {
+export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
     const microApp: MicroApp = props.microApp;
-   //  const routeItem: IRouteItem = props.routeItem;
+    //  const routeItem: IRouteItem = props.routeItem;
     const navigate = useNavigate();
     useEffect(() => {
         if (microApp.isSecure() && !securityManager.isSignedIn()) {
@@ -161,7 +157,7 @@ export const LayoutPage = (props: {microApp:IMicroApp, children:any}) => {
             <div className="v-layout">
                 <LayoutHeader microApp={microApp} />
                 <ApplicationHeader microApp={microApp} />
-                <div className={`${microApp.getName()} v-body`}>
+                <div className={`${microApp.getName()} v-page-body`}>
                     {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
                     {props.children}
                 </div>

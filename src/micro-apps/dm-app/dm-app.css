@@ -120,13 +120,7 @@
     padding: 0px 2px;
 }
 
-.dm-app .details-box {
-    padding: 14px;
-    background-color: rgb(241, 241, 241);
-    border-radius: 8px;
-    margin-bottom: 4px;
-}
-
+ 
 .dm-app .details-btn {
     text-align: right;
     margin: .5em 0em;

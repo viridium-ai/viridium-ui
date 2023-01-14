@@ -1,4 +1,4 @@
-import { localCache } from "../utils/cache-manager";
+import { localCache } from "../utils/v-cache-manager";
 import { Company, Inventory } from "../micro-apps/ghg-app/inventory-builder/model";
 
 export const getConfigs = (): any => {

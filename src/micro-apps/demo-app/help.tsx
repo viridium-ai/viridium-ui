@@ -1,6 +1,6 @@
 
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout'
+import { LayoutPage } from '../../components/v-layout'
 import { demoApp } from './demo-app';
 
 ;
@@ -8,8 +8,8 @@ import { demoApp } from './demo-app';
 export const Help = (props: any) => {
     const ui = () => {
         return (
-            <LayoutPage microApp={demoApp} withAppHeader={true} routeItem={{ name: '' }}>
-                <div className="home-body">
+            <LayoutPage microApp={demoApp}>
+                <div className="v-body">
                     <div className="v-body-nav">
                         <Toast >
                             <Toast.Body>
@@ -31,7 +31,7 @@ export const Help = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
+                    <div className="v-body-main">
                         <div className="dashboard-panel">
                         <Toast >
                                 <Toast.Header closeButton={false}>

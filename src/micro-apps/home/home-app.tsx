@@ -1,23 +1,22 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/micro-app";
+import { MicroApp, RouteItem } from "../../common/v-app";
 import { About } from "./about";
 import { Industries } from "./industries";
 import { Products } from "./products";
 import { Solutions } from "./solutions";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
-import { securityManager } from "../../common/security/security-manager";
+import { securityManager } from "../../common/security/v-security-manager";
 
-class HomeApp implements MicroApp {
-  
-  getTitle = (): string => {
-    return "VIRIDIUM.AI";
-  }
+class HomeApp extends MicroApp {
   
   public getName = () => {
     return "home-app";
+  }
+  public isSecure = () : boolean =>  {
+    return false;
   }
 
   private routeItems: Array<RouteItem> = [

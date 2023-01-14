@@ -1,13 +1,12 @@
 
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout';
+import { LayoutPage } from '../../components/v-layout';
 import { dataSourceManager } from './dm-app';
 
 export const Help = (props: any) => {
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
-                <div className="home-body">
+            <LayoutPage microApp={dataSourceManager} >
                     <div className="v-body-nav">
                         <Toast >
                             <Toast.Body>
@@ -29,7 +28,7 @@ export const Help = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
+                    <div className="v-body-main">
                         <div className="dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
@@ -53,7 +52,6 @@ export const Help = (props: any) => {
 
                         </div>
                     </div>
-                </div>
             </LayoutPage >
         )
     }

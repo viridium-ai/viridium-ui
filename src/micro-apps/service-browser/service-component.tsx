@@ -3,11 +3,10 @@ import { Form, Button, Container, Row, Table, Col, Toast, ToastContainer } from 
 import { FieldValue, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 import './service-component.css';
-import { restClient } from '../../common/rest-client';
-import { TitleProp, Action } from '../../common/micro-app';
+import { restClient } from '../../common/v-client';
+import { TitleProp, Action } from '../../common/v-app';
 
 export class Title extends Component<TitleProp> {
-
     renderLinks = () => {
         const actions = this.props.actions ? this.props.actions : []
         return (
@@ -237,7 +236,6 @@ export class EntityDetails extends Component<EntityDetailsProp> {
         let actions = this.props.actions ? [...this.props.actions] : [];
         return (
             <div className="schema-app panel-container">
-                <Title title={this.props.title} actions={actions} />
                 <div className="panel-body">
                     {this.renderFields()}
                 </div>

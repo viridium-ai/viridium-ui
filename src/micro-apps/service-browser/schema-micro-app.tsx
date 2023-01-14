@@ -1,9 +1,9 @@
-import { restClient } from '../../common/rest-client';
-import { localCache } from '../../utils/cache-manager';
+import { restClient } from '../../common/v-client';
+import { localCache } from '../../utils/v-cache-manager';
 import { Schema, objectToArray, Service } from './schema-types';
-import { MicroApp } from "../../common/micro-app";
+import { MicroApp } from "../../common/v-app";
 
-class SchemaApp implements MicroApp {
+class SchemaApp extends MicroApp {
 
     public getApiDoc = (callback : any = undefined) => {
         let res = localCache.get('/v3/api-docs');

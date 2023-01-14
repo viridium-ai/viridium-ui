@@ -1,6 +1,6 @@
 import { Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout'
-import TreeView from '../../components/tree-view';
+import { LayoutPage } from '../../components/v-layout'
+import TreeView from '../../components/v-tree-view';
 import { demoApp } from './demo-app';
 
 

@@ -1,11 +1,42 @@
-import { StringUtils } from '../utils/string-utils';
+import { StringUtils } from '../utils/v-string-utils';
 
-export interface MicroApp {
-    getRouteItems() : IRouteItem[];
+export interface IMicroApp {
+    getRouteItems () : IRouteItem[];
     getNavItems() : IRouteItem[];
     getRoutes() : any;
-    getTitle () : string;
     getName () : string;
+    getTitle () : string;
+    getHeader () : {visible:boolean, title:string};
+    isSecure () : boolean;
+}
+
+export abstract class MicroApp implements IMicroApp {
+    getRouteItems(): IRouteItem[] {
+        throw new Error('Method not implemented.');
+    }
+    getNavItems(): IRouteItem[] {
+        throw new Error('Method not implemented.');
+    }
+    getRoutes() {
+        throw new Error('Method not implemented.');
+    }
+    
+    getName(): string {
+        throw new Error('Method not implemented.');
+    }
+    getTitle () : string {
+        return this.getName();
+    }
+    getHeader = () : any  =>{
+        return {
+            title:this.getTitle(),
+            visible:true
+        };
+    }
+
+    isSecure = () => {
+        return true;
+    }
 }
 
 export interface IRouteItem {

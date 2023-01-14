@@ -43,10 +43,17 @@ body {
   }
 }
 
-.viridium-app .v-body {
-  width: 100%;
-  display: flex;
-  gap: 0.5rem;
+.viridium-app .v-panel {
+  padding: 0px;
+  border: 1px solid rgb(220, 220, 220);
+}
+
+.viridium-app .v-title {
+  padding: 12px;
+  font-size: larger;
+  font-weight: 500;
+  background-color: rgb(68, 36, 156);
+  color: wheat;
 }
 
 .viridium-app .v-summary {
@@ -109,9 +116,3 @@ body {
   padding: .5rem 1.5rem;
 }
 
-.viridium-app .v-title {
-  padding-top:2em;
-  padding-left: 1.4rem;
-  font-size: medium;
-  font-weight: 600;
-}

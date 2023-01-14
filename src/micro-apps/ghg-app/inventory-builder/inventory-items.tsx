@@ -1,10 +1,11 @@
 import { Component, useState } from "react";
 
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
-import { LayoutPage } from "../../../components/layout";
-import { DataTable } from "../../../components/table";
-import { Action } from "../../../components/wizard";
-import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/viridium-config";
+import { LayoutPage } from "../../../components/v-layout";
+import { DataTable } from "../../../components/v-table";
+import { Action } from "../../../components/v-wizard";
+import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/v-config";
+import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";
 import { Company, Inventory, InventoryItem } from "./model";
 
@@ -269,6 +270,13 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
                     })}
                 </Form.Select>
                 <Row>
+                    <Col >
+                        <div className="connector-config-form">
+                                {
+                                    connector ? <ConnectorView connector={connector} /> : <div />
+                                }
+                        </div>
+                    </Col>
                     <Col>
                         {
                             connector ? <div className="connector-config-form">
@@ -290,13 +298,6 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
 
                             </div> : <div>Please select a connector for your data</div>
                         }
-                    </Col>
-
-                    <Col >
-                        <div className="connector-config-form">
-                            {connector.name} <p />
-                            {connector.description} <p />
-                        </div>
                     </Col>
                 </Row>
 
@@ -476,7 +477,7 @@ export const InventoryItemsView = (props: any) => {
     const ui = () => {
         let items = inventory.items;
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp}  >
                     <Toast >
                         <Toast.Header closeButton={false}>
                             <span className="me-auto">

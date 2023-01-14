@@ -1,4 +1,4 @@
-import { LayoutPage } from '../../components/layout'
+import { LayoutPage } from '../../components/v-layout'
 import { Row, Col } from 'react-bootstrap';
 import { homeApp } from './home-app';
 

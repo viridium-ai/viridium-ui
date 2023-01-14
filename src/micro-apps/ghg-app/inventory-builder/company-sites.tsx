@@ -2,8 +2,8 @@
 import { Component } from "react";
 
 import { Toast, Row, Col, Button } from "react-bootstrap";
-import { LayoutPage } from "../../../components/layout";
-import { getConfigs } from "../../../config/viridium-config";
+import { LayoutPage } from "../../../components/v-layout";
+import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { greenHouseApp } from "../ghg-app";
 import { Company, Site } from "./model";
@@ -39,7 +39,7 @@ export class CompanySites extends Component<CompanySitesProps, AddressViewState>
     render = () => {
         const configs = getConfigs();
         return (
-            <LayoutPage microApp={inventoryConfigApp} withAppHeader={true} >
+            <LayoutPage microApp={inventoryConfigApp}  >
 
                 <div className="v-body">
                     <div className="v-body-main">
@@ -104,7 +104,7 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
     render = () => {
         const configs = getConfigs();
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp} >
 
                 <div className="v-body">
                     <div className="v-body-main">

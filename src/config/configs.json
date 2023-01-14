@@ -1,19 +1,23 @@
 {
+    "title": "VIRIDIUM.AI",
     "description": "POC configuration for Viridium Data Platform",
-    "jobs": [{
-        "name": "daily-travel-job",
-        "type": "etl",
-        "source": {
-            "name": "BusinessTravel"
-        },
-        "transformer": {},
-        "sink": {
-            "name": "BusinessTravel",
-            "config": {}
-        },
-        "schedule": {}
-    }],
-    "sources": [{
+    "jobs": [
+        {
+            "name": "daily-travel-job",
+            "type": "etl",
+            "source": {
+                "name": "BusinessTravel"
+            },
+            "transformer": {},
+            "sink": {
+                "name": "BusinessTravel",
+                "config": {}
+            },
+            "schedule": {}
+        }
+    ],
+    "sources": [
+        {
             "name": "Amazon S3",
             "description": "AWS cloud storage",
             "connector": {
@@ -75,21 +79,26 @@
             }
         }
     ],
-    "transformers": [{
-        "name": "BusinessTravel",
-        "description": "Map business travel dataset",
-        "connector": {
-            "name": "",
-            "driver": "com.viridium.mapper.BusinessTravelMapper"
-        },
-        "mapping": [{
-            "dateFrom": "01-01-2021",
-            "dateTo": "01-01-2022",
-            "category": "",
-            "miles": 23145154
-        }]
-    }],
-    "managedConnectors": [{
+    "transformers": [
+        {
+            "name": "BusinessTravel",
+            "description": "Map business travel dataset",
+            "connector": {
+                "name": "",
+                "driver": "com.viridium.mapper.BusinessTravelMapper"
+            },
+            "mapping": [
+                {
+                    "dateFrom": "01-01-2021",
+                    "dateTo": "01-01-2022",
+                    "category": "",
+                    "miles": 23145154
+                }
+            ]
+        }
+    ],
+    "managedConnectors": [
+        {
             "id": "1",
             "name": "Microsoft PowerBI",
             "description": "Microsoft cloud analytic platform",
@@ -197,14 +206,16 @@
             }
         }
     ],
-    "inventory": [{
+    "inventory": [
+        {
             "id": "1",
             "name": "Data Inventory for Big City Airport",
             "updatedAt": "26/12/2022",
             "status": "Uploaded",
             "updatedBy": "Val",
             "notes": "This is final onboarding data inventory for Big City Airport",
-            "items": [{
+            "items": [
+                {
                     "id": "1",
                     "dataSourceName": "Building Mgmt System",
                     "description": "Non Tenant Buildings",
@@ -212,9 +223,7 @@
                     "tech": "Schneider",
                     "type": "CSV File",
                     "status": 2,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 },
                 {
                     "id": "2",
@@ -224,9 +233,7 @@
                     "tech": "SAP",
                     "type": "API",
                     "Integration Status": 1,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 },
                 {
                     "id": "3",
@@ -236,9 +243,7 @@
                     "tech": "Oracle",
                     "type": "API",
                     "Integration Status": 2,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 },
                 {
                     "id": "4",
@@ -248,9 +253,7 @@
                     "tech": "Block Chain",
                     "type": "HyperLedger API",
                     "status": 0,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 }
             ]
         },
@@ -261,7 +264,8 @@
             "status": "Reviewed",
             "updatedBy": "Val",
             "notes": "Data inventory for Big Drinking Party",
-            "items": [{
+            "items": [
+                {
                     "id": "1",
                     "dataSourceName": "Business Travel Activity",
                     "description": "Apache Hadoop File System",
@@ -269,9 +273,7 @@
                     "tech": "Apache HDFS",
                     "type": "TSV File",
                     "status": 1,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 },
                 {
                     "id": "2",
@@ -281,14 +283,14 @@
                     "tech": "Oracle",
                     "type": "Database",
                     "status": 2,
-                    "configuration": {
-
-                    }
+                    "configuration": {}
                 }
             ]
         }
     ],
-    "managedDataSource": [{
+    "managedDataSource": [
+        {
+            "id": "1",
             "text": "Import Data Inventory",
             "state": {
                 "selected": true,
@@ -296,99 +298,133 @@
             }
         },
         {
+            "id": "2",
             "text": "Setup",
             "state": {
                 "expanded": true
             },
-            "children": [{
+            "children": [
+                {
+                    "id": "3",
                     "text": "Create Data Inventory"
                 },
                 {
+                    "id": "4",
                     "text": "Manage Data Inventory"
                 }
             ]
         }
     ],
-    "managedData": [{
+    "managedData": [
+        {
+            "id": "1",
             "text": "Data Integration",
             "state": {
                 "expanded": true
             },
-            "children": [{
-                "text": "Sources >"
-            }]
+            "children": [
+                {
+                    "id": "2",
+                    "text": "Sources >"
+                }
+            ]
         },
         {
+            "id": "3",
             "text": "Integrations",
             "state": {
                 "expanded": true
             },
-            "children": [{
+            "children": [
+                {
+                    "id": "114",
                     "text": "Microsoft Sustainability >"
                 },
                 {
+                    "id": "4",
                     "text": "SAP Carbon Data Network >"
                 },
                 {
+                    "id": "6",
                     "text": "Salesforce Net Zero Cloud >"
                 },
                 {
+                    "id": "7",
                     "text": "Mapping >"
                 }
             ]
         },
         {
+            "id": "8",
             "text": "Data Lakes",
             "state": {
                 "expanded": false
             },
-            "children": [{
-                "text": "Reporting"
-            }]
+            "children": [
+                {
+                    "id": "9",
+                    "text": "Reporting"
+                }
+            ]
         },
         {
+            "id": "10",
             "text": "Data Quality",
             "state": {
                 "expanded": false
             },
-            "children": [{
-                "text": "Dashboard"
-            }]
+            "children": [
+                {
+                    "id": "11",
+                    "text": "Dashboard"
+                }
+            ]
         },
         {
+            "id": "12",
             "text": "Data Processing",
             "state": {
                 "expanded": false
             },
-            "children": [{
+            "children": [
+                {
+                    "id": "13",
                     "text": "Jobs >"
                 },
                 {
+                    "id": "14",
                     "text": "Enrichment >"
                 },
                 {
+                    "id": "15",
                     "text": "Aggregation >"
                 }
             ]
         },
         {
+            "id": "16",
             "text": "Setup",
             "state": {
                 "expanded": false
             },
-            "children": [{
+            "children": [
+                {
+                    "id": "17",
                     "text": "Unit Conversions"
                 },
                 {
+                    "id": "18",
                     "text": "Rules"
                 },
                 {
+                    "id": "19",
                     "text": "Alerts"
                 }
             ]
         }
     ],
-    "dataCoverageScopes": [{
+    "dataCoverageScopes": [
+        {
             "id": "1",
             "value": "Company",
             "label": "Company"
@@ -404,7 +440,8 @@
             "label": "Process/Activity"
         }
     ],
-    "environmentalCategories": [{
+    "environmentalCategories": [
+        {
             "id": "1",
             "value": "Carbon",
             "label": "Carbon"
@@ -420,7 +457,8 @@
             "label": "Waste"
         }
     ],
-    "valueChainMasterCategories": [{
+    "valueChainMasterCategories": [
+        {
             "id": "1",
             "value": "Landside",
             "label": "Landside"
@@ -436,7 +474,8 @@
             "label": "Waste"
         }
     ],
-    "valueChainCategories": [{
+    "valueChainCategories": [
+        {
             "id": "1",
             "value": "Landside",
             "label": "Landside"
@@ -452,7 +491,8 @@
             "label": "Waste"
         }
     ],
-    "valueChainSubCategories": [{
+    "valueChainSubCategories": [
+        {
             "id": "1",
             "value": "Landside",
             "label": "Landside"
@@ -468,7 +508,8 @@
             "label": "Waste"
         }
     ],
-    "standards": [{
+    "standards": [
+        {
             "id": "1",
             "label": "ISSB"
         },
@@ -493,7 +534,8 @@
             "label": "EPD"
         }
     ],
-    "regulations": [{
+    "regulations": [
+        {
             "id": "1",
             "label": "NFRD (Non Financial Reporting Directive)"
         },
@@ -522,7 +564,8 @@
             "label": "Low Carbon Benchmark Regulation"
         }
     ],
-    "questions": [{
+    "questions": [
+        {
             "id": "1",
             "name": "Where do we get fuel usage data"
         },
@@ -535,7 +578,8 @@
             "name": "How do we get procurement data"
         }
     ],
-    "viridiumIndustries": [{
+    "viridiumIndustries": [
+        {
             "id": "1",
             "name": "Transportation: Airport"
         },
@@ -628,17 +672,20 @@
         "Salesforce 360 Platform"
     ],
     "valueChain": {
-        "categories": [{
+        "categories": [
+            {
                 "id": "1",
                 "label": "Landside",
-                "categories": [{
+                "categories": [
+                    {
                         "id": "0",
                         "label": "Airport"
                     },
                     {
                         "id": "1",
                         "label": "Airline"
-                    }, {
+                    },
+                    {
                         "id": "2",
                         "label": "Manufacture"
                     }
@@ -647,14 +694,16 @@
             {
                 "id": "2",
                 "label": "Shopping",
-                "categories": [{
+                "categories": [
+                    {
                         "id": "0",
                         "label": "Transport"
                     },
                     {
                         "id": "1",
                         "label": "Manufacture"
-                    }, {
+                    },
+                    {
                         "id": "2",
                         "label": "Waste"
                     }
@@ -752,7 +801,8 @@
             ]
         ]
     },
-    "frequencies": [{
+    "frequencies": [
+        {
             "id": "monthly",
             "name": "Monthly"
         },
@@ -765,7 +815,8 @@
             "name": "Yearly"
         }
     ],
-    "inventoryTypes": [{
+    "inventoryTypes": [
+        {
             "id": "monthly",
             "name": "Monthly"
         },
@@ -778,83 +829,102 @@
             "name": "Yearly"
         }
     ],
-    "scopes": [{
+    "scopes": [
+        {
             "id": "1",
             "name": "Scope 1",
-            "categories": [{
+            "categories": [
+                {
                     "id": "1",
                     "name": "Stationary Combustion",
-                    "types": [{
-                        "id": "Cars",
-                        "name": "Cars",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trucks",
-                        "name": "Trucks",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Ship",
-                        "name": "Ship",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trains",
-                        "name": "Trains",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Plans",
-                        "name": "Plans",
-                        "unit" : "Miles"
-                    }]
+                    "types": [
+                        {
+                            "id": "Cars",
+                            "name": "Cars",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trucks",
+                            "name": "Trucks",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Ship",
+                            "name": "Ship",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trains",
+                            "name": "Trains",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Plans",
+                            "name": "Plans",
+                            "unit": "Miles"
+                        }
+                    ]
                 },
                 {
                     "id": "2",
                     "name": "Mobile Combustion",
-                    "types": [{
-                        "id": "Cars",
-                        "name": "Cars",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trucks",
-                        "name": "Trucks",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Ship",
-                        "name": "Ship",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trains",
-                        "name": "Trains",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Plans",
-                        "name": "Plans",
-                        "unit" : "Miles"
-                    }]
+                    "types": [
+                        {
+                            "id": "Cars",
+                            "name": "Cars",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trucks",
+                            "name": "Trucks",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Ship",
+                            "name": "Ship",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trains",
+                            "name": "Trains",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Plans",
+                            "name": "Plans",
+                            "unit": "Miles"
+                        }
+                    ]
                 },
                 {
                     "id": "3",
                     "name": "Electricity",
-                    "types": [{
-                        "id": "Cars",
-                        "name": "Cars",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trucks",
-                        "name": "Trucks",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Ship",
-                        "name": "Ship",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trains",
-                        "name": "Trains",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Plans",
-                        "name": "Plans",
-                        "unit" : "Miles"
-                    }
+                    "types": [
+                        {
+                            "id": "Cars",
+                            "name": "Cars",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trucks",
+                            "name": "Trucks",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Ship",
+                            "name": "Ship",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trains",
+                            "name": "Trains",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Plans",
+                            "name": "Plans",
+                            "unit": "Miles"
+                        }
                     ]
                 }
             ]
@@ -862,63 +932,72 @@
         {
             "id": "2",
             "name": "Scope 2",
-            "categories": [{
+            "categories": [
+                {
                     "id": "1",
                     "name": "Transportation",
-                    "types": [{
-                        "id": "Cars",
-                        "name": "Cars",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trucks",
-                        "name": "Trucks",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Ship",
-                        "name": "Ship",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Trains",
-                        "name": "Trains",
-                        "unit" : "Miles"
-                    }, {
-                        "id": "Plans",
-                        "name": "Plans",
-                        "unit" : "Miles"
-                    }]
+                    "types": [
+                        {
+                            "id": "Cars",
+                            "name": "Cars",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trucks",
+                            "name": "Trucks",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Ship",
+                            "name": "Ship",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Trains",
+                            "name": "Trains",
+                            "unit": "Miles"
+                        },
+                        {
+                            "id": "Plans",
+                            "name": "Plans",
+                            "unit": "Miles"
+                        }
+                    ]
                 },
                 {
                     "id": "2",
                     "name": "Electricity",
-                    "types": [{
+                    "types": [
+                        {
                             "id": "Fossil Fuel",
                             "name": "Fossil Fuel",
-                            "unit" : "MWH"
+                            "unit": "MWH"
                         },
                         {
                             "id": "Used in Buildings",
                             "name": "Used in Buildings",
-                            "unit" : "MWH"
+                            "unit": "MWH"
                         },
                         {
                             "id": "Used in Buildings",
                             "name": "Used in Industry",
-                            "unit" : "MWH"
+                            "unit": "MWH"
                         }
                     ]
                 },
                 {
                     "id": "3",
                     "name": "Industry",
-                    "types": [{
+                    "types": [
+                        {
                             "id": "Fuel",
                             "name": "Fuel",
-                            "unit" : "MWH"
+                            "unit": "MWH"
                         },
                         {
                             "id": "Chemical",
                             "name": "Chemical Reactions",
-                            "unit" : "MWH"
+                            "unit": "MWH"
                         }
                     ]
                 }
@@ -927,73 +1006,76 @@
         {
             "id": "3",
             "name": "Scope 3",
-            "categories": [{
+            "categories": [
+                {
                     "id": "1",
                     "name": "Purchased Goods and Services",
-                    "types": [{
+                    "types": [
+                        {
                             "id": "cement",
                             "name": "Cement",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "plaster",
                             "name": "Plaster",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Paint",
                             "name": "Paint",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Timber",
                             "name": "Timber",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Concrete",
                             "name": "Concrete",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Cotton",
                             "name": "Cotton",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         }
                     ]
                 },
                 {
                     "id": "2",
                     "name": "Capital Goods",
-                    "types": [{
+                    "types": [
+                        {
                             "id": "cement",
                             "name": "Cement",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "plaster",
                             "name": "Plaster",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Paint",
                             "name": "Paint",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Timber",
                             "name": "Timber",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Concrete",
                             "name": "Concrete",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         },
                         {
                             "id": "Cotton",
                             "name": "Cotton",
-                            "unit" : "Kg"
+                            "unit": "Kg"
                         }
                     ]
                 },
@@ -1012,41 +1094,44 @@
                 {
                     "id": "6",
                     "name": "Business Travel",
-                    "types": [{
-                        "id": "plan",
-                        "name": "Plan",
-                        "unit" : "miles"
-                    },
-                    {
-                        "id": "car",
-                        "name": "Car",
-                        "unit" : "miles"
-                    },
-                    {
-                        "id": "train",
-                        "name": "Train",
-                        "unit" : "miles"
-                    }
-                ]
+                    "types": [
+                        {
+                            "id": "plan",
+                            "name": "Plan",
+                            "unit": "miles"
+                        },
+                        {
+                            "id": "car",
+                            "name": "Car",
+                            "unit": "miles"
+                        },
+                        {
+                            "id": "train",
+                            "name": "Train",
+                            "unit": "miles"
+                        }
+                    ]
                 },
                 {
                     "id": "7",
                     "name": "Employee commuting",
-                    "types": [{
-                        "id": "plan",
-                        "name": "Plan",
-                        "unit" : "miles"
-                    },
-                    {
-                        "id": "car",
-                        "name": "Car",
-                        "unit" : "miles"
-                    },
-                    {
-                        "id": "train",
-                        "name": "Train",
-                        "unit" : "miles"
-                    }]
+                    "types": [
+                        {
+                            "id": "plan",
+                            "name": "Plan",
+                            "unit": "miles"
+                        },
+                        {
+                            "id": "car",
+                            "name": "Car",
+                            "unit": "miles"
+                        },
+                        {
+                            "id": "train",
+                            "name": "Train",
+                            "unit": "miles"
+                        }
+                    ]
                 },
                 {
                     "id": "8",
@@ -1083,7 +1168,8 @@
             ]
         }
     ],
-    "companies": [{
+    "companies": [
+        {
             "id": "VA12312i3",
             "name": "Big Airport",
             "industry": "Transportation",
@@ -1100,7 +1186,8 @@
             "lastName": "Doe",
             "email": "john.deo@viridium.ai",
             "phone": "425-456-7896",
-            "sites": [{
+            "sites": [
+                {
                     "id": "2",
                     "name": "San Jose",
                     "companyId": "VA12312i3"
@@ -1134,7 +1221,8 @@
             "lastName": "Bro",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314",
-            "sites": [{
+            "sites": [
+                {
                     "id": "2",
                     "name": "Georgia",
                     "companyId": "VA12312i4"
@@ -1168,12 +1256,14 @@
             "lastName": "Dusk",
             "email": "joe.bro@drinkaway.ai",
             "phone": "345-456-2314",
-            "sites": [{
+            "sites": [
+                {
                     "id": "1",
                     "name": "Headquarters",
                     "companyId": "VA12312i5",
                     "location": "Austin TX, USA"
-                }, {
+                },
+                {
                     "id": "2",
                     "name": "Giga-Factory Fremont",
                     "companyId": "VA12312i5",
@@ -1185,7 +1275,6 @@
                     "companyId": "VA12312i5",
                     "location": "Berlin, DEU"
                 },
-
                 {
                     "id": "4",
                     "name": "Giga-Factory Shanghai",
@@ -1203,7 +1292,8 @@
     ],
     "reportMockData": {
         "id": "1",
-        "headers": [{
+        "headers": [
+            {
                 "type": "text",
                 "text": "Progress"
             },
@@ -1216,9 +1306,11 @@
                 "text": "Scope"
             }
         ],
-        "rows": [{
+        "rows": [
+            {
                 "id": "1",
-                "cols": [{
+                "cols": [
+                    {
                         "type": "text",
                         "text": "Shipping"
                     },
@@ -1234,7 +1326,8 @@
             },
             {
                 "id": "2",
-                "cols": [{
+                "cols": [
+                    {
                         "type": "text",
                         "text": "Business Travel"
                     },
@@ -1247,9 +1340,11 @@
                         "text": "Scope 1"
                     }
                 ]
-            }, {
+            },
+            {
                 "id": "3",
-                "cols": [{
+                "cols": [
+                    {
                         "type": "text",
                         "text": "Employee Commute"
                     },
@@ -1262,9 +1357,11 @@
                         "text": "Scope 3"
                     }
                 ]
-            }, {
+            },
+            {
                 "id": "4",
-                "cols": [{
+                "cols": [
+                    {
                         "type": "text",
                         "text": "Customer Commute"
                     },

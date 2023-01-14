@@ -1,13 +1,14 @@
 
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
-import { securityManager } from "../common/security/security-manager";
+import { securityManager } from "../common/security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
-import { IRouteItem, MicroApp } from "../common/micro-app";
+import { IMicroApp, IRouteItem, MicroApp } from "../common/v-app";
 import { VscMail } from "react-icons/vsc";
 
-import "./layout.css";
+import "./v-layout.css";
+import { getConfigs } from "../config/v-config";
 
 export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;
@@ -42,60 +43,58 @@ const NavItem = (props: any) => {
     )
 }
 
-export const ApplicationHeader = (props: any) => {
+export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
-    useEffect(() => {
-        if (!securityManager.isSignedIn()) {
-            navigate(`/login?from=/${props.microApp.getName()}`);
-        }
-    }, [navigate]);
+    let signedIn = securityManager.isSignedIn();
+    let headerOps = props.microApp.getHeader();
+    const profile = () => {
 
-    if (securityManager.isSignedIn()) {
-        let user = securityManager.getUserContext().user!;
-        const ui = () => (
-            <Navbar id="application-header" bg="none" className="application-header" expand="lg">
-                <Navbar.Brand as='span'>
-                    {user.firstName} {user.lastName} - {user.title}
-                </Navbar.Brand>
-                <Navbar.Collapse id="basic-navbar-nav">
-                    <Nav className="me-auto">
-                        {/* <Search /> */}
-                    </Nav>
-                    <Nav className="me-end">
-                        <span>Notifications</span>
-                        <VscMail className="notifications-icon" />
-                    </Nav>
-                    <Nav className="me-end">
-                        <NavDropdown className="actions-menu" title="Profile" id="profile-nav-dropdown">
-                            <NavDropdown.Item href="#action/3.1">Profile</NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item onClick={(e: any) => {
-                                securityManager.signout();
-                                navigate("/", { replace: true });
-                            }}> Sign out</NavDropdown.Item>
-                        </NavDropdown>
-                    </Nav>
-                </Navbar.Collapse>
-            </Navbar>
-        );
-        return ui();
-    } else {
-        return <Navbar bg="none" expand="lg">
-            <Navbar.Brand as='span'>
-                Not signed in
-            </Navbar.Brand>
-        </Navbar>
     }
+    const ui = () => (
+        headerOps.visible ? <Navbar id="app-header" bg="none" className="v-app-header" expand="lg">
+            <Navbar.Brand as='span'>
+                {headerOps.title}
+            </Navbar.Brand>
+
+            <Navbar.Collapse id="basic-navbar-nav">
+                <Nav className="me-auto">
+                    {/* <Search /> */}
+                </Nav>
+                {
+                    signedIn ? <>
+                        <Nav className="me-end">
+                            <span>Notifications</span>
+                            <VscMail className="notifications-icon" />
+                        </Nav>
+                        <Nav className="me-end">
+                            <NavDropdown className="actions-menu" title={securityManager.getProfileName()} id="profile-nav-dropdown">
+                                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={(e: any) => {
+                                    securityManager.signout();
+                                    navigate("/", { replace: true });
+                                }}> Sign out</NavDropdown.Item>
+                            </NavDropdown>
+
+                        </Nav>
+                    </> : <></>
+                }
+
+            </Navbar.Collapse>
+        </Navbar> : <></>
+    );
+    return ui();
 
 }
 
 export const LayoutHeader = (props: any) => {
     const microApp = props.microApp as MicroApp;
+    const configs = getConfigs();
     const ui = () => (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/">
                 <img src="../resources/green.png" className="viridium-logo" alt="Layout" ></img>
-                <span>{microApp.getTitle()}</span>
+                <span>{configs.title}</span>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
@@ -146,24 +145,29 @@ export class LayoutFooter extends Component {
     }
 }
 
-export const LayoutPage = (props: any) => {
+export const LayoutPage = (props: {microApp:IMicroApp, children:any}) => {
     const microApp: MicroApp = props.microApp;
-    const withAppHeader = props.withAppHeader !== undefined ? props.withAppHeader : false;
-
-    const routeItem: IRouteItem = props.routeItem;
+   //  const routeItem: IRouteItem = props.routeItem;
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (microApp.isSecure() && !securityManager.isSignedIn()) {
+            navigate(`/login?from=/${props.microApp.getName()}`);
+        }
+    });
 
     //UI 
-    return (
-        <div className="v-layout">
-            <LayoutHeader microApp={microApp} routeItem={routeItem} />
-            {
-                withAppHeader ? <ApplicationHeader microApp={microApp} /> : ""
-            }
-            <div className={`${microApp.getName()} home-body`}>
-                {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
-                {props.children}
+    const ui = () => {
+        return (
+            <div className="v-layout">
+                <LayoutHeader microApp={microApp} />
+                <ApplicationHeader microApp={microApp} />
+                <div className={`${microApp.getName()} v-body`}>
+                    {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
+                    {props.children}
+                </div>
+                <LayoutFooter />
             </div>
-            <LayoutFooter />
-        </div>
-    );
+        )
+    };
+    return ui();
 }

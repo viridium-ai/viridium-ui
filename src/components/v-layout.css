@@ -7,8 +7,7 @@
     margin-right: 0.0em;
 }
 
-.v-layout .home-body {
-    display: flex;
+.v-layout .v-body {
     gap: 0.5rem;
     width: 100%;
 }
@@ -28,7 +27,7 @@
     text-decoration: none;
 }
 
-.v-layout .home-body-main {
+.v-layout .v-body-main {
     flex: 70%;
     overflow: scroll;
 }
@@ -68,7 +67,7 @@
 .v-layout ul {
     padding-inline-start: 4px;
 }
-.v-layout .application-header {
+.v-layout .v-app-header {
     background-color: rgb(214, 214, 214);
 }
 

@@ -1,11 +1,11 @@
-import { LayoutPage } from '../../components/layout';
+import { LayoutPage } from '../../components/v-layout';
 import { homeApp } from './home-app';
 
 export const WelcomePage = (props: any) => {
 
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp} routeItem={{ name: '' }}>
+            <LayoutPage microApp={homeApp}>
                 <div className="welcome-page">
                     <div className="welcome-content">
                         <div className="welcome-splash">

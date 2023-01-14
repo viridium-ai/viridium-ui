@@ -1,31 +1,26 @@
 import { useState } from "react";
-import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../components/layout";
-import { Action } from "../../../components/wizard";
-import { getCompany, getInventory } from "../../../config/viridium-config";
+import { Toast } from "react-bootstrap";
+import { LayoutPage } from "../../../components/v-layout";
+import { Action } from "../../../components/v-wizard";
+import { getCompany, getInventory } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { ConnectorConfig } from "./inventory-items";
 import { Inventory } from "./model";
 export const InventoryExport = (props: any) => {
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
-    const onSelectContext = (evt: any) => {
-        let clone = { ...inventory };
-        clone.context = evt.target.value;
-        setInventory(clone);
-    }
+    const [inventory] = useState<Inventory>(getInventory());
+
     const ui = () => {
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp} >
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
-                                    Export Metrics
+                                    Export Configuration
                                 </span>
                                 {getCompany().name}
                             </Toast.Header>
                             <Toast.Body>
                                 <ConnectorConfig onReceiveData={(data: any) => { console.log(data) }} />
-                                
                             </Toast.Body>
                             <Action inventory={inventory} prev={{ label: "Back", path: props.prev }} />
                         </Toast>

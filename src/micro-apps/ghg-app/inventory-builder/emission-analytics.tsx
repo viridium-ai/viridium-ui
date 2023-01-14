@@ -1,12 +1,12 @@
-import { LayoutPage } from "../../../components/layout";
-import { getConfigs } from "../../../config/viridium-config";
+import { LayoutPage } from "../../../components/v-layout";
+import { getConfigs } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 
 export const Analytics = (props: any) => { 
     const configs = getConfigs();
     const ui = () => {
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp}  >
            
             </LayoutPage >
         )

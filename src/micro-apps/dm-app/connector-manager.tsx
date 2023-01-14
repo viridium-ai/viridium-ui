@@ -1,9 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { Component } from 'react';
 import { Row, Toast } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout';
-import TreeView from '../../components/tree-view';
-import { getConfigs } from '../../config/viridium-config';
+import { LayoutPage } from '../../components/v-layout';
+import TreeView from '../../components/v-tree-view';
+import { getConfigs } from '../../config/v-config';
 import { EntityDetails } from '../service-browser/service-component';
 import { dataSourceManager } from './dm-app';
 type NameValuePair = {
@@ -49,13 +48,14 @@ interface ConnectorViewState {
 interface ConnectorViewProps {
     connector: Connector
 }
-class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewState> {
+
+export class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewState> {
     constructor(props: ConnectorViewProps) {
         super(props);
         this.state = { connector: props.connector };
     }
-    onUpdateScope = (evt: any) => {
-
+    componentDidMount(): void {
+        
     }
     componentDidUpdate = (prevRow: ConnectorViewProps) => {
         if (this.props.connector.id !== prevRow.connector.id) {
@@ -79,20 +79,28 @@ class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewSta
     }
 }
 
-export const ConnectManagerView = (props: any) => {
-    const [connector, setConnector] = useState<Connector>();
-    var configs = getConfigs();
-    var managedConnectors: Array<Connector> = configs.managedConnectors;
+type ConnectManagerState = {
+    connector? : Connector
+}
 
-    const selectConnector = (data: any, target: any) => {
+export class ConnectManagerView extends Component<any, ConnectManagerState> {
+    managedConnectors : any;
+    constructor(props :any) {
+        super(props);
+        var configs = getConfigs();
+        this.managedConnectors = configs.managedConnectors;
+        this.state = {connector : this.managedConnectors[0]}
+    }
+  
+    selectConnector = (data: any, target: any) => {
         let id = target.id;
-        let c = managedConnectors.find((c: any) => id === c.id);
+        let c = this.managedConnectors.find((c: any) => id === c.id);
         if (c) {
-            setConnector(c);
+            this.setState({connector : c});
         }
     }
 
-    const getTreeData = () => {
+    getTreeData = () => {
         return {
             id: "viridium-connectors",
             text: "Viridium Connectors",
@@ -101,7 +109,7 @@ export const ConnectManagerView = (props: any) => {
                 selected: false,
                 expanded: false
             },
-            children: managedConnectors.map((connector) => {
+            children: this.managedConnectors.map((connector : any) => {
                 return {
                     id: connector.id,
                     text: connector.name,
@@ -114,38 +122,37 @@ export const ConnectManagerView = (props: any) => {
             })
         }
     }
-    const ui = () => {
+    render = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
-                <div className="home-body">
-                    <div className="v-body-nav">
-                        <Toast >
-                            <Toast.Body>
-                                <div className="header">
-                                    Manage Connector
-                                </div>
-                                <div className="item">
-                                    <TreeView onClick={selectConnector} data={getTreeData()} options={{ selectable: false, enableLinks: false }} />
-                                </div >
-                            </Toast.Body>
-                        </Toast>
-                    </div>
-                    <div className="home-body-main">
-                        <Toast >
-                            <Toast.Body>
-                                <div className="header">
-                                    Connector
-                                </div>
-                                <div className="item">
-                                    {
-                                        connector ? <ConnectorView connector={connector} /> : <div />
-                                    }</div >
-                            </Toast.Body>
-                        </Toast>
-                    </div>
+            <LayoutPage microApp={dataSourceManager}  >
+                <div className="v-body-nav">
+                    <Toast >
+                        <Toast.Body>
+                            <div className="header">
+                                Manage Connector
+                            </div>
+                            <div className="item">
+                                <TreeView onClick={this.selectConnector} data={this.getTreeData()}
+                                     options={{ selectable: false, enableLinks: false }} />
+                            </div >
+                        </Toast.Body>
+                    </Toast>
+                </div>
+                <div className="v-body-main">
+                    <Toast >
+                        <Toast.Body>
+                            <div className="header">
+                                Connector
+                            </div>
+                            <div className="item">
+                                {
+                                    this.state.connector ? <ConnectorView connector={this.state.connector} /> : <div />
+                                }
+                            </div >
+                        </Toast.Body>
+                    </Toast>
                 </div>
             </LayoutPage>
         )
     }
-    return ui();
 }

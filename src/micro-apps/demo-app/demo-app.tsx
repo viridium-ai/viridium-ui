@@ -1,14 +1,14 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/micro-app";
+import { MicroApp, RouteItem } from "../../common/v-app";
 import { Help } from "./help";
 
 import { TreeViewDemo } from "./tree-view";
 
 import './demo-app.css';
 
-class DemoApp implements MicroApp {
+class DemoApp extends MicroApp {
 
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Tree View", "Tree View", "Demo", "/demo-app/tree-view"),

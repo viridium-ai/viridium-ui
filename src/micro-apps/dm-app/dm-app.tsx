@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/micro-app";
+import { MicroApp, RouteItem } from "../../common/v-app";
 import { Dashboard } from "./dashboard";
 import { SourceManager } from "./source-manager";
 import { Help } from "./help";
@@ -7,7 +7,9 @@ import { ReportConfigPage } from "./report-page";
 import './dm-app.css';
 import { SchedulerPage } from "./scheduler-page";
 import { ConnectManagerView } from "./connector-manager";
-class DataSourceManager implements MicroApp {
+
+
+class DataSourceManager extends MicroApp {
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Dashboard", "Dashboard", "Data Management", "/dm-app/dashboard"),
     new RouteItem().init("Data Sources", "Source", "Data Management", "/dm-app/sources"),

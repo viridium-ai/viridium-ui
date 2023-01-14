@@ -6,7 +6,7 @@
     padding: 4px;
 }
 
-.dm-app .home-body-main {
+.dm-app .v-body-main {
     padding: 4px;
 }
 
@@ -108,8 +108,8 @@
     margin: 4px;
 }
 
-.dm-app .details-label {
-    padding: 2px;
+.dm-app .v-label {
+    padding: 10px;
 }
 
 .dm-app .details-value {

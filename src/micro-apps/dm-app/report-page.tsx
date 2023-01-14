@@ -1,8 +1,8 @@
 import { Component } from "react";
 import { Row, Col, Toast, Tabs, Tab, Form, Button } from "react-bootstrap";
-import { LayoutPage } from "../../components/layout"
-import { DataTable, DimensionView } from "../../components/table";
-import { getConfigs, getState, saveState } from "../../config/viridium-config";
+import { LayoutPage } from "../../components/v-layout"
+import { DataTable, DimensionView } from "../../components/v-table";
+import { getConfigs, getState, saveState } from "../../config/v-config";
 
 import { dataSourceManager } from "./dm-app";
 type ReportConfigState = {
@@ -101,8 +101,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
     render = () => {
         const configs = getConfigs();
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader={true} routeItem={{ name: "" }}>
-                <div className="home-body">
+            <LayoutPage microApp={dataSourceManager}>
                     <div className="v-body-nav">
                         <Toast >
                             <Toast.Header closeButton={false}>
@@ -119,7 +118,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
+                    <div className="v-body-main">
                         <div className="dashboard-panel">
                             <Tabs defaultActiveKey="customReports" id="uncontrolled-tab-example" className="mb-3" >
                                 <Tab eventKey="prebuiltReports" title="Pre Built Reports">
@@ -204,7 +203,6 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                             </Tabs>
                         </div>
                     </div>
-                </div>
             </LayoutPage >
         )
     }

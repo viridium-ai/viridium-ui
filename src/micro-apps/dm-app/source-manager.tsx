@@ -1,10 +1,10 @@
 import React from 'react';
 import { useState } from 'react';
 import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout';
-import { DataTable } from '../../components/table';
-import TreeView from '../../components/tree-view';
-import { getConfigs } from '../../config/viridium-config';
+import { LayoutPage } from '../../components/v-layout';
+import { DataTable } from '../../components/v-table';
+import TreeView from '../../components/v-tree-view';
+import { getConfigs } from '../../config/v-config';
 import { dataSourceManager } from './dm-app';
 interface Inventory {
     id: string,
@@ -355,8 +355,7 @@ export const SourceManager = (props: any) => {
     }
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader={true} >
-                <div className="home-body">
+            <LayoutPage microApp={dataSourceManager}>
                     <div className="v-body-nav">
                         <Toast >
                             <Toast.Body>
@@ -379,7 +378,7 @@ export const SourceManager = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
+                    <div className="v-body-main">
                         <div className="dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
@@ -387,7 +386,7 @@ export const SourceManager = (props: any) => {
                                 </Toast.Header>
                                 <Toast.Body>
                                     {<Row>
-                                        <Col sm={4}>Import Data Inventory</Col>
+                                        <Col className="v-label" sm={4}>Import Data Inventory</Col>
                                         <Col sm={8}>
                                             <Form.Select value={selectedInventory?.id} onChange={onSelectInventory} aria-label="">
                                                 <option >Select an inventory</option>
@@ -424,7 +423,6 @@ export const SourceManager = (props: any) => {
                             }
                         </div>
                     </div>
-                </div>
             </LayoutPage>
         )
     }

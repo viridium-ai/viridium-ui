@@ -1,7 +1,7 @@
 
 import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
-import { LayoutPage } from '../../components/layout'
-import { QuickLine, QuickPie } from '../../components/quick-charts';
+import { LayoutPage } from '../../components/v-layout'
+import { QuickLine, QuickPie } from '../../components/v-quick-charts';
 import { dataSourceManager } from './dm-app';
 
 /**
@@ -90,175 +90,173 @@ export const Dashboard = (props: any) => {
 
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader = {true} >
-                <div className="home-body">
-                    <div className="v-body-nav">
-                        <Toast >
-                            <Toast.Body>
-                                <div className="item">
-                                    Current Status
-                                </div>
-                                <div className="item">
-                                    Status YoY
-                                </div >
-                                <div className="item">
-                                    Activities
-                                </div>
-                                <div className="item">
-                                    Sources
-                                </div>
-                                <div className="item">
-                                    Scope
-                                </div>
-                            </Toast.Body>
-                        </Toast>
+            <LayoutPage microApp={dataSourceManager}  >
+                <div className="v-body-nav">
+                    <Toast >
+                        <Toast.Body>
+                            <div className="item">
+                                Current Status
+                            </div>
+                            <div className="item">
+                                Status YoY
+                            </div >
+                            <div className="item">
+                                Activities
+                            </div>
+                            <div className="item">
+                                Sources
+                            </div>
+                            <div className="item">
+                                Scope
+                            </div>
+                        </Toast.Body>
+                    </Toast>
+                    <Toast >
+                        <Toast.Header closeButton={false}>
+                            <strong className="me-auto">Total Emissions</strong>
+                        </Toast.Header>
+                        <Toast.Body>
+                            <div className="nav-chart-item">
+                                <QuickLine options={options} data={line_data} />
+                            </div >
+                            <div className="item">
+                                Sources
+                            </div >
+                            <div className="item">
+                                Activities
+                            </div>
+                            <div className="item">
+                                Scope
+                            </div>
+                        </Toast.Body>
+                    </Toast>
+                </div>
+                <div className="v-body-main">
+                    <div className="dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
-                                <strong className="me-auto">Total Emissions</strong>
+                                <strong className="me-auto">Progress</strong>
                             </Toast.Header>
                             <Toast.Body>
-                                <div className="nav-chart-item">
-                                    <QuickLine options={options} data={line_data} />
-                                </div >
-                                <div className="item">
-                                    Sources
-                                </div >
-                                <div className="item">
-                                    Activities
-                                </div>
-                                <div className="item">
-                                    Scope
-                                </div>
+                                <Row >
+                                    <Col xs={2}>
+                                        Acme Goal
+                                    </Col>
+                                    <Col xs={9}>
+                                        <ProgressBar variant="warning" now={30} />
+                                    </Col>
+                                    <Col xs={1}>
+
+                                    </Col>
+                                </Row>
+                                <Row >
+                                    <Col xs={2}>
+                                        Acme Special Project
+                                    </Col>
+                                    <Col xs={9}>
+                                        <ProgressBar variant="warning" now={60} />
+                                    </Col>
+                                    <Col xs={1}>
+
+                                    </Col>
+                                </Row>
+                                <Row >
+                                    <Col xs={2}>
+                                        Acme  Supply Chain Initiative
+                                    </Col>
+                                    <Col xs={9}>
+                                        <ProgressBar variant="danger" now={80} />
+                                    </Col>
+                                    <Col xs={1}>
+
+                                    </Col>
+                                </Row>
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
-                        <div className="dashboard-panel">
-                            <Toast >
-                                <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Progress</strong>
-                                </Toast.Header>
-                                <Toast.Body>
-                                    <Row >
-                                        <Col xs={2}>
-                                            Acme Goal
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="warning" now={30} />
-                                        </Col>
-                                        <Col xs={1}>
-
-                                        </Col>
-                                    </Row>
-                                    <Row >
-                                        <Col xs={2}>
-                                            Acme Special Project
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="warning" now={60} />
-                                        </Col>
-                                        <Col xs={1}>
-
-                                        </Col>
-                                    </Row>
-                                    <Row >
-                                        <Col xs={2}>
-                                            Acme  Supply Chain Initiative
-                                        </Col>
-                                        <Col xs={9}>
-                                            <ProgressBar variant="danger" now={80} />
-                                        </Col>
-                                        <Col xs={1}>
-
-                                        </Col>
-                                    </Row>
-                                </Toast.Body>
-                            </Toast>
+                    <div className="dashboard-panel">
+                        <div>
+                            <Row >
+                                <Col>
+                                    <Toast >
+                                        <Toast.Header closeButton={false}>
+                                            <strong className="me-auto">Trend</strong>
+                                        </Toast.Header>
+                                        <Toast.Body>
+                                            <Row >
+                                                <Col>
+                                                    <div className="panel-chart-item">
+                                                        <QuickLine options={options} data={line_data_2} />
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Toast.Body>
+                                    </Toast>
+                                </Col>
+                                <Col>
+                                    <Toast >
+                                        <Toast.Header closeButton={false}>
+                                            <strong className="me-auto">Trend</strong>
+                                        </Toast.Header>
+                                        <Toast.Body>
+                                            <Row>
+                                                <Col className="sub-panel">
+                                                    <div className="panel-pie-item">
+                                                        <QuickPie options={options} data={data} />
+                                                    </div>
+                                                    <div>
+                                                        Scope Distribution
+                                                    </div>
+                                                </Col>
+                                                <Col className="sub-panel">
+                                                    <div className="panel-pie-item">
+                                                        <QuickPie options={options} data={data} />
+                                                    </div>
+                                                    <div>
+                                                        Process Distribution
+                                                    </div>
+                                                </Col>
+                                            </Row>
+                                        </Toast.Body>
+                                    </Toast>
+                                </Col>
+                            </Row>
                         </div>
-                        <div className="dashboard-panel">
-                            <div>
-                                <Row >
-                                    <Col>
-                                        <Toast >
-                                            <Toast.Header closeButton={false}>
-                                                <strong className="me-auto">Trend</strong>
-                                            </Toast.Header>
-                                            <Toast.Body>
-                                                <Row >
-                                                    <Col>
-                                                        <div className="panel-chart-item">
-                                                            <QuickLine options={options} data={line_data_2} />
-                                                        </div>
-                                                    </Col>
-                                                </Row>
-                                            </Toast.Body>
-                                        </Toast>
-                                    </Col>
-                                    <Col>
-                                        <Toast >
-                                            <Toast.Header closeButton={false}>
-                                                <strong className="me-auto">Trend</strong>
-                                            </Toast.Header>
-                                            <Toast.Body>
-                                                <Row>
-                                                    <Col className="sub-panel">
-                                                        <div className="panel-pie-item">
-                                                            <QuickPie options={options} data={data} />
-                                                        </div>
-                                                        <div>
-                                                            Scope Distribution
-                                                        </div>
-                                                    </Col>
-                                                    <Col className="sub-panel">
-                                                        <div className="panel-pie-item">
-                                                            <QuickPie options={options} data={data} />
-                                                        </div>
-                                                        <div>
-                                                            Process Distribution
-                                                        </div>
-                                                    </Col>
-                                                </Row>
-                                            </Toast.Body>
-                                        </Toast>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </div>
-                        <div className="dashboard-panel">
-                            <Toast >
-                                <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Emission</strong>
-                                </Toast.Header>
-                                <Toast.Body>
-                                    <Table striped bordered hover size="sm">
-                                        <thead>
-                                            <tr>
-                                                <th>Progress</th>
-                                                <th>tCO2e</th>
-                                                <th>Scope</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                                <td>@mdo</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                                <td>@fat</td>
-                                            </tr>
-                                            <tr>
-                                                <td >Larry the Bird</td>
-                                                <td>Thornton</td>
-                                                <td>@twitter</td>
-                                            </tr>
-                                        </tbody>
-                                    </Table>
-                                </Toast.Body>
-                            </Toast>
-                        </div>
+                    </div>
+                    <div className="dashboard-panel">
+                        <Toast >
+                            <Toast.Header closeButton={false}>
+                                <strong className="me-auto">Emission</strong>
+                            </Toast.Header>
+                            <Toast.Body>
+                                <Table striped bordered hover size="sm">
+                                    <thead>
+                                        <tr>
+                                            <th>Progress</th>
+                                            <th>tCO2e</th>
+                                            <th>Scope</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Mark</td>
+                                            <td>Otto</td>
+                                            <td>@mdo</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Jacob</td>
+                                            <td>Thornton</td>
+                                            <td>@fat</td>
+                                        </tr>
+                                        <tr>
+                                            <td >Larry the Bird</td>
+                                            <td>Thornton</td>
+                                            <td>@twitter</td>
+                                        </tr>
+                                    </tbody>
+                                </Table>
+                            </Toast.Body>
+                        </Toast>
                     </div>
                 </div>
             </LayoutPage >

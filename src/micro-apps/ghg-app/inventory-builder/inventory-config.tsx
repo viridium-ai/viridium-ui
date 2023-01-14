@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../components/layout";
-import { Question, Action } from "../../../components/wizard";
-import { getInventory, updateInventory } from "../../../config/viridium-config";
+import { LayoutPage } from "../../../components/v-layout";
+import { Question, Action } from "../../../components/v-wizard";
+import { getInventory, updateInventory } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { Inventory } from "./model";
 export const InventoryConfig = (props: any) => {
@@ -37,7 +37,7 @@ export const InventoryConfig = (props: any) => {
 
     const ui = () => {
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp} >
                         {
                             inventory ? <Toast >
                                 <Toast.Header closeButton={false}>

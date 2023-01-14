@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
 
-import "./table.css";
+import "./v-table.css";
 
 interface DimensionViewProps {
     data: Array<{ id: string, label: string }>,

@@ -61,7 +61,7 @@ const defaultOptions = {
     selectedColor: '#000000',
     selectedBgColor: '#FFFFFF',
     enableLinks: false,
-    highlightSelected: false,
+    highlightSelected: true,
     showBorder: true,
     showTags: false,
 };
@@ -191,7 +191,7 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             node.state.selected = selected;
-            this.setChildrenState(node.children, node.state);
+            //this.setChildrenState(node.children, node.state);
             this.setState({ data: this.state.data });
             if (this.props.onClick) {
                 this.props.onClick(this.state.data, node);
@@ -304,17 +304,11 @@ interface TreeNodeProperty {
 export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     selected: boolean;
     newNodeName = React.createRef<HTMLInputElement>();
-    //state : {node: Node, expanded:boolean, selected : boolean};
     constructor(props: TreeNodeProperty) {
         super(props);
         this.state = { node: props.node, expanded: props.node.state === undefined || props.node.state.expanded };
         this.selected = props.node.state && props.node.state.selected;
     }
-
-    // componentDidUpdate(nextProps: TreeNodeProperty) {
-    //     this.setState({ node: nextProps.node, expanded: true });
-    //     this.selected = nextProps.node.state.selected
-    // }
 
     toggleExpanded = (event: any) => {
         this.setState({ expanded: !this.state.expanded });

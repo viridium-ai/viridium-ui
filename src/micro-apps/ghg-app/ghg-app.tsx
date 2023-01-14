@@ -1,7 +1,7 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/micro-app";
+import { MicroApp, RouteItem } from "../../common/v-app";
 
 import './ghg-app.css';
 import { Help } from "../dm-app/help";
@@ -12,10 +12,10 @@ import { InventoryExport } from "./inventory-builder/inventory-export";
 import { InventoryItemsView } from "./inventory-builder/inventory-items";
 import { InventorySummary } from "./inventory-builder/inventory-summary";
 
-class GreenHouseApp implements MicroApp {
+class GreenHouseApp extends MicroApp {
 
   public getTitle = () => {
-    return "Green House Gas"
+    return "GHG Report Wizard"
   }
 
   public getName = () => {

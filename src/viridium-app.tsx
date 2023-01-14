@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './viridium-app.css'
 
-import { UserContextType, UserContext, securityManager } from './common/security/security-manager';
+import { UserContextType, UserContext, securityManager } from './common/security/v-security-manager';
 
 import { homeApp } from './micro-apps/home/home-app';
 import { dataSourceManager } from './micro-apps/dm-app/dm-app';

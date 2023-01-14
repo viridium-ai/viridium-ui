@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { sessionCache } from '../../utils/cache-manager';
+import { sessionCache } from '../../utils/v-cache-manager';
 
 export class SecurityRepsonse {
     status? : number;
@@ -171,6 +171,16 @@ class SecurityManager {
         return this;
     };
 
+    public getProfileName () : string {
+        let ctx = this.getUserContext();
+        if (ctx.authenticated) {
+            let user = ctx.user!;
+            return `${user.firstName} -  ${user.title}`;
+        }
+        else {
+            return 'Not Signed In';
+        }
+    }
     public getUserName(): string {
         let ctx = this.getUserContext();
         return ctx.authenticated ? ctx.user!.username : 'Not Signed In';

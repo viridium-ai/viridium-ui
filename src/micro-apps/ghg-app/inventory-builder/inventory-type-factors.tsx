@@ -1,11 +1,11 @@
 import { useState } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
-import { LayoutPage } from "../../../components/layout";
-import { Action } from "../../../components/wizard";
-import { getConfigs } from "../../../config/viridium-config";
+import { LayoutPage } from "../../../components/v-layout";
+import { Action } from "../../../components/v-wizard";
+import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-common";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionaire";
 import { greenHouseApp } from "../ghg-app";
 
 export const InventoryTypeFactors = (props: any) => {
@@ -45,7 +45,7 @@ export const InventoryTypeFactors = (props: any) => {
     };
     const ui = () => {
         return (
-            <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+            <LayoutPage microApp={greenHouseApp}  >
                 
                 <div className="v-body">
                     <div className="v-body-main">

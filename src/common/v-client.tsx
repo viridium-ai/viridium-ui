@@ -1,4 +1,4 @@
-import { securityManager } from '../common/security/security-manager';
+import { securityManager } from './security/v-security-manager';
 
 const host = "/viridium";
 

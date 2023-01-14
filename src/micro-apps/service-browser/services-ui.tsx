@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 
-import { restClient } from "../../common/rest-client"
+import { restClient } from "../../common/v-client"
 import { EntityList, EntityDetails, EntityForm } from './service-component';
-import { LayoutPage, ViridiumOffcanvas } from '../../components/layout'
+import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout'
 import { Service, FieldDefinition } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 
@@ -18,9 +18,7 @@ export const SchemaBrowser = (props: any) => {
     const [entities, updateEntities] = useState<any[]>([]);
     const [refreshState, updateAction] = useState(false);
     const [selectedObject, setSelected] = useState<any>();
-
     const [showForm, setShowForm] = useState({ show: false, mode: 'create' });
-
     //the service
     const service: Service = props.service;
 
@@ -60,7 +58,7 @@ export const SchemaBrowser = (props: any) => {
     //UI 
     return (
         <div className='schema-app'>
-            <LayoutPage microApp={schemaApp} routeItem={service}>
+            <LayoutPage microApp={schemaApp}>
                 <EntityList view='Table' title={`${schema.getLabel()}`} entities={entities} onDelete={handleDelete}
                     onEdit={handleEdit}
                     onSelect={(res: any) => { setSelected(res) }} fieldDefs={fieldDefs}

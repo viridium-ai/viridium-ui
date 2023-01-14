@@ -1,8 +1,8 @@
 
-import { StringUtils } from '../../utils/string-utils';
+import { StringUtils } from '../../utils/v-string-utils';
 import { Route } from "react-router-dom";
 import { SchemaBrowser } from "./services-ui";
-import { IRouteItem } from "../../common/micro-app";
+import { IRouteItem } from "../../common/v-app";
 import { schemaApp } from './schema-micro-app';
 
 export class FieldValue {

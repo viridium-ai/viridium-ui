@@ -1,11 +1,11 @@
 import { useState } from 'react';
 
 import { Toast, Form } from 'react-bootstrap';
-import { LayoutPage } from '../../../components/layout';
-import { DataTable } from '../../../components/table';
-import { Action, Question } from '../../../components/wizard';
-import { getConfigs, getCompany, updateCompany } from '../../../config/viridium-config';
-import { NamedObject } from '../../inventory-app/inventory-common';
+import { LayoutPage } from '../../../components/v-layout';
+import { DataTable } from '../../../components/v-table';
+import { Action, Question } from '../../../components/v-wizard';
+import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
+import { NamedObject } from '../../inventory-app/inventory-questionaire';
 import { greenHouseApp } from '../ghg-app';
 
 import { Company } from './model';
@@ -66,7 +66,7 @@ export const CompanyConfig = (props: any) => {
         }
     }
 
-    return <LayoutPage microApp={greenHouseApp} withAppHeader={true} >
+    return <LayoutPage microApp={greenHouseApp} >
                 <Toast >
                     <Toast.Header closeButton={false}>
                         <span className="me-auto">

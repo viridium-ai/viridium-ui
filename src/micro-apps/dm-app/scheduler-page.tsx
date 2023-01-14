@@ -1,12 +1,11 @@
 import { Row, Col, Toast, Stack, Form, Container } from 'react-bootstrap';
-import { LayoutPage} from '../../components/layout';
+import { LayoutPage} from '../../components/v-layout';
 import { dataSourceManager } from './dm-app';
 
 export const SchedulerPage = (props: any) => {
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} withAppHeader = {true} >
-                <div className="home-body">
+            <LayoutPage microApp={dataSourceManager} >
                     <div className="v-body-nav">
                         <Toast >
                             <Toast.Body>
@@ -31,7 +30,7 @@ export const SchedulerPage = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="home-body-main">
+                    <div className="v-body-main">
                         <div className="dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
@@ -72,7 +71,7 @@ export const SchedulerPage = (props: any) => {
                                     </Form.Select>
                                 </div>
                                 <div className="vr" />
-                                <div className=" ms-end">
+                                <div className="ms-end">
                                     <Form.Select aria-label="Default select example">
                                         <option>Select a source</option>
                                         <option value="1">Air flight</option>
@@ -117,7 +116,6 @@ export const SchedulerPage = (props: any) => {
                             </Container>
                         </div>
                     </div>
-                </div>
             </LayoutPage >
         )
     }

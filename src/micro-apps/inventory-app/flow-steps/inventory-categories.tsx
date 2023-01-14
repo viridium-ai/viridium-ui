@@ -4,11 +4,11 @@ import { Toast, Form, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout";
 import { Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
-import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionaire";
+import { inventoryConfigApp } from "../inventory-app";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
 
-export const InventoryTypes = (props: any) => {
-    var configs = getConfigs();
+export const InventoryCategories = (props: any) => {
+    const configs = getConfigs();
 
     const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
 
@@ -42,7 +42,7 @@ export const InventoryTypes = (props: any) => {
     };
     const ui = () => {
         return (
-            <LayoutPage microApp={inventoryConfigApp} >
+            <LayoutPage microApp={inventoryConfigApp}  >
                 <Toast >
                     <Toast.Header closeButton={false}>
                         <span className="me-auto">
@@ -102,11 +102,10 @@ export const InventoryTypes = (props: any) => {
                                 ))}</div>
                             </Col>
                         </Row>
-
+                        <Action report={report}
+                            next={{ label: "Next", path: props.next }}
+                            prev={{ label: "Back", path: props.prev }} />
                     </Toast.Body>
-                    <Action report={report}
-                        next={{ label: "Next", path: "/inventory-app/sources" }}
-                        prev={{ label: "Back", path: "/inventory-app/categories" }} />
                 </Toast>
             </LayoutPage >
         )

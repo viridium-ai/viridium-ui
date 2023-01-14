@@ -1,12 +1,12 @@
 
-import { LayoutPage } from '../../components/layout'
+import { LayoutPage } from '../../components/v-layout'
 import { Row, Col, Tabs, Tab } from 'react-bootstrap';
 import { homeApp } from './home-app';
 
 export const About = (props: any) => {
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp} routeItem={{ name: '' }}>
+            <LayoutPage microApp={homeApp}>
                 <div className="home-page">
                     <div className="home-header" >Company</div>
                     <Row className="home-content">

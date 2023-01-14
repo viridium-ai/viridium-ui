@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert, NavLink } from "react-bootstrap";
 import { Route, useNavigate, useSearchParams } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/micro-app";
+import { MicroApp, RouteItem } from "../../common/v-app";
 
 
-import { LayoutPage } from "../../components/layout";
-import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/security-manager";
+import { LayoutPage } from "../../components/v-layout";
+import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/v-security-manager";
 import './security-app.css';
 import { homeApp } from "../home/home-app";
+import { EntityDetails } from "../service-browser/service-component";
 
-class SecurityApp implements MicroApp {
+class SecurityApp extends MicroApp {
 
     private routeItems: Array<RouteItem> = [
         this.newItem('users', "Users", 'Security'),
@@ -20,7 +21,7 @@ class SecurityApp implements MicroApp {
     private newItem(name: string, label: string, group: string) {
         let routeItem = new RouteItem().init(name, label, group);
         routeItem.route = () => {
-            return <UsersManager routeItem={routeItem} />
+            return <ProfileManager />
         };
         return routeItem;
     }
@@ -33,7 +34,7 @@ class SecurityApp implements MicroApp {
     }
 
     public getNavItems = () => {
-        return this.routeItems;
+        return [];//this.routeItems;
     }
 
     public getRouteItems = () => {
@@ -46,12 +47,12 @@ class SecurityApp implements MicroApp {
         });
     }
 
-
     public getRoutes = () => {
         return (
             <>
                 <Route path={`/login`} element={<LoginForm />} />
                 <Route path={`/signup`} element={<SignupForm />} />
+                <Route path={`/profile`} element={<ProfileManager />} />
             </>
         )
     }
@@ -301,14 +302,19 @@ export const SignupForm = (props: any) => {
     return ui();
 }
 
-export const UsersManager = (props: any) => {
-    const routeItem = props.routeItem;
-    let name = routeItem.name;
+export const ProfileManager = (props: any) => {
+    //console.log(securityManager.getUserContext().user);
+    let user = securityManager.getUserContext().user;
+    securityApp.getTitle = () => {
+        return securityManager.getProfileName();
+    }
     return (
-        <LayoutPage microApp={securityApp} routeItem={routeItem}>
-            <h1>
-                Welcome to the user manager {name}
-            </h1>
+        <LayoutPage microApp={securityApp} >
+            <div className="v-panel">
+                <div className="v-body">
+                    <EntityDetails entity={user} title="" />
+                </div>
+            </div>
         </LayoutPage>
     )
 }

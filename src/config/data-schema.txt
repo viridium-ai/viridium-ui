@@ -1,0 +1,27 @@
+inventory_id
+
+category_id
+scope
+caterogy
+notes
+site
+
+product	supplier/partner	
+activity
+activity_data_amount
+activity_unit
+activity_data_source
+activity_amount
+
+method (standard/reguration)
+emission_factor_unit
+emission_factor_data_source
+
+inflation_factor	
+t&d_loss_rate	
+metric_tonnesGHG_emissions
+GWP
+metric_tonnes_co2e
+eeio_sector_process_data
+
+

@@ -47,12 +47,13 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
     let signedIn = securityManager.isSignedIn();
     let headerOps = props.microApp.getHeader();
+    const configs = getConfigs();
+
     const ui = () => (
         headerOps.visible ? <Navbar id="app-header" bg="none" className="v-app-header" expand="lg">
             <Navbar.Brand as='span'>
                 {headerOps.title}
             </Navbar.Brand>
-
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
                     {/* <Search /> */}
@@ -60,12 +61,13 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                 {
                     signedIn ? <>
                         <Nav className="actions-menu" >
-                            Notifications
+                            <a href="/security-app/notifications" className="v-link">Notifications</a>
                             <VscMail className="notifications-icon" />
                         </Nav>
                         <Nav className="actions-menu" >
                             <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
-                                <NavDropdown.Item href="/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/security-app/profile">Profile</NavDropdown.Item>
+                            <NavDropdown.Item href="/security-app/notifications">Notifications</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={(e: any) => {
                                     securityManager.signout();
@@ -75,7 +77,6 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                         </Nav>
                     </> : <></>
                 }
-
             </Navbar.Collapse>
         </Navbar> : <></>
     );

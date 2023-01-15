@@ -1376,5 +1376,34 @@
                 ]
             }
         ]
-    }
+    },
+    "notifications" : [
+        {
+            "id" : "1",
+            "date":"02-09-2021",
+            "subject":"Data has been updated",
+            "to":"anping.wang@gmail.com",
+            "from":"sarah",
+            "body":"This is good notification",
+            "priority":"1"
+        },
+        {
+            "id" : "2",
+            "date":"04-09-2021",
+            "subject":"Data has been reviewed",
+            "to":"anping.wang@gmail.com",
+            "from":"Niraji",
+            "body":"This is good notification",
+            "priority":"1"
+        },
+        {
+            "id" : "3",
+            "date":"02-09-2021",
+            "subject":"Data has been updated",
+            "to":"anping.wang@gmail.com",
+            "from":"Sarah",
+            "body":"This is good notification",
+            "priority":"2"
+        }
+    ]
 }

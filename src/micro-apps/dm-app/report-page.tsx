@@ -129,10 +129,10 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                 </Tab>
                                 <Tab eventKey="customReports" title="Custom Reports">
                                     <Row className="filters">
-                                        <Col className="data-cell-select data-cell-label">
+                                        <Col className="v-input v-label">
                                             Select:
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select example">
                                                 <option>Scope</option>
                                                 <option value="1">Transportation</option>
@@ -140,7 +140,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select example">
                                                 <option>Source</option>
                                                 <option value="1">Transportation</option>
@@ -148,7 +148,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select example">
                                                 <option>Process</option>
                                                 <option value="1">Transportation</option>
@@ -156,7 +156,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select">
                                                 <option>Region</option>
                                                 <option value="1">Transportation</option>
@@ -164,7 +164,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select">
                                                 <option>Supplier</option>
                                                 <option value="1">Transportation</option>
@@ -172,7 +172,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select">
+                                        <Col className="v-input">
                                             <Form.Select aria-label="Default select">
                                                 <option>Goal/Project</option>
                                                 <option value="1">Transportation</option>
@@ -180,18 +180,18 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                                 <option value="3">Three</option>
                                             </Form.Select>
                                         </Col>
-                                        <Col className="data-cell-select"><Button>Ok</Button></Col>
+                                        <Col className="v-input"><Button>Ok</Button></Col>
                                     </Row>
                                     <DataTable data={this.getData()} onSelectRow={this.onSelectRow} />
-                                    <Row className="export-panel">
-                                        <Col sm={1} className="data-cell-select data-cell-label">Export data to:
+                                    <Row className="v-footer">
+                                        <Col sm={2} className="v-label">Export data to:
                                         </Col>
-                                        <Col sm={3} className="data-cell-select">
+                                        <Col sm={3} className="v-input">
                                             <DimensionView data={configs.managedConnectors.map((v: any) => { return { id: v.id, label: v.name } })} options={this.ExportOptions()} />
-                                        </Col><Col sm={1} className="data-cell-select">
+                                        </Col><Col sm={1} className="v-input">
                                             <Button >Submit</Button>
                                         </Col>
-                                        <Col sm={6}> </Col>
+                                        <Col sm={5}> </Col>
                                     </Row>
                                 </Tab>
                                 <Tab eventKey="analyzingEmission" title="Analyzing Emissions">

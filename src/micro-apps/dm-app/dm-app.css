@@ -1,126 +1,92 @@
 .dm-app .toast {
     box-shadow: .2em .2em .2em rgba(0, 0, 0, 0.05) ;
 }
-
 .dm-app .v-body-nav {
     padding: 4px;
 }
-
 .dm-app .v-body-main {
     padding: 4px;
 }
-
 .dm-app .item {
     padding: 12px 1px 12px 1px;
     font-size: medium;
     font-weight: 400;
     border-bottom: 1px solid lightgray;
 }
-
 .dm-app .sub-item {
     padding: 0 14px;
 }
-
 .dm-app .chart-item {
     height: 200px;
 }
-
 .dm-app .dashboard-panel {
     margin-top: 0.0rem;
     margin-bottom: 1rem;
 }
-
 .dm-app .pie-chart {
     max-width: 200px;
 }
-
 .dm-app .nav-chart-item {
     height: 160px;
 
     overflow: hidden;
 }
-
 .dm-app .panel-chart-item {
     height: 320px;
     width:600px;
     overflow: hidden;
     margin: 0px auto;
 }
-
 .dm-app .panel-pie-item {
     height: 300px;
     width: 200px;
     overflow: hidden;
     margin: 0px auto;
 }
-
 .dm-app .sub-panel {
     text-align: center;
 }
-
 .dm-app .row {
     flex-wrap: nowrap;
     overflow: scroll;
-
 }
-
 .dm-app .settings-icon {
     margin-left: .2rem;
 }
-
-.test-ok {
-    padding: 40px 80px;
-}
-
 .dm-app .filters {
     margin: 1rem;
 }
-
 .dm-app .me-end {
     margin-right: 1rem;
 }
-
 .dm-app .progress {
     padding: 1px;
     background-color: white;
 }
-
 .dm-app .toast-body .col-3 {
     overflow: hidden;
     white-space: nowrap;
 }
-
 .dm-app .toast-body .col-2 {
     overflow: hidden;
     white-space: nowrap;
 }
-
-
-.header {
-    padding: 2px 1px 12px 1px;
-    font-size: large;
-    font-weight: 600;
-    border-bottom: 1px solid lightgray;
-}
-
 .dm-app .details-row {
     padding: 4px;
     margin: 4px;
 }
-
 .dm-app .v-label {
     padding: 10px;
 }
-
+.dm-app .v-footer {
+    background-color: rgb(243, 243, 243);
+}
 .dm-app .details-value {
     padding: 2px;
 }
-
 .dm-app .details-value {
     padding: 0px 2px;
 }
-
- 
 .dm-app .details-btn {
     text-align: right;
     margin: .5em 0em;

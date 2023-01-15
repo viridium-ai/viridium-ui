@@ -1,91 +1,85 @@
 body {
   font: 1em sans-serif;
 }
-
 .viridium-app {
   text-align: left;
   height: 100vh;
 }
-
 .v-logo {
   height: 40vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .v-logo {
     animation: v-logo-spin infinite 20s linear;
   }
 }
-
 .v-form {
   width: 600px;
   margin-top: 10em;
-  margin-bottom: 20em;
+  margin-bottom: 5em;
+  margin-right: 5em;
   box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
 }
-
+.v-container {
+  width: 100%;
+}
 .v-header {
   font-size: calc(10px + 2vmin);
   background-color: rgb(179, 179, 179);
   border-radius: 12px 12px 0px 0px;
 }
-
 .v-body {
   color: rgb(55, 55, 55);
   padding: 1em;
   background-color: rgb(242, 242, 242);
 }
-
 .v-link {
-  color: #61dafb;
+  color: #094328;
+  text-decoration: none;
 }
-
 .v-footer {
   padding: 1rem;
   color: rgb(55, 55, 55);
-  background-color: rgb(211, 211, 211);
+  background-color: rgb(238, 238, 238);
 }
-
 .v-title {
   padding: 12px;
   font-size: larger;
   font-weight: 500;
   color: rgb(64, 64, 64);
 }
-
+.v-list {
+  padding: 1em;
+  cursor: pointer;
+  color : rgb(59, 59, 59);
+  background-color: white;
+  border-bottom: solid 1px rgb(193, 192, 192);
+}
 .v-actions {
   text-align: right;
   font-size: large;
 }
-
 .v-buttons {
   padding: .5rem;
 }
-
 .v-button {
   cursor: pointer;
 }
-
 .v-panel-container {
   margin-top: 4px;
   margin-bottom: 8px;
   overflow: hidden;
 }
-
 .v-field-label {
-  padding: 0.6rem;
-  height: 2rem;
-  color: rgb(142, 142, 142);
-  background-color: rgb(207, 207, 207);
+  padding: 1rem;
+  color: rgb(83, 83, 83);
+  background-color: rgb(250, 250, 250);
 }
-
 .v-field-value {
-  padding: 0.5rem 1rem;
-  height: 2rem;
+  padding: 1rem;
   color: rgb(62, 62, 62);
 }
-
 @keyframes v-logo-spin {
   from {
     transform: rotate(0deg);
@@ -95,72 +89,59 @@ body {
     transform: rotate(360deg);
   }
 }
-
 .viridium-app .v-panel {
   padding: 0px;
   border: 1px solid rgb(220, 220, 220);
 }
-
 .viridium-app .v-summary {
   padding:  2.0rem 0.5rem;
   font-size: large;
 }
-
 .viridium-app .v-body-main {
   flex: 80%;
   padding: 0.5rem;
 }
-
 .viridium-app .v-body-help {
   flex: 20%;
   padding: 0.5rem;
   display: none;
 }
-
 .viridium-app .v-actions {
   display: flex;
   padding: 2rem 1rem;
   border-bottom: 1px solid rgb(237, 237, 237);
 }
-
 .viridium-app .v-question {
   padding: 0.2rem 1rem;
   border-bottom: 1px solid rgb(237, 237, 237);
 }
-
 .viridium-app .v-sub-questions {
   margin-top: 0.1em;
   padding: 0.5rem;
   background-color: rgb(244, 244, 244);
 }
-
 .viridium-app .v-form-row {
   padding: 0.2rem;
 }
-
 .viridium-app .v-form-label {
   padding: 0.7rem;
   font-size: medium;
 }
-
 .viridium-app .v-form-input {
   padding: 0.2rem;
 }
 .viridium-app .main-checkbox {
   padding: 1em;
 }
-
 .viridium-app .company-details{
   padding: .5rem;
   margin-top: .5em;
 }
-
 .viridium-app .v-summary {
   font-size: small;
   font-weight: 600;
   padding: .5rem 1.5rem;
 }
-
 .viridium-app .toast-header {
   border-radius: 0px;
 }

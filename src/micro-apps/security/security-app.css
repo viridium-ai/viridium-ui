@@ -11,3 +11,21 @@
     color: rgb(60, 66, 249);
     font-size: medium;
 }
+
+.v-notification-body {
+    padding: 1em;
+    font-size: medium;
+    background-color: rgb(255, 255, 255);
+    min-height: 20em;
+    overflow-y: scroll;
+}
+
+.v-notification-meta {
+    padding: 1em;
+}
+
+.v-button {
+    display: inline-block;
+    padding: 5px;
+    margin: 12px;
+}

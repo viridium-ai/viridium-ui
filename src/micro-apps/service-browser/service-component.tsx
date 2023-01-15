@@ -5,7 +5,6 @@ import { schemaApp } from './schema-micro-app';
 import './service-component.css';
 import { restClient } from '../../common/v-client';
 import { TitleProp, Action } from '../../common/v-app';
-
 export class Title extends Component<TitleProp> {
     renderLinks = () => {
         const actions = this.props.actions ? this.props.actions : []
@@ -36,7 +35,6 @@ export class Title extends Component<TitleProp> {
         )
     }
 }
-
 const entityToArray = (entity: any, path: string = ""): Array<any> => {
     let fieldDefs = Object.keys(entity).map(key => {
         let value = entity[key];
@@ -52,13 +50,11 @@ const entityToArray = (entity: any, path: string = ""): Array<any> => {
     });
     return fieldDefs;
 }
-
 export interface FormFieldProp {
     value: FieldValue,
     onInput: any,
     options?: Array<{ value: string, label: string }>
 }
-
 export class FormField extends Component<FormFieldProp>{
     render() {
         let props = this.props as FormFieldProp;
@@ -81,7 +77,6 @@ export class FormField extends Component<FormFieldProp>{
         )
     }
 }
-
 export class SelectField extends Component<FormFieldProp>{
     render() {
         let props = this.props as FormFieldProp;
@@ -101,7 +96,6 @@ export class SelectField extends Component<FormFieldProp>{
         )
     }
 }
-
 interface FormProp {
     title: string,
     listUpdated: Function;
@@ -110,7 +104,6 @@ interface FormProp {
     path: string;
     fieldDefs?: Function;
 }
-
 export class EntityForm extends Component<FormProp> {
     listUpdated: Function;
     messageForm: any;
@@ -201,7 +194,6 @@ export class EntityForm extends Component<FormProp> {
         )
     };
 }
-
 interface EntityDetailsProp {
     entity: any,
     title: string,
@@ -209,7 +201,6 @@ interface EntityDetailsProp {
     show?: boolean,
     actions?: Array<any>
 }
-
 export class EntityDetails extends Component<EntityDetailsProp> {
     renderField = (field: { name?: string, value: any }) => {
         return (
@@ -234,14 +225,11 @@ export class EntityDetails extends Component<EntityDetailsProp> {
     render() {
         return (
             <div className="schema-app v-container">
-                <div className="v-body">
                     {this.renderFields()}
-                </div>
             </div>
         )
     }
 }
-
 interface ListTableProp {
     title: string
     entities: Array<any>,
@@ -252,7 +240,6 @@ interface ListTableProp {
     view?: string
     actions?: Array<any>
 }
-
 export class EntityList extends Component<ListTableProp> {
     viewMode: string = 'Table';
 
@@ -263,12 +250,10 @@ export class EntityList extends Component<ListTableProp> {
             view: this.viewMode === 'Table' ? 'Grid' : 'Table'
         }
     }
-
     onSelect = (event: any, selected: any) => {
         event.preventDefault()
         this.props.onSelect(selected);
     }
-
     onDelete = (event: any, selected: any) => {
         event.preventDefault()
         this.props.onDelete(selected);
@@ -278,7 +263,6 @@ export class EntityList extends Component<ListTableProp> {
         event.preventDefault()
         this.props.onEdit(selected);
     }
-
     renderHeaders = () => {
         let fieldDefs = this.props.fieldDefs();
         return (
@@ -286,7 +270,6 @@ export class EntityList extends Component<ListTableProp> {
                 .map((def: any, idx: number) => { return (<th key={idx.toString()}>{def.getLabel()}</th>) })
         )
     }
-
     renderRow = (entity: any, idx: number) => {
         let fieldDefs = this.props.fieldDefs(entity);
         return (
@@ -297,7 +280,6 @@ export class EntityList extends Component<ListTableProp> {
                 })
         )
     }
-
     renderCard = (entity: any, idx: number) => {
         let fieldDefs = this.props.fieldDefs(entity);
         return (
@@ -305,14 +287,12 @@ export class EntityList extends Component<ListTableProp> {
                 .map((def: FieldDefinition, idx: number) => { return (<div key={idx.toString()}>{entity[def.name]}</div>) })
         )
     }
-
     changeView = (view: string) => {
         this.viewMode = this.viewMode === 'Table' ? 'Grid' : 'Table';
         this.setState({
             view: this.viewMode === 'Table' ? 'Grid' : 'Table'
         })
     }
-
     render() {
         let state = this.props;
 
@@ -322,7 +302,6 @@ export class EntityList extends Component<ListTableProp> {
             name: (this.state as any).view,
             action: this.changeView
         });
-
         return (
             <div className="schema-app v-panel-container">
                 <Title title={state.title} actions={actions} />

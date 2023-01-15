@@ -21,7 +21,6 @@ interface InventoryItem {
     description: string,
     notes: string
 }
-
 interface SourceDetailsState {
     row: any
 }

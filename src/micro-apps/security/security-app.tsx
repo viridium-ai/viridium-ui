@@ -9,6 +9,7 @@ import { securityManager, UserContextType, UserContext, LoginObject } from "../.
 import './security-app.css';
 import { homeApp } from "../home/home-app";
 import { EntityDetails } from "../service-browser/service-component";
+import { NotificationView } from "./notifications";
 
 class SecurityApp extends MicroApp {
 
@@ -52,7 +53,9 @@ class SecurityApp extends MicroApp {
             <>
                 <Route path={`/login`} element={<LoginForm />} />
                 <Route path={`/signup`} element={<SignupForm />} />
-                <Route path={`/profile`} element={<ProfileManager />} />
+                <Route path={`/security-app`} element={<ProfileManager />} />
+                <Route path={`/security-app/profile`} element={<ProfileManager />} />
+                <Route path={`/security-app/notifications`} element={<NotificationView />} />
             </>
         )
     }
@@ -310,11 +313,7 @@ export const ProfileManager = (props: any) => {
     }
     return (
         <LayoutPage microApp={securityApp} >
-            <div className="v-panel">
-                <div className="v-body">
-                    <EntityDetails entity={user} title="" />
-                </div>
-            </div>
+            <EntityDetails entity={user} title="" />
         </LayoutPage>
     )
 }

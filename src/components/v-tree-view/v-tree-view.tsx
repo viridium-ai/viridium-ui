@@ -1,77 +1,27 @@
 import React from "react";
-
 import { VscRemove, VscAdd, VscPrimitiveSquare, VscCheck } from "react-icons/vsc";
-
 let treeviewSpanStyle = {
     "width": "1rem",
     "height": "1rem",
     "marginLeft": "0px",
     "marginRight": "0px",
 };
-
 let treeviewSpanIndentStyle = treeviewSpanStyle;
-
 treeviewSpanIndentStyle["marginLeft"] = "2px";
 treeviewSpanIndentStyle["marginRight"] = "2px";
-
 let treeviewSpanIconStyle = treeviewSpanStyle;
 treeviewSpanIconStyle["marginLeft"] = "2px";
 treeviewSpanIconStyle["marginRight"] = "1px";
-
 interface TreeNodeState {
     node: Node;
     expanded: boolean;
     addNode?: boolean;
 }
-
-interface NodeOptions {
-    levels: number;
-    selectable: boolean;
-    expandIcon: string;
-    collapseIcon: string;
-    emptyIcon: string;
-    nodeIcon: string;
-    unselectedIcon: string;
-    selectedIcon: string;
-    color: string;
-    bgColor?: string;
-    borderColor?: string;
-    onHoverColor: string;
-    selectedColor: string;
-    selectedBgColor: string;
-    enableLinks: boolean;
-    highlightSelected: boolean;
-    showBorder: boolean;
-    showTags: boolean;
-}
-
-const defaultOptions = {
-    levels: 2,
-    selectable: true,
-    expandIcon: 'glyphicon glyphicon-plus',
-    collapseIcon: 'glyphicon glyphicon-minus',
-    emptyIcon: 'glyphicon',
-    nodeIcon: 'glyphicon glyphicon-stop',
-    unselectedIcon: 'glyphicon glyphicon-unchecked',
-    selectedIcon: 'glyphicon glyphicon-check',
-    color: "#428bca",
-    bgColor: undefined,
-    borderColor: undefined,
-    onHoverColor: '#F5F5F5',
-    selectedColor: '#000000',
-    selectedBgColor: '#FFFFFF',
-    enableLinks: false,
-    highlightSelected: true,
-    showBorder: true,
-    showTags: false,
-};
-
 interface NodeState {
     selected: boolean;
     expanded: boolean;
     data?: Node[];
 }
-
 class Node {
     id?: string;
     text: string = "";
@@ -86,14 +36,18 @@ class Node {
     isLeaf = (): boolean => {
         return this.children !== undefined ? this.children.length === 0 : true;
     }
-}
+    siblings = () => {
+        return this.parent?.children;
+    }
+    updateState = () : void => {
 
+    }
+}
 interface TreeViewOption {
     selectable: boolean,
     selectChildren?: boolean,
-    enableLinks: boolean,
+    enableLinks: boolean
 }
-
 interface TreeViewProperty {
     onDoubleClick?: Function;
     onClick?: Function;
@@ -103,13 +57,11 @@ interface TreeViewProperty {
     allowNew?: boolean;
     options?: TreeViewOption
 }
-
 interface TreeViewState {
     data?: Node[];
     expanded: boolean;
     selected: boolean;
 }
-
 class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
     nodesQuantity: number;
     constructor(props: TreeViewProperty) {
@@ -117,7 +69,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         this.nodesQuantity = 0;
         this.state = { selected: false, expanded: false, data: this.setNodeId(this.props.data) };
     }
-
     setNodeId = (node: Node): Node[] | undefined => {
         return node.children?.map((childNode: Node) => {
             let newNode = new Node();
@@ -136,7 +87,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             return newNode;
         });
     }
-
     findNodeById = (nodes: Node[] | undefined, id: any): Node | undefined => {
         let result: Node | undefined;
         if (nodes)
@@ -150,12 +100,10 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             });
         return result;
     }
-
     deleteById = (nodes: Node[], id: string) => {
         if (!nodes || nodes.length <= 0)
             return [];
         let arr: Node[] = [];
-
         nodes.forEach((node: Node) => {
             if (node.children && node.children.length > 0)
                 node.children = this.deleteById(node.children, id);
@@ -166,23 +114,20 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         });
         return arr;
     }
-
     setChildrenState = (children: Node[] | undefined, state: NodeState) => {
         if (children)
             children.forEach((child: Node) => {
                 child.state = state;
                 child.state.selected = state.selected;
-                this.setChildrenState(child.children, state);
+              //  this.setChildrenState(child.children, state);
             });
     }
-
     setParentSelectable(node: Node) {
         if (!node.parent || !node.parent.state)
             return;
         node.parent.state.selected = true;
         this.setParentSelectable(node.parent);
     }
-
     checkParentEmpty = (node: Node) => {
         let parent = node.parent;
         if (!parent || !parent.state || !parent.state.selected)
@@ -192,28 +137,32 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             this.checkParentEmpty(parent);
         }
     }
-
+    updateTree = () => {
+        this.state.data?.forEach((node)=>node.updateState())
+    }
     nodeSelected = (nodeId: string, selected: boolean) => {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             node.state.selected = selected;
             if(this.props.options?.selectChildren) {
                 this.setChildrenState(node.children, node.state);
+            } 
+            if(this.props.options?.enableLinks) {
+                this.setChildrenState(node.children, node.state);
             }
             this.setState({ data: this.state.data });
             if (this.props.onClick) {
                 this.props.onClick(this.state.data, node);
             }
+            this.updateTree();
         }
     }
-
     nodeDoubleClicked = (nodeId: any, selected: any) => {
         let node = this.findNodeById(this.state.data, nodeId);
         if (this.props.onDoubleClick) {
             this.props.onDoubleClick(this.state.data, node);
         }
     }
-
     convert = (nodes: Node[] | undefined) => {
         if (!nodes || nodes.length <= 0) {
             return [];
@@ -229,19 +178,16 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             return treeNodeData;
         });
     }
-
     addNode = (nodeId: string, text: string) => {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             let newNode = new Node();
-
             Object.assign(newNode, {
                 text: text,
                 state: {},
                 parent: node,
                 id: this.nodesQuantity++
             });
-
             if (node.children) {
                 node.children.push(newNode)
             } else {
@@ -252,7 +198,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             }
         }
     }
-
     removeNode(nodeId: string) {
         if (this.state.data) {
             let children = [...this.state.data];
@@ -266,7 +211,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             }
         }
     }
-
     render() {
         let data = this.state.data;
         let children: any[] = [];
@@ -286,7 +230,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
                 }));
             });
         }
-
         return (
             <div className="treeview">
                 <ul className="list-group">
@@ -296,7 +239,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         )
     }
 }
-
 interface TreeNodeProperty {
     visible: boolean;
     options: any;
@@ -308,7 +250,46 @@ interface TreeNodeProperty {
     addNode: Function;
     removeNode: Function;
 }
-
+interface NodeUIOptions {
+    levels: number;
+    selectable: boolean;
+    expandIcon: string;
+    collapseIcon: string;
+    emptyIcon: string;
+    nodeIcon: string;
+    unselectedIcon: string;
+    selectedIcon: string;
+    color: string;
+    bgColor?: string;
+    borderColor?: string;
+    onHoverColor: string;
+    selectedColor: string;
+    selectedBgColor: string;
+    enableLinks: boolean;
+    highlightSelected: boolean;
+    showBorder: boolean;
+    showTags: boolean;
+}
+const defaultNodeUIOptions = {
+    levels: 2,
+    selectable: true,
+    expandIcon: 'glyphicon glyphicon-plus',
+    collapseIcon: 'glyphicon glyphicon-minus',
+    emptyIcon: 'glyphicon',
+    nodeIcon: 'glyphicon glyphicon-stop',
+    unselectedIcon: 'glyphicon glyphicon-unchecked',
+    selectedIcon: 'glyphicon glyphicon-check',
+    color: "#428bca",
+    bgColor: undefined,
+    borderColor: undefined,
+    onHoverColor: '#F5F5F5',
+    selectedColor: '#000000',
+    selectedBgColor: '#FFFFFF',
+    enableLinks: false,
+    highlightSelected: true,
+    showBorder: true,
+    showTags: false,
+};
 export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
     selected: boolean;
     newNodeName = React.createRef<HTMLInputElement>();
@@ -317,29 +298,24 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         this.state = { node: props.node, expanded: props.node.state === undefined || props.node.state.expanded };
         this.selected = props.node.state && props.node.state.selected;
     }
-
     toggleExpanded = (event: any) => {
         this.setState({ expanded: !this.state.expanded });
         event.stopPropagation();
     }
-
     toggleSelected = (event: any) => {
         let selected = !this.props.node.state.selected;
         this.props.onSelectedStatusChanged(this.state.node.id, selected);
         event.stopPropagation();
     }
-
     doubleClicked = (event: any) => {
         let selected = !this.props.node.state.selected;
         this.props.onNodeDoubleClicked(this.state.node.id, selected);
         event.stopPropagation();
     }
-
     newNodeForm = (event: any) => {
         this.setState({ addNode: !this.state.addNode });
         event.stopPropagation();
     }
-
     addNode = (event: any) => {
         let ref = this.newNodeName.current;
         if (ref !== null) {
@@ -353,48 +329,42 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         }
         event.stopPropagation();
     }
-
     removeNode = (event: any) => {
         this.props.removeNode(this.state.node.id);
         event.stopPropagation();
     }
-
     render() {
         let node = new Node();
         Object.assign(node, this.props.node);
-        let options: NodeOptions = defaultOptions;
-
-        Object.assign(options, this.props.options);
-
+        let uiOptions: NodeUIOptions = defaultNodeUIOptions;
+        Object.assign(uiOptions, this.props.options);
         let cssStyle: any;
-
         if (this.props.options.selectable) {
-            node.icon = (node.state.selected) ? options.selectedIcon : options.unselectedIcon;
+            node.icon = (node.state.selected) ? uiOptions.selectedIcon : uiOptions.unselectedIcon;
         }
-
         if (!this.props.visible) {
             cssStyle = {
                 display: 'none'
             };
         }
         else {
-            if (options.highlightSelected && node.state.selected) {
+            if (uiOptions.highlightSelected && node.state.selected) {
                 cssStyle = {
-                    color: options.selectedColor,
-                    backgroundColor: options.selectedBgColor
+                    color: uiOptions.selectedColor,
+                    backgroundColor: uiOptions.selectedBgColor
                 };
             }
             else {
                 cssStyle = {
-                    color: node.color || options.color,
-                    backgroundColor: node.bgColor || options.bgColor
+                    color: node.color || uiOptions.color,
+                    backgroundColor: node.bgColor || uiOptions.bgColor
                 };
             }
-            if (!options.showBorder) {
+            if (!uiOptions.showBorder) {
                 cssStyle.border = 'none';
             }
-            else if (options.borderColor) {
-                cssStyle.border = '1px solid ' + options.borderColor;
+            else if (uiOptions.borderColor) {
+                cssStyle.border = '1px solid ' + uiOptions.borderColor;
             }
         }
         let indents = [];
@@ -406,23 +376,16 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
         let expandCollapseIcon;
         if (!node.isLeaf()) {
             if (!this.state.expanded) {
-                expandCollapseIcon = (
-                    <VscAdd style={treeviewSpanStyle} onClick={this.toggleExpanded} />
-                )
+                expandCollapseIcon = (<VscAdd style={treeviewSpanStyle} onClick={this.toggleExpanded} />)
             }
             else {
-                expandCollapseIcon = (
-                    <VscRemove style={treeviewSpanStyle} onClick={this.toggleExpanded} />
-                )
+                expandCollapseIcon = (<VscRemove style={treeviewSpanStyle} onClick={this.toggleExpanded} />)
             }
-        }
-        else {
-            expandCollapseIcon = (
-                <span style={{ display: "inline-block", width: "1rem", height: "1rem", "marginLeft": "2px" }}></span>
-            )
+        } else {
+            expandCollapseIcon = (<span style={{ display: "inline-block", width: "1rem", height: "1rem", "marginLeft": "2px" }}></span>)
         }
         let nodeIcon;
-        if (options.selectable && (node.icon || options.nodeIcon)) {
+        if (uiOptions.selectable && (node.icon || uiOptions.nodeIcon)) {
             nodeIcon = node.state.selected ?
                 (<VscCheck onClick={this.toggleSelected} style={treeviewSpanIconStyle} />) :
                 (<VscPrimitiveSquare onClick={this.toggleSelected} style={treeviewSpanIconStyle} />);
@@ -430,25 +393,17 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
             nodeIcon = "";
         };
         let nodeText;
-        if (options.enableLinks) {
-            nodeText = (
-                <a href={node.href}> {node.text} </a>
-            )
+        if (uiOptions.enableLinks) {
+            nodeText = (<a href={node.href}> {node.text} </a>)
         } else {
-            nodeText = (
-                <span onClick={this.toggleSelected} style={treeviewSpanStyle}> {node.text} </span>
-            )
+            nodeText = (<span onClick={this.toggleSelected} style={treeviewSpanStyle}> {node.text} </span>)
         }
-
         let badges;
-        if (options.showTags && node.tags) {
+        if (uiOptions.showTags && node.tags) {
             badges = node.tags.map((tag: any) => {
-                return (
-                    <span className={'badge'} style={treeviewSpanStyle}> {tag} </span>
-                )
+                return (<span className={'badge'} style={treeviewSpanStyle}> {tag} </span>)
             });
         }
-
         let children: any[] = [];
         if (node.children) {
             node.children.forEach((node: Node) => {
@@ -461,22 +416,18 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
                     onNodeDoubleClicked: this.props.onNodeDoubleClicked,
                     addNode: this.props.addNode,
                     removeNode: this.props.removeNode,
-                    options: options,
+                    options: uiOptions,
                     allowNew: this.props.allowNew
                 }));
             });
         }
-
         let addButton = this.props.allowNew ? (
             <span className="glyphicon glyphicon-plus addElement" style={{ float: "right", cursor: "pointer" }}
                 onClick={this.newNodeForm}></span>) : "";
-
         let removeButton = this.props.options.removable ? (
             <span className="glyphicon glyphicon-remove removeElement" style={{ cursor: "pointer" }}
                 onClick={this.removeNode}></span>) : "";
-
         let newNode;
-
         if (this.state.addNode) {
             newNode = (<div className="input-group">
                 <input type="text" className="form-control nodeName" ref={this.newNodeName} />
@@ -486,7 +437,6 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
             </div>
             );
         }
-
         cssStyle["cursor"] = "pointer";
         let key = node.id ? node.id : crypto.randomUUID();
         let treeNode = (
@@ -501,13 +451,9 @@ export class TreeNode extends React.Component<TreeNodeProperty, TreeNodeState> {
                 {children}
             </li>
         );
-
         return (
-            <ul>
-                {treeNode}
-            </ul>
+            <ul>{treeNode}</ul>
         );
     }
 }
-
 export default TreeView;

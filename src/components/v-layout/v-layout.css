@@ -55,11 +55,17 @@
     padding-inline-start: 4px;
 }
 .v-layout .v-app-header {
-    background-color: rgb(214, 214, 214);
+    background-color: rgb(245, 245, 245);
 }
 
 .v-layout .v-page-header {
     width: 100%;
+}
+
+.v-layout .dropdown-menu {
+    left : -20px;
+    top: 2.5em;
+    border-radius: 0px 0px 6px 6px;
 }
 
 .v-layout .v-page-body {

@@ -87,7 +87,7 @@ export const ValueChainCategories = (props: any) => {
                             </Col>
                             <Col className="v-summary">Regulations: N/A</Col>
                         </Row>
-                        <Row className="inventory-filters">
+                        <Row className="v-filters">
                             <Col className="v-summary">Airport Value Chain:
                             </Col>
                             <Col className="v-summary">

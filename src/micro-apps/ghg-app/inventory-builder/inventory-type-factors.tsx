@@ -75,9 +75,9 @@ export const InventoryTypeFactors = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="v-box">
+                                    <Col className="v-panel">
                                         <div className="v-header">Scope 1/2 Needs</div>
-                                        <div className="v-content">
+                                        <div className="v-panel-content">
                                             {scope1Category().map((item, idx) => {
                                                 return (
                                                     <div key={`default-${idx}`} className="mb-2">
@@ -93,9 +93,9 @@ export const InventoryTypeFactors = (props: any) => {
                                             })}
                                         </div>
                                     </Col>
-                                    <Col className="v-box">
+                                    <Col className="v-panel">
                                         <div className="v-header">Scope 3 Needs</div>
-                                        <div className="v-content">{scope3Category().map((item, idx) => (
+                                        <div className="v-panel-content">{scope3Category().map((item, idx) => (
                                             <div key={`default-${idx}`} className="mb-2">
                                                 <Form.Check
                                                     onChange={onSelectScope3}

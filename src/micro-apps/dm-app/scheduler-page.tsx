@@ -88,7 +88,7 @@ export const SchedulerPage = (props: any) => {
                         </Row>
                         <Row>
                             <Col className="v-field-label" sm={3}>Target type and details</Col>
-                            <Col className="v-field-value v-text-body" sm={9}>
+                            <Col className="v-text-body" sm={9}>
                                 ongue commodo kevin burgdoggen nisi eiusmod. Rump pork belly veniam picanha nisi mollit, shank
                                 laboris. Bresaola pancetta ut sirloin, nulla strip steak esse bacon consequat officia spare ribs.
                                 Boudin ad pork belly voluptate, jerky ullamco officia.","Veniam boudin cow, magna bacon cupim dolore tail

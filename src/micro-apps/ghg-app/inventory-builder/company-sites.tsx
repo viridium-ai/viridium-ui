@@ -133,13 +133,13 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Col className="v-box">
+                                    <Col className="v-panel">
 
-                                        <div className="v-content">
+                                        <div className="v-panel-content">
 
                                         </div>
                                     </Col>
-                                    <Col className="v-box">
+                                    <Col className="v-panel">
 
 
                                     </Col>

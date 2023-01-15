@@ -85,8 +85,8 @@ export const DataSources = (props: any) => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col className="v-box">
-                                <div className="v-content">
+                            <Col className="v-panel">
+                                <div className="v-panel-content">
                                     {ds1().map((item, idx) => (
                                         <div key={`default-${idx}`} className="mb-2">
                                             <Form.Check
@@ -101,8 +101,8 @@ export const DataSources = (props: any) => {
                                 </div>
 
                             </Col>
-                            <Col className="v-box">
-                                <div className="v-content">{ds2().map((item, idx) => (
+                            <Col className="v-panel">
+                                <div className="v-panel-content">{ds2().map((item, idx) => (
                                     <div key={`default-${idx}`} className="mb-2">
                                         <Form.Check
                                             onChange={onSelectItem}

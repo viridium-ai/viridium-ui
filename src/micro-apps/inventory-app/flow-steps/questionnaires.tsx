@@ -15,6 +15,7 @@ export const Questionnaires = (props: any) => {
     const [newNotes, setNotes] = useState<string>("");
     var configs = getConfigs();
     const questions: Array<Question> = configs.questions;
+    
     useEffect(() => {
         setUnselectedQuestions(configs.questions);
         let r = getQuestionnaire();
@@ -31,15 +32,12 @@ export const Questionnaires = (props: any) => {
     const onSelectQuestion = (event: any) => {
         selectQuestion(event.target.value);
     }
-
     const onUpdateNewName = (evt: any) => {
         setName(evt.target.value);
     }
-
     const onUpdateNewDesc = (evt: any) => {
         setNotes(evt.target.value);
     }
-
     const addNew = () => {
         let q = { id: "q" + questions.length, name: newName, notes: newNotes };
         let qs = [...selectedQuestions];
@@ -62,7 +60,7 @@ export const Questionnaires = (props: any) => {
             setSelectedQuestions(qs);
             setUnselectedQuestions([...unselectedQuestions.filter(q => q.id !== selectedQuestion)]);
             let clone = { ...questionnaire };
-            clone.questions = [...selectedQuestions];
+            clone.questions = [...qs];
             setQuestionnaire(clone);
             updateQuestionnaire(clone);
         }

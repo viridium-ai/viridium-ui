@@ -182,7 +182,7 @@ export const Dashboard = (props: any) => {
                                         <Toast.Body>
                                             <Row >
                                                 <Col>
-                                                    <div className="panel-chart-item">
+                                                    <div className="v-chart-item">
                                                         <QuickLine options={options} data={line_data_2} />
                                                     </div>
                                                 </Col>
@@ -197,16 +197,16 @@ export const Dashboard = (props: any) => {
                                         </Toast.Header>
                                         <Toast.Body>
                                             <Row>
-                                                <Col className="sub-panel">
-                                                    <div className="panel-pie-item">
+                                                <Col className="v-sub-panel">
+                                                    <div className="v-pie-item">
                                                         <QuickPie options={options} data={data} />
                                                     </div>
                                                     <div>
                                                         Scope Distribution
                                                     </div>
                                                 </Col>
-                                                <Col className="sub-panel">
-                                                    <div className="panel-pie-item">
+                                                <Col className="v-sub-panel">
+                                                    <div className="v-pie-item">
                                                         <QuickPie options={options} data={data} />
                                                     </div>
                                                     <div>

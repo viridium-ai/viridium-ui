@@ -114,7 +114,7 @@ export const MarketPlace = (props: any) => {
                                             <div>
                                                 New Providers
                                             </div>
-                                            <div className="panel-pie-item">
+                                            <div className="v-pie-item">
 
                                             </div>
                                         </Col>
@@ -124,7 +124,7 @@ export const MarketPlace = (props: any) => {
                                             <div>
                                                 New Data Sets
                                             </div>
-                                            <div className="panel-pie-item">
+                                            <div className="v-pie-item">
 
                                             </div>
                                         </Col>

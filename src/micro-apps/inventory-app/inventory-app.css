@@ -1,4 +1,11 @@
-
+.inventory-app .selected-questions {
+    padding: 0.5em;
+    margin: 1em;
+    background-color: rgb(244, 244, 244);
+    width: 95%;
+    overflow: hidden;
+    border-radius: 0.2em;
+}
 
 .inventory-app .selected-question {
     padding: 0.5em;
@@ -9,11 +16,6 @@
 
 .inventory-app .search-box {
     width: 50%;
-}
-
- 
-.inventory-app .inventory-filters {
-    height: 6em;
 }
 
 .inventory-app .analytic-table {

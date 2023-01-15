@@ -45,7 +45,7 @@ export const IntelligenceWorkspace = (props: any) => {
                                             <Toast.Body>
                                                 <Row >
                                                     <Col>
-                                                        <div className="panel-chart-item">
+                                                        <div className="v-chart-item">
 
                                                         </div>
                                                     </Col>
@@ -60,16 +60,16 @@ export const IntelligenceWorkspace = (props: any) => {
                                             </Toast.Header>
                                             <Toast.Body>
                                                 <Row>
-                                                    <Col className="sub-panel">
-                                                        <div className="panel-pie-item">
+                                                    <Col className="v-sub-panel">
+                                                        <div className="v-pie-item">
 
                                                         </div>
                                                         <div>
                                                             Scope Distribution
                                                         </div>
                                                     </Col>
-                                                    <Col className="sub-panel">
-                                                        <div className="panel-pie-item">
+                                                    <Col className="v-sub-panel">
+                                                        <div className="v-pie-item">
 
                                                         </div>
                                                         <div>
@@ -90,20 +90,20 @@ export const IntelligenceWorkspace = (props: any) => {
                                 </Toast.Header>
                                 <Toast.Body>
                                     <Row>
-                                        <Col className="sub-panel">
+                                        <Col className="v-sub-panel">
                                             <div>
 
                                             </div>
-                                            <div className="panel-pie-item">
+                                            <div className="v-pie-item">
 
                                             </div>
 
                                         </Col>
-                                        <Col className="sub-panel">
+                                        <Col className="v-sub-panel">
                                             <div>
 
                                             </div>
-                                            <div className="panel-pie-item">
+                                            <div className="v-pie-item">
 
                                             </div>
 

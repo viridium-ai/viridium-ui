@@ -128,7 +128,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                     </div>
                                 </Tab>
                                 <Tab eventKey="customReports" title="Custom Reports">
-                                    <Row className="filters">
+                                    <Row className="v-filters">
                                         <Col className="v-input v-label">
                                             Select:
                                         </Col>

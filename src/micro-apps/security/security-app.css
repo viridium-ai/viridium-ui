@@ -12,12 +12,19 @@
     font-size: medium;
 }
 
-.v-notification-meta {
+.security-app .v-notification-meta {
     padding: 1em;
 }
 
-.v-button {
+.security-app .v-button {
     display: inline-block;
     padding: 5px;
     margin: 12px;
+}
+
+.security-app .v-form {
+    width: 600px;
+    margin-top: 10em;
+    margin-bottom: 5em;
+    margin-right: 5em;
 }

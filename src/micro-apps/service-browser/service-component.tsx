@@ -303,7 +303,7 @@ export class EntityList extends Component<ListTableProp> {
             action: this.changeView
         });
         return (
-            <div className="schema-app v-panel-container">
+            <div className="schema-app v-panel">
                 <Title title={state.title} actions={actions} />
                 <div className='v-body'>
                     <div className='v-panel-content'>

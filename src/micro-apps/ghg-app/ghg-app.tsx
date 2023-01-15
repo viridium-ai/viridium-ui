@@ -3,7 +3,6 @@
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
 
-import './ghg-app.css';
 import { Help } from "../dm-app/help";
 import { CompanyConfig } from "./inventory-builder/company-config";
 import { MappingCategories } from "./inventory-builder/inventory-categories";
@@ -12,6 +11,8 @@ import { InventoryExport } from "./inventory-builder/inventory-export";
 import { InventoryItemsView } from "./inventory-builder/inventory-items";
 import { InventorySummary } from "./inventory-builder/inventory-summary";
 
+
+import './ghg-app.css';
 class GreenHouseApp extends MicroApp {
 
   public getTitle = () => {

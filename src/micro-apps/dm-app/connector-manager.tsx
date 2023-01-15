@@ -66,7 +66,7 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
     render() {
         let connector = this.state.connector;
         return (
-            <div className="v-panel-container">
+            <div className="v-panel">
                 <Row>
                     <EntityDetails entity={connector} title={"Properties"} />
                 </Row>
@@ -128,7 +128,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                 <div className="v-body-nav">
                     <Toast >
                         <Toast.Body>
-                            <div className="header">
+                            <div className="v-panel-header">
                                 Manage Connector
                             </div>
                             <div className="v-list-item">
@@ -141,7 +141,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                 <div className="v-body-main">
                     <Toast >
                         <Toast.Body>
-                            <div className="header">
+                            <div className="v-panel-header">
                                 Connector
                             </div>
                             <div className="v-list">

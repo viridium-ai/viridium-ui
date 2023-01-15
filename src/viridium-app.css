@@ -49,12 +49,12 @@ body {
   font-weight: 500;
   color: rgb(64, 64, 64);
 }
-.v-list {
-  padding: 1em;
+.v-list-item {
+  padding: 0.8em;
   cursor: pointer;
   color : rgb(59, 59, 59);
   background-color: white;
-  border-bottom: solid 1px rgb(193, 192, 192);
+  border-bottom: solid 1px rgb(228, 228, 228);
 }
 .v-actions {
   text-align: right;
@@ -80,6 +80,11 @@ body {
   padding: 1rem;
   color: rgb(62, 62, 62);
 }
+.v-text-body {
+  line-height: 1.8em;
+  padding: 0.5em;
+}
+
 @keyframes v-logo-spin {
   from {
     transform: rotate(0deg);

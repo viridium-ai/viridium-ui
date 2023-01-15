@@ -12,14 +12,6 @@
     font-size: medium;
 }
 
-.v-notification-body {
-    padding: 1em;
-    font-size: medium;
-    background-color: rgb(255, 255, 255);
-    min-height: 20em;
-    overflow-y: scroll;
-}
-
 .v-notification-meta {
     padding: 1em;
 }

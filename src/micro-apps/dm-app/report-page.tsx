@@ -119,7 +119,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                         </Toast>
                     </div>
                     <div className="v-body-main">
-                        <div className="dashboard-panel">
+                        <div className="v-dashboard-panel">
                             <Tabs defaultActiveKey="customReports" id="uncontrolled-tab-example" className="mb-3" >
                                 <Tab eventKey="prebuiltReports" title="Pre Built Reports">
                                     <div>

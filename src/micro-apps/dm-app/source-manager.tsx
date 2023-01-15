@@ -303,7 +303,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
     render() {
         let selectedInventory: Inventory = this.state.inventory;
         return (
-            <div className="dashboard-panel">
+            <div className="v-dashboard-panel">
                 {
                     selectedInventory ? <Toast >
                         <Toast.Header closeButton={false}>
@@ -361,7 +361,7 @@ export const SourceManager = (props: any) => {
                                 <div className="header">
                                     Manage Data Sources
                                 </div>
-                                <div className="item">
+                                <div className="v-list">
                                     <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
@@ -371,14 +371,14 @@ export const SourceManager = (props: any) => {
                                 <div className="header">
                                     Manage Data
                                 </div>
-                                <div className="item">
+                                <div className="v-list-item">
                                     <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>
                     </div>
                     <div className="v-body-main">
-                        <div className="dashboard-panel">
+                        <div className="v-dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
                                     <strong className="me-auto">Import Data Inventory</strong>
@@ -416,7 +416,7 @@ export const SourceManager = (props: any) => {
                                 </Toast.Body>
                             </Toast>
                         </div>
-                        <div className="dashboard-panel">
+                        <div className="v-dashboard-panel">
                             {
                                 selectedInventory ? <SourceInventory inventory={selectedInventory} /> : <div />
                             }

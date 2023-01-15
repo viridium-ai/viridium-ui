@@ -1,15 +1,9 @@
-
 import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
 import { LayoutPage } from '../../components/v-layout/v-layout'
 import { QuickLine, QuickPie } from '../../components/v-chart/v-quick-charts';
 import { dataSourceManager } from './dm-app';
-
-/**
- * Main page for a user profile.
- * 
- * @param props 
- * @returns 
- */
+import { DataTable } from '../../components/v-table/v-table';
+import { getConfigs } from '../../config/v-config';
 export const Dashboard = (props: any) => {
     const options = {
         responsive: true,
@@ -88,25 +82,28 @@ export const Dashboard = (props: any) => {
         ],
     };
 
+    const getSampleData = () => {
+        return getConfigs().reportMockData;
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={dataSourceManager}  >
                 <div className="v-body-nav">
                     <Toast >
-                        <Toast.Body>
-                            <div className="item">
+                        <Toast.Body className="v-list">
+                            <div className="v-list-item">
                                 Current Status
                             </div>
-                            <div className="item">
+                            <div className="v-list-item">
                                 Status YoY
                             </div >
-                            <div className="item">
+                            <div className="v-list-item">
                                 Activities
                             </div>
-                            <div className="item">
+                            <div className="v-list-item">
                                 Sources
                             </div>
-                            <div className="item">
+                            <div className="v-list-item">
                                 Scope
                             </div>
                         </Toast.Body>
@@ -119,20 +116,20 @@ export const Dashboard = (props: any) => {
                             <div className="nav-chart-item">
                                 <QuickLine options={options} data={line_data} />
                             </div >
-                            <div className="item">
+                            <div className="v-list-item">
                                 Sources
                             </div >
-                            <div className="item">
+                            <div className="v-list-item">
                                 Activities
                             </div>
-                            <div className="item">
+                            <div className="v-list-item">
                                 Scope
                             </div>
                         </Toast.Body>
                     </Toast>
                 </div>
                 <div className="v-body-main">
-                    <div className="dashboard-panel">
+                    <div className="v-dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <strong className="me-auto">Progress</strong>
@@ -174,7 +171,7 @@ export const Dashboard = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                    <div className="dashboard-panel">
+                    <div className="v-dashboard-panel">
                         <div>
                             <Row >
                                 <Col>
@@ -223,13 +220,14 @@ export const Dashboard = (props: any) => {
                             </Row>
                         </div>
                     </div>
-                    <div className="dashboard-panel">
+                    <div className="v-dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <strong className="me-auto">Emission</strong>
                             </Toast.Header>
                             <Toast.Body>
-                                <Table striped bordered hover size="sm">
+                                <DataTable data={getSampleData()} />
+                                {/* <Table striped bordered hover size="sm">
                                     <thead>
                                         <tr>
                                             <th>Progress</th>
@@ -254,7 +252,7 @@ export const Dashboard = (props: any) => {
                                             <td>@twitter</td>
                                         </tr>
                                     </tbody>
-                                </Table>
+                                </Table> */}
                             </Toast.Body>
                         </Toast>
                     </div>

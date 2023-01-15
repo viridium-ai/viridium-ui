@@ -9,27 +9,27 @@ export const MarketPlace = (props: any) => {
             <LayoutPage microApp={dataSourceManager} >
                     <div className="v-body-nav">
                         <Toast >
-                            <Toast.Body>
-                                <div className="item">
+                            <Toast.Body className="v-list">
+                                <div className="v-list-item">
                                     Current Status
                                 </div>
-                                <div className="item">
+                                <div className="v-list-item">
                                     Status YoY
                                 </div >
-                                <div className="item">
+                                <div className="v-list-item">
                                     Activities
                                 </div>
-                                <div className="item">
+                                <div className="v-list-item">
                                     Sources
                                 </div>
-                                <div className="item">
+                                <div className="v-list-item">
                                     Scope
                                 </div>
                             </Toast.Body>
                         </Toast>
                     </div>
                     <div className="v-body-main">
-                        <div className="dashboard-panel">
+                        <div className="v-dashboard-panel">
                             <div>
                                 <Row >
                                     <Col>
@@ -103,7 +103,7 @@ export const MarketPlace = (props: any) => {
                                 </Row>
                             </div>
                         </div>
-                        <div className="dashboard-panel">
+                        <div className="v-dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
                                     <strong className="me-auto">Product Spotlight and Recent Addition</strong>

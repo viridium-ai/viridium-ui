@@ -131,7 +131,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                             <div className="header">
                                 Manage Connector
                             </div>
-                            <div className="item">
+                            <div className="v-list-item">
                                 <TreeView onClick={this.selectConnector} data={this.getTreeData()}
                                      options={{ selectable: false, enableLinks: false }} />
                             </div >
@@ -144,7 +144,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                             <div className="header">
                                 Connector
                             </div>
-                            <div className="item">
+                            <div className="v-list">
                                 {
                                     this.state.connector ? <ConnectorView connector={this.state.connector} /> : <div />
                                 }

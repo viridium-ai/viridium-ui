@@ -1,12 +1,9 @@
 import { useState } from "react";
-
-import { Toast, Form, Row, Col, Button } from "react-bootstrap";
+import { Toast, Row, Col } from "react-bootstrap";
 import { LayoutPage } from "../../components/v-layout/v-layout";
 import { getConfigs } from "../../config/v-config";
 import { securityApp } from "./security-app";
-
 import { LoremIpsum } from "lorem-ipsum";
-
 const lorem = new LoremIpsum({
     sentencesPerParagraph: {
         max: 8,
@@ -58,7 +55,7 @@ export const NotificationView = (props: any) => {
                         <Toast.Body>
                             {
                                 notifications.map((n) => {
-                                    return <div className="v-list" key={n.id + 'k'} id={n.id} onClick={onSelectNotification}>{n.subject}</div>
+                                    return <div className="v-list-item" key={n.id + 'k'} id={n.id} onClick={onSelectNotification}>{n.subject}</div>
                                 })
                             }
                         </Toast.Body>
@@ -77,14 +74,14 @@ export const NotificationView = (props: any) => {
                                 <Col sm={6}>on {notification.date}</Col>
                                 <Col sm={2}>{notification.priority === "1" ? "High" : ""}</Col>
                             </Row>
-                            <Row className="v-body">
-                                <Col sm={12} className="v-notification-body">
-                                    {lorem.generateParagraphs(2+Math.floor(Math.random() * 10)).split("\n").map((p, idx:number) => {
+                            <Row className="v-notification-text">
+                                <Col sm={12} className="v-text-body">
+                                    {lorem.generateParagraphs(2 + Math.floor(Math.random() * 10)).split("\n").map((p, idx: number) => {
                                         return <p key={idx}>{p}</p>
                                     })}
                                 </Col>
                             </Row>
-                            <Row className="v-body">
+                            <Row className="v-buttons">
                                 <Col sm={8} >
                                 </Col>
                                 <Col style={{ textAlign: "right", padding: ".5em" }} sm={4} >

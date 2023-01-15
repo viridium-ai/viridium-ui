@@ -1,69 +1,20 @@
 import { useState } from "react";
 
-import { Toast, Table, Form, Col, Row } from "react-bootstrap";
+import { Toast, Col, Row } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { DimensionView } from "../../../components/v-table/v-table";
+import { DataTable, DimensionView } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire } from "../inventory-questionaire";
 
-export const CategoryTable = (props: any) => {
-    const ui = () => {
-        return (
-            <Table className="analytic-table">
-                <>
-                    <thead>
-                        <tr>
-                            {
-                                props.selectable ? <th className={"analytic-header analytic-col-checkbox"}>Select</th> : ""
-
-                            }
-                            {
-                                props.headers.map((header: any, idx: number) =>
-                                    <th key={"header-" + idx} className={"analytic-header analytic-col-" + idx}>{header}</th>
-                                )
-                            }
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {props.children}
-                    </tbody>
-                </>
-            </Table>
-        )
-    }
-    return ui();
-}
-
-export const CategoryRow = (props: any) => {
-    const ui = () => {
-        return (
-            <tr className="analytic-row" >
-                {
-                    props.selectable ? <td><Form.Check type="checkbox" onChange={props.onSelect} /> </td> : ""
-                }
-                {
-                    props.cols.map((dim: any, idx: number) =>
-                        <td key={"col-" + idx} className={"analytic-dim-" + idx}>{dim}</td>
-                    )
-                }
-            </tr>)
-    }
-    return ui();
-}
-
 export const ValueChainCategories = (props: any) => {
     var configs = getConfigs();
-
     const [report] = useState<Questionnaire>(getQuestionnaire());
     const [subCategories, setSubCategories] = useState<Array<{ id: string, label: string }>>([]);
     const [selectedCategory, setCategory] = useState("");
-
     const [selectedSubCategory, setSubCategory] = useState("");
-
     const categories: Array<{ id: string, label: string, categories: Array<{ id: string, label: string }> }> = configs.valueChain.categories;
-
     const selectCategory = (v: any) => {
         if (v) {
             let c = categories.find(cat => cat.id === v.id);
@@ -78,19 +29,41 @@ export const ValueChainCategories = (props: any) => {
             setCategory("");
             setSubCategories([]);
         }
-
     }
-
     const onSelectCategory = (v: any) => {
         selectCategory(v);
     }
-
     const onSelectSubCategory = (v: any) => {
         setSubCategory(v ? v.id : "");
     }
-    const onSelectFunctionCategory = (event: any) => {
 
+    const getSitesData = () => {
+        
+        const filtered =  configs.valueChain.values.filter((row: any) => {
+            const category = categories.find((cat) => selectedCategory === cat.id);
+            const f = subCategories.find((f) => selectedSubCategory === f.id);
+            return category?.label === row[0] && (f === undefined ? true : f.label === row[1]);
+        });
+
+        return {
+            id: "",
+            headers: configs.valueChain.headers.map((v: any, idx: number) => {
+                return {id:idx, text:v}
+            }),
+            rows: filtered.map((v: any, idx: number) => {
+                return {
+                    id:'r'+idx,
+                    cols: v.map((c:any, jdx:number) => {
+                        return {
+                            id: 'c' + jdx,
+                            text: c
+                        }
+                    })
+                }
+            })
+        }
     }
+
     const ui = () => {
         return (
             <LayoutPage microApp={inventoryConfigApp} >
@@ -133,19 +106,8 @@ export const ValueChainCategories = (props: any) => {
                         </Row>
                         <Row >
                             <Col>
-                                {selectedCategory !== "" ?
-                                    <CategoryTable title="Categories" headers={configs.valueChain.headers} selectable={true}>
-                                        {
-                                            configs.valueChain.values.filter((row: any) => {
-                                                const category = categories.find((cat) => selectedCategory === cat.id);
-                                                const f = subCategories.find((f) => selectedSubCategory === f.id);
-                                                return category?.label === row[0] && (f === undefined ? true : f.label === row[1]);
-                                            }).map((row: any, idx: number) => {
-                                                return <CategoryRow onChange={onSelectFunctionCategory} selectable={true}
-                                                    key={"row-" + idx} cols={row} />
-                                            })
-                                        }
-                                    </CategoryTable> : <div>Please select a category</div>
+                                {
+                                    selectedCategory !== "" ? <DataTable data={getSitesData()} /> : <div>Please select a category</div>
                                 }
                             </Col>
                         </Row>
@@ -157,6 +119,5 @@ export const ValueChainCategories = (props: any) => {
             </LayoutPage >
         )
     }
-
     return ui();
 }

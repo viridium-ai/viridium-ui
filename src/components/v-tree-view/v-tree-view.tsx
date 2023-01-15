@@ -39,7 +39,7 @@ class Node {
     siblings = () => {
         return this.parent?.children;
     }
-    updateState = () : void => {
+    updateState = (): void => {
 
     }
 }
@@ -119,7 +119,7 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             children.forEach((child: Node) => {
                 child.state = state;
                 child.state.selected = state.selected;
-              //  this.setChildrenState(child.children, state);
+                //  this.setChildrenState(child.children, state);
             });
     }
     setParentSelectable(node: Node) {
@@ -127,6 +127,21 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             return;
         node.parent.state.selected = true;
         this.setParentSelectable(node.parent);
+    }
+    unsetSiblingState(node: Node, state: NodeState) {
+        let siblings = this.state.data;
+        if (node.parent) {
+            let parent = this.findNodeById(this.state.data, node.parent.id);
+            siblings = parent?.children;
+        }
+        if (!siblings){
+            siblings = this.state.data;
+        }
+        if (siblings) {
+            siblings.forEach((sibling: Node) => {
+                if(node.id !== sibling.id) sibling.state.selected = false;
+            });
+        }
     }
     checkParentEmpty = (node: Node) => {
         let parent = node.parent;
@@ -138,17 +153,16 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
         }
     }
     updateTree = () => {
-        this.state.data?.forEach((node)=>node.updateState())
+        // this.state.data?.forEach((node) => node.updateState())
     }
     nodeSelected = (nodeId: string, selected: boolean) => {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
             node.state.selected = selected;
-            if(this.props.options?.selectChildren) {
+            if (this.props.options?.selectChildren) {
                 this.setChildrenState(node.children, node.state);
-            } 
-            if(this.props.options?.enableLinks) {
-                this.setChildrenState(node.children, node.state);
+            } else {
+                if (selected) this.unsetSiblingState(node, node.state);
             }
             this.setState({ data: this.state.data });
             if (this.props.onClick) {

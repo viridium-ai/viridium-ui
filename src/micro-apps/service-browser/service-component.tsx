@@ -202,9 +202,9 @@ interface EntityDetailsProp {
     actions?: Array<any>
 }
 export class EntityDetails extends Component<EntityDetailsProp> {
-    renderField = (field: { name?: string, value: any }) => {
+    renderField = (field: { id: any, name?: string, value: any }) => {
         return (
-            <Row className='entity-value'>
+            <Row key={""+field.id} className='entity-value'>
                 <Col sm={3} className='v-field-label'>{field.name}</Col>
                 <Col sm={9} className='v-field-value'>{field.value}</Col>
             </Row>
@@ -218,7 +218,7 @@ export class EntityDetails extends Component<EntityDetailsProp> {
         });
         return (
             rows.map((def: FieldDefinition, idx: number) =>
-                this.renderField({ name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name] })
+                this.renderField({id:idx, name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name] })
             )
         )
     }

@@ -135,7 +135,7 @@ export const Questionnaires = (props: any) => {
                                 <span onClick={onToggleAdd}>Add a Question</span>
                             </Col>
                             <Col sm={8} className="v-summary">
-                                {addQuestion ? <div className="new-question-form">
+                                {addQuestion ? <div className="v-form">
                                     <Row>
                                         <Col className="v-summary">
                                             <Form.Label>Name</Form.Label>

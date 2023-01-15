@@ -1,53 +1,31 @@
 import { useState } from "react";
 import { Container, Row, Col, Form, Button, Alert, NavLink } from "react-bootstrap";
 import { Route, useNavigate, useSearchParams } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/v-app";
-
 
 import { LayoutPage } from "../../components/v-layout/v-layout";
 import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/v-security-manager";
 import './security-app.css';
-import { homeApp } from "../home/home-app";
+import { HomeApp, homeApp } from "../home/home-app";
 import { EntityDetails } from "../service-browser/service-component";
 import { NotificationView } from "./notifications";
 
-class SecurityApp extends MicroApp {
-
-    private routeItems: Array<RouteItem> = [
-        this.newItem('users', "Users", 'Security'),
-        this.newItem('roles', "Roles", 'Security'),
-        this.newItem('permissions', "Permissions", 'Security')
-    ];
-
-    private newItem(name: string, label: string, group: string) {
-        let routeItem = new RouteItem().init(name, label, group);
-        routeItem.route = () => {
-            return <ProfileManager />
-        };
-        return routeItem;
-    }
-
+class SecurityApp extends HomeApp {
     public getName = () => {
         return "security-app";
     }
     public getTitle = (): string => {
         return "Security";
     }
-
-    public getNavItems = () => {
-        return [];//this.routeItems;
-    }
-
-    public getRouteItems = () => {
-        return [];
-    }
-
-    public routes = () => {
-        return this.routeItems.map((r, idx) => {
-            return <Route key={`route_` + idx} path={`/${r.name}`} element={r.route()} />
-        });
-    }
-
+    public isSecure = (): boolean => {
+        return true;
+      }
+    
+      getHeader = (): any => {
+        return {
+          title: this.getTitle(),
+          visible: true
+        };
+      }
     public getRoutes = () => {
         return (
             <>

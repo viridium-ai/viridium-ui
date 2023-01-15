@@ -10,20 +10,21 @@ import { WelcomePage } from "./welcome";
 import './home-app.css';
 import { securityManager } from "../../common/security/v-security-manager";
 
-class HomeApp extends MicroApp {
-  
+export class HomeApp extends MicroApp {
+
   public getName = () => {
     return "home-app";
   }
-  public isSecure = () : boolean =>  {
+  public isSecure = (): boolean => {
     return false;
   }
-  getHeader = () : any  =>{
+
+  getHeader = (): any => {
     return {
-        title:this.getTitle(),
-        visible:false
+      title: this.getTitle(),
+      visible: false
     };
-}
+  }
 
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Inventory Config", "Inventory Config", undefined, "/inventory-app"),
@@ -43,7 +44,7 @@ class HomeApp extends MicroApp {
 
 
   public getRouteItems = () => {
-    return securityManager.isSignedIn() ?this.routeItems : this.routeItems1;
+    return securityManager.isSignedIn() ? this.routeItems : this.routeItems1;
   }
 
   public getNavItems = () => {

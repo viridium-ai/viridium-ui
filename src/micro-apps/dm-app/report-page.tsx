@@ -184,7 +184,7 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                     </Row>
                                     <DataTable data={this.getData()} onSelectRow={this.onSelectRow} />
                                     <Row className="v-footer">
-                                        <Col sm={2} className="v-label">Export data to:
+                                        <Col sm={2} className="v-field-label">Export data to:
                                         </Col>
                                         <Col sm={3} className="v-input">
                                             <DimensionView data={configs.managedConnectors.map((v: any) => { return { id: v.id, label: v.name } })} options={this.ExportOptions()} />

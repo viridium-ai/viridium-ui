@@ -57,3 +57,13 @@
 .dm-app .v-filters .v-label {
     padding: 10px 14px;
 }
+
+.dm-app .v-footer {
+    background-color: white;
+}
+.dm-app .v-footer .v-field-label {
+    background-color: white;
+}
+.dm-app .v-footer .v-input {
+    padding: 0.5em;
+}

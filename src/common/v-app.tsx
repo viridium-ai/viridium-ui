@@ -40,6 +40,7 @@ export abstract class MicroApp implements IMicroApp {
 }
 
 export interface IRouteItem {
+    group?: string;
     name: string,
     label: Function|string|undefined,
     icon?: string,

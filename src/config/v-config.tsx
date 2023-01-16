@@ -2,7 +2,7 @@ import { localCache } from "../utils/v-cache-manager";
 import { Company, Inventory } from "../micro-apps/ghg-app/inventory-builder/model";
 
 export const getConfigs = (): any => {
-    let configs = localCache.get("Viridium.Config");
+    let configs = undefined;//localCache.get("Viridium.Config");
     if (configs === undefined) {
         configs = require("./configs.json");
         localCache.set("Viridium.Config", configs);

@@ -87,21 +87,31 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
 export const LayoutHeader = (props: any) => {
     const microApp = props.microApp as MicroApp;
     const configs = getConfigs();
+    let routeItems = microApp.getRouteItems();
+    let group1 = routeItems.filter((item) => item.group === "1");
+    let group2 = routeItems.filter((item) => item.group === "2");
     const ui = () => (
         <Navbar bg="light" expand="lg">
             <Navbar.Brand href="/">
-                <img src="../resources/green.png" className="viridium-logo" alt="Layout" ></img>
+                <img src="../resources/green.png" className="viridium-logo" alt="Viridium.ai" ></img>
                 <span>{configs.title}</span>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Nav className="me-auto">
+                {
+                    group1.length > 0 ?
+                        group1.map((routeItem, idx) => {
+                            return <Nav.Link id={"nav-middle-" + idx} key={"menu_item_" + idx} href={routeItem.route}>{routeItem.name}</Nav.Link>
+                        }) : ""
+                }
+            </Nav>
             <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto">
-                </Nav>
+                <Nav className="me-auto"> </Nav>
                 <Nav className="layout-header-end me-end">
                     {
-                        microApp.getRouteItems().length > 0 ?
-                            microApp.getRouteItems().map((routeItem, idx) => {
-                                return <Nav.Link key={"menu_item_" + idx} href={routeItem.route}>{routeItem.name}</Nav.Link>
+                        group2.length > 0 ?
+                            group2.map((routeItem, idx) => {
+                                return <Nav.Link id={"nav-end-" + idx} key={"menu_item_" + idx} href={routeItem.route}>{routeItem.name}</Nav.Link>
                             }) : ""
                     }
                 </Nav>

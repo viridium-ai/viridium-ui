@@ -33,13 +33,13 @@ export class HomeApp extends MicroApp {
   ];
 
   private routeItems1: Array<RouteItem> = [
-    new RouteItem().init("Home", "Home", undefined, "/"),
-    new RouteItem().init("Products", "Products", undefined, "/products"),
-    new RouteItem().init("Solutions", "Solutions", undefined, "/solutions"),
-    new RouteItem().init("Industries", "Industries", undefined, "/industries"),
-    new RouteItem().init("Company", "Company", undefined, "/company"),
-    new RouteItem().init("Request Demo", "Request Demo", undefined, "/demo-app"),
-    new RouteItem().init("Sign In", "Sign In", undefined, "/login?from=/")
+    new RouteItem().init("Products & Solutions", "Products", "1", "/products"),
+    new RouteItem().init("Industries", "Industries", "1", "/industries"),
+    new RouteItem().init("Contact us", "Contact us", "1", "/company"),
+
+    new RouteItem().init("Sign in", "Sign in", "2", "/login?from=/"),
+    new RouteItem().init("Request Demo", "Request Demo", "2", "/demo-app"),
+
   ];
 
 

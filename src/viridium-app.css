@@ -61,6 +61,9 @@ body {
 }
 .v-button {
   cursor: pointer;
+  border: 1px white solid;
+  border-radius: 18px;
+  text-align: center;
 }
 
 .v-field-label {

@@ -1,13 +1,14 @@
 import { StringUtils } from '../utils/v-string-utils';
 
 export interface IMicroApp {
-    getRouteItems () : IRouteItem[];
-    getNavItems() : IRouteItem[];
-    getRoutes() : any;
-    getName () : string;
-    getTitle () : string;
-    getHeader () : {visible:boolean, title:string};
-    isSecure () : boolean;
+    getRouteItems(): IRouteItem[];
+    getNavItems(): IRouteItem[];
+    getRoutes(): any;
+    getName(): string;
+    getPageClass(): string;
+    getTitle(): string;
+    getHeader(): { visible: boolean, title: string };
+    isSecure(): boolean;
 }
 
 export abstract class MicroApp implements IMicroApp {
@@ -20,20 +21,22 @@ export abstract class MicroApp implements IMicroApp {
     getRoutes() {
         throw new Error('Method not implemented.');
     }
-    
+
     getName(): string {
         throw new Error('Method not implemented.');
     }
-    getTitle () : string {
+    getTitle(): string {
         return this.getName();
     }
-    getHeader = () : any  =>{
+    getHeader = (): any => {
         return {
-            title:this.getTitle(),
-            visible:true
+            title: this.getTitle(),
+            visible: true
         };
     }
-
+    getPageClass = (): any => {
+        return "v-page-" + this.getName();
+    }
     isSecure = () => {
         return true;
     }
@@ -42,11 +45,11 @@ export abstract class MicroApp implements IMicroApp {
 export interface IRouteItem {
     group?: string;
     name: string,
-    label: Function|string|undefined,
+    label: Function | string | undefined,
     icon?: string,
     type?: string,
     route: any,
-    getLabel() : string
+    getLabel(): string
 }
 
 export interface Action {
@@ -71,20 +74,20 @@ export class RouteItem implements IRouteItem {
     route: any;
 
     public getLabel(): string {
-        if(this.label instanceof Function) {
+        if (this.label instanceof Function) {
             return this.label();
         }
-        else if(this.label) {
+        else if (this.label) {
             return this.label;
         }
         else {
             return StringUtils.t(this.name)!;
         }
     }
-    
-    public init(name : string, label : any = undefined, group : string | undefined = undefined, route : any = undefined) : RouteItem{
+
+    public init(name: string, label: any = undefined, group: string | undefined = undefined, route: any = undefined): RouteItem {
         this.group = group;
-        this.name = name; 
+        this.name = name;
         this.label = label;
         this.route = route;
         return this;

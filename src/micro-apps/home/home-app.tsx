@@ -5,7 +5,7 @@ import { MicroApp, RouteItem } from "../../common/v-app";
 import { About } from "./about";
 import { Industries } from "./industries";
 import { Products } from "./products";
-import { Solutions } from "./solutions";
+import { ContactUs } from "./contact-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
 import { securityManager } from "../../common/security/v-security-manager";
@@ -26,16 +26,17 @@ export class HomeApp extends MicroApp {
     };
   }
 
-  private routeItems: Array<RouteItem> = [
-    new RouteItem().init("Inventory Config", "Inventory Config", undefined, "/inventory-app"),
-    new RouteItem().init("Data Manager", "Data Manager", undefined, "/dm-app"),
-    new RouteItem().init("GHG Reports", "GHG Reports", undefined, "/ghg-app")
+  public routeItems: Array<RouteItem> = [
+    new RouteItem().init("Inventory Config", "Inventory Config", "1", "/inventory-app"),
+    new RouteItem().init("Data Manager", "Data Manager", "1", "/dm-app"),
+    new RouteItem().init("GHG Reports", "GHG Reports", "1", "/ghg-app"),
+    new RouteItem().init("Sign out", "Sign out", "2", "/signout"),
   ];
 
   private routeItems1: Array<RouteItem> = [
     new RouteItem().init("Products & Solutions", "Products", "1", "/products"),
     new RouteItem().init("Industries", "Industries", "1", "/industries"),
-    new RouteItem().init("Contact us", "Contact us", "1", "/company"),
+    new RouteItem().init("Contact us", "Contact us", "1", "/contact-us"),
 
     new RouteItem().init("Sign in", "Sign in", "2", "/login?from=/"),
     new RouteItem().init("Request Demo", "Request Demo", "2", "/demo-app"),
@@ -56,13 +57,12 @@ export class HomeApp extends MicroApp {
       <>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/solutions" element={<Solutions />} />
+        <Route path="/contact-us" element={<ContactUs />} />
         <Route path="/industries" element={<Industries />} />
-        <Route path="/company" element={<About />} />
+        <Route path="/about" element={<About />} />
       </>
     );
   }
 }
-
 
 export const homeApp: HomeApp = new HomeApp();

@@ -164,14 +164,16 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
     const ui = () => {
         return (
             <div className={`${microApp.getName()}`}>
-                <div className="v-layout">
-                    <LayoutHeader microApp={microApp} />
-                    <ApplicationHeader microApp={microApp} />
-                    <div className="v-page-body">
-                        {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
-                        {props.children}
+                <div className={`${microApp.getPageClass()}`}>
+                    <div className="v-layout">
+                        <LayoutHeader microApp={microApp} />
+                        <ApplicationHeader microApp={microApp} />
+                        <div className="v-page-body">
+                            {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
+                            {props.children}
+                        </div>
+                        <LayoutFooter />
                     </div>
-                    <LayoutFooter />
                 </div>
             </div>
         )

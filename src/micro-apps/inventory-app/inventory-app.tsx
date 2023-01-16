@@ -9,8 +9,9 @@ import { Help } from "./help";
 import { InventoryCategories } from "./flow-steps/inventory-categories";
 import { InventoryConfig } from "./flow-steps/inventory-config";
 import './inventory-app.css';
+import { HomeApp } from "../home/home-app";
 
-class InventoryConfigApp extends MicroApp {
+export class InventoryConfigApp extends HomeApp {
 
   public getTitle = () => {
     return "Inventory App"
@@ -19,18 +20,12 @@ class InventoryConfigApp extends MicroApp {
   public getName = () => {
     return "inventory-app";
   }
-
-  private routeItems: Array<RouteItem> = [
-    new RouteItem().init("Help", "Help", undefined, "/inventory-app/help")
+  public routeItems: Array<RouteItem> = [
+    new RouteItem().init("Inventory Config", "Inventory Config", "2", "/inventory-app"),
+    new RouteItem().init("Data Manager", "Data Manager", "2", "/dm-app"),
+    new RouteItem().init("GHG Reports", "GHG Reports", "2", "/ghg-app"),
+    new RouteItem().init("Sign out", "Sign out", "2", "/signout"),
   ];
-
-  public getRouteItems = () => {
-    return this.routeItems;
-  }
-
-  public getNavItems = () => {
-    return [];
-  }
 
   public getRoutes = () => {
     return (

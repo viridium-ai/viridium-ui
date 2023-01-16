@@ -1,0 +1,41 @@
+.welcome-page {
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../../public/resources/home-bg.jpg");
+    background-size: 120%;
+    width: 100%;
+    height: 100vh;
+    color: rgb(237, 237, 237);
+    background-repeat: repeat-y;
+}
+
+.welcome-page .v-page-footer {
+    color: white !important;
+    background-color: rgba(0, 0, 0, 0.0) !important;
+}
+
+.welcome-page a {
+    color: white !important;
+}
+
+
+.home-app .home-splash {
+    filter: brightness(200%);
+    height: 100%;
+    width: 100%;
+    padding-top: 9vh;
+    padding-left: 10%;
+    text-align: left;
+    font-size: 4em;
+    font-weight: 600;
+}
+
+.home-app .home-blurb {
+    filter: brightness(200%);
+    height: 100%;
+    padding-top: 50vh;
+    padding-left: 15%;
+    padding-right: 5%;
+    text-align: left;
+    font-size: 1.8em;
+    font-weight: 300;
+}
+

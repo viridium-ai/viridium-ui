@@ -9,23 +9,25 @@ export const SchedulerPage = (props: any) => {
                 <div className="v-body-nav">
                     <Toast >
                         <Toast.Body className="v-list">
-                            <div className="v-list-item">
-                                Planning Workspace
-                            </div>
-                            <div className="v-list-item">
-                                Net Zero Planning
-                            </div >
-                            <div className="v-list-item">
-                                Population Planning
-                            </div>
-                            <div className="v-list-item">
-                                Policy Planning
-                            </div>
-                            <div className="v-list-item">
-                                Supplier Planning
-                            </div>
-                            <div className="v-list-item">
-                                Source Planning
+                            <div className="v-list-body">
+                                <div className="v-list-item">
+                                    Planning Workspace
+                                </div>
+                                <div className="v-list-item">
+                                    Net Zero Planning
+                                </div >
+                                <div className="v-list-item">
+                                    Population Planning
+                                </div>
+                                <div className="v-list-item">
+                                    Policy Planning
+                                </div>
+                                <div className="v-list-item">
+                                    Supplier Planning
+                                </div>
+                                <div className="v-list-item">
+                                    Source Planning
+                                </div>
                             </div>
                         </Toast.Body>
                     </Toast>

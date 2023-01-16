@@ -67,3 +67,9 @@
 .dm-app .v-footer .v-input {
     padding: 0.5em;
 }
+
+.dm-app .v-dashboard-panel .row {
+    flex-wrap: nowrap;
+    overflow: scroll;
+
+}

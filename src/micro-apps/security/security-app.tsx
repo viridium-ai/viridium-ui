@@ -18,19 +18,20 @@ class SecurityApp extends HomeApp {
     }
     public isSecure = (): boolean => {
         return true;
-      }
-    
-      getHeader = (): any => {
+    }
+
+    getHeader = (): any => {
         return {
-          title: this.getTitle(),
-          visible: true
+            title: this.getTitle(),
+            visible: true
         };
-      }
+    }
     public getRoutes = () => {
         return (
             <>
                 <Route path={`/login`} element={<LoginForm />} />
                 <Route path={`/signup`} element={<SignupForm />} />
+                <Route path={`/signout`} element={<SignOutForm />} />
                 <Route path={`/security-app`} element={<ProfileManager />} />
                 <Route path={`/security-app/profile`} element={<ProfileManager />} />
                 <Route path={`/security-app/notifications`} element={<NotificationView />} />
@@ -38,6 +39,31 @@ class SecurityApp extends HomeApp {
         )
     }
 }
+
+export const SignOutForm = (props: any) => {
+    const navigate = useNavigate();
+    setTimeout(() => {
+        securityManager.signout();
+        navigate("/", { replace: true });
+    }, 2000);
+
+    const ui = () => {
+        return (
+            <LayoutPage microApp={securityApp} >
+                <div className="v-body-main">
+                    <div className="v-signout-main">
+                            Thanks You, 
+                            <br/>
+                            Redirect to home in momentarily.
+                    </div>
+                </div>
+            </LayoutPage>
+        )
+    }
+
+    return ui();
+}
+
 
 export const LoginForm = (props: any) => {
     let messageForm: any = undefined;
@@ -291,7 +317,9 @@ export const ProfileManager = (props: any) => {
     }
     return (
         <LayoutPage microApp={securityApp} >
+             <div className="v-body-main">
             <EntityDetails entity={user} title="" />
+            </div>
         </LayoutPage>
     )
 }

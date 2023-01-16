@@ -45,6 +45,19 @@ body {
   font-weight: 500;
   color: rgb(64, 64, 64);
 }
+
+.v-list {
+  padding: 0px 0px;
+}
+
+.v-list-header {
+  padding: 8px 4px;
+  font-size: large;
+  background-color: aliceblue;
+}
+.v-list-body {
+  padding: 12px 2px;
+}
 .v-list-item {
   padding: 0.8em;
   cursor: pointer;
@@ -156,4 +169,8 @@ body {
 }
 .viridium-app .toast-header {
   border-radius: 0px;
+}
+
+.viridium-app .toast {
+ overflow: hidden;
 }

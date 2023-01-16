@@ -105,9 +105,6 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
         const configs = getConfigs();
         return (
             <LayoutPage microApp={greenHouseApp} >
-
-                <div className="v-body">
-                    <div className="v-body-main">
                         <Toast >
                             <Toast.Header closeButton={false}>
                                 <span className="me-auto">
@@ -147,8 +144,6 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
                                 <Button onClick={this.onAdd} >Add</Button>
                             </Toast.Body>
                         </Toast>
-                    </div>
-                </div>
             </LayoutPage >
         )
     }

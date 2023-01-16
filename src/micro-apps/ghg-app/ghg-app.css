@@ -16,7 +16,7 @@
     --bs-toast-header-border-color: rgba(200, 200, 200, 0.05);
 }
 
-.ghg-app  { 
+.ghg-app .v-page-body { 
     width: 80% !important;
     margin: 2em 10% 0em 10%;
     border: 1px solid darkblue;
@@ -72,3 +72,4 @@
     margin-top: 1em;
     padding: 0.5em;
 }
+

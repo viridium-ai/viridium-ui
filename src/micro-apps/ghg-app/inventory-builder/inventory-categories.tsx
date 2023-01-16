@@ -13,7 +13,6 @@ export const MappingCategories = (props: any) => {
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp}  >
-                {
                     <Toast>
                         <Toast.Header closeButton={false}>
                             <span className="me-auto">
@@ -22,15 +21,14 @@ export const MappingCategories = (props: any) => {
                             {inventory.company?.name}
                         </Toast.Header>
                         <Toast.Body>
-                             {"{{WIP}}"} <p/>
-                             We need to map raw data categories into Viridium datasets.
+                            {"{{WIP}}"} <p />
+                            We need to map raw data categories into Viridium datasets.
                         </Toast.Body>
 
                         <Action inventory={inventory}
                             next={{ label: "Next", path: props.next }}
                             prev={{ label: "Back", path: props.prev }} />
                     </Toast>
-                }
             </LayoutPage >
         )
     }

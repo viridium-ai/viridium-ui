@@ -6,15 +6,14 @@ export const WelcomePage = (props: any) => {
     const ui = () => {
         return (
             <LayoutPage microApp={homeApp}>
-                <div className="welcome-page">
-                    <div className="welcome-content">
-                        <div className="welcome-splash">
+                <div className="home-page">
+                    <div className="home-content">
+                        <div className="home-splash">
                             Data Cloud for Environmental<br />
                             Sustainability
                         </div>
                     </div>
                 </div>
-               
             </LayoutPage>
         )
     }

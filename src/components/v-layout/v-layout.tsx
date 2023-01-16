@@ -66,8 +66,8 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                         </Nav>
                         <Nav className="actions-menu" >
                             <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
-                            <NavDropdown.Item href="/security-app/profile">Profile</NavDropdown.Item>
-                            <NavDropdown.Item href="/security-app/notifications">Notifications</NavDropdown.Item>
+                                <NavDropdown.Item href="/security-app/profile">Profile</NavDropdown.Item>
+                                <NavDropdown.Item href="/security-app/notifications">Notifications</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={(e: any) => {
                                     securityManager.signout();
@@ -144,7 +144,6 @@ export class LayoutFooter extends Component {
 
 export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
     const microApp: MicroApp = props.microApp;
-    //  const routeItem: IRouteItem = props.routeItem;
     const navigate = useNavigate();
     useEffect(() => {
         if (microApp.isSecure() && !securityManager.isSignedIn()) {
@@ -152,17 +151,18 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
         }
     });
 
-    //UI 
     const ui = () => {
         return (
-            <div className="v-layout">
-                <LayoutHeader microApp={microApp} />
-                <ApplicationHeader microApp={microApp} />
-                <div className={`${microApp.getName()} v-page-body`}>
-                    {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
-                    {props.children}
+            <div className={`${microApp.getName()}`}>
+                <div className="v-layout">
+                    <LayoutHeader microApp={microApp} />
+                    <ApplicationHeader microApp={microApp} />
+                    <div className="v-page-body">
+                        {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
+                        {props.children}
+                    </div>
+                    <LayoutFooter />
                 </div>
-                <LayoutFooter />
             </div>
         )
     };

@@ -28,7 +28,7 @@ export const CompanyDetailsView = (props: any) => {
 
 export const CompanyConfig = (props: any) => {
     const configs = getConfigs();
-    const [company, setCompany] = useState<Company|undefined>(Company.new(getCompany()));
+    const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
     const companies: Array<Company> = configs.companies;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
 
@@ -67,49 +67,49 @@ export const CompanyConfig = (props: any) => {
     }
 
     return <LayoutPage microApp={greenHouseApp} >
-                <Toast >
-                    <Toast.Header closeButton={false}>
-                        <span className="me-auto">
-                            Config Company
-                        </span>
-                        {
-                            company ? company.name : ""
-                        }
-                    </Toast.Header>
-                    <Toast.Body>
-                        <Question label="Customer Name">
-                            <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
-                                <option>Select a company</option>
-                                {
-                                    companies.map((c, idx) =>
-                                        <option key={"company-" + idx} value={"" + c.id}>{c.name}</option>
-                                    )
-                                }
-                            </Form.Select>
-                            <div className="company-details">
-                                <CompanyDetailsView entity={company} />
-                            </div>
+            <Toast>
+                <Toast.Header closeButton={false}>
+                    <span className="me-auto">
+                        Config Company
+                    </span>
+                    {
+                        company ? company.name : ""
+                    }
+                </Toast.Header>
+                <Toast.Body>
+                    <Question label="Customer Name">
+                        <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
+                            <option>Select a company</option>
                             {
-                                company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                                companies.map((c, idx) =>
+                                    <option key={"company-" + idx} value={"" + c.id}>{c.name}</option>
+                                )
                             }
-                        </Question>
-                        <Question label="Viridium Industry">
-                            <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
-                                <option>Select a category</option>
-                                {
-                                    viridiumIndustries.map((v, idx) =>
-                                        <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
-                                    )
-                                }
-                            </Form.Select>
-                        </Question>
-                        <Question label="Notes">
-                            <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
-                        </Question>
-                    </Toast.Body>
+                        </Form.Select>
+                        <div className="company-details">
+                            <CompanyDetailsView entity={company} />
+                        </div>
+                        {
+                            company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                        }
+                    </Question>
+                    <Question label="Viridium Industry">
+                        <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
+                            <option>Select a category</option>
+                            {
+                                viridiumIndustries.map((v, idx) =>
+                                    <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
+                                )
+                            }
+                        </Form.Select>
+                    </Question>
+                    <Question label="Notes">
+                        <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
+                    </Question>
+                </Toast.Body>
 
-                    <Action next={{ label: "Next", path: props.next }} />
-                </Toast>
+                <Action next={{ label: "Next", path: props.next }} />
+            </Toast>
     </LayoutPage >
 
 }

@@ -478,31 +478,31 @@ export const InventoryItemsView = (props: any) => {
         let items = inventory.items;
         return (
             <LayoutPage microApp={greenHouseApp}  >
-                <Toast >
-                    <Toast.Header closeButton={false}>
-                        <span className="me-auto">
-                            Manage Inventory Items
-                        </span>
-                        <span className="v-button" onClick={clearItems}>Clear All</span>
-                    </Toast.Header>
-                    <Toast.Body>
-                        {
-                            itemForm()
-                        }
-                        {
-                            items.length > 0 ? <Row>
-                                <Col>
-                                    <DataTable data={getInventoryItemsData()} />
-                                </Col>
-                            </Row> : ""
-                        }
+                    <Toast >
+                        <Toast.Header closeButton={false}>
+                            <span className="me-auto">
+                                Manage Inventory Items
+                            </span>
+                            <span className="v-button" onClick={clearItems}>Clear All</span>
+                        </Toast.Header>
+                        <Toast.Body>
+                            {
+                                itemForm()
+                            }
+                            {
+                                items.length > 0 ? <Row>
+                                    <Col>
+                                        <DataTable data={getInventoryItemsData()} />
+                                    </Col>
+                                </Row> : ""
+                            }
 
-                    </Toast.Body>
+                        </Toast.Body>
 
-                    <Action inventory={inventory}
-                        next={{ label: "Next", path: props.next }}
-                        prev={{ label: "Back", path: props.prev }} />
-                </Toast>
+                        <Action inventory={inventory}
+                            next={{ label: "Next", path: props.next }}
+                            prev={{ label: "Back", path: props.prev }} />
+                    </Toast>
             </LayoutPage >
         )
     }

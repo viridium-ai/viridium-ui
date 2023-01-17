@@ -54,8 +54,28 @@ DQ GeographicalCorrelation of Factors without Margins
 DQ TechnologicalCorrelation of Factors without Margins	
 DQ DataCollection of Factors without Margins
 
-Summart Commodity
 
+Year
+Category
+Type 
+Code	
+Name	
+Substance	
+Unit	
+Factor
+Margin	
+FactorwithMargin	
+ReliabilityScore
+TemporalCorrelation
+GeographicalCorrelation
+TechnologicalCorrelation
+DataCollection
+
+
+Summart Commodity
+Year
+Category
+Type 
 Commodity Code	
 Commodity Name	
 Substance	

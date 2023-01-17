@@ -148,12 +148,13 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
         let lines = text.toString().split("\n");
         for (let i = 0; i < lines.length; i++) {
             const line = lines[i];
+            const separate = line.includes("\t") ? "\t" : ",";
             if (i === 0) {
-                headers = [...line.split(",")];
+                headers = [...line.split(separate)];
             }
             else {
 
-                data.push(line.split(","));
+                data.push(line.split(separate));
             }
         }
         return {

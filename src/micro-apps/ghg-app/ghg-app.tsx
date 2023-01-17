@@ -13,6 +13,7 @@ import { InventorySummary } from "./inventory-builder/inventory-summary";
 
 
 import './ghg-app.css';
+
 class GreenHouseApp extends MicroApp {
 
   public getTitle = () => {

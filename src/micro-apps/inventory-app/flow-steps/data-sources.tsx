@@ -6,6 +6,7 @@ import { Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
+import { QuestionniarView } from "./value-chain-categories";
 
 export const DataSources = (props: any) => {
     const configs = getConfigs();
@@ -63,19 +64,7 @@ export const DataSources = (props: any) => {
                         Viridium Industry:   {report.category}
                     </Toast.Header>
                     <Toast.Body>
-                        <Row>
-                            <Col className="v-summary">
-                                Environmental Sustainability Category: {report.context}
-                            </Col>
-                            <Col className="v-summary">Scope of Data Coverage: {report.type}</Col>
-                        </Row>
-                        <Row>
-                            <Col className="v-summary">
-                                Standards: {report.standard}
-                            </Col>
-                            <Col className="v-summary">Regulations: N/A</Col>
-                        </Row>
-
+                    <QuestionniarView />
                         <Row>
                             <Col className="v-title">
                                 <Form.Group controlId="searchDataSource">

@@ -14,9 +14,9 @@ export const QuestionniarView = (props: any) => {
         <>
             <Row>
                 <Col className="v-summary">
-                    Environmental Sustainability Category: {Questionnaire.getContext(report)}
+                    Environmental Sustainability Category: {Questionnaire.getType(report)}
                 </Col>
-                <Col className="v-summary">Scope of Data Coverage: {Questionnaire.getType(report)}</Col>
+                <Col className="v-summary">Scope of Data Coverage: {Questionnaire.getContext(report)}</Col>
             </Row>
             <Row>
                 <Col className="v-summary">
@@ -78,7 +78,7 @@ export const ValueChainCategories = (props: any) => {
                         id: "select",
                         text: "Select",
                         type: "checkbox"
-                    }, ...[v[2], v[3], [4]].map((c: any, jdx: number) => {
+                    }, ...[v[2], v[3], v[4]].map((c: any, jdx: number) => {
                         return {
                             id: 'c' + jdx,
                             text: c

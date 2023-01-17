@@ -1,3 +1,4 @@
+import { getConfigs } from "../../config/v-config";
 import { localCache } from "../../utils/v-cache-manager";
 
 export interface Question { id?: string, name: string, notes?: string };
@@ -27,17 +28,21 @@ export class Questionnaire {
     questions: Array<Question> = [];
 
     static getType(q:Questionnaire) {
-        return q.type;
+        let c = getConfigs();
+        return c.environmentalCategories.find((s:any) => s.id ===q.type).label;
     }
 
     static getContext (q:Questionnaire) {
-        return q.context;
+        let c = getConfigs();
+        return c.dataCoverageScopes.find((s:any) => s.id ===q.context).label;
     }
     static getStandard (q:Questionnaire) {
-        return q.standard;
+        let c = getConfigs();
+        return c.standards.find((s:any) => s.id ===q.standard).label;
     }
     static getRegulation (q:Questionnaire) {
-        return q.regulation;
+        let c = getConfigs();
+        return c.regulations.find((s:any) => s.id ===q.regulation).label;
     }
 
 }

@@ -14,9 +14,9 @@ export const QuestionniarView = (props: any) => {
         <>
             <Row>
                 <Col className="v-summary">
-                    Environmental Sustainability Category: {Questionnaire.getContext(report)}
+                    Environmental Sustainability Category: {Questionnaire.getType(report)}
                 </Col>
-                <Col className="v-summary">Scope of Data Coverage: {Questionnaire.getType(report)}</Col>
+                <Col className="v-summary">Scope of Data Coverage: {Questionnaire.getContext(report)}</Col>
             </Row>
             <Row>
                 <Col className="v-summary">

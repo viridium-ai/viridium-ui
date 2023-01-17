@@ -357,21 +357,21 @@ export const SourceManager = (props: any) => {
             <LayoutPage microApp={dataSourceManager}>
                     <div className="v-body-nav">
                         <Toast >
-                            <Toast.Body>
-                                <div className="header">
+                            <Toast.Body className="v-list">
+                                <div className="v-list-header">
                                     Manage Data Sources
                                 </div>
-                                <div className="v-list">
+                                <div className="v-list-body">
                                     <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>
                         </Toast>
                         <Toast >
-                            <Toast.Body>
-                                <div className="header">
+                            <Toast.Body className="v-list">
+                                <div className="v-list-header">
                                     Manage Data
                                 </div>
-                                <div className="v-list-item">
+                                <div className="v-list-body">
                                     <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
                                 </div >
                             </Toast.Body>

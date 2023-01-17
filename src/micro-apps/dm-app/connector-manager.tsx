@@ -55,7 +55,7 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
         this.state = { connector: props.connector };
     }
     componentDidMount(): void {
-        
+
     }
     componentDidUpdate = (prevRow: ConnectorViewProps) => {
         if (this.props.connector.id !== prevRow.connector.id) {
@@ -80,23 +80,23 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
 }
 
 type ConnectManagerState = {
-    connector? : Connector
+    connector?: Connector
 }
 
 export class ConnectManagerView extends Component<any, ConnectManagerState> {
-    managedConnectors : any;
-    constructor(props :any) {
+    managedConnectors: any;
+    constructor(props: any) {
         super(props);
         var configs = getConfigs();
         this.managedConnectors = configs.managedConnectors;
-        this.state = {connector : this.managedConnectors[0]}
+        this.state = { connector: this.managedConnectors[0] }
     }
-  
+
     selectConnector = (data: any, target: any) => {
         let id = target.id;
         let c = this.managedConnectors.find((c: any) => id === c.id);
         if (c) {
-            this.setState({connector : c});
+            this.setState({ connector: c });
         }
     }
 
@@ -109,7 +109,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                 selected: false,
                 expanded: false
             },
-            children: this.managedConnectors.map((connector : any) => {
+            children: this.managedConnectors.map((connector: any) => {
                 return {
                     id: connector.id,
                     text: connector.name,
@@ -127,13 +127,13 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
             <LayoutPage microApp={dataSourceManager}  >
                 <div className="v-body-nav">
                     <Toast >
-                        <Toast.Body>
-                            <div className="v-panel-header">
+                        <Toast.Body className="v-list">
+                            <div className="v-list-header">
                                 Manage Connector
                             </div>
-                            <div className="v-list-item">
+                            <div className="v-list-body">
                                 <TreeView onClick={this.selectConnector} data={this.getTreeData()}
-                                     options={{ selectable: false, enableLinks: false }} />
+                                    options={{ selectable: false, enableLinks: false }} />
                             </div >
                         </Toast.Body>
                     </Toast>

@@ -25,3 +25,59 @@ metric_tonnes_co2e
 eeio_sector_process_data
 
 
+Detail Commodity
+
+Year
+Commodity Code	
+Commodity Name	
+Substance	
+Unit	
+Supply Chain Emission Factors without Margins	
+Margins of Supply Chain Emission Factors	
+Supply Chain Emission Factors with Margins	
+DQ ReliabilityScore of Factors without Margins	
+DQ TemporalCorrelation of Factors without Margins	
+DQ GeographicalCorrelation of Factors without Margins	
+DQ TechnologicalCorrelation of Factors without Margins	
+DQ DataCollection of Factors without Margins
+
+Industry Code	
+Industry Name	
+Substance	
+Unit	
+Supply Chain Emission Factors without Margins	
+Margins of Supply Chain Emission Factors	
+Supply Chain Emission Factors with Margins	
+DQ ReliabilityScore of Factors without Margins	
+DQ TemporalCorrelation of Factors without Margins	
+DQ GeographicalCorrelation of Factors without Margins	
+DQ TechnologicalCorrelation of Factors without Margins	
+DQ DataCollection of Factors without Margins
+
+Summart Commodity
+
+Commodity Code	
+Commodity Name	
+Substance	
+Unit	
+Supply Chain Emission Factors without Margins	
+Margins of Supply Chain Emission Factors	
+Supply Chain Emission Factors with Margins	
+DQ ReliabilityScore of Factors without Margins	
+DQ TemporalCorrelation of Factors without Margins	
+DQ GeographicalCorrelation of Factors without Margins	
+DQ TechnologicalCorrelation of Factors without Margins	
+DQ DataCollection of Factors without Margins
+
+Industry Code	
+Industry Name	
+Substance	
+Unit	
+Supply Chain Emission Factors without Margins	
+Margins of Supply Chain Emission Factors	
+Supply Chain Emission Factors with Margins	
+DQ ReliabilityScore of Factors without Margins	
+DQ TemporalCorrelation of Factors without Margins	
+DQ GeographicalCorrelation of Factors without Margins	
+DQ TechnologicalCorrelation of Factors without Margins	
+DQ DataCollection of Factors without Margins

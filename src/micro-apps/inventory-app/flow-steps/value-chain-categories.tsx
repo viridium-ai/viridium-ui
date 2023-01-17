@@ -8,13 +8,34 @@ import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire } from "../inventory-questionaire";
 
+export const QuestionniarView = (props: any) => {
+    const [report] = useState<Questionnaire>(getQuestionnaire());
+    return (
+        <>
+            <Row>
+                <Col className="v-summary">
+                    Environmental Sustainability Category: {Questionnaire.getContext(report)}
+                </Col>
+                <Col className="v-summary">Scope of Data Coverage: {Questionnaire.getType(report)}</Col>
+            </Row>
+            <Row>
+                <Col className="v-summary">
+                    Standards: {Questionnaire.getStandard(report)}
+                </Col>
+                <Col className="v-summary">Regulations: {Questionnaire.getRegulation(report)}</Col>
+            </Row>
+        </>
+    )
+}
+
 export const ValueChainCategories = (props: any) => {
     var configs = getConfigs();
     const [report] = useState<Questionnaire>(getQuestionnaire());
     const [subCategories, setSubCategories] = useState<Array<{ id: string, label: string }>>([]);
     const [selectedCategory, setCategory] = useState("");
     const [selectedSubCategory, setSubCategory] = useState("");
-    const categories: Array<{ id: string, label: string, categories: Array<{ id: string, label: string }> }> = configs.valueChain.categories;
+    const categories: Array<{ id: string, label: string, categories: Array<{ id: string, label: string }> }>
+        = configs.valueChain.categories;
     const selectCategory = (v: any) => {
         if (v) {
             let c = categories.find(cat => cat.id === v.id);
@@ -38,8 +59,8 @@ export const ValueChainCategories = (props: any) => {
     }
 
     const getSitesData = () => {
-        
-        const filtered =  configs.valueChain.values.filter((row: any) => {
+
+        const filtered = configs.valueChain.values.filter((row: any) => {
             const category = categories.find((cat) => selectedCategory === cat.id);
             const f = subCategories.find((f) => selectedSubCategory === f.id);
             return category?.label === row[0] && (f === undefined ? true : f.label === row[1]);
@@ -48,17 +69,33 @@ export const ValueChainCategories = (props: any) => {
         return {
             id: "",
             headers: configs.valueChain.headers.map((v: any, idx: number) => {
-                return {id:idx, text:v}
+                return { id: idx, text: v }
             }),
             rows: filtered.map((v: any, idx: number) => {
                 return {
-                    id:'r'+idx,
-                    cols: v.map((c:any, jdx:number) => {
+                    id: 'r' + idx,
+                    cols: [{
+                        id: "select",
+                        text: "Select",
+                        type: "checkbox"
+                    }, ...[v[2], v[3], [4]].map((c: any, jdx: number) => {
                         return {
                             id: 'c' + jdx,
                             text: c
                         }
-                    })
+                    }), {
+                        id: "carbon",
+                        text: "Select",
+                        type: "checkbox"
+                    }, {
+                        id: "waster",
+                        text: "Select",
+                        type: "checkbox"
+                    }, {
+                        id: "water",
+                        text: "Select",
+                        type: "checkbox"
+                    }]
                 }
             })
         }
@@ -75,18 +112,7 @@ export const ValueChainCategories = (props: any) => {
                         Viridium Industry:   {report.category}
                     </Toast.Header>
                     <Toast.Body>
-                        <Row>
-                            <Col className="v-summary">
-                                Environmental Sustainability Category: {report.context}
-                            </Col>
-                            <Col className="v-summary">Scope of Data Coverage: {report.type}</Col>
-                        </Row>
-                        <Row>
-                            <Col className="v-summary">
-                                Standards: {report.standard}
-                            </Col>
-                            <Col className="v-summary">Regulations: N/A</Col>
-                        </Row>
+                        <QuestionniarView />
                         <Row className="v-filters">
                             <Col className="v-summary">Airport Value Chain:
                             </Col>

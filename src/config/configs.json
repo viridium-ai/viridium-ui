@@ -711,12 +711,13 @@
             }
         ],
         "headers": [
-            "Master Category",
-            "Category",
+            "Select",
             "Sub Category",
             "GHG Scope",
             "Direct or Indirect",
-            "CWsWt"
+            "Carbon",
+            "Waster",
+            "Water"
         ],
         "values": [
             [

@@ -49,7 +49,11 @@
     margin: .5em 0em;
     padding: 0em 0.5em;
 }
+.dm-app .row {
+    flex-wrap: nowrap;
+    overflow: scroll;
 
+}
 .dm-app .v-filters {
     padding: 6px;
 }

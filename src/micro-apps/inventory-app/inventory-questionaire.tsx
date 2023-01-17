@@ -6,12 +6,18 @@ export class Questionnaire {
     //step 1
     companyId: string = "Test";
     companyName: string = "Test";
+
     category?: string = "";
     categoryId: string = "";
+
     context: string = "Carbon";
+
     type: string = "Company";
+
     standard: string = "4";
+    
     regulation: string = "1";
+    
     description: string = "";
     items: Array<string> = [];
     scope1Needs: Array<string> = [];
@@ -19,6 +25,21 @@ export class Questionnaire {
     dataSources: Array<string> = [];
     functionCategories: Array<string> = [];
     questions: Array<Question> = [];
+
+    static getType(q:Questionnaire) {
+        return q.type;
+    }
+
+    static getContext (q:Questionnaire) {
+        return q.context;
+    }
+    static getStandard (q:Questionnaire) {
+        return q.standard;
+    }
+    static getRegulation (q:Questionnaire) {
+        return q.regulation;
+    }
+
 }
 
 export const updateQuestionnaire = (report: Questionnaire) => {

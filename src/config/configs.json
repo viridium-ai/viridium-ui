@@ -209,17 +209,17 @@
     "inventory": [
         {
             "id": "1",
-            "name": "Data Inventory for Big City Airport",
+            "name": "Data Inventory for Acme Appliances",
             "updatedAt": "26/12/2022",
             "status": "Uploaded",
             "updatedBy": "Val",
-            "notes": "This is final onboarding data inventory for Big City Airport",
+            "notes": "This is final onboarding data inventory for Acme Appliances",
             "items": [
                 {
                     "id": "1",
                     "dataSourceName": "Building Mgmt System",
                     "description": "Non Tenant Buildings",
-                    "notes": "Added by Viridium",
+                    "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "Schneider",
                     "type": "CSV File",
                     "status": 2,
@@ -228,8 +228,8 @@
                 {
                     "id": "2",
                     "dataSourceName": "Central APU system",
-                    "description": "Landside Terminal",
-                    "notes": "Added by Viridium",
+                    "description": "Illinois Giga Factory",
+                    "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "SAP",
                     "type": "API",
                     "Integration Status": 1,
@@ -238,8 +238,8 @@
                 {
                     "id": "3",
                     "dataSourceName": "Transportation System",
-                    "description": "All Purchased Goods Transportation US-Canada",
-                    "notes": "Added by Viridium",
+                    "description": "All inbound raw materials",
+                    "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "Oracle",
                     "type": "API",
                     "Integration Status": 2,
@@ -247,9 +247,9 @@
                 },
                 {
                     "id": "4",
-                    "dataSourceName": "Custom App DB",
-                    "description": "On chain dataset for ?",
-                    "notes": "Added by Viridium",
+                    "dataSourceName": "Manufacturing: MES",
+                    "description": "On chain dataset",
+                    "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "Block Chain",
                     "type": "HyperLedger API",
                     "status": 0,
@@ -259,29 +259,29 @@
         },
         {
             "id": "2",
-            "name": "Data Inventory for Big Drinking Party",
+            "name": "Sustainability team reviewed - Data Inventory for Acme Appliances",
             "updatedAt": "30/12/2022",
             "status": "Reviewed",
             "updatedBy": "Val",
-            "notes": "Data inventory for Big Drinking Party",
+            "notes": "Data Inventory reviewed by Acme Appliances Sustainability team",
             "items": [
                 {
                     "id": "1",
                     "dataSourceName": "Business Travel Activity",
-                    "description": "Apache Hadoop File System",
+                    "description": "SAP Concur systems",
                     "notes": "",
-                    "tech": "Apache HDFS",
-                    "type": "TSV File",
+                    "tech": "SAP Concur systems",
+                    "type": "APIs",
                     "status": 1,
                     "configuration": {}
                 },
                 {
                     "id": "2",
-                    "dataSourceName": "Truck Fuel Usage",
-                    "description": "Oracle DB",
+                    "dataSourceName": "Product Model1234 Design Data",
+                    "description": "Autocad raw data",
                     "notes": "",
-                    "tech": "Oracle",
-                    "type": "Database",
+                    "tech": "Autodesk APIs",
+                    "type": "APIs",
                     "status": 2,
                     "configuration": {}
                 }
@@ -719,7 +719,7 @@
             "Select",
             "Sub Category",
             "GHG Scope",
-            "Direct or Indirect",
+            "Standard / Custom",
             "Carbon",
             "Waster",
             "Water"
@@ -730,7 +730,7 @@
                 "Product Manufacturing",
                 "Manufacturing",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "CWsWt"
             ],
             [
@@ -738,7 +738,7 @@
                 "Product Manufacturing",
                 "Building Management",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "CWsWt"
             ],
             [
@@ -746,7 +746,7 @@
                 "Product Manufacturing",
                 "Transportation - Goods",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "C"
             ],
             [
@@ -754,7 +754,7 @@
                 "Product Manufacturing",
                 "Transportation - Fleet",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "C"
             ],
             [
@@ -762,7 +762,7 @@
                 "Product Manufacturing",
                 "Waste Management",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "Ws"
             ],
             [
@@ -770,7 +770,7 @@
                 "Product Manufacturing",
                 "Storage Systems",
                 "Scope 1",
-                "Direct",
+                "Custom",
                 "C"
             ],
             [
@@ -778,7 +778,7 @@
                 "Product Manufacturing",
                 "Facilities - Sites",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "CWsWt"
             ],
             [
@@ -786,7 +786,7 @@
                 "Product Manufacturing",
                 "Facilities - Non-Sites",
                 "Scope 1",
-                "Direct",
+                "Custom",
                 "CWsWt"
             ],
             [
@@ -794,7 +794,7 @@
                 "Product Manufacturing",
                 "Building Management",
                 "Scope 1",
-                "Direct",
+                "Standard",
                 "CWsWt"
             ],
             [
@@ -802,7 +802,7 @@
                 "Product Manufacturing",
                 "Water Management",
                 "Scope 1",
-                "Direct",
+                "Custom",
                 "Wt"
             ]
         ]

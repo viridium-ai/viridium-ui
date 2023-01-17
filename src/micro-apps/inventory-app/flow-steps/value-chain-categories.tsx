@@ -78,7 +78,7 @@ export const ValueChainCategories = (props: any) => {
                         id: "select",
                         text: "Select",
                         type: "checkbox"
-                    }, ...[v[2], v[3], [4]].map((c: any, jdx: number) => {
+                    }, ...[v[2], v[3], v[4]].map((c: any, jdx: number) => {
                         return {
                             id: 'c' + jdx,
                             text: c

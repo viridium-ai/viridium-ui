@@ -1,54 +1,55 @@
-.v-contact-us {
+.home-app .v-contact-us {
     width: 60%;
     margin-top: 5vh;
     margin:auto;
     padding: 10px;
 }
 
-.v-contact-us .v-form {
+.home-app .v-contact-us .v-form {
     margin-top: 1em;
     padding: 0.5em 1.5em;
     border-radius: 1em;
     border: 1px solid rgb(228, 228, 228);
 }
 
-.v-contact-us .v-form-col input {
+.home-app .v-contact-us .v-form-col input {
     padding: 0.6em;
     font-size: large;
 }
 
- .v-contact-us .v-form-col textarea {
+ .home-app .v-contact-us .v-form-col textarea {
     padding: 0.6em;
     font-size: large;
 }
 
-.v-contact-us .v-form-row{
+.home-app .v-contact-us .v-form-row{
     padding: 4px;
 }
 
-.v-contact-us .v-summary {
+.home-app .v-contact-us .v-summary {
     font-size: x-large;
     font-weight: 400;
+    color:#bdbdbd;
     padding: 1em;
 }
 
-.v-contact-us .button-container {
+.home-app .v-contact-us .button-container {
     text-align: center;
     padding: .5em;
     border-radius: 1em;
 }
 
-.v-contact-us button {
+.home-app .v-contact-us button {
     padding: .5em;
     border-radius: 1.5em;
 }
 
-.v-contact-us .home-header {
-    color: #919191;
+.home-app .v-contact-us .home-header {
+    color: #bdbdbd;
     font-size: 3em;
     text-align: center;
 }
-.v-contact-us .home-header-line {
+.home-app .v-contact-us .home-header-line {
     margin-top:-50px;
     padding: 0px;
     color: #dadada;

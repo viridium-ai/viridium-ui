@@ -17,9 +17,12 @@ body {
 .v-form {
   box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
 }
+
 .v-container {
   width: 100%;
+  padding: .5em;
 }
+
 .v-header {
   font-size: calc(10px + 2vmin);
   background-color: rgb(179, 179, 179);
@@ -77,22 +80,22 @@ body {
   border: 1px white solid;
   border-radius: 18px;
   text-align: center;
+  padding: 0.5em 1.5em;
 }
 
 .v-field-label {
-  padding: 1rem;
+  padding: 0.6em 1rem;
   color: rgb(83, 83, 83);
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(244, 244, 244);
 }
 .v-field-value {
-  padding: 1rem;
+  padding: 0.6em 1rem;
   color: rgb(62, 62, 62);
 }
 .v-text-body {
   line-height: 1.8em;
   padding: 1em;
 }
-
 @keyframes v-logo-spin {
   from {
     transform: rotate(0deg);

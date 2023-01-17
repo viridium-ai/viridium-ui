@@ -59,7 +59,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         let category = scope.categories.find((c: any) => c.id === this.props.category);
         let type = category.types?.find((t: any) => t.id === this.state.typeId);
         return (
-            <div className="import-container">
+            <div className="v-container">
                 <Row>
                     <Col sm={3} className="v-form-label">Type</Col>
                     <Col sm={8} className="main-form-input">
@@ -222,7 +222,7 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
 
     render = () => {
         return (
-            <div className="import-container">
+            <div className="v-container">
                 <Form.Group className="mb-3">
                     <Form.Label>Upload File</Form.Label>
                     <Form.Control id={this.guid} type="file" onChange={this.onChooseFile} />
@@ -264,7 +264,7 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
         let configs = getConfigs();
         let connector = configs.managedConnectors.find((c: any, idx: number) => c.id === this.state.connector);
         return (
-            <div className="import-container">
+            <div className="v-container">
                 <Form.Select onChange={this.onSelectConnector} value={this.state.connector}>
                     {configs.managedConnectors.map((c: any, idx: number) => {
                         return <option key={'c-' + idx} value={c.id}>{c.name}</option>
@@ -479,31 +479,31 @@ export const InventoryItemsView = (props: any) => {
         let items = inventory.items;
         return (
             <LayoutPage microApp={greenHouseApp}  >
-                    <Toast >
-                        <Toast.Header closeButton={false}>
-                            <span className="me-auto">
-                                Manage Inventory Items
-                            </span>
-                            <span className="v-button" onClick={clearItems}>Clear All</span>
-                        </Toast.Header>
-                        <Toast.Body>
-                            {
-                                itemForm()
-                            }
-                            {
-                                items.length > 0 ? <Row>
-                                    <Col>
-                                        <DataTable data={getInventoryItemsData()} />
-                                    </Col>
-                                </Row> : ""
-                            }
+                <Toast >
+                    <Toast.Header closeButton={false}>
+                        <span className="me-auto">
+                            Manage Inventory Items
+                        </span>
+                        <span className="v-button" onClick={clearItems}>Clear All</span>
+                    </Toast.Header>
+                    <Toast.Body>
+                        {
+                            itemForm()
+                        }
+                        {
+                            items.length > 0 ? <Row>
+                                <Col>
+                                    <DataTable data={getInventoryItemsData()} />
+                                </Col>
+                            </Row> : ""
+                        }
 
-                        </Toast.Body>
+                    </Toast.Body>
 
-                        <Action inventory={inventory}
-                            next={{ label: "Next", path: props.next }}
-                            prev={{ label: "Back", path: props.prev }} />
-                    </Toast>
+                    <Action inventory={inventory}
+                        next={{ label: "Next", path: props.next }}
+                        prev={{ label: "Back", path: props.prev }} />
+                </Toast>
             </LayoutPage >
         )
     }

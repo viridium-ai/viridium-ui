@@ -426,8 +426,8 @@
     "dataCoverageScopes": [
         {
             "id": "1",
-            "value": "Company",
-            "label": "Company"
+            "value": "Corporate",
+            "label": "Corporate"
         },
         {
             "id": "2",
@@ -567,15 +567,16 @@
     "questions": [
         {
             "id": "1",
-            "name": "Where do we get fuel usage data"
+            "name": "Please provide high priority sustainability regulations critical to your business, comprehensive list attached"
         },
         {
             "id": "2",
-            "name": "Where do we get electricity usage data"
+            "name": "Do you have any current Excel sheet-based sustainability workflows that use data from enterprise systems and need automation?"
+            
         },
         {
             "id": "3",
-            "name": "How do we get procurement data"
+            "name": "Please select from the list of eco-design initiatives that apply to your products"
         }
     ],
     "viridiumIndustries": [
@@ -589,7 +590,7 @@
         },
         {
             "id": "3",
-            "name": "Transportation: Manufacture"
+            "name": "Manufacturing: Discrete"
         }
     ],
     "categories": {
@@ -675,25 +676,25 @@
         "categories": [
             {
                 "id": "1",
-                "label": "Landside",
+                "label": "Upstream",
                 "categories": [
                     {
                         "id": "0",
-                        "label": "Airport"
+                        "label": "Transportation"
                     },
                     {
                         "id": "1",
-                        "label": "Airline"
+                        "label": "Raw Material Acquisition"
                     },
                     {
                         "id": "2",
-                        "label": "Manufacture"
+                        "label": "Energy Production"
                     }
                 ]
             },
             {
                 "id": "2",
-                "label": "Shopping",
+                "label": "Direct",
                 "categories": [
                     {
                         "id": "0",
@@ -701,11 +702,15 @@
                     },
                     {
                         "id": "1",
-                        "label": "Manufacture"
+                        "label": "Product Manufacturing"
                     },
                     {
                         "id": "2",
-                        "label": "Waste"
+                        "label": "Enterprise"
+                    },
+                    {
+                        "id": "3",
+                        "label": "Product Sales Service"
                     }
                 ]
             }
@@ -720,84 +725,84 @@
         ],
         "values": [
             [
-                "Landside",
-                "Airport",
-                "Building Construction",
+                "Direct",
+                "Product Manufacturing",
+                "Manufacturing",
                 "Scope 1",
                 "Direct",
                 "CWsWt"
             ],
             [
-                "Landside",
-                "Airline",
+                "Direct",
+                "Product Manufacturing",
                 "Building Management",
                 "Scope 1",
                 "Direct",
                 "CWsWt"
             ],
             [
-                "Landside",
-                "Airport",
-                "Suppliers",
+                "Direct",
+                "Product Manufacturing",
+                "Transportation - Goods",
                 "Scope 1",
                 "Direct",
                 "C"
             ],
             [
-                "Landside",
-                "Manufacture",
-                "Business Travel",
+                "Direct",
+                "Product Manufacturing",
+                "Transportation - Fleet",
                 "Scope 1",
                 "Direct",
                 "C"
             ],
             [
-                "Landside",
-                "Airport",
-                "Security",
+                "Direct",
+                "Product Manufacturing",
+                "Waste Management",
+                "Scope 1",
+                "Direct",
+                "Ws"
+            ],
+            [
+                "Direct",
+                "Product Manufacturing",
+                "Storage Systems",
+                "Scope 1",
+                "Direct",
+                "C"
+            ],
+            [
+                "Direct",
+                "Product Manufacturing",
+                "Facilities - Sites",
                 "Scope 1",
                 "Direct",
                 "CWsWt"
             ],
             [
-                "Landside",
-                "Airport",
-                "Parking",
-                "Scope 1",
                 "Direct",
-                "CWs"
-            ],
-            [
-                "Shopping",
-                "Transport",
-                "Baggage Handling",
-                "Scope 1",
-                "Direct",
-                "CWs"
-            ],
-            [
-                "Shopping",
-                "Waste",
-                "Building Construction",
+                "Product Manufacturing",
+                "Facilities - Non-Sites",
                 "Scope 1",
                 "Direct",
                 "CWsWt"
             ],
             [
-                "Shopping",
-                "Manufacture",
+                "Direct",
+                "Product Manufacturing",
                 "Building Management",
                 "Scope 1",
                 "Direct",
                 "CWsWt"
             ],
             [
-                "Shopping",
-                "Manufacture",
-                "Suppliers",
+                "Direct",
+                "Product Manufacturing",
+                "Water Management",
                 "Scope 1",
                 "Direct",
-                "C"
+                "Wt"
             ]
         ]
     },
@@ -1206,8 +1211,8 @@
         },
         {
             "id": "VA12312i4",
-            "name": "Drink Away",
-            "industry": "Process",
+            "name": "Acme Appliances",
+            "industry": "Manufacturing",
             "viridiumCategory": "",
             "lastUpdatedDate": 12213212312,
             "lastUpdatedBy": "vid",

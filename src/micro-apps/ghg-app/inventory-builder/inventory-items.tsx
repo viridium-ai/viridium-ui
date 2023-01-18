@@ -1,5 +1,4 @@
 import { Component, useState } from "react";
-
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
@@ -8,7 +7,6 @@ import { getCompany, getConfigs, getInventory, updateInventory } from "../../../
 import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";
 import { Company, Inventory, InventoryItem } from "./model";
-
 type ItemState = {
     name: string,
     quantity: number,
@@ -18,7 +16,6 @@ type ItemState = {
     scope?: string,
     category?: string
 }
-
 type ItemProps = {
     inventory: Inventory,
     category: any,
@@ -126,7 +123,6 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         )
     };
 }
-
 type FileUploaderProps = {
     onReceiveData: Function,
     buttonTxt?: string
@@ -153,7 +149,6 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
                 headers = [...line.split(separate)];
             }
             else {
-
                 data.push(line.split(separate));
             }
         }
@@ -175,8 +170,10 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
             fr.onload = () => {
                 let text = fr.result;
                 if (text !== null) {
+                    const data = this.csvToTableData(text.toString());
+                    console.log(data);
                     if (this.state.status === "Preview") {
-                        this.setState({ data: this.csvToTableData(text.toString()) });
+                        this.setState({ data: {...data} });
                         this.setState({ status: "Mapping" });
                     }
                     if (this.state.status === "Import") {
@@ -196,7 +193,6 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
     onScopeChange = (v: any) => {
         console.log(v.target.value, v.target.id);
     }
-
     mappingData = () => {
         let newRows = this.state.data.rows.map((r: any, idx: number) => {
             return {
@@ -215,11 +211,9 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
         console.log(mappingData);
         return <DataTable data={mappingData} options={{ show: 3 }} />
     }
-
     preview = () => {
         return this.state.data ? <DataTable data={this.state.data} options={{ show: 3 }} /> : ""
     }
-
     render = () => {
         return (
             <div className="v-container">
@@ -240,19 +234,15 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
         )
     };
 }
-
 type ConnectorConfigState = {
     connector: any
 }
-
 export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfigState> {
     guid: string = crypto.randomUUID();
-
     constructor(props: FileUploaderProps) {
         super(props);
         this.state = { connector: "1" }
     }
-
     doUpload = () => {
         this.props.onReceiveData("Received data");
     }
@@ -306,7 +296,6 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
         )
     };
 }
-
 export const InventoryItemView = (props: any) => {
     let item: InventoryItem = props.item;
     let mode = props.mode;
@@ -348,14 +337,12 @@ export const InventoryItemView = (props: any) => {
     };
     return mode === 'row' ? rowUI() : entityUI();
 }
-
 export const InventoryItemsView = (props: any) => {
     const configs = getConfigs();
     const [inventory, setInventory] = useState<Inventory>(getInventory());
     const [company] = useState<Company | undefined>(Company.new(getCompany()));
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
-
     const onSelectScope = (evt: any) => {
         setScope(evt.target.value);
         setCategory("1");
@@ -368,18 +355,15 @@ export const InventoryItemsView = (props: any) => {
         setInventory(newInv);
         updateInventory(newInv)
     }
-
     const onReceiveData = (data: any) => {
         console.log(data);
     }
-
     const clearItems = () => {
         let newInv = Inventory.new(inventory)!
         newInv.items = [];
         setInventory(newInv);
         updateInventory(newInv)
     }
-
     const getInventoryItemsData = () => {
         return {
             id: inventory.id,
@@ -416,7 +400,6 @@ export const InventoryItemsView = (props: any) => {
             )
         }
     }
-
     const itemForm = () => {
         let scopes = configs.scopes;
         let selectedScope = scopes.find((s: any) => s.id === scope);
@@ -474,7 +457,6 @@ export const InventoryItemsView = (props: any) => {
                 </Col>
             </Row></>)
     }
-
     const ui = () => {
         let items = inventory.items;
         return (

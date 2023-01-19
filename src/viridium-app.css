@@ -113,6 +113,14 @@ body {
   padding: 1em
 }
 
+.v-right {
+  text-align: right;
+}
+
+.v-left {
+  text-align: left;
+}
+
 .viridium-app .v-panel-header {
   padding: .5em;
   font-size: medium;

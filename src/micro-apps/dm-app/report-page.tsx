@@ -182,18 +182,19 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                             <option value="3">Three</option>
                                         </Form.Select>
                                     </Col>
-                                    <Col className="v-input"><Button>Ok</Button></Col>
+                                    <Col sm={2} className="v-input v-right"><Button>Ok</Button></Col>
                                 </Row>
                                 <DataTable data={this.getData()} onSelectRow={this.onSelectRow} />
                                 <Row className="v-footer">
                                     <Col sm={2} className="v-field-label">Export data to:
                                     </Col>
-                                    <Col sm={3} className="v-input">
+                                    <Col sm={4} className="v-input">
                                         <DimensionView data={configs.managedConnectors.map((v: any) => { return { id: v.id, label: v.name } })} options={this.ExportOptions()} />
-                                    </Col><Col sm={1} className="v-input">
+                                    </Col>
+                                    <Col sm={4}> </Col>
+                                    <Col sm={2} className="v-input v-right">
                                         <Button >Submit</Button>
                                     </Col>
-                                    <Col sm={5}> </Col>
                                 </Row>
                             </Tab>
                             <Tab eventKey="analyzingEmission" title="Analyzing Emissions">

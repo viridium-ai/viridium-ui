@@ -254,6 +254,16 @@
                     "type": "HyperLedger API",
                     "status": 0,
                     "configuration": {}
+                },
+                {
+                    "id": "5",
+                    "dataSourceName": "Business Travel Activity",
+                    "description": "SAP Concur systems",
+                    "notes": "",
+                    "tech": "SAP Concur systems",
+                    "type": "APIs",
+                    "status": 0,
+                    "configuration": {}
                 }
             ]
         },
@@ -267,22 +277,32 @@
             "items": [
                 {
                     "id": "1",
+                    "dataSourceName": "Building Mgmt System",
+                    "description": "Non Tenant Buildings",
+                    "notes": "Added by Viridium.AI Data Operations team",
+                    "tech": "Schneider",
+                    "type": "CSV File",
+                    "status": 0,
+                    "configuration": {}
+                },
+                {
+                    "id": "2",
+                    "dataSourceName": "Central APU system",
+                    "description": "Illinois Giga Factory",
+                    "notes": "Added by Viridium.AI Data Operations team",
+                    "tech": "SAP",
+                    "type": "API",
+                    "status": 1,
+                    "configuration": {}
+                },
+                {
+                    "id": "6",
                     "dataSourceName": "Business Travel Activity",
                     "description": "SAP Concur systems",
                     "notes": "",
                     "tech": "SAP Concur systems",
                     "type": "APIs",
                     "status": 1,
-                    "configuration": {}
-                },
-                {
-                    "id": "2",
-                    "dataSourceName": "Product Model1234 Design Data",
-                    "description": "Autocad raw data",
-                    "notes": "",
-                    "tech": "Autodesk APIs",
-                    "type": "APIs",
-                    "status": 2,
                     "configuration": {}
                 }
             ]

@@ -19,6 +19,7 @@ body {
 }
 .v-container {
   width: 100%;
+  padding:.5em;
 }
 .v-header {
   font-size: calc(10px + 2vmin);
@@ -111,6 +112,14 @@ body {
 
 .v-panel-content {
   padding: 1em
+}
+
+.v-right {
+  text-align: right;
+}
+
+.v-left {
+  text-align: left;
 }
 
 .viridium-app .v-panel-header {

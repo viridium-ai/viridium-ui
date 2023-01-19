@@ -38,10 +38,10 @@
 }
 
 .home-app .layout-header-end .nav-link {
-    border: 1px white solid;
     border-radius: 18px;
     padding-left: 20px;
     padding-right: 20px;
+    border: solid 1px rgb(26, 26, 26);
 }
 
 .home-app #nav-end-1 {

@@ -13,9 +13,13 @@
 }
 
 .welcome-page a {
-    color: white !important;
+    color: rgb(229, 229, 229) !important;
+    
 }
 
+.welcome-page .layout-header-end .nav-link {
+    border-color: rgb(230, 230, 230)!important;
+}
 
 .home-app .home-splash {
     filter: brightness(200%);

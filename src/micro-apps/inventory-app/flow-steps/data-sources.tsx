@@ -66,10 +66,11 @@ export const DataSources = (props: any) => {
                     <Toast.Body>
                     <QuestionniarView />
                         <Row>
-                            <Col className="v-title">
+                            <Col sm={6} className="v-title">
                                 <Form.Group controlId="searchDataSource">
                                     <Form.Label>Select Data Sources:</Form.Label>
-                                    <Form.Control className="search-box" type="text" onChange={onSearch} placeholder="Search" />
+                                    <Form.Control className="v-search-box" type="text"
+                                        onChange={onSearch} placeholder="Search" />
                                 </Form.Group>
                             </Col>
                         </Row>

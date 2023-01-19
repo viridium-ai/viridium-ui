@@ -280,7 +280,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
             id: selectedInventory.id,
             headers: [
                 { type: "text", text: "Select" },
-                { type: "text", text: "Data Source System" },
+                { type: "text", text: "Data Source Name" },
                 { type: "text", text: "Tech" },
                 { type: "text", text: "Type" },
                 { type: "text", text: "Integration Status" },

@@ -460,8 +460,8 @@
     "valueChainMasterCategories": [
         {
             "id": "1",
-            "value": "Landside",
-            "label": "Landside"
+            "value": "Direct",
+            "label": "Direct"
         },
         {
             "id": "2",
@@ -477,8 +477,8 @@
     "valueChainCategories": [
         {
             "id": "1",
-            "value": "Landside",
-            "label": "Landside"
+            "value": "Product Manufacturing",
+            "label": "Product Manufacturng"
         },
         {
             "id": "2",
@@ -494,8 +494,8 @@
     "valueChainSubCategories": [
         {
             "id": "1",
-            "value": "Landside",
-            "label": "Landside"
+            "value": "Building Management",
+            "label": "Building Management"
         },
         {
             "id": "2",
@@ -523,7 +523,7 @@
         },
         {
             "id": "4",
-            "label": "GHG Protocol"
+            "label": "GHG Protocol Corporate Standard"
         },
         {
             "id": "5",

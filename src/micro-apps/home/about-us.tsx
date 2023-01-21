@@ -12,7 +12,7 @@ export const ContactUs = (props: any) => {
             <LayoutPage microApp={homeApp}>
                 <div className="v-about-us">
               
-                    <div className="v-mission-statement">
+                    <div className="v-mission-statement v-row">
                         <Row>
                             <Col sm={6}>
                                 <p className="mission-title">We’re the data cloud for environmental sustainability</p>
@@ -24,7 +24,7 @@ export const ContactUs = (props: any) => {
                             </Col>
                         </Row>
                     </div>
-                    <div className="v-contact-us">
+                    <div className="v-contact-us v-row">
                         <Row>
                             <Col sm={6}>
                                 <div className="v-form">

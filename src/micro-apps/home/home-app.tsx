@@ -5,7 +5,7 @@ import { MicroApp, RouteItem } from "../../common/v-app";
 import { About } from "./about";
 import { Industries } from "./industries";
 import { Products } from "./products";
-import { ContactUs } from "./contact-us";
+import { ContactUs } from "./about-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
 import { securityManager } from "../../common/security/v-security-manager";

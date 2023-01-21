@@ -45,6 +45,10 @@ export class Questionnaire {
         return c.regulations.find((s:any) => s.id ===q.regulation).label;
     }
 
+    static export (q:Questionnaire) {
+        
+    }
+
 }
 
 export const updateQuestionnaire = (report: Questionnaire) => {

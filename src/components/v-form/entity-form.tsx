@@ -1,10 +1,68 @@
 import { Component } from 'react';
 import { Form, Button, Container, Row, Table, Col, Toast, ToastContainer } from 'react-bootstrap';
-import { FieldValue, FieldDefinition } from './schema-types';
-import { schemaApp } from './schema-micro-app';
-import './service-component.css';
-import { restClient } from '../../common/v-client';
+
+import './entity-form.css';
 import { TitleProp, Action } from '../../common/v-app';
+import { StringUtils } from '../../utils/v-string-utils';
+
+export class FieldValue {
+    value: any = undefined;
+    definition?: FieldDefinition;
+}
+
+export class FieldDefinition {
+    name: string = '';
+    type: string = '';
+    format?: Function | string;
+    label: string = '';
+    placeHolder: string = '';
+    readonly?: boolean = false;
+    updatable?: boolean;
+    required?: boolean = false;
+
+    validator?: Function;
+    options?: Function | Array<any>;
+
+    public value = (value: any) => {
+        return {
+            value: value,
+            definition: this
+        } as FieldValue;
+    }
+
+    public getLabel = () => {
+        return StringUtils.t(this.name);
+    }
+
+    public getPlaceHolder = () => {
+        return this.placeHolder === '' ? this.getLabel() : this.placeHolder;
+    }
+
+    public getType = () => {
+        return (this.type === 'string' && this.format === 'date-time') ? 'date' : this.type;
+    }
+
+    public static new(name: string, type: string, label = '', placeHolder = '', readonly = false, validator: Function | undefined = undefined) {
+        let field = new FieldDefinition();
+        field.name = name;
+        field.type = type;
+        field.label = label;
+        field.placeHolder = placeHolder;
+        field.readonly = readonly;
+        field.validator = validator;
+        return field;
+    }
+    public static options(name: string, label = '', placeHolder = '', options:Function | Array<any>) {
+        let field = new FieldDefinition();
+        field.name = name;
+        field.type = "lov";
+        field.label = label;
+        field.placeHolder = placeHolder;
+        field.options = options;
+        return field;
+    }
+}
+
 export class Title extends Component<TitleProp> {
     renderLinks = () => {
         const actions = this.props.actions ? this.props.actions : []
@@ -35,6 +93,7 @@ export class Title extends Component<TitleProp> {
         )
     }
 }
+
 const entityToArray = (entity: any, path: string = ""): Array<any> => {
     let fieldDefs = Object.keys(entity).map(key => {
         let value = entity[key];
@@ -42,19 +101,22 @@ const entityToArray = (entity: any, path: string = ""): Array<any> => {
         if (value instanceof Object) {
             return entityToArray(value, key);
         }
-        return {
-            name: name,
-            type: typeof value,
-            value: value
-        }
+        return FieldDefinition.new(name, typeof value);
     });
-    return fieldDefs;
+    return fieldDefs.filter((d) => !(d instanceof Array));
+}
+
+type FormFieldOption = {
+    name:string;
+    value:string;
+    label:string;
 }
 export interface FormFieldProp {
     value: FieldValue,
     onInput: any,
-    options?: Array<{ value: string, label: string }>
+    options?: Function | Array<FormFieldOption>
 }
+
 export class FormField extends Component<FormFieldProp>{
     render() {
         let props = this.props as FormFieldProp;
@@ -78,19 +140,24 @@ export class FormField extends Component<FormFieldProp>{
     }
 }
 export class SelectField extends Component<FormFieldProp>{
+
+    getOptions = () => {
+        let options = this.props.options;
+        if(options instanceof Function) {
+            return options();
+        } else if (options instanceof Array<FormFieldOption>) {
+            return options;
+        }
+    }
     render() {
-        let props = this.props as FormFieldProp;
-        let fieldValue = props.value;
+        let fieldValue = this.props.value;
         let def = fieldValue.definition!;
-
-        let options = props.options ? props.options :
-            [{ value: 'test', label: "Test" }, { value: 'test1', label: "Test 1" }];
-
+        
         return (
-            <Form.Group className="mb-3" controlId={def.getLabel()}>
+            <Form.Group controlId={def.getLabel()}>
                 <Form.Label>{def.getLabel()}</Form.Label>
-                <Form.Select value={fieldValue.value} onInput={props.onInput}>
-                    {options.map(opt => <option value={opt.value}>{opt.label}</option>)}
+                <Form.Select value={fieldValue.value} onInput={this.props.onInput}>
+                    {this.getOptions().map((opt : any) => <option value={opt.value}>{opt.label}</option>)}
                 </Form.Select>
             </Form.Group>
         )
@@ -99,20 +166,20 @@ export class SelectField extends Component<FormFieldProp>{
 interface FormProp {
     title: string,
     listUpdated: Function;
-    entity: any;
+    entity?: any;
     mode: string;
-    path: string;
     fieldDefs?: Function;
+    onSumbit?: Function;
 }
+
+
 export class EntityForm extends Component<FormProp> {
     listUpdated: Function;
     messageForm: any;
-    path: string;
     constructor(props: FormProp) {
         super(props)
         this.listUpdated = props.listUpdated;
         this.state = { ...props.entity };
-        this.path = props.path;
     }
 
     onReset = (event: any) => {
@@ -123,17 +190,8 @@ export class EntityForm extends Component<FormProp> {
     onSubmit = (event: any) => {
         event.preventDefault();
         let entity = { ...this.state } as any;
-        if (entity) {
-            let isNew = this.props.mode === 'create';
-            let apiPath = this.path + (isNew ? '' : "/" + entity.id)
-            let data = schemaApp.toPayload(this.path, entity, this.props.mode);
-            let promise = isNew ? restClient.post(apiPath, data) : restClient.put(apiPath, data);
-            promise.then((res) => {
-                this.listUpdated && this.listUpdated();
-                this.onReset(event);
-            }).catch(error => {
-                console.log("error", error);
-            });
+        if (entity && this.props.onSumbit) {
+            this.props.onSumbit(entity);
         } else {
             console.log('Can not add a new user')
         }
@@ -143,27 +201,27 @@ export class EntityForm extends Component<FormProp> {
         this.setState({ ...state });
     }
 
-    getOptions = (fieldName: string) => {
-        console.log(fieldName);
-        let test: any = [];
-        return test.map((item: any) => {
-            return { value: item.Symbol, label: item.Name }
-        });
-    }
-
     renderFields = () => {
         let newState: any = this.state;
-        let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(newState) : entityToArray(newState);
+
+        let fieldDefs = entityToArray(newState);
+
+        if (this.props.fieldDefs)
+        {
+            fieldDefs = this.props.fieldDefs();
+            console.log(fieldDefs, this.props);
+        }
+        
         return (
             fieldDefs.filter((def: FieldDefinition) => !def.readonly)
                 .map((def: FieldDefinition, idx: number) => {
                     let value = newState[def.name];
                     return (
-                        ['lov'].includes(def.type) ?
+                        'lov' === def.type ?
                             <SelectField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
-                                this.setState({ ...newState });
-                            }} options={this.getOptions(def.name)} /> :
+                                this.setState({ ...newState });}} 
+                                options={def.options} /> :
                             <FormField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
                                 this.setState({ ...newState });
@@ -180,7 +238,7 @@ export class EntityForm extends Component<FormProp> {
                 <Row>
                     <Form ref={(form: any) => this.messageForm = form} onSubmit={this.onSubmit}>
                         {this.renderFields()}
-                        <Form.Group>
+                        <Form.Group className='v-buttons'>
                             <Button variant="primary" type="submit">
                                 {this.props.mode === 'create' ? 'Add' : 'Update'}
                             </Button>{' '}
@@ -194,6 +252,7 @@ export class EntityForm extends Component<FormProp> {
         )
     };
 }
+
 interface EntityDetailsProp {
     entity: any,
     title: string,
@@ -201,10 +260,11 @@ interface EntityDetailsProp {
     show?: boolean,
     actions?: Array<any>
 }
+
 export class EntityDetails extends Component<EntityDetailsProp> {
     renderField = (field: { id: any, name?: string, value: any }) => {
         return (
-            <Row key={""+field.id} className='entity-value'>
+            <Row key={"" + field.id} className='entity-value'>
                 <Col sm={3} className='v-field-label'>{field.name}</Col>
                 <Col sm={9} className='v-field-value'>{field.value}</Col>
             </Row>
@@ -218,31 +278,33 @@ export class EntityDetails extends Component<EntityDetailsProp> {
         });
         return (
             rows.map((def: FieldDefinition, idx: number) =>
-                this.renderField({id:idx, name: def.getLabel ? def.getLabel() : def.name, value: entity[def.name] })
+                this.renderField({ id: idx, name: def.getLabel ? def.getLabel() :
+                     def.name, value: entity[def.name] })
             )
         )
     }
     render() {
         return (
-            <div className="schema-app v-container">
-                    {this.renderFields()}
+            <div className="entity-form v-container">
+                {this.renderFields()}
             </div>
         )
     }
 }
+
 interface ListTableProp {
     title: string
     entities: Array<any>,
-    onDelete: Function,
-    onSelect: Function,
-    onEdit: Function,
+    onDelete?: Function,
+    onSelect?: Function,
+    onEdit?: Function,
     fieldDefs: Function,
     view?: string
     actions?: Array<any>
 }
+
 export class EntityList extends Component<ListTableProp> {
     viewMode: string = 'Table';
-
     constructor(props: ListTableProp) {
         super(props);
         this.viewMode = props.view ? props.view : 'Table';
@@ -251,17 +313,25 @@ export class EntityList extends Component<ListTableProp> {
         }
     }
     onSelect = (event: any, selected: any) => {
-        event.preventDefault()
-        this.props.onSelect(selected);
+        event.preventDefault();
+        if (this.props.onSelect) {
+            this.props.onSelect(undefined);
+        }
     }
     onDelete = (event: any, selected: any) => {
         event.preventDefault()
-        this.props.onDelete(selected);
-        this.props.onSelect(undefined);
+        if (this.props.onDelete) {
+            this.props.onDelete(selected);
+        }
+        if (this.props.onSelect) {
+            this.props.onSelect(undefined);
+        }
     }
     onEdit = (event: any, selected: any) => {
         event.preventDefault()
-        this.props.onEdit(selected);
+        if (this.props.onEdit) {
+            this.props.onEdit(undefined);
+        }
     }
     renderHeaders = () => {
         let fieldDefs = this.props.fieldDefs();
@@ -302,8 +372,16 @@ export class EntityList extends Component<ListTableProp> {
             name: (this.state as any).view,
             action: this.changeView
         });
+        let rowActions = [];
+        if (this.props.onDelete) {
+            rowActions.push(this.props.onDelete)
+        }
+        if (this.props.onEdit) {
+            rowActions.push(this.props.onEdit)
+        }
+
         return (
-            <div className="schema-app v-panel">
+            <div className="entity-form v-panel">
                 <Title title={state.title} actions={actions} />
                 <div className='v-body'>
                     <div className='v-panel-content'>
@@ -313,7 +391,7 @@ export class EntityList extends Component<ListTableProp> {
                                     <thead>
                                         <tr>
                                             {this.renderHeaders()}
-                                            <th>Actions</th>
+                                            {rowActions.length > 0 ? <th>Actions</th> : ""}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -322,10 +400,12 @@ export class EntityList extends Component<ListTableProp> {
                                                 (entity, idx) =>
                                                     <tr key={idx}>
                                                         {this.renderRow(entity, idx)}
-                                                        <td>
-                                                            <Button variant="outline-secondary" size="sm" onClick={e => this.onDelete(e, entity)}>Delete</Button>
-                                                            {' '} <Button variant="outline-secondary" size="sm" onClick={e => this.onEdit(e, entity)}>Edit</Button>
-                                                        </td>
+                                                        {
+                                                            rowActions.length > 0 ? <td>
+                                                                <Button variant="outline-secondary" size="sm" onClick={e => this.onDelete(e, entity)}>Delete</Button>
+                                                                {' '} <Button variant="outline-secondary" size="sm" onClick={e => this.onEdit(e, entity)}>Edit</Button>
+                                                            </td> : ""
+                                                        }
                                                     </tr>
                                             )
                                         }

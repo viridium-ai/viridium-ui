@@ -15,7 +15,7 @@ export const CompanyList = (props: any) => {
     const [showForm, setShowForm] = useState({ show: false, mode: 'create' });
 
     const onSelectCompany = (company: any) => {
-
+        console.log(company);
     }
 
     const listUpdated = () => {

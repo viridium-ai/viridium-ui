@@ -315,7 +315,7 @@ export class EntityList extends Component<ListTableProp> {
     onSelect = (event: any, selected: any) => {
         event.preventDefault();
         if (this.props.onSelect) {
-            this.props.onSelect(undefined);
+            this.props.onSelect(selected);
         }
     }
     onDelete = (event: any, selected: any) => {

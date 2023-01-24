@@ -2,6 +2,15 @@ body {
   font: 1em sans-serif;
   color: #1A1A1A;
 }
+
+a {
+  text-decoration: underline;
+  color:#0042A5;
+}
+
+a :visited {
+  color:#0042A5;
+}
 .viridium-app {
   text-align: left;
   height: 100vh;
@@ -35,7 +44,7 @@ body {
   background-color: rgb(242, 242, 242);
 }
 .v-link {
-  color: #094328;
+  color: #0042A5;
   text-decoration: none;
 }
 .v-footer {

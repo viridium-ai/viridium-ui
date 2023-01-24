@@ -72,6 +72,7 @@
     padding: .5em;
     border-radius: 1em;
     padding-left: 55px;
+    padding-top: 0px;
 }
 
 .v-contact-us button {
@@ -91,13 +92,14 @@
 
 .contact {
     background-color: #F1F1F1;
+    border-radius: 10px;
     padding: 1.25em;
     padding-bottom: 1.3em;
     padding-top: 2em;
 }
 
 .contact-1 {
-    height: 7em;
+    height: 7em; 
 }
 
 .contact-2 {

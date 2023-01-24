@@ -1,13 +1,10 @@
 .home-app {
-    background-color: rgb(251, 251, 251);
     width: 100%;
 }
-
 .home-app .home-content {
     padding: 1rem;
     width: 100%;
 }
-
 .home-app .home-page {
     width: 100%;
 }
@@ -46,7 +43,7 @@
 
 .home-app #nav-end-1 {
     background-color: #0042A5;
-    border-color: #0042A5;
+    border-color: #0042A5!important;
     color: white;
 }
 

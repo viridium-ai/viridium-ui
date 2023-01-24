@@ -6,10 +6,20 @@ import { DataTable } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
 import { greenHouseApp } from "../ghg-app";
 
-export const MappingCategories = (props: any) => { 
+export const MappingCategories = (props: any) => {
     const [filter, setFilter] = useState<string>("");
-    const factors = require("../../../config/us-sc-factors.json");
-    const handleSearch = (evt : any) => {
+    const rawData = require("../../../config/us-sc-factors.json");
+
+    const factors = {
+        headers: rawData.headers.slice(0, 8),
+        rows : rawData.rows.map((row : any) => {
+            return {
+                id : row.id,
+                cols: row.cols.slice(0,8)
+            }
+        })
+    }
+    const handleSearch = (evt: any) => {
         setFilter(evt.target.value);
     }
     const ui = () => {
@@ -17,13 +27,13 @@ export const MappingCategories = (props: any) => {
         console.time("filter time");
         let data = {
             headers: factors.headers,
-            rows: factors.rows.filter((row:any)=>{
-                let col :string = row.cols.map((col:any)=>col.text).join(" "); 
-                let found = col.toLowerCase().includes(f);
-                return found;
-            }).splice(1, 100)
+            rows: factors.rows.filter((row: any) => {
+                let col: string = row.cols.map((col: any) => col.text).join(" ");
+                return col.toLowerCase().includes(f);
+            }).slice(0, 100)
         }
         console.timeEnd("filter time");
+        console.log(data);
         return (
             <LayoutPage microApp={greenHouseApp}  >
                 <Toast>
@@ -39,7 +49,7 @@ export const MappingCategories = (props: any) => {
                             <DataTable data={data} />
                         </div>
                     </Toast.Body>
-                    <Action 
+                    <Action
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>

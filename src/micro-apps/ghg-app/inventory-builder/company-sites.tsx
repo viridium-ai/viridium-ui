@@ -137,8 +137,6 @@ export class CompanyView extends Component<CompanyProps, CompanyState> {
                                         </div>
                                     </Col>
                                     <Col className="v-panel">
-
-
                                     </Col>
                                 </Row>
                                 <Button onClick={this.onAdd} >Add</Button>

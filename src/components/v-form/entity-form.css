@@ -1,0 +1,71 @@
+.entity-form {
+    flex-wrap: nowrap;
+    overflow-x: hidden;
+}
+
+.entity-form .v-body-nav {
+    min-width: 200px;
+}
+
+.entity-form .component-title {
+    padding: 12px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.entity-form .entity-value {
+    padding: 2px 20px;
+}
+
+
+
+.entity-form .component-actions {
+    font-size: 14px;
+    padding: 16px;
+    float: right;
+}
+
+.entity-form .component-action {
+    padding: 6px;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.entity-form .toast {
+    display: inline-block;
+    margin: 4px;
+}
+
+.entity-form .panel-header {
+    background-color: rgb(214, 230, 241);
+    border-radius: 0.0rem;
+}
+
+.entity-form .v-body {
+    padding: .4rem;
+    overflow: scroll;
+}
+
+.sfOption {
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    height: 2rem;
+    margin: 1px 1px;
+}
+
+.sfSelect {
+    display: block;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 400px;
+    z-index: 100;
+    padding: 1em;
+    background-color: blanchedalmond;
+}
+
+.offcanvas.offcanvas-end {
+    width: 50%;
+    max-width: 600px;
+}

@@ -125,3 +125,8 @@
     display: flex;
     margin-left: auto;
 }
+
+
+.offcanvas-header button {
+    min-width: 3em;   
+}

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Row, Toast } from 'react-bootstrap';
+import { EntityDetails } from '../../components/v-form/entity-form';
 import { LayoutPage } from '../../components/v-layout/v-layout';
 import TreeView from '../../components/v-tree-view/v-tree-view';
 import { getConfigs } from '../../config/v-config';
-import { EntityDetails } from '../service-browser/service-component';
 import { dataSourceManager } from './dm-app';
 type NameValuePair = {
     name: string,

@@ -2,7 +2,6 @@
 
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
-import { About } from "./about";
 import { Industries } from "./industries";
 import { Products } from "./products";
 import { ContactUs } from "./about-us";
@@ -36,8 +35,8 @@ export class HomeApp extends MicroApp {
   private routeItems1: Array<RouteItem> = [
     new RouteItem().init("Products & Solutions", "Products", "1", "/products"),
     new RouteItem().init("Industries", "Industries", "1", "/industries"),
-    new RouteItem().init("Contact us", "Contact us", "1", "/contact-us"),
-    
+    new RouteItem().init("About us", "About us", "1", "/about-us"),
+
     new RouteItem().init("Sign in", "Sign in", "2", "/login?from=/"),
     new RouteItem().init("Request Demo", "Request Demo", "2", "/demo-app"),
 
@@ -57,9 +56,8 @@ export class HomeApp extends MicroApp {
       <>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/contact-us" element={<ContactUs />} />
+        <Route path="/about-us" element={<ContactUs />} />
         <Route path="/industries" element={<Industries />} />
-        <Route path="/about" element={<About />} />
       </>
     );
   }

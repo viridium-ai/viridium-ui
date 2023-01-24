@@ -1,3 +1,5 @@
+import { FieldDefinition } from "../../../components/v-form/entity-form";
+
 export class Address {
     id = "";
     streetNo?: string;
@@ -40,7 +42,18 @@ export class Company {
             return c;
         }
     }
-    
+    static newFields = () => {
+        return [
+            FieldDefinition.new("name", "string", "Name", "Name", false ),
+            FieldDefinition.new("description", "string", "Description", "Description", false ),
+            FieldDefinition.new("industry", "string", "Industry", "Industry", false ),
+            FieldDefinition.options("country", "Country", "Country", 
+            [
+                {name:"us", label:"United State", value : "us"},
+                {name:"china", label:"China", value : "china"}
+            ])
+        ]
+    }
     getAddress = () => {
         return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
     }

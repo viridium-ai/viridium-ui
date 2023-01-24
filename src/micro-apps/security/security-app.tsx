@@ -6,8 +6,8 @@ import { LayoutPage } from "../../components/v-layout/v-layout";
 import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/v-security-manager";
 import './security-app.css';
 import { HomeApp, homeApp } from "../home/home-app";
-import { EntityDetails } from "../service-browser/service-component";
 import { NotificationView } from "./notifications";
+import { EntityDetails } from "../../components/v-form/entity-form";
 
 class SecurityApp extends HomeApp {
     public getName = () => {

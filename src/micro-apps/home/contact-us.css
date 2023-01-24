@@ -4,14 +4,12 @@
     margin:auto;
     padding: 10px;
 }
-
 .home-app .v-contact-us .v-form {
     margin-top: 1em;
     padding: 0.5em 1.5em;
     border-radius: 1em;
     border: 1px solid rgb(228, 228, 228);
 }
-
 .home-app .v-contact-us .v-form-col input {
     padding: 0.6em;
     font-size: large;

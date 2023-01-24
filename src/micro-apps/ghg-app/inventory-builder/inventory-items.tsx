@@ -173,7 +173,7 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
                     const data = this.csvToTableData(text.toString());
                     console.log(data);
                     if (this.state.status === "Preview") {
-                        this.setState({ data: {...data} });
+                        this.setState({ data: { ...data } });
                         this.setState({ status: "Mapping" });
                     }
                     if (this.state.status === "Import") {
@@ -234,6 +234,30 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
         )
     };
 }
+
+
+type VriridiumDatasetProp = {
+
+}
+type VriridiumDatasetState = {
+
+}
+export class VriridiumDataset extends Component<VriridiumDatasetProp, VriridiumDatasetState> {
+    constructor(props: VriridiumDatasetProp) {
+        super(props);
+        this.state = { connector: "1" }
+    }
+
+    render = () => {
+        let data = getConfigs().reportMockData;
+        return (
+            <div className="v-container">
+                <DataTable data={data} />
+            </div>
+        )
+    };
+}
+
 type ConnectorConfigState = {
     connector: any
 }
@@ -445,12 +469,22 @@ export const InventoryItemsView = (props: any) => {
                     <Tabs defaultActiveKey="manual">
                         <Tab eventKey="manual" title="Manual">
                             <InventoryItemForm inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
+                            {
+                                inventory.items.length > 0 ? <Row>
+                                    <Col>
+                                        <DataTable data={getInventoryItemsData()} />
+                                    </Col>
+                                </Row> : ""
+                            }
                         </Tab>
                         <Tab eventKey="file" title="File Uploader">
                             <FileUploader onReceiveData={onReceiveData} />
                         </Tab>
-                        <Tab eventKey="connector" title="Connector">
+                        <Tab eventKey="connector" title="Connectors">
                             <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import" />
+                        </Tab>
+                        <Tab eventKey="vridium-ds" title="Viridium Datasets">
+                            <VriridiumDataset />
                         </Tab>
                     </Tabs>
 
@@ -458,7 +492,6 @@ export const InventoryItemsView = (props: any) => {
             </Row></>)
     }
     const ui = () => {
-        let items = inventory.items;
         return (
             <LayoutPage microApp={greenHouseApp}  >
                 <Toast >
@@ -472,14 +505,6 @@ export const InventoryItemsView = (props: any) => {
                         {
                             itemForm()
                         }
-                        {
-                            items.length > 0 ? <Row>
-                                <Col>
-                                    <DataTable data={getInventoryItemsData()} />
-                                </Col>
-                            </Row> : ""
-                        }
-
                     </Toast.Body>
 
                     <Action inventory={inventory}

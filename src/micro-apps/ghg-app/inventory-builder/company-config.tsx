@@ -1,7 +1,8 @@
 import { useState } from 'react';
 
-import { Toast, Form } from 'react-bootstrap';
-import { LayoutPage } from '../../../components/v-layout/v-layout';
+import { Toast, Form, Row, Col, Button } from 'react-bootstrap';
+import { FieldDefinition, EntityForm } from '../../../components/v-form/entity-form';
+import { LayoutPage, ViridiumOffcanvas } from '../../../components/v-layout/v-layout';
 import { DataTable } from '../../../components/v-table/v-table';
 import { Action, Question } from '../../../components/v-wizard';
 import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
@@ -29,6 +30,8 @@ export const CompanyDetailsView = (props: any) => {
 export const CompanyConfig = (props: any) => {
     const configs = getConfigs();
     const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
+
+    const [showForm, setShowForm] = useState({ show: false, mode: 'create' });
     const companies: Array<Company> = configs.companies;
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
 
@@ -66,19 +69,28 @@ export const CompanyConfig = (props: any) => {
         }
     }
 
+    const addCompany = () => {
+        setShowForm({ show: true, mode: 'create' });
+    }
+     
+    const listUpdated = () => {
+        // updateAction(!refreshState);
+    }
+
     return <LayoutPage microApp={greenHouseApp} >
-            <Toast>
-                <Toast.Header closeButton={false}>
-                    <span className="me-auto">
-                        Config Company
-                    </span>
-                    {
-                        company ? company.name : ""
-                    }
-                </Toast.Header>
-                <Toast.Body>
-                    <Question label="Customer Name">
-                        <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
+        <Toast>
+            <Toast.Header closeButton={false}>
+                <span className="me-auto">
+                    Config Company
+                </span>
+                {
+                    company ? company.name : ""
+                }
+            </Toast.Header>
+            <Toast.Body>
+                <Question label="Customer Name">
+                    <Row>
+                        <Col sm={11}> <Form.Select value={company?.id} onChange={onSelectCompany} aria-label="">
                             <option>Select a company</option>
                             {
                                 companies.map((c, idx) =>
@@ -86,30 +98,36 @@ export const CompanyConfig = (props: any) => {
                                 )
                             }
                         </Form.Select>
-                        <div className="company-details">
-                            <CompanyDetailsView entity={company} />
-                        </div>
+                        </Col>
+                        <Col sm={1} style={{textAlign: "left"}}>
+                            <Button  style={{minWidth:"3em"}} onClick={addCompany}>+</Button>
+                        </Col>
+                    </Row>
+                    <div className="company-details">
+                        <CompanyDetailsView entity={company} />
+                    </div>
+                    {
+                        company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                    }
+                </Question>
+                <Question label="Viridium Industry">
+                    <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
+                        <option>Select a category</option>
                         {
-                            company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                            viridiumIndustries.map((v, idx) =>
+                                <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
+                            )
                         }
-                    </Question>
-                    <Question label="Viridium Industry">
-                        <Form.Select value={company ? company.industry : ""} onChange={onSelectIndustry} aria-label="">
-                            <option>Select a category</option>
-                            {
-                                viridiumIndustries.map((v, idx) =>
-                                    <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
-                                )
-                            }
-                        </Form.Select>
-                    </Question>
-                    <Question label="Notes">
-                        <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
-                    </Question>
-                </Toast.Body>
-
-                <Action next={{ label: "Next", path: props.next }} />
-            </Toast>
+                    </Form.Select>
+                </Question>
+                <Question label="Notes">
+                    <Form.Control value={company ? company.description : ""} onChange={onUpdateNotes} as="textarea" rows={3} />
+                </Question>
+            </Toast.Body>
+            <Action next={{ label: "Next", path: props.next }} />
+        </Toast>
+        <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={"Add a company"} >
+            <EntityForm title="" fieldDefs = {Company.newFields} listUpdated={listUpdated} mode={showForm.mode}  />
+        </ViridiumOffcanvas>
     </LayoutPage >
-
 }

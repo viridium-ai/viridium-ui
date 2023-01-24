@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
 import { restClient } from "../../common/v-client"
-import { EntityList, EntityDetails, EntityForm } from './service-component';
 import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout/v-layout'
-import { Service, FieldDefinition } from './schema-types';
+import { Service } from './schema-types';
 import { schemaApp } from './schema-micro-app';
+import { FieldDefinition, EntityList, EntityDetails, EntityForm } from '../../components/v-form/entity-form';
 
 export const HomePage = (props: any) => {
     return (
@@ -50,7 +50,10 @@ export const SchemaBrowser = (props: any) => {
                 console.log("error", error);
             });
     }
-
+    const handleSumbit = (object : any) => {
+        //create on the server
+        //this.path
+    }
     const handleEdit = (object: any) => {
         setSelected(object);
         setShowForm({ show: true, mode: 'edit' });
@@ -85,7 +88,7 @@ export const SchemaBrowser = (props: any) => {
             <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={schema.getLabel()} >
                 <EntityForm title='' entity={selectedObject ? selectedObject : schema?.getEmptyObject()}
                     listUpdated={listUpdated}
-                    path={service.path!}
+                    onSumbit={handleSumbit}
                     mode={showForm.mode}
                     fieldDefs={fieldDefs} />
             </ViridiumOffcanvas>

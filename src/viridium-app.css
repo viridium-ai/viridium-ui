@@ -1,5 +1,6 @@
 body {
   font: 1em sans-serif;
+  color: #1A1A1A;
 }
 .viridium-app {
   text-align: left;
@@ -20,7 +21,7 @@ body {
 
 .v-container {
   width: 100%;
-  padding: .5em;
+  padding:.5em;
 }
 
 .v-header {
@@ -61,6 +62,7 @@ body {
 .v-list-body {
   padding: 12px 2px;
 }
+
 .v-list-item {
   padding: 0.8em;
   cursor: pointer;
@@ -114,6 +116,14 @@ body {
 
 .v-panel-content {
   padding: 1em
+}
+
+.v-right {
+  text-align: right;
+}
+
+.v-left {
+  text-align: left;
 }
 
 .viridium-app .v-panel-header {

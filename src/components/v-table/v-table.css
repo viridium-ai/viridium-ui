@@ -10,7 +10,6 @@
     margin-bottom: 15px;
 }
 .v-table .v-table-container{
-    max-height: 240px;
     overflow-y: scroll;
     overflow-x: hidden;
     border: 1px solid cadetblue;

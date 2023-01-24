@@ -1,47 +1,47 @@
-.schema-app {
+.entity-form {
     flex-wrap: nowrap;
     overflow-x: hidden;
 }
 
-.schema-app .v-body-nav {
+.entity-form .v-body-nav {
     min-width: 200px;
 }
 
-.schema-app .component-title {
+.entity-form .component-title {
     padding: 12px;
     font-size: 20px;
     font-weight: bold;
 }
 
-.schema-app .entity-value {
+.entity-form .entity-value {
     padding: 2px 20px;
 }
 
 
 
-.schema-app .component-actions {
+.entity-form .component-actions {
     font-size: 14px;
     padding: 16px;
     float: right;
 }
 
-.schema-app .component-action {
+.entity-form .component-action {
     padding: 6px;
     display: inline-block;
     cursor: pointer;
 }
 
-.schema-app .toast {
+.entity-form .toast {
     display: inline-block;
     margin: 4px;
 }
 
-.schema-app .panel-header {
+.entity-form .panel-header {
     background-color: rgb(214, 230, 241);
     border-radius: 0.0rem;
 }
 
-.schema-app .v-body {
+.entity-form .v-body {
     padding: .4rem;
     overflow: scroll;
 }

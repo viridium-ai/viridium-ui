@@ -1,0 +1,115 @@
+.v-about-us {
+    width: 60%;
+    margin-top: 0vh!important;
+    margin:auto;
+    padding: 10px 5px;
+    font-size: 20px;
+}
+
+.v-mission-statement {
+    height: 720px;
+}
+
+.v-mission-statement .row {
+    height: 100%;
+}
+
+.v-about-us .v-row {
+    margin-bottom: 50px;
+}
+
+.mission-title {
+    font-size: 2.5em;
+    font-weight: 600;
+    padding-top: 2em;
+}
+
+.mission-blurb {
+    font-weight: 300;
+    font-size: 1.2em;
+    margin-top: 1em;
+}
+
+.mission-picture {
+    height: 100%;
+    width: 100%;
+    background-size: 100% 100%;
+    background-image: url("../../../public/resources/leaves-about-us.png");
+}
+
+.v-contact-us {
+    margin:auto;
+    padding: 10px 5px;
+    font-size: 20px;
+}
+
+.v-contact-us .v-form {
+    margin-top: 0px;
+    padding: 0.5em 1.5em;
+    box-shadow: 0em 0em 0em rgb(187 187 187 / 60%);
+}
+
+.v-contact-us .v-form-col input, .v-contact-us .v-form-col textarea {
+    padding: 0.6em;
+    background-color: #F1F1F1;
+}
+
+.v-contact-us .v-form-row{
+    padding: 4px 12px;
+    margin-bottom: 0.5em;
+}
+
+.v-contact-us .v-summary {
+    font-weight: 300;
+    padding: 0em;
+    padding-left: 1em;
+    margin-bottom: 2.75em;
+    font-size: large;
+}
+
+.v-contact-us .button-container {
+    text-align: left;
+    padding: .5em;
+    border-radius: 1em;
+    padding-left: 55px;
+}
+
+.v-contact-us button {
+    padding: .5em;
+    border-radius: 1.5em;
+    width: 8em;
+    background-color: #0042A5;
+}
+
+.v-contact-us .home-header {
+    color: #1A1A1A;
+    font-size: 32px!important;
+    text-align: left;
+    padding-top: 0px!important;
+    padding-bottom: 10px!important;
+}
+
+.contact {
+    background-color: #F1F1F1;
+    padding: 1.25em;
+    padding-bottom: 1.3em;
+    padding-top: 2em;
+}
+
+.contact-1 {
+    height: 7em;
+}
+
+.contact-2 {
+    height: 8em;
+}
+
+.contact-3 {
+    height: 7em;
+}
+
+.contact p {
+    font-weight: bold;
+    margin-top: 1em;
+    line-height: 1.1em;
+}

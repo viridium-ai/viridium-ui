@@ -77,3 +77,11 @@
     overflow: scroll;
 
 }
+
+.dm-app .v-table .data-cell-text {
+    padding: 1em;
+}
+
+.dm-app .v-footer .v-right {
+    padding-right: 0.0em;
+}

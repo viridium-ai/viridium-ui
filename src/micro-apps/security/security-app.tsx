@@ -52,9 +52,9 @@ export const SignOutForm = (props: any) => {
             <LayoutPage microApp={securityApp} >
                 <div className="v-body-main">
                     <div className="v-signout-main">
-                            Thanks You, 
-                            <br/>
-                            Redirect to home in momentarily.
+                        Thanks You,
+                        <br />
+                        Redirect to home in momentarily.
                     </div>
                 </div>
             </LayoutPage>
@@ -115,10 +115,10 @@ export const LoginForm = (props: any) => {
                     ctxValue => {
                         return <LayoutPage microApp={homeApp} >
                             <div id="security-app" className="security-app">
-                                <Container className='v-form'>
+                                <div className='v-form'>
                                     <Row className='v-header' >
                                         <Col className="v-title">
-                                            Sign In
+                                            Sign in
                                         </Col>
                                     </Row>
                                     <Row className='v-body'>
@@ -127,7 +127,6 @@ export const LoginForm = (props: any) => {
                                             submit(ctxValue);
                                         }}>
                                             <Form.Group className="mb-3" controlId="username">
-                                                <Form.Label>Username</Form.Label>
                                                 <Form.Control type="name"
                                                     value={state.username}
                                                     onInput={(e: any) => {
@@ -138,7 +137,6 @@ export const LoginForm = (props: any) => {
                                                     placeholder="Username" />
                                             </Form.Group>
                                             <Form.Group className="mb-3" controlId="password">
-                                                <Form.Label>Password</Form.Label>
                                                 <Form.Control type="password"
                                                     value={state.password}
                                                     onInput={(e: any) => {
@@ -148,19 +146,20 @@ export const LoginForm = (props: any) => {
                                                     }}
                                                     placeholder="Password" />
                                             </Form.Group>
+                                            <Form.Group id="sign-in-remember-me" className="v-buttons" >
+                                                <Form.Check type="checkbox" checked={true} label="Remember me">
+                                                </Form.Check>
+                                            </Form.Group>
                                             <Form.Group className="v-buttons" >
-                                                <Button variant="primary" type="submit">
+                                                <Button variant="primary" type="submit" id="sign-in-submit">
                                                     Sign in
-                                                </Button>{' '}
-                                                <Button variant="secondary" onClick={reset}>
-                                                    Reset
                                                 </Button>
                                             </Form.Group>
                                         </Form>
                                     </Row>
                                     <Row className='v-footer'>
                                         <Col className='v-link'>
-                                            <NavLink as="a" href="/signup">Don't have account yet?</NavLink>
+                                            <a href="/reset-password">Forgot password?</a>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -170,8 +169,13 @@ export const LoginForm = (props: any) => {
                                             </Alert>
                                         </div>
                                     </Row>
-                                </Container>
+                                </div>
+                                <div id="create-account">
+                                  New to Viridium? <a href="/signup">Create account</a>
+                                </div>
                             </div>
+                        
+                          
                         </LayoutPage>
                     }
                 }
@@ -288,7 +292,7 @@ export const SignupForm = (props: any) => {
                                     </Row>
                                     <Row className='v-footer'>
                                         <Col className='v-link'>
-                                            <NavLink as="a" href="/login">Already have an account?</NavLink>
+                                            <a className='v-link' href="/login">Already have an account?</a>
                                         </Col>
                                     </Row>
                                     <Row>
@@ -317,8 +321,8 @@ export const ProfileManager = (props: any) => {
     }
     return (
         <LayoutPage microApp={securityApp} >
-             <div className="v-body-main">
-            <EntityDetails entity={user} title="" />
+            <div className="v-body-main">
+                <EntityDetails entity={user} title="" />
             </div>
         </LayoutPage>
     )

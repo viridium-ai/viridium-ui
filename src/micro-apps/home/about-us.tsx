@@ -11,11 +11,11 @@ export const ContactUs = (props: any) => {
         return (
             <LayoutPage microApp={homeApp}>
                 <div className="v-about-us">
-              
+
                     <div className="v-mission-statement v-row">
                         <Row>
                             <Col sm={6}>
-                                <p className="mission-title">We’re the data cloud for environmental sustainability</p>
+                                <p className="mission-title">We're the data cloud for environmental sustainability</p>
                                 <p className="mission-blurb">Our mission is to use data to help companies reduce their environmental impact.</p>
                             </Col>
                             <Col sm={6}>
@@ -29,8 +29,9 @@ export const ContactUs = (props: any) => {
                             <Col sm={6}>
                                 <div className="v-form">
                                     <div className="home-header" >Contact us</div>
-                                    <div className="v-summary">
-                                        Tell us more about your environmental sustainability objectives and challenges. We will get back to you soon.
+                                    <div className="v-summary">            
+                                        Tell us more about your environmental sustainability goals and challenges. <br /> 
+                                        We'll get back to you soon!
                                     </div>
                                     <Row className="v-form-row">
                                         <Col className="v-form-col">

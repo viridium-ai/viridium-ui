@@ -37,7 +37,7 @@ export class HomeApp extends MicroApp {
     new RouteItem().init("Products & Solutions", "Products", "1", "/products"),
     new RouteItem().init("Industries", "Industries", "1", "/industries"),
     new RouteItem().init("Contact us", "Contact us", "1", "/contact-us"),
-
+    
     new RouteItem().init("Sign in", "Sign in", "2", "/login?from=/"),
     new RouteItem().init("Request Demo", "Request Demo", "2", "/demo-app"),
 

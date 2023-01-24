@@ -75,8 +75,13 @@
     overflow-y: scroll;
 }
 
-.ghg-app .big-table .v-table-container {
+.ghg-app .v-table .v-table-container {
     overflow-x: scroll;
     max-height: 600px;
+    border: 0px solid red;
+}
+
+.ghg-app .toast-body {
+    padding: 0px;
 }
 

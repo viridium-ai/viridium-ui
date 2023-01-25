@@ -88,7 +88,7 @@ export const SchemaBrowser = (props: any) => {
             <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={schema.getLabel()} >
                 <EntityForm title='' entity={selectedObject ? selectedObject : schema?.getEmptyObject()}
                     listUpdated={listUpdated}
-                    onSumbit={handleSumbit}
+                    onSubmit={handleSumbit}
                     mode={showForm.mode}
                     fieldDefs={fieldDefs} />
             </ViridiumOffcanvas>

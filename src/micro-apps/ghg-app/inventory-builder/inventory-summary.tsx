@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { Action } from "../../../components/v-wizard";
-import { getInventory } from "../../../config/v-config";
+import { getCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
-import { Inventory } from "./model";
+import { Company } from "./model";
 
 export const InventorySummary = (props: any) => {
-    const [inventory] = useState<Inventory>(getInventory());
+    const [company] = useState<Company>(getCompany());
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp}  >
@@ -16,13 +16,13 @@ export const InventorySummary = (props: any) => {
                             <span className="me-auto">
                                 Summary and Review
                             </span>
-                            {inventory.company?.name}
+                            {company?.name}
                         </Toast.Header>
                         <Toast.Body>
                             {"{{WIP}}"} <p />
                             We need to summary datasets before saving and exporting it via Viridium services
                         </Toast.Body>
-                        <Action inventory={inventory}
+                        <Action inventory={company.inventory}
                             next={{ label: "Next", path: props.next }}
                             prev={{ label: "Back", path: props.prev }} />
                     </Toast>

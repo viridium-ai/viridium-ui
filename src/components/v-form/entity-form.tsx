@@ -52,7 +52,7 @@ export class FieldDefinition {
         field.validator = validator;
         return field;
     }
-    public static options(name: string, label = '', placeHolder = '', options:Function | Array<any>) {
+    public static options(name: string, label = '', placeHolder = '', options: Function | Array<any>) {
         let field = new FieldDefinition();
         field.name = name;
         field.type = "lov";
@@ -106,18 +106,29 @@ const entityToArray = (entity: any, path: string = ""): Array<any> => {
     return fieldDefs.filter((d) => !(d instanceof Array));
 }
 
-type FormFieldOption = {
-    name:string;
-    value:string;
-    label:string;
+export type FormFieldOption = {
+    name: string;
+    value: string;
+    label: string;
 }
 export interface FormFieldProp {
     value: FieldValue,
     onInput: any,
     options?: Function | Array<FormFieldOption>
 }
+export interface FormFieldState {
+    value: any,
+}
 
-export class FormField extends Component<FormFieldProp>{
+export class FormField extends Component<FormFieldProp, FormFieldState>{
+    constructor(props: FormFieldProp) {
+        super(props);
+        this.state = { value: props.value.value };
+
+    }
+    onChange = (evt: any) => {
+        this.props.onInput(evt);
+    }
     render() {
         let props = this.props as FormFieldProp;
         let fieldValue = props.value;
@@ -127,12 +138,12 @@ export class FormField extends Component<FormFieldProp>{
                 <Form.Label>{def.getLabel()}</Form.Label>
                 {def.required ?
                     <Form.Control type={def.getType()} required
-                        value={fieldValue.value}
-                        onInput={props.onInput}
+                        value={this.state.value}
+                        onInput={this.onChange}
                         placeholder={def.getPlaceHolder()} /> :
                     <Form.Control type={def.getType()}
-                        value={fieldValue.value}
-                        onInput={props.onInput}
+                        value={this.state.value}
+                        onInput={this.onChange}
                         placeholder={def.getPlaceHolder()} />
                 }
             </Form.Group>
@@ -143,7 +154,7 @@ export class SelectField extends Component<FormFieldProp>{
 
     getOptions = () => {
         let options = this.props.options;
-        if(options instanceof Function) {
+        if (options instanceof Function) {
             return options();
         } else if (options instanceof Array<FormFieldOption>) {
             return options;
@@ -152,12 +163,12 @@ export class SelectField extends Component<FormFieldProp>{
     render() {
         let fieldValue = this.props.value;
         let def = fieldValue.definition!;
-        
+
         return (
-            <Form.Group controlId={def.getLabel()}>
+            <Form.Group className="mb-3" controlId={def.getLabel()}>
                 <Form.Label>{def.getLabel()}</Form.Label>
                 <Form.Select value={fieldValue.value} onInput={this.props.onInput}>
-                    {this.getOptions().map((opt : any) => <option value={opt.value}>{opt.label}</option>)}
+                    {this.getOptions().map((opt: any, idx: number) => <option key={'opt' + idx} value={opt.value}>{opt.label}</option>)}
                 </Form.Select>
             </Form.Group>
         )
@@ -169,7 +180,7 @@ interface FormProp {
     entity?: any;
     mode: string;
     fieldDefs?: Function;
-    onSumbit?: Function;
+    onSubmit?: Function;
 }
 
 
@@ -190,8 +201,8 @@ export class EntityForm extends Component<FormProp> {
     onSubmit = (event: any) => {
         event.preventDefault();
         let entity = { ...this.state } as any;
-        if (entity && this.props.onSumbit) {
-            this.props.onSumbit(entity);
+        if (entity && this.props.onSubmit) {
+            this.props.onSubmit(entity);
         } else {
             console.log('Can not add a new user')
         }
@@ -206,12 +217,10 @@ export class EntityForm extends Component<FormProp> {
 
         let fieldDefs = entityToArray(newState);
 
-        if (this.props.fieldDefs)
-        {
+        if (this.props.fieldDefs) {
             fieldDefs = this.props.fieldDefs();
-            console.log(fieldDefs, this.props);
         }
-        
+
         return (
             fieldDefs.filter((def: FieldDefinition) => !def.readonly)
                 .map((def: FieldDefinition, idx: number) => {
@@ -220,7 +229,8 @@ export class EntityForm extends Component<FormProp> {
                         'lov' === def.type ?
                             <SelectField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
-                                this.setState({ ...newState });}} 
+                                this.setState({ ...newState });
+                            }}
                                 options={def.options} /> :
                             <FormField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
@@ -278,8 +288,10 @@ export class EntityDetails extends Component<EntityDetailsProp> {
         });
         return (
             rows.map((def: FieldDefinition, idx: number) =>
-                this.renderField({ id: idx, name: def.getLabel ? def.getLabel() :
-                     def.name, value: entity[def.name] })
+                this.renderField({
+                    id: idx, name: def.getLabel ? def.getLabel() :
+                        def.name, value: entity[def.name]
+                })
             )
         )
     }
@@ -299,8 +311,9 @@ interface ListTableProp {
     onSelect?: Function,
     onEdit?: Function,
     fieldDefs: Function,
-    view?: string
-    actions?: Array<any>
+    view?: string,
+    actions?: Array<any>,
+    showTitle?: boolean;
 }
 
 export class EntityList extends Component<ListTableProp> {
@@ -382,7 +395,9 @@ export class EntityList extends Component<ListTableProp> {
 
         return (
             <div className="entity-form v-panel">
-                <Title title={state.title} actions={actions} />
+                {
+                    this.props.showTitle ? <Title title={state.title} actions={actions} /> : ""
+                }
                 <div className='v-body'>
                     <div className='v-panel-content'>
                         {

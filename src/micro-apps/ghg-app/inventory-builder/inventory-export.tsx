@@ -2,12 +2,12 @@ import { useState } from "react";
 import { Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { Action } from "../../../components/v-wizard";
-import { getCompany, getInventory } from "../../../config/v-config";
+import { getCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { ConnectorConfig } from "./inventory-items";
-import { Inventory } from "./model";
+import { Company } from "./model";
 export const InventoryExport = (props: any) => {
-    const [inventory] = useState<Inventory>(getInventory());
+    const [company] = useState<Company>(getCompany());
 
     const ui = () => {
         return (
@@ -17,12 +17,12 @@ export const InventoryExport = (props: any) => {
                                 <span className="me-auto">
                                     Export Configuration
                                 </span>
-                                {getCompany().name}
+                                {company.name}
                             </Toast.Header>
                             <Toast.Body>
                                 <ConnectorConfig onReceiveData={(data: any) => { console.log(data) }} />
                             </Toast.Body>
-                            <Action inventory={inventory} prev={{ label: "Back", path: props.prev }} />
+                            <Action inventory={company.inventory} prev={{ label: "Back", path: props.prev }} />
                         </Toast>
             </LayoutPage >
         )

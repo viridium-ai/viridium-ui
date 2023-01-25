@@ -1,39 +1,43 @@
-import { useState } from "react";
-
-import { Form, Toast } from "react-bootstrap";
+import { Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { DataTable } from "../../../components/v-table/v-table";
+import { DataTable, Filter } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
 import { greenHouseApp } from "../ghg-app";
 
 export const MappingCategories = (props: any) => {
-    const [filter, setFilter] = useState<string>("");
     const rawData = require("../../../config/us-sc-factors.json");
 
     const factors = {
         headers: rawData.headers.slice(0, 8),
-        rows : rawData.rows.map((row : any) => {
+        rows: rawData.rows.map((row: any) => {
             return {
-                id : row.id,
-                cols: row.cols.slice(0,8)
+                id: row.id,
+                cols: row.cols.slice(0, 8)
             }
         })
     }
-    const handleSearch = (evt: any) => {
-        setFilter(evt.target.value);
+
+    const getFilters = (): Array<Filter> => {
+        return [
+            { name: "Name", value: "raw" },
+            {
+                name: "Year", value: "2011", options: [
+                    "", "2010", "2011", "2012", "2013", "2014", "2015", "2016"
+                ].map((y) => {
+                    return { name: y, label: y.length===0? "All Years" : y, value: y }
+                })
+            },
+            { name: "Type", value: "Commodity",  options: [
+                "", "Commodity", "Industry"
+            ].map((y) => {
+                return { name: y, label: y.length===0? "All Types" : y, value: y }
+            })},
+        ]
+    }
+    const handleSelect = (rowId:string, row: any) => {
+        console.log(row);
     }
     const ui = () => {
-        let f = filter.toLowerCase();
-        console.time("filter time");
-        let data = {
-            headers: factors.headers,
-            rows: factors.rows.filter((row: any) => {
-                let col: string = row.cols.map((col: any) => col.text).join(" ");
-                return col.toLowerCase().includes(f);
-            }).slice(0, 100)
-        }
-        console.timeEnd("filter time");
-        console.log(data);
         return (
             <LayoutPage microApp={greenHouseApp}  >
                 <Toast>
@@ -41,13 +45,9 @@ export const MappingCategories = (props: any) => {
                         <span className="me-auto">
                             EPA Supply Chain Factor
                         </span>
-                        <div><Form.Control type="text" onChange={handleSearch} />
-                        </div>
                     </Toast.Header>
-                    <Toast.Body>
-                        <div className="big-table">
-                            <DataTable data={data} />
-                        </div>
+                    <Toast.Body className="big-table">
+                        <DataTable filters={getFilters()} data={factors} onSelectRow={handleSelect} />
                     </Toast.Body>
                     <Action
                         next={{ label: "Next", path: props.next }}

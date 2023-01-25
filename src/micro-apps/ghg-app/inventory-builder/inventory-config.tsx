@@ -2,35 +2,37 @@ import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { Question, Action } from "../../../components/v-wizard";
-import { getInventory, updateInventory } from "../../../config/v-config";
+import { getCompany, updateCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
-import { Inventory } from "./model";
+import { Company } from "./model";
 export const InventoryConfig = (props: any) => {
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
+    const [company, setCompany] = useState<Company>(getCompany());
 
     const updateInv = (clone: any) => {
-        setInventory(Inventory.new(clone)!);
-        updateInventory(clone);
+        let c = Company.new(company)!;
+        c.inventory = clone;
+        setCompany(c);
+        updateCompany(c);
     }
 
     const onSelectContext = (evt: any) => {
-        let clone = { ...inventory };
+        let clone = { ...company.inventory };
         clone.context = evt.target.value;
         updateInv(clone);
     }
     const onSelectType = (evt: any) => {
-        let clone = { ...inventory };
+        let clone = { ...company.inventory };
         clone.type = evt.target.value;
         updateInv(clone);
     }
     const onSelectStandard = (evt: any) => {
-        let clone = { ...inventory };
+        let clone = { ...company.inventory };
         clone.standard = evt.target.value;
         updateInv(clone);
     }
 
     const onSelectRegulation = (evt: any) => {
-        let clone = { ...inventory };
+        let clone = { ...company.inventory };
         clone.regulation = evt.target.value;
         updateInv(clone);
     }
@@ -39,16 +41,16 @@ export const InventoryConfig = (props: any) => {
         return (
             <LayoutPage microApp={greenHouseApp} >
                         {
-                            inventory ? <Toast >
+                            company.inventory ? <Toast >
                                 <Toast.Header closeButton={false}>
                                     <span className="me-auto">
                                         Config Inventory
                                     </span>
-                                    {inventory.company?.name}
+                                    {company?.name}
                                 </Toast.Header>
                                 <Toast.Body>
                                     <Question label="Sustainability Category">
-                                        <Form.Select value={inventory.context} onChange={onSelectContext} aria-label="">
+                                        <Form.Select value={company.inventory.context} onChange={onSelectContext} aria-label="">
                                             <option>Select a category</option>
                                             {
                                                 [{ id: "Carbon", label: "Carbon" },
@@ -60,7 +62,7 @@ export const InventoryConfig = (props: any) => {
                                         </Form.Select>
                                     </Question>
                                     <Question label="Scope of Data Coverage">
-                                        <Form.Select value={inventory.type} onChange={onSelectType} aria-label="">
+                                        <Form.Select value={company.inventory.type} onChange={onSelectType} aria-label="">
                                             <option>Select a scope</option>
                                             {
                                                 [
@@ -74,7 +76,7 @@ export const InventoryConfig = (props: any) => {
                                         </Form.Select>
                                     </Question>
                                     <Question label="Standards">
-                                        <Form.Select value={inventory.standard} onChange={onSelectStandard} aria-label="">
+                                        <Form.Select value={company.inventory.standard} onChange={onSelectStandard} aria-label="">
                                             <option>Select a standard</option>
                                             {
                                                 [
@@ -91,7 +93,7 @@ export const InventoryConfig = (props: any) => {
                                         </Form.Select>
                                     </Question>
                                     <Question label="Regulations">
-                                        <Form.Select value={inventory.regulation} onChange={onSelectRegulation} aria-label="">
+                                        <Form.Select value={company.inventory.regulation} onChange={onSelectRegulation} aria-label="">
                                             <option>Select a regulation</option>
                                             {
                                                 [
@@ -110,7 +112,7 @@ export const InventoryConfig = (props: any) => {
                                     </Question>
                                     
                                 </Toast.Body>
-                                <Action inventory={inventory}
+                                <Action inventory={company.inventory}
                                         next={{ label: "Next", path: props.next }}
                                         prev={{ label: "Back", path: props.prev }} />
                             </Toast> : ""

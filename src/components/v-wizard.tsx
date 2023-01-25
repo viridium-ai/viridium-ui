@@ -35,11 +35,11 @@ export const Action = (props: any) => {
         return (
             <div className="v-actions" >
                 <Form.Group >
-                    {props.prev ? <Button onClick={handlePrevAction}>
+                    {props.prev ? <Button className="v-button" onClick={handlePrevAction}>
                         {props.prev.label}
                     </Button> : ""}
                     &nbsp;
-                    {props.next ? <Button onClick={handleNextAction} >
+                    {props.next ? <Button className="v-button" onClick={handleNextAction} >
                         {props.next.label}
                     </Button> : ""}
                 </Form.Group>

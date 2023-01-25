@@ -8,7 +8,7 @@ import { IMicroApp, IRouteItem, MicroApp } from "../../common/v-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";
-import { getConfigs } from "../../config/v-config";
+import { clearCachedConfigs, getConfigs } from "../../config/v-config";
 
 export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;
@@ -47,8 +47,6 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
     let signedIn = securityManager.isSignedIn();
     let headerOps = props.microApp.getHeader();
-    const configs = getConfigs();
-
     const ui = () => (
         headerOps.visible ? <Navbar id="app-header" bg="none" className="v-app-header" expand="lg">
             <Navbar.Brand as='span'>
@@ -68,6 +66,8 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                             <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
                                 <NavDropdown.Item href="/security-app/profile">Profile</NavDropdown.Item>
                                 <NavDropdown.Item href="/security-app/notifications">Notifications</NavDropdown.Item>
+                                <NavDropdown.Divider />
+                                <NavDropdown.Item onClick={clearCachedConfigs}>Clear Cached</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={(e: any) => {
                                     securityManager.signout();

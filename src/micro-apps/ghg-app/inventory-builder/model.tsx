@@ -1,4 +1,6 @@
+import { securityManager } from "../../../common/security/v-security-manager";
 import { FieldDefinition } from "../../../components/v-form/entity-form";
+import { getConfigs } from "../../../config/v-config";
 
 export class Address {
     id = "";
@@ -10,12 +12,14 @@ export class Address {
 }
 
 export class Company {
-    id: string = "";
+    id: string = crypto.randomUUID().substring(0,8);
     name: string = "";
     description: string = "";
     industry?: string;
     viridiumCategory?: string;
     lastUpdatedDate?: Date;
+    createdAt? : Date;
+    createdBy? : string;
     lastUpdatedBy?: string;
     sourceId?: string;
     source?: string;
@@ -28,37 +32,57 @@ export class Company {
     email?: string;
     phone?: string;
     sites: Array<Site> = [];
-    inventories: Array<Inventory> = [];
+    inventory?: Inventory;
+    clone = () => {
+        return Company.new(this);
+    }
     static new = (data: any) => {
         if (data) {
             const c = new Company();
             Object.assign(c, data);
-            c.sites = data.sites.map((d: any) => {
-                return Site.new(d);
-            })
-            c.inventories = data.inventories?data.inventories.map((i: any) => {
-                return Inventory.new(i);
-            }) : [];
+            if (data.sizes) {
+                c.sites = data.sites.map((d: any) => {
+                    return Site.new(d);
+                })
+            };
+            c.inventory = new Inventory(c.id);
+            if (data.inventory) {
+                Object.assign(c.inventory, data.inventory);
+            }
+            c.createdAt = new Date();
+            c.createdBy = securityManager.getUserName();
             return c;
         }
+        return new Company();
     }
     static newFields = () => {
+        let configs = getConfigs();
+        let industries = configs.industries ? configs.industries : [{ name: "NA" }];
+        let countries = configs.countries ? configs.countries : [
+            { name: "us", label: "United State", value: "us" },
+            { name: "china", label: "China", value: "china" }
+        ];
         return [
-            FieldDefinition.new("name", "string", "Name", "Name", false ),
-            FieldDefinition.new("description", "string", "Description", "Description", false ),
-            FieldDefinition.new("industry", "string", "Industry", "Industry", false ),
+            FieldDefinition.new("name", "string", "Name", "Name", false),
+            FieldDefinition.new("description", "string", "Description", "Description", false),
+            FieldDefinition.options("industry", "Industry", "Industry",
+                industries.map((industry: any) => { return { name: industry.name, label: industry.name, value: industry.name } })),
+            FieldDefinition.new("firstName", "string", "First Name", "First Name", false),
+            FieldDefinition.new("lastName", "string", "Last Name", "Last Name", false),
+            FieldDefinition.new("street1", "string", "Street", "Street", false),
+            FieldDefinition.new("zipCode", "string", "Zip Code", "Zip Code", false),
+            FieldDefinition.new("city", "string", "City", "City", false),
+            FieldDefinition.new("state", "string", "State", "State", false),
+
             FieldDefinition.options("country", "Country", "Country", 
-            [
-                {name:"us", label:"United State", value : "us"},
-                {name:"china", label:"China", value : "china"}
-            ])
+                countries.map((country: any) => { return { name: country.name, label: country.name, value: country.code } }))
         ]
     }
     getAddress = () => {
         return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
     }
 
-    getSite = (siteId : string) => {
+    getSite = (siteId: string) => {
         return this.sites?.find((s) => s.id === siteId);
     }
 
@@ -85,13 +109,13 @@ export class Company {
 }
 
 export class Site {
-    id: string = "";
+    id: string = crypto.randomUUID().substring(0, 8);
     companyId: string = "";
     name: string = "";
     type: string = "";
     description = "";
     addressId: string = "";
-    location : string = "";
+    location: string = "";
     getAddress = () => {
         return this.location;
     }
@@ -101,6 +125,13 @@ export class Site {
             Object.assign(c, data);
             return c;
         }
+    }
+    static newFields = () => {
+        return [
+            FieldDefinition.new("name", "string", "Name", "Name", false),
+            FieldDefinition.new("description", "string", "Description", "Description", false),
+            FieldDefinition.new("location", "string", "Location", "Location", false)
+        ]
     }
 }
 
@@ -116,25 +147,15 @@ export class Inventory {
     regulation: string = "";
     type: string = "";
     context: string = ""; //corporation, product, activity 
-    company?: Company = new Company();
     description: string = "";
     items: Array<InventoryItem> = [];
-    addItem = (item: InventoryItem) => {
-        item.companyId = this.company!.id;
-        this.items.push(item);
+    companyId: string = "";
+    constructor(companyId: string) {
+        this.companyId = companyId;
     }
-    static new = (data: any) => {
-        if (data) {
-            const c = new Inventory();
-            Object.assign(c, data);
-            c.items = data.items?.map((d: any) => {
-                return InventoryItem.new(d);
-            });
-            c.company = Company.new(data.company);
-            return c;
-        } else {
-            return new Inventory();
-        }
+    addItem = (item: InventoryItem) => {
+        item.companyId = this.companyId;
+        this.items.push(item);
     }
 }
 

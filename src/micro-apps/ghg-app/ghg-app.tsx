@@ -40,8 +40,8 @@ class GreenHouseApp extends MicroApp {
   public getRoutes = () => {
     return (
       <>
-        <Route path="/ghg-app" element={<CompanyList next={'/ghg-app/pick'} />} />
-        <Route path="/ghg-app/pick" element={<CompanyList next={'/ghg-app/pick'}  />} />
+        <Route path="/ghg-app" element={<CompanyList next={'/ghg-app/company'} />} />
+        <Route path="/ghg-app/pick" element={<CompanyList next={'/ghg-app/company'}  />} />
         <Route path="/ghg-app/company" element={<CompanyConfig prev={'/ghg-app/pick'}  next={'/ghg-app/config'}  />} />
         <Route path="/ghg-app/config" element={<InventoryConfig next={'/ghg-app/items'} prev={'/ghg-app/company'}/>} />
         <Route path="/ghg-app/items" element={<InventoryItemsView  next={'/ghg-app/mappings'} prev={'/ghg-app/config'}/>} />

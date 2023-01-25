@@ -3,7 +3,7 @@ import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
 import { Action } from "../../../components/v-wizard";
-import { getCompany, getConfigs, getInventory, updateInventory } from "../../../config/v-config";
+import { getCompany, getConfigs, updateCompany } from "../../../config/v-config";
 import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";
 import { Company, Inventory, InventoryItem } from "./model";
@@ -40,14 +40,17 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
     onQuantityChange = (evt: any) => {
         this.setState({ quantity: evt.target.value });
     }
+
     onAddItem = () => {
         let item = new InventoryItem();
         Object.assign(item, this.state);
         item.scope = this.props.scope;
         item.category = this.props.category;
-        let inv = getInventory();
-        inv.addItem(item);
-        this.props.onUpdate(inv);
+   
+        let c = getCompany();
+        c.inventory?.addItem(item);
+        updateCompany(c);
+        this.props.onUpdate(c.inventory);
     }
     render = () => {
         let configs = getConfigs();
@@ -115,7 +118,7 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
                 <Row>
                     <Col sm={3}></Col>
                     <Col className="connector-config-form-btns">
-                        <Button variant="light" disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
+                        <Button className="v-button" disabled={type === undefined} onClick={this.onAddItem}>Add</Button>
                     </Col>
                     <Col sm={1} className="v-form-label"></Col>
                 </Row>
@@ -236,14 +239,14 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
 }
 
 
-type VriridiumDatasetProp = {
+type ViridiumDatasetProp = {
 
 }
-type VriridiumDatasetState = {
+type ViridiumDatasetState = {
 
 }
-export class VriridiumDataset extends Component<VriridiumDatasetProp, VriridiumDatasetState> {
-    constructor(props: VriridiumDatasetProp) {
+export class ViridiumDataset extends Component<ViridiumDatasetProp, ViridiumDatasetState> {
+    constructor(props: ViridiumDatasetProp) {
         super(props);
         this.state = { connector: "1" }
     }
@@ -310,12 +313,10 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
                                 <Form.Group className="connector-config-form-btns">
                                     <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Export"}</Button>
                                 </Form.Group>
-
                             </div> : <div>Please select a connector for your data</div>
                         }
                     </Col>
                 </Row>
-
             </div>
         )
     };
@@ -332,7 +333,7 @@ export const InventoryItemView = (props: any) => {
                 <Col>{item.siteId}</Col>
             </Row>
         )
-    };
+    }
     const entityUI = () => {
         return (
             <div>
@@ -363,8 +364,7 @@ export const InventoryItemView = (props: any) => {
 }
 export const InventoryItemsView = (props: any) => {
     const configs = getConfigs();
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
-    const [company] = useState<Company | undefined>(Company.new(getCompany()));
+    const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
     const onSelectScope = (evt: any) => {
@@ -375,20 +375,27 @@ export const InventoryItemsView = (props: any) => {
         setCategory(evt.target.value);
     }
     const onUpdate = (inventory: Inventory) => {
-        let newInv = Inventory.new(inventory)!
-        setInventory(newInv);
-        updateInventory(newInv)
+        if (company) {
+            const c = Company.new(company)!;
+            Object.assign(c.inventory!, inventory);
+            updateCompany(c);
+            setCompany(c);
+        }
     }
     const onReceiveData = (data: any) => {
         console.log(data);
     }
     const clearItems = () => {
-        let newInv = Inventory.new(inventory)!
-        newInv.items = [];
-        setInventory(newInv);
-        updateInventory(newInv)
+        if (company) {
+            let newInv = new Inventory(company.id);
+            newInv.items = [];
+            const c = Company.new(company)!;
+            c.inventory =newInv;
+            updateCompany(c);
+        }
     }
     const getInventoryItemsData = () => {
+        let inventory = company?.inventory!;
         return {
             id: inventory.id,
             headers: [
@@ -428,6 +435,7 @@ export const InventoryItemsView = (props: any) => {
         let scopes = configs.scopes;
         let selectedScope = scopes.find((s: any) => s.id === scope);
         let categories = selectedScope?.categories;
+        let inventory = company!.inventory!;
         return (<>
             <Row>
                 <Col className="v-summary">
@@ -483,8 +491,8 @@ export const InventoryItemsView = (props: any) => {
                         <Tab eventKey="connector" title="Connectors">
                             <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import" />
                         </Tab>
-                        <Tab eventKey="vridium-ds" title="Viridium Datasets">
-                            <VriridiumDataset />
+                        <Tab eventKey="viridium-ds" title="Viridium Datasets">
+                            <ViridiumDataset />
                         </Tab>
                     </Tabs>
 
@@ -499,7 +507,7 @@ export const InventoryItemsView = (props: any) => {
                         <span className="me-auto">
                             Manage Inventory Items
                         </span>
-                        <span className="v-button" onClick={clearItems}>Clear All</span>
+                        <Button className="v-button" onClick={clearItems}>Clear All</Button>
                     </Toast.Header>
                     <Toast.Body>
                         {
@@ -507,7 +515,7 @@ export const InventoryItemsView = (props: any) => {
                         }
                     </Toast.Body>
 
-                    <Action inventory={inventory}
+                    <Action inventory={company!.inventory}
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>

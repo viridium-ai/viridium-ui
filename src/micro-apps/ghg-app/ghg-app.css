@@ -27,10 +27,6 @@
     overflow: hidden;
 }
 
-.ghg-app .row {
-    padding: 2px;
-}
-
 .ghg-app .connector-config-form {
     margin-top: 6px;
     padding: 12px;
@@ -47,22 +43,25 @@
 }
 
 .ghg-app .toast {
-    height: 100%;
     position: relative;
     border-radius: 0px;
-    min-height: 620px;
     margin-top: 1px;
-    overflow: scroll;
 }
 
 .ghg-app .toast-header {
     height: 3rem;
 }
-
-.ghg-app .toast-body {
-    overflow-y: scroll;
+.ghg-app .v-form-row {
+    padding: 2px 10px;
 }
-
+.ghg-app .toast-body {
+    height: 70vh;
+    overflow: scroll;
+    padding: 0.5em;
+}
+.ghg-app .v-panel {
+    margin-top: 0px;
+}
 .ghg-app .v-actions {
     position: absolute;
     bottom: 0px;
@@ -81,10 +80,13 @@
 .ghg-app .v-table .v-table-container {
     overflow-x: scroll;
     max-height: 600px;
-    border: 0px solid red;
 }
 
-.ghg-app .toast-body {
+.ghg-app .big-table {
     padding: 0px;
 }
 
+.ghg-app .v-container {
+    padding: 0.5em;
+    background-color: aliceblue;
+}

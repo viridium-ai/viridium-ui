@@ -18,7 +18,6 @@ export const CompanyList = (props: any) => {
     const [company, setCompany] = useState<Company | undefined>(getCompany());
     const [showForm, setShowForm] = useState({ show: false, mode: "create" });
 
-
     const addASite = (formData: any) => {
         if (company) {
             let s = Site.new(formData);
@@ -47,11 +46,14 @@ export const CompanyList = (props: any) => {
     eventManager.subscribe("cached-cleared", (v: any) => {
         configs = getConfigs();
         setCompanies(configs.companies);
+        setCompany(undefined);
     });
 
     const onSelectCompany = (company: any) => {
-        let c = getCompany(company.id);
-        setCompany(c);
+        let c = configs.companies.find((c: Company) => c.id === company.id);
+        if (c) {
+            setCompany(Company.new(c)); 
+        }
         updateCompany(c ? c : company);
     }
     const listUpdated = () => {

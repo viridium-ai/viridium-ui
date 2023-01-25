@@ -202,9 +202,10 @@ export class EntityForm extends Component<FormProp> {
         event.preventDefault();
         let entity = { ...this.state } as any;
         if (entity && this.props.onSubmit) {
+            this.onReset(event);
             this.props.onSubmit(entity);
         } else {
-            console.log('Can not add a new user')
+            console.log('Can not add a new entity')
         }
     }
 

@@ -150,7 +150,8 @@ interface DataTableProps {
     onSelectRow?: Function,
     onDataChanged?: Function,
     options?: DataTableOptions,
-    filters?: Array<Filter>
+    filters?: Array<Filter>,
+    columns?: Array<string>//visible cols
 }
 interface DataTableState {
     data: any,
@@ -178,7 +179,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     onSelectRow = (evt: any) => {
         evt.stopPropagation();
         if (this.props.onSelectRow) {
-            let row = this.props.data.rows.find((d:any)=>d.id === evt.currentTarget.id);
+            let row = this.props.data.rows.find((d: any) => d.id === evt.currentTarget.id);
             this.props.onSelectRow(evt.currentTarget.id, row, evt.currentTarget);
         }
     }
@@ -224,6 +225,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             return <div>No data available</div>
         }
         let rowsToShow = tableData.rows;
+        let headers = [...tableData.headers];
         if (this.state.filters) {
             rowsToShow = tableData.rows.filter((row: any, idx: number) => {
                 let filtered = true;
@@ -234,6 +236,24 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             });
         }
         rowsToShow = rowsToShow.slice(0, this.props.options?.pageSize ? this.props.options?.pageSize : 200);
+
+        if(this.props.columns) {
+            let cIdx : Array<number> = [];
+            headers = headers.filter((h, idx:number) => {
+                let found = this.props.columns?.find((c) => c===h.text) !== undefined;
+                if (found) {
+                    cIdx.push(idx);
+                }
+                return found;
+            });
+            rowsToShow = rowsToShow.map((r : any) => {
+                return {
+                    id: r.id,
+                    cols: r.cols.filter((c : any, idx: number) => cIdx.includes(idx))
+                }
+            });
+        }
+
         return (
             <div className="v-table" >
                 {
@@ -247,7 +267,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                         <thead>
                             <tr >
                                 {
-                                    tableData.headers.map((col: any, idx: number) => {
+                                    headers.map((col: any, idx: number) => {
                                         return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
                                         }</th>
                                     })

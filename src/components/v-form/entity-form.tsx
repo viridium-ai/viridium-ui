@@ -95,15 +95,21 @@ export class Title extends Component<TitleProp> {
 }
 
 const entityToArray = (entity: any, path: string = ""): Array<any> => {
-    let fieldDefs = Object.keys(entity).map(key => {
-        let value = entity[key];
-        let name = path !== "" ? path + "." + key : key;
-        if (value instanceof Object) {
-            return entityToArray(value, key);
-        }
-        return FieldDefinition.new(name, typeof value);
-    });
-    return fieldDefs.filter((d) => !(d instanceof Array));
+    try {
+        let fieldDefs = Object.keys(entity).map(key => {
+            let value = entity[key];
+            let name = path !== "" ? path + "." + key : key;
+            if (value instanceof Object) {
+                return entityToArray(value, key);
+            }
+            return FieldDefinition.new(name, typeof value);
+        });
+        return fieldDefs.filter((d) => !(d instanceof Array));
+    } catch (error) {
+        console.error(entity, path);
+        return [];
+    }
+    
 }
 
 export type FormFieldOption = {
@@ -269,7 +275,8 @@ interface EntityDetailsProp {
     title: string,
     fieldDefs?: Function,
     show?: boolean,
-    actions?: Array<any>
+    actions?: Array<any>,
+    hide?: Function
 }
 
 export class EntityDetails extends Component<EntityDetailsProp> {
@@ -283,28 +290,36 @@ export class EntityDetails extends Component<EntityDetailsProp> {
     }
     renderFields = () => {
         let entity = this.props.entity;
-        let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(entity) : entityToArray(entity);
-        let rows = fieldDefs.filter((def: any) => {
-            return !(['password', 'lov'].includes(def.type) || def instanceof Array);
-        });
-        return (
-            rows.map((def: FieldDefinition, idx: number) =>
-                this.renderField({
-                    id: idx, name: def.getLabel ? def.getLabel() :
-                        def.name, value: entity[def.name]
-                })
+        if (entity)
+        {
+            let fieldDefs = this.props.fieldDefs ? this.props.fieldDefs(entity) : entityToArray(entity);
+            let rows = fieldDefs.filter((def: any) => {
+                return !(['password', 'lov'].includes(def.type) || def instanceof Array || (this.props.hide && this.props.hide(def)));
+            });
+            return (
+                rows.map((def: FieldDefinition, idx: number) =>
+                    this.renderField({
+                        id: idx, name: def.getLabel ? def.getLabel() :
+                            def.name, value: entity[def.name]
+                    })
+                )
             )
-        )
+        } else {
+            //does nothing/
+        }
+        
     }
     render() {
         return (
             <div className="entity-form v-container">
-                {this.renderFields()}
+                <div className="v-title">{this.props.title}</div>
+                <div className="v-container">
+                    {this.renderFields()}
+                </div>
             </div>
         )
     }
 }
-
 interface ListTableProp {
     title: string
     entities: Array<any>,
@@ -316,7 +331,6 @@ interface ListTableProp {
     actions?: Array<any>,
     showTitle?: boolean;
 }
-
 export class EntityList extends Component<ListTableProp> {
     viewMode: string = 'Table';
     constructor(props: ListTableProp) {

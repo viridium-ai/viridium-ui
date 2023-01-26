@@ -104,7 +104,8 @@ export const CompanyList = (props: any) => {
                 <Button className="v-button" onClick={addCompany} >Add a Company</Button>
             </Toast.Header>
             <Toast.Body>
-                <EntityList entities={companies} title={"Companies"} onSelect={onSelectCompany} fieldDefs={Company.newFields} />
+                <EntityList entities={companies} title={"Companies"} onSelect={onSelectCompany} 
+                     fieldDefs={Company.newFields} />
                 {
                     company !== undefined ?
                         <div className="v-container">

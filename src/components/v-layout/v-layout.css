@@ -89,8 +89,8 @@
     padding:2px;
     margin-left: .2rem;
     position: relative;
-    top:-10px;
-    left:-6px;
+    top: 0px;
+    left:-10px;
 }
 .v-layout .actions-menu {
     margin-right: 1em;

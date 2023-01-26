@@ -47,7 +47,7 @@ export const MappingCategories = (props: any) => {
                         </span>
                     </Toast.Header>
                     <Toast.Body className="big-table">
-                        <DataTable filters={getFilters()} data={factors} onSelectRow={handleSelect} />
+                        <DataTable columns={["Name", "Substance", "Unit", "Factor"]} filters={getFilters()} data={factors} onSelectRow={handleSelect} />
                     </Toast.Body>
                     <Action
                         next={{ label: "Next", path: props.next }}

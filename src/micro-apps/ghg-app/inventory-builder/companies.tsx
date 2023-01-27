@@ -52,7 +52,7 @@ export const CompanyList = (props: any) => {
     const onSelectCompany = (company: any) => {
         let c = configs.companies.find((c: Company) => c.id === company.id);
         if (c) {
-            setCompany(Company.new(c)); 
+            setCompany(Company.new(c));
         }
         updateCompany(c ? c : company);
     }
@@ -104,21 +104,26 @@ export const CompanyList = (props: any) => {
                 <Button className="v-button" onClick={addCompany} >Add a Company</Button>
             </Toast.Header>
             <Toast.Body>
-                <EntityList entities={companies} title={"Companies"} onSelect={onSelectCompany} 
-                     fieldDefs={Company.newFields} />
+                <EntityList entities={companies} title={"Companies"} onSelect={onSelectCompany}
+                    fieldDefs={Company.newFields} />
                 {
                     company !== undefined ?
                         <div className="v-container">
-                            <div className="v-buttons">
-                                <Button className="v-button" onClick={addSite} >Add a Site</Button>
-                                <Button className="v-button" onClick={deleteCompany} >Delete</Button>
-                                <Button className="v-button" onClick={removeAllSites} >Remove All Site</Button>
+                            <div className="v-container-header">
+                                {company.name}
                             </div>
-                            <div className="v-container">
-                                <CompanyDetailsView entity={company} />
-                                {
-                                    company.getSitesData().rows.length > 0 ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
-                                }
+                            <div className="v-container-body">
+                                <div className="v-buttons">
+                                    <Button className="v-button" onClick={addSite} >Add a Site</Button>
+                                    <Button className="v-button" onClick={deleteCompany} >Delete</Button>
+                                    <Button className="v-button" onClick={removeAllSites} >Remove All Site</Button>
+                                </div>
+                                <div className="v-container">
+                                    <CompanyDetailsView entity={company} />
+                                    {
+                                        company.getSitesData().rows.length > 0 ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                                    }
+                                </div>
                             </div>
                         </div> : ""
                 }

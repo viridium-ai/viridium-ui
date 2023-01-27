@@ -16,7 +16,7 @@ export const CompanyDetailsView = (props: any) => {
         const company = new Company();
         Object.assign(company, props.entity);
         return (
-            <div className="v-panel">
+            <div className="v-container">
                 {company.name} <br />
                 {company.getAddress()} <br />
                 {company.firstName + " " + company.lastName} <br />

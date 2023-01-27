@@ -24,12 +24,10 @@ export type NameValuePair = {
     name: string,
     value: any
 }
-
 export type ConnectorConfig = {
     driver: string;
     properties: Array<NameValuePair>
 }
-
 export class Connector {
     id: string = crypto.randomUUID().slice(0, 8);
     type: string = "";
@@ -63,7 +61,6 @@ export class Connector {
         return c;
     }
 }
-
 export class ConnectorInstance {
     id: string = crypto.randomUUID().slice(0, 8);
     version: string = ""
@@ -77,15 +74,12 @@ export class ConnectorInstance {
     updatedBy?: string;
     updatedAt?: Date
 }
-
 interface ConnectorViewState {
     connector: Connector
 }
-
 interface ConnectorViewProps {
     connector: Connector
 }
-
 export class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewState> {
     constructor(props: ConnectorViewProps) {
         super(props);
@@ -119,7 +113,6 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
         );
     }
 }
-
 
 type ConnectManagerState = {
     connector?: Connector,

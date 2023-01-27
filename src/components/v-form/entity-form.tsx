@@ -237,8 +237,8 @@ export class EntityForm extends Component<FormProp> {
                             <SelectField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
                                 this.setState({ ...newState });
-                            }}
-                                options={def.options} /> :
+                            }} options={def.options} /> 
+                        :
                             <FormField key={idx.toString()} value={def.value(value)} onInput={(e: any) => {
                                 newState[def.name] = e.target.value;
                                 this.setState({ ...newState });

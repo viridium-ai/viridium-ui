@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Toast } from 'react-bootstrap';
 import { securityManager } from '../../common/security/v-security-manager';
-import { EntityDetails, EntityForm, FieldDefinition } from '../../components/v-form/entity-form';
+import { EntityDetails, EntityForm, EntityList, FieldDefinition } from '../../components/v-form/entity-form';
 import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout/v-layout';
 import TreeView from '../../components/v-tree-view/v-tree-view';
 import { getConfigs, updateConfigs } from '../../config/v-config';
@@ -22,7 +22,8 @@ import { dataSourceManager } from './dm-app';
  */
 export type NameValuePair = {
     name: string,
-    value: any
+    type: string,
+    value?: string
 }
 
 export type ConnectorConfig = {
@@ -38,10 +39,13 @@ export class Connector {
     description: string = "";
     status?: string;
     config?: ConnectorConfig;
+    direction: string = "Inbound"
     createdBy?: string;
     createdAt?: Date;
     updatedBy?: string;
     updatedAt?: Date
+
+    instances: Array<ConnectorInstance> = [];
 
     static newFields = () => {
         return [
@@ -49,6 +53,8 @@ export class Connector {
             FieldDefinition.new("description", "string", "Description", "Description", false),
             FieldDefinition.options("type", "Type", "Type",
                 ["", "Database", "API", "Platform", "Files"].map((type: any) => { return { name: type, label: type.length === 0 ? "Select a type" : type, value: type } })),
+            FieldDefinition.options("direction", "Direction", "Direction",
+                ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
         ]
     }
 
@@ -66,16 +72,26 @@ export class Connector {
 
 export class ConnectorInstance {
     id: string = crypto.randomUUID().slice(0, 8);
+    connectorId: string = "";
     version: string = ""
     name: string = "";
     description: string = "";
-    connector?: Connector;
     instanceConfig: Array<NameValuePair> = []
     status?: string;
     createdBy?: string;
     createdAt?: Date;
     updatedBy?: string;
     updatedAt?: Date
+
+    static newFields = () => {
+        return [
+            FieldDefinition.new("name", "string", "Name", "Name", false),
+            FieldDefinition.new("description", "string", "Description", "Description", false),
+            FieldDefinition.new("status", "string", "Status", "Status", false),
+            FieldDefinition.new("connectorId", "string", "Connector", "Connector", false),
+            
+        ]
+    }
 }
 
 interface ConnectorViewState {
@@ -123,7 +139,8 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
 
 type ConnectManagerState = {
     connector?: Connector,
-    showForm?: { show: boolean, mode: string }
+    showForm?: { show: boolean, mode: string },
+    instanceForm?: { show: boolean, mode: string },
 }
 
 export class ConnectManagerView extends Component<any, ConnectManagerState> {
@@ -134,7 +151,11 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         var configs = getConfigs();
         this.managedConnectors = configs.managedConnectors.filter((c: any) => c.type !== "API");
         this.publicAPIs = configs.managedConnectors.filter((c: any) => c.type === "API");
-        this.state = { connector: this.managedConnectors[0], showForm: { show: false, mode: "create" } }
+        this.state = {
+            connector: this.managedConnectors[0],
+            showForm: { show: false, mode: "create" },
+            instanceForm: { show: false, mode: "create" }
+        }
     }
 
     selectConnector = (data: any, target: any) => {
@@ -205,16 +226,60 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         this.setState({ showForm: { show: true, mode: "create" } });
     }
     config = () => {
-        console.log("WIP");
+        this.setState({ instanceForm: { show: true, mode: "create" } });
     }
     hideForm = () => {
         this.setState({ showForm: { show: false, mode: "create" } });
+    }
+    hideInstanceForm = () => {
+        this.setState({ instanceForm: { show: false, mode: "create" } });
     }
     onSubmit = (connector: any) => {
         let c = Connector.new(connector);
         let configs = getConfigs();
         configs.managedConnectors.push(c);
         updateConfigs(configs);
+    }
+    getNewFields = () => {
+        let fields = [
+            FieldDefinition.new("name", "string", "Name", "Name", false),
+            FieldDefinition.new("description", "string", "Description", "Description", false),
+        ];
+        if (this.state.connector?.config?.properties) {
+            let properties = this.state.connector.config.properties;
+            properties.filter((p) => p.type !== "array").forEach((p) => {
+                fields.push(FieldDefinition.new(p.name, p.type, p.name, p.name, false))
+            });
+        }
+        console.log(fields);
+        return fields;
+    }
+    onAddInstance = (instance: any) => {
+        console.log(instance);
+        let props = this.state.connector?.config?.properties;
+        if (props) {
+            let connectorInstance = new ConnectorInstance();
+            Object.assign(connectorInstance, instance);
+            connectorInstance.connectorId = this.state.connector!.id;
+            connectorInstance.status = "active";
+            connectorInstance.instanceConfig = props.map((p) => {
+                return {
+                    name: p.name,
+                    value: instance[p.name],
+                    type: p.type
+                } as NameValuePair
+            });
+            let c = Connector.new(this.state.connector);
+            c.instances!.push(connectorInstance);
+            let configs = getConfigs();
+            let connectors = configs.managedConnectors.filter((mc : any)=>mc.id !== c.id);
+            connectors.push(c);
+            configs.managedConnectors = JSON.parse(JSON.stringify(connectors));
+            (configs.managedConnectors as Array<Connector>).sort((a, b) => a.id.localeCompare(b.id));
+            updateConfigs(configs);
+            this.setState({ connector: c });
+            this.managedConnectors = configs.managedConnectors;
+        }
     }
     render = () => {
         return (
@@ -255,15 +320,30 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                         <Toast.Body>
                             <div className="v-list">
                                 {
-                                    this.state.connector ? <ConnectorView connector={this.state.connector} /> : <div />
+                                    this.state.connector ?  
+                                       <EntityDetails fieldDefs={Connector.newFields} entity={this.state.connector} title={"Properties"} />: <div />
+                                }
+                            </div >
+                              <div className="v-list">
+                                {
+                                    this.state.connector ? 
+                                      <EntityList entities={this.state.connector!.instances} title={'Instances'}
+                                         fieldDefs={ConnectorInstance.newFields} /> : "No configurations for this connector are found"
                                 }
                             </div >
                         </Toast.Body>
                     </Toast>
                 </div>
-                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm} showForm={this.state.showForm} title={"Add Connector"} >
+                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
+                    showForm={this.state.showForm} title={"Add Connector"} >
                     <EntityForm title="" fieldDefs={Connector.newFields}
                         onSubmit={this.onSubmit} mode={"create"} listUpdated={() => { }} />
+                </ViridiumOffcanvas>
+
+                <ViridiumOffcanvas showTitle={false} onHide={this.hideInstanceForm}
+                    showForm={this.state.instanceForm} title={"Config Connector Instance"} >
+                    <EntityForm title="" fieldDefs={this.getNewFields}
+                        onSubmit={this.onAddInstance} mode={"create"} listUpdated={() => { }} />
                 </ViridiumOffcanvas>
             </LayoutPage>
 

@@ -260,30 +260,42 @@ export class ViridiumDataset extends Component<ViridiumDatasetProp, ViridiumData
         )
     };
 }
+type ConnectorConfigProps = {
+    direction : string,
+    onProcessData ? : Function
+}
 
 type ConnectorConfigState = {
-    connector: any
+    connector?: any
 }
-export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfigState> {
+export class ConnectorConfig extends Component<ConnectorConfigProps, ConnectorConfigState> {
     guid: string = crypto.randomUUID();
-    constructor(props: FileUploaderProps) {
+    constructor(props: ConnectorConfigProps) {
         super(props);
-        this.state = { connector: "1" }
+        this.state = { connector: undefined}
     }
+    
     doUpload = () => {
-        this.props.onReceiveData("Received data");
+        if(this.props.onProcessData)
+        {
+            this.props.onProcessData("Received data");
+        }
+        
     }
+
     onSelectConnector = (evt: any) => {
         let c = evt.target.value;
         this.setState({ connector: c });
     }
     render = () => {
         let configs = getConfigs();
-        let connector = configs.managedConnectors.find((c: any, idx: number) => c.id === this.state.connector);
+        let connectors =configs.managedConnectors.filter((c:any) => c.direction === "Both" || c.direction === this.props.direction)
+
+        let connector = connectors.find((c: any, idx: number) => c.id === this.state.connector);
         return (
             <div className="v-container">
                 <Form.Select onChange={this.onSelectConnector} value={this.state.connector}>
-                    {configs.managedConnectors.map((c: any, idx: number) => {
+                    {connectors.map((c: any, idx: number) => {
                         return <option key={'c-' + idx} value={c.id}>{c.name}</option>
                     })}
                 </Form.Select>
@@ -311,7 +323,7 @@ export class ConnectorConfig extends Component<FileUploaderProps, ConnectorConfi
                                     <Form.Control id={this.guid + '-password'} type="secret" />
                                 </Form.Group>
                                 <Form.Group className="connector-config-form-btns">
-                                    <Button variant="light" onClick={this.doUpload} name="submit">{this.props.buttonTxt ? this.props.buttonTxt : "Export"}</Button>
+                                    <Button variant="light" onClick={this.doUpload} name="submit">{this.props.direction === "Inbound" ? "Import" : "Export"}</Button>
                                 </Form.Group>
                             </div> : <div>Please select a connector for your data</div>
                         }
@@ -489,7 +501,7 @@ export const InventoryItemsView = (props: any) => {
                             <FileUploader onReceiveData={onReceiveData} />
                         </Tab>
                         <Tab eventKey="connector" title="Connectors">
-                            <ConnectorConfig onReceiveData={onReceiveData} buttonTxt="Import" />
+                            <ConnectorConfig onProcessData={onReceiveData} direction="Inbound" />
                         </Tab>
                         <Tab eventKey="viridium-ds" title="Viridium Datasets">
                             <ViridiumDataset />

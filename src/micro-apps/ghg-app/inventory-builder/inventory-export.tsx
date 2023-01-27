@@ -20,7 +20,7 @@ export const InventoryExport = (props: any) => {
                                 {company.name}
                             </Toast.Header>
                             <Toast.Body>
-                                <ConnectorConfig onReceiveData={(data: any) => { console.log(data) }} />
+                                <ConnectorConfig direction="Outbound" onProcessData={(data: any) => { console.log(data) }} />
                             </Toast.Body>
                             <Action inventory={company.inventory} prev={{ label: "Back", path: props.prev }} />
                         </Toast>

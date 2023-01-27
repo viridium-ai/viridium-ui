@@ -103,14 +103,28 @@
             "name": "Microsoft PowerBI",
             "description": "Microsoft cloud analytic platform",
             "status": "active",
-            "type" : "platform",
+            "direction": "Outbound",
+            "type": "platform",
             "config": {
                 "driver": "com.viridium.connector.microsoft.PowerBISink",
-                "properties": {
-                    "bucket": "string",
-                    "directory": "string",
-                    "partition": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "directory": "directory",
+                        "type": "string"
+                    },
+                    {
+                        "directory": "partition",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -118,18 +132,40 @@
             "name": "Oracle Database Table",
             "description": "Oracle Database",
             "status": "active",
-            "type" : "database",
+            "direction": "Both",
+            "type": "database",
             "config": {
                 "driver": "com.viridium.connector.oracle.TableSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "schema": "string",
-                    "table": "string",
-                    "fields": "array",
-                    "sql": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    },
+                    {
+                        "name": "table",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sql",
+                        "type": "string"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "array"
+                    }
+                ]
             }
         },
         {
@@ -137,16 +173,28 @@
             "name": "SAP BAPI",
             "description": "SAP API",
             "status": "active",
-            "type" : "api",
+            "direction": "Outbound",
+            "type": "api",
             "config": {
                 "driver": "com.viridium.connector.sap.BAPISink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "schema": "string",
-                    "fields": "array"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -154,18 +202,29 @@
             "name": "Hadoop HDFS",
             "description": "Apache Hadoop File System",
             "status": "active",
-            "type" : "remote file",
+            "type": "remote file",
+            "direction": "Both",
             "config": {
                 "name": "SAP API",
                 "driver": "com.viridium.connector.hadoop.PartitionSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "partitionBy": "string",
-                    "format": "csv|tsv|parquet",
-                    "fields": "array"
-                }
+                "properties":  [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -173,14 +232,32 @@
             "name": "Amazon S3",
             "description": "AWS cloud storage",
             "status": "active",
-            "type" : "cloud file",
+            "type": "cloud file",
+            "direction": "Both",
             "config": {
                 "driver": "com.viridium.connector.aws.FileSink",
-                "properties": {
-                    "bucket": "string",
-                    "directory": "string",
-                    "partition": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -188,14 +265,32 @@
             "name": "SFTP File",
             "description": "FTP File",
             "status": "active",
-            "type" : "remote file",
+            "type": "remote file",
+            "direction": "Both",
             "config": {
                 "driver": "com.viridium.connector.ftp.FileSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -203,27 +298,31 @@
             "name": "Download File",
             "description": "Download File",
             "status": "active",
-            "type" : "file",
+            "direction": "Outbound",
+            "type": "file",
             "config": {
                 "driver": "com.viridium.connector.ftp.FileSink",
-                "properties": {
-                    "format": "string",
-                    "directory": "string"
-                }
+                "properties": [
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
-        },        
+        },
         {
             "id": "8",
             "name": "UK Carbon Intensity API",
             "description": "National Grid’s Carbon Intensity API provides an indicative trend of regional carbon intensity of the electricity system in Great Britain (GB) up to 2 days ahead of real-time. It provides programmatic and timely access to both forecast and estimated carbon intensity data. The Carbon Intensity forecast includes CO2 emissions related to electricity generation only. The includes emissions from all large metered power stations, interconnector imports, transmission and distribution losses, and accounts for national electricity demand, embedded wind and solar generation.",
             "status": "active",
-            "type" : "API",
+            "type": "API",
+            "direction": "Inbound",
             "config": {
                 "url": "https://api.carbonintensity.org.uk",
                 "method": "Get",
-                "properties": {
-                    "authentication": "false"
-                }
+                "properties": [
+                    
+                ]
             },
             "children": [
                 {
@@ -262,7 +361,6 @@
             ]
         }
     ],
-
     "inventory": [
         {
             "id": "1",

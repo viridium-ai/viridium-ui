@@ -189,7 +189,10 @@ export class ReportConfigPage extends Component<any, ReportConfigState> {
                                     <Col sm={2} className="v-field-label">Export data to:
                                     </Col>
                                     <Col sm={4} className="v-input">
-                                        <DimensionView data={configs.managedConnectors.map((v: any) => { return { id: v.id, label: v.name } })} options={this.ExportOptions()} />
+                                        <DimensionView data={configs.managedConnectors
+                                                .filter((v : any)=>v.direction === "Both" || v.direction === "Outbound")
+                                                .map((v: any) => { return { id: v.id, label: v.name } })} 
+                                                options={this.ExportOptions()} />
                                     </Col>
                                     <Col sm={4}> </Col>
                                     <Col sm={2} className="v-input v-right">

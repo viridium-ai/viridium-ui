@@ -28,6 +28,10 @@
     margin-top: 1em;
 }
 
+.home-app .v-help-content li{
+    padding: 0.2em;
+}
+
 .home-app .v-help-content ul{
     padding: 1em;
     text-decoration: none;

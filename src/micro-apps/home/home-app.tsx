@@ -8,6 +8,7 @@ import { AboutUs } from "./about-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
 import { securityManager } from "../../common/security/v-security-manager";
+import { Help } from "./help";
 
 export class HomeApp extends MicroApp {
 
@@ -29,6 +30,8 @@ export class HomeApp extends MicroApp {
     new RouteItem().init("Inventory Config", "Inventory Config", "1", "/inventory-app"),
     new RouteItem().init("Data Manager", "Data Manager", "1", "/dm-app"),
     new RouteItem().init("GHG Reports", "GHG Reports", "1", "/ghg-app"),
+    new RouteItem().init("Help", "Help", "1", "/help"),
+
     new RouteItem().init("Sign out", "Sign out", "2", "/signout"),
   ];
 
@@ -56,6 +59,7 @@ export class HomeApp extends MicroApp {
       <>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/products" element={<Products />} />
+        <Route path="/help" element={<Help />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/industries" element={<Industries />} />
       </>

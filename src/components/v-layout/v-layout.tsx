@@ -190,7 +190,7 @@ export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => 
     )
 }
 
-export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?: boolean }) => {
+export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?: boolean, pageName?:string }) => {
     const microApp: MicroApp = props.microApp;
     const navigate = useNavigate();
     useEffect(() => {
@@ -209,7 +209,7 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
         }
         return (
             <div className={`${microApp.getName()}`}>
-                <div className={`${microApp.getPageClass()}`}>
+                <div className={props.pageName ? props.pageName : "v-page-" + microApp.getName()}>
                     <div className="v-layout">
                         <LayoutHeader brand={brand} microApp={microApp} />
                         {props.header ? <ApplicationHeader microApp={microApp} /> : ""}

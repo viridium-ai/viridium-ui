@@ -4,11 +4,9 @@ import { Row, Col } from 'react-bootstrap';
 import { homeApp } from './home-app';
 
 export const Products = (props: any) => {
-    homeApp.getPageClass = () => "products-page";
-    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp}>
+            <LayoutPage pageName="products-page" microApp={homeApp}>
                 <div className="home-page">
                     <div className="home-header" >Products</div>
                     <Row className="home-content">

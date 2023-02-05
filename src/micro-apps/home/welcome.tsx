@@ -4,11 +4,9 @@ import { homeApp } from './home-app';
 import "./welcome.css"
 
 export const WelcomePage = (props: any) => {
-    homeApp.getPageClass = () => "welcome-page";
-    homeApp.headerOption = () => {return  {label:"Test", visible:false}};
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp}>
+            <LayoutPage pageName="welcome-page" microApp={homeApp}>
                 <Row className="home-content">
                     <Col className="home-splash">
                         <div>

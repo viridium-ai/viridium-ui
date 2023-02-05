@@ -5,7 +5,6 @@ export interface IMicroApp {
     getNavItems(): IRouteItem[];
     getRoutes(): any;
     getName(): string;
-    getPageClass(): string;
     getTitle(): string;
     getIcon():string;
     headerOption(): { visible: boolean, title: string };
@@ -39,9 +38,7 @@ export abstract class MicroApp implements IMicroApp {
             visible: true
         };
     }
-    getPageClass = (): any => {
-        return "v-page-" + this.getName();
-    }
+
     isSecure = () => {
         return true;
     }

@@ -1,0 +1,41 @@
+
+.home-app .v-page-body {
+    width: 100%;
+    display: flex;
+    font-size: 1.2em;
+}
+.home-app .v-help-container {
+    font-size: 1.2rem;
+}
+.home-app .v-help-content {
+    padding: 1em;
+    background-color: rgb(254, 255, 255);
+    border: 1px solid oldlace;   
+    line-height: 1.5rem;
+    overflow: scroll;
+    height: calc(100vh - 120px);
+}
+
+.home-app .v-help-content h1{
+    font-size: 2rem;
+    margin-bottom: 1em;
+    border-bottom: 1px solid rgb(222, 222, 222);
+}
+
+.home-app .v-help-content h2{
+    font-size: 1.5rem;
+    margin-bottom: .5em;
+    margin-top: 1em;
+}
+
+.home-app .v-help-content ul{
+    padding: 1em;
+    text-decoration: none;
+    margin-left: 1em;
+}
+
+.home-app .v-help-content ul.a {list-style-type: circle;}
+
+.home-app .v-list .v-list-item.selected {
+    background-color: rgb(241, 241, 241);
+}

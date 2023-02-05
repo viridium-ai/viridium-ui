@@ -2,7 +2,6 @@ import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
 import { Dashboard } from "./dashboard";
 import { SourceManager } from "./source-manager";
-import { Help } from "./help";
 import { ReportConfigPage } from "./report-page";
 import './dm-app.css';
 import { SchedulerPage } from "./scheduler-page";
@@ -16,7 +15,6 @@ class DataSourceManager extends MicroApp {
     new RouteItem().init("Connectors", "Connector", "2", "/dm-app/connectors"),
     new RouteItem().init("Scheduler", "Scheduler", "2", "/dm-app/scheduler"),
     new RouteItem().init("Reports", "Reports", "2", "/dm-app/reports"),
-    new RouteItem().init("Help", "Help", "2", "/dm-app/help")
   ];
 
   public getTitle = () => {
@@ -45,7 +43,6 @@ class DataSourceManager extends MicroApp {
         <Route path="/dm-app/connectors" element={<ConnectManagerView />} />
         <Route path="/dm-app/scheduler" element={<SchedulerPage />} />
         <Route path="/dm-app/reports" element={<ReportConfigPage />} />
-        <Route path="/dm-app/help" element={<Help />} />
       </>
     );
 

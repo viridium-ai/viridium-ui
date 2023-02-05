@@ -7,11 +7,9 @@ export const AboutUs = (props: any) => {
     const handleClick = () => {
         alert("Thanks for your feedbback")
     }
-    homeApp.getPageClass = () => "about-us-page";
-    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp}>
+            <LayoutPage pageName="about-us-page" microApp={homeApp}>
                 <div className="v-about-us">
                     <div className="v-mission-statement v-row">
                         <Row>

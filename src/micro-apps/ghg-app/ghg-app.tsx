@@ -3,7 +3,7 @@
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
 
-import { Help } from "../dm-app/help";
+import { Help } from "../home/help";
 import { CompanyConfig } from "./inventory-builder/company-config";
 import { MappingCategories } from "./inventory-builder/inventory-categories";
 import { InventoryConfig } from "./inventory-builder/inventory-config";

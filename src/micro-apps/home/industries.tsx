@@ -3,11 +3,10 @@ import { Row, Col } from 'react-bootstrap';
 import { homeApp } from './home-app';
 
 export const Industries = (props: any) => {
-    homeApp.getPageClass = () => "industries-page";
     homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp}>
+            <LayoutPage pageName="industries-page"  microApp={homeApp}>
                 <div className="home-page">
                     <div className="home-header" >Industries</div>
                     <Row className="home-content">

@@ -16,7 +16,7 @@ export const CompanyList = (props: any) => {
 
     const [companies, setCompanies] = useState(configs.companies);
     const [company, setCompany] = useState<Company | undefined>(getCompany());
-    const [showForm, setShowForm] = useState({ show: false, mode: "create" });
+    const [showForm, setShowForm] = useState(false);
 
     const addASite = (formData: any) => {
         if (company) {
@@ -62,7 +62,7 @@ export const CompanyList = (props: any) => {
             title: "Add a company", fieldDefs: Company.newFields,
             onSubmit: addACompany
         });
-        setShowForm({ show: true, mode: "create" });
+        setShowForm(true);
     }
 
     const addSite = () => {
@@ -70,7 +70,7 @@ export const CompanyList = (props: any) => {
             title: "Add a site", fieldDefs: Site.newFields,
             onSubmit: addASite
         })
-        setShowForm({ show: true, mode: "create" });
+        setShowForm(true);
     }
 
     const deleteCompany = () => {

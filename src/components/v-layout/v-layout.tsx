@@ -190,7 +190,7 @@ export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => 
     )
 }
 
-export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
+export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?: boolean }) => {
     const microApp: MicroApp = props.microApp;
     const navigate = useNavigate();
     useEffect(() => {
@@ -212,7 +212,7 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
                 <div className={`${microApp.getPageClass()}`}>
                     <div className="v-layout">
                         <LayoutHeader brand={brand} microApp={microApp} />
-                        <ApplicationHeader microApp={microApp} />
+                        {props.header ? <ApplicationHeader microApp={microApp} /> : ""}
                         <div className={'v-page-body'}>
                             {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
                             {main}

@@ -5,7 +5,10 @@
     padding: 10px 5px;
     font-size: 20px;
 }
-
+.v-about-us .row>* { 
+    padding-left: 2px;
+    padding-right: 2px;
+}
 .v-mission-statement {
     height: 720px;
 }
@@ -66,13 +69,14 @@
     margin-bottom: 2.75em;
     font-size: large;
 }
-
+.v-container {
+    border: 1px solid rgba(13, 194, 73, 0.09);
+}
 .v-contact-us .button-container {
     text-align: left;
     padding: .5em;
     border-radius: 1em;
     padding-left: 55px;
-    padding-top: 0px;
 }
 
 .v-contact-us button {
@@ -91,11 +95,12 @@
 }
 
 .contact {
-    background-color: #F1F1F1;
-    border-radius: 10px;
-    padding: 1.25em;
+
+    font: 0.8em sans-serif;
     padding-bottom: 1.3em;
-    padding-top: 2em;
+    padding-top: 8em;
+    text-align: right;
+    border: 1px solid rgba(0, 139, 139, 0);
 }
 
 .contact-1 {

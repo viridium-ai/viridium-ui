@@ -3006,5 +3006,14 @@
             "body": "This is good notification",
             "priority": "2"
         }
+    ],
+    "help-content" :[
+        {"id":"1", "url" : "./resources/help/scope1.html", "label":"Scope 1"},
+        {"id":"2", "url" : "./resources/help/scope2.html", "label":"Scope 2"},
+        {"id":"3", "url" : "./resources/help/scope3.html", "label":"Scope 3"},
+        {"id":"4", "url" : "./resources/help/data-sources.html", "label":"Data Sources"},
+        {"id":"5", "url" : "./resources/help/connectors.html", "label":"Connectors"},
+        {"id":"6", "url" : "./resources/help/data-mappings.html", "label":"Data Mapping"},
+        {"id":"7", "url" : "./resources/help/emission-factors.html", "label":"Emission Factor Table"}
     ]
 }

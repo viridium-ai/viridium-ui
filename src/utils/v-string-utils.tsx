@@ -149,5 +149,14 @@ export class StringUtils {
     static guid(length: number = 8): string {
         return crypto.randomUUID().slice(0, length);
     }
-    
+
+    static loadContent = async (url: string): Promise<string> => {
+        return fetch(url).then((response) => {
+            if (response.status !== 200) {
+                console.debug('Looks like there was a problem. Status Code: ' + response.status);
+                throw Error("Failed to load content at " + url + ` [${response.status}]`);
+            }
+            return response.text();
+        })
+    }
 }

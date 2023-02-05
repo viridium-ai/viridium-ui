@@ -9,7 +9,7 @@
   --bs-navbar-brand-margin-end: 1rem;
   --bs-navbar-brand-font-size: 1.25rem;
   --bs-navbar-brand-color: rgba(245, 245, 245, 0.9);
-  --bs-navbar-brand-hover-color: rgba(156, 255, 182, 0.9);
+  --bs-navbar-brand-hover-color: rgba(245, 245, 245, 0.9);
   --bs-navbar-nav-link-padding-x: 0.5rem;
   --bs-navbar-toggler-padding-y: 0.25rem;
   --bs-navbar-toggler-padding-x: 0.75rem;
@@ -59,7 +59,7 @@ a :visited {
     animation: v-logo-spin infinite 20s linear;
   }
 }
-.v-form {
+.v-shadow {
   box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
 }
 

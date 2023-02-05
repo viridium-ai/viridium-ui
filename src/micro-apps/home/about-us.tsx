@@ -27,8 +27,8 @@ export const AboutUs = (props: any) => {
                     </div>
                     <div className="v-contact-us v-row">
                         <Row>
-                            <Col sm={6}>
-                                <div className="v-form">
+                            <Col sm={9}>
+                                <div className="v-container">
                                     <div className="home-header" >Contact us</div>
                                     <div className="v-summary">
                                         Tell us more about your environmental sustainability goals and challenges. <br />
@@ -57,7 +57,7 @@ export const AboutUs = (props: any) => {
 
                                 </div>
                             </Col>
-                            <Col sm={6}>
+                            <Col sm={3}>
                                 <div className="contact">
                                     <div className="contact-1">
                                         General inquiries

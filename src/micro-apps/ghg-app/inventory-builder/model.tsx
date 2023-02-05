@@ -67,16 +67,16 @@ export class Company {
             FieldDef.new("name"),
             FieldDef.new("description"),
             FieldDef.select("industry",
-                industries.map((industry: any) => { return { name: industry.name, label: industry.name, value: industry.name } })),
+                industries.map((i: any) => { return { name: i.name, label: i.name, value: i.name } })),
             FieldDef.new("firstName"),
             FieldDef.new("lastName"),
             FieldDef.new("street1"),
             FieldDef.new("zipCode"),
             FieldDef.new("city"),
             FieldDef.new("state"),
-
-            FieldDef.select("industry",
-                countries.map((country: any) => { return { name: country.name, label: country.name, value: country.code } }))
+            FieldDef.select("country",
+                countries.map((c: any) => { return { name: c.name, label: c.name, value: c.code } }))
+                .useDefault("US")
         ]
     }
     getAddress = () => {

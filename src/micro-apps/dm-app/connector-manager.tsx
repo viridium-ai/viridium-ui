@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Row, Toast } from "react-bootstrap";
 import { securityManager } from "../../common/security/v-security-manager";
-import { FieldDef, EntityDetails, EntityList, EntityForm } from "../../components/v-entity/entity-form";
+import { FieldDef, EntityDetails, EntityList, EntityForm, ValueType } from "../../components/v-entity/entity-form";
+import { ValidationMessage } from "../../components/v-entity/entity-model";
 import { LayoutPage, ViridiumOffcanvas } from "../../components/v-layout/v-layout";
 import TreeView from "../../components/v-tree-view/v-tree-view";
 import { getConfigs, updateConfigs } from "../../config/v-config";
@@ -131,8 +132,8 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
 
 type ConnectManagerState = {
     connector?: Connector,
-    showForm?: { show: boolean, mode: string },
-    instanceForm?: { show: boolean, mode: string },
+    showForm?:boolean,
+    instanceForm?: boolean,
 }
 
 export class ConnectManagerView extends Component<any, ConnectManagerState> {
@@ -145,8 +146,8 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         this.publicAPIs = configs.managedConnectors.filter((c: any) => c.type === "API");
         this.state = {
             connector: this.managedConnectors[0],
-            showForm: { show: false, mode: "create" },
-            instanceForm: { show: false, mode: "create" }
+            showForm:false,
+            instanceForm:false
         }
     }
 
@@ -215,22 +216,23 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         }
     }
     addNew = () => {
-        this.setState({ showForm: { show: true, mode: "create" } });
+        this.setState({ showForm: true });
     }
     config = () => {
-        this.setState({ instanceForm: { show: true, mode: "create" } });
+        this.setState({ instanceForm:true });
     }
     hideForm = () => {
-        this.setState({ showForm: { show: false, mode: "create" } });
+        this.setState({ showForm:false });
     }
     hideInstanceForm = () => {
-        this.setState({ instanceForm: { show: false, mode: "create" } });
+        this.setState({ instanceForm:false });
     }
     onSubmit = (connector: any) => {
         let c = Connector.new(connector);
         let configs = getConfigs();
         configs.managedConnectors.push(c);
         updateConfigs(configs);
+        this.hideForm();
     }
     getNewFields = () => {
         let fields = [
@@ -240,7 +242,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         if (this.state.connector?.config?.properties) {
             let properties = this.state.connector.config.properties;
             properties.filter((p) => p.type !== "array").forEach((p) => {
-                fields.push(FieldDef.new(p.name))
+                fields.push(FieldDef.new(p.name, p.type as ValueType))
             });
         }
         console.log(fields);
@@ -269,7 +271,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
             configs.managedConnectors = JSON.parse(JSON.stringify(connectors));
             (configs.managedConnectors as Array<Connector>).sort((a, b) => a.id.localeCompare(b.id));
             updateConfigs(configs);
-            this.setState({ connector: c });
+            this.setState({ connector: c, instanceForm:false });
             this.managedConnectors = configs.managedConnectors;
         }
     }
@@ -326,15 +328,16 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                         </Toast.Body>
                     </Toast>
                 </div>
-                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
+                <ViridiumOffcanvas   showTitle={false} onHide={this.hideForm}
                     showForm={this.state.showForm} title={"Add Connector"} >
-                    <EntityForm title="" fieldDefs={Connector.newFields}
+                    <EntityForm inline={true}  title="" fieldDefs={Connector.newFields}
                         onSubmit={this.onSubmit} mode={"create"}  />
                 </ViridiumOffcanvas>
 
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideInstanceForm}
-                    showForm={this.state.instanceForm} title={"Config Connector Instance"} >
-                    <EntityForm title="" fieldDefs={this.getNewFields}
+                    showForm={this.state.instanceForm} 
+                        title={"Config "+this.state.connector?.name+" Instance"} >
+                    <EntityForm inline={true} title="" fieldDefs={this.getNewFields}
                         onSubmit={this.onAddInstance} mode={"create"}  />
                 </ViridiumOffcanvas>
             </LayoutPage>

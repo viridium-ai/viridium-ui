@@ -130,7 +130,7 @@ export const CompanyList = (props: any) => {
         </Toast>
 
         <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={formAction.title} >
-            <EntityForm title="" fieldDefs={formAction.fieldDefs}
+            <EntityForm inline={true} title="" fieldDefs={formAction.fieldDefs}
                 onSubmit={formAction.onSubmit} mode={showForm.mode} />
         </ViridiumOffcanvas>
     </LayoutPage >

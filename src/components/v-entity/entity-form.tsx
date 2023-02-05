@@ -423,8 +423,7 @@ export class SelectField extends Component<FormFieldProp, FormFieldState>{
         if (props.id) {
             this.id = props.id;
         }
-        let v = (this.props.entity as any)[props.def.name];
-        this.state = { value: v }
+        this.state = { value: props.def.defaultValue }
     }
     onChange = (evt: any) => {
         let v = evt.target.value;

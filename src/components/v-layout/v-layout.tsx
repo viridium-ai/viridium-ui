@@ -23,7 +23,7 @@ export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;
     let onHide = props.onHide;
     return (
-        <Offcanvas show={showForm.show} placement='end' onHide={() => onHide({ show: false, mode: 'create' })}>
+        <Offcanvas show={showForm} placement='end' onHide={() => onHide()}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title>{props.title ? props.title : "No Title"}</Offcanvas.Title>
             </Offcanvas.Header>

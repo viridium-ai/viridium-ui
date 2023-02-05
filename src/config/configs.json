@@ -105,7 +105,7 @@
             "description": "Microsoft cloud analytic platform",
             "status": "active",
             "direction": "Outbound",
-            "type": "platform",
+            "type": "database",
             "config": {
                 "driver": "com.viridium.connector.microsoft.PowerBISink",
                 "properties": [
@@ -118,11 +118,11 @@
                         "type": "string"
                     },
                     {
-                        "directory": "directory",
+                        "name": "directory",
                         "type": "string"
                     },
                     {
-                        "directory": "partition",
+                        "name": "partition",
                         "type": "string"
                     }
                 ]

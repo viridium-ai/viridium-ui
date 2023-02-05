@@ -22,6 +22,9 @@ class CacheManager {
             this.storage = localStorage;
         }
     }
+    clear = () => {
+        this.storage.clear();
+    }
     remove = (key: any) => {
         let keyStr = JSON.stringify(key);
         this.storage.removeItem(keyStr);
@@ -38,7 +41,7 @@ class CacheManager {
         }
         let cachedObject = JSON.parse(stored) as CachedObject;
         if (cachedObject.ttl !== -1 && Date.now() - cachedObject.time > cachedObject.ttl) {
-            console.log(`Cached object ${key} expired`);
+            console.debug(`Cached object ${key} expired`);
             this.storage.removeItem(keyStr);
             return defaultValue;
         }

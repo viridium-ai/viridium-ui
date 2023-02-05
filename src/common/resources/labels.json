@@ -9,7 +9,7 @@
         "label" : "Service Requests"
     },
     {
-        "name" : "fielddefinitions",
+        "name" : "FieldDefs",
         "label" : "Field Definitions"
     },
     {

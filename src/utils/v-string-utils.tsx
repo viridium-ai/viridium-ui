@@ -2,6 +2,7 @@
 import labels from "../common/resources/labels.json";
 
 export class StringUtils {
+
     /**
      * Returns the plural of an English word.
      *
@@ -10,7 +11,7 @@ export class StringUtils {
      * @param {number} [amount]
      * @returns {string}
      */
-    public static plural(word: string, amount?: number): string{
+    public static plural(word: string, amount?: number): string {
         if (amount !== undefined && amount === 1) {
             return word
         }
@@ -93,24 +94,60 @@ export class StringUtils {
         }
         return word
     }
-    
+
     public static t(name: string | undefined): string | undefined {
         if (!name) {
-            return undefined;
+            return name;
         }
-
         let label = labels.find((l: any) => l.name === name);
-
         return label ? label.label : StringUtils.toLabel(name);
     }
 
     public static toLabel = (name: string | undefined): string | undefined => {
         if (!name) {
-            return undefined;
+            return name;
         }
         const result = name.replace(/([A-Z])/g, " $1");
         const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-
         return finalResult;
     }
+
+    public static enumValues = (enumType: any) => {
+        let values = Object.values(enumType);
+        return values.filter((item: any) => {
+            return isNaN(Number(item));
+        });
+    }
+
+    public static enumOptions = (enumType: any) => {
+        return this.enumValues(enumType).map((v: any) => {
+            return { name: v, label: v, value: v }
+        });
+    }
+
+    public static tableToJson = (table: any) => {
+        let trs = Array.from(document.getElementsByTagName("tr"));
+        let rows = [];
+        for (let row of trs) {
+
+            let cols = Array.from(row.getElementsByTagName("td"));
+            let col = [];
+            for (let c of cols) {
+                col.push(c.innerText);
+            }
+            if (col.length > 0)
+                rows.push(col);
+        }
+        let ths = Array.from(document.getElementsByTagName("th"));
+        let header = []
+        for (let h of ths) {
+            header.push(h.innerText);
+        }
+        return { header, rows };
+    }
+
+    static guid(length: number = 8): string {
+        return crypto.randomUUID().slice(0, length);
+    }
+    
 }

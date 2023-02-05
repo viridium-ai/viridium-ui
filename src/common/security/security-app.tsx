@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { Container, Row, Col, Form, Button, Alert, NavLink } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Alert } from "react-bootstrap";
 import { Route, useNavigate, useSearchParams } from "react-router-dom";
 
-import { LayoutPage } from "../../components/v-layout/v-layout";
+import { LayoutPage, v_link, v_map } from "../../components/v-layout/v-layout";
 import { securityManager, UserContextType, UserContext, LoginObject } from "../../common/security/v-security-manager";
 import './security-app.css';
-import { HomeApp, homeApp } from "../home/home-app";
 import { NotificationView } from "./notifications";
-import { EntityDetails } from "../../components/v-form/entity-form";
+import { MicroApp } from "../../common/v-app";
+import { EntityDetails, FieldDef } from "../../components/v-entity/entity-form";
 
-class SecurityApp extends HomeApp {
+class SecurityApp extends MicroApp {
     public getName = () => {
         return "security-app";
     }
@@ -17,24 +17,24 @@ class SecurityApp extends HomeApp {
         return "Security";
     }
     public isSecure = (): boolean => {
-        return true;
+        return false;
     }
 
-    getHeader = (): any => {
+    headerOption = (): any => {
         return {
             title: this.getTitle(),
-            visible: true
+            visible: false
         };
     }
     public getRoutes = () => {
         return (
             <>
-                <Route path={`/login`} element={<LoginForm />} />
-                <Route path={`/signup`} element={<SignupForm />} />
-                <Route path={`/signout`} element={<SignOutForm />} />
-                <Route path={`/security-app`} element={<ProfileManager />} />
-                <Route path={`/security-app/profile`} element={<ProfileManager />} />
-                <Route path={`/security-app/notifications`} element={<NotificationView />} />
+                <Route path={v_map("/login")} element={<LoginForm />} />
+                <Route path={v_map("/signup")} element={<SignupForm />} />
+                <Route path={v_map("/signout")} element={<SignOutForm />} />
+                <Route path={v_map("/security-app")} element={<ProfileManager />} />
+                <Route path={v_map("/security-app/profile")} element={<ProfileManager />} />
+                <Route path={v_map("/security-app/notifications")} element={<NotificationView />} />
             </>
         )
     }
@@ -63,7 +63,6 @@ export const SignOutForm = (props: any) => {
 
     return ui();
 }
-
 
 export const LoginForm = (props: any) => {
     let messageForm: any = undefined;
@@ -113,8 +112,8 @@ export const LoginForm = (props: any) => {
             <UserContext.Consumer>
                 {
                     ctxValue => {
-                        return <LayoutPage microApp={homeApp} >
-                            <div id="security-app" className="security-app">
+                        return <LayoutPage microApp={securityApp} >
+                            <div className="v-security-form-container">
                                 <div className='v-form'>
                                     <Row className='v-header' >
                                         <Col className="v-title">
@@ -171,11 +170,9 @@ export const LoginForm = (props: any) => {
                                     </Row>
                                 </div>
                                 <div id="create-account">
-                                  New to Viridium? <a href="/signup">Create account</a>
+                                    New to Viridium? <a href="/signup">Create account</a>
                                 </div>
                             </div>
-                        
-                          
                         </LayoutPage>
                     }
                 }
@@ -183,6 +180,133 @@ export const LoginForm = (props: any) => {
         )
     }
 
+    return ui();
+}
+
+export const SignupForm1 = (props: any) => {
+    let messageForm: any = undefined;
+    const navigate = useNavigate();
+    const [state, setState] = useState({
+        username: '',
+        password: '',
+        password2: '',
+        message: ''
+    });
+
+    const signupAction = (ctxValue: UserContextType) => {
+        let user = state as LoginObject;
+        if (user.password !== user.password2) {
+            let newState = { ...state };
+            newState.message = 'Passwords does not match';
+            setState(newState);
+            return;
+        }
+
+        securityManager.signup(user).then((res) => {
+            if (res.status !== 200) {
+                throw Error(res.statusText);
+            }
+            return res.user;
+        }).then((user) => {
+            navigate(v_link("/login"), { replace: true });
+        }).catch(error => {
+            console.error(error);
+        }).finally(() => {
+            reset();
+        })
+    }
+
+    const reset = () => {
+        setState({
+            username: '',
+            password: '',
+            password2: '',
+            message: ''
+        });
+        messageForm?.reset();
+    }
+
+    const ui = () => {
+        return (
+            <UserContext.Consumer>
+                {
+                    ctxValue => {
+                        return <LayoutPage microApp={securityApp} >
+                            <div className="v-security-form-container">
+                                <Container className='v-form'>
+                                    <Row className='v-header'>
+                                        <Col className='v-title'>
+                                            Sign Up
+                                        </Col>
+                                    </Row>
+                                    <Row className='v-body'>
+                                        <Form ref={(form: any) => messageForm = form} onSubmit={(event) => {
+                                            event.preventDefault();
+                                            signupAction(ctxValue);
+                                        }}>
+                                            <Form.Group className="mb-3" controlId="username">
+                                                <Form.Label>Username</Form.Label>
+                                                <Form.Control type="name"
+                                                    value={state.username}
+                                                    onInput={(e: any) => {
+                                                        let newUser = { ...state };
+                                                        newUser.username = e.target.value;
+                                                        setState(newUser);
+                                                    }}
+                                                    placeholder="Username" />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3" controlId="password">
+                                                <Form.Label>Password</Form.Label>
+                                                <Form.Control type="password"
+                                                    value={state.password}
+                                                    onInput={(e: any) => {
+                                                        let newUser = { ...state };
+                                                        newUser.password = e.target.value;
+                                                        setState(newUser);
+                                                    }}
+                                                    placeholder="Password" />
+                                            </Form.Group>
+                                            <Form.Group className="mb-3" controlId="password">
+                                                <Form.Label>Confirm Password</Form.Label>
+                                                <Form.Control type="password" value={state.password2}
+                                                    onInput={(e: any) => {
+                                                        let newUser = { ...state };
+                                                        newUser.password2 = e.target.value;
+                                                        setState(newUser);
+                                                    }}
+                                                    placeholder="Retry Password" />
+                                            </Form.Group>
+
+                                            <Form.Group className="v-buttons" >
+                                                <Button variant="primary" type="submit">
+                                                    Submit
+                                                </Button>{' '}
+                                                <Button variant="secondary" onClick={reset}>
+                                                    Reset
+                                                </Button>
+                                            </Form.Group>
+                                        </Form>
+                                    </Row>
+                                    <Row className='v-footer'>
+                                        <Col className='v-link'>
+                                            <a className='v-link' href="/login">Already have an account?</a>
+                                        </Col>
+                                    </Row>
+                                    <Row>
+                                        <div className='warning-box' >
+                                            <Alert show={state.message !== ''} variant='danger'>
+                                                {state.message}
+                                            </Alert>
+                                        </div>
+                                    </Row>
+                                </Container>
+                            </div>
+                        </LayoutPage>
+                    }
+                }
+            </UserContext.Consumer>
+        )
+    }
     return ui();
 }
 
@@ -213,7 +337,7 @@ export const SignupForm = (props: any) => {
         }).then((user) => {
             navigate("/login", { replace: true });
         }).catch(error => {
-            console.log(error);
+            console.error(error);
         }).finally(() => {
             reset();
         })
@@ -234,8 +358,8 @@ export const SignupForm = (props: any) => {
             <UserContext.Consumer>
                 {
                     ctxValue => {
-                        return <LayoutPage microApp={homeApp} >
-                            <div id="signup-app" className="security-app">
+                        return <LayoutPage microApp={securityApp} >
+                            <div className="v-security-form-container">
                                 <Container className='v-form'>
                                     <Row className='v-header'>
                                         <Col className='v-title'>
@@ -314,15 +438,30 @@ export const SignupForm = (props: any) => {
 }
 
 export const ProfileManager = (props: any) => {
-    //console.log(securityManager.getUserContext().user);
     let user = securityManager.getUserContext().user;
-    securityApp.getTitle = () => {
-        return securityManager.getProfileName();
+    securityApp.getTitle = () => securityManager.getProfileName()
+    securityApp.isSecure = () => true;
+    const getFieldDef = (entity: any) => {
+        return [
+            FieldDef.new("username"),
+            FieldDef.new("title"),
+            FieldDef.new("firstName"),
+            FieldDef.new("lastName"),
+            FieldDef.new("phone"),
+            FieldDef.new("email"),
+            FieldDef.new("gender").useFormatter((value: any) => {
+                if (value === "m") {
+                    return "Male"
+                } else {
+                    return "Female"
+                }
+            })
+        ];
     }
     return (
         <LayoutPage microApp={securityApp} >
             <div className="v-body-main">
-                <EntityDetails entity={user} title="" />
+                <EntityDetails fieldDefs={getFieldDef} entity={user} title="" />
             </div>
         </LayoutPage>
     )

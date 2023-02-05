@@ -3,15 +3,16 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/v-layout/v-layout'
 import { homeApp } from './home-app';
 import './about-us.css';
-export const ContactUs = (props: any) => {
+export const AboutUs = (props: any) => {
     const handleClick = () => {
         alert("Thanks for your feedbback")
     }
+    homeApp.getPageClass = () => "about-us-page";
+    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
             <LayoutPage microApp={homeApp}>
                 <div className="v-about-us">
-
                     <div className="v-mission-statement v-row">
                         <Row>
                             <Col sm={6}>
@@ -29,8 +30,8 @@ export const ContactUs = (props: any) => {
                             <Col sm={6}>
                                 <div className="v-form">
                                     <div className="home-header" >Contact us</div>
-                                    <div className="v-summary">            
-                                        Tell us more about your environmental sustainability goals and challenges. <br /> 
+                                    <div className="v-summary">
+                                        Tell us more about your environmental sustainability goals and challenges. <br />
                                         We'll get back to you soon!
                                     </div>
                                     <Row className="v-form-row">

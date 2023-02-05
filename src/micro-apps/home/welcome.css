@@ -6,7 +6,9 @@
     color: rgb(237, 237, 237);
     background-repeat: repeat-y;
 }
-
+.welcome-page nav {
+    background-color: transparent;
+}
 .welcome-page .v-page-footer {
     color: white !important;
     background-color: rgba(0, 0, 0, 0.0) !important;

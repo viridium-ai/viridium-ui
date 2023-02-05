@@ -9,21 +9,7 @@
     width: 100%;
 }
 
-.home-app .viridium-logo {
-    width: 30px;
-    margin-top: -10px;
-    margin-left: 55px;
-    margin-right: 0px;
-}
-
-.home-app .navbar-brand {
-    font-weight: 600;
-}
-
-.home-app .navbar {
-    height: 72px;
-}
-
+ 
 .home-app .nav-link {
     font-weight: 400;
     margin-left: 25px;
@@ -60,9 +46,6 @@
     margin-left: 0.5em;
 }
 
-.home-app nav {
-    background-color: rgba(0, 0, 0, 0) !important;
-}
 
 .home-app .v-button {
     color: #1A1A1A;

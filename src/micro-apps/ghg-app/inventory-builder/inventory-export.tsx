@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { Action } from "../../../components/v-wizard";
+import { Action } from "../../../components/wizard";
+
 import { getCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { ConnectorConfig } from "./inventory-items";

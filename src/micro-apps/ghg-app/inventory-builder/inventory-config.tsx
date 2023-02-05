@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Toast, Form } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { Question, Action } from "../../../components/v-wizard";
+import { Question, Action } from "../../../components/wizard";
 import { getCompany, updateCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { Company } from "./model";

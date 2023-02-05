@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { sessionCache } from '../../utils/v-cache-manager';
 
 export class SecurityResponse {
@@ -64,7 +65,9 @@ export const DefaultUserContext: UserContextType = {
 export const UserContext = React.createContext<UserContextType>(DefaultUserContext);
 
 class SecurityClient {
+
     private securityConfig = require('./security-config.json');
+
     private users: Array<User> = this.securityConfig.users.map((user: any) => {
         let u = new User();
         Object.assign(u, user);
@@ -75,11 +78,13 @@ class SecurityClient {
         Object.assign(r, role);
         return r;
     });
+
     private permissions = this.securityConfig.permissions.map((permission: any) => {
         let r = new Permission();
         Object.assign(r, permission);
         return r;
     });
+
     public signin = (user: LoginObject): Promise<SecurityResponse> => {
         let authenticated = this.users.find((u) => {
             return (u.username === user.username) && (u.password === user.password)
@@ -96,6 +101,7 @@ class SecurityClient {
             }
         });
     }
+
     public signup = (user: LoginObject): Promise<SecurityResponse> => {
         return new Promise(resolve => {
             let res = new SecurityResponse();
@@ -105,6 +111,7 @@ class SecurityClient {
             resolve(res);
         });
     }
+
     public signout = (): Promise<SecurityResponse> => {
         return new Promise(resolve => {
             let res = new SecurityResponse();
@@ -114,6 +121,7 @@ class SecurityClient {
             resolve(res);
         });
     }
+
     public hasPermission = (user: UserObject, resource: string, action: string): Promise<boolean> => {
         return new Promise(resolve => {
             return true;

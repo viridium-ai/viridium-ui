@@ -1,3 +1,8 @@
+.dm-app .v-page-body {
+    width: 100%;
+    display: flex;
+}
+
 .dm-app .v-chart-item {
     height: 200px;
 }

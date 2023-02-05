@@ -4,7 +4,8 @@ import { Route } from "react-router-dom";
 import { SchemaBrowser } from "./services-ui";
 import { IRouteItem } from "../../common/v-app";
 import { schemaApp } from './schema-micro-app';
-import { FieldDefinition } from '../../components/v-form/entity-form';
+import { FieldDef } from '../../components/v-entity/entity-form';
+
 
 
 export class SchemaProperty {
@@ -92,17 +93,17 @@ export class Schema {
         return StringUtils.plural(this.name.toLocaleLowerCase());
     }
 
-    public getFieldDefs(): Array<FieldDefinition> {
+    public getFieldDefs(): Array<FieldDef> {
         let props = objectToArray(this.properties);
         return props.filter((p: any) => {
             return !noneUiFields.includes(p.name);
         }).map((p: any) => {
             let fd;
             if (p.type) {
-                fd = FieldDefinition.new(p.name, p.type);
-                fd.format = p.format;
+                fd = FieldDef.new(p.name, p.type);
+                
             } else {
-                fd = FieldDefinition.new(p.name, 'lov');
+                fd = FieldDef.new(p.name);
                 fd.options = p.$ref;
             }
             return fd;

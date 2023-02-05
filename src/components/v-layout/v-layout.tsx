@@ -9,6 +9,15 @@ import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";
 import { clearCachedConfigs, getConfigs } from "../../config/v-config";
+import Badge from "@mui/material/Badge";
+
+export const v_link = (path: string) => {
+    return process.env.PUBLIC_URL + "/#" + path
+}
+
+export const v_map = (path: string) => {
+    return path
+}
 
 export const ViridiumOffcanvas = (props: any) => {
     let showForm = props.showForm;
@@ -37,7 +46,7 @@ const NavItem = (props: any) => {
     const navigate = useNavigate();
     let service = props.service;
     return (
-        <ListGroup.Item as="li" action onClick={(e: any) => { navigate(`/schema/${service.name}`, { replace: true }); }}>
+        <ListGroup.Item as="li" action onClick={(e: any) => { navigate(`#/schema/${service.name}`, { replace: true }); }}>
             <span><img className="nav-icon" src="../resources/green.png" alt="" /> {service.getLabel()}</span>
         </ListGroup.Item>
     )
@@ -46,7 +55,7 @@ const NavItem = (props: any) => {
 export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
     let signedIn = securityManager.isSignedIn();
-    let headerOps = props.microApp.getHeader();
+    let headerOps = props.microApp.headerOption();
     const ui = () => (
         headerOps.visible ? <Navbar id="app-header" bg="none" className="v-app-header" expand="lg">
             <Navbar.Brand as='span'>
@@ -59,13 +68,14 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                 {
                     signedIn ? <>
                         <Nav className="actions-menu" >
-                            <a href="/security-app/notifications" className="v-link">Notifications</a>
-                            <VscMail className="notifications-icon" />
+                            <Badge badgeContent={<VscMail />} color="error">
+                                <a href={v_link("/security-app/notifications")} className="v-link">Notifications</a>
+                            </Badge>
                         </Nav>
                         <Nav className="actions-menu" >
                             <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
-                                <NavDropdown.Item href="/security-app/profile">Profile</NavDropdown.Item>
-                                <NavDropdown.Item href="/security-app/notifications">Notifications</NavDropdown.Item>
+                                <NavDropdown.Item href={v_link("/security-app/profile")}>Profile</NavDropdown.Item>
+                                <NavDropdown.Item href={v_link("/security-app/notifications")}>Notifications</NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item onClick={clearCachedConfigs}>Clear Cached</NavDropdown.Item>
                                 <NavDropdown.Divider />
@@ -84,34 +94,61 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
 
 }
 
+export const PanelHeader = (props: { className?: string, title: Function, actions: Function }) => {
+    return (
+        <div className={"v-panel-header " + (props.className ? props.className : "")}>
+            <span className="v-panel-header-title">
+                {props.title()}
+            </span>
+            <span className="v-panel-header-space me-auto">
+
+            </span>
+            <span className="v-panel-header-actions">
+                {props.actions()}
+            </span>
+        </div>
+    );
+}
+
+
 export const LayoutHeader = (props: any) => {
     const microApp = props.microApp as MicroApp;
-    const configs = getConfigs();
     let routeItems = microApp.getRouteItems();
     let group1 = routeItems.filter((item) => item.group === "1");
     let group2 = routeItems.filter((item) => item.group === "2");
+    const configs = getConfigs();
+    const renderGroup1 = () => {
+        if ((microApp as any).searchBar) {
+            return (microApp as any).searchBar();
+        }
+        return group1.length > 0 ?
+            group1.map((routeItem, idx) => {
+                return <Nav.Link id={"nav-middle-" + idx} key={"menu_item_" + idx}
+                    href={v_link(routeItem.route)}>{routeItem.name}</Nav.Link>
+            }) : ""
+    }
     const ui = () => (
-        <Navbar bg="light" expand="lg">
-            <Navbar.Brand href="/">
-                <img src="../resources/green.png" className="viridium-logo" alt="Viridium.ai" ></img>
-                <span>{configs.title}</span>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Nav className="me-auto">
-                {
-                    group1.length > 0 ?
-                        group1.map((routeItem, idx) => {
-                            return <Nav.Link id={"nav-middle-" + idx} key={"menu_item_" + idx} href={routeItem.route}>{routeItem.name}</Nav.Link>
-                        }) : ""
+        <Navbar expand="lg">
+            <Navbar.Brand href={v_link("/")}>
+                {props.brand !== undefined ? props.brand :
+                    <><img src="../resources/green.png" className="viridium-logo" alt={configs.title} ></img>
+                        <span>{configs.title}</span></>
                 }
-            </Nav>
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="me-auto"> </Nav>
+            </Navbar.Brand>
+
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                <Nav className="me-auto">
+                    {renderGroup1()}
+                </Nav>
                 <Nav className="layout-header-end me-end">
                     {
                         group2.length > 0 ?
                             group2.map((routeItem, idx) => {
-                                return <Nav.Link id={"nav-end-" + idx} key={"menu_item_" + idx} href={routeItem.route}>{routeItem.name}</Nav.Link>
+
+                                return <Nav.Link id={"nav-end-" + idx}
+                                    key={"menu_item_" + idx}
+                                    href={v_link(routeItem.route)}>{routeItem.name}</Nav.Link>
                             }) : ""
                     }
                 </Nav>
@@ -142,14 +179,15 @@ export class LayoutBodyNav extends Component<BodyNavProps> {
     }
 }
 
-export class LayoutFooter extends Component {
-    render() {
-        return (
-            <div className="v-page-footer .bg-light">
-                Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.
-            </div>
-        )
-    }
+export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => {
+    return (
+        <div className="v-page-footer">
+            {
+                props.children ? props.children :
+                    <div className=".bg-light">{getConfigs().copyright}</div>
+            }
+        </div>
+    )
 }
 
 export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
@@ -160,19 +198,28 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any }) => {
             navigate(`/login?from=/${props.microApp.getName()}`);
         }
     });
-
     const ui = () => {
+        let main = props.children;
+        let footer = undefined;
+        let brand = undefined;
+        if (props.children instanceof Array) {
+            main = props.children.filter((c: any) => c.props.slot === undefined || c.props.slot === "main");
+            brand = props.children.find((c: any) => c.props.slot === "brand");
+            footer = props.children.find((c: any) => c.props.slot === "footer");
+        }
         return (
             <div className={`${microApp.getName()}`}>
                 <div className={`${microApp.getPageClass()}`}>
                     <div className="v-layout">
-                        <LayoutHeader microApp={microApp} />
+                        <LayoutHeader brand={brand} microApp={microApp} />
                         <ApplicationHeader microApp={microApp} />
-                        <div className="v-page-body">
+                        <div className={'v-page-body'}>
                             {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
-                            {props.children}
+                            {main}
                         </div>
-                        <LayoutFooter />
+                        <LayoutFooter>
+                            {footer === undefined ? "" : footer}
+                        </LayoutFooter>
                     </div>
                 </div>
             </div>

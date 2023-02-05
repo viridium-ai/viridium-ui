@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Form, Table } from "react-bootstrap";
-import { FormFieldOption } from "../v-form/entity-form";
+import { FormFieldOption } from "../v-entity/entity-form";
 
 import "./v-table.css";
 

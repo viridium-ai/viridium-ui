@@ -4,13 +4,14 @@ import { useNavigate } from 'react-router-dom';
 export const Question = (props: any) => {
     const ui = () => {
         return (
-                <Form.Group as={Row} className="v-form-row" controlId={props.id}>
-                    <Form.Label className="v-form-label" column sm="3">{props.label}</Form.Label>
-                    <Col className="v-form-input" sm="9">
+            <div className="wizard-question">
+                <Form.Group as={Row} className="wizard-form-row" controlId={props.id}>
+                    <Form.Label className="wizard-form-label" column sm="4">{props.label}</Form.Label>
+                    <Col className="wizard-form-input" sm="8">
                         {props.children}
                     </Col>
                 </Form.Group>
-        )
+            </div>)
     }
     return ui();
 }
@@ -33,13 +34,13 @@ export const Action = (props: any) => {
 
     const ui = () => {
         return (
-            <div className="v-actions" >
-                <Form.Group >
-                    {props.prev ? <Button className="v-button" onClick={handlePrevAction}>
+            <div >
+                <Form.Group className="wizard-actions" controlId="formButtons">
+                    {props.prev ? <Button onClick={handlePrevAction}>
                         {props.prev.label}
                     </Button> : ""}
                     &nbsp;
-                    {props.next ? <Button className="v-button" onClick={handleNextAction} >
+                    {props.next ? <Button onClick={handleNextAction} >
                         {props.next.label}
                     </Button> : ""}
                 </Form.Group>

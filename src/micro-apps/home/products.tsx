@@ -5,6 +5,7 @@ import { homeApp } from './home-app';
 
 export const Products = (props: any) => {
     homeApp.getPageClass = () => "products-page";
+    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
             <LayoutPage microApp={homeApp}>

@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../common/v-app";
 import { Industries } from "./industries";
 import { Products } from "./products";
-import { ContactUs } from "./about-us";
+import { AboutUs } from "./about-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
 import { securityManager } from "../../common/security/v-security-manager";
@@ -56,7 +56,7 @@ export class HomeApp extends MicroApp {
       <>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/about-us" element={<ContactUs />} />
+        <Route path="/about-us" element={<AboutUs />} />
         <Route path="/industries" element={<Industries />} />
       </>
     );

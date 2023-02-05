@@ -1,5 +1,6 @@
 import { securityManager } from "../../../common/security/v-security-manager";
-import { FieldDefinition } from "../../../components/v-form/entity-form";
+import { FieldDef, ValueType } from "../../../components/v-entity/entity-form";
+
 import { getConfigs } from "../../../config/v-config";
 
 export class Address {
@@ -63,18 +64,18 @@ export class Company {
             { name: "china", label: "China", value: "china" }
         ];
         return [
-            FieldDefinition.new("name", "string", "Name", "Name", false),
-            FieldDefinition.new("description", "string", "Description", "Description", false),
-            FieldDefinition.options("industry", "Industry", "Industry",
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.select("industry",
                 industries.map((industry: any) => { return { name: industry.name, label: industry.name, value: industry.name } })),
-            FieldDefinition.new("firstName", "string", "First Name", "First Name", false),
-            FieldDefinition.new("lastName", "string", "Last Name", "Last Name", false),
-            FieldDefinition.new("street1", "string", "Street", "Street", false),
-            FieldDefinition.new("zipCode", "string", "Zip Code", "Zip Code", false),
-            FieldDefinition.new("city", "string", "City", "City", false),
-            FieldDefinition.new("state", "string", "State", "State", false),
+            FieldDef.new("firstName"),
+            FieldDef.new("lastName"),
+            FieldDef.new("street1"),
+            FieldDef.new("zipCode"),
+            FieldDef.new("city"),
+            FieldDef.new("state"),
 
-            FieldDefinition.options("country", "Country", "Country", 
+            FieldDef.select("industry",
                 countries.map((country: any) => { return { name: country.name, label: country.name, value: country.code } }))
         ]
     }
@@ -128,9 +129,9 @@ export class Site {
     }
     static newFields = () => {
         return [
-            FieldDefinition.new("name", "string", "Name", "Name", false),
-            FieldDefinition.new("description", "string", "Description", "Description", false),
-            FieldDefinition.new("location", "string", "Location", "Location", false)
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.new("location")
         ]
     }
 }

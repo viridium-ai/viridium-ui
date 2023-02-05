@@ -1,10 +1,9 @@
 import { useState } from 'react';
-
 import { Toast, Form } from 'react-bootstrap';
-import { EntityForm } from '../../../components/v-form/entity-form';
+import { EntityForm } from '../../../components/v-entity/entity-form';
 import { LayoutPage, ViridiumOffcanvas } from '../../../components/v-layout/v-layout';
 import { DataTable } from '../../../components/v-table/v-table';
-import { Action, Question } from '../../../components/v-wizard';
+import { Question, Action } from '../../../components/wizard';
 import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
 import { NamedObject } from '../../inventory-app/inventory-questionaire';
 import { greenHouseApp } from '../ghg-app';
@@ -90,7 +89,7 @@ export const CompanyConfig = (props: any) => {
                         prev={{ label: "Back", path: props.prev }} />
         </Toast>
         <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={"Add a site"} >
-            <EntityForm title="" fieldDefs = {Site.newFields} listUpdated={listUpdated} mode={showForm.mode}  />
+            <EntityForm title="" fieldDefs = {Site.newFields} mode={showForm.mode}  />
         </ViridiumOffcanvas>
     </LayoutPage >
 }

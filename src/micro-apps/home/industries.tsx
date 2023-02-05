@@ -3,6 +3,8 @@ import { Row, Col } from 'react-bootstrap';
 import { homeApp } from './home-app';
 
 export const Industries = (props: any) => {
+    homeApp.getPageClass = () => "industries-page";
+    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
             <LayoutPage microApp={homeApp}>

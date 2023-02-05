@@ -1,12 +1,16 @@
 .security-app {
     flex-wrap: nowrap;
     overflow-x: hidden;
-    margin: auto;
 }
 
 .security-app a:hover {
     color: rgb(60, 66, 249);
     font-size: medium;
+}
+.security-app .v-security-form-container {
+    width: min(33vw, 600px);
+    min-width: 400px;
+    margin: min(100px, 50vh) auto 0.5em auto;
 }
 
 .security-app .v-notification-meta {
@@ -25,10 +29,6 @@
 }
 
 .security-app .v-form {
-    width: 400px;
-    margin-top: 10%;
-    margin-bottom: 0.5em;
-    margin-right: 5em;
     background-color: #F1F1F1;
     padding: 30px;
     box-shadow: none;

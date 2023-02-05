@@ -7,28 +7,33 @@ export interface IMicroApp {
     getName(): string;
     getPageClass(): string;
     getTitle(): string;
-    getHeader(): { visible: boolean, title: string };
+    getIcon():string;
+    headerOption(): { visible: boolean, title: string };
     isSecure(): boolean;
 }
 
 export abstract class MicroApp implements IMicroApp {
-    getRouteItems(): IRouteItem[] {
-        throw new Error('Method not implemented.');
-    }
-    getNavItems(): IRouteItem[] {
-        throw new Error('Method not implemented.');
-    }
+
     getRoutes() {
         throw new Error('Method not implemented.');
     }
-
+    getRouteItems(): IRouteItem[] {
+        return [];
+    }
+    getNavItems(): IRouteItem[] {
+        return []
+    }
+ 
+    getIcon(): string {
+        return ""
+    }
     getName(): string {
         throw new Error('Method not implemented.');
     }
     getTitle(): string {
         return this.getName();
     }
-    getHeader = (): any => {
+    headerOption = (): any => {
         return {
             title: this.getTitle(),
             visible: true
@@ -59,7 +64,6 @@ export interface Action {
     type?: string,
     actions?: Array<Action>
 }
-
 
 export interface TitleProp {
     title: string,

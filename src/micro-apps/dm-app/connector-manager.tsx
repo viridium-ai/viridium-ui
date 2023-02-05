@@ -1,16 +1,15 @@
-import React, { Component } from 'react';
-import { Row, Toast } from 'react-bootstrap';
-import { securityManager } from '../../common/security/v-security-manager';
-import { EntityDetails, EntityForm, EntityList, FieldDefinition } from '../../components/v-form/entity-form';
-import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout/v-layout';
-import TreeView from '../../components/v-tree-view/v-tree-view';
-import { getConfigs, updateConfigs } from '../../config/v-config';
-import { dataSourceManager } from './dm-app';
-
+import React, { Component } from "react";
+import { Row, Toast } from "react-bootstrap";
+import { securityManager } from "../../common/security/v-security-manager";
+import { FieldDef, EntityDetails, EntityList, EntityForm } from "../../components/v-entity/entity-form";
+import { LayoutPage, ViridiumOffcanvas } from "../../components/v-layout/v-layout";
+import TreeView from "../../components/v-tree-view/v-tree-view";
+import { getConfigs, updateConfigs } from "../../config/v-config";
+import { dataSourceManager } from "./dm-app";
 
 /**
  * A connector is the software that can connect to a dataset in a different system. It must be 
- * implemented as Viridium Connector Plugin, and configurtion the same way. A connector
+ * implemented as Viridium Connector Plugin, and configuration the same way. A connector
  * does not connect to remote system, instead, an instance of a connect will be able
  * connect to a remote dataset, and pull the data per a schedule and/or a job.
  * 
@@ -47,11 +46,11 @@ export class Connector {
 
     static newFields = () => {
         return [
-            FieldDefinition.new("name", "string", "Name", "Name", false),
-            FieldDefinition.new("description", "string", "Description", "Description", false),
-            FieldDefinition.options("type", "Type", "Type",
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.select("type", 
                 ["", "Database", "API", "Platform", "Files"].map((type: any) => { return { name: type, label: type.length === 0 ? "Select a type" : type, value: type } })),
-            FieldDefinition.options("direction", "Direction", "Direction",
+            FieldDef.select("direction", 
                 ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
         ]
     }
@@ -82,10 +81,10 @@ export class ConnectorInstance {
 
     static newFields = () => {
         return [
-            FieldDefinition.new("name", "string", "Name", "Name", false),
-            FieldDefinition.new("description", "string", "Description", "Description", false),
-            FieldDefinition.new("status", "string", "Status", "Status", false),
-            FieldDefinition.new("connectorId", "string", "Connector", "Connector", false),
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.new("status"),
+            FieldDef.new("connectorId"),
             
         ]
     }
@@ -235,13 +234,13 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
     }
     getNewFields = () => {
         let fields = [
-            FieldDefinition.new("name", "string", "Name", "Name", false),
-            FieldDefinition.new("description", "string", "Description", "Description", false),
+            FieldDef.new("name"),
+            FieldDef.new("description"),
         ];
         if (this.state.connector?.config?.properties) {
             let properties = this.state.connector.config.properties;
             properties.filter((p) => p.type !== "array").forEach((p) => {
-                fields.push(FieldDefinition.new(p.name, p.type, p.name, p.name, false))
+                fields.push(FieldDef.new(p.name))
             });
         }
         console.log(fields);
@@ -330,13 +329,13 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
                     showForm={this.state.showForm} title={"Add Connector"} >
                     <EntityForm title="" fieldDefs={Connector.newFields}
-                        onSubmit={this.onSubmit} mode={"create"} listUpdated={() => { }} />
+                        onSubmit={this.onSubmit} mode={"create"}  />
                 </ViridiumOffcanvas>
 
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideInstanceForm}
                     showForm={this.state.instanceForm} title={"Config Connector Instance"} >
                     <EntityForm title="" fieldDefs={this.getNewFields}
-                        onSubmit={this.onAddInstance} mode={"create"} listUpdated={() => { }} />
+                        onSubmit={this.onAddInstance} mode={"create"}  />
                 </ViridiumOffcanvas>
             </LayoutPage>
 

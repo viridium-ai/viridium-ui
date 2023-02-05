@@ -1,10 +1,10 @@
 import { useState } from "react";
 
 import { Button, Toast } from "react-bootstrap";
-import { EntityForm, EntityList } from "../../../components/v-form/entity-form";
+import { EntityList, EntityForm } from "../../../components/v-entity/entity-form";
 import { LayoutPage, ViridiumOffcanvas } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
-import { Action } from "../../../components/v-wizard";
+import { Action } from "../../../components/wizard";
 import { getConfigs, updateCompany, getCompany, updateConfigs, eventManager } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { CompanyDetailsView } from "./company-config";
@@ -56,9 +56,7 @@ export const CompanyList = (props: any) => {
         }
         updateCompany(c ? c : company);
     }
-    const listUpdated = () => {
-        console.log("add company")
-    }
+
     const addCompany = () => {
         setFormAction({
             title: "Add a company", fieldDefs: Company.newFields,
@@ -133,7 +131,7 @@ export const CompanyList = (props: any) => {
 
         <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={formAction.title} >
             <EntityForm title="" fieldDefs={formAction.fieldDefs}
-                onSubmit={formAction.onSubmit} listUpdated={listUpdated} mode={showForm.mode} />
+                onSubmit={formAction.onSubmit} mode={showForm.mode} />
         </ViridiumOffcanvas>
     </LayoutPage >
 }

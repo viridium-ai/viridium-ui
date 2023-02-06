@@ -9,7 +9,6 @@
     width: 100%;
 }
 
- 
 .home-app .nav-link {
     font-weight: 400;
     margin-left: 25px;
@@ -24,7 +23,7 @@
     border-radius: 18px;
     padding-left: 20px;
     padding-right: 20px;
-    border: solid 1px rgb(26, 26, 26);
+    border: solid 1px rgb(242, 242, 242);
 }
 
 .home-app #nav-end-1 {
@@ -100,4 +99,40 @@
 
 .home-app .toast {
     width: 100%;
+}
+
+.home-app .products-page {
+    padding: 0em;
+    min-height: calc(100vh - 30px);
+    overflow-y: scroll;
+}
+
+.home-app .products-page h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1em;
+}
+
+.home-app .industries-page {
+    padding: 0em;
+    min-height: calc(100vh - 30px);
+    overflow-y: scroll;
+}
+
+.home-app .industries-page .v-container{
+    padding: 1em;
+    min-height: calc(100vh - 60px);
+}
+
+.home-app .industries-page h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 1em;
+}
+
+.home-app .v-row {
+    width:100%;
+    display:flex;
 }

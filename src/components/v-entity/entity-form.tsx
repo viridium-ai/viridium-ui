@@ -722,6 +722,13 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
         }
     }
 
+    onAction = (event : any, entity : any) => {
+        if (this.props.onEdit) {
+            event.preventDefault();
+            this.props.onEdit(entity);
+        }
+    }
+
     getFieldDefs = (entity: any | undefined = undefined) => {
         let fieldDefs;
         if (this.props.fieldDefs) {
@@ -761,7 +768,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
     }
 
     renderActions = (entity: any, idx: number) => {
-        return this.props.onDelete || this.props.onEdit ? <td>
+        return this.props.onDelete || this.props.onEdit || this.props.actions ? <td>
             {
                 this.props.onEdit ? <Button className="v-button" size="sm"
                     onClick={e => this.onEdit(e, entity)}>{StringUtils.t("edit")}</Button> : ""
@@ -769,6 +776,12 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             {
                 this.props.onDelete ? <Button className="v-button" size="sm"
                     onClick={e => this.onDelete(e, entity)}>{StringUtils.t("delete")}</Button> : ""
+            }
+            {
+                this.props.actions ? this.props.actions.map((action, idx) => {
+                    return <Button key={action.label + idx} className="v-button" size="sm"
+                    onClick={e => action.onAction(entity)}>{StringUtils.t(action.label)}</Button> 
+                }) :""
             }
         </td> : ""
     }
@@ -807,7 +820,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             name: (this.state as any).view,
             action: this.changeView
         });
-        let hasActions = this.props.onDelete || this.props.onEdit;
+        let hasActions = this.props.onDelete || this.props.onEdit || this.props.actions ;
         return (
             <div className="v-entity-form">
                 {
@@ -826,7 +839,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                                 <tbody>
                                     {
                                         entities.map((entity, idx) =>
-                                            <tr key={idx}>
+                                            <tr key={"r-"+idx}>
                                                 {this.renderRow(entity, idx)}
                                                 {this.renderActions(entity, idx)}
                                             </tr>

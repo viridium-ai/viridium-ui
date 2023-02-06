@@ -3,23 +3,34 @@ import { Row, Col } from 'react-bootstrap';
 import { homeApp } from './home-app';
 
 export const Industries = (props: any) => {
-    homeApp.headerOption = () => { return { label: "Test", visible: false } };
     const ui = () => {
         return (
-            <LayoutPage pageName="industries-page"  microApp={homeApp}>
-                <div className="home-page">
-                    <div className="home-header" >Industries</div>
-                    <Row className="home-content">
-                        <Col className="home-panel">
-                            Doner pork loin bacon, in swine ut id consectetur chicken pork dolore lorem ex biltong.  Est labore pariatur beef ribs tenderloin, picanha shoulder jowl rump.  In ham dolore adipisicing consectetur pork loin.   jerky.
-                        </Col>
-                        <Col className="home-panel" >
-                            Eu spare ribs esse, aute pariatur ut magna ea fatback voluptate tongue corned beef qui.  Chislic pastrami sint pork loin anim
-                        </Col>
-                        <Col className="home-panel" >
-                            Tongue commodo kevin burgdoggen nisi eiusmod.  Rump pork belly veniam picanha nisi mollit, shank laboris.  Bresaola pancetta ut
-                        </Col>
-                    </Row>
+            <LayoutPage pageName="industries-page" microApp={homeApp}>
+                <div className='v-row'>
+                    <Col ms={6}>
+                        <div className="v-container">
+                            <div className='v-list-item'> <h2>Agriculture</h2>
+                           
+                            </div>
+                            <div className='v-list-item'><h2>Automotive</h2>
+
+                            </div>
+                            <div className='v-list-item'><h2>Energy</h2>
+                            </div>
+
+                            <div className='v-list-item'><h2>Financial services</h2>
+
+                            </div>
+
+                            <div className='v-list-item'><h2>Manufacturing</h2>
+
+                            </div>
+                        </div>
+                    </Col>
+                    <Col ms={6}>
+                        <div className="mission-picture">
+                        </div>
+                    </Col>
                 </div>
             </LayoutPage>
         )

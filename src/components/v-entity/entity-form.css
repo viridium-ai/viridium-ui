@@ -153,3 +153,7 @@
 .v-entity-container-body .entity-value{
     border-bottom: 1px solid rgb(238, 238, 238);
 }
+
+.v-entity-form  .table td {
+   line-height: 2.2em;
+}

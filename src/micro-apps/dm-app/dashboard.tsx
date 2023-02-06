@@ -227,32 +227,6 @@ export const Dashboard = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <DataTable data={getSampleData()} />
-                                {/* <Table striped bordered hover size="sm">
-                                    <thead>
-                                        <tr>
-                                            <th>Progress</th>
-                                            <th>tCO2e</th>
-                                            <th>Scope</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                        <tr>
-                                            <td >Larry the Bird</td>
-                                            <td>Thornton</td>
-                                            <td>@twitter</td>
-                                        </tr>
-                                    </tbody>
-                                </Table> */}
                             </Toast.Body>
                         </Toast>
                     </div>

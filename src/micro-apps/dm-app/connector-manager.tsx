@@ -322,7 +322,16 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                                 {
                                     this.state.connector ? 
                                       <EntityList entities={this.state.connector!.instances} title={'Instances'}
-                                         fieldDefs={ConnectorInstance.newFields} /> : "No configurations for this connector are found"
+                                         fieldDefs={ConnectorInstance.newFields} actions={
+                                            [
+                                                { 
+                                                    label: "mapping",
+                                                     onAction : (entity : any)=>{
+                                                        console.log(entity)
+                                                    }
+                                                }
+                                            ]
+                                        } /> : "No configurations for this connector are found"
                                 }
                             </div >
                         </Toast.Body>

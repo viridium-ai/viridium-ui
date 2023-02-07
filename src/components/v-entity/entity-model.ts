@@ -1,7 +1,7 @@
 import { FieldDef, ValueType, Visibility } from "./entity-form";
 import { DataService } from "../v-data/data-service";
-import { StringUtils } from "../../utils/v-string-utils";
-import { securityManager } from "../../common/security/v-security-manager";
+import { securityManager } from "../v-security/v-security-manager";
+import { StringUtils } from "../v-utils/v-string-utils";
 
 export interface Entity {
     id: string,

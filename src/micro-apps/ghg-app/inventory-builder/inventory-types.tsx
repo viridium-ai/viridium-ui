@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
+import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { Action } from "../../../components/wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionaire";

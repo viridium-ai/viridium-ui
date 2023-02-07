@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Row, Toast } from "react-bootstrap";
-import { securityManager } from "../../common/security/v-security-manager";
 import { FieldDef, EntityDetails, EntityList, EntityForm, ValueType } from "../../components/v-entity/entity-form";
-import { ValidationMessage } from "../../components/v-entity/entity-model";
+
 import { LayoutPage, ViridiumOffcanvas } from "../../components/v-layout/v-layout";
+import { securityManager } from "../../components/v-security/v-security-manager";
 import TreeView from "../../components/v-tree-view/v-tree-view";
 import { getConfigs, updateConfigs } from "../../config/v-config";
 import { dataSourceManager } from "./dm-app";

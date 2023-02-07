@@ -1,8 +1,8 @@
 import { Component, useState } from "react";
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
+import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
-import { Action } from "../../../components/wizard";
 import { getCompany, getConfigs, updateCompany } from "../../../config/v-config";
 import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";

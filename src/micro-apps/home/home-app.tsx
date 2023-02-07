@@ -1,14 +1,14 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/v-app";
 import { Industries } from "./industries";
 import { Products } from "./products";
 import { AboutUs } from "./about-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
-import { securityManager } from "../../common/security/v-security-manager";
 import { Help } from "./help";
+import { MicroApp, RouteItem } from "../../components/v-common/v-app";
+import { securityManager } from "../../components/v-security/v-security-manager";
 
 export class HomeApp extends MicroApp {
 

@@ -2,9 +2,9 @@ import { useState } from "react";
 
 import { Button, Toast } from "react-bootstrap";
 import { EntityList, EntityForm } from "../../../components/v-entity/entity-form";
+import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage, ViridiumOffcanvas } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
-import { Action } from "../../../components/wizard";
 import { getConfigs, updateCompany, getCompany, updateConfigs, eventManager } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
 import { CompanyDetailsView } from "./company-config";

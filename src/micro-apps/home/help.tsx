@@ -2,9 +2,9 @@
 import { PureComponent } from 'react';
 import { LayoutPage } from '../../components/v-layout/v-layout';
 import { getConfigs } from '../../config/v-config';
-import { StringUtils } from '../../utils/v-string-utils';
 import { homeApp } from './home-app';
 import "./help.css"
+import { StringUtils } from '../../components/v-utils/v-string-utils';
 
 interface HelpState {
     selected: number;

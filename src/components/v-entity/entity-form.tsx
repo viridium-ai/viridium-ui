@@ -3,10 +3,11 @@ import { Form, Button, Row, Table, Col, Toast } from 'react-bootstrap';
 
 import './entity-form.css';
 
-import { TitleProp, Action } from '../../common/v-app';
-import { StringUtils } from '../../utils/v-string-utils';
+import { TitleProp, Action } from '../v-common/v-app';
+import { StringUtils } from '../v-utils/v-string-utils';
 import { Entity, EntityManager, Formatter, Money, ValidationMessage, Validator } from './entity-model';
 import { SelectCompany } from '../v-data/v-company';
+import { FeedbackProps } from 'react-bootstrap/esm/Feedback';
 export class FieldValue {
     value: any = undefined;
     definition?: FieldDef;
@@ -423,7 +424,8 @@ export class SelectField extends Component<FormFieldProp, FormFieldState>{
         if (props.id) {
             this.id = props.id;
         }
-        this.state = { value: props.def.defaultValue }
+        let v = (this.props.entity as any)[props.def.name];
+        this.state = { value: v }
     }
     onChange = (evt: any) => {
         let v = evt.target.value;
@@ -722,13 +724,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
         }
     }
 
-    onAction = (event : any, entity : any) => {
-        if (this.props.onEdit) {
-            event.preventDefault();
-            this.props.onEdit(entity);
-        }
-    }
-
     getFieldDefs = (entity: any | undefined = undefined) => {
         let fieldDefs;
         if (this.props.fieldDefs) {
@@ -768,7 +763,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
     }
 
     renderActions = (entity: any, idx: number) => {
-        return this.props.onDelete || this.props.onEdit || this.props.actions ? <td>
+        return this.props.onDelete || this.props.onEdit ? <td>
             {
                 this.props.onEdit ? <Button className="v-button" size="sm"
                     onClick={e => this.onEdit(e, entity)}>{StringUtils.t("edit")}</Button> : ""
@@ -776,12 +771,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             {
                 this.props.onDelete ? <Button className="v-button" size="sm"
                     onClick={e => this.onDelete(e, entity)}>{StringUtils.t("delete")}</Button> : ""
-            }
-            {
-                this.props.actions ? this.props.actions.map((action, idx) => {
-                    return <Button key={action.label + idx} className="v-button" size="sm"
-                    onClick={e => action.onAction(entity)}>{StringUtils.t(action.label)}</Button> 
-                }) :""
             }
         </td> : ""
     }
@@ -820,7 +809,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             name: (this.state as any).view,
             action: this.changeView
         });
-        let hasActions = this.props.onDelete || this.props.onEdit || this.props.actions ;
+        let hasActions = this.props.onDelete || this.props.onEdit;
         return (
             <div className="v-entity-form">
                 {
@@ -839,7 +828,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                                 <tbody>
                                     {
                                         entities.map((entity, idx) =>
-                                            <tr key={"r-"+idx}>
+                                            <tr key={idx}>
                                                 {this.renderRow(entity, idx)}
                                                 {this.renderActions(entity, idx)}
                                             </tr>

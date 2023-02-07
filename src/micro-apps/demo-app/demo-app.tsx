@@ -1,12 +1,12 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/v-app";
 import { Help } from "./help";
 
 import { TreeViewDemo } from "./tree-view";
 
 import './demo-app.css';
+import { MicroApp, RouteItem } from "../../components/v-common/v-app";
 
 class DemoApp extends MicroApp {
 

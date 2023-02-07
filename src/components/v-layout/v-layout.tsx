@@ -1,10 +1,10 @@
 
 import React, { Component, useEffect } from "react";
 import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
-import { securityManager } from "../../common/security/v-security-manager";
+import { securityManager } from "../v-security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
-import { IMicroApp, IRouteItem, MicroApp } from "../../common/v-app";
+import { IMicroApp, IRouteItem, MicroApp } from "../v-common/v-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";

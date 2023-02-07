@@ -7,7 +7,7 @@ import { inventoryConfigApp } from '../inventory-app';
 import { Company } from '../../ghg-app/inventory-builder/model';
 import { Questionnaire, getQuestionnaire, updateQuestionnaire, NamedObject } from '../inventory-questionaire';
 import { getConfigs } from '../../../config/v-config';
-import { Action, Question } from '../../../components/wizard';
+import { Question, Action } from '../../../components/v-flow/wizard';
 
 
 export const CompanyDetails = (props: any) => {

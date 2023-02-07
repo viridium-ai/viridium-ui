@@ -1,7 +1,7 @@
-import { restClient } from '../../common/v-client';
-import { localCache } from '../../utils/v-cache-manager';
-import { Schema, objectToArray, Service } from './schema-types';
-import { MicroApp } from "../../common/v-app";
+import { MicroApp } from "../../components/v-common/v-app";
+import { restClient } from "../../components/v-common/v-client";
+import { localCache } from "../../components/v-utils/v-cache-manager";
+import { Schema, objectToArray, Service } from "./schema-types";
 
 class SchemaApp extends MicroApp {
 

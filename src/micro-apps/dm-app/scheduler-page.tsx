@@ -1,7 +1,28 @@
 import { Row, Col, Toast, Stack, Form } from 'react-bootstrap';
 import { LayoutPage } from '../../components/v-layout/v-layout';
 import { dataSourceManager } from './dm-app';
+/**
+ * A schedule defines a job for either import or export data 
+ */
+class Schedule {
 
+}
+/**
+ * A job is created per schedule by a scheduler, to actually excecute
+ * the data ETL job.  
+ */
+export enum JobStatus {
+    Scheduled, 
+    Running,
+    Paused,
+    Completed,
+    Canceled,
+    Failed
+}
+class Job  {
+    name?:string;
+
+}
 export const SchedulerPage = (props: any) => {
     const ui = () => {
         return (

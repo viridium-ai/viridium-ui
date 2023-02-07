@@ -30,7 +30,13 @@
 
 .toast {
   --bs-toast-max-width:100%;
-  --bs-toast-border-width:0px;
+  --bs-toast-border-width:1px;
+  box-shadow: none;
+  border: none;
+}
+.toast-header {
+  font-weight: 400;
+  font-size: 1.2em;
 }
 
 body {
@@ -87,7 +93,7 @@ a :visited {
 .v-footer {
   padding: 1rem;
   color: rgb(55, 55, 55);
-  background-color: rgb(238, 238, 238);
+  background-color: var(--bs-toast-header-border-color);
 }
 .v-title {
   padding: 12px;
@@ -101,9 +107,9 @@ a :visited {
 }
 
 .v-list-header {
-  padding: 8px 8px;
-  font-size: large;
-  background-color: aliceblue;
+  padding: 8px 8px 8px 8px;
+  font-size: 1.2em;
+  border-bottom: 1px solid var(--bs-toast-header-border-color);
 }
 .v-list-body {
   padding: 12px 2px;
@@ -114,7 +120,7 @@ a :visited {
   cursor: pointer;
   color : rgb(59, 59, 59);
   background-color: white;
-  border-bottom: solid 1px rgb(228, 228, 228);
+  border-bottom: solid 1px var(--bs-toast-header-border-color);
 }
 .v-actions {
   text-align: right;

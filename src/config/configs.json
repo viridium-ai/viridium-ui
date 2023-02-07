@@ -2896,15 +2896,18 @@
         "headers": [
             {
                 "type": "text",
-                "text": "Progress"
+                "text": "Category",
+                "hint" : "Inventory category"
             },
             {
                 "type": "text",
-                "text": "tCO2e"
+                "text": "tCO2e",
+                "hint" : "tonnes (t) of carbon dioxide (CO2) equivalent (e)"
             },
             {
                 "type": "text",
-                "text": "Scope"
+                "text": "Scope",
+                "hint" : "Scope 1, 2, or 3"
             }
         ],
         "rows": [

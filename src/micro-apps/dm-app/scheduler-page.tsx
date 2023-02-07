@@ -36,7 +36,7 @@ export const SchedulerPage = (props: any) => {
                     <div className="v-dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
-                                <strong className="me-auto">Credit Goals/Targets</strong>
+                              Credit Goals/Targets
                             </Toast.Header>
                             <Toast.Body>
                                 <Row className="test-ok">

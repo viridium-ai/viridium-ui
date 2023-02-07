@@ -35,7 +35,7 @@ export const MarketPlace = (props: any) => {
                                 <Col>
                                     <Toast >
                                         <Toast.Header closeButton={false}>
-                                            <strong className="me-auto">Become a Data Provider</strong>
+                                         Become a Data Provider
                                         </Toast.Header>
                                         <Toast.Body>
                                             <Row >
@@ -69,7 +69,7 @@ export const MarketPlace = (props: any) => {
                                 <Col>
                                     <Toast >
                                         <Toast.Header closeButton={false}>
-                                            <strong className="me-auto">Request a New Dataset</strong>
+                                           Request a New Dataset
                                         </Toast.Header>
                                         <Toast.Body>
                                             <Row>
@@ -106,7 +106,7 @@ export const MarketPlace = (props: any) => {
                     <div className="v-dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
-                                <strong className="me-auto">Product Spotlight and Recent Addition</strong>
+                              Product Spotlight and Recent Addition
                             </Toast.Header>
                             <Toast.Body>
                                 <Row>

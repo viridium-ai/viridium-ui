@@ -40,7 +40,7 @@ export const IntelligenceWorkspace = (props: any) => {
                                     <Col>
                                         <Toast >
                                             <Toast.Header closeButton={false}>
-                                                <strong className="me-auto">Become a Model Provider</strong>
+                                               Become a Model Provider
                                             </Toast.Header>
                                             <Toast.Body>
                                                 <Row >
@@ -56,7 +56,7 @@ export const IntelligenceWorkspace = (props: any) => {
                                     <Col>
                                         <Toast >
                                             <Toast.Header closeButton={false}>
-                                                <strong className="me-auto">Request a New Model</strong>
+                                            Request a New Model
                                             </Toast.Header>
                                             <Toast.Body>
                                                 <Row>
@@ -86,7 +86,7 @@ export const IntelligenceWorkspace = (props: any) => {
                         <div className="v-dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Model Output</strong>
+                                 Model Output
                                 </Toast.Header>
                                 <Toast.Body>
                                     <Row>

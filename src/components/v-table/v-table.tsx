@@ -268,7 +268,8 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                             <tr >
                                 {
                                     headers.map((col: any, idx: number) => {
-                                        return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? <Form.Check type="checkbox" /> : col.text
+                                        return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? 
+                                            <Form.Check type="checkbox" /> : <span dangerouslySetInnerHTML={{ __html: col.text }} />
                                         }</th>
                                     })
                                 }

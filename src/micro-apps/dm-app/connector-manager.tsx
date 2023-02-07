@@ -42,9 +42,7 @@ export class Connector {
     createdAt?: Date;
     updatedBy?: string;
     updatedAt?: Date
-
     instances: Array<ConnectorInstance> = [];
-
     static newFields = () => {
         return [
             FieldDef.new("name"),
@@ -86,7 +84,6 @@ export class ConnectorInstance {
             FieldDef.new("description"),
             FieldDef.new("status"),
             FieldDef.new("connectorId"),
-
         ]
     }
 }
@@ -279,6 +276,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         }
     }
     render = () => {
+        let connector = this.state.connector;
         return (
             <LayoutPage microApp={dataSourceManager}  >
                 <div className="v-body-nav">
@@ -308,22 +306,22 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                 <div className="v-body-main">
                     <Toast >
                         <Toast.Header closeButton={false}>
-                            <strong className="me-auto">{this.state.connector ? this.state.connector.name : "Connector"}</strong>
+                            <div className="me-auto">{connector ? connector.name : "Connector"}
+                            </div>
                             <div>
-                                <span className="v-link" onClick={this.config}>Create Data Souce</span>
+                                <span className="v-link" onClick={this.config}>Add Instance</span>
                             </div>
                         </Toast.Header>
                         <Toast.Body>
                             <div className="v-list">
                                 {
-                                    this.state.connector ?
-                                        <EntityDetails fieldDefs={Connector.newFields} entity={this.state.connector} title={"Properties"} /> : <div />
+                                    connector ? <EntityDetails fieldDefs={Connector.newFields} entity={this.state.connector} title={"Properties"} /> : <div />
                                 }
                             </div >
                             <div className="v-list">
                                 {
-                                    this.state.connector ?
-                                        <EntityList entities={this.state.connector!.instances} title={'Instances'}
+                                    connector && connector.instances && connector.instances.length > 0 ?
+                                        <EntityList entities={connector.instances} title={'Instances'}
                                             fieldDefs={ConnectorInstance.newFields}
                                             onSelect={this.onSelectInstance}
                                             actions={
@@ -335,12 +333,12 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                                                         }
                                                     }
                                                 ]
-                                            } /> : "No configurations for this connector are found"
+                                            } /> : <div className="v-message">No data sources for this connector are found</div>
                                 }
                             </div >
                             <div className="v-entity">
                                 {
-                                    "No data sources are found"
+
                                 }
                             </div >
                         </Toast.Body>
@@ -354,7 +352,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
 
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideInstanceForm}
                     showForm={this.state.instanceForm}
-                    title={"Config " + this.state.connector?.name + " Instance"} >
+                    title={"Data source with " + this.state.connector?.name} >
                     <EntityForm inline={true} title="" fieldDefs={this.getNewFields}
                         onSubmit={this.onAddInstance} mode={"create"} />
                 </ViridiumOffcanvas>

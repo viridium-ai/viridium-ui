@@ -49,9 +49,9 @@ export class Connector {
         return [
             FieldDef.new("name"),
             FieldDef.new("description"),
-            FieldDef.select("type", 
+            FieldDef.select("type",
                 ["", "Database", "API", "Platform", "Files"].map((type: any) => { return { name: type, label: type.length === 0 ? "Select a type" : type, value: type } })),
-            FieldDef.select("direction", 
+            FieldDef.select("direction",
                 ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
         ]
     }
@@ -86,7 +86,7 @@ export class ConnectorInstance {
             FieldDef.new("description"),
             FieldDef.new("status"),
             FieldDef.new("connectorId"),
-            
+
         ]
     }
 }
@@ -132,7 +132,7 @@ export class ConnectorView extends React.Component<ConnectorViewProps, Connector
 
 type ConnectManagerState = {
     connector?: Connector,
-    showForm?:boolean,
+    showForm?: boolean,
     instanceForm?: boolean,
 }
 
@@ -146,8 +146,8 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         this.publicAPIs = configs.managedConnectors.filter((c: any) => c.type === "API");
         this.state = {
             connector: this.managedConnectors[0],
-            showForm:false,
-            instanceForm:false
+            showForm: false,
+            instanceForm: false
         }
     }
 
@@ -219,13 +219,13 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         this.setState({ showForm: true });
     }
     config = () => {
-        this.setState({ instanceForm:true });
+        this.setState({ instanceForm: true });
     }
     hideForm = () => {
-        this.setState({ showForm:false });
+        this.setState({ showForm: false });
     }
     hideInstanceForm = () => {
-        this.setState({ instanceForm:false });
+        this.setState({ instanceForm: false });
     }
     onSubmit = (connector: any) => {
         let c = Connector.new(connector);
@@ -248,6 +248,9 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         console.log(fields);
         return fields;
     }
+    onSelectInstance = (instance: any) => {
+        console.log(instance);
+    }
     onAddInstance = (instance: any) => {
         console.log(instance);
         let props = this.state.connector?.config?.properties;
@@ -266,12 +269,12 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
             let c = Connector.new(this.state.connector);
             c.instances!.push(connectorInstance);
             let configs = getConfigs();
-            let connectors = configs.managedConnectors.filter((mc : any)=>mc.id !== c.id);
+            let connectors = configs.managedConnectors.filter((mc: any) => mc.id !== c.id);
             connectors.push(c);
             configs.managedConnectors = JSON.parse(JSON.stringify(connectors));
             (configs.managedConnectors as Array<Connector>).sort((a, b) => a.id.localeCompare(b.id));
             updateConfigs(configs);
-            this.setState({ connector: c, instanceForm:false });
+            this.setState({ connector: c, instanceForm: false });
             this.managedConnectors = configs.managedConnectors;
         }
     }
@@ -307,47 +310,53 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                         <Toast.Header closeButton={false}>
                             <strong className="me-auto">{this.state.connector ? this.state.connector.name : "Connector"}</strong>
                             <div>
-                                <span className="v-link" onClick={this.config}>Config</span>
-                                <span className="v-link" onClick={this.addNew}>Add Connector</span>
+                                <span className="v-link" onClick={this.config}>Create Data Souce</span>
                             </div>
                         </Toast.Header>
                         <Toast.Body>
                             <div className="v-list">
                                 {
-                                    this.state.connector ?  
-                                       <EntityDetails fieldDefs={Connector.newFields} entity={this.state.connector} title={"Properties"} />: <div />
+                                    this.state.connector ?
+                                        <EntityDetails fieldDefs={Connector.newFields} entity={this.state.connector} title={"Properties"} /> : <div />
                                 }
                             </div >
-                              <div className="v-list">
+                            <div className="v-list">
                                 {
-                                    this.state.connector ? 
-                                      <EntityList entities={this.state.connector!.instances} title={'Instances'}
-                                         fieldDefs={ConnectorInstance.newFields} actions={
-                                            [
-                                                { 
-                                                    label: "mapping",
-                                                     onAction : (entity : any)=>{
-                                                        console.log(entity)
+                                    this.state.connector ?
+                                        <EntityList entities={this.state.connector!.instances} title={'Instances'}
+                                            fieldDefs={ConnectorInstance.newFields}
+                                            onSelect={this.onSelectInstance}
+                                            actions={
+                                                [
+                                                    {
+                                                        label: "mapping",
+                                                        onAction: (entity: any) => {
+                                                            console.log(entity)
+                                                        }
                                                     }
-                                                }
-                                            ]
-                                        } /> : "No configurations for this connector are found"
+                                                ]
+                                            } /> : "No configurations for this connector are found"
+                                }
+                            </div >
+                            <div className="v-entity">
+                                {
+                                    "No data sources are found"
                                 }
                             </div >
                         </Toast.Body>
                     </Toast>
                 </div>
-                <ViridiumOffcanvas   showTitle={false} onHide={this.hideForm}
+                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
                     showForm={this.state.showForm} title={"Add Connector"} >
-                    <EntityForm inline={true}  title="" fieldDefs={Connector.newFields}
-                        onSubmit={this.onSubmit} mode={"create"}  />
+                    <EntityForm inline={true} title="" fieldDefs={Connector.newFields}
+                        onSubmit={this.onSubmit} mode={"create"} />
                 </ViridiumOffcanvas>
 
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideInstanceForm}
-                    showForm={this.state.instanceForm} 
-                        title={"Config "+this.state.connector?.name+" Instance"} >
+                    showForm={this.state.instanceForm}
+                    title={"Config " + this.state.connector?.name + " Instance"} >
                     <EntityForm inline={true} title="" fieldDefs={this.getNewFields}
-                        onSubmit={this.onAddInstance} mode={"create"}  />
+                        onSubmit={this.onAddInstance} mode={"create"} />
                 </ViridiumOffcanvas>
             </LayoutPage>
 

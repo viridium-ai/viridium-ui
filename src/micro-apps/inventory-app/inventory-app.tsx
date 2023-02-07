@@ -1,5 +1,4 @@
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/v-app";
 
 import { DataSources } from "./flow-steps/data-sources";
 import { DataCollectionWizard } from "./flow-steps/company-summary";
@@ -10,6 +9,7 @@ import { InventoryCategories } from "./flow-steps/inventory-categories";
 import { InventoryConfig } from "./flow-steps/inventory-config";
 import './inventory-app.css';
 import { HomeApp } from "../home/home-app";
+import { RouteItem } from "../../components/v-common/v-app";
 
 export class InventoryConfigApp extends HomeApp {
 

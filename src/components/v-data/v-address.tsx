@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { StringUtils } from "../../utils/v-string-utils";
+import { StringUtils } from "../v-utils/v-string-utils";
 import { FieldDef, EntityForm } from "../v-entity/entity-form";
 
 import { BaseEntity, EntityManager, Gender, metadataManager } from "../v-entity/entity-model";

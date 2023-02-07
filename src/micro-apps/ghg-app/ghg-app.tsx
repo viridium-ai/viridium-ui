@@ -1,7 +1,6 @@
 
 
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../common/v-app";
 
 import { Help } from "../home/help";
 import { CompanyConfig } from "./inventory-builder/company-config";
@@ -14,6 +13,7 @@ import { InventorySummary } from "./inventory-builder/inventory-summary";
 
 import './ghg-app.css';
 import { CompanyList } from "./inventory-builder/companies";
+import { MicroApp, RouteItem } from "../../components/v-common/v-app";
 
 class GreenHouseApp extends MicroApp {
 

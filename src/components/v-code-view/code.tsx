@@ -1,5 +1,5 @@
 import { PureComponent } from "react";
-import { StringUtils } from "../../utils/v-string-utils";
+import { StringUtils } from "../v-utils/v-string-utils";
 import "./code.css"
 type CodeViewerProps = {
     lang?: string,

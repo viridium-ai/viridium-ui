@@ -1,7 +1,7 @@
 import { Toast } from "react-bootstrap";
+import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable, Filter } from "../../../components/v-table/v-table";
-import { Action } from "../../../components/wizard";
 
 import { greenHouseApp } from "../ghg-app";
 

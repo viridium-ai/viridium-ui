@@ -1,4 +1,5 @@
-import { localCache } from "../utils/v-cache-manager";
+
+import { localCache } from "../components/v-utils/v-cache-manager";
 import { Company } from "../micro-apps/ghg-app/inventory-builder/model";
 
 export class EventManager {

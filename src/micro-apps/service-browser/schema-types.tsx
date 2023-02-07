@@ -1,10 +1,9 @@
-
-import { StringUtils } from '../../utils/v-string-utils';
 import { Route } from "react-router-dom";
 import { SchemaBrowser } from "./services-ui";
-import { IRouteItem } from "../../common/v-app";
 import { schemaApp } from './schema-micro-app';
 import { FieldDef } from '../../components/v-entity/entity-form';
+import { IRouteItem } from "../../components/v-common/v-app";
+import { StringUtils } from "../../components/v-utils/v-string-utils";
 
 
 

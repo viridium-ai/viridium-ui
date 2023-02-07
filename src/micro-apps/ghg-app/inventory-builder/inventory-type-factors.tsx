@@ -1,8 +1,9 @@
 import { useState } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
+import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { Action } from "../../../components/wizard";
+
 import { getConfigs } from "../../../config/v-config";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionaire";
 import { greenHouseApp } from "../ghg-app";

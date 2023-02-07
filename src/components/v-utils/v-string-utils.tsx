@@ -1,5 +1,5 @@
 
-import labels from "../common/resources/labels.json";
+import labels from "../v-resources/labels.json";
 
 export class StringUtils {
 
@@ -149,7 +149,7 @@ export class StringUtils {
     static guid(length: number = 8): string {
         return crypto.randomUUID().slice(0, length);
     }
-
+    
     static loadContent = async (url: string): Promise<string> => {
         return fetch(url).then((response) => {
             if (response.status !== 200) {

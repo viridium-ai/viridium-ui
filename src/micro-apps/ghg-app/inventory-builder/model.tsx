@@ -1,6 +1,5 @@
-import { securityManager } from "../../../common/security/v-security-manager";
 import { FieldDef, ValueType } from "../../../components/v-entity/entity-form";
-
+import { securityManager } from "../../../components/v-security/v-security-manager";
 import { getConfigs } from "../../../config/v-config";
 
 export class Address {

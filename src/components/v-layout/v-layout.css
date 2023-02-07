@@ -82,15 +82,22 @@
 .v-layout ul {
     padding-inline-start: 4px;
 }
-
 .v-layout .v-app-header {
     background-color: var(--v-app-header-bg);
+}
+
+.v-layout .v-page-header {
+    width: 100%;
 }
 
 .v-layout .dropdown-menu {
     left : -20px;
     top: 2.5em;
     border-radius: 0px 0px 6px 6px;
+}
+
+.v-layout .v-page-body {
+    width: 100%;
 }
 
 .v-layout .v-page-footer {

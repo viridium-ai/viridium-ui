@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import { restClient } from "../../common/v-client"
 import { LayoutPage, ViridiumOffcanvas } from '../../components/v-layout/v-layout'
 import { Service } from './schema-types';
 import { schemaApp } from './schema-micro-app';
 import { FieldDef, EntityList, EntityDetails, EntityForm } from '../../components/v-entity/entity-form';
+import { restClient } from '../../components/v-common/v-client';
 
 
 export const HomePage = (props: any) => {

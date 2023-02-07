@@ -4,7 +4,7 @@ import { ViridiumOffcanvas } from '../v-layout/v-layout';
 
 import { Entity, EntityManager } from './entity-model';
 import { EntityForm, EntityList } from './entity-form';
-import { StringUtils } from '../../utils/v-string-utils';
+import { StringUtils } from '../v-utils/v-string-utils';
 
 interface EntityPageProps {
     manager: EntityManager;
@@ -104,7 +104,7 @@ export class EntityPage extends Component<EntityPageProps, EntityPageState> {
                     this.props.readonly ? "" : <span className="v-link" onClick={this.onCreate}>Add a {entityName}</span>
                 }
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
-                    showForm={{ show: this.state.showForm, mode: this.state.editorMode }}
+                    showForm={this.state.showForm}
                     title={"Add a " + entityName} >
                     <EntityForm title="" onSubmit={this.onSubmit} entity={this.state.entity}
                         fieldDefs={this.props.manager.getFieldDefs} mode={this.state.editorMode} />

@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Toast, Form } from 'react-bootstrap';
 import { EntityForm } from '../../../components/v-entity/entity-form';
+import { Question, Action } from '../../../components/v-flow/wizard';
 import { LayoutPage, ViridiumOffcanvas } from '../../../components/v-layout/v-layout';
 import { DataTable } from '../../../components/v-table/v-table';
-import { Question, Action } from '../../../components/wizard';
 import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
 import { NamedObject } from '../../inventory-app/inventory-questionaire';
 import { greenHouseApp } from '../ghg-app';

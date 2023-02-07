@@ -6,10 +6,11 @@
     margin-bottom: .5em;
 }
 .ghg-app .v-page-body { 
-    margin: 2em 10% 0em 10%;
+    margin: 2em auto 0em auto;
     border: 1px solid darkblue;
     border-radius: 12px;
     overflow: hidden;
+    width: 90vw;
 }
 
 

@@ -30,7 +30,7 @@ export const CompanyConfig = (props: any) => {
     const configs = getConfigs();
     const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
 
-    const [showForm, setShowForm] = useState({ show: false, mode: 'create' });
+    const [showForm, setShowForm] = useState(false);
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
 
     const onSelectIndustry = (evt: any) => {
@@ -89,7 +89,7 @@ export const CompanyConfig = (props: any) => {
                         prev={{ label: "Back", path: props.prev }} />
         </Toast>
         <ViridiumOffcanvas onHide={setShowForm} showForm={showForm} title={"Add a site"} >
-            <EntityForm title="" fieldDefs = {Site.newFields} mode={showForm.mode}  />
+            <EntityForm title="" fieldDefs = {Site.newFields} mode={"create"}  />
         </ViridiumOffcanvas>
     </LayoutPage >
 }

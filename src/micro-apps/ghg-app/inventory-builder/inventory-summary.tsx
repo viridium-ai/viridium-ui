@@ -7,7 +7,7 @@ import { greenHouseApp } from "../ghg-app";
 import { Company } from "../../viridium-model";
 
 export const InventorySummary = (props: any) => {
-    const [company] = useState<Company>(getCompany());
+    const [company] = useState<Company|undefined>(getCompany());
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp}  >
@@ -22,7 +22,7 @@ export const InventorySummary = (props: any) => {
                             {"{{WIP}}"} <p />
                             We need to summary datasets before saving and exporting it via Viridium services
                         </Toast.Body>
-                        <Action inventory={company.inventory}
+                        <Action inventory={company?.inventory}
                             next={{ label: "Next", path: props.next }}
                             prev={{ label: "Back", path: props.prev }} />
                     </Toast>

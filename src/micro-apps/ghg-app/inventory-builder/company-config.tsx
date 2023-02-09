@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { Toast, Form } from 'react-bootstrap';
-import { EntityForm } from '../../../components/v-entity/entity-form';
+import { EntityForm, EntityList } from '../../../components/v-entity/entity-form';
 import { Question, Action } from '../../../components/v-flow/wizard';
 import { LayoutPage, ViridiumOffcanvas } from '../../../components/v-layout/v-layout';
-import { DataTable } from '../../../components/v-table/v-table';
 import { getConfigs, getCompany, updateCompany } from '../../../config/v-config';
-import { NamedObject } from '../../inventory-app/inventory-questionaire';
 import { greenHouseApp } from '../ghg-app';
 
-import { Company, Site } from '../../viridium-model';
+import { Company, NamedObject, Site } from '../../viridium-model';
 
 export const CompanyDetailsView = (props: any) => {
     const ui = () => {
@@ -28,7 +26,7 @@ export const CompanyDetailsView = (props: any) => {
 
 export const CompanyConfig = (props: any) => {
     const configs = getConfigs();
-    const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
+    const [company, setCompany] = useState<Company | undefined>(getCompany());
 
     const [showForm, setShowForm] = useState(false);
     const viridiumIndustries: Array<NamedObject> = configs.viridiumIndustries;
@@ -51,9 +49,6 @@ export const CompanyConfig = (props: any) => {
         }
     }
      
-    const listUpdated = () => {
-        // updateAction(!refreshState);
-    }
 
     return <LayoutPage microApp={greenHouseApp} >
         <Toast>
@@ -68,7 +63,7 @@ export const CompanyConfig = (props: any) => {
                         <CompanyDetailsView entity={company} />
                     </div>
                     {
-                        company !== undefined ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
+                        company !== undefined ? <EntityList fieldDefs={Site.newFields} entities={company.sites} title={"Site"} /> : ""
                     }
                 </Question>
                 <Question label="Viridium Industry">

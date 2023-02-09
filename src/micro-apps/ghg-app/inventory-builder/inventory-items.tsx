@@ -1,12 +1,14 @@
 import { Component, useState } from "react";
 import { Toast, Form, Row, Col, Button, Tab, Tabs } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
-import { LayoutPage } from "../../../components/v-layout/v-layout";
+import { LayoutPage, ViridiumOffcanvas } from "../../../components/v-layout/v-layout";
 import { DataTable } from "../../../components/v-table/v-table";
 import { getCompany, getConfigs, updateCompany } from "../../../config/v-config";
 import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";
-import { Company, Inventory, InventoryItem } from "../../viridium-model";
+import { Company, Freq, Inventory, InventoryItem } from "../../viridium-model";
+import { EntityForm, FieldDef, SelectOption, ValueType } from "../../../components/v-entity/entity-form";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 type ItemState = {
     name: string,
     quantity: number,
@@ -46,12 +48,15 @@ export class InventoryItemForm extends Component<ItemProps, ItemState> {
         Object.assign(item, this.state);
         item.scope = this.props.scope;
         item.category = this.props.category;
-   
+
         let c = getCompany();
-        c.inventory?.addItem(item);
-        updateCompany(c);
-        this.props.onUpdate(c.inventory);
+        if (c) {
+            c.inventory?.addItem(item);
+            updateCompany(c);
+            this.props.onUpdate(c.inventory);
+        }
     }
+
     render = () => {
         let configs = getConfigs();
         let company = getCompany();
@@ -200,15 +205,11 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
         let newRows = this.state.data.rows.map((r: any, idx: number) => {
             return {
                 cols: [...r.cols,
-                { type: "input", text: "", id: "scope" + idx, onChange: this.onValueChange },
-                {
-                    type: "select", text: "", value: "", onChange: this.onScopeChange, id: "scope" + idx, options:
-                        [{ value: "", text: "Select a value" }, { value: "scope1", text: "Scope 1" }, { value: "scope2", text: "Scope 2" }, { value: "scope3", text: "Scope 3" }]
-                }]
+                ]
             }
         })
         let mappingData = {
-            headers: [...this.state.data.headers, { text: "Category", type: "text" }, { text: "Scope", type: "text" }],
+            headers: [...this.state.data.headers],
             rows: newRows
         }
         console.log(mappingData);
@@ -261,8 +262,8 @@ export class ViridiumDataset extends Component<ViridiumDatasetProp, ViridiumData
     };
 }
 type ConnectorConfigProps = {
-    direction : string,
-    onProcessData ? : Function
+    direction: string,
+    onProcessData?: Function
 }
 
 type ConnectorConfigState = {
@@ -272,15 +273,14 @@ export class ConnectorConfig extends Component<ConnectorConfigProps, ConnectorCo
     guid: string = crypto.randomUUID();
     constructor(props: ConnectorConfigProps) {
         super(props);
-        this.state = { connector: undefined}
+        this.state = { connector: undefined }
     }
-    
+
     doUpload = () => {
-        if(this.props.onProcessData)
-        {
+        if (this.props.onProcessData) {
             this.props.onProcessData("Received data");
         }
-        
+
     }
 
     onSelectConnector = (evt: any) => {
@@ -289,7 +289,7 @@ export class ConnectorConfig extends Component<ConnectorConfigProps, ConnectorCo
     }
     render = () => {
         let configs = getConfigs();
-        let connectors =configs.managedConnectors.filter((c:any) => c.direction === "Both" || c.direction === this.props.direction)
+        let connectors = configs.managedConnectors.filter((c: any) => c.direction === "Both" || c.direction === this.props.direction)
 
         let connector = connectors.find((c: any, idx: number) => c.id === this.state.connector);
         return (
@@ -339,10 +339,10 @@ export const InventoryItemView = (props: any) => {
     const rowUI = () => {
         return (
             <Row>
-                <Col>{item.typeId}</Col>
+                <Col>{item.type}</Col>
                 <Col>{item.quantity}</Col>
                 <Col>{item.frequency}</Col>
-                <Col>{item.siteId}</Col>
+                <Col>{item.site}</Col>
             </Row>
         )
     }
@@ -363,11 +363,11 @@ export const InventoryItemView = (props: any) => {
                 </Row>
                 <Row>
                     <Col>Type</Col>
-                    <Col>{item.typeId}</Col>
+                    <Col>{item.type}</Col>
                 </Row>
                 <Row>
                     <Col>Site</Col>
-                    <Col>{item.siteId}</Col>
+                    <Col>{item.site}</Col>
                 </Row>
             </div>
         )
@@ -379,6 +379,7 @@ export const InventoryItemsView = (props: any) => {
     const [company, setCompany] = useState<Company | undefined>(Company.new(getCompany()));
     const [scope, setScope] = useState<string>("1");
     const [category, setCategory] = useState<string>("1");
+    const [showForm, setShowForm] = useState(false);
     const onSelectScope = (evt: any) => {
         setScope(evt.target.value);
         setCategory("1");
@@ -402,7 +403,7 @@ export const InventoryItemsView = (props: any) => {
             let newInv = new Inventory(company.id);
             newInv.items = [];
             const c = Company.new(company)!;
-            c.inventory =newInv;
+            c.inventory = newInv;
             updateCompany(c);
         }
     }
@@ -420,12 +421,12 @@ export const InventoryItemsView = (props: any) => {
                 { type: "text", text: "Site" }
             ],
             rows: inventory.items.map((item, idx) => {
-                const site = company?.getSite(item.siteId);
+                const site = company?.getSite(item.site);
                 const frequency = configs.frequencies.find((f: any) => f.id === item.frequency);
                 const quantity = item.quantity;
                 const scope = configs.scopes.find((scope: any) => scope.id === item.scope);
                 const category = scope.categories?.find((cat: any) => cat.id === item.category);
-                const type = category?.types?.find((t: any) => t.id === item.typeId);
+                const type = category?.types?.find((t: any) => t.id === item.type);
 
                 return {
                     id: item.id,
@@ -443,10 +444,12 @@ export const InventoryItemsView = (props: any) => {
             )
         }
     }
+    const onAddItem = (item: any, form: any) => {
+
+    }
     const itemForm = () => {
         let scopes = configs.scopes;
         let selectedScope = scopes.find((s: any) => s.id === scope);
-        let categories = selectedScope?.categories;
         let inventory = company!.inventory!;
         return (<>
             <Row>
@@ -467,28 +470,19 @@ export const InventoryItemsView = (props: any) => {
                         </>
                     </Form.Select>
                 </Col>
-                <Col className="v-summary">
-                    <Form.Select value={category} onChange={onSelectCategory}>
-                        <>
-                            <option value=''>{selectedScope !== undefined ? 'Select a category' : 'Please select a scope'}</option>
-                            {
-                                categories?.map((category: any, idx: number) => {
-                                    return (
-                                        <option key={`cat-${idx}`} className="mb-2" value={category.id}>
-                                            {category.name}
-                                        </option>
-                                    )
-                                })
-                            }
-                        </>
-                    </Form.Select>
-                </Col>
             </Row>
             <Row>
                 <Col>
-                    <Tabs defaultActiveKey="manual">
+                    {
+                        inventory.items.length > 0 ? <Row>
+                            <Col>
+                                <DataTable data={getInventoryItemsData()} />
+                            </Col>
+                        </Row> : ""
+                    }
+
+                    {/* <Tabs defaultActiveKey="manual">
                         <Tab eventKey="manual" title="Manual">
-                            <InventoryItemForm inventory={inventory} scope={scope} category={category} onUpdate={onUpdate} />
                             {
                                 inventory.items.length > 0 ? <Row>
                                     <Col>
@@ -506,10 +500,37 @@ export const InventoryItemsView = (props: any) => {
                         <Tab eventKey="viridium-ds" title="Viridium Datasets">
                             <ViridiumDataset />
                         </Tab>
-                    </Tabs>
+                    </Tabs> */}
 
                 </Col>
             </Row></>)
+    }
+    const fieldDefs = () => {
+        let scopes = configs.scopes;
+        let selectedScope = scopes.find((s: any) => s.id === scope);
+        let categories = selectedScope?.categories;
+        let sites = company!.sites.map((site) => {
+            return {
+                value: site.id,
+                label: site.name,
+                name: site.name
+            } as SelectOption
+        });
+        return [
+            FieldDef.select("category", () => categories.map((cat: any) => {
+                return {
+                    value: cat.id,
+                    label: cat.name,
+                    name: cat.name
+                } as SelectOption
+            })),
+            FieldDef.select("type", () => {
+                return [];
+            }),
+            FieldDef.new("quantity", ValueType.NUMBER),
+            FieldDef.select("frequency", StringUtils.enumOptions(Freq)),
+            FieldDef.select("site", sites)
+        ]
     }
     const ui = () => {
         return (
@@ -531,6 +552,10 @@ export const InventoryItemsView = (props: any) => {
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>
+                <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={"Inventory Item"} >
+                    <EntityForm inline={true} title="" fieldDefs={fieldDefs}
+                        onSubmit={onAddItem} />
+                </ViridiumOffcanvas>
             </LayoutPage >
         )
     }

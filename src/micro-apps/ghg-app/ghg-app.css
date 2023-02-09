@@ -7,13 +7,16 @@
 }
 .ghg-app .v-page-body { 
     margin: 2em auto 0em auto;
-    border: 1px solid darkblue;
-    border-radius: 12px;
     overflow: hidden;
     width: 90vw;
 }
 
-
+.ghg-app .v-select-company {
+    width:400px;
+}
+.v-message {
+    padding: 2em;
+}
 .ghg-app .v-icon-button {
     margin: 5px;
 }

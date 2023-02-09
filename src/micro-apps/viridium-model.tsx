@@ -1,21 +1,23 @@
-import { FieldDef } from "../components/v-entity/entity-form";
-import { Entity } from "../components/v-entity/entity-model";
+import { FieldDef, ValueType } from "../components/v-entity/entity-form";
+import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
 import { getConfigs } from "../config/v-config";
-
-
+export interface NamedObject {
+    id: string,
+    name: string
+}
 export class BaseEntity implements Entity {
     id: string;
     name: string;
 
     description: string = "";
-    createdAt: Date;
     validated: boolean;
 
-    lastUpdatedDate?: Date;
+    createdAt: Date;
     createdBy?: string;
-    lastUpdatedBy?: string;
+    updatedBy?: string;
+    updatedAt?: Date
     constructor() {
         this.id = StringUtils.guid();
         this.name = "";
@@ -32,7 +34,12 @@ export class Address extends BaseEntity {
 }
 
 export class Company extends BaseEntity {
+    sector?: string;
     industry?: string;
+    symbol?: string;
+    marketCap?: number;
+    stockPrice?: number;
+    revenue?: number;
     viridiumCategory?: string;
     sourceId?: string;
     source?: string;
@@ -44,6 +51,14 @@ export class Company extends BaseEntity {
     lastName?: string;
     email?: string;
     phone?: string;
+    //stoke info
+    stokePrice?: number;
+    change?: number;
+    volume?: number;
+    growth?: number;
+    income?: number;
+    freeCashflow?: number;
+    netCash?: number;
     sites: Array<Site> = [];
     inventory?: Inventory;
     clone = () => {
@@ -77,18 +92,16 @@ export class Company extends BaseEntity {
         ];
         return [
             FieldDef.new("name"),
-            FieldDef.new("description"),
             FieldDef.select("industry",
                 industries.map((i: any) => { return { name: i.name, label: i.name, value: i.name } })),
-            FieldDef.new("firstName"),
-            FieldDef.new("lastName"),
+            FieldDef.new("sector"),
+            FieldDef.new("email").useValidator(EMAIL),
+            FieldDef.new("phone").useValidator(PHONE),
             FieldDef.new("street1"),
-            FieldDef.new("zipCode"),
             FieldDef.new("city"),
             FieldDef.new("state"),
-            FieldDef.select("country",
-                countries.map((c: any) => { return { name: c.name, label: c.name, value: c.code } }))
-                .useDefault("US")
+            FieldDef.select("country", countries.map((c: any) => { return { name: c.name, label: c.name, value: c.name } }))
+                .useDefault("United States")
         ]
     }
     getAddress = () => {
@@ -137,10 +150,13 @@ export class Site extends BaseEntity {
         }
     }
     static newFields = () => {
+        let configs = getConfigs();
+        let locationTypes = configs.locationTypes ? configs.locationTypes : [{ name: "NA" }];
         return [
             FieldDef.new("name"),
             FieldDef.new("description"),
-            FieldDef.new("location")
+            FieldDef.new("location"),
+            FieldDef.select("type", locationTypes.map((c: any) => { return { name: c.name, label: StringUtils.t(c.name), value: c.name } }))
         ]
     }
 }
@@ -155,13 +171,13 @@ export class Inventory extends BaseEntity {
     context: string = ""; //corporation, product, activity 
     description: string = "";
     items: Array<InventoryItem> = [];
-    companyId: string = "";
-    constructor(companyId: string) {
+    company: string = "";
+    constructor(company: string) {
         super();
-        this.companyId = companyId;
+        this.company = company;
     }
     addItem = (item: InventoryItem) => {
-        item.companyId = this.companyId;
+        item.company = this.company;
         this.items.push(item);
     }
 }
@@ -171,20 +187,26 @@ export class InventoryCategory extends BaseEntity {
 }
 
 export class InventoryType extends BaseEntity {
-    categoryId = "1";
+    category = "1";
     txType = "0";
     vendor = ""
 }
-
+export enum Freq {
+    Yearly,
+    Monthly,
+    Quarterly, 
+    Daily
+}
 export class InventoryItem extends BaseEntity {
-    companyId = "";
-    siteId = "";
+    company = "";
+    site = "";
     scope = "";
     category = "";
+    
     unit = "";
-    typeId = "";
+    type = "";
     quantity: number = 0;
-    frequency = "yearly";
+    frequency :  Freq = Freq.Yearly;
     static new = (data: any) => {
         const c = new InventoryItem();
         Object.assign(c, data);
@@ -192,11 +214,71 @@ export class InventoryItem extends BaseEntity {
     }
 }
 
+export type NameValuePair = {
+    name: string,
+    type: string,
+    value?: string
+}
+
+export type ConnectorConfig = {
+    driver: string;
+    properties: Array<NameValuePair>
+}
+
+export class Connector extends BaseEntity {
+    type: string = "";
+    version: string = ""
+    status?: string;
+    config?: ConnectorConfig;
+    direction: string = "Inbound"
+
+    instances: Array<ConnectorInstance> = [];
+    static newFields = () => {
+        return [
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.select("type",
+                ["", "Database", "API", "Platform", "Files"].map((type: any) => { return { name: type, label: type.length === 0 ? "Select a type" : type, value: type } })),
+            FieldDef.select("direction",
+                ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
+        ]
+    }
+
+    static new = (formData: any) => {
+        let c = new Connector();
+        Object.assign(c, formData);
+        c.createdAt = new Date();
+        c.createdBy = securityManager.getUserName();
+        c.updatedAt = new Date();
+        c.updatedBy = securityManager.getUserName();
+        c.status = "active";
+        return c;
+    }
+}
+export class ConnectorInstance extends BaseEntity {
+    connectorId: string = "";
+    version: string = ""
+    instanceConfig: Array<NameValuePair> = []
+    status?: string;
+
+    static newFields = () => {
+        return [
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.new("status"),
+            FieldDef.new("connectorId"),
+        ]
+    }
+}
+
 export class EmissionFactor extends BaseEntity {
-    standard = "";
-    category = "";
+    country: string = ""
+    standard: string = "";
+    category: string = "";
+    year: string = "2022";
     factory: number = 0;
-    type = ""
+    type = "";
+    uom?: string;
 }
 
 export class InventoryTypeFactorMapping extends BaseEntity {

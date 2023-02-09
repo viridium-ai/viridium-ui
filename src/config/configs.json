@@ -1,7 +1,7 @@
 {
     "title": "VIRIDIUM.AI",
     "description": "Viridium Sustainability Data Platform",
-    "copyright" :"Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
+    "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
     "jobs": [
         {
             "name": "daily-travel-job",
@@ -208,7 +208,7 @@
             "config": {
                 "name": "SAP API",
                 "driver": "com.viridium.connector.hadoop.PartitionSink",
-                "properties":  [
+                "properties": [
                     {
                         "name": "url",
                         "type": "string"
@@ -321,9 +321,7 @@
             "config": {
                 "url": "https://api.carbonintensity.org.uk",
                 "method": "Get",
-                "properties": [
-                    
-                ]
+                "properties": []
             },
             "children": [
                 {
@@ -2323,6 +2321,23 @@
             "code": "ZW"
         }
     ],
+    "locationTypes": [
+        {
+            "name": "officeBuilding"
+        },
+        {
+            "name": "warehouse"
+        },
+        {
+            "name": "store"
+        },
+        {
+            "name": "factory"
+        },
+        {
+            "name": "farm"
+        }
+    ],
     "industries": [
         {
             "name": "Industry "
@@ -2897,17 +2912,17 @@
             {
                 "type": "text",
                 "text": "Category",
-                "hint" : "Inventory category"
+                "hint": "Inventory category"
             },
             {
                 "type": "text",
                 "text": "tCO2e",
-                "hint" : "tonnes (t) of carbon dioxide (CO2) equivalent (e)"
+                "hint": "tonnes (t) of carbon dioxide (CO2) equivalent (e)"
             },
             {
                 "type": "text",
                 "text": "Scope",
-                "hint" : "Scope 1, 2, or 3"
+                "hint": "Scope 1, 2, or 3"
             }
         ],
         "rows": [
@@ -3010,14 +3025,46 @@
             "priority": "2"
         }
     ],
-    "help-content" :[
-        {"id":"0", "url" : "./resources/help/introduction.html", "label":"Introduction"},
-        {"id":"1", "url" : "./resources/help/scope1.html", "label":"Scope 1"},
-        {"id":"2", "url" : "./resources/help/scope2.html", "label":"Scope 2"},
-        {"id":"3", "url" : "./resources/help/scope3.html", "label":"Scope 3"},
-        {"id":"4", "url" : "./resources/help/data-sources.html", "label":"Data Sources"},
-        {"id":"5", "url" : "./resources/help/connectors.html", "label":"Connectors"},
-        {"id":"6", "url" : "./resources/help/data-mappings.html", "label":"Data Mapping"},
-        {"id":"7", "url" : "./resources/help/emission-factors.html", "label":"Emission Factors"}
+    "help-content": [
+        {
+            "id": "0",
+            "url": "./resources/help/introduction.html",
+            "label": "Introduction"
+        },
+        {
+            "id": "1",
+            "url": "./resources/help/scope1.html",
+            "label": "Scope 1"
+        },
+        {
+            "id": "2",
+            "url": "./resources/help/scope2.html",
+            "label": "Scope 2"
+        },
+        {
+            "id": "3",
+            "url": "./resources/help/scope3.html",
+            "label": "Scope 3"
+        },
+        {
+            "id": "4",
+            "url": "./resources/help/data-sources.html",
+            "label": "Data Sources"
+        },
+        {
+            "id": "5",
+            "url": "./resources/help/connectors.html",
+            "label": "Connectors"
+        },
+        {
+            "id": "6",
+            "url": "./resources/help/data-mappings.html",
+            "label": "Data Mapping"
+        },
+        {
+            "id": "7",
+            "url": "./resources/help/emission-factors.html",
+            "label": "Emission Factors"
+        }
     ]
 }

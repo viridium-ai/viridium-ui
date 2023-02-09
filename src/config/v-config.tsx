@@ -3,25 +3,24 @@ import { localCache } from "../components/v-utils/v-cache-manager";
 import { Company } from "../micro-apps/viridium-model";
 
 export class EventManager {
-    handlers : Map<string, Array<Function>> = new Map();
-    publish = (eventName : string, event:{}) => {
+    handlers: Map<string, Array<Function>> = new Map();
+    publish = (eventName: string, event: {}) => {
         if (this.handlers.get(eventName)) {
             this.handlers.get(eventName)?.forEach(s => s(event));
         }
-        
+
     }
-    subscribe = (eventName : string, handler: Function) => {
-        let subscribers =  this.handlers.get(eventName);
+    subscribe = (eventName: string, handler: Function) => {
+        let subscribers = this.handlers.get(eventName);
         if (!subscribers) {
             subscribers = new Array<Function>();
             this.handlers.set(eventName, subscribers);
         }
         subscribers.push(handler);
     }
-    unsubscribe = (eventName: string, handler : any) => {
-        let subscribers =  this.handlers.get(eventName);
-        if ( subscribers) 
-        {
+    unsubscribe = (eventName: string, handler: any) => {
+        let subscribers = this.handlers.get(eventName);
+        if (subscribers) {
             subscribers.filter(s => s === handler);
         }
     }
@@ -57,7 +56,8 @@ export const updateCompany = (company?: Company) => {
 
 export const getCompany = (id: string | undefined = undefined) => {
     if (id === undefined) {
-        return Company.new(localCache.get("Company"));
+        let c = localCache.get("Company");
+        return c !== undefined ? Company.new(c) : undefined;
     }
     return Company.new(localCache.get("Company" + id));
 }

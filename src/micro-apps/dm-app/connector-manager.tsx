@@ -344,6 +344,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                         </Toast.Body>
                     </Toast>
                 </div>
+                
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
                     showForm={this.state.showForm} title={"Add Connector"} >
                     <EntityForm inline={true} title="" fieldDefs={Connector.newFields}

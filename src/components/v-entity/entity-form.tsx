@@ -7,7 +7,6 @@ import { TitleProp, Action } from '../v-common/v-app';
 import { StringUtils } from '../v-utils/v-string-utils';
 import { Entity, EntityManager, Formatter, Money, ValidationMessage, Validator } from './entity-model';
 import { SelectCompany } from '../v-data/v-company';
-import { FeedbackProps } from 'react-bootstrap/esm/Feedback';
 export class FieldValue {
     value: any = undefined;
     definition?: FieldDef;
@@ -850,7 +849,7 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                                     )
                                 }
                             </>
-                            : <div className="v-message">No entities yet, please add some</div>
+                            : <div className="v-message">No data yet, please add some</div>
                     }
                 </div>
             </div >

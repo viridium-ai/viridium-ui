@@ -548,7 +548,7 @@ export const InventoryItemsView = (props: any) => {
                         }
                     </Toast.Body>
 
-                    <Action inventory={company!.inventory}
+                    <Action  
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>

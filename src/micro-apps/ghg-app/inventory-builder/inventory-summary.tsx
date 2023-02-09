@@ -22,7 +22,7 @@ export const InventorySummary = (props: any) => {
                             {"{{WIP}}"} <p />
                             We need to summary datasets before saving and exporting it via Viridium services
                         </Toast.Body>
-                        <Action inventory={company?.inventory}
+                        <Action 
                             next={{ label: "Next", path: props.next }}
                             prev={{ label: "Back", path: props.prev }} />
                     </Toast>

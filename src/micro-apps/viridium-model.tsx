@@ -1,4 +1,4 @@
-import { FieldDef, ValueType } from "../components/v-entity/entity-form";
+import { FieldDef } from "../components/v-entity/entity-form";
 import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
@@ -60,7 +60,8 @@ export class Company extends BaseEntity {
     freeCashflow?: number;
     netCash?: number;
     sites: Array<Site> = [];
-    inventory?: Inventory;
+    inventories?: Array<Inventory> =[];
+    inventory? : Inventory; //inventory current being editted
     clone = () => {
         return Company.new(this);
     }
@@ -68,14 +69,15 @@ export class Company extends BaseEntity {
         if (data) {
             const c = new Company();
             Object.assign(c, data);
-            if (data.sizes) {
+            if (data.sites) {
                 c.sites = data.sites.map((d: any) => {
                     return Site.new(d);
                 })
             };
-            c.inventory = new Inventory(c.id);
-            if (data.inventory) {
-                Object.assign(c.inventory, data.inventory);
+            if (data.inventories) {
+                c.sites = data.inventories.map((d: any) => {
+                    return Inventory.new(d);
+                });
             }
             c.createdAt = new Date();
             c.createdBy = securityManager.getUserName();
@@ -112,35 +114,16 @@ export class Company extends BaseEntity {
         return this.sites?.find((s) => s.id === siteId);
     }
 
-    getSitesData = () => {
-        return {
-            id: this.id,
-            headers: [
-                { type: "text", text: "Id" },
-                { type: "text", text: "Name" },
-                { type: "text", text: "Location" }
-            ],
-            rows: this.sites.map((site, idx) => {
-                return {
-                    id: site.id,
-                    cols: [{ type: "text", text: site.id },
-                    { type: "text", text: site.name },
-                    { type: "text", text: site.location }
-                    ]
-                }
-            }
-            )
-        }
-    }
 }
 
 export class Site extends BaseEntity {
     companyId: string = "";
     type: string = "";
     addressId: string = "";
-    location: string = "";
+    state: string = "";
+    country : string = ""
     getAddress = () => {
-        return this.location;
+        return this.state + ", " + this.country;
     }
     static new = (data: any) => {
         if (data) {
@@ -155,7 +138,9 @@ export class Site extends BaseEntity {
         return [
             FieldDef.new("name"),
             FieldDef.new("description"),
-            FieldDef.new("location"),
+            FieldDef.new("state"),
+            FieldDef.select("country", configs.countries.map((c: any) => { return { name: c.name, label: c.name, value: c.name } }))
+            .useDefault("United States"),
             FieldDef.select("type", locationTypes.map((c: any) => { return { name: c.name, label: StringUtils.t(c.name), value: c.name } }))
         ]
     }
@@ -163,22 +148,45 @@ export class Site extends BaseEntity {
 
 export class Vendor extends BaseEntity {
 }
-
+ 
 export class Inventory extends BaseEntity {
     standard: string = "";
     regulation: string = "";
     type: string = "";
-    context: string = ""; //corporation, product, activity 
+    coverage: string = ""; //corporation, product, activity 
     description: string = "";
+    year : string = "2022";
     items: Array<InventoryItem> = [];
     company: string = "";
     constructor(company: string) {
         super();
         this.company = company;
     }
+
     addItem = (item: InventoryItem) => {
         item.company = this.company;
         this.items.push(item);
+    }
+    
+    static new = (data : any) => {
+        let inv = new Inventory(data.company);
+        Object.assign(inv, data);
+        if (data.items) {
+            inv.items = data.items.map((item : any) => {
+                return InventoryItem.new(item);
+            })
+        }
+    }
+    static fieldDefs = () => {
+        return [
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.select("type", ["carbon", "water", "waste"].map((s)=>{return {name:s, label: s, value:s} })),
+            FieldDef.select("coverage", ["corporation", "product", "activity"].map((s)=>{return {name:s, label: s, value:s} })),
+            FieldDef.select("year", ["2020", "2021", "2022", "2023"].map((s)=>{return {name:s, label:s, value:s}})),
+            FieldDef.new("standard"),
+            FieldDef.new("regulation"),
+        ]
     }
 }
 

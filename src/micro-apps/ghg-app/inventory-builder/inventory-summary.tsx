@@ -4,7 +4,7 @@ import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { getCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
-import { Company } from "./model";
+import { Company } from "../../viridium-model";
 
 export const InventorySummary = (props: any) => {
     const [company] = useState<Company>(getCompany());

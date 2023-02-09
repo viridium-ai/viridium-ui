@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { VscRemove, VscAdd, VscCloseAll } from "react-icons/vsc";
 import { Button, Toast } from "react-bootstrap";
 import { EntityList, EntityForm } from "../../../components/v-entity/entity-form";
 import { Action } from "../../../components/v-flow/wizard";
@@ -9,7 +9,7 @@ import { getConfigs, updateCompany, getCompany, updateConfigs, eventManager } fr
 import { greenHouseApp } from "../ghg-app";
 import { CompanyDetailsView } from "./company-config";
 
-import { Company, Site } from "./model";
+import { Company, Site } from "../../viridium-model";
 
 export const CompanyList = (props: any) => {
     let configs = getConfigs();
@@ -99,7 +99,7 @@ export const CompanyList = (props: any) => {
                 <span className="me-auto">
                     Select Company
                 </span>
-                <Button className="v-button" onClick={addCompany} >Add a Company</Button>
+                <span className="v-button" onClick={addCompany} ><VscAdd /></span>
             </Toast.Header>
             <Toast.Body>
                 <EntityList entities={companies} title={"Companies"} onSelect={onSelectCompany}
@@ -107,21 +107,30 @@ export const CompanyList = (props: any) => {
                 {
                     company !== undefined ?
                         <div className="v-container">
-                            <div className="v-container-header">
-                                {company.name}
+                            <div className="v-panel-header">
+                                <div className="v-label me-auto">
+                                    {company.name}
+                                </div>
+                                <div className="v-buttons">
+                                    <span className="v-icon-button" onClick={deleteCompany} ><VscRemove /></span>
+
+                                </div>
                             </div>
                             <div className="v-container-body">
-                                <div className="v-buttons">
-                                    <Button className="v-button" onClick={addSite} >Add a Site</Button>
-                                    <Button className="v-button" onClick={deleteCompany} >Delete</Button>
-                                    <Button className="v-button" onClick={removeAllSites} >Remove All Site</Button>
-                                </div>
-                                <div className="v-container">
-                                    <CompanyDetailsView entity={company} />
-                                    {
-                                        company.getSitesData().rows.length > 0 ? <DataTable data={company.getSitesData()} onSelectRow={undefined} /> : ""
-                                    }
-                                </div>
+                                <CompanyDetailsView entity={company} />
+                                <div className="v-divider-y" />
+                                {
+                                    <div>
+                                        <div className="v-panel-header">
+                                            <div className="v-label me-auto"> Sites </div>
+                                            <div className="v-buttons">
+                                                <span className="v-icon-button" onClick={addSite} ><VscAdd /></span>
+                                                <span className="v-icon-button" onClick={removeAllSites} ><VscCloseAll /></span>
+                                            </div>
+                                        </div>
+                                        <DataTable data={company.getSitesData()} onSelectRow={undefined} />
+                                    </div>
+                                }
                             </div>
                         </div> : ""
                 }
@@ -131,7 +140,7 @@ export const CompanyList = (props: any) => {
 
         <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={formAction.title} >
             <EntityForm inline={true} title="" fieldDefs={formAction.fieldDefs}
-                onSubmit={formAction.onSubmit}   />
+                onSubmit={formAction.onSubmit} />
         </ViridiumOffcanvas>
     </LayoutPage >
 }

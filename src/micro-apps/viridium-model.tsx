@@ -1,9 +1,29 @@
-import { FieldDef, ValueType } from "../../../components/v-entity/entity-form";
-import { securityManager } from "../../../components/v-security/v-security-manager";
-import { getConfigs } from "../../../config/v-config";
+import { FieldDef } from "../components/v-entity/entity-form";
+import { Entity } from "../components/v-entity/entity-model";
+import { securityManager } from "../components/v-security/v-security-manager";
+import { StringUtils } from "../components/v-utils/v-string-utils";
+import { getConfigs } from "../config/v-config";
 
-export class Address {
-    id = "";
+
+export class BaseEntity implements Entity {
+    id: string;
+    name: string;
+
+    description: string = "";
+    createdAt: Date;
+    validated: boolean;
+
+    lastUpdatedDate?: Date;
+    createdBy?: string;
+    lastUpdatedBy?: string;
+    constructor() {
+        this.id = StringUtils.guid();
+        this.name = "";
+        this.createdAt = new Date();
+        this.validated = false;
+    }
+}
+export class Address extends BaseEntity {
     streetNo?: string;
     city?: string;
     state?: string;
@@ -11,16 +31,9 @@ export class Address {
     zipCode?: string;
 }
 
-export class Company {
-    id: string = crypto.randomUUID().substring(0,8);
-    name: string = "";
-    description: string = "";
+export class Company extends BaseEntity {
     industry?: string;
     viridiumCategory?: string;
-    lastUpdatedDate?: Date;
-    createdAt? : Date;
-    createdBy? : string;
-    lastUpdatedBy?: string;
     sourceId?: string;
     source?: string;
     street1?: string;
@@ -108,12 +121,9 @@ export class Company {
     }
 }
 
-export class Site {
-    id: string = crypto.randomUUID().substring(0, 8);
+export class Site extends BaseEntity {
     companyId: string = "";
-    name: string = "";
     type: string = "";
-    description = "";
     addressId: string = "";
     location: string = "";
     getAddress = () => {
@@ -135,14 +145,10 @@ export class Site {
     }
 }
 
-export class Vendor {
-    id = "";
-    name = "";
-    description = "";
+export class Vendor extends BaseEntity {
 }
 
-export class Inventory {
-    id = crypto.randomUUID();
+export class Inventory extends BaseEntity {
     standard: string = "";
     regulation: string = "";
     type: string = "";
@@ -151,6 +157,7 @@ export class Inventory {
     items: Array<InventoryItem> = [];
     companyId: string = "";
     constructor(companyId: string) {
+        super();
         this.companyId = companyId;
     }
     addItem = (item: InventoryItem) => {
@@ -159,22 +166,17 @@ export class Inventory {
     }
 }
 
-export class InventoryCategory {
-    id = "";
-    name = "";
+export class InventoryCategory extends BaseEntity {
     scope = "1";
 }
 
-export class InventoryType {
-    id = "";
-    name = "";
+export class InventoryType extends BaseEntity {
     categoryId = "1";
     txType = "0";
     vendor = ""
 }
 
-export class InventoryItem {
-    id = crypto.randomUUID();
+export class InventoryItem extends BaseEntity {
     companyId = "";
     siteId = "";
     scope = "";
@@ -190,24 +192,19 @@ export class InventoryItem {
     }
 }
 
-export class EmissionFactor {
-    id = "";
-    name = "";
+export class EmissionFactor extends BaseEntity {
     standard = "";
     category = "";
     factory: number = 0;
     type = ""
 }
 
-export class InventoryTypeFactorMapping {
-    id = "";
+export class InventoryTypeFactorMapping extends BaseEntity {
     factorId = "";
     typeId = "";
 }
 
-export class EmissionType {
-    id = "";
-    name = "";
+export class EmissionType extends BaseEntity {
     ratioToCO2: number = 1;
 }
 

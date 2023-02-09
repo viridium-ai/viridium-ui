@@ -14,7 +14,9 @@
 }
 
 
-
+.ghg-app .v-icon-button {
+    margin: 5px;
+}
 .ghg-app .connector-config-form {
     margin-top: 6px;
     padding: 12px;

@@ -6,7 +6,7 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
 import { greenHouseApp } from "../ghg-app";
-import { Company, Site } from "./model";
+import { Company, Site } from "../../viridium-model";
 
 type AddressViewProps = {
     site: any,

@@ -4,7 +4,7 @@ import { Toast, Form } from 'react-bootstrap';
 
 import { LayoutPage } from '../../../components/v-layout/v-layout';
 import { inventoryConfigApp } from '../inventory-app';
-import { Company } from '../../ghg-app/inventory-builder/model';
+import { Company } from '../../viridium-model';
 import { Questionnaire, getQuestionnaire, updateQuestionnaire, NamedObject } from '../inventory-questionaire';
 import { getConfigs } from '../../../config/v-config';
 import { Question, Action } from '../../../components/v-flow/wizard';

@@ -8,7 +8,7 @@ import { getConfigs, getCompany, updateCompany } from '../../../config/v-config'
 import { NamedObject } from '../../inventory-app/inventory-questionaire';
 import { greenHouseApp } from '../ghg-app';
 
-import { Company, Site } from './model';
+import { Company, Site } from '../../viridium-model';
 
 export const CompanyDetailsView = (props: any) => {
     const ui = () => {

@@ -6,7 +6,7 @@ import { DataTable } from "../../../components/v-table/v-table";
 import { getCompany, getConfigs, updateCompany } from "../../../config/v-config";
 import { ConnectorView } from "../../dm-app/connector-manager";
 import { greenHouseApp } from "../ghg-app";
-import { Company, Inventory, InventoryItem } from "./model";
+import { Company, Inventory, InventoryItem } from "../../viridium-model";
 type ItemState = {
     name: string,
     quantity: number,

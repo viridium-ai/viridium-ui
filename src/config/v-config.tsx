@@ -1,6 +1,6 @@
 
 import { localCache } from "../components/v-utils/v-cache-manager";
-import { Company } from "../micro-apps/ghg-app/inventory-builder/model";
+import { Company } from "../micro-apps/viridium-model";
 
 export class EventManager {
     handlers : Map<string, Array<Function>> = new Map();

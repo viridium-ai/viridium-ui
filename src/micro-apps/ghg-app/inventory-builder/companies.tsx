@@ -9,6 +9,7 @@ import { greenHouseApp } from "../ghg-app";
 
 import { Company } from "../../viridium-model";
 import { SelectCompany } from "../../../components/v-data/v-company";
+import { getConfig } from "@testing-library/react";
 interface FormAction {
     title: string;
     fieldDefs: Function;
@@ -24,11 +25,7 @@ export const CompanyList = (props: any) => {
     const [showForm, setShowForm] = useState(false);
 
     const addACompany = (formData: any) => {
-        let c = Company.new(formData);
-        configs.companies.push(c);
-        updateConfigs(configs);
-        setCompanies(configs.companies);
-        updateCompany(c);
+        updateCompany(Company.new(formData));
     }
 
     const [formAction, setFormAction] = useState<FormAction>({
@@ -46,14 +43,16 @@ export const CompanyList = (props: any) => {
     });
 
     const onSelectCompany = (evt: any, company: any) => {
-        let c = configs.companies.find((c: Company) => c.name === company.name);
-        if (c === undefined) {
-            c = Company.new(company);
-            configs.companies.push(c);
-            updateConfigs(configs);
+        if (company) {
+            let configs = getConfigs();
+            let c = configs.companies.find((c: Company) => c.name === company.name);
+            if (c) {
+                setCompany(c);
+            }
+            else {
+                setCompany(updateCompany(company));
+            }
         }
-        updateCompany(c);
-        setCompany(c);
     }
 
     const addCompany = () => {

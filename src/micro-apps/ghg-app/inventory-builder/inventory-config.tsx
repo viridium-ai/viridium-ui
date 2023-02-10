@@ -13,9 +13,19 @@ export const InventoryConfig = (props: any) => {
     const [company, setCompany] = useState<Company | undefined>(getCompany());
     const [showForm, setShowForm] = useState(false);
     const [selectedInventory, setSelectedInventory] = useState<Inventory | undefined>();
+
     const updateInv = (clone: any) => {
+        let inv = Inventory.new(clone);
+        console.log(inv);
+        if(company?.inventories) {
+            company.inventories.push(inv);
+            updateCompany(company);
+        }
+        setSelectedInventory(inv);
+
         setShowForm(false);
     }
+
     const addInventory = () => {
 
         setShowForm(true);

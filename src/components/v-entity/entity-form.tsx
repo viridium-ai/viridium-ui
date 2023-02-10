@@ -181,7 +181,7 @@ export class FieldDef {
         field.placeHolder = placeHolder;
         field.selectOptions = options;
         if (options instanceof Array) {
-            let h = hint ? hint : `please select ${name}`;
+            let h = hint ? hint : `Please select ${name}`;
             field.selectOptions = [{ value: "", name: h, label: h }, ...options];
         }
         return field;
@@ -243,26 +243,28 @@ export interface FormFieldState {
     msg?: ValidationMessage
 }
 export class TextField extends PureComponent<FormFieldProp, FormFieldState>{
-    _def: FieldDef;
-    _entity: Entity;
-
     constructor(props: FormFieldProp) {
         super(props);
-        this._def = props.def as FieldDef;
-        this._entity = props.entity as any;
-        let defaultV = this._def.getValue(this._entity);
-        this.state = { value: defaultV, msg: undefined };
+        let v = props.def.getValue(this.props.entity);
+        this.state = { value: v ? v : "", msg: undefined };
     }
+    componentDidUpdate(prevProps: Readonly<FormFieldProp>, prevState: Readonly<FormFieldState>, snapshot?: any): void {
+        if (this.props.entity.id !== prevProps.entity.id) {
+            let v =  this.props.def.getValue(this.props.entity);
+            this.setState({ value: v ? v : "", msg:undefined });
+        }
+    }
+
     componentDidMount(): void {
 
     }
     onChange = (evt: any) => {
         let v = evt.target.value;
-        let def = this._def;
+        let def = this.props.def;
         let msg = def.validate(v, this.props.entity);
         if (msg) {
             if (msg && msg.clearValue) {
-                let input = document.getElementById(this._entity.id);
+                let input = document.getElementById(this.props.entity.id);
                 if (input) {
                     (input as HTMLInputElement).value = ''
                 }
@@ -273,11 +275,12 @@ export class TextField extends PureComponent<FormFieldProp, FormFieldState>{
     }
 
     render() {
-        let def = this._def;
+        let def = this.props.def;
         let msg = this.state.msg;
+        //console.log("render text field", this.state, this.props);
         return (
             <>
-                <Form.Group className="v-form-field" controlId={this._entity.id}>
+                <Form.Group className="v-form-field" controlId={this.props.entity.id}>
                     {
                         def.labelMode.includes("label") ? <Form.Label className="v-form-label">{def.getLabel()}</Form.Label> : ""
                     }
@@ -416,15 +419,19 @@ export class SelectManyField extends Component<FormFieldProp, FormFieldState>{
         )
     }
 }
-export class SelectField extends Component<FormFieldProp, FormFieldState>{
+export class SelectField extends PureComponent<FormFieldProp, FormFieldState>{
     id: string = StringUtils.guid();
     constructor(props: FormFieldProp) {
         super(props);
         if (props.id) {
             this.id = props.id;
         }
-        let v = (this.props.entity as any)[props.def.name];
-        this.state = { value: v }
+        this.state = { value: props.def.defaultValue }
+    }
+    componentDidUpdate(prevProps: Readonly<FormFieldProp>, prevState: Readonly<FormFieldState>, snapshot?: any): void {
+        if (this.props.entity.id !== prevProps.entity.id) {
+            this.setState({ value: this.props.def.defaultValue });
+        }
     }
     onChange = (evt: any) => {
         let v = evt.target.value;
@@ -436,19 +443,31 @@ export class SelectField extends Component<FormFieldProp, FormFieldState>{
     getOptions = () => {
         let options = this.props.options;
         if (options instanceof Function) {
-            return options();
+            return options(this.props.entity);
         } else if (options instanceof Array<FormFieldOption>) {
             return options;
         }
     }
     render() {
         let def = this.props.def;
+        let value = this.state.value ? this.state.value : "";
+        let options = this.getOptions();
+        if (options.length === 0) {
+            options = [{
+                value: "",
+                label: StringUtils.t("noOptionsToSelectFrom")
+            }]
+        }
+        if (options.length === 1) {
+            value = options[0].value;
+        }
+        //console.log("render select field", this.props.entity, value, def.name, options);
         return (
             <Form.Group className="v-form-field" controlId={this.id}>
                 {def.labelMode.includes("label") ? <Form.Label className="v-form-label">{def.getLabel()}</Form.Label> : ""}
                 <div className="v-input-container">
-                    <Form.Select className="v-input" value={this.state.value} onInput={this.onChange}>
-                        {this.getOptions().map((opt: any, idx: number) => <option key={'opt' + idx} value={opt.value}>{opt.label}</option>)}
+                    <Form.Select className="v-input" value={value} onInput={this.onChange}>
+                        {options.map((opt: any, idx: number) => <option key={'opt' + idx} value={opt.value}>{opt.label}</option>)}
                     </Form.Select>
                 </div>
             </Form.Group>
@@ -509,9 +528,7 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             this.props.onSubmit(entity, this);
             (document.getElementById(this.id) as any).reset();
             this.setState({ entity: EntityManager.emptyEntity() });
-            if (event.nativeEvent.target.id === 'submit2') {
-
-            }
+            this.forceUpdate();
         }
     }
     handleError(def: FieldDef, e: any): boolean {
@@ -531,9 +548,11 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             this.props.onChange(entity, this);
         }
     }
+
     onUpdateState = (state: any) => {
         this.setState({ entity: { ...state } });
     }
+
     renderField = (def: FieldDef, entity: any, idx: number) => {
         if (def.selectOptions) {
             return <SelectField entity={entity} def={def} onInput={this.onChange}
@@ -555,8 +574,6 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
     renderFields = () => {
         let newEntity: any = { ...this.state.entity };
         let fieldDefs = EntityManager.entityToDefs(newEntity);
-
-
         if (this.props.fieldDefs) {
             if (this.props.fieldDefs instanceof Array) {
                 fieldDefs = [...this.props.fieldDefs];
@@ -576,6 +593,7 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             }
             boxes.push(row);
         }
+        //console.log("render fields", newEntity, fieldDefs, boxes);
         return (
             boxes.map((row: any, idx: number) => {
                 return <div key={'fd-' + idx} className="v-entity-form-row" >

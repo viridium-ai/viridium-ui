@@ -1,4 +1,7 @@
- 
+.ghg-app .offcanvas {
+    --bs-offcanvas-width: 60vw;
+}
+
 .ghg-app .tab-content {
     overflow: scroll;
 }

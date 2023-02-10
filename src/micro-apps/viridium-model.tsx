@@ -1,8 +1,8 @@
-import { FieldDef } from "../components/v-entity/entity-form";
+import { FieldDef, SelectOption, ValueType } from "../components/v-entity/entity-form";
 import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
-import { getConfigs } from "../config/v-config";
+import { getCompany, getConfigs } from "../config/v-config";
 export interface NamedObject {
     id: string,
     name: string
@@ -51,6 +51,7 @@ export class Company extends BaseEntity {
     lastName?: string;
     email?: string;
     phone?: string;
+    numberOfEmployees?: number;
     //stoke info
     stokePrice?: number;
     change?: number;
@@ -60,8 +61,8 @@ export class Company extends BaseEntity {
     freeCashflow?: number;
     netCash?: number;
     sites: Array<Site> = [];
-    inventories?: Array<Inventory> =[];
-    inventory? : Inventory; //inventory current being editted
+    inventories?: Array<Inventory> = [];
+    inventory?: Inventory; //inventory current being editted
     clone = () => {
         return Company.new(this);
     }
@@ -75,7 +76,7 @@ export class Company extends BaseEntity {
                 })
             };
             if (data.inventories) {
-                c.sites = data.inventories.map((d: any) => {
+                c.inventories = data.inventories.map((d: any) => {
                     return Inventory.new(d);
                 });
             }
@@ -121,7 +122,8 @@ export class Site extends BaseEntity {
     type: string = "";
     addressId: string = "";
     state: string = "";
-    country : string = ""
+    country: string = "";
+    numberOfEmployees?: number;
     getAddress = () => {
         return this.state + ", " + this.country;
     }
@@ -140,7 +142,7 @@ export class Site extends BaseEntity {
             FieldDef.new("description"),
             FieldDef.new("state"),
             FieldDef.select("country", configs.countries.map((c: any) => { return { name: c.name, label: c.name, value: c.name } }))
-            .useDefault("United States"),
+                .useDefault("United States"),
             FieldDef.select("type", locationTypes.map((c: any) => { return { name: c.name, label: StringUtils.t(c.name), value: c.name } }))
         ]
     }
@@ -148,14 +150,14 @@ export class Site extends BaseEntity {
 
 export class Vendor extends BaseEntity {
 }
- 
+
 export class Inventory extends BaseEntity {
     standard: string = "";
     regulation: string = "";
     type: string = "";
     coverage: string = ""; //corporation, product, activity 
     description: string = "";
-    year : string = "2022";
+    year: string = "2022";
     items: Array<InventoryItem> = [];
     company: string = "";
     constructor(company: string) {
@@ -167,25 +169,24 @@ export class Inventory extends BaseEntity {
         item.company = this.company;
         this.items.push(item);
     }
-    
-    static new = (data : any) => {
+
+    static new = (data: any) => {
         let inv = new Inventory(data.company);
         Object.assign(inv, data);
         if (data.items) {
-            inv.items = data.items.map((item : any) => {
+            inv.items = data.items.map((item: any) => {
                 return InventoryItem.new(item);
             })
         }
+        return inv;
     }
     static fieldDefs = () => {
         return [
             FieldDef.new("name"),
             FieldDef.new("description"),
-            FieldDef.select("type", ["carbon", "water", "waste"].map((s)=>{return {name:s, label: s, value:s} })),
-            FieldDef.select("coverage", ["corporation", "product", "activity"].map((s)=>{return {name:s, label: s, value:s} })),
-            FieldDef.select("year", ["2020", "2021", "2022", "2023"].map((s)=>{return {name:s, label:s, value:s}})),
-            FieldDef.new("standard"),
-            FieldDef.new("regulation"),
+            FieldDef.select("type", ["carbon", "water", "waste"].map((s) => { return { name: s, label: s, value: s } })),
+            FieldDef.select("coverage", ["corporation", "product", "activity"].map((s) => { return { name: s, label: s, value: s } })),
+            FieldDef.select("year", ["2020", "2021", "2022", "2023"].map((s) => { return { name: s, label: s, value: s } }))
         ]
     }
 }
@@ -202,23 +203,81 @@ export class InventoryType extends BaseEntity {
 export enum Freq {
     Yearly,
     Monthly,
-    Quarterly, 
+    Quarterly,
     Daily
 }
 export class InventoryItem extends BaseEntity {
     company = "";
     site = "";
-    scope = "";
     category = "";
-    
-    unit = "";
-    type = "";
+    activity = "";
+    uom = "";
     quantity: number = 0;
-    frequency :  Freq = Freq.Yearly;
+    frequency: Freq = Freq.Yearly;
     static new = (data: any) => {
         const c = new InventoryItem();
         Object.assign(c, data);
         return c;
+    }
+    static fieldDefs = () => {
+        let inventoryCategories = getConfigs()["inventoryCategories"];
+        let c = getCompany();
+        let sites = c?.sites.map((site: any) => {
+            return {
+                value: site.id,
+                label: site.name
+            } as SelectOption
+        });
+        let types = inventoryCategories.map((cat: any) => {
+            return { value: cat.name, label: StringUtils.t(cat.name) }
+        });
+        return [
+            FieldDef.select("type", types),
+            FieldDef.select("site", sites!),
+            FieldDef.select("activity", (form: any) => {
+                let type = form["type"];
+                let category = inventoryCategories.find((c: any) => c.name === type);
+                if (category !== undefined) {
+                    return [{
+                        value: "",
+                        label: "Please select a category"
+                    }, ...category.activities.map((a: any) => {
+                        return {
+                            value: a,
+                            label: StringUtils.t(a)
+                        }
+                    })]
+                } else {
+
+                    return [{
+                        value: "",
+                        label: "please select a type first"
+                    }]
+                }
+            }),
+            FieldDef.select("frequency", StringUtils.enumOptions(Freq)).useDefault("Yearly"),
+            FieldDef.select("uom", (form: any) => {
+                let type = form["type"];
+                let category = inventoryCategories.find((c: any) => c.name === type);
+                if (category !== undefined) {
+                    return [{
+                        value: "",
+                        label: "Please select a unit"
+                    }, ...category.units.map((a: any) => {
+                        return {
+                            value: a,
+                            label: StringUtils.t(a)
+                        }
+                    })]
+                } else {
+                    return [{
+                        value: "",
+                        label: "please select a type first"
+                    }]
+                }            
+            }),
+            FieldDef.new("quantity", ValueType.NUMBER).options("required", true)
+        ]
     }
 }
 

@@ -17,20 +17,23 @@ interface FormAction {
 
 export const SiteList = (props: any) => {
     let configs = getConfigs();
-    const [company, setCompany] = useState<Company | undefined>(getCompany());
+    let c = getCompany();
+    const [company, setCompany] = useState<Company | undefined>(c);
+    const [sites, setSites] = useState<Array<Site> | undefined>(c?.sites);
     const [showForm, setShowForm] = useState(false);
 
-    const addASite = (formData: any) => {
+    const addASite = (formData: any, site: any) => {
+        console.log(formData, site);
         if (company) {
             let s = Site.new(formData);
             let c = configs.companies.find((c: Company) => c.id === company.id);
-            c.sites.push(s!);
-            updateConfigs(configs);
-            updateCompany(c);
-            setCompany(Company.new(c));
+            c.sites.push(s);
+            setCompany(updateCompany(c));
+            setSites([...c.sites]);
         }
     }
-    const addSite = () => {
+
+    const openSiteForm = () => {
         setFormAction({
             title: "Add a site",
             fieldDefs: Site.newFields,
@@ -42,16 +45,15 @@ export const SiteList = (props: any) => {
         title: "Add a site",
         fieldDefs: Site.newFields,
         entity: undefined,
-        onSubmit: addSite
+        onSubmit: addASite
     }
     );
     const removeAllSites = () => {
         if (company) {
             let c = configs.companies.find((c: Company) => c.id === company.id);
             c.sites = [];
-            updateConfigs(configs);
-            updateCompany(c);
-            setCompany(Company.new(c));
+            setCompany(updateCompany(c));
+            setSites([]);
         }
     }
 
@@ -72,11 +74,11 @@ export const SiteList = (props: any) => {
                                         <div className="v-panel-header">
                                             <div className="v-label me-auto"> Sites </div>
                                             <div className="v-buttons">
-                                                <span className="v-icon-button" onClick={addSite} ><VscAdd /></span>
+                                                <span className="v-icon-button" onClick={openSiteForm} ><VscAdd /></span>
                                                 <span className="v-icon-button" onClick={removeAllSites} ><VscCloseAll /></span>
                                             </div>
                                         </div>
-                                        <EntityList fieldDefs={Site.newFields} entities={company.sites} title={"Sites"} />
+                                        <EntityList fieldDefs={Site.newFields} entities={sites ? sites : []} title={"Sites"} />
                                     </div>
                                 }
                             </div>

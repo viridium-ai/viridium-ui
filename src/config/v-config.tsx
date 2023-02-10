@@ -47,11 +47,21 @@ export const clearCachedConfigs = () => {
     eventManager.publish("cached-cleared", getConfigs());
 }
 
-export const updateCompany = (company?: Company) => {
-    if (company) {
-        localCache.set("Company" + company.id, company);
-        localCache.set("Company", company);
+export const updateCompany = (company: Company) => {
+    let configs = getConfigs();
+    let c = configs.companies.find((c: Company) => c.name === company.name);
+    if (c === undefined) {
+        c = Company.new(company);
+        configs.companies.push(c);
+    } else {
+        c = Company.new(company);
     }
+    updateConfigs(configs);
+    if (c) {
+        localCache.set("Company" + c.id, c);
+        localCache.set("Company", c);
+    }
+    return c;
 }
 
 export const getCompany = (id: string | undefined = undefined) => {

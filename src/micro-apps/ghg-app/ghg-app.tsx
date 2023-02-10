@@ -22,6 +22,7 @@ class GreenHouseApp extends MicroApp {
     return "GHG Report Wizard"
   }
 
+  public isSecure = () =>  false;
   public getName = () => {
     return "ghg-app";
   }
@@ -46,7 +47,7 @@ class GreenHouseApp extends MicroApp {
         <Route path="/ghg-app/site" element={<SiteList prev={'/ghg-app/company'}  next={'/ghg-app/inventory'}  />} />
         <Route path="/ghg-app/inventory" element={<InventoryConfig next={'/ghg-app/inventoryItems'} prev={'/ghg-app/site'}/>} />
         <Route path="/ghg-app/inventoryItems" element={<InventoryItemsView  next={'/ghg-app/mappings'} prev={'/ghg-app/inventory'}/>} />
-        <Route path="/ghg-app/mappings" element={<MappingCategories next={'/ghg-app/summary'} prev={'/ghg-app/items'} />} />
+        <Route path="/ghg-app/mappings" element={<MappingCategories next={'/ghg-app/summary'} prev={'/ghg-app/inventoryItems'} />} />
         <Route path="/ghg-app/summary" element={<InventorySummary  next={'/ghg-app/export'} prev={'/ghg-app/mappings'} />} />
         <Route path="/ghg-app/export" element={<InventoryExport prev={'/ghg-app/summary'}/>} />
         <Route path="/ghg-app/help" element={<Help />} />

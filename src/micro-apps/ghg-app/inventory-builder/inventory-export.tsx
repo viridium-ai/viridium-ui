@@ -5,8 +5,8 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 
 import { getCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
-import { ConnectorConfig } from "./inventory-items";
 import { Company } from "../../viridium-model";
+import { ConnectorConfig } from "./v-connector";
 export const InventoryExport = (props: any) => {
     const [company] = useState<Company | undefined>(getCompany());
 

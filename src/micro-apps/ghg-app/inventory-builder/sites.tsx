@@ -37,14 +37,15 @@ export const SiteList = (props: any) => {
         setFormAction({
             title: "Add a site",
             fieldDefs: Site.newFields,
-            onSubmit: addASite
+            onSubmit: addASite,
+            entity:Site.new(undefined)
         })
         setShowForm(true);
     }
     const [formAction, setFormAction] = useState<FormAction>({
         title: "Add a site",
         fieldDefs: Site.newFields,
-        entity: undefined,
+        entity: Site.new(undefined),
         onSubmit: addASite
     }
     );

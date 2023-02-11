@@ -11,6 +11,7 @@ import { greenHouseApp } from "../ghg-app";
 
 import { ImMagicWand } from "react-icons/im";
 import { FiHelpCircle } from "react-icons/fi";
+import { Alert } from "../../../components/v-alert/alert";
 
 export const MappingCategories = (props: any) => {
     const rawData = require("../../../config/us-sc-factors.json");
@@ -21,7 +22,11 @@ export const MappingCategories = (props: any) => {
     const [items] = useState(c?.inventory?.items);
     const [selectedItem, setSelectedItem] = useState<InventoryItem | undefined>();
     const [selectedFactor, setSelectedFactor] = useState<any | undefined>();
-
+    const [showAlert, setShowAlert] = useState(
+        {
+            title: "No title", message: "No message", ttl: 10000, show: false
+        }
+    );
     const [filters, setFilters] = useState([
         { name: "Name", value: "raw" },
         {
@@ -72,8 +77,14 @@ export const MappingCategories = (props: any) => {
         setFilters(filters);
         setSelectedItem(evt);
     }
-    const onMagic =()=>{
-        alert("Sorry, the magic wand does not work yet, stay tuned.");
+    const onMagic = () => {
+        let alertMsg = {
+            title: "Info",
+            message: "Magic wand is malfunctioning right now",
+            show: true,
+            ttl: 10000
+        }
+        setShowAlert(alertMsg);        
     }
 
     const ui = () => {
@@ -135,7 +146,7 @@ export const MappingCategories = (props: any) => {
                                                 <Col></Col>
                                                 <Col> {new Intl.NumberFormat().format(Math.random() * 10000)}</Col>
                                                 <Col> Tonne</Col>
-                                               
+
                                             </Row> : ""
                                     }
                                 </div>
@@ -147,12 +158,12 @@ export const MappingCategories = (props: any) => {
 
                             </Col>
                         </Row>
-
                     </Toast.Body>
                     <Action
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>
+                <Alert title={showAlert.title} ttl={showAlert.ttl} text={showAlert.message} show={showAlert.show} />
             </LayoutPage >
         )
     }

@@ -1,8 +1,8 @@
 import { FieldDef, SelectOption, ValueType } from "../components/v-entity/entity-form";
-import { EMAIL, Entity, EntityManager, PHONE } from "../components/v-entity/entity-model";
+import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
-import { getCompany, getConfigs } from "../config/v-config";
+import { getCompany, getConfigs, getCountry } from "../config/v-config";
 export interface NamedObject {
     id: string,
     name: string
@@ -67,7 +67,7 @@ export class Company extends BaseEntity {
     }
     static new = (data: any) => {
         if (data) {
-            const c = new Company();
+            const c = this.defaultEntity();
             Object.assign(c, data);
             if (data.sites) {
                 c.sites = data.sites.map((d: any) => {
@@ -78,12 +78,20 @@ export class Company extends BaseEntity {
                 c.inventories = data.inventories.map((d: any) => {
                     return Inventory.new(d);
                 });
-            }
+            };
             c.createdAt = new Date();
             c.createdBy = securityManager.getUserName();
             return c;
         }
-        return new Company();
+        return this.defaultEntity();
+    }
+    static defaultEntity = () => {
+        let newEntity = new Company() as any;
+        this.newFields().forEach((def) => {
+            newEntity[def.name] = def.defaultValue;
+        });
+        console.debug("Defaut entity", newEntity);
+        return newEntity;
     }
     static newFields = () => {
         let configs = getConfigs();
@@ -102,8 +110,9 @@ export class Company extends BaseEntity {
             FieldDef.new("street1"),
             FieldDef.new("city"),
             FieldDef.new("state"),
-            FieldDef.select("country", countries.map((c: any) => { return { name: c.name, label: c.name, value: c.name } }))
-                .useDefault("United States")
+            FieldDef.select("country", countries.map((c: any) => { return { name: c.name, label: c.name, value: c.code } }))
+                .useDefault("US")
+                .useFormatter(getCountry)
         ]
     }
     getAddress = () => {
@@ -125,10 +134,19 @@ export class Site extends BaseEntity {
     }
     static new = (data: any) => {
         if (data) {
-            const c = new Site();
+            const c = this.defaultEntity();
             Object.assign(c, data);
             return c;
-        }
+        } else
+            return this.defaultEntity();
+    }
+    static defaultEntity = () => {
+        let newEntity = new Site() as any;
+        this.newFields().forEach((def) => {
+            newEntity[def.name] = def.defaultValue;
+        });
+        console.debug("Defaut entity", newEntity);
+        return newEntity;
     }
     static newFields = () => {
         let configs = getConfigs();
@@ -137,8 +155,10 @@ export class Site extends BaseEntity {
             FieldDef.new("name"),
             FieldDef.new("description"),
             FieldDef.new("state"),
-            FieldDef.select("country", configs.countries.map((c: any) => { return { name: c.name, label: c.name, value: c.name } }))
-                .useDefault("United States"),
+            FieldDef.select("country", 
+                configs.countries.map((c: any) => { return { name: c.name, label: c.name, value: c.code } }))
+                .useDefault("US")
+                .useFormatter(getCountry),
             FieldDef.select("type", locationTypes.map((c: any) => { return { name: c.name, label: StringUtils.t(c.name), value: c.name } }))
         ]
     }
@@ -211,7 +231,7 @@ export class InventoryItem extends BaseEntity {
         Object.assign(c, data);
         return c;
     }
-    
+
     static fieldDefs = () => {
         let inventoryCategories = getConfigs()["inventoryCategories"];
         let c = getCompany();
@@ -226,8 +246,8 @@ export class InventoryItem extends BaseEntity {
         });
         return [
             FieldDef.select("category", categories),
-            FieldDef.select("site", sites!).useFormatter((siteId:string) =>{
-                let site = sites?.find((site:any)=>site.value === siteId);
+            FieldDef.select("site", sites!).useFormatter((siteId: string) => {
+                let site = sites?.find((site: any) => site.value === siteId);
                 return site ? StringUtils.t(site.label) : siteId;
             }),
             FieldDef.select("activity", (form: any) => {
@@ -270,14 +290,14 @@ export class InventoryItem extends BaseEntity {
                         value: "",
                         label: "please select a type first"
                     }]
-                }            
+                }
             }),
             FieldDef.new("quantity", ValueType.NUMBER).options("required", true)
         ]
     }
 
     static defaultEntity = () => {
-        let newEntity = {id :  StringUtils.guid()} as any;
+        let newEntity = { id: StringUtils.guid() } as any;
         this.fieldDefs().forEach((def) => {
             newEntity[def.name] = def.defaultValue;
         });

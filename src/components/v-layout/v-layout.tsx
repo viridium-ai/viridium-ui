@@ -1,6 +1,6 @@
 
 import React, { Component, useEffect } from "react";
-import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas, Alert } from "react-bootstrap";
 import { securityManager } from "../v-security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
@@ -190,7 +190,7 @@ export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => 
     )
 }
 
-export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?: boolean, pageName?:string }) => {
+export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?: boolean, pageName?: string }) => {
     const microApp: MicroApp = props.microApp;
     const navigate = useNavigate();
     useEffect(() => {

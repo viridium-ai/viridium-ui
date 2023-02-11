@@ -1,4 +1,5 @@
 
+import { count } from "console";
 import { localCache } from "../components/v-utils/v-cache-manager";
 import { Company } from "../micro-apps/viridium-model";
 
@@ -70,6 +71,15 @@ export const getCompany = (id: string | undefined = undefined) => {
         return c !== undefined ? Company.new(c) : undefined;
     }
     return Company.new(localCache.get("Company" + id));
+}
+export const getCountry = (code: string) => {
+    let countries = getConfigs()["countries"];
+    let country = countries.find((c: any) => c.code === code);
+    if (country) {
+        return country.name;
+    } else {
+        return code;
+    }
 }
 
 export const saveState = (id: string, entity: any) => {

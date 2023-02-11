@@ -22,6 +22,7 @@
 }
 .ghg-app .v-icon-button {
     margin: 5px;
+    font-size: 1.4em;
 }
 .ghg-app .connector-config-form {
     margin-top: 6px;
@@ -57,7 +58,37 @@
 }
 .ghg-app .v-panel {
     margin-top: 0px;
+    padding: 1em;
+    background-color: aliceblue;
+    border-radius: 3px;
+    border: 0px blue solid;
 }
+.ghg-app .v-panel .v-hint{
+    padding: 1em;
+    background-color: aliceblue;
+    border-radius: 3px;
+    font-size: 1.5em;
+}
+.ghg-app .v-panel .row{
+   padding: .5em;
+   border-bottom: 1px rgb(57, 113, 165) solid;
+}
+.ghg-app .v-panel .row .col{
+    padding: .5em;
+    font-size: 1.5em;
+    white-space: nowrap;
+    overflow:scroll;
+ }
+
+ .ghg-app .v-panel .v-metrics{
+    background-color: azure;
+    color: red;
+ }
+
+.ghg-app .v-panel {
+   padding: .2em;
+}
+
 .ghg-app .v-actions {
     position: absolute;
     bottom: 0px;

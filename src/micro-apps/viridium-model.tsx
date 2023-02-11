@@ -1,5 +1,5 @@
 import { FieldDef, SelectOption, ValueType } from "../components/v-entity/entity-form";
-import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
+import { EMAIL, Entity, EntityManager, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
 import { getCompany, getConfigs } from "../config/v-config";
@@ -32,7 +32,6 @@ export class Address extends BaseEntity {
     country = "US";
     zipCode?: string;
 }
-
 export class Company extends BaseEntity {
     sector?: string;
     industry?: string;
@@ -110,13 +109,10 @@ export class Company extends BaseEntity {
     getAddress = () => {
         return this.street1 + " " + this.city + " " + this.state + " " + this.zipCode;
     }
-
     getSite = (siteId: string) => {
         return this.sites?.find((s) => s.id === siteId);
     }
-
 }
-
 export class Site extends BaseEntity {
     companyId: string = "";
     type: string = "";
@@ -147,10 +143,8 @@ export class Site extends BaseEntity {
         ]
     }
 }
-
 export class Vendor extends BaseEntity {
 }
-
 export class Inventory extends BaseEntity {
     standard: string = "";
     regulation: string = "";
@@ -190,11 +184,9 @@ export class Inventory extends BaseEntity {
         ]
     }
 }
-
 export class InventoryCategory extends BaseEntity {
     scope = "1";
 }
-
 export class InventoryType extends BaseEntity {
     category = "1";
     txType = "0";
@@ -219,6 +211,7 @@ export class InventoryItem extends BaseEntity {
         Object.assign(c, data);
         return c;
     }
+    
     static fieldDefs = () => {
         let inventoryCategories = getConfigs()["inventoryCategories"];
         let c = getCompany();
@@ -228,15 +221,18 @@ export class InventoryItem extends BaseEntity {
                 label: site.name
             } as SelectOption
         });
-        let types = inventoryCategories.map((cat: any) => {
+        let categories = inventoryCategories.map((cat: any) => {
             return { value: cat.name, label: StringUtils.t(cat.name) }
         });
         return [
-            FieldDef.select("type", types),
-            FieldDef.select("site", sites!),
+            FieldDef.select("category", categories),
+            FieldDef.select("site", sites!).useFormatter((siteId:string) =>{
+                let site = sites?.find((site:any)=>site.value === siteId);
+                return site ? StringUtils.t(site.label) : siteId;
+            }),
             FieldDef.select("activity", (form: any) => {
-                let type = form["type"];
-                let category = inventoryCategories.find((c: any) => c.name === type);
+                let cat = form["category"];
+                let category = inventoryCategories.find((c: any) => c.name === cat);
                 if (category !== undefined) {
                     return [{
                         value: "",
@@ -257,8 +253,8 @@ export class InventoryItem extends BaseEntity {
             }),
             FieldDef.select("frequency", StringUtils.enumOptions(Freq)).useDefault("Yearly"),
             FieldDef.select("uom", (form: any) => {
-                let type = form["type"];
-                let category = inventoryCategories.find((c: any) => c.name === type);
+                let cat = form["category"];
+                let category = inventoryCategories.find((c: any) => c.name === cat);
                 if (category !== undefined) {
                     return [{
                         value: "",
@@ -279,26 +275,31 @@ export class InventoryItem extends BaseEntity {
             FieldDef.new("quantity", ValueType.NUMBER).options("required", true)
         ]
     }
-}
 
+    static defaultEntity = () => {
+        let newEntity = {id :  StringUtils.guid()} as any;
+        this.fieldDefs().forEach((def) => {
+            newEntity[def.name] = def.defaultValue;
+        });
+        console.debug("Defaut entity", newEntity);
+        return newEntity;
+    }
+}
 export type NameValuePair = {
     name: string,
     type: string,
     value?: string
 }
-
 export type ConnectorConfig = {
     driver: string;
     properties: Array<NameValuePair>
 }
-
 export class Connector extends BaseEntity {
     type: string = "";
     version: string = ""
     status?: string;
     config?: ConnectorConfig;
     direction: string = "Inbound"
-
     instances: Array<ConnectorInstance> = [];
     static newFields = () => {
         return [
@@ -310,7 +311,6 @@ export class Connector extends BaseEntity {
                 ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
         ]
     }
-
     static new = (formData: any) => {
         let c = new Connector();
         Object.assign(c, formData);

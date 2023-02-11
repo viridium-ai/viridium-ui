@@ -72,7 +72,7 @@ export class FieldDef {
                 return this.formatter.format(value);
             }
         } else {
-            return value;
+            return StringUtils.t(value);
         }
     }
     //get visible text from name, for example firstName => First Name
@@ -172,6 +172,7 @@ export class FieldDef {
         }
         return field;
     }
+
     public static select(name: string, options: Function | Array<SelectOption>,
         hint: string | undefined = undefined,
         placeHolder: string | undefined = undefined) {
@@ -186,6 +187,7 @@ export class FieldDef {
         }
         return field;
     }
+
     static date(name: string, defaultValue?: Date): FieldDef {
         let field = new FieldDef();
         field.name = name;

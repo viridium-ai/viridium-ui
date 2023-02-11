@@ -42,7 +42,7 @@ export const InventoryConfig = (props: any) => {
                             <span className="me-auto">
                                 Inventory for  {company?.name}
                             </span>
-                            <span className="v-button" onClick={addInventory} ><VscAdd /></span>
+                            <span className="v-icon-button" onClick={addInventory} ><VscAdd /></span>
                         </Toast.Header>
                         <Toast.Body>
                             <EntityList entities={company!.inventories ? company!.inventories : []}

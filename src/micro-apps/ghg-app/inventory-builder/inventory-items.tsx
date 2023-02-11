@@ -11,14 +11,15 @@ import { FileUploader } from "./file-uploader";
 import { ConnectorConfig } from "./v-connector";
 import { ViridiumDataset } from "./v-dataset";
 
-
 export const InventoryItemsView = (props: any) => {
     let c = getCompany();
     if (c && c.inventory === undefined) {
         c.inventory = c.inventories![0];
     }
+     
+    
     const [inventory, setInventory] = useState<Inventory | undefined>(c?.inventory);
-    const [entity, setEntity] = useState<InventoryItem | undefined>(new InventoryItem());
+    const [entity, setEntity] = useState<InventoryItem | undefined>(InventoryItem.defaultEntity() as InventoryItem);
     const [items, setItems] = useState(c?.inventory?.items);
     const [showForm, setShowForm] = useState(false);
     const [showUploader, setShowUploader] = useState(false);
@@ -88,9 +89,6 @@ export const InventoryItemsView = (props: any) => {
                     </div>
                     <Toast.Body>
                         {
-                           // inventory ? <EntityDetails fieldDefs={Inventory.fieldDefs} title="" entity={inventory} /> : " "
-                        }
-                        {
                             items && items.length > 0 ? <EntityList fieldDefs={InventoryItem.fieldDefs} entities={items} title={"Inventory Items"} /> : ""
                         }
                     </Toast.Body>
@@ -98,13 +96,8 @@ export const InventoryItemsView = (props: any) => {
                         next={{ label: "Next", path: props.next }}
                         prev={{ label: "Back", path: props.prev }} />
                 </Toast>
-                <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={"Inventory Item"} >
+                <ViridiumOffcanvas id="manual"  showTitle={false} onHide={setShowForm} showForm={showForm} title={"Inventory Item"} >
                     <EntityForm inline={true} title="" entity={entity} fieldDefs={() => {
-                        return InventoryItem.fieldDefs()
-                    }} onSubmit={onAddItem} />
-                </ViridiumOffcanvas>
-                <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={"Inventory Item"} >
-                    <EntityForm  id="manual"  inline={true} title="" fieldDefs={() => {
                         return InventoryItem.fieldDefs()
                     }} onSubmit={onAddItem} />
                 </ViridiumOffcanvas>

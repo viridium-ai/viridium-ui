@@ -89,7 +89,7 @@ export const CompanyList = (props: any) => {
                 <div className="me-auto">
                     <SelectCompany onSelect={onSelectCompany} />
                 </div>
-                <span className="v-button" onClick={addCompany} ><VscAdd /></span>
+                <span className="v-icon-button" onClick={addCompany} ><VscAdd /></span>
             </Toast.Header>
             <Toast.Body>
                 {

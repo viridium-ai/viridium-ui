@@ -107,7 +107,7 @@ export class StringUtils {
         if (!name) {
             return name;
         }
-        const result = name.replace(/([A-Z])/g, " $1");
+        const result = name.replace(/(?=[A-Z][a-z])/, " ");
         const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
         return finalResult;
     }
@@ -149,7 +149,7 @@ export class StringUtils {
     static guid(length: number = 8): string {
         return crypto.randomUUID().slice(0, length);
     }
-    
+
     static loadContent = async (url: string): Promise<string> => {
         return fetch(url).then((response) => {
             if (response.status !== 200) {

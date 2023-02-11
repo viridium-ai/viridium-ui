@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 import { FormFieldOption } from "../v-entity/entity-form";
 
@@ -110,10 +110,15 @@ export class TextFilter extends React.Component<FilterProps, TableFilterState> {
     }
 }
 
-export class TableFilter extends React.Component<TableFilterProps, TableFilterState> {
+export class TableFilter extends PureComponent<TableFilterProps, TableFilterState> {
     constructor(props: TableFilterProps) {
         super(props);
         this.state = { value: props.value ? props.value : "" };
+    }
+    componentDidUpdate(prevProps: Readonly<TableFilterProps>, prevState: Readonly<TableFilterState>, snapshot?: any): void {
+        if (this.props.value && this.props.value !== prevProps.value) {
+            this.setState({ value: this.props.value });
+        }
     }
     onChange = (evt: any) => {
         let v = evt.target.value;
@@ -167,13 +172,12 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     componentDidMount(): void {
         this.setState({ data: this.props.data, filters: this.props.filters });
     }
-
-    shouldComponentUpdate = (nextProps: DataTableProps, nextState: DataTableState, nextContext: any): boolean => {
-        if (this.state.data.rows.length !== nextProps.data.rows.length) {
-            this.setState({ data: nextProps.data, filters: nextProps.filters });
-            return true;
+    
+    componentDidUpdate(prevProps: Readonly<DataTableProps>, prevState: Readonly<DataTableState>, snapshot?: any): void {
+        if (this.props.data.rows.length !== prevProps.data.rows.length
+            || this.props.filters !== prevProps.filters) {
+            this.setState({ data: this.props.data, filters: this.props.filters });
         }
-        return false;
     }
 
     onSelectRow = (evt: any) => {
@@ -237,19 +241,19 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         }
         rowsToShow = rowsToShow.slice(0, this.props.options?.pageSize ? this.props.options?.pageSize : 200);
 
-        if(this.props.columns) {
-            let cIdx : Array<number> = [];
-            headers = headers.filter((h, idx:number) => {
-                let found = this.props.columns?.find((c) => c===h.text) !== undefined;
+        if (this.props.columns) {
+            let cIdx: Array<number> = [];
+            headers = headers.filter((h, idx: number) => {
+                let found = this.props.columns?.find((c) => c === h.text) !== undefined;
                 if (found) {
                     cIdx.push(idx);
                 }
                 return found;
             });
-            rowsToShow = rowsToShow.map((r : any) => {
+            rowsToShow = rowsToShow.map((r: any) => {
                 return {
                     id: r.id,
-                    cols: r.cols.filter((c : any, idx: number) => cIdx.includes(idx))
+                    cols: r.cols.filter((c: any, idx: number) => cIdx.includes(idx))
                 }
             });
         }
@@ -257,8 +261,8 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         return (
             <div className="v-table" >
                 {
-                    this.props.filters ? <div className="v-filters">
-                        {this.props.filters.map((filter: Filter, idx: number) =>
+                    this.state.filters ? <div className="v-filters">
+                        {this.state.filters.map((filter: Filter, idx: number) =>
                             <TableFilter key={'h' + idx} value={filter.value} options={filter.options} onChange={this.handleFilterUpdate} name={filter.name} />)}
                     </div> : ""
                 }
@@ -268,7 +272,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                             <tr >
                                 {
                                     headers.map((col: any, idx: number) => {
-                                        return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ? 
+                                        return <th className={"data-cell-header"} key={'h' + idx}>{col.type === 'checkbox' ?
                                             <Form.Check type="checkbox" /> : <span dangerouslySetInnerHTML={{ __html: col.text }} />
                                         }</th>
                                     })

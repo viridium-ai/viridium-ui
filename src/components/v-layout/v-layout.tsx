@@ -46,7 +46,7 @@ const NavItem = (props: any) => {
     const navigate = useNavigate();
     let service = props.service;
     return (
-        <ListGroup.Item as="li" action onClick={(e: any) => { navigate(`${service.route}`, { replace: true }); }}>
+        <ListGroup.Item action onClick={(e: any) => { navigate(`${service.route}`, { replace: true }); }}>
             <span>{service.label}</span>
         </ListGroup.Item>
     )

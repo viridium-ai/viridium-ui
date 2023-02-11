@@ -1,9 +1,11 @@
 import { PureComponent } from "react";
 import { Route } from "react-router-dom";
 import { MicroApp, RouteItem } from "../../components/v-common/v-app";
+import { EntityDetails, EntityList, FieldDef, ValueType } from "../../components/v-entity/entity-form";
 import { EntityManager } from "../../components/v-entity/entity-model";
 import { LayoutBodyNav, LayoutPage } from "../../components/v-layout/v-layout";
 import { StringUtils } from "../../components/v-utils/v-string-utils";
+import "./schema-browser.css"
 
 enum DataType {
     decimal,
@@ -64,18 +66,34 @@ class Attribute extends BaseSchemaObj {
     group: string = "";
     name: string = "";;
     sourceOrdering: number = -1;
-    isNullable: boolean = true;
+    nullable: string = "true";
     purpose: string = "";
     dataType: DataType = DataType.string; //list of values
     maximumValue?: number;
     minimumValue?: number
     maximumLength?: number;
+    static fieldDefs = () => {
+        return [
+            FieldDef.new("name"),
+            FieldDef.new("description"),
+            FieldDef.new("nullable"),
+            FieldDef.new("displayName"),
+        ]
+    }
 }
 
 class Entity extends BaseSchemaObj {
     paths: Array<string> = [];
     entityName: string = "";
     attributes: Array<Attribute> = []
+
+    static fieldDefs = () => {
+        return [
+            FieldDef.new("entityName"),
+            FieldDef.new("description"),
+            FieldDef.new("sourceName")
+        ]
+    }
 }
 
 class JsonEntity {
@@ -84,6 +102,7 @@ class JsonEntity {
     documentVersion: string = "";
     jsonSchemaSemanticVersion: string = ""
 }
+
 class Schema extends BaseSchemaObj {
     name: string = "GHG";
     entities: Array<Entity> = [];
@@ -102,13 +121,12 @@ class Schema extends BaseSchemaObj {
                 newEntity.description = def["description"];
                 newEntity.sourceName = def["sourceName"];
                 let group = def["hasAttributes"][0]["attributeGroupReference"] as any;
-
                 let jAttributes = group["members"] as any;
-
                 newEntity.attributes = jAttributes.map((member: any) => {
                     let attribute = new Attribute();
                     Object.assign(attribute, member);
                     attribute.group = group["attributeGroupName"];
+                    attribute.nullable = "" + member["isNullable"];
                     return attribute;
                 });
                 this.entities.push(newEntity);
@@ -177,7 +195,15 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
         super(props);
         this.state = { entity: undefined }
     }
-
+    componentDidUpdate(prevProps: Readonly<SchemaBrowserProps>, prevState: Readonly<SchemaBrowserState>, snapshot?: any): void {
+        if (this.props.entityName !== prevProps.entityName) {
+            GHGSchema.getEntity(this.props.entityName).then((entity: any) => {
+                this.setState({ entity: entity });
+            }).catch((error) => {
+                console.log("Failed to get entity", error);
+            });
+        }
+    }
     componentDidMount(): void {
         console.log("Load entity")
         GHGSchema.getEntity(this.props.entityName).then((entity: any) => {
@@ -186,18 +212,29 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
             console.log("Failed to get entity", error);
         });
     }
+    renderEntity = (entity: Entity) => {
+        return (
+            <div className="v-panel">
+                <div className="v-panel">
+                    <EntityDetails title={entity.displayName} entity={entity} fieldDefs={Entity.fieldDefs} />
+                </div>
+                <div className="v-panel">
+                    <EntityList title="" entities={entity.attributes} fieldDefs={Attribute.fieldDefs} />
+                </div>
+            </div>
+        )
+    }
 
     //UI 
     render = () => {
         let entity = this.state.entity;
         return (
-            <div className='schema-app'>
-                <LayoutPage microApp={schemaApp}>
-                    <LayoutBodyNav routeItems={schemaApp.getNavItems()} />
-                    <div className="v-body-main">
-                        {entity ? entity.entityName : `Waiting...`}
-                    </div>
-                </LayoutPage>
-            </div>)
+            <LayoutPage microApp={schemaApp}>
+                <LayoutBodyNav routeItems={schemaApp.getNavItems()} />
+                <div className="v-body-main">
+                    {entity ? this.renderEntity(entity) : `Loading...`}
+                </div>
+            </LayoutPage>
+        )
     }
 }

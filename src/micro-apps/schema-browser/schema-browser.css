@@ -1,0 +1,19 @@
+.schema-app {
+    font-size: 1.2em;
+}
+
+.schema-app .list-group-item {
+    padding: .5em;
+    border-bottom: 0.5px solid rgb(229, 229, 229);
+}
+
+.schema-app .v-page-body {
+    width: 100%;
+    display: flex;
+    max-height: 80vh;
+    overflow: scroll;
+}
+
+.schema-app .v-body-main {
+     overflow:revert;
+}

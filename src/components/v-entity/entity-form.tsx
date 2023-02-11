@@ -72,7 +72,7 @@ export class FieldDef {
                 return this.formatter.format(value);
             }
         } else {
-            return StringUtils.t(value);
+            return value;
         }
     }
     //get visible text from name, for example firstName => First Name

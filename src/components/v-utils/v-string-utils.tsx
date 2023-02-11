@@ -107,9 +107,12 @@ export class StringUtils {
         if (!name) {
             return name;
         }
-        const result = name.replace(/(?=[A-Z][a-z])/, " ");
-        const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
-        return finalResult;
+        if (name.replace) {
+            const result = name.replace(/(?=[A-Z][a-z])/, " ");
+            const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
+            return finalResult;
+        }
+        return name;
     }
 
     public static enumValues = (enumType: any) => {

@@ -1,5 +1,5 @@
+import { localCache } from "../../components/v-utils/v-cache-manager";
 import { getConfigs } from "../../config/v-config";
-import { localCache } from "../../utils/v-cache-manager";
 
 export interface Question { id?: string, name: string, notes?: string };
 
@@ -43,6 +43,10 @@ export class Questionnaire {
     static getRegulation (q:Questionnaire) {
         let c = getConfigs();
         return c.regulations.find((s:any) => s.id ===q.regulation).label;
+    }
+
+    static export (q:Questionnaire) {
+        
     }
 
 }

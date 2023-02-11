@@ -1,10 +1,13 @@
 .welcome-page {
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url("../../../public/resources/home-bg.jpg");
-    background-size: 120%;
+    background-size: 100%;
     width: 100%;
     height: 100vh;
     color: rgb(237, 237, 237);
     background-repeat: repeat-y;
+}
+.welcome-page nav {
+    background-color: transparent;
 }
 
 .welcome-page .v-page-footer {
@@ -13,9 +16,13 @@
 }
 
 .welcome-page a {
-    color: white !important;
+    color: rgb(229, 229, 229) !important;
+    
 }
 
+.welcome-page .layout-header-end .nav-link {
+    border-color: rgb(230, 230, 230)!important;
+}
 
 .home-app .home-splash {
     filter: brightness(200%);
@@ -31,7 +38,7 @@
 .home-app .home-blurb {
     filter: brightness(200%);
     height: 100%;
-    padding-top: 50vh;
+    padding-top: 60vh;
     padding-left: 15%;
     padding-right: 5%;
     text-align: left;

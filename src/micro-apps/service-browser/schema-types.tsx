@@ -1,62 +1,11 @@
-
-import { StringUtils } from '../../utils/v-string-utils';
 import { Route } from "react-router-dom";
 import { SchemaBrowser } from "./services-ui";
-import { IRouteItem } from "../../common/v-app";
 import { schemaApp } from './schema-micro-app';
+import { FieldDef } from '../../components/v-entity/entity-form';
+import { IRouteItem } from "../../components/v-common/v-app";
+import { StringUtils } from "../../components/v-utils/v-string-utils";
 
-export class FieldValue {
-    value: any = undefined;
-    definition?: FieldDefinition;
-}
 
-export class FieldDefinition {
-    name: string = '';
-    type: string = '';
-
-    format?: Function | string;
-
-    label: string = '';
-    placeHolder: string = '';
-
-    readonly?: boolean = false;
-    updatable?: boolean;
-    required?: boolean = false;
-
-    validator?: Function | undefined;
-    listOfValues?: Function | [] | undefined;
-
-    public value = (value: any) => {
-        return {
-            value: value,
-            definition: this
-        } as FieldValue;
-    }
-
-    public getLabel = () => {
-        return StringUtils.t(this.name);
-    }
-
-    public getPlaceHolder = () => {
-        return this.placeHolder === '' ? this.getLabel() : this.placeHolder;
-    }
-
-    public getType = () => {
-        //console.log(this);
-        return (this.type === 'string' && this.format === 'date-time') ? 'date' : this.type;
-    }
-
-    public static new(name: string, type: string, label = '', placeHolder = '', readonly = false, validator: Function | undefined = undefined) {
-        let field = new FieldDefinition();
-        field.name = name;
-        field.type = type;
-        field.label = label;
-        field.placeHolder = placeHolder;
-        field.readonly = readonly;
-        field.validator = validator;
-        return field;
-    }
-}
 
 export class SchemaProperty {
     name?: string;
@@ -143,20 +92,19 @@ export class Schema {
         return StringUtils.plural(this.name.toLocaleLowerCase());
     }
 
-    public getFieldDefs(): Array<FieldDefinition> {
+    public getFieldDefs(): Array<FieldDef> {
         let props = objectToArray(this.properties);
         return props.filter((p: any) => {
             return !noneUiFields.includes(p.name);
         }).map((p: any) => {
             let fd;
             if (p.type) {
-                fd = FieldDefinition.new(p.name, p.type);
-                fd.format = p.format;
+                fd = FieldDef.new(p.name, p.type);
+                
             } else {
-                fd = FieldDefinition.new(p.name, 'lov');
-                fd.listOfValues = p.$ref;
+                fd = FieldDef.new(p.name);
+                fd.options = p.$ref;
             }
-
             return fd;
         })
     }

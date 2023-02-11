@@ -9,8 +9,17 @@
 .v-dimension-container {
     margin-bottom: 15px;
 }
+
+.v-table .v-filters {
+    padding: 0.5em;
+    background-color: aliceblue;
+}
+.v-table .v-filter {
+    margin-right: .2em;
+    display: inline-block;
+    width: 200px;
+}
 .v-table .v-table-container{
-    max-height: 240px;
     overflow-y: scroll;
     overflow-x: hidden;
     border: 1px solid cadetblue;
@@ -36,7 +45,7 @@
     font: 1em sans-serif;
     padding: .5em;
     font-size: large;
-    background-color: azure;
+    background-color: rgb(239, 239, 239);
 }
 .v-table .data-cell-text {
     padding:.5em;

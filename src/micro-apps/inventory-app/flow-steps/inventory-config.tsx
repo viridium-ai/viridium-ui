@@ -1,9 +1,9 @@
 import { useState } from "react";
 
 import { Toast } from "react-bootstrap";
+import { Question, Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DimensionView } from "../../../components/v-table/v-table";
-import { Question, Action } from "../../../components/v-wizard";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";

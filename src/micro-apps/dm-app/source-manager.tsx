@@ -49,22 +49,22 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
     render() {
         return (
             <div className="v-panel">
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Data Source Name
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Data Source Name
                     </Col>
                     <Col className="details-value" sm={9}>
                         {this.state.row.dataSourceName}
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Description
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Description
                     </Col>
                     <Col className="details-value" sm={9}>
                         {this.state.row.description}
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Current Topics
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Current Topics
                     </Col>
                     <Col className="details-value" style={{ fontWeight: 'bold' }} sm={4}>
                         Environmental Sustainability Category
@@ -73,8 +73,8 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
                         Scope of Data Coverage
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>
                     </Col>
                     <Col className="details-control" sm={4}>
                         <Form.Check type="checkbox" id="carbon" onChange={this.onUpdateCategory} checked={true} label={"Carbon"} />
@@ -83,8 +83,8 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
                         <Form.Check type="checkbox" id="corporate" onChange={this.onUpdateScope} checked={true} label={'Corporate'} />
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>
                     </Col>
                     <Col className="details-control" sm={4}>
                         <Form.Check type="checkbox" onChange={this.onUpdateCategory} id="water" label={"Water"} />
@@ -93,8 +93,8 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
                         <Form.Check type="checkbox" onChange={this.onUpdateScope} id="product" label={'Product'} />
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>
                     </Col>
                     <Col className="details-control" sm={4}>
                         <Form.Check type="checkbox" onChange={this.onUpdateCategory} id="waster" label={"Waste"} />
@@ -103,31 +103,31 @@ class SourceDetails extends React.Component<SourceDetailsProps, SourceDetailsSta
                         <Form.Check type="checkbox" onChange={this.onUpdateScope} id="process" label={'Process'} />
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>View Sample Data
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>View Sample Data
                     </Col>
                     <Col className="details-value" sm={9}>
                         <a href="/">Click here to see sample data</a>
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Review and approve
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Review and approve
                     </Col>
                     <Col className="details-value" sm={9}>
                         <a href="/">Classification and mapping by Viridium.AI</a>
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Notes
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Notes
                     </Col>
                     <Col className="details-value" sm={9}>
                         <Form.Control as="textarea" onChange={this.notesChanged} value={this.state.row.notes} rows={2} />
                     </Col>
                 </Row>
                 <Row className="details-action-row">
-                    <Col className="details-label" sm={8}>
+                    <Col className="v-v-details-label" sm={8}>
                     </Col>
-                    <Col className="details-btn" sm={4}>
+                    <Col className="v-details-btn" sm={4}>
                         <Button >Submit Data Request</Button>
                     </Col>
                 </Row>
@@ -157,16 +157,16 @@ class SourceConfigDetails extends React.Component<SourceDetailsProps, SourceDeta
     render() {
         return (
             <div className="v-panel">
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Data Source Name</Col>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Data Source Name</Col>
                     <Col className="details-value" sm={9}>{this.state.row.dataSourceName}</Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Description</Col>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Description</Col>
                     <Col className="details-value" sm={9}>{this.state.row.description}</Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>API Configuration</Col>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>API Configuration</Col>
                     <Col className="details-value" sm={6}>
                         <Form.Control type="text" id="apiUrl" onChange={this.onUpdateCategory} placeholder={"API URL"} />
                     </Col>
@@ -179,8 +179,8 @@ class SourceConfigDetails extends React.Component<SourceDetailsProps, SourceDeta
                         </Form.Select>
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>
                     </Col>
                     <Col className="details-value" sm={4}>
                         <Form.Control type="text" id="apiUrl" onChange={this.onUpdateCategory} placeholder={"User Name"} />
@@ -189,32 +189,32 @@ class SourceConfigDetails extends React.Component<SourceDetailsProps, SourceDeta
                         <Form.Control type="password" id="apiUrl" onChange={this.onUpdateCategory} placeholder={"Password"} />
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>
                     </Col>
                     <Col className="details-value" sm={9}>
                         <Form.Control type="text" value="Server Certificate Validation, Auth Headers, Parameters, Advanced" id="apiUrl" onChange={this.onUpdateCategory} placeholder={"User Name"} />
 
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Test Connection
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Test Connection
                     </Col>
                     <Col className="details-value" sm={9}>
                         <a href="/">Click here to test</a>
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={3}>Notes
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={3}>Notes
                     </Col>
                     <Col className="details-value" sm={9}>
                         <Form.Control as="textarea" onChange={this.notesChanged} value={this.state.row.notes} rows={2} />
                     </Col>
                 </Row>
-                <Row className="details-row">
-                    <Col className="details-label" sm={8}>
+                <Row className="v-details-row">
+                    <Col className="v-details-label" sm={8}>
                     </Col>
-                    <Col className="details-btn" sm={4}>
+                    <Col className="v-details-btn" sm={4}>
                         <Button >Submit</Button>
                     </Col>
                 </Row>
@@ -307,7 +307,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
                 {
                     selectedInventory ? <Toast >
                         <Toast.Header closeButton={false}>
-                            <strong className="me-auto">Data Inventory</strong>
+                            Data Inventory
                         </Toast.Header>
                         <Toast.Body>
                             <DataTable data={this.getTableData()} onSelectRow={this.onSelectInventoryItem} />
@@ -381,7 +381,7 @@ export const SourceManager = (props: any) => {
                         <div className="v-dashboard-panel">
                             <Toast >
                                 <Toast.Header closeButton={false}>
-                                    <strong className="me-auto">Import Data Inventory</strong>
+                                Import Data Inventory
                                 </Toast.Header>
                                 <Toast.Body>
                                     {<Row>

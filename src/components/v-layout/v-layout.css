@@ -1,10 +1,36 @@
+.v-layout {
+    --v-body-nav-width:20%;
+    --v-body-main-width:80%;
+    --v-body-main-padding: 0.5em;
+    --v-body-nav-padding: 0.5em;
+    --v-layout-footer-bg: rgba(240, 238, 238, 0.5);
+    --v-layout-footer-color: rgb(144, 144, 144);
+    --v-app-header-bg:rgb(245, 245, 245);
+    --v-notifications-bg:rgba(255, 0, 0, 0.802);
+}
+
+.v-panel-header {
+    display: flex;
+    padding: .5em 1em;
+    align-items: center;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.v-panel-header-title {
+    font-weight: bold;
+}
+
+.v-panel-header-actions {
+    display: flex;
+    align-items: center;
+}
+
 .v-layout .navbar-brand {
     margin-left: 0.4em;
 }
 
 .v-layout .nav-link {
-    margin-right: 1.0em;
-    margin-left: -1em;
+    margin: 0.0em 4px;
 }
 
 .v-layout .v-layout-header-end {
@@ -12,8 +38,8 @@
 }
 
 .v-layout .v-body-nav {
-    padding: 0.5em;
-    flex: 30%;
+    padding: var(--v-body-nav-padding);
+    flex: var(--v-body-nav-width);
     max-width: 300px;
     height: calc(100vh - 110px);
 }
@@ -23,11 +49,13 @@
 }
 
 .v-layout .v-body-main {
-    flex: 70%;
+    flex: var(--v-body-main-width);
+    padding: var(--v-body-main-padding);
     overflow: scroll;
 }
 
-.v-layout .viridium-logo {
+.v-layout .v-logo {
+    height: 36px;
     width: 36px;
     margin-right: 4px;
     margin-top: -8px;
@@ -54,7 +82,7 @@
     padding-inline-start: 4px;
 }
 .v-layout .v-app-header {
-    background-color: rgb(245, 245, 245);
+    background-color: var(--v-app-header-bg);
 }
 
 .v-layout .v-page-header {
@@ -69,41 +97,36 @@
 
 .v-layout .v-page-body {
     width: 100%;
-    display:flex;
 }
 
 .v-layout .v-page-footer {
     padding: 12px;
-    background-color: rgb(240, 238, 238);
+    background-color: var(--v-layout-footer-bg);
     position: fixed;
     bottom: 0;
     font-size: small;
-    color: rgb(144, 144, 144);
+    color: var(--v-layoyt-footer-color);
     width: 100%;
 }
 
 .v-layout .notifications-icon {
-    background-color:rgba(255, 0, 0, 0.802);
+    background-color: var(--v-notifications-bg);
     border-radius: 6px;
     color :white;
     padding:2px;
     margin-left: .2rem;
     position: relative;
-    top:-10px;
-    left:-6px;
+    top: 0px;
+    left:-10px;
 }
 .v-layout .actions-menu {
     margin-right: 1em;
-}
-
-.v-layout .toast {
-    width: 100%;
+    --bs-nav-link-color: black;
 }
 
 .v-layout .v-body-nav .toast {
     margin-bottom: 1rem;
 }
-
 
 .v-layout .offcanvas {
     width:30%;
@@ -124,4 +147,18 @@
 .v-layout .offcanvas .form-action {
     display: flex;
     margin-left: auto;
+}
+
+
+.offcanvas-header button {
+    min-width: 3em;   
+}
+
+.v-title-1 {
+    color:aquamarine;
+    font-weight: bold;
+}
+.v-title-2 {
+    color:rgb(252, 252, 252);
+    font-weight: bold;
 }

@@ -1,120 +1,62 @@
 import { useState } from "react";
-import { Toast, Form } from "react-bootstrap";
-import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { Question, Action } from "../../../components/v-wizard";
-import { getInventory, updateInventory } from "../../../config/v-config";
+import { Toast } from "react-bootstrap";
+import { Action } from "../../../components/v-flow/wizard";
+import { LayoutPage, ViridiumOffcanvas } from "../../../components/v-layout/v-layout";
+
+import { getCompany, updateCompany } from "../../../config/v-config";
 import { greenHouseApp } from "../ghg-app";
-import { Inventory } from "./model";
+import { Company, Inventory } from "../../viridium-model";
+import { EntityForm, EntityList } from "../../../components/v-entity/entity-form";
+import { VscAdd } from "react-icons/vsc";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 export const InventoryConfig = (props: any) => {
-    const [inventory, setInventory] = useState<Inventory>(getInventory());
+    const [company, setCompany] = useState<Company | undefined>(getCompany());
+    const [showForm, setShowForm] = useState(false);
+    const [selectedInventory, setSelectedInventory] = useState<Inventory | undefined>();
 
     const updateInv = (clone: any) => {
-        setInventory(Inventory.new(clone)!);
-        updateInventory(clone);
+        let inv = Inventory.new(clone);
+        console.log(inv);
+        if(company?.inventories) {
+            company.inventories.push(inv);
+            updateCompany(company);
+        }
+        setSelectedInventory(inv);
+
+        setShowForm(false);
     }
 
-    const onSelectContext = (evt: any) => {
-        let clone = { ...inventory };
-        clone.context = evt.target.value;
-        updateInv(clone);
-    }
-    const onSelectType = (evt: any) => {
-        let clone = { ...inventory };
-        clone.type = evt.target.value;
-        updateInv(clone);
-    }
-    const onSelectStandard = (evt: any) => {
-        let clone = { ...inventory };
-        clone.standard = evt.target.value;
-        updateInv(clone);
-    }
+    const addInventory = () => {
 
-    const onSelectRegulation = (evt: any) => {
-        let clone = { ...inventory };
-        clone.regulation = evt.target.value;
-        updateInv(clone);
+        setShowForm(true);
     }
+    const onSelect = (selected: any) => {
 
+    }
     const ui = () => {
         return (
             <LayoutPage microApp={greenHouseApp} >
-                        {
-                            inventory ? <Toast >
-                                <Toast.Header closeButton={false}>
-                                    <span className="me-auto">
-                                        Config Inventory
-                                    </span>
-                                    {inventory.company?.name}
-                                </Toast.Header>
-                                <Toast.Body>
-                                    <Question label="Sustainability Category">
-                                        <Form.Select value={inventory.context} onChange={onSelectContext} aria-label="">
-                                            <option>Select a category</option>
-                                            {
-                                                [{ id: "Carbon", label: "Carbon" },
-                                                { id: "Water", label: "Water" },
-                                                { id: "Waste", label: "Waste" }].map((v, idx) =>
-                                                    <option key={"type-" + idx} value={"" + v.id}>{v.label}</option>
-                                                )
-                                            }
-                                        </Form.Select>
-                                    </Question>
-                                    <Question label="Scope of Data Coverage">
-                                        <Form.Select value={inventory.type} onChange={onSelectType} aria-label="">
-                                            <option>Select a scope</option>
-                                            {
-                                                [
-                                                    { id: "Corporate", label: "Corporate" },
-                                                    { id: "Product", label: "Product" },
-                                                    { id: "Activity", label: "Activity" }
-                                                ].map((v, idx) =>
-                                                    <option key={"type-" + idx} value={"" + v.id}>{v.label}</option>
-                                                )
-                                            }
-                                        </Form.Select>
-                                    </Question>
-                                    <Question label="Standards">
-                                        <Form.Select value={inventory.standard} onChange={onSelectStandard} aria-label="">
-                                            <option>Select a standard</option>
-                                            {
-                                                [
-                                                    { id: "1", label: "ISSB" },
-                                                    { id: "2", label: "EU-PEF and EU-PEFCR" },
-                                                    { id: "3", label: "ISO/DIS 14067" },
-                                                    { id: "4", label: "GHG Protocol" },
-                                                    { id: "5", label: "PAS 2050" },
-                                                    { id: "6", label: "EPD" }
-                                                ].map((v, idx) =>
-                                                    <option key={"type-" + idx} value={"" + v.label}>{v.label}</option>
-                                                )
-                                            }
-                                        </Form.Select>
-                                    </Question>
-                                    <Question label="Regulations">
-                                        <Form.Select value={inventory.regulation} onChange={onSelectRegulation} aria-label="">
-                                            <option>Select a regulation</option>
-                                            {
-                                                [
-                                                    { id: "1", label: "NFRD (Non Financial Reporting Directive)" },
-                                                    { id: "2", label: "SFDR (Sustainable Finance Disclosure Regulation )" },
-                                                    { id: "3", label: "CRFD (Climate-related Financial Disclosure)" },
-                                                    { id: "4", label: "CBAM (Carbon Border Adjustment Mechanism)" },
-                                                    { id: "5", label: "ETS" },
-                                                    { id: "6", label: "Effort Sharing Regulation" },
-                                                    { id: "7", label: "Low Carbon Benchmark Regulation" }
-                                                ].map((v, idx) =>
-                                                    <option key={"type-" + idx} value={"" + v.label}>{v.label}</option>
-                                                )
-                                            }
-                                        </Form.Select>
-                                    </Question>
-                                    
-                                </Toast.Body>
-                                <Action inventory={inventory}
-                                        next={{ label: "Next", path: props.next }}
-                                        prev={{ label: "Back", path: props.prev }} />
-                            </Toast> : ""
-                        }
+                {
+                    company ? <Toast >
+                        <Toast.Header closeButton={false}>
+                            <span className="me-auto">
+                                Inventory for  {company?.name}
+                            </span>
+                            <span className="v-icon-button" onClick={addInventory} ><VscAdd /></span>
+                        </Toast.Header>
+                        <Toast.Body>
+                            <EntityList entities={company!.inventories ? company!.inventories : []}
+                                fieldDefs={Inventory.fieldDefs} title={"Inventories"} onSelect={onSelect} />
+                        </Toast.Body>
+                        <Action inventory={selectedInventory}
+                            next={{ label: "Next", path: props.next }}
+                            prev={{ label: "Back", path: props.prev }} />
+                    </Toast> : ""
+                }
+                <ViridiumOffcanvas showTitle={false} onHide={setShowForm} showForm={showForm} title={StringUtils.t("addInventory")} >
+                    <EntityForm inline={false} title="" fieldDefs={Inventory.fieldDefs}
+                        onSubmit={updateInv} />
+                </ViridiumOffcanvas>
             </LayoutPage >
         )
     }

@@ -4,10 +4,9 @@ import { homeApp } from './home-app';
 import "./welcome.css"
 
 export const WelcomePage = (props: any) => {
-    homeApp.getPageClass = () => "welcome-page";
     const ui = () => {
         return (
-            <LayoutPage microApp={homeApp}>
+            <LayoutPage pageName="welcome-page" microApp={homeApp}>
                 <Row className="home-content">
                     <Col className="home-splash">
                         <div>
@@ -21,7 +20,7 @@ export const WelcomePage = (props: any) => {
                         </div>
                     </Col>
                     <Col className="home-blurb">
-                        Learn how Acme creates the best personalized carbon report with the Viridium Data Cloud.
+                        Learn how Acme reduced carbon, waste, and costs with Viridium.AI
                         <div className="v-button">
                             Watch now
                         </div>

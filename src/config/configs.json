@@ -1,6 +1,7 @@
 {
     "title": "VIRIDIUM.AI",
-    "description": "POC configuration for Viridium Data Platform",
+    "description": "Viridium Sustainability Data Platform",
+    "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
     "jobs": [
         {
             "name": "daily-travel-job",
@@ -103,13 +104,28 @@
             "name": "Microsoft PowerBI",
             "description": "Microsoft cloud analytic platform",
             "status": "active",
+            "direction": "Outbound",
+            "type": "database",
             "config": {
                 "driver": "com.viridium.connector.microsoft.PowerBISink",
-                "properties": {
-                    "bucket": "string",
-                    "directory": "string",
-                    "partition": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    },
+                    {
+                        "name": "partition",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -117,17 +133,40 @@
             "name": "Oracle Database Table",
             "description": "Oracle Database",
             "status": "active",
+            "direction": "Both",
+            "type": "database",
             "config": {
                 "driver": "com.viridium.connector.oracle.TableSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "schema": "string",
-                    "table": "string",
-                    "fields": "array",
-                    "sql": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    },
+                    {
+                        "name": "table",
+                        "type": "string"
+                    },
+                    {
+                        "name": "sql",
+                        "type": "string"
+                    },
+                    {
+                        "name": "fields",
+                        "type": "array"
+                    }
+                ]
             }
         },
         {
@@ -135,15 +174,28 @@
             "name": "SAP BAPI",
             "description": "SAP API",
             "status": "active",
+            "direction": "Outbound",
+            "type": "api",
             "config": {
                 "driver": "com.viridium.connector.sap.BAPISink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "schema": "string",
-                    "fields": "array"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -151,17 +203,29 @@
             "name": "Hadoop HDFS",
             "description": "Apache Hadoop File System",
             "status": "active",
+            "type": "remote file",
+            "direction": "Both",
             "config": {
                 "name": "SAP API",
                 "driver": "com.viridium.connector.hadoop.PartitionSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string",
-                    "partitionBy": "string",
-                    "format": "csv|tsv|parquet",
-                    "fields": "array"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "schema",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -169,13 +233,32 @@
             "name": "Amazon S3",
             "description": "AWS cloud storage",
             "status": "active",
+            "type": "cloud file",
+            "direction": "Both",
             "config": {
                 "driver": "com.viridium.connector.aws.FileSink",
-                "properties": {
-                    "bucket": "string",
-                    "directory": "string",
-                    "partition": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -183,13 +266,32 @@
             "name": "SFTP File",
             "description": "FTP File",
             "status": "active",
+            "type": "remote file",
+            "direction": "Both",
             "config": {
                 "driver": "com.viridium.connector.ftp.FileSink",
-                "properties": {
-                    "url": "string",
-                    "username": "string",
-                    "password": "string"
-                }
+                "properties": [
+                    {
+                        "name": "url",
+                        "type": "string"
+                    },
+                    {
+                        "name": "username",
+                        "type": "string"
+                    },
+                    {
+                        "name": "password",
+                        "type": "password"
+                    },
+                    {
+                        "name": "bucket",
+                        "type": "string"
+                    },
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
         },
         {
@@ -197,13 +299,65 @@
             "name": "Download File",
             "description": "Download File",
             "status": "active",
+            "direction": "Outbound",
+            "type": "file",
             "config": {
                 "driver": "com.viridium.connector.ftp.FileSink",
-                "properties": {
-                    "format": "string",
-                    "directory": "string"
-                }
+                "properties": [
+                    {
+                        "name": "directory",
+                        "type": "string"
+                    }
+                ]
             }
+        },
+        {
+            "id": "8",
+            "name": "UK Carbon Intensity API",
+            "description": "National Grid’s Carbon Intensity API provides an indicative trend of regional carbon intensity of the electricity system in Great Britain (GB) up to 2 days ahead of real-time. It provides programmatic and timely access to both forecast and estimated carbon intensity data. The Carbon Intensity forecast includes CO2 emissions related to electricity generation only. The includes emissions from all large metered power stations, interconnector imports, transmission and distribution losses, and accounts for national electricity demand, embedded wind and solar generation.",
+            "status": "active",
+            "type": "API",
+            "direction": "Inbound",
+            "config": {
+                "url": "https://api.carbonintensity.org.uk",
+                "method": "Get",
+                "properties": []
+            },
+            "children": [
+                {
+                    "id": "8.intensity",
+                    "name": "Carbon Intensity",
+                    "description": "",
+                    "status": "active",
+                    "config": {
+                        "path": "/intensity",
+                        "method": "Get",
+                        "schema": {
+                            "data": [
+                                {
+                                    "from": "date",
+                                    "to": "date",
+                                    "intensity": {
+                                        "forecast": "number",
+                                        "actual": "number",
+                                        "index": "string"
+                                    }
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "id": "8.factors",
+                    "name": "Carbon Intensity Factor",
+                    "description": "",
+                    "status": "active",
+                    "config": {
+                        "path": "/factors",
+                        "method": "Get"
+                    }
+                }
+            ]
         }
     ],
     "inventory": [
@@ -592,7 +746,6 @@
         {
             "id": "2",
             "name": "Do you have any current Excel sheet-based sustainability workflows that use data from enterprise systems and need automation?"
-            
         },
         {
             "id": "3",
@@ -611,6 +764,104 @@
         {
             "id": "3",
             "name": "Manufacturing: Discrete"
+        }
+    ],
+    "inventoryCategories": [
+        {
+            "name": "energyConsumption",
+            "activities": [
+                "oil",
+                "coal",
+                "naturalGas",
+                "other"
+            ],
+            "units": [
+                "tonnes"
+            ]
+        },
+        {
+            "name": "industrialProcess",
+            "activities": [
+                "cementProduction",
+                "wasteTreatment",
+                "chemicalProduction",
+                "other"
+            ],
+            "units" : [
+                "tonnes"
+            ]
+        },
+        {
+            "name": "agricultural",
+            "activities": [
+                "fertilizer",
+                "livestockManagement",
+                "manureManagement",
+                "other"
+            ],
+            "units" : [
+                "kgs"
+            ]
+        },
+        {
+            "name": "landUse",
+            "activities": [
+                "deforestation",
+                "reforestation",
+                "Usage change",
+                "other"
+            ],
+            "units" : [
+                "acres", "squareMiles"
+            ]
+        },
+        {
+            "name": "wasteManagement",
+            "activities": [
+                "solidWaste",
+                "wasteWater",
+                "landfills",
+                "other"
+            ], 
+            "units" :  [
+                "kwh"
+            ]
+        },
+        {
+            "name": "transportation",
+            "activities": [
+                "car",
+                "truck",
+                "airplane",
+                "other"
+            ], 
+            "units" :  [
+                "km", "miles"
+            ]
+        },
+        {
+            "name": "building",
+            "activities": [
+                "heating",
+                "cooling",
+                "lighting",
+                "other"
+            ], 
+            "units" :  [
+                "kwh", "mwh"
+            ]
+        },
+        {
+            "name": "water",
+            "activities": [
+                "pumping",
+                "treating",
+                "distributing",
+                "other"
+            ], 
+            "units" :  [
+                "tonne", "kg"
+            ]
         }
     ],
     "categories": {
@@ -1194,142 +1445,1461 @@
             ]
         }
     ],
-    "companies": [
+    "countries": [
         {
-            "id": "VA12312i3",
-            "name": "Big Airport",
-            "industry": "Transportation",
-            "viridiumCategory": "",
-            "lastUpdatedDate": 12213212312,
-            "lastUpdatedBy": "vid",
-            "sourceId": "SF123141",
-            "source": "Source CRM Account ID",
-            "street1": "555, Airport Way",
-            "city": "Big City",
-            "state": "CA",
-            "zipCode": "45678",
-            "firstName": "John",
-            "lastName": "Doe",
-            "email": "john.deo@viridium.ai",
-            "phone": "425-456-7896",
-            "sites": [
-                {
-                    "id": "2",
-                    "name": "San Jose",
-                    "companyId": "VA12312i3"
-                },
-                {
-                    "id": "3",
-                    "name": "Dallas",
-                    "companyId": "VA12312i3"
-                },
-                {
-                    "id": "1",
-                    "name": "Chicago",
-                    "companyId": "VA12312i3"
-                }
-            ]
+            "name": "Afghanistan",
+            "code": "AF"
         },
         {
-            "id": "VA12312i4",
-            "name": "Acme Appliances",
-            "industry": "Manufacturing",
-            "viridiumCategory": "",
-            "lastUpdatedDate": 12213212312,
-            "lastUpdatedBy": "vid",
-            "sourceId": "CRM23145",
-            "source": "Source CRM Account ID",
-            "street1": "555, Water Way",
-            "city": "Las Vegas",
-            "state": "NV",
-            "zipCode": "56789",
-            "firstName": "Joe",
-            "lastName": "Bro",
-            "email": "joe.bro@drinkaway.ai",
-            "phone": "345-456-2314",
-            "sites": [
-                {
-                    "id": "2",
-                    "name": "Georgia",
-                    "companyId": "VA12312i4"
-                },
-                {
-                    "id": "3",
-                    "name": "Denver",
-                    "companyId": "VA12312i4"
-                },
-                {
-                    "id": "1",
-                    "name": "Paris",
-                    "companyId": "VA12312i4"
-                }
-            ]
+            "name": "Åland Islands",
+            "code": "AX"
         },
         {
-            "id": "VA12312i5",
-            "name": "Tesla",
-            "industry": "Manufactory",
-            "viridiumCategory": "",
-            "lastUpdatedDate": 12213212312,
-            "lastUpdatedBy": "vid",
-            "sourceId": "CRM23145",
-            "source": "Source CRM Account ID",
-            "street1": "555, Tesla Way",
-            "city": "Austin",
-            "state": "TX",
-            "zipCode": "56789",
-            "firstName": "Elon",
-            "lastName": "Dusk",
-            "email": "joe.bro@drinkaway.ai",
-            "phone": "345-456-2314",
-            "sites": [
-                {
-                    "id": "1",
-                    "name": "Headquarters",
-                    "companyId": "VA12312i5",
-                    "location": "Austin TX, USA"
-                },
-                {
-                    "id": "2",
-                    "name": "Giga-Factory Fremont",
-                    "companyId": "VA12312i5",
-                    "location": "Fremont CA, USA"
-                },
-                {
-                    "id": "3",
-                    "name": "Giga-Factory Berlin",
-                    "companyId": "VA12312i5",
-                    "location": "Berlin, DEU"
-                },
-                {
-                    "id": "4",
-                    "name": "Giga-Factory Shanghai",
-                    "companyId": "VA12312i5",
-                    "location": "Shanghai, China"
-                },
-                {
-                    "id": "5",
-                    "name": "Giga-Factory Austin",
-                    "companyId": "VA12312i5",
-                    "location": "Austin TX, USA"
-                }
-            ]
+            "name": "Albania",
+            "code": "AL"
+        },
+        {
+            "name": "Algeria",
+            "code": "DZ"
+        },
+        {
+            "name": "American Samoa",
+            "code": "AS"
+        },
+        {
+            "name": "AndorrA",
+            "code": "AD"
+        },
+        {
+            "name": "Angola",
+            "code": "AO"
+        },
+        {
+            "name": "Anguilla",
+            "code": "AI"
+        },
+        {
+            "name": "Antarctica",
+            "code": "AQ"
+        },
+        {
+            "name": "Antigua and Barbuda",
+            "code": "AG"
+        },
+        {
+            "name": "Argentina",
+            "code": "AR"
+        },
+        {
+            "name": "Armenia",
+            "code": "AM"
+        },
+        {
+            "name": "Aruba",
+            "code": "AW"
+        },
+        {
+            "name": "Australia",
+            "code": "AU"
+        },
+        {
+            "name": "Austria",
+            "code": "AT"
+        },
+        {
+            "name": "Azerbaijan",
+            "code": "AZ"
+        },
+        {
+            "name": "Bahamas",
+            "code": "BS"
+        },
+        {
+            "name": "Bahrain",
+            "code": "BH"
+        },
+        {
+            "name": "Bangladesh",
+            "code": "BD"
+        },
+        {
+            "name": "Barbados",
+            "code": "BB"
+        },
+        {
+            "name": "Belarus",
+            "code": "BY"
+        },
+        {
+            "name": "Belgium",
+            "code": "BE"
+        },
+        {
+            "name": "Belize",
+            "code": "BZ"
+        },
+        {
+            "name": "Benin",
+            "code": "BJ"
+        },
+        {
+            "name": "Bermuda",
+            "code": "BM"
+        },
+        {
+            "name": "Bhutan",
+            "code": "BT"
+        },
+        {
+            "name": "Bolivia",
+            "code": "BO"
+        },
+        {
+            "name": "Bosnia and Herzegovina",
+            "code": "BA"
+        },
+        {
+            "name": "Botswana",
+            "code": "BW"
+        },
+        {
+            "name": "Bouvet Island",
+            "code": "BV"
+        },
+        {
+            "name": "Brazil",
+            "code": "BR"
+        },
+        {
+            "name": "British Indian Ocean Territory",
+            "code": "IO"
+        },
+        {
+            "name": "Brunei Darussalam",
+            "code": "BN"
+        },
+        {
+            "name": "Bulgaria",
+            "code": "BG"
+        },
+        {
+            "name": "Burkina Faso",
+            "code": "BF"
+        },
+        {
+            "name": "Burundi",
+            "code": "BI"
+        },
+        {
+            "name": "Cambodia",
+            "code": "KH"
+        },
+        {
+            "name": "Cameroon",
+            "code": "CM"
+        },
+        {
+            "name": "Canada",
+            "code": "CA"
+        },
+        {
+            "name": "Cape Verde",
+            "code": "CV"
+        },
+        {
+            "name": "Cayman Islands",
+            "code": "KY"
+        },
+        {
+            "name": "Central African Republic",
+            "code": "CF"
+        },
+        {
+            "name": "Chad",
+            "code": "TD"
+        },
+        {
+            "name": "Chile",
+            "code": "CL"
+        },
+        {
+            "name": "China",
+            "code": "CN"
+        },
+        {
+            "name": "Christmas Island",
+            "code": "CX"
+        },
+        {
+            "name": "Cocos (Keeling) Islands",
+            "code": "CC"
+        },
+        {
+            "name": "Colombia",
+            "code": "CO"
+        },
+        {
+            "name": "Comoros",
+            "code": "KM"
+        },
+        {
+            "name": "Congo",
+            "code": "CG"
+        },
+        {
+            "name": "Congo, The Democratic Republic of the",
+            "code": "CD"
+        },
+        {
+            "name": "Cook Islands",
+            "code": "CK"
+        },
+        {
+            "name": "Costa Rica",
+            "code": "CR"
+        },
+        {
+            "name": "Cote D\"Ivoire",
+            "code": "CI"
+        },
+        {
+            "name": "Croatia",
+            "code": "HR"
+        },
+        {
+            "name": "Cuba",
+            "code": "CU"
+        },
+        {
+            "name": "Cyprus",
+            "code": "CY"
+        },
+        {
+            "name": "Czech Republic",
+            "code": "CZ"
+        },
+        {
+            "name": "Denmark",
+            "code": "DK"
+        },
+        {
+            "name": "Djibouti",
+            "code": "DJ"
+        },
+        {
+            "name": "Dominica",
+            "code": "DM"
+        },
+        {
+            "name": "Dominican Republic",
+            "code": "DO"
+        },
+        {
+            "name": "Ecuador",
+            "code": "EC"
+        },
+        {
+            "name": "Egypt",
+            "code": "EG"
+        },
+        {
+            "name": "El Salvador",
+            "code": "SV"
+        },
+        {
+            "name": "Equatorial Guinea",
+            "code": "GQ"
+        },
+        {
+            "name": "Eritrea",
+            "code": "ER"
+        },
+        {
+            "name": "Estonia",
+            "code": "EE"
+        },
+        {
+            "name": "Ethiopia",
+            "code": "ET"
+        },
+        {
+            "name": "Falkland Islands (Malvinas)",
+            "code": "FK"
+        },
+        {
+            "name": "Faroe Islands",
+            "code": "FO"
+        },
+        {
+            "name": "Fiji",
+            "code": "FJ"
+        },
+        {
+            "name": "Finland",
+            "code": "FI"
+        },
+        {
+            "name": "France",
+            "code": "FR"
+        },
+        {
+            "name": "French Guiana",
+            "code": "GF"
+        },
+        {
+            "name": "French Polynesia",
+            "code": "PF"
+        },
+        {
+            "name": "French Southern Territories",
+            "code": "TF"
+        },
+        {
+            "name": "Gabon",
+            "code": "GA"
+        },
+        {
+            "name": "Gambia",
+            "code": "GM"
+        },
+        {
+            "name": "Georgia",
+            "code": "GE"
+        },
+        {
+            "name": "Germany",
+            "code": "DE"
+        },
+        {
+            "name": "Ghana",
+            "code": "GH"
+        },
+        {
+            "name": "Gibraltar",
+            "code": "GI"
+        },
+        {
+            "name": "Greece",
+            "code": "GR"
+        },
+        {
+            "name": "Greenland",
+            "code": "GL"
+        },
+        {
+            "name": "Grenada",
+            "code": "GD"
+        },
+        {
+            "name": "Guadeloupe",
+            "code": "GP"
+        },
+        {
+            "name": "Guam",
+            "code": "GU"
+        },
+        {
+            "name": "Guatemala",
+            "code": "GT"
+        },
+        {
+            "name": "Guernsey",
+            "code": "GG"
+        },
+        {
+            "name": "Guinea",
+            "code": "GN"
+        },
+        {
+            "name": "Guinea-Bissau",
+            "code": "GW"
+        },
+        {
+            "name": "Guyana",
+            "code": "GY"
+        },
+        {
+            "name": "Haiti",
+            "code": "HT"
+        },
+        {
+            "name": "Heard Island and Mcdonald Islands",
+            "code": "HM"
+        },
+        {
+            "name": "Holy See (Vatican City State)",
+            "code": "VA"
+        },
+        {
+            "name": "Honduras",
+            "code": "HN"
+        },
+        {
+            "name": "Hong Kong",
+            "code": "HK"
+        },
+        {
+            "name": "Hungary",
+            "code": "HU"
+        },
+        {
+            "name": "Iceland",
+            "code": "IS"
+        },
+        {
+            "name": "India",
+            "code": "IN"
+        },
+        {
+            "name": "Indonesia",
+            "code": "ID"
+        },
+        {
+            "name": "Iran, Islamic Republic Of",
+            "code": "IR"
+        },
+        {
+            "name": "Iraq",
+            "code": "IQ"
+        },
+        {
+            "name": "Ireland",
+            "code": "IE"
+        },
+        {
+            "name": "Isle of Man",
+            "code": "IM"
+        },
+        {
+            "name": "Israel",
+            "code": "IL"
+        },
+        {
+            "name": "Italy",
+            "code": "IT"
+        },
+        {
+            "name": "Jamaica",
+            "code": "JM"
+        },
+        {
+            "name": "Japan",
+            "code": "JP"
+        },
+        {
+            "name": "Jersey",
+            "code": "JE"
+        },
+        {
+            "name": "Jordan",
+            "code": "JO"
+        },
+        {
+            "name": "Kazakhstan",
+            "code": "KZ"
+        },
+        {
+            "name": "Kenya",
+            "code": "KE"
+        },
+        {
+            "name": "Kiribati",
+            "code": "KI"
+        },
+        {
+            "name": "Korea, Democratic People\"S Republic of",
+            "code": "KP"
+        },
+        {
+            "name": "Korea, Republic of",
+            "code": "KR"
+        },
+        {
+            "name": "Kuwait",
+            "code": "KW"
+        },
+        {
+            "name": "Kyrgyzstan",
+            "code": "KG"
+        },
+        {
+            "name": "Lao People\"S Democratic Republic",
+            "code": "LA"
+        },
+        {
+            "name": "Latvia",
+            "code": "LV"
+        },
+        {
+            "name": "Lebanon",
+            "code": "LB"
+        },
+        {
+            "name": "Lesotho",
+            "code": "LS"
+        },
+        {
+            "name": "Liberia",
+            "code": "LR"
+        },
+        {
+            "name": "Libyan Arab Jamahiriya",
+            "code": "LY"
+        },
+        {
+            "name": "Liechtenstein",
+            "code": "LI"
+        },
+        {
+            "name": "Lithuania",
+            "code": "LT"
+        },
+        {
+            "name": "Luxembourg",
+            "code": "LU"
+        },
+        {
+            "name": "Macao",
+            "code": "MO"
+        },
+        {
+            "name": "Macedonia, The Former Yugoslav Republic of",
+            "code": "MK"
+        },
+        {
+            "name": "Madagascar",
+            "code": "MG"
+        },
+        {
+            "name": "Malawi",
+            "code": "MW"
+        },
+        {
+            "name": "Malaysia",
+            "code": "MY"
+        },
+        {
+            "name": "Maldives",
+            "code": "MV"
+        },
+        {
+            "name": "Mali",
+            "code": "ML"
+        },
+        {
+            "name": "Malta",
+            "code": "MT"
+        },
+        {
+            "name": "Marshall Islands",
+            "code": "MH"
+        },
+        {
+            "name": "Martinique",
+            "code": "MQ"
+        },
+        {
+            "name": "Mauritania",
+            "code": "MR"
+        },
+        {
+            "name": "Mauritius",
+            "code": "MU"
+        },
+        {
+            "name": "Mayotte",
+            "code": "YT"
+        },
+        {
+            "name": "Mexico",
+            "code": "MX"
+        },
+        {
+            "name": "Micronesia, Federated States of",
+            "code": "FM"
+        },
+        {
+            "name": "Moldova, Republic of",
+            "code": "MD"
+        },
+        {
+            "name": "Monaco",
+            "code": "MC"
+        },
+        {
+            "name": "Mongolia",
+            "code": "MN"
+        },
+        {
+            "name": "Montserrat",
+            "code": "MS"
+        },
+        {
+            "name": "Morocco",
+            "code": "MA"
+        },
+        {
+            "name": "Mozambique",
+            "code": "MZ"
+        },
+        {
+            "name": "Myanmar",
+            "code": "MM"
+        },
+        {
+            "name": "Namibia",
+            "code": "NA"
+        },
+        {
+            "name": "Nauru",
+            "code": "NR"
+        },
+        {
+            "name": "Nepal",
+            "code": "NP"
+        },
+        {
+            "name": "Netherlands",
+            "code": "NL"
+        },
+        {
+            "name": "Netherlands Antilles",
+            "code": "AN"
+        },
+        {
+            "name": "New Caledonia",
+            "code": "NC"
+        },
+        {
+            "name": "New Zealand",
+            "code": "NZ"
+        },
+        {
+            "name": "Nicaragua",
+            "code": "NI"
+        },
+        {
+            "name": "Niger",
+            "code": "NE"
+        },
+        {
+            "name": "Nigeria",
+            "code": "NG"
+        },
+        {
+            "name": "Niue",
+            "code": "NU"
+        },
+        {
+            "name": "Norfolk Island",
+            "code": "NF"
+        },
+        {
+            "name": "Northern Mariana Islands",
+            "code": "MP"
+        },
+        {
+            "name": "Norway",
+            "code": "NO"
+        },
+        {
+            "name": "Oman",
+            "code": "OM"
+        },
+        {
+            "name": "Pakistan",
+            "code": "PK"
+        },
+        {
+            "name": "Palau",
+            "code": "PW"
+        },
+        {
+            "name": "Palestinian Territory, Occupied",
+            "code": "PS"
+        },
+        {
+            "name": "Panama",
+            "code": "PA"
+        },
+        {
+            "name": "Papua New Guinea",
+            "code": "PG"
+        },
+        {
+            "name": "Paraguay",
+            "code": "PY"
+        },
+        {
+            "name": "Peru",
+            "code": "PE"
+        },
+        {
+            "name": "Philippines",
+            "code": "PH"
+        },
+        {
+            "name": "Pitcairn",
+            "code": "PN"
+        },
+        {
+            "name": "Poland",
+            "code": "PL"
+        },
+        {
+            "name": "Portugal",
+            "code": "PT"
+        },
+        {
+            "name": "Puerto Rico",
+            "code": "PR"
+        },
+        {
+            "name": "Qatar",
+            "code": "QA"
+        },
+        {
+            "name": "Reunion",
+            "code": "RE"
+        },
+        {
+            "name": "Romania",
+            "code": "RO"
+        },
+        {
+            "name": "Russian Federation",
+            "code": "RU"
+        },
+        {
+            "name": "RWANDA",
+            "code": "RW"
+        },
+        {
+            "name": "Saint Helena",
+            "code": "SH"
+        },
+        {
+            "name": "Saint Kitts and Nevis",
+            "code": "KN"
+        },
+        {
+            "name": "Saint Lucia",
+            "code": "LC"
+        },
+        {
+            "name": "Saint Pierre and Miquelon",
+            "code": "PM"
+        },
+        {
+            "name": "Saint Vincent and the Grenadines",
+            "code": "VC"
+        },
+        {
+            "name": "Samoa",
+            "code": "WS"
+        },
+        {
+            "name": "San Marino",
+            "code": "SM"
+        },
+        {
+            "name": "Sao Tome and Principe",
+            "code": "ST"
+        },
+        {
+            "name": "Saudi Arabia",
+            "code": "SA"
+        },
+        {
+            "name": "Senegal",
+            "code": "SN"
+        },
+        {
+            "name": "Serbia and Montenegro",
+            "code": "CS"
+        },
+        {
+            "name": "Seychelles",
+            "code": "SC"
+        },
+        {
+            "name": "Sierra Leone",
+            "code": "SL"
+        },
+        {
+            "name": "Singapore",
+            "code": "SG"
+        },
+        {
+            "name": "Slovakia",
+            "code": "SK"
+        },
+        {
+            "name": "Slovenia",
+            "code": "SI"
+        },
+        {
+            "name": "Solomon Islands",
+            "code": "SB"
+        },
+        {
+            "name": "Somalia",
+            "code": "SO"
+        },
+        {
+            "name": "South Africa",
+            "code": "ZA"
+        },
+        {
+            "name": "South Georgia and the South Sandwich Islands",
+            "code": "GS"
+        },
+        {
+            "name": "Spain",
+            "code": "ES"
+        },
+        {
+            "name": "Sri Lanka",
+            "code": "LK"
+        },
+        {
+            "name": "Sudan",
+            "code": "SD"
+        },
+        {
+            "name": "Suriname",
+            "code": "SR"
+        },
+        {
+            "name": "Svalbard and Jan Mayen",
+            "code": "SJ"
+        },
+        {
+            "name": "Swaziland",
+            "code": "SZ"
+        },
+        {
+            "name": "Sweden",
+            "code": "SE"
+        },
+        {
+            "name": "Switzerland",
+            "code": "CH"
+        },
+        {
+            "name": "Syrian Arab Republic",
+            "code": "SY"
+        },
+        {
+            "name": "Taiwan, Province of China",
+            "code": "TW"
+        },
+        {
+            "name": "Tajikistan",
+            "code": "TJ"
+        },
+        {
+            "name": "Tanzania, United Republic of",
+            "code": "TZ"
+        },
+        {
+            "name": "Thailand",
+            "code": "TH"
+        },
+        {
+            "name": "Timor-Leste",
+            "code": "TL"
+        },
+        {
+            "name": "Togo",
+            "code": "TG"
+        },
+        {
+            "name": "Tokelau",
+            "code": "TK"
+        },
+        {
+            "name": "Tonga",
+            "code": "TO"
+        },
+        {
+            "name": "Trinidad and Tobago",
+            "code": "TT"
+        },
+        {
+            "name": "Tunisia",
+            "code": "TN"
+        },
+        {
+            "name": "Turkey",
+            "code": "TR"
+        },
+        {
+            "name": "Turkmenistan",
+            "code": "TM"
+        },
+        {
+            "name": "Turks and Caicos Islands",
+            "code": "TC"
+        },
+        {
+            "name": "Tuvalu",
+            "code": "TV"
+        },
+        {
+            "name": "Uganda",
+            "code": "UG"
+        },
+        {
+            "name": "Ukraine",
+            "code": "UA"
+        },
+        {
+            "name": "United Arab Emirates",
+            "code": "AE"
+        },
+        {
+            "name": "United Kingdom",
+            "code": "GB"
+        },
+        {
+            "name": "United States",
+            "code": "US"
+        },
+        {
+            "name": "United States Minor Outlying Islands",
+            "code": "UM"
+        },
+        {
+            "name": "Uruguay",
+            "code": "UY"
+        },
+        {
+            "name": "Uzbekistan",
+            "code": "UZ"
+        },
+        {
+            "name": "Vanuatu",
+            "code": "VU"
+        },
+        {
+            "name": "Venezuela",
+            "code": "VE"
+        },
+        {
+            "name": "Viet Nam",
+            "code": "VN"
+        },
+        {
+            "name": "Virgin Islands, British",
+            "code": "VG"
+        },
+        {
+            "name": "Virgin Islands, U.S.",
+            "code": "VI"
+        },
+        {
+            "name": "Wallis and Futuna",
+            "code": "WF"
+        },
+        {
+            "name": "Western Sahara",
+            "code": "EH"
+        },
+        {
+            "name": "Yemen",
+            "code": "YE"
+        },
+        {
+            "name": "Zambia",
+            "code": "ZM"
+        },
+        {
+            "name": "Zimbabwe",
+            "code": "ZW"
         }
     ],
+    "locationTypes": [
+        {
+            "name": "officeBuilding"
+        },
+        {
+            "name": "warehouse"
+        },
+        {
+            "name": "store"
+        },
+        {
+            "name": "factory"
+        },
+        {
+            "name": "farm"
+        }
+    ],
+    "industries": [
+        {
+            "name": "Industry "
+        },
+        {
+            "name": "Accounting "
+        },
+        {
+            "name": "Airlines/Aviation"
+        },
+        {
+            "name": "Alternative Dispute Resolution"
+        },
+        {
+            "name": "Alternative Medicine"
+        },
+        {
+            "name": "Animation"
+        },
+        {
+            "name": "Apparel/Fashion"
+        },
+        {
+            "name": "Architecture/Planning"
+        },
+        {
+            "name": "Arts/Crafts"
+        },
+        {
+            "name": "Automotive"
+        },
+        {
+            "name": "Aviation/Aerospace"
+        },
+        {
+            "name": "Banking/Mortgage"
+        },
+        {
+            "name": "Biotechnology/Greentech"
+        },
+        {
+            "name": "Broadcast Media"
+        },
+        {
+            "name": "Building Materials"
+        },
+        {
+            "name": "Business Supplies/Equipment"
+        },
+        {
+            "name": "Capital Markets/Hedge Fund/Private Equity"
+        },
+        {
+            "name": "Chemicals"
+        },
+        {
+            "name": "Civic/Social Organization"
+        },
+        {
+            "name": "Civil Engineering"
+        },
+        {
+            "name": "Commercial Real Estate"
+        },
+        {
+            "name": "Computer Games"
+        },
+        {
+            "name": "Computer Hardware"
+        },
+        {
+            "name": "Computer Networking"
+        },
+        {
+            "name": "Computer Software/Engineering"
+        },
+        {
+            "name": "Computer/Network Security"
+        },
+        {
+            "name": "Construction"
+        },
+        {
+            "name": "Consumer Electronics"
+        },
+        {
+            "name": "Consumer Goods"
+        },
+        {
+            "name": "Consumer Services"
+        },
+        {
+            "name": "Cosmetics"
+        },
+        {
+            "name": "Dairy"
+        },
+        {
+            "name": "Defense/Space"
+        },
+        {
+            "name": "Design"
+        },
+        {
+            "name": "E-Learning"
+        },
+        {
+            "name": "Education Management"
+        },
+        {
+            "name": "Electrical/Electronic Manufacturing"
+        },
+        {
+            "name": "Entertainment/Movie Production"
+        },
+        {
+            "name": "Environmental Services"
+        },
+        {
+            "name": "Events Services"
+        },
+        {
+            "name": "Executive Office"
+        },
+        {
+            "name": "Facilities Services"
+        },
+        {
+            "name": "Farming"
+        },
+        {
+            "name": "Financial Services"
+        },
+        {
+            "name": "Fine Art"
+        },
+        {
+            "name": "Fishery"
+        },
+        {
+            "name": "Food Production"
+        },
+        {
+            "name": "Food/Beverages"
+        },
+        {
+            "name": "Fundraising"
+        },
+        {
+            "name": "Furniture"
+        },
+        {
+            "name": "Gambling/Casinos"
+        },
+        {
+            "name": "Glass/Ceramics/Concrete"
+        },
+        {
+            "name": "Government Administration"
+        },
+        {
+            "name": "Government Relations"
+        },
+        {
+            "name": "Graphic Design/Web Design"
+        },
+        {
+            "name": "Health/Fitness"
+        },
+        {
+            "name": "Higher Education/Acadamia"
+        },
+        {
+            "name": "Hospital/Health Care"
+        },
+        {
+            "name": "Hospitality"
+        },
+        {
+            "name": "Human Resources/HR"
+        },
+        {
+            "name": "Import/Export"
+        },
+        {
+            "name": "Individual/Family Services"
+        },
+        {
+            "name": "Industrial Automation"
+        },
+        {
+            "name": "Information Services"
+        },
+        {
+            "name": "Information Technology/IT"
+        },
+        {
+            "name": "Insurance"
+        },
+        {
+            "name": "International Affairs"
+        },
+        {
+            "name": "International Trade/Development"
+        },
+        {
+            "name": "Internet"
+        },
+        {
+            "name": "Investment Banking/Venture"
+        },
+        {
+            "name": "Investment Management/Hedge Fund/Private Equity"
+        },
+        {
+            "name": "Judiciary"
+        },
+        {
+            "name": "Law Enforcement"
+        },
+        {
+            "name": "Law Practice/Law Firms"
+        },
+        {
+            "name": "Legal Services"
+        },
+        {
+            "name": "Legislative Office"
+        },
+        {
+            "name": "Leisure/Travel"
+        },
+        {
+            "name": "Library"
+        },
+        {
+            "name": "Logistics/Procurement"
+        },
+        {
+            "name": "Luxury Goods/Jewelry"
+        },
+        {
+            "name": "Machinery"
+        },
+        {
+            "name": "Management Consulting"
+        },
+        {
+            "name": "Maritime"
+        },
+        {
+            "name": "Market Research"
+        },
+        {
+            "name": "Marketing/Advertising/Sales"
+        },
+        {
+            "name": "Mechanical or Industrial Engineering"
+        },
+        {
+            "name": "Media Production"
+        },
+        {
+            "name": "Medical Equipment"
+        },
+        {
+            "name": "Medical Practice"
+        },
+        {
+            "name": "Mental Health Care"
+        },
+        {
+            "name": "Military Industry"
+        },
+        {
+            "name": "Mining/Metals"
+        },
+        {
+            "name": "Motion Pictures/Film"
+        },
+        {
+            "name": "Museums/Institutions"
+        },
+        {
+            "name": "Music"
+        },
+        {
+            "name": "Nanotechnology"
+        },
+        {
+            "name": "Newspapers/Journalism"
+        },
+        {
+            "name": "Non-Profit/Volunteering"
+        },
+        {
+            "name": "Oil/Energy/Solar/Greentech"
+        },
+        {
+            "name": "Online Publishing"
+        },
+        {
+            "name": "Other Industry"
+        },
+        {
+            "name": "Outsourcing/Offshoring"
+        },
+        {
+            "name": "Package/Freight Delivery"
+        },
+        {
+            "name": "Packaging/Containers"
+        },
+        {
+            "name": "Paper/Forest Products"
+        },
+        {
+            "name": "Performing Arts"
+        },
+        {
+            "name": "Pharmaceuticals"
+        },
+        {
+            "name": "Philanthropy"
+        },
+        {
+            "name": "Photography"
+        },
+        {
+            "name": "Plastics"
+        },
+        {
+            "name": "Political Organization"
+        },
+        {
+            "name": "Primary/Secondary Education"
+        },
+        {
+            "name": "Printing"
+        },
+        {
+            "name": "Professional Training"
+        },
+        {
+            "name": "Program Development"
+        },
+        {
+            "name": "Public Relations/PR"
+        },
+        {
+            "name": "Public Safety"
+        },
+        {
+            "name": "Publishing Industry"
+        },
+        {
+            "name": "Railroad Manufacture"
+        },
+        {
+            "name": "Ranching"
+        },
+        {
+            "name": "Real Estate/Mortgage"
+        },
+        {
+            "name": "Recreational Facilities/Services"
+        },
+        {
+            "name": "Religious Institutions"
+        },
+        {
+            "name": "Renewables/Environment"
+        },
+        {
+            "name": "Research Industry"
+        },
+        {
+            "name": "Restaurants"
+        },
+        {
+            "name": "Retail Industry"
+        },
+        {
+            "name": "Security/Investigations"
+        },
+        {
+            "name": "Semiconductors"
+        },
+        {
+            "name": "Shipbuilding"
+        },
+        {
+            "name": "Sporting Goods"
+        },
+        {
+            "name": "Sports"
+        },
+        {
+            "name": "Staffing/Recruiting"
+        },
+        {
+            "name": "Supermarkets"
+        },
+        {
+            "name": "Telecommunications"
+        },
+        {
+            "name": "Textiles"
+        },
+        {
+            "name": "Think Tanks"
+        },
+        {
+            "name": "Tobacco"
+        },
+        {
+            "name": "Translation/Localization"
+        },
+        {
+            "name": "Transportation"
+        },
+        {
+            "name": "Utilities"
+        },
+        {
+            "name": "Venture Capital/VC"
+        },
+        {
+            "name": "Veterinary"
+        },
+        {
+            "name": "Warehousing"
+        },
+        {
+            "name": "Wholesale"
+        },
+        {
+            "name": "Wine/Spirits"
+        },
+        {
+            "name": "Wireless"
+        },
+        {
+            "name": "Writing/Editing"
+        }
+    ],
+    "companies": [],
     "reportMockData": {
         "id": "1",
         "headers": [
             {
                 "type": "text",
-                "text": "Progress"
+                "text": "Category",
+                "hint": "Inventory category"
             },
             {
                 "type": "text",
-                "text": "tCO2e"
+                "text": "tCO2e",
+                "hint": "tonnes (t) of carbon dioxide (CO2) equivalent (e)"
             },
             {
                 "type": "text",
-                "text": "Scope"
+                "text": "Scope",
+                "hint": "Scope 1, 2, or 3"
             }
         ],
         "rows": [
@@ -1403,33 +2973,75 @@
             }
         ]
     },
-    "notifications" : [
+    "notifications": [
         {
-            "id" : "1",
-            "date":"02-09-2021",
-            "subject":"Data has been updated",
-            "to":"anping.wang@gmail.com",
-            "from":"sarah",
-            "body":"This is good notification",
-            "priority":"1"
+            "id": "1",
+            "date": "02-09-2021",
+            "subject": "Data has been updated",
+            "to": "anping.wang@gmail.com",
+            "from": "sarah",
+            "body": "This is good notification",
+            "priority": "1"
         },
         {
-            "id" : "2",
-            "date":"04-09-2021",
-            "subject":"Data has been reviewed",
-            "to":"anping.wang@gmail.com",
-            "from":"Niraji",
-            "body":"This is good notification",
-            "priority":"1"
+            "id": "2",
+            "date": "04-09-2021",
+            "subject": "Data has been reviewed",
+            "to": "anping.wang@gmail.com",
+            "from": "Niraji",
+            "body": "This is good notification",
+            "priority": "1"
         },
         {
-            "id" : "3",
-            "date":"02-09-2021",
-            "subject":"Data has been updated",
-            "to":"anping.wang@gmail.com",
-            "from":"Sarah",
-            "body":"This is good notification",
-            "priority":"2"
+            "id": "3",
+            "date": "02-09-2021",
+            "subject": "Data has been updated",
+            "to": "anping.wang@gmail.com",
+            "from": "Sarah",
+            "body": "This is good notification",
+            "priority": "2"
+        }
+    ],
+    "help-content": [
+        {
+            "id": "0",
+            "url": "./resources/help/introduction.html",
+            "label": "Introduction"
+        },
+        {
+            "id": "1",
+            "url": "./resources/help/scope1.html",
+            "label": "Scope 1"
+        },
+        {
+            "id": "2",
+            "url": "./resources/help/scope2.html",
+            "label": "Scope 2"
+        },
+        {
+            "id": "3",
+            "url": "./resources/help/scope3.html",
+            "label": "Scope 3"
+        },
+        {
+            "id": "4",
+            "url": "./resources/help/data-sources.html",
+            "label": "Data Sources"
+        },
+        {
+            "id": "5",
+            "url": "./resources/help/connectors.html",
+            "label": "Connectors"
+        },
+        {
+            "id": "6",
+            "url": "./resources/help/data-mappings.html",
+            "label": "Data Mapping"
+        },
+        {
+            "id": "7",
+            "url": "./resources/help/emission-factors.html",
+            "label": "Emission Factors"
         }
     ]
 }

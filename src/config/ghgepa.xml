@@ -1,0 +1,787 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GHG xmlns="http://www.ccdsupport.com/schema/ghg">
+    <FacilitySiteInformation>
+        <FrsID>110017419523</FrsID>
+        <OrisCode>None</OrisCode>
+        <ReportingYear>2021</ReportingYear>
+        <FacilitySiteDetails>
+            <FacilitySite>
+                <FacilitySiteName>Midwest Recycled &amp; Coated Containerboard, LLC</FacilitySiteName>
+            </FacilitySite>
+            <LocationAddress>
+                <LocationAddressText>540 PROSPECT AVE</LocationAddressText>
+                <LocalityName>COMBINED LOCKS</LocalityName>
+                <StateIdentity>
+                    <StateCode>WI</StateCode>
+                </StateIdentity>
+                <AddressPostalCode>54113</AddressPostalCode>
+            </LocationAddress>
+            <CogenerationUnitEmissionsIndicator>Y</CogenerationUnitEmissionsIndicator>
+            <PrimaryNAICSCode>322121</PrimaryNAICSCode>
+            <ParentCompanyDetails>
+                <ParentCompany>
+                    <ParentCompanyLegalName>APPLETON PROPERTY VENTURES LLC</ParentCompanyLegalName>
+                    <StreetAddress>540 Prospect Street</StreetAddress>
+                    <City>Combined Locks</City>
+                    <State>WI</State>
+                    <Zip>54113</Zip>
+                    <PercentOwnershipInterest>100</PercentOwnershipInterest>
+                </ParentCompany>
+            </ParentCompanyDetails>
+            <TotalNonBiogenicCO2eFacilitySubpartsCtoJJ massUOM="Metric Tons">300652.5</TotalNonBiogenicCO2eFacilitySubpartsCtoJJ>
+            <TotalBiogenicCO2FacilitySubpartsCtoJJ massUOM="Metric Tons">0</TotalBiogenicCO2FacilitySubpartsCtoJJ>
+
+            <PlantCodeIndicator>Y</PlantCodeIndicator>
+            <SubPartInformation>
+                <SubPartC>
+                    <GHGasInfoDetails>
+                        <GHGasName>Carbon Dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>90231.9</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Biogenic Carbon dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Methane</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>1.7</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Nitrous Oxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0.17</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <UnitsCDetails>
+                        <UnitIdentification>
+                            <UnitName>Boiler B05</UnitName>
+
+                            <UnitType>OB (Boiler, other)</UnitType>
+                        </UnitIdentification>
+                        <IndividualUnitDetails>
+                            <UseIvtIndicator>Y</UseIvtIndicator>
+                            <MaxRatedheatInputCapacity heatUOM="mmBtu/hr">
+                                <MeasureValue>285</MeasureValue>
+                            </MaxRatedheatInputCapacity>
+                        </IndividualUnitDetails>
+                        <SorbentCO2EmissionsQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </SorbentCO2EmissionsQuantity>
+                        <CO2EmissionsAllBiomassFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </CO2EmissionsAllBiomassFuelsCombined>
+                        <TierFuelDetails>
+                            <FuelInputsId>570075</FuelInputsId>
+                            <FuelType>Distillate Fuel Oil No. 2</FuelType>
+                            <Tier2FuelDetails>
+                                <TierName>Tier 2 (Equation C-2a)</TierName>
+                                <TierMethodologyStartDate>2021-01-01</TierMethodologyStartDate>
+                                <TierMethodologyEndDate>2021-12-31</TierMethodologyEndDate>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>January</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>February</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>March</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>April</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>May</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>June</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>July</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>August</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>September</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>October</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>November</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>December</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <FrequencyofHighHeatValueDetermination>Upon addition of oil to the
+                                    storage tank</FrequencyofHighHeatValueDetermination>
+                                <EmissionsDetailsNode>
+                                    <TotalCO2CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0</CalculatedValue>
+                                    </TotalCO2CombustionEmissions>
+                                    <TotalCH4CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0</CalculatedValue>
+                                    </TotalCH4CombustionEmissions>
+                                    <TotalN2OCombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0</CalculatedValue>
+                                    </TotalN2OCombustionEmissions>
+                                    <CH4EmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>0</CalculatedValue>
+                                    </CH4EmissionsCO2Equivalent>
+                                    <N2OEmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>0</CalculatedValue>
+                                    </N2OEmissionsCO2Equivalent>
+                                </EmissionsDetailsNode>
+                            </Tier2FuelDetails>
+                        </TierFuelDetails>
+                    </UnitsCDetails>
+                    <UnitsCDetails>
+                        <UnitIdentification>
+                            <UnitName>CP-Boilers</UnitName>
+
+                            <UnitType>OCS (Other combustion source)</UnitType>
+                        </UnitIdentification>
+                        <CommonPipeDetails>
+                            <UseIvtIndicator>Y</UseIvtIndicator>
+                            <HighestMaxRatedHeatInputCapacity heatUOM="mmBtu/hr">
+                                <MeasureValue>285</MeasureValue>
+                            </HighestMaxRatedHeatInputCapacity>
+                            <CumulativeMaxRatedHeatInputCapacity heatUOM="mmBtu/hr">
+                                <MeasureValue>722</MeasureValue>
+                            </CumulativeMaxRatedHeatInputCapacity>
+                        </CommonPipeDetails>
+                        <CO2EmissionsAllBiomassFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </CO2EmissionsAllBiomassFuelsCombined>
+                        <CO2EmissionsAllFossilFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>85377.7</CalculatedValue>
+                        </CO2EmissionsAllFossilFuelsCombined>
+                        <TierFuelDetails>
+                            <FuelInputsId>570077</FuelInputsId>
+                            <FuelType>Natural Gas (Weighted U.S. Average)</FuelType>
+                            <Tier2FuelDetails>
+                                <TierName>Tier 2 (Equation C-2a)</TierName>
+                                <TierMethodologyStartDate>2021-01-01</TierMethodologyStartDate>
+                                <TierMethodologyEndDate>2021-12-31</TierMethodologyEndDate>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>January</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>February</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>March</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>April</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>May</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>June</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>July</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>August</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>September</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>October</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>November</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>December</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <FrequencyofHighHeatValueDetermination>Monthly</FrequencyofHighHeatValueDetermination>
+                                <EmissionsDetailsNode>
+                                    <TotalCO2CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>85377.7</CalculatedValue>
+                                    </TotalCO2CombustionEmissions>
+                                    <TotalCH4CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>1.61</CalculatedValue>
+                                    </TotalCH4CombustionEmissions>
+                                    <TotalN2OCombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0.161</CalculatedValue>
+                                    </TotalN2OCombustionEmissions>
+                                    <CH4EmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>40.2</CalculatedValue>
+                                    </CH4EmissionsCO2Equivalent>
+                                    <N2OEmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>48</CalculatedValue>
+                                    </N2OEmissionsCO2Equivalent>
+                                </EmissionsDetailsNode>
+                            </Tier2FuelDetails>
+                        </TierFuelDetails>
+                    </UnitsCDetails>
+                    <UnitsCDetails>
+                        <UnitIdentification>
+                            <UnitName>GP-MM</UnitName>
+
+                            <UnitType>OCS (Other combustion source)</UnitType>
+                        </UnitIdentification>
+                        <SmallUnitAggregationDetails>
+                            <UseIvtIndicator>Y</UseIvtIndicator>
+                            <HighestMaxRatedheatInputCapacity heatUOM="mmBtu/hr">
+                                <MeasureValue>59.38</MeasureValue>
+                            </HighestMaxRatedheatInputCapacity>
+                            <CumulativeMaxRatedHeatInputCapacity heatUOM="mmBtu/hr">
+                                <MeasureValue>149.3</MeasureValue>
+                            </CumulativeMaxRatedHeatInputCapacity>
+                        </SmallUnitAggregationDetails>
+                        <SorbentCO2EmissionsQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </SorbentCO2EmissionsQuantity>
+                        <CO2EmissionsAllBiomassFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </CO2EmissionsAllBiomassFuelsCombined>
+                        <CO2EmissionsAllFossilFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>4854.2</CalculatedValue>
+                        </CO2EmissionsAllFossilFuelsCombined>
+                        <TierFuelDetails>
+                            <FuelInputsId>570079</FuelInputsId>
+                            <FuelType>Natural Gas (Weighted U.S. Average)</FuelType>
+                            <Tier2FuelDetails>
+                                <TierName>Tier 2 (Equation C-2a)</TierName>
+                                <TierMethodologyStartDate>2021-01-01</TierMethodologyStartDate>
+                                <TierMethodologyEndDate>2021-12-31</TierMethodologyEndDate>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>January</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>February</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>March</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>April</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>May</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>June</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>July</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>August</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>September</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>October</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>November</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <Tier2MonthlyHHVDetails>
+                                    <MonthName>December</MonthName>
+                                    <HighHeatValue>
+                                        <IsSubstitutedIndicator>N</IsSubstitutedIndicator>
+                                    </HighHeatValue>
+                                </Tier2MonthlyHHVDetails>
+                                <FrequencyofHighHeatValueDetermination>Monthly</FrequencyofHighHeatValueDetermination>
+                                <EmissionsDetailsNode>
+                                    <TotalCO2CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>4854.2</CalculatedValue>
+                                    </TotalCO2CombustionEmissions>
+                                    <TotalCH4CombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0.09</CalculatedValue>
+                                    </TotalCH4CombustionEmissions>
+                                    <TotalN2OCombustionEmissions massUOM="Metric Tons">
+                                        <CalculatedValue>0.009</CalculatedValue>
+                                    </TotalN2OCombustionEmissions>
+                                    <CH4EmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>2.3</CalculatedValue>
+                                    </CH4EmissionsCO2Equivalent>
+                                    <N2OEmissionsCO2Equivalent massUOM="Metric Tons">
+                                        <CalculatedValue>2.7</CalculatedValue>
+                                    </N2OEmissionsCO2Equivalent>
+                                </EmissionsDetailsNode>
+                            </Tier2FuelDetails>
+                        </TierFuelDetails>
+                    </UnitsCDetails>
+                    <NonOperationalUnitsCDetails>
+                        <UnitIdentification>
+                            <UnitName>CFS</UnitName>
+                            <UnitDescription>CFS NG usage</UnitDescription>
+                            <UnitType>PD (Product or intermediate product dryer)</UnitType>
+                        </UnitIdentification>
+                    </NonOperationalUnitsCDetails>
+                    <NonOperationalUnitsCDetails>
+                        <UnitIdentification>
+                            <UnitName>Boiler B23</UnitName>
+                            <UnitDescription>Facility Boiler #10</UnitDescription>
+                            <UnitType>S (Stoker Boiler)</UnitType>
+                        </UnitIdentification>
+                    </NonOperationalUnitsCDetails>
+                </SubPartC>
+                <SubPartD>
+                    <GHGasInfoDetails>
+                        <GHGasName>Carbon Dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>205369.2</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Biogenic Carbon dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Methane</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>3.8</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Nitrous Oxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0.38</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <UnitDDetails>
+                        <UnitIdentification>
+                            <UnitName>B06</UnitName>
+
+                            <UnitType>Electricity Generator</UnitType>
+                        </UnitIdentification>
+                        <PlantCode>55558</PlantCode>
+                        <Part75Methodology>Appendix G, Equation G-4</Part75Methodology>
+                        <TierMethodologyStartDate>2002-04-01</TierMethodologyStartDate>
+                        <TierMethodologyEndDate>2021-12-31</TierMethodologyEndDate>
+                        <isAcidRainProgramIndicator>Y</isAcidRainProgramIndicator>
+                        <AnnualCO2EmissionsMonitoredLocationShortTons massUOM="Short Tons">
+                            <CalculatedValue>226378.5</CalculatedValue>
+                        </AnnualCO2EmissionsMonitoredLocationShortTons>
+                        <AnnualCO2EmissionsMonitoredLocationMetricTons massUOM="Metric Tons">
+                            <CalculatedValue>205369.2</CalculatedValue>
+                        </AnnualCO2EmissionsMonitoredLocationMetricTons>
+                        <AnnualCO2EmissionsAllBiomassFuelsCombined massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </AnnualCO2EmissionsAllBiomassFuelsCombined>
+                        <ElectricityFuelDetails>
+                            <FuelType>Natural Gas (Weighted U.S. Average)</FuelType>
+                            <TotalHeatCombustionInput>3795235</TotalHeatCombustionInput>
+                            <CH4EmissionsCO2Equivalent massUOM="Metric Tons">
+                                <CalculatedValue>94.9</CalculatedValue>
+                            </CH4EmissionsCO2Equivalent>
+                            <N2OEmissionsCO2Equivalent massUOM="Metric Tons">
+                                <CalculatedValue>113.1</CalculatedValue>
+                            </N2OEmissionsCO2Equivalent>
+                        </ElectricityFuelDetails>
+                        <AppendixGEquationG4>
+                            <OperatingHoursFuelFlowRate>0</OperatingHoursFuelFlowRate>
+                            <OperatingHoursHHVSubstituted>0</OperatingHoursHHVSubstituted>
+                        </AppendixGEquationG4>
+                    </UnitDDetails>
+                </SubPartD>
+                <SubPartTT>
+                    <GHGasInfoDetails>
+                        <GHGasName>Carbon Dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Biogenic Carbon dioxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Methane</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>190</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <GHGasInfoDetails>
+                        <GHGasName>Nitrous Oxide</GHGasName>
+                        <GHGasQuantity massUOM="Metric Tons">
+                            <CalculatedValue>0</CalculatedValue>
+                        </GHGasQuantity>
+                    </GHGasInfoDetails>
+                    <IsLandFillOpenIndicator>Y</IsLandFillOpenIndicator>
+                    <StartingYearforAcceptingWaste>2010</StartingYearforAcceptingWaste>
+                    <IsLeachateRecirculationIndicator>N</IsLeachateRecirculationIndicator>
+                    <LeachateRecirculationFrequency>Not used for the past ten (10) years</LeachateRecirculationFrequency>
+                    <IsLandfillGasCollectionSystemIndicator>N</IsLandfillGasCollectionSystemIndicator>
+                    <IsPassiveVentFlareIndicator>Y</IsPassiveVentFlareIndicator>
+                    <CoverMaterialsTypeDetails>
+                        <CoverTypeName>Organic cover</CoverTypeName>
+                        <LandfillSurfaceAreaContainingWaste areaUOM="Square Meters">
+                            <MeasureValue>6096</MeasureValue>
+                        </LandfillSurfaceAreaContainingWaste>
+                    </CoverMaterialsTypeDetails>
+                    <EstimatedYearLandFillClosure>2030</EstimatedYearLandFillClosure>
+                    <LandfillCapacity massUOM="Metric Tons">
+                        <MeasureValue>274276</MeasureValue>
+                    </LandfillCapacity>
+                    <MethaneFractionLandfillGasDeterminationIndicator>Default</MethaneFractionLandfillGasDeterminationIndicator>
+                    <IsMCFValueDefaultIndicator>N</IsMCFValueDefaultIndicator>
+                    <LandfillsNoGasCollectionSystemDetails>
+                        <MethaneOxidationFraction>
+                            <MethaneOxidationFractionTT6
+                                fractionUOM="fraction (number between 0 and 1)">0.10</MethaneOxidationFractionTT6>
+                        </MethaneOxidationFraction>
+                        <AnnualMethaneEmissionsEquationTT6 massUOM="Metric Tons">
+                            <CalculatedValue>190</CalculatedValue>
+                        </AnnualMethaneEmissionsEquationTT6>
+                    </LandfillsNoGasCollectionSystemDetails>
+                    <NumberOfStreams>1</NumberOfStreams>
+                    <WasteStreamForMethod3Details>
+                        <DoesFacilityKnowWhenLandfillOpened>N</DoesFacilityKnowWhenLandfillOpened>
+                    </WasteStreamForMethod3Details>
+                    <WasteStreamDetails>
+                        <StreamIdentification>
+                            <StreamName>3458 - Harrison</StreamName>
+                            <StreamDescription>wastewater sludge, boiler ash</StreamDescription>
+                            <StreamTypeDetails>
+                                <StreamType>pulp and paper wastes segregated into separate streams</StreamType>
+                                <StreamSubType>boiler ash</StreamSubType>
+                                <StreamSubType>wastewater sludge</StreamSubType>
+                            </StreamTypeDetails>
+                        </StreamIdentification>
+                        <HistoricalWasteStreamQuantityDetails>
+                            <WasteStreamInLandfillFirstYear>2010</WasteStreamInLandfillFirstYear>
+                            <WasteStreamInLandfillLastYear>2021</WasteStreamInLandfillLastYear>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2010</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>11891</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2011</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>11118</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2012</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>6840</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2013</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>7324</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2014</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>8993</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2015</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>8892</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2016</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>4472</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2017</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.03</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>1490</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.06</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2018</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.04</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>35839</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.12</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2019</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.04</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>40557</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.12</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2020</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.04</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>35657</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.12</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                            <MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                                <Year>2021</Year>
+                                <Method1>Y</Method1>
+                                <Method2>N</Method2>
+                                <Method3>N</Method3>
+                                <Method4>N</Method4>
+                                <DecayRate>0.04</DecayRate>
+                                <WasteDisposedQuantity massUOM="Metric Tons">
+                                    <MeasureValue>8368</MeasureValue>
+                                </WasteDisposedQuantity>
+                                <WasteStreamDOCValue massUOM="Metric Tons">
+                                    <MeasureValue>0.12</MeasureValue>
+                                </WasteStreamDOCValue>
+                                <IsDefaultValueFromTableTT1Indicator>Y</IsDefaultValueFromTableTT1Indicator>
+                                <IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>N</IsMeasuredValueUsing60DayAnaerobicBiodegradationTestIndicator>
+                                <IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>N</IsBasedOnTotalAndVolatileSolidsMeasurementsIndicator>
+                            </MethodsUsedForHistoricalWasteStreamQuantityDetails>
+                        </HistoricalWasteStreamQuantityDetails>
+                    </WasteStreamDetails>
+                    <AnnualModeledCH4GenerationTT1 massUOM="Metric Tons">
+                        <CalculatedValue>212</CalculatedValue>
+                        <OverrideIndicator>Y</OverrideIndicator>
+                    </AnnualModeledCH4GenerationTT1>
+                </SubPartTT>
+            </SubPartInformation>
+        </FacilitySiteDetails>
+        <StartDate>2021-01-01</StartDate>
+        <EndDate>2021-12-31</EndDate>
+
+    </FacilitySiteInformation>
+</GHG>

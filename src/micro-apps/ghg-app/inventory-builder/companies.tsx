@@ -20,7 +20,6 @@ interface FormAction {
 export const CompanyList = (props: any) => {
     let configs = getConfigs();
 
-    const [companies, setCompanies] = useState(configs.companies);
     const [company, setCompany] = useState<Company | undefined>(getCompany());
     const [showForm, setShowForm] = useState(false);
     const [showAlert, setShowAlert] = useState(
@@ -44,7 +43,6 @@ export const CompanyList = (props: any) => {
 
     eventManager.subscribe("cached-cleared", (v: any) => {
         configs = getConfigs();
-        setCompanies(configs.companies);
         setCompany(undefined);
     });
 
@@ -95,14 +93,14 @@ export const CompanyList = (props: any) => {
             title: "Alert",
             message: "Cache has been cleared",
             show: false,
-            ttl:10000
+            ttl: 10000
         }
         setShowAlert(alertMsg);
-         alertMsg = {
+        alertMsg = {
             title: "Alert",
             message: "Cache has been cleared",
             show: true,
-            ttl:10000
+            ttl: 10000
         }
         setShowAlert(alertMsg);
 
@@ -144,8 +142,8 @@ export const CompanyList = (props: any) => {
             <EntityForm inline={true} title="" fieldDefs={formAction.fieldDefs} entity={formAction.entity}
                 onSubmit={formAction.onSubmit} />
         </ViridiumOffcanvas>
-        <Alert title={showAlert.title} 
-             ttl={showAlert.ttl}
-             text={showAlert.message} show={showAlert.show} />
+        <Alert title={showAlert.title}
+            ttl={showAlert.ttl}
+            text={showAlert.message} show={showAlert.show} />
     </LayoutPage >
 }

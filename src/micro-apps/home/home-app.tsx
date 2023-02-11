@@ -30,6 +30,7 @@ export class HomeApp extends MicroApp {
     new RouteItem().init("Inventory Config", "Inventory Config", "1", "/inventory-app"),
     new RouteItem().init("Data Manager", "Data Manager", "1", "/dm-app"),
     new RouteItem().init("GHG Reports", "GHG Reports", "1", "/ghg-app"),
+    new RouteItem().init("Schema", "Schema", "1", "/schema-app"),
     new RouteItem().init("Help", "Help", "1", "/help"),
 
     new RouteItem().init("Sign out", "Sign out", "2", "/signout"),

@@ -12,6 +12,7 @@ import { inventoryConfigApp } from './micro-apps/inventory-app/inventory-app';
 import { demoApp } from './micro-apps/demo-app/demo-app';
 import { securityApp } from './components/v-security/security-app';
 import { UserContextType, securityManager, UserContext } from './components/v-security/v-security-manager';
+import { schemaApp } from './micro-apps/schema-browser/schema-browser';
 
 function App(props: any) {
   const [state] = useState<UserContextType>(securityManager.getUserContext());
@@ -25,7 +26,8 @@ function App(props: any) {
             {greenHouseApp.getRoutes()}
             {securityApp.getRoutes()}
             {inventoryConfigApp.getRoutes()}
-            {demoApp.getRoutes()}
+            {demoApp.getRoutes()},
+            {schemaApp.getRoutes()}
           </Routes>
         </Router>
       </div>

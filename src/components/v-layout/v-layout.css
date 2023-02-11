@@ -97,6 +97,7 @@
 
 .v-layout .v-page-body {
     width: 100%;
+    display: flex;
 }
 
 .v-layout .v-page-footer {

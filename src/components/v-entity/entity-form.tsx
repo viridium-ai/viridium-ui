@@ -5,7 +5,7 @@ import './entity-form.css';
 
 import { TitleProp, Action } from '../v-common/v-app';
 import { StringUtils } from '../v-utils/v-string-utils';
-import { Entity, EntityManager, Formatter, Money, ValidationMessage, Validator } from './entity-model';
+import { Entity, EntityManager, Formatter, Money, Severity, ValidationMessage, Validator } from './entity-model';
 import { SelectCompany } from '../v-data/v-company';
 export class FieldValue {
     value: any = undefined;
@@ -122,6 +122,14 @@ export class FieldDef {
     }
 
     validate(value: any, entity: any): ValidationMessage | undefined {
+        if (value === undefined || value.length === 0) {
+            if (this.required) {
+                return {
+                    message: StringUtils.t("Value is required")!,
+                    severity: Severity.WARNING,
+                }
+            }
+        }
         let validator = this.validator;
         if (!validator) {
             return undefined;
@@ -252,8 +260,8 @@ export class TextField extends PureComponent<FormFieldProp, FormFieldState>{
     }
     componentDidUpdate(prevProps: Readonly<FormFieldProp>, prevState: Readonly<FormFieldState>, snapshot?: any): void {
         if (this.props.entity.id !== prevProps.entity.id) {
-            let v =  this.props.def.getValue(this.props.entity);
-            this.setState({ value: v ? v : "", msg:undefined });
+            let v = this.props.def.getValue(this.props.entity);
+            this.setState({ value: v ? v : "", msg: undefined });
         }
     }
 
@@ -279,7 +287,6 @@ export class TextField extends PureComponent<FormFieldProp, FormFieldState>{
     render() {
         let def = this.props.def;
         let msg = this.state.msg;
-        //console.log("render text field", this.state, this.props);
         return (
             <>
                 <Form.Group className="v-form-field" controlId={this.props.entity.id}>
@@ -522,7 +529,6 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
     componentWillUnmount(): void {
         window.removeEventListener("resize", this.screenSizeListener);
     }
-
     onSubmit = (event: any) => {
         event.preventDefault();
         let entity = { ...this.state.entity } as any;
@@ -533,15 +539,7 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             this.forceUpdate();
         }
     }
-    handleError(def: FieldDef, e: any): boolean {
-        if (!e.hasError) {
-            this.errors = [...this.errors.filter((e) => e.def.name !== def.name)];
-        } else {
-            this.errors = [...this.errors.filter((e) => e.def.name !== def.name)];
-            this.errors.push({ def: def, msg: e });
-        }
-        return this.errors && this.errors.length > 0;
-    }
+
     onChange = (evt: any) => {
         let entity = { ...this.state.entity } as any;
         entity[evt.def.name] = evt.value;
@@ -573,18 +571,20 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
                 return <TextField def={def} entity={entity} onInput={this.onChange} />;
         }
     }
-    renderFields = () => {
-        let newEntity: any = { ...this.state.entity };
-        let fieldDefs = EntityManager.entityToDefs(newEntity);
+    getFieldDefs = () => {
         if (this.props.fieldDefs) {
             if (this.props.fieldDefs instanceof Array) {
-                fieldDefs = [...this.props.fieldDefs];
+                return [...this.props.fieldDefs];
             }
             else {
-                fieldDefs = this.props.fieldDefs();
+                return this.props.fieldDefs();
             }
         }
-        fieldDefs = fieldDefs.filter((def: FieldDef) => !def.readonly);
+        return EntityManager.entityToDefs({ ...this.state.entity });
+    }
+    renderFields = () => {
+        let newEntity: any = { ...this.state.entity };
+        let fieldDefs = this.getFieldDefs().filter((def: FieldDef) => !def.readonly);
         let cols = this.props.columns ? this.props.columns : 1;
         let rows = fieldDefs.length / cols;
         let boxes = []
@@ -595,7 +595,6 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             }
             boxes.push(row);
         }
-        //console.log("render fields", newEntity, fieldDefs, boxes);
         return (
             boxes.map((row: any, idx: number) => {
                 return <div key={'fd-' + idx} className="v-entity-form-row" >

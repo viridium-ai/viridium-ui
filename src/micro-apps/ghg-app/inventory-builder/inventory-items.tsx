@@ -112,7 +112,6 @@ export const InventoryItemsView = (props: any) => {
                 <ViridiumOffcanvas id="viridiumDB" showTitle={false} onHide={setShowVData} showForm={showVData} title={"Upload Data"} >
                     <ViridiumDataset  />
                 </ViridiumOffcanvas>
-
             </LayoutPage >
         )
     }

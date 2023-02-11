@@ -159,4 +159,16 @@ export class StringUtils {
             return response.text();
         })
     }
+
+
+    static loadJson = async (url: string): Promise<any> => {
+        return fetch(url).then((response) => {
+            if (response.status !== 200) {
+                console.debug('Looks like there was a problem. Status Code: ' + response.status);
+                throw Error("Failed to load content at " + url + ` [${response.status}]`);
+            }
+            return response.json();
+        })
+    }
+
 }

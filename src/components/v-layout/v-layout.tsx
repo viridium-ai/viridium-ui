@@ -46,8 +46,8 @@ const NavItem = (props: any) => {
     const navigate = useNavigate();
     let service = props.service;
     return (
-        <ListGroup.Item as="li" action onClick={(e: any) => { navigate(`#/schema/${service.name}`, { replace: true }); }}>
-            <span><img className="nav-icon" src="../resources/green.png" alt="" /> {service.getLabel()}</span>
+        <ListGroup.Item as="li" action onClick={(e: any) => { navigate(`${service.route}`, { replace: true }); }}>
+            <span>{service.label}</span>
         </ListGroup.Item>
     )
 }
@@ -179,6 +179,7 @@ export class LayoutBodyNav extends Component<BodyNavProps> {
     }
 }
 
+
 export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => {
     return (
         <div className="v-page-footer">
@@ -198,6 +199,7 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
             navigate(`/login?from=/${props.microApp.getName()}`);
         }
     });
+
     const ui = () => {
         let main = props.children;
         let footer = undefined;
@@ -214,7 +216,6 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
                         <LayoutHeader brand={brand} microApp={microApp} />
                         {props.header ? <ApplicationHeader microApp={microApp} /> : ""}
                         <div className={'v-page-body'}>
-                            {microApp.getNavItems().length > 0 ? <LayoutBodyNav routeItems={microApp.getNavItems()} /> : ""}
                             {main}
                         </div>
                         <LayoutFooter>

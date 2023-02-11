@@ -10,7 +10,7 @@ import { EntityForm, EntityList } from "../../../components/v-entity/entity-form
 import { VscAdd } from "react-icons/vsc";
 import { StringUtils } from "../../../components/v-utils/v-string-utils";
 export const InventoryConfig = (props: any) => {
-    const [company, setCompany] = useState<Company | undefined>(getCompany());
+    const [company] = useState<Company | undefined>(getCompany());
     const [showForm, setShowForm] = useState(false);
     const [selectedInventory, setSelectedInventory] = useState<Inventory | undefined>();
 

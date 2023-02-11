@@ -68,6 +68,7 @@ const db = new DataService();
 export const getDB = db.getDB;
 
 export class EntityManager {
+ 
     entityName: string;
     db: any;
     constructor(name: string) {

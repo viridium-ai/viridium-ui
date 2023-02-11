@@ -1,9 +1,9 @@
 import { MicroApp } from "../../components/v-common/v-app";
 import { restClient } from "../../components/v-common/v-client";
 import { localCache } from "../../components/v-utils/v-cache-manager";
-import { Schema, objectToArray, Service } from "./schema-types";
+import { ServiceSchema, objectToArray, Service } from "./service-types";
 
-class SchemaApp extends MicroApp {
+class ServiceApp extends MicroApp {
 
     public getApiDoc = (callback : any = undefined) => {
         let res = localCache.get('/v3/api-docs');
@@ -27,10 +27,10 @@ class SchemaApp extends MicroApp {
     }
 
     public getName = () => {
-        return "schema-app";
+        return "service-app";
     }
     public getTitle = (): string => {
-        return "Schema Browser";
+        return "Service Schema Browser";
     }
 
     public toPayload(schemaName: string, entity: any, mode: string): any {
@@ -40,10 +40,10 @@ class SchemaApp extends MicroApp {
         return entity;
     }
 
-    public getSchemas(): Schema[] {
+    public getSchemas(): ServiceSchema[] {
         let schemas = objectToArray(this.getApiDoc().components.schemas)
             .map((s: any) => {
-                let schema = new Schema();
+                let schema = new ServiceSchema();
                 Object.assign(schema, s);
                 return schema;
             });
@@ -96,4 +96,4 @@ class SchemaApp extends MicroApp {
     }
 }
 
-export const schemaApp = new SchemaApp();
+export const serviceApp = new ServiceApp();

@@ -1,29 +1,34 @@
-.ghg-app .offcanvas {
+.offcanvas {
     --bs-offcanvas-width: 60vw;
 }
 
 .ghg-app .tab-content {
     overflow: scroll;
 }
+
 .ghg-app .wizard-form-row {
     margin-bottom: .5em;
 }
-.ghg-app .v-page-body { 
+
+.ghg-app .v-page-body {
     margin: 2em auto 0em auto;
     overflow: hidden;
     width: 90vw;
 }
 
 .ghg-app .v-select-company {
-    width:400px;
+    width: 400px;
 }
+
 .v-message {
     padding: 2em;
 }
+
 .ghg-app .v-icon-button {
     margin: 5px;
     font-size: 1.4em;
 }
+
 .ghg-app .connector-config-form {
     margin-top: 6px;
     padding: 12px;
@@ -48,14 +53,17 @@
 .ghg-app .toast-header {
     height: 3rem;
 }
+
 .ghg-app .v-form-row {
     padding: 2px 10px;
 }
+
 .ghg-app .toast-body {
     height: 60vh;
     overflow: scroll;
     padding: 0.5em;
 }
+
 .ghg-app .v-panel {
     margin-top: 0px;
     padding: 1em;
@@ -63,30 +71,33 @@
     border-radius: 3px;
     border: 0px blue solid;
 }
-.ghg-app .v-panel .v-hint{
+
+.ghg-app .v-panel .v-hint {
     padding: 1em;
     background-color: aliceblue;
     border-radius: 3px;
     font-size: 1.5em;
 }
-.ghg-app .v-panel .row{
-   padding: .5em;
-   border-bottom: 1px rgb(57, 113, 165) solid;
+
+.ghg-app .v-panel .row {
+    padding: .5em;
+    border-bottom: 1px rgb(57, 113, 165) solid;
 }
-.ghg-app .v-panel .row .col{
+
+.ghg-app .v-panel .row .col {
     padding: .5em;
     font-size: 1.5em;
     white-space: nowrap;
-    overflow:scroll;
- }
+    overflow: scroll;
+}
 
- .ghg-app .v-panel .v-metrics{
+.ghg-app .v-panel .v-metrics {
     background-color: azure;
     color: red;
- }
+}
 
 .ghg-app .v-panel {
-   padding: .2em;
+    padding: .2em;
 }
 
 .ghg-app .v-actions {

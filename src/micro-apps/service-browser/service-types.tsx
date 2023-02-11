@@ -1,6 +1,6 @@
 import { Route } from "react-router-dom";
-import { SchemaBrowser } from "./services-ui";
-import { schemaApp } from './schema-micro-app';
+import { ServiceBrowser } from "./services-ui";
+import { serviceApp } from './service-micro-app';
 import { FieldDef } from '../../components/v-entity/entity-form';
 import { IRouteItem } from "../../components/v-common/v-app";
 import { StringUtils } from "../../components/v-utils/v-string-utils";
@@ -66,20 +66,20 @@ export class Service implements IRouteItem {
         service.path = path.name;
         service.route = () => {
             return (
-                <Route key={`service_route_${service.name}`} path={`/schema/${service.name}`} element={<SchemaBrowser service={service} />} />
+                <Route key={`service_route_${service.name}`} path={`/service/${service.name}`} element={<ServiceBrowser service={service} />} />
             )
         };
         return service;
     }
-    public getSchema(): Schema | undefined {
-        return schemaApp.getSchemas().find((schema) => {
+    public getSchema(): ServiceSchema | undefined {
+        return serviceApp.getSchemas().find((schema) => {
             return this.name === schema.getServiceName();
         });
     }
 
 }
 
-export class Schema {
+export class ServiceSchema {
     name: string = '';
     type?: string;
     properties: any;

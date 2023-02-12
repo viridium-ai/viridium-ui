@@ -1,10 +1,14 @@
 import { PureComponent } from "react";
+import { Toast } from "react-bootstrap";
+import { ImMagicWand } from "react-icons/im";
+import { CodeViewer } from "../../components/v-code-view/code";
 import { RouteItem } from "../../components/v-common/v-app";
 import { EntityDetails, EntityList, FieldDef } from "../../components/v-entity/entity-form";
 import { EntityManager } from "../../components/v-entity/entity-model";
-import { LayoutBodyNav, LayoutPage } from "../../components/v-layout/v-layout";
+import { LayoutBodyNav, LayoutPage, ViridiumOffcanvas } from "../../components/v-layout/v-layout";
 import { StringUtils } from "../../components/v-utils/v-string-utils";
 import { knowledgeApp } from "./knowledge-app";
+import { modelClass, controllerClass, serviceClass } from "./v-code-generate";
 
 
 enum DataType {
@@ -56,13 +60,13 @@ export const ENTITIES = [
     "ValueChainPartner",
     "vehicleType"
 ]
-class BaseSchemaObj {
+export class BaseSchemaObj {
     displayName: string = "";
     description: string = "";
     sourceName: string = "";
 }
 
-class Attribute extends BaseSchemaObj {
+export class Attribute extends BaseSchemaObj {
     group: string = "";
     name: string = "";;
     sourceOrdering: number = -1;
@@ -83,7 +87,7 @@ class Attribute extends BaseSchemaObj {
     }
 }
 
-class Entity extends BaseSchemaObj {
+export class Entity extends BaseSchemaObj {
     paths: Array<string> = [];
     entityName: string = "";
     attributes: Array<Attribute> = []
@@ -130,18 +134,17 @@ class Schema extends BaseSchemaObj {
                     attribute.nullable = "" + member["isNullable"];
                     if (typeof member.dataType !== 'string' && !(member.dataType instanceof String)) {
                         attribute.dataType = "reference";
-                    }   
+                    }
                     return attribute;
                 });
                 this.entities.push(newEntity);
-                console.log(newEntity);
                 return newEntity;
             })
         } else {
-            return new Promise((resolve, reject)  => {
+            return new Promise((resolve, reject) => {
                 setTimeout(() => {
                     resolve(entity!);
-                  }, 30);
+                }, 30);
             })
         }
     }
@@ -153,19 +156,25 @@ class SchemaManager extends EntityManager {
 
 }
 
+export const generateJavaCode = (entity: Entity) => {
+    let code = [];
+
+}
 
 interface SchemaBrowserProps {
     entityName: string
 }
 
 interface SchemaBrowserState {
-    entity?: Entity
+    entity?: Entity;
+    code?: string,
+    showCode: boolean
 }
 
 export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrowserState> {
     constructor(props: SchemaBrowserProps) {
         super(props);
-        this.state = { entity: undefined }
+        this.state = { entity: undefined, code: undefined, showCode: false }
     }
 
     public getNavItems = () => {
@@ -173,7 +182,7 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
             return new RouteItem().init(entityName, entityName, "1", `/knowledge-app/schema/${entityName}`)
         });
     }
-    
+
     componentDidUpdate(prevProps: Readonly<SchemaBrowserProps>, prevState: Readonly<SchemaBrowserState>, snapshot?: any): void {
         if (this.props.entityName !== prevProps.entityName) {
             //this.setState({ entity: undefined });
@@ -192,11 +201,26 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
             console.log("Failed to get entity", error);
         });
     }
+    generateCode = () => {
+        if (this.state.entity) {
+            let contorllerCode = controllerClass(this.state.entity);
+            let modelCode = modelClass(this.state.entity);
+            let serviceCode = serviceClass(this.state.entity);
+            this.setState({code:contorllerCode+"\n\n"+modelCode+"\n\n"+serviceCode, showCode:true});
+        }
+    }
+    hideCodeViewer = () => {
+        this.setState({ showCode: false});
+    }
     renderEntity = (entity: Entity) => {
         return (
             <div className="v-panel">
+                 <Toast.Header closeButton={false}>
+                    <div className="me-auto">{entity.displayName}</div>
+                    <span onClick={this.generateCode}><ImMagicWand /></span>
+                </Toast.Header>
                 <div className="v-panel">
-                    <EntityDetails title={entity.displayName} entity={entity} fieldDefs={Entity.fieldDefs} />
+                    <EntityDetails title={""} entity={entity} fieldDefs={Entity.fieldDefs} />
                 </div>
                 <div className="v-panel">
                     <EntityList title="" entities={entity.attributes} fieldDefs={Attribute.fieldDefs} />
@@ -214,6 +238,9 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
                 <div className="v-body-main">
                     {entity ? this.renderEntity(entity) : `Loading...`}
                 </div>
+                <ViridiumOffcanvas showTitle={false} onHide={this.hideCodeViewer} showForm={this.state.showCode} title={"Generated code"} >
+                    <CodeViewer text={this.state.code} />
+                </ViridiumOffcanvas>
             </LayoutPage>
         )
     }

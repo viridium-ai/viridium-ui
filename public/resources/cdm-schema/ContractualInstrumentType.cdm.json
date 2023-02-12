@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "contractualinstrumenttypeId",
-                "sourceName": "msdyn_contractualinstrumenttypeid",
+                "name": "contractualInstrumentTypeId",
+                "sourceName": "msdyn_contractualInstrumentTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Contractual instrument type",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_contractualinstrumenttypeid"
+                      "msdyn_contractualInstrumentTypeId"
                     ]
                   }
                 ]
@@ -830,8 +830,8 @@
                 ]
               },
               {
-                "name": "energysource",
-                "sourceName": "msdyn_energysource",
+                "name": "energySource",
+                "sourceName": "msdyn_energySource",
                 "sourceOrdering": 36,
                 "description": "Primary source used to generate the selected energy type.",
                 "displayName": "Energy source",
@@ -891,8 +891,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'energysource_display' is added to the 'ContractualInstrumentType' entity to provide the localized display text for the value of the listLookup attribute 'energysource'",
-                        "name": "energysource_display",
+                        "explanation": "This attribute 'energySource_display' is added to the 'ContractualInstrumentType' entity to provide the localized display text for the value of the listLookup attribute 'energySource'",
+                        "name": "energySource_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1008,8 +1008,8 @@
                 ]
               },
               {
-                "name": "valuechainpartnerid",
-                "sourceName": "msdyn_valuechainpartnerid",
+                "name": "valueChainPartnerId",
+                "sourceName": "msdyn_valueChainPartnerId",
                 "sourceOrdering": 39,
                 "description": "Reference to the value chain partner or supplier associated with the transaction.",
                 "displayName": "Value chain partner",
@@ -1022,9 +1022,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "valuechainpartnerId",
+                      "reference": "valueChainPartnerId",
                       "replaceWith": {
-                        "name": "valuechainpartnerid",
+                        "name": "valueChainPartnerId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

@@ -65,7 +65,7 @@
             "members": [
               {
                 "name": "subindustryId",
-                "sourceName": "msdyn_subindustryid",
+                "sourceName": "msdyn_subindustryId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Subindustry",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_subindustryid"
+                      "msdyn_subindustryId"
                     ]
                   }
                 ]
@@ -775,8 +775,8 @@
                 }
               },
               {
-                "name": "subindustrynum",
-                "sourceName": "msdyn_subindustrynum",
+                "name": "subindustryNum",
+                "sourceName": "msdyn_subindustryNum",
                 "sourceOrdering": 45,
                 "description": "Contains the mapping to the subindustry classification code in the form of a range.",
                 "displayName": "Subindustry number",

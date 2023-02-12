@@ -29,7 +29,7 @@
       "corpusPath": "ValueChainPartner.cdm.json"
     },
     {
-      "corpusPath": "VehicleType.cdm.json"
+      "corpusPath": "vehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -88,8 +88,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "businesstravelId",
-                "sourceName": "msdyn_businesstravelid",
+                "name": "businessTravelId",
+                "sourceName": "msdyn_businessTravelId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Business Travel",
@@ -141,7 +141,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_businesstravelid"
+                      "msdyn_businessTravelId"
                     ]
                   }
                 ]
@@ -568,8 +568,8 @@
                 ]
               },
               {
-                "name": "accommodationtypeid",
-                "sourceName": "msdyn_accommodationtypeid",
+                "name": "accommodationTypeId",
+                "sourceName": "msdyn_accommodationTypeId",
                 "sourceOrdering": 31,
                 "description": "Unique identifier associated with the accommodation type related to business travel.",
                 "displayName": "Accommodation Type",
@@ -582,9 +582,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "accommodationtypeId",
+                      "reference": "accommodationTypeId",
                       "replaceWith": {
-                        "name": "accommodationtypeid",
+                        "name": "accommodationTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -644,8 +644,8 @@
                 }
               },
               {
-                "name": "businesstraveltypeid",
-                "sourceName": "msdyn_businesstraveltypeid",
+                "name": "businessTravelTypeId",
+                "sourceName": "msdyn_businessTravelTypeId",
                 "sourceOrdering": 32,
                 "description": "Unique identifier related to the business travel type. Used to identify emission factors.",
                 "displayName": "Business travel type",
@@ -658,9 +658,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "businesstraveltypeId",
+                      "reference": "businessTravelTypeId",
                       "replaceWith": {
-                        "name": "businesstraveltypeid",
+                        "name": "businessTravelTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -894,8 +894,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 36,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -910,7 +910,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -970,8 +970,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 37,
                 "description": "Description of the data quality that identifies if the data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data quality type",
@@ -1019,8 +1019,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'BusinessTravel' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'BusinessTravel' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1136,8 +1136,8 @@
                 ]
               },
               {
-                "name": "destinationcountryisocode",
-                "sourceName": "msdyn_destinationcountryisocode",
+                "name": "destinationcountryIsoCode",
+                "sourceName": "msdyn_destinationcountryIsoCode",
                 "sourceOrdering": 40,
                 "description": "ISO code for the destination country/region.",
                 "displayName": "Destination Country/Region",
@@ -1267,8 +1267,8 @@
                 ]
               },
               {
-                "name": "distanceunit",
-                "sourceName": "msdyn_distanceunit",
+                "name": "distanceUnit",
+                "sourceName": "msdyn_distanceUnit",
                 "sourceOrdering": 42,
                 "description": "Unique identifier for the unit associated with distance.",
                 "displayName": "Distance unit",
@@ -1283,7 +1283,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "distanceunit",
+                        "name": "distanceUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1406,8 +1406,8 @@
                 ]
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 44,
                 "description": "Unique identifier for Facility associated with business travel.",
                 "displayName": "Facility",
@@ -1422,7 +1422,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1482,8 +1482,8 @@
                 }
               },
               {
-                "name": "fuelquantity",
-                "sourceName": "msdyn_fuelquantity",
+                "name": "fuelQuantity",
+                "sourceName": "msdyn_fuelQuantity",
                 "sourceOrdering": 45,
                 "description": "Unique identifier of the fuel consumption data associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel quantity",
@@ -1550,8 +1550,8 @@
                 ]
               },
               {
-                "name": "fuelquantityunit",
-                "sourceName": "msdyn_fuelquantityunit",
+                "name": "fuelQuantityUnit",
+                "sourceName": "msdyn_fuelQuantityUnit",
                 "sourceOrdering": 46,
                 "description": "Unique identifier of the unit associated with fuel data.",
                 "displayName": "Fuel quantity unit",
@@ -1566,7 +1566,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "fuelquantityunit",
+                        "name": "fuelQuantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1626,8 +1626,8 @@
                 }
               },
               {
-                "name": "fueltypeid",
-                "sourceName": "msdyn_fueltypeid",
+                "name": "fuelTypeId",
+                "sourceName": "msdyn_fuelTypeId",
                 "sourceOrdering": 47,
                 "description": "Unique identifier of the fuel type associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel type",
@@ -1640,9 +1640,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "fueltypeId",
+                      "reference": "fuelTypeId",
                       "replaceWith": {
-                        "name": "fueltypeid",
+                        "name": "fuelTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1702,8 +1702,8 @@
                 }
               },
               {
-                "name": "industrialprocesstypeid",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 48,
                 "description": "Type of industrial process used to track and associate with activity data.",
                 "displayName": "Industrial process type",
@@ -1716,9 +1716,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "industrialprocesstypeId",
+                      "reference": "industrialProcessTypeId",
                       "replaceWith": {
-                        "name": "industrialprocesstypeid",
+                        "name": "industrialProcessTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1778,8 +1778,8 @@
                 }
               },
               {
-                "name": "nightstay",
-                "sourceName": "msdyn_nightstay",
+                "name": "nightStay",
+                "sourceName": "msdyn_nightStay",
                 "sourceOrdering": 49,
                 "description": "Number of nights in hotel for business travel accounting.",
                 "displayName": "Night stay",
@@ -1846,8 +1846,8 @@
                 ]
               },
               {
-                "name": "nightstayunit",
-                "sourceName": "msdyn_nightstayunit",
+                "name": "nightStayUnit",
+                "sourceName": "msdyn_nightStayUnit",
                 "sourceOrdering": 50,
                 "description": "Unit associated with nights stay for business travel.",
                 "displayName": "Night stay unit",
@@ -1862,7 +1862,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "nightstayunit",
+                        "name": "nightStayUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1922,8 +1922,8 @@
                 }
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 51,
                 "description": "Unique identifier for the organizational unit associated with business travel.",
                 "displayName": "Organizational unit",
@@ -1936,9 +1936,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2066,8 +2066,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 53,
                 "description": "Unit associated with the quantity field.",
                 "displayName": "Quantity unit",
@@ -2082,7 +2082,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2205,8 +2205,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 55,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction date",
@@ -2258,8 +2258,8 @@
                 ]
               },
               {
-                "name": "valuechainpartnerid",
-                "sourceName": "msdyn_valuechainpartnerid",
+                "name": "valueChainPartnerId",
+                "sourceName": "msdyn_valueChainPartnerId",
                 "sourceOrdering": 56,
                 "description": "Reference to value chain partner or supplier associated with the transaction.",
                 "displayName": "Value chain partner",
@@ -2272,9 +2272,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "valuechainpartnerId",
+                      "reference": "valueChainPartnerId",
                       "replaceWith": {
-                        "name": "valuechainpartnerid",
+                        "name": "valueChainPartnerId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2334,8 +2334,8 @@
                 }
               },
               {
-                "name": "vehicletype",
-                "sourceName": "msdyn_vehicletype",
+                "name": "vehicleType",
+                "sourceName": "msdyn_vehicleType",
                 "sourceOrdering": 57,
                 "description": "Unique identifier for the vehicle type associated with combustion or supply chain transportation activities.",
                 "displayName": "Vehicle type",
@@ -2343,14 +2343,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "VehicleType",
+                  "source": "vehicleType",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "vehicletypeId",
+                      "reference": "vehicleTypeId",
                       "replaceWith": {
-                        "name": "vehicletype",
+                        "name": "vehicleType",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

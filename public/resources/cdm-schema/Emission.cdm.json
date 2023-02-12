@@ -8,7 +8,7 @@
       "corpusPath": "FactorLibrary.cdm.json"
     },
     {
-      "corpusPath": "EmissionFactor.cdm.json"
+      "corpusPath": "emissionFactor.cdm.json"
     },
     {
       "corpusPath": "FactorMapping.cdm.json"
@@ -625,8 +625,8 @@
                 ]
               },
               {
-                "name": "activityentityname",
-                "sourceName": "msdyn_activityentityname",
+                "name": "activityentityName",
+                "sourceName": "msdyn_activityentityName",
                 "sourceOrdering": 32,
                 "description": "Internal reference used to map an entity to the corresponding record.",
                 "displayName": "Activity entity name",
@@ -688,8 +688,8 @@
                 ]
               },
               {
-                "name": "activityid",
-                "sourceName": "msdyn_activityid",
+                "name": "activityId",
+                "sourceName": "msdyn_activityId",
                 "sourceOrdering": 33,
                 "description": "Internal reference used to map the entity to the corresponding record.",
                 "displayName": "Activity ID",
@@ -751,8 +751,8 @@
                 ]
               },
               {
-                "name": "activityname",
-                "sourceName": "msdyn_activityname",
+                "name": "activityName",
+                "sourceName": "msdyn_activityName",
                 "sourceOrdering": 34,
                 "description": "Category or reference data used for reporting purposes and populated during the calculation process.",
                 "displayName": "Activity type",
@@ -814,8 +814,8 @@
                 ]
               },
               {
-                "name": "calculationdate",
-                "sourceName": "msdyn_calculationdate",
+                "name": "calculationDate",
+                "sourceName": "msdyn_calculationDate",
                 "sourceOrdering": 35,
                 "description": "Date calculation occurred",
                 "displayName": "Calculation date",
@@ -998,8 +998,8 @@
                 ]
               },
               {
-                "name": "ch4unit",
-                "sourceName": "msdyn_ch4unit",
+                "name": "ch4Unit",
+                "sourceName": "msdyn_ch4Unit",
                 "sourceOrdering": 38,
                 "description": "The unit for the CH₄ amount.",
                 "displayName": "CH₄ unit",
@@ -1014,7 +1014,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "ch4unit",
+                        "name": "ch4Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1210,8 +1210,8 @@
                 ]
               },
               {
-                "name": "co2emt",
-                "sourceName": "msdyn_co2emt",
+                "name": "co2eMt",
+                "sourceName": "msdyn_co2eMt",
                 "sourceOrdering": 41,
                 "description": "The amount of the CO₂ equivalent factor in metric tons.",
                 "displayName": "CO₂E (mt)",
@@ -1278,8 +1278,8 @@
                 ]
               },
               {
-                "name": "co2eunit",
-                "sourceName": "msdyn_co2eunit",
+                "name": "co2eUnit",
+                "sourceName": "msdyn_co2eUnit",
                 "sourceOrdering": 42,
                 "description": "Unique identifier for the unit associated with the emission.",
                 "displayName": "CO₂E unit",
@@ -1294,7 +1294,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "co2eunit",
+                        "name": "co2eUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1354,8 +1354,8 @@
                 }
               },
               {
-                "name": "co2unit",
-                "sourceName": "msdyn_co2unit",
+                "name": "co2Unit",
+                "sourceName": "msdyn_co2Unit",
                 "sourceOrdering": 43,
                 "description": "The unit for the CO₂ factor.",
                 "displayName": "CO₂ unit",
@@ -1370,7 +1370,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "co2unit",
+                        "name": "co2Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1536,8 +1536,8 @@
                 ]
               },
               {
-                "name": "countryisocode",
-                "sourceName": "msdyn_countryisocode",
+                "name": "countryIsoCode",
+                "sourceName": "msdyn_countryIsoCode",
                 "sourceOrdering": 46,
                 "description": "The three letter ISO code of the country/region.",
                 "displayName": "Country/Region",
@@ -1599,8 +1599,8 @@
                 ]
               },
               {
-                "name": "emissionsource",
-                "sourceName": "msdyn_emissionsource",
+                "name": "emissionSource",
+                "sourceName": "msdyn_emissionSource",
                 "sourceOrdering": 47,
                 "description": "Emissions Source (Internal)",
                 "displayName": "Emissions Source (Internal)",
@@ -1662,8 +1662,8 @@
                 ]
               },
               {
-                "name": "emissionsourcev2",
-                "sourceName": "msdyn_emissionsourcev2",
+                "name": "emissionSourceV2",
+                "sourceName": "msdyn_emissionSourceV2",
                 "sourceOrdering": 48,
                 "description": "Emissions source reference.",
                 "displayName": "Emissions Source",
@@ -1676,9 +1676,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "emissionsourceId",
+                      "reference": "emissionSourceId",
                       "replaceWith": {
-                        "name": "emissionsourcev2",
+                        "name": "emissionSourceV2",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1738,8 +1738,8 @@
                 }
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 49,
                 "description": "Unique identifier for the facility associated with mobile combustion.",
                 "displayName": "Facility",
@@ -1754,7 +1754,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1882,8 +1882,8 @@
                 ]
               },
               {
-                "name": "hfcsunit",
-                "sourceName": "msdyn_hfcsunit",
+                "name": "hfcsUnit",
+                "sourceName": "msdyn_hfcsUnit",
                 "sourceOrdering": 51,
                 "description": "The unit for the hydrofluorocarbons factor.",
                 "displayName": "HFCs unit",
@@ -1898,7 +1898,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "hfcsunit",
+                        "name": "hfcsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1958,8 +1958,8 @@
                 }
               },
               {
-                "name": "isbiogenic",
-                "sourceName": "msdyn_isbiogenic",
+                "name": "isBiogenic",
+                "sourceName": "msdyn_isBiogenic",
                 "sourceOrdering": 52,
                 "description": "Indicates if it is a biogenic emission, or emission from a natural source.",
                 "displayName": "Is biogenic",
@@ -2011,8 +2011,8 @@
                 ]
               },
               {
-                "name": "ismarketbased",
-                "sourceName": "msdyn_ismarketbased",
+                "name": "isMarketBased",
+                "sourceName": "msdyn_isMarketBased",
                 "sourceOrdering": 54,
                 "description": "Indicates if emission calculation is market-based or considered a \"net\" calculation.",
                 "displayName": "Is market based",
@@ -2258,8 +2258,8 @@
                 ]
               },
               {
-                "name": "n2ounit",
-                "sourceName": "msdyn_n2ounit",
+                "name": "n2oUnit",
+                "sourceName": "msdyn_n2oUnit",
                 "sourceOrdering": 59,
                 "description": "Unique identifier for the unit associated with the emission.",
                 "displayName": "N₂O unit",
@@ -2274,7 +2274,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "n2ounit",
+                        "name": "n2oUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2402,8 +2402,8 @@
                 ]
               },
               {
-                "name": "nf3unit",
-                "sourceName": "msdyn_nf3unit",
+                "name": "nf3Unit",
+                "sourceName": "msdyn_nf3Unit",
                 "sourceOrdering": 61,
                 "description": "The unit for the NF₃ factor.",
                 "displayName": "NF₃ unit",
@@ -2418,7 +2418,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "nf3unit",
+                        "name": "nf3Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2478,8 +2478,8 @@
                 }
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 62,
                 "description": "Unique identifier for the organizational unit associated with the emission.",
                 "displayName": "Organizational unit",
@@ -2492,9 +2492,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2554,8 +2554,8 @@
                 }
               },
               {
-                "name": "otherghgs",
-                "sourceName": "msdyn_otherghgs",
+                "name": "otherGhgs",
+                "sourceName": "msdyn_otherGhgs",
                 "sourceOrdering": 63,
                 "description": "Greenhouse gases associated with emissions that are not allocated in an individual category.",
                 "displayName": "Other GHGs",
@@ -2622,8 +2622,8 @@
                 ]
               },
               {
-                "name": "otherghgsunit",
-                "sourceName": "msdyn_otherghgsunit",
+                "name": "otherGhgsUnit",
+                "sourceName": "msdyn_otherGhgsUnit",
                 "sourceOrdering": 64,
                 "description": "Unique identifier for the unit associated with the emission.",
                 "displayName": "Other GHGs unit",
@@ -2638,7 +2638,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "otherghgsunit",
+                        "name": "otherGhgsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2766,8 +2766,8 @@
                 ]
               },
               {
-                "name": "pfcsunit",
-                "sourceName": "msdyn_pfcsunit",
+                "name": "pfcsUnit",
+                "sourceName": "msdyn_pfcsUnit",
                 "sourceOrdering": 66,
                 "description": "The unit for the perfluorocarbons factor.",
                 "displayName": "PFCs unit",
@@ -2782,7 +2782,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "pfcsunit",
+                        "name": "pfcsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -3013,8 +3013,8 @@
                 ]
               },
               {
-                "name": "sf6unit",
-                "sourceName": "msdyn_sf6unit",
+                "name": "sf6Unit",
+                "sourceName": "msdyn_sf6Unit",
                 "sourceOrdering": 70,
                 "description": "The unit for SF₆ factor.",
                 "displayName": "SF₆ unit",
@@ -3029,7 +3029,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "sf6unit",
+                        "name": "sf6Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -3152,8 +3152,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 72,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction date",
@@ -3205,8 +3205,8 @@
                 ]
               },
               {
-                "name": "calculationlibrary",
-                "sourceName": "msdyn_calculationlibrary",
+                "name": "calculationLibrary",
+                "sourceName": "msdyn_calculationLibrary",
                 "sourceOrdering": 73,
                 "description": "Emission factor library used for emission calculations.",
                 "displayName": "Emission factor library",
@@ -3219,9 +3219,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "calculationlibraryId",
+                      "reference": "calculationLibraryId",
                       "replaceWith": {
-                        "name": "calculationlibrary",
+                        "name": "calculationLibrary",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -3281,8 +3281,8 @@
                 }
               },
               {
-                "name": "emissionfactor",
-                "sourceName": "msdyn_emissionfactor",
+                "name": "emissionFactor",
+                "sourceName": "msdyn_emissionFactor",
                 "sourceOrdering": 74,
                 "description": "Emission factor used for emission calculations.",
                 "displayName": "Emission factor",
@@ -3290,14 +3290,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "EmissionFactor",
+                  "source": "emissionFactor",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "emissionfactorId",
                       "replaceWith": {
-                        "name": "emissionfactor",
+                        "name": "emissionFactor",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -3357,8 +3357,8 @@
                 }
               },
               {
-                "name": "emissionlookup",
-                "sourceName": "msdyn_emissionlookup",
+                "name": "emissionLookup",
+                "sourceName": "msdyn_emissionLookup",
                 "sourceOrdering": 75,
                 "description": "Factor mapping used for emission calculations.",
                 "displayName": "Factor mapping",
@@ -3371,9 +3371,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "emissionlookupId",
+                      "reference": "emissionLookupId",
                       "replaceWith": {
-                        "name": "emissionlookup",
+                        "name": "emissionLookup",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

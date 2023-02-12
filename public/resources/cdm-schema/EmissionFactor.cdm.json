@@ -13,11 +13,11 @@
   ],
   "definitions": [
     {
-      "entityName": "EmissionFactor",
+      "entityName": "emissionFactor",
       "extendsEntity": "CdmEntity",
       "displayName": "Emission factor",
       "description": "Conversion factor which takes activity data and converts quantities into greenhouse gas amounts and units.",
-      "sourceName": "msdyn_emissionfactor",
+      "sourceName": "msdyn_emissionFactor",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -68,7 +68,7 @@
             "members": [
               {
                 "name": "emissionfactorId",
-                "sourceName": "msdyn_emissionfactorid",
+                "sourceName": "msdyn_emissionfactorId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Emission factor",
@@ -120,7 +120,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_emissionfactorid"
+                      "msdyn_emissionfactorId"
                     ]
                   }
                 ]
@@ -275,7 +275,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'EmissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'emissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -390,7 +390,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'EmissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'emissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -770,8 +770,8 @@
                 ]
               },
               {
-                "name": "calculationlibraryId",
-                "sourceName": "msdyn_calculationlibraryid",
+                "name": "calculationLibraryId",
+                "sourceName": "msdyn_calculationLibraryId",
                 "sourceOrdering": 35,
                 "description": "Unique identifier for Factor Library associated with Emission Factor.",
                 "displayName": "Factor library",
@@ -784,9 +784,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "calculationlibraryId",
+                      "reference": "calculationLibraryId",
                       "replaceWith": {
-                        "name": "calculationlibraryId",
+                        "name": "calculationLibraryId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -846,8 +846,8 @@
                 }
               },
               {
-                "name": "biogenicco2factor",
-                "sourceName": "msdyn_biogenicco2factor",
+                "name": "biogenicco2Factor",
+                "sourceName": "msdyn_biogenicco2Factor",
                 "sourceOrdering": 36,
                 "description": "The amount of the biogenic CO₂ factor.",
                 "displayName": "Biogenic CO₂ factor",
@@ -914,8 +914,8 @@
                 ]
               },
               {
-                "name": "biogenicco2factorunit",
-                "sourceName": "msdyn_biogenicco2factorunit",
+                "name": "biogenicco2FactorUnit",
+                "sourceName": "msdyn_biogenicco2FactorUnit",
                 "sourceOrdering": 37,
                 "description": "The unit for the biogenic CO₂ factor.",
                 "displayName": "Biogenic CO₂ factor unit",
@@ -930,7 +930,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "biogenicco2factorunit",
+                        "name": "biogenicco2FactorUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1058,8 +1058,8 @@
                 ]
               },
               {
-                "name": "ch4unit",
-                "sourceName": "msdyn_ch4unit",
+                "name": "ch4Unit",
+                "sourceName": "msdyn_ch4Unit",
                 "sourceOrdering": 39,
                 "description": "The unit for the CH₄ factor.",
                 "displayName": "CH₄ unit",
@@ -1074,7 +1074,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "ch4unit",
+                        "name": "ch4Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1270,8 +1270,8 @@
                 ]
               },
               {
-                "name": "co2eunit",
-                "sourceName": "msdyn_co2eunit",
+                "name": "co2eUnit",
+                "sourceName": "msdyn_co2eUnit",
                 "sourceOrdering": 42,
                 "description": "The unit for the CO₂E factor.",
                 "displayName": "CO₂E unit",
@@ -1286,7 +1286,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "co2eunit",
+                        "name": "co2eUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1346,8 +1346,8 @@
                 }
               },
               {
-                "name": "co2unit",
-                "sourceName": "msdyn_co2unit",
+                "name": "co2Unit",
+                "sourceName": "msdyn_co2Unit",
                 "sourceOrdering": 43,
                 "description": "The unit for the CO₂ factor.",
                 "displayName": "CO₂ unit",
@@ -1362,7 +1362,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "co2unit",
+                        "name": "co2Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1548,8 +1548,8 @@
                 ]
               },
               {
-                "name": "heatcontent",
-                "sourceName": "msdyn_heatcontent",
+                "name": "heatContent",
+                "sourceName": "msdyn_heatContent",
                 "sourceOrdering": 46,
                 "description": "The amount of the heat content factor. (Deprecated)",
                 "displayName": "Heat content (Deprecated)",
@@ -1616,8 +1616,8 @@
                 ]
               },
               {
-                "name": "heatcontentunit",
-                "sourceName": "msdyn_heatcontentunit",
+                "name": "heatContentUnit",
+                "sourceName": "msdyn_heatContentUnit",
                 "sourceOrdering": 47,
                 "description": "The unit for the heat content factor. (Deprecated)",
                 "displayName": "Heat content unit (Deprecated)",
@@ -1632,7 +1632,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "heatcontentunit",
+                        "name": "heatContentUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1760,8 +1760,8 @@
                 ]
               },
               {
-                "name": "hfcsunit",
-                "sourceName": "msdyn_hfcsunit",
+                "name": "hfcsUnit",
+                "sourceName": "msdyn_hfcsUnit",
                 "sourceOrdering": 49,
                 "description": "The unit for the hydrofluorocarbons factor.",
                 "displayName": "HFCs unit",
@@ -1776,7 +1776,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "hfcsunit",
+                        "name": "hfcsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1836,8 +1836,8 @@
                 }
               },
               {
-                "name": "isbiofuel",
-                "sourceName": "msdyn_isbiofuel",
+                "name": "isBiofuel",
+                "sourceName": "msdyn_isBiofuel",
                 "sourceOrdering": 50,
                 "description": "Indicates if the type of fuel is biofuel or not.",
                 "displayName": "Is biofuel",
@@ -1957,8 +1957,8 @@
                 ]
               },
               {
-                "name": "n2ounit",
-                "sourceName": "msdyn_n2ounit",
+                "name": "n2oUnit",
+                "sourceName": "msdyn_n2oUnit",
                 "sourceOrdering": 53,
                 "description": "The unit for the N₂O factor.",
                 "displayName": "N₂O unit",
@@ -1973,7 +1973,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "n2ounit",
+                        "name": "n2oUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2164,8 +2164,8 @@
                 ]
               },
               {
-                "name": "nf3unit",
-                "sourceName": "msdyn_nf3unit",
+                "name": "nf3Unit",
+                "sourceName": "msdyn_nf3Unit",
                 "sourceOrdering": 56,
                 "description": "The unit for the nitrogen trifluoride factor.",
                 "displayName": "NF₃ unit",
@@ -2180,7 +2180,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "nf3unit",
+                        "name": "nf3Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2240,8 +2240,8 @@
                 }
               },
               {
-                "name": "otherghgs",
-                "sourceName": "msdyn_otherghgs",
+                "name": "otherGhgs",
+                "sourceName": "msdyn_otherGhgs",
                 "sourceOrdering": 57,
                 "description": "The aggregated, carbon dioxide equivalents of the other greenhouse gases, such HFC-23, HFC-32, HFC-125, etc., using the IPCC AR4 100-year GWP fact.",
                 "displayName": "Other GHGs",
@@ -2308,8 +2308,8 @@
                 ]
               },
               {
-                "name": "otherghgsunit",
-                "sourceName": "msdyn_otherghgsunit",
+                "name": "otherGhgsUnit",
+                "sourceName": "msdyn_otherGhgsUnit",
                 "sourceOrdering": 58,
                 "description": "The unit for other greenhouse gases factor.",
                 "displayName": "Other GHGs unit",
@@ -2324,7 +2324,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "otherghgsunit",
+                        "name": "otherGhgsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2452,8 +2452,8 @@
                 ]
               },
               {
-                "name": "pfcsunit",
-                "sourceName": "msdyn_pfcsunit",
+                "name": "pfcsUnit",
+                "sourceName": "msdyn_pfcsUnit",
                 "sourceOrdering": 60,
                 "description": "The unit for the perfluorocarbons factor.",
                 "displayName": "PFCs unit",
@@ -2468,7 +2468,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "pfcsunit",
+                        "name": "pfcsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2596,8 +2596,8 @@
                 ]
               },
               {
-                "name": "sf6unit",
-                "sourceName": "msdyn_sf6unit",
+                "name": "sf6Unit",
+                "sourceName": "msdyn_sf6Unit",
                 "sourceOrdering": 62,
                 "description": "The unit for the sulfur hexafluoride factor.",
                 "displayName": "SF₆ unit",
@@ -2612,7 +2612,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "sf6unit",
+                        "name": "sf6Unit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2946,7 +2946,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/EmissionFactor.cdm.json/EmissionFactor/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/emissionFactor.cdm.json/emissionFactor/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

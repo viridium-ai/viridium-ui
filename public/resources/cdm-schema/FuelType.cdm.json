@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "fueltypeId",
-                "sourceName": "msdyn_fueltypeid",
+                "name": "fuelTypeId",
+                "sourceName": "msdyn_fuelTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Fuel type",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_fueltypeid"
+                      "msdyn_fuelTypeId"
                     ]
                   }
                 ]

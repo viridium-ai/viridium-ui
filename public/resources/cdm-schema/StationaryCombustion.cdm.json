@@ -76,8 +76,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "stationarycombustionId",
-                "sourceName": "msdyn_stationarycombustionid",
+                "name": "stationaryCombustionId",
+                "sourceName": "msdyn_stationaryCombustionId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Stationary combustion",
@@ -129,7 +129,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_stationarycombustionid"
+                      "msdyn_stationaryCombustionId"
                     ]
                   }
                 ]
@@ -730,8 +730,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 34,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -746,7 +746,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -806,8 +806,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 35,
                 "description": "Description of the data quality which identifies if the data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data Quality Type",
@@ -855,8 +855,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'StationaryCombustion' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'StationaryCombustion' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1035,8 +1035,8 @@
                 ]
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 39,
                 "description": "Unique identifier for the facility associated with stationary combustion.",
                 "displayName": "Facility",
@@ -1051,7 +1051,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1111,8 +1111,8 @@
                 }
               },
               {
-                "name": "fueltypeid",
-                "sourceName": "msdyn_fueltypeid",
+                "name": "fuelTypeId",
+                "sourceName": "msdyn_fuelTypeId",
                 "sourceOrdering": 40,
                 "description": "Unique identifier for the fuel type associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel Type",
@@ -1125,9 +1125,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "fueltypeId",
+                      "reference": "fuelTypeId",
                       "replaceWith": {
-                        "name": "fueltypeid",
+                        "name": "fuelTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1187,8 +1187,8 @@
                 }
               },
               {
-                "name": "industrialprocesstypeid",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 41,
                 "description": "Unique identifier for the industrial process type associated with stationary combustion.",
                 "displayName": "Industrial Process Type",
@@ -1201,9 +1201,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "industrialprocesstypeId",
+                      "reference": "industrialProcessTypeId",
                       "replaceWith": {
-                        "name": "industrialprocesstypeid",
+                        "name": "industrialProcessTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1263,8 +1263,8 @@
                 }
               },
               {
-                "name": "meternumber",
-                "sourceName": "msdyn_meternumber",
+                "name": "meterNumber",
+                "sourceName": "msdyn_meterNumber",
                 "sourceOrdering": 42,
                 "description": "Field representing meter number for stationary combustion entity.",
                 "displayName": "Meter number",
@@ -1326,8 +1326,8 @@
                 ]
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 43,
                 "description": "Unique identifier for the organizational unit associated with the stationary combustion.",
                 "displayName": "Organizational Unit",
@@ -1340,9 +1340,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1533,8 +1533,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 46,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction Date",
@@ -1586,8 +1586,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 47,
                 "description": "Unit associated with the quantity field ",
                 "displayName": "Quantity unit",
@@ -1602,7 +1602,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

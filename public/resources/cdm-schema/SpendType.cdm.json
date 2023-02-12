@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "spendtypeId",
-                "sourceName": "msdyn_spendtypeid",
+                "name": "spendTypeId",
+                "sourceName": "msdyn_spendTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Spend type",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_spendtypeid"
+                      "msdyn_spendTypeId"
                     ]
                   }
                 ]
@@ -893,8 +893,8 @@
                 ]
               },
               {
-                "name": "emissionsourceid",
-                "sourceName": "msdyn_emissionsourceid",
+                "name": "emissionSourceId",
+                "sourceName": "msdyn_emissionSourceId",
                 "sourceOrdering": 37,
                 "description": "Unique identifier related to emission source associated with spend type",
                 "displayName": "Emission source",
@@ -907,9 +907,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "emissionsourceId",
+                      "reference": "emissionSourceId",
                       "replaceWith": {
-                        "name": "emissionsourceid",
+                        "name": "emissionSourceId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

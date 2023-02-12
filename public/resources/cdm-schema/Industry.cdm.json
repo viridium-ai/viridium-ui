@@ -696,8 +696,8 @@
                 ]
               },
               {
-                "name": "industrynum",
-                "sourceName": "msdyn_industrynum",
+                "name": "industryNum",
+                "sourceName": "msdyn_industryNum",
                 "sourceOrdering": 44,
                 "description": "Contains the mapping to the industry classification code in the form of a range.",
                 "displayName": "Industry number",

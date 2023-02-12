@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "businesstraveltypeId",
-                "sourceName": "msdyn_businesstraveltypeid",
+                "name": "businessTravelTypeId",
+                "sourceName": "msdyn_businessTravelTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Business travel type",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_businesstraveltypeid"
+                      "msdyn_businessTravelTypeId"
                     ]
                   }
                 ]

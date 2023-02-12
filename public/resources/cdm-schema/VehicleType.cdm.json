@@ -7,11 +7,11 @@
   ],
   "definitions": [
     {
-      "entityName": "VehicleType",
+      "entityName": "vehicleType",
       "extendsEntity": "CdmEntity",
       "displayName": "Vehicle type",
       "description": "Category of vehicle. Used by your organization as reference data to assist with emission factor selection for mobile combustion calculations.",
-      "sourceName": "msdyn_vehicletype",
+      "sourceName": "msdyn_vehicleType",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "vehicletypeId",
-                "sourceName": "msdyn_vehicletypeid",
+                "name": "vehicleTypeId",
+                "sourceName": "msdyn_vehicleTypeid",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Vehicle type",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_vehicletypeid"
+                      "msdyn_vehicleTypeid"
                     ]
                   }
                 ]
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'VehicleType' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'vehicleType' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'VehicleType' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'vehicleType' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -827,8 +827,8 @@
                 ]
               },
               {
-                "name": "isonroad",
-                "sourceName": "msdyn_isonroad",
+                "name": "isOnRoad",
+                "sourceName": "msdyn_isOnRoad",
                 "sourceOrdering": 36,
                 "description": "Identifier for the vehicle classification used in mobile combustion and needed for correct emission identification.",
                 "displayName": "Is on-road",
@@ -952,7 +952,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/VehicleType.cdm.json/VehicleType/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/vehicleType.cdm.json/vehicleType/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

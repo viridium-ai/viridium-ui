@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "valuechainpartnerId",
-                "sourceName": "msdyn_valuechainpartnerid",
+                "name": "valueChainPartnerId",
+                "sourceName": "msdyn_valueChainPartnerId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Value Chain Partner",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_valuechainpartnerid"
+                      "msdyn_valueChainPartnerId"
                     ]
                   }
                 ]
@@ -764,8 +764,8 @@
                 ]
               },
               {
-                "name": "addresscity",
-                "sourceName": "msdyn_addresscity",
+                "name": "addressCity",
+                "sourceName": "msdyn_addressCity",
                 "sourceOrdering": 35,
                 "description": "City associated with the value chain partner.",
                 "displayName": "Address City",
@@ -827,8 +827,8 @@
                 ]
               },
               {
-                "name": "addresscountryisocode",
-                "sourceName": "msdyn_addresscountryisocode",
+                "name": "addressCountryIsoCode",
+                "sourceName": "msdyn_addressCountryIsoCode",
                 "sourceOrdering": 36,
                 "description": "The three letter ISO code of the country/region.",
                 "displayName": "Country/Region",
@@ -890,8 +890,8 @@
                 ]
               },
               {
-                "name": "addresscounty",
-                "sourceName": "msdyn_addresscounty",
+                "name": "addressCounty",
+                "sourceName": "msdyn_addressCounty",
                 "sourceOrdering": 37,
                 "description": "County associated with the value chain partner address.",
                 "displayName": "County",
@@ -953,8 +953,8 @@
                 ]
               },
               {
-                "name": "addressstateprovince",
-                "sourceName": "msdyn_addressstateprovince",
+                "name": "addressStateProvince",
+                "sourceName": "msdyn_addressStateProvince",
                 "sourceOrdering": 38,
                 "description": "State/province associated with the value chain partner address.",
                 "displayName": "State/Province",
@@ -1016,8 +1016,8 @@
                 ]
               },
               {
-                "name": "addressstreet1",
-                "sourceName": "msdyn_addressstreet1",
+                "name": "addressStreet1",
+                "sourceName": "msdyn_addressStreet1",
                 "sourceOrdering": 39,
                 "description": "Address line 1 of the street address.",
                 "displayName": "Address line 1",
@@ -1079,8 +1079,8 @@
                 ]
               },
               {
-                "name": "addressstreet2",
-                "sourceName": "msdyn_addressstreet2",
+                "name": "addressStreet2",
+                "sourceName": "msdyn_addressStreet2",
                 "sourceOrdering": 40,
                 "description": "Address line 2 of the street address.",
                 "displayName": "Address line 2",
@@ -1142,8 +1142,8 @@
                 ]
               },
               {
-                "name": "addresszippostalcode",
-                "sourceName": "msdyn_addresszippostalcode",
+                "name": "addressZipPostalCode",
+                "sourceName": "msdyn_addressZipPostalCode",
                 "sourceOrdering": 41,
                 "description": "Zip code or postal code associated with the address.",
                 "displayName": "ZIP/Postal Code",
@@ -1205,8 +1205,8 @@
                 ]
               },
               {
-                "name": "companyregistrationnumber",
-                "sourceName": "msdyn_companyregistrationnumber",
+                "name": "companyRegistrationNumber",
+                "sourceName": "msdyn_companyRegistrationNumber",
                 "sourceOrdering": 42,
                 "description": "Unique identifier that is related to the value chain partner.",
                 "displayName": "Company Registration Number",

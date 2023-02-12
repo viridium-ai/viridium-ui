@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "organizationalunitrevenueId",
-                "sourceName": "msdyn_organizationalunitrevenueid",
+                "name": "organizationalUnitRevenueId",
+                "sourceName": "msdyn_organizationalUnitRevenueId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Monthly revenue",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_organizationalunitrevenueid"
+                      "msdyn_organizationalUnitRevenueId"
                     ]
                   }
                 ]
@@ -1093,8 +1093,8 @@
                 ]
               },
               {
-                "name": "sustainabilityorganizationalunit",
-                "sourceName": "msdyn_sustainabilityorganizationalunit",
+                "name": "sustainabilityOrganizationalUnit",
+                "sourceName": "msdyn_sustainabilityOrganizationalUnit",
                 "sourceOrdering": 43,
                 "description": "Unique identifier for the organizational unit associated with the monthly revenue.",
                 "displayName": "Organizational unit",
@@ -1107,9 +1107,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "sustainabilityorganizationalunit",
+                        "name": "sustainabilityOrganizationalUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

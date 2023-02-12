@@ -358,7 +358,7 @@ export class ConnectorInstance extends BaseEntity {
     }
 }
 
-export class EmissionFactor extends BaseEntity {
+export class emissionFactor extends BaseEntity {
     country: string = ""
     standard: string = "";
     category: string = "";

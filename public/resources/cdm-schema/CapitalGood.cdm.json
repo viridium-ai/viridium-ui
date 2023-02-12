@@ -79,8 +79,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "capitalgoodId",
-                "sourceName": "msdyn_capitalgoodid",
+                "name": "capitalGoodId",
+                "sourceName": "msdyn_capitalGoodId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Capital good",
@@ -132,7 +132,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_capitalgoodid"
+                      "msdyn_capitalGoodId"
                     ]
                   }
                 ]
@@ -733,8 +733,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 34,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -749,7 +749,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -809,8 +809,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 35,
                 "description": "Description of data quality that identifies if data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data quality type",
@@ -858,8 +858,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'CapitalGood' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'CapitalGood' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1038,8 +1038,8 @@
                 ]
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 39,
                 "description": "Unique identifier for Facility associated with captial good.",
                 "displayName": "Facility",
@@ -1054,7 +1054,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1114,8 +1114,8 @@
                 }
               },
               {
-                "name": "industrialprocesstypeid",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 40,
                 "description": "Unique identifier for the industrial process type associated with the activity.",
                 "displayName": "Industrial process type",
@@ -1128,9 +1128,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "industrialprocesstypeId",
+                      "reference": "industrialProcessTypeId",
                       "replaceWith": {
-                        "name": "industrialprocesstypeid",
+                        "name": "industrialProcessTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1190,8 +1190,8 @@
                 }
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 41,
                 "description": "Unique identifier for the organizational unit associated with the capital good.",
                 "displayName": "Organizational unit",
@@ -1204,9 +1204,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1397,8 +1397,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 44,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction date",
@@ -1450,8 +1450,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 45,
                 "description": "Unit associated with the quantity field ",
                 "displayName": "Quantity unit",
@@ -1466,7 +1466,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1526,8 +1526,8 @@
                 }
               },
               {
-                "name": "spendtypeid",
-                "sourceName": "msdyn_spendtypeid",
+                "name": "spendTypeId",
+                "sourceName": "msdyn_spendTypeId",
                 "sourceOrdering": 46,
                 "description": "Unique identifier for the spend type associated with the capital good.",
                 "displayName": "Spend type",
@@ -1540,9 +1540,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "spendtypeId",
+                      "reference": "spendTypeId",
                       "replaceWith": {
-                        "name": "spendtypeid",
+                        "name": "spendTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1602,8 +1602,8 @@
                 }
               },
               {
-                "name": "valuechainpartnerid",
-                "sourceName": "msdyn_valuechainpartnerid",
+                "name": "valueChainPartnerId",
+                "sourceName": "msdyn_valueChainPartnerId",
                 "sourceOrdering": 47,
                 "description": "Reference to the value chain partner or supplier associated with the transaction.",
                 "displayName": "Value chain partner",
@@ -1616,9 +1616,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "valuechainpartnerId",
+                      "reference": "valueChainPartnerId",
                       "replaceWith": {
-                        "name": "valuechainpartnerid",
+                        "name": "valueChainPartnerId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

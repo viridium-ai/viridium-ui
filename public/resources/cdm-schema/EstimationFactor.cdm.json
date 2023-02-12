@@ -68,7 +68,7 @@
             "members": [
               {
                 "name": "estimationfactorId",
-                "sourceName": "msdyn_estimationfactorid",
+                "sourceName": "msdyn_estimationfactorId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Estimation factor",
@@ -120,7 +120,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_estimationfactorid"
+                      "msdyn_estimationfactorId"
                     ]
                   }
                 ]
@@ -910,7 +910,7 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "calculationlibraryId",
+                      "reference": "calculationLibraryId",
                       "replaceWith": {
                         "name": "factorLibrary",
                         "dataType": "entityId",

@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "sustainabilityorganizationalhierarchyId",
-                "sourceName": "msdyn_sustainabilityorganizationalhierarchyid",
+                "name": "sustainabilityOrganizationalHierarchyId",
+                "sourceName": "msdyn_sustainabilityOrganizationalHierarchyId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Organizational hierarchy",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_sustainabilityorganizationalhierarchyid"
+                      "msdyn_sustainabilityOrganizationalHierarchyId"
                     ]
                   }
                 ]
@@ -767,8 +767,8 @@
                 ]
               },
               {
-                "name": "effectiveenddate",
-                "sourceName": "msdyn_effectiveenddate",
+                "name": "effectiveEndDate",
+                "sourceName": "msdyn_effectiveEndDate",
                 "sourceOrdering": 35,
                 "description": "The date which represents the end of the reporting period.",
                 "displayName": "Effective end date",
@@ -820,8 +820,8 @@
                 ]
               },
               {
-                "name": "effectivestartdate",
-                "sourceName": "msdyn_effectivestartdate",
+                "name": "effectiveStartDate",
+                "sourceName": "msdyn_effectiveStartDate",
                 "sourceOrdering": 36,
                 "description": "The date which represents the start of the reporting period.",
                 "displayName": "Effective start date",
@@ -873,8 +873,8 @@
                 ]
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 37,
                 "description": "Unique identifier for the organizational unit associated with the organizational hierarchy.",
                 "displayName": "Organizational unit",
@@ -887,9 +887,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -949,8 +949,8 @@
                 }
               },
               {
-                "name": "parentid",
-                "sourceName": "msdyn_parentid",
+                "name": "parentId",
+                "sourceName": "msdyn_parentId",
                 "sourceOrdering": 38,
                 "description": "Unique identifier for the organizational unit associated with the organizational hierarchy.",
                 "displayName": "Parent",
@@ -963,9 +963,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "parentid",
+                        "name": "parentId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

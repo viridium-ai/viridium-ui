@@ -11,7 +11,7 @@
       "extendsEntity": "CdmEntity",
       "displayName": "Emissions source",
       "description": "Greenhouse Gas Protocol-defined emissions sources in scopes 1, 2, and 3.",
-      "sourceName": "msdyn_emissionsource",
+      "sourceName": "msdyn_emissionSource",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "emissionsourceId",
-                "sourceName": "msdyn_emissionsourceid",
+                "name": "emissionSourceId",
+                "sourceName": "msdyn_emissionSourceId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Emissions source",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_emissionsourceid"
+                      "msdyn_emissionSourceId"
                     ]
                   }
                 ]
@@ -696,8 +696,8 @@
                 ]
               },
               {
-                "name": "activitytypedatafield",
-                "sourceName": "msdyn_activitytypedatafield",
+                "name": "activityTypedataField",
+                "sourceName": "msdyn_activityTypedataField",
                 "sourceOrdering": 44,
                 "description": "Optional description that provides additional detail about the entity or attribute.",
                 "displayName": "Activity type data field",
@@ -822,8 +822,8 @@
                 ]
               },
               {
-                "name": "entityname",
-                "sourceName": "msdyn_entityname",
+                "name": "entityName",
+                "sourceName": "msdyn_entityName",
                 "sourceOrdering": 46,
                 "description": "Internal reference used to map an entity to the corresponding record.",
                 "displayName": "Entity name",
@@ -885,8 +885,8 @@
                 ]
               },
               {
-                "name": "isactive",
-                "sourceName": "msdyn_isactive",
+                "name": "isActive",
+                "sourceName": "msdyn_isActive",
                 "sourceOrdering": 47,
                 "description": "Internal reference assigned during import.",
                 "displayName": "Is active",
@@ -1041,8 +1041,8 @@
                 ]
               },
               {
-                "name": "sourcedatafield",
-                "sourceName": "msdyn_sourcedatafield",
+                "name": "sourcedataField",
+                "sourceName": "msdyn_sourcedataField",
                 "sourceOrdering": 51,
                 "description": "Optional field entity for additional views.",
                 "displayName": "Source data field",
@@ -1104,8 +1104,8 @@
                 ]
               },
               {
-                "name": "sourcedatavalue",
-                "sourceName": "msdyn_sourcedatavalue",
+                "name": "sourceDataValue",
+                "sourceName": "msdyn_sourceDataValue",
                 "sourceOrdering": 52,
                 "description": "The value of source data.",
                 "displayName": "Source data value",
@@ -1167,8 +1167,8 @@
                 ]
               },
               {
-                "name": "sourceviewid",
-                "sourceName": "msdyn_sourceviewid",
+                "name": "sourceViewId",
+                "sourceName": "msdyn_sourceViewId",
                 "sourceOrdering": 53,
                 "description": "Optional entity for additional views",
                 "displayName": "Source view ID",

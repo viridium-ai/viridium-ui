@@ -7,11 +7,11 @@
   ],
   "definitions": [
     {
-      "entityName": "OrganizationalProfile",
+      "entityName": "organizationalProfile",
       "extendsEntity": "CdmEntity",
       "displayName": "Organizational profile",
       "description": "The base information of the organization, for which the solution is built.",
-      "sourceName": "msdyn_organizationalprofile",
+      "sourceName": "msdyn_organizationalProfile",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "organizationalprofileId",
-                "sourceName": "msdyn_organizationalprofileid",
+                "name": "organizationalProfileId",
+                "sourceName": "msdyn_organizationalProfileid",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Organizational profile",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_organizationalprofileid"
+                      "msdyn_organizationalProfileid"
                     ]
                   }
                 ]
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -764,8 +764,8 @@
                 ]
               },
               {
-                "name": "addressline1",
-                "sourceName": "msdyn_addressline1",
+                "name": "addressLine1",
+                "sourceName": "msdyn_addressLine1",
                 "sourceOrdering": 35,
                 "description": "The street address, including the number and street name of the facility.",
                 "displayName": "Address line 1",
@@ -827,8 +827,8 @@
                 ]
               },
               {
-                "name": "addressline2",
-                "sourceName": "msdyn_addressline2",
+                "name": "addressLine2",
+                "sourceName": "msdyn_addressLine2",
                 "sourceOrdering": 36,
                 "description": "Secondary street address information.",
                 "displayName": "Address line 2",
@@ -1016,8 +1016,8 @@
                 ]
               },
               {
-                "name": "countryisocode",
-                "sourceName": "msdyn_countryisocode",
+                "name": "countryIsoCode",
+                "sourceName": "msdyn_countryIsoCode",
                 "sourceOrdering": 39,
                 "description": "The three letter ISO code of the country/region.",
                 "displayName": "Country/Region",
@@ -1215,8 +1215,8 @@
                 ]
               },
               {
-                "name": "postalcode",
-                "sourceName": "msdyn_postalcode",
+                "name": "postalCode",
+                "sourceName": "msdyn_postalCode",
                 "sourceOrdering": 42,
                 "description": "The zip or postal code in which the organization resides.",
                 "displayName": "Postal code",
@@ -1278,8 +1278,8 @@
                 ]
               },
               {
-                "name": "reportingstartday",
-                "sourceName": "msdyn_reportingstartday",
+                "name": "reportingStartDay",
+                "sourceName": "msdyn_reportingStartDay",
                 "sourceOrdering": 43,
                 "description": "Day of the month.",
                 "displayName": "Reporting start day",
@@ -1495,8 +1495,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'reportingstartday_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingstartday'",
-                        "name": "reportingstartday_display",
+                        "explanation": "This attribute 'reportingStartDay_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartDay'",
+                        "name": "reportingStartDay_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1549,8 +1549,8 @@
                 ]
               },
               {
-                "name": "reportingstartmonth",
-                "sourceName": "msdyn_reportingstartmonth",
+                "name": "reportingStartMonth",
+                "sourceName": "msdyn_reportingStartMonth",
                 "sourceOrdering": 45,
                 "description": "The month in which reporting begins for a given organization.",
                 "displayName": "Reporting start month",
@@ -1652,8 +1652,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'reportingstartmonth_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingstartmonth'",
-                        "name": "reportingstartmonth_display",
+                        "explanation": "This attribute 'reportingStartMonth_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartMonth'",
+                        "name": "reportingStartMonth_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1706,8 +1706,8 @@
                 ]
               },
               {
-                "name": "stateprovince",
-                "sourceName": "msdyn_stateprovince",
+                "name": "stateProvince",
+                "sourceName": "msdyn_stateProvince",
                 "sourceOrdering": 47,
                 "description": "The state or province in which the organization resides.",
                 "displayName": "State/Province",
@@ -1778,7 +1778,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/OrganizationalProfile.cdm.json/OrganizationalProfile/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/organizationalProfile.cdm.json/organizationalProfile/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

@@ -7,11 +7,11 @@
   ],
   "definitions": [
     {
-      "entityName": "TransportMode",
+      "entityName": "transportMode",
       "extendsEntity": "CdmEntity",
       "displayName": "Transport mode",
       "description": "The mode of transportation or distribution used in an activity, such as air, rail, or storage.",
-      "sourceName": "msdyn_transportmode",
+      "sourceName": "msdyn_transportMode",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "transportmodeId",
-                "sourceName": "msdyn_transportmodeid",
+                "name": "transportModeId",
+                "sourceName": "msdyn_transportModeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Transport mode",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_transportmodeid"
+                      "msdyn_transportModeId"
                     ]
                   }
                 ]
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'TransportMode' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'transportMode' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'TransportMode' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'transportMode' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -952,7 +952,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/TransportMode.cdm.json/TransportMode/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/transportMode.cdm.json/transportMode/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

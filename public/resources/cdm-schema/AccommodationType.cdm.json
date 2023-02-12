@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "accommodationtypeId",
-                "sourceName": "msdyn_accommodationtypeid",
+                "name": "accommodationTypeId",
+                "sourceName": "msdyn_accommodationTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Accommodation type",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_accommodationtypeid"
+                      "msdyn_accommodationTypeId"
                     ]
                   }
                 ]

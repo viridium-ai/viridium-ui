@@ -5,7 +5,7 @@
       "corpusPath": "cdm:/core/cdsConcepts.cdm.json"
     },
     {
-      "corpusPath": "OrganizationalProfile.cdm.json"
+      "corpusPath": "organizationalProfile.cdm.json"
     }
   ],
   "definitions": [
@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "industryclassificationId",
-                "sourceName": "msdyn_industryclassificationid",
+                "name": "industryClassificationId",
+                "sourceName": "msdyn_industryClassificationId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "IndustryClassification",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_industryclassificationid"
+                      "msdyn_industryClassificationId"
                     ]
                   }
                 ]
@@ -767,8 +767,8 @@
                 ]
               },
               {
-                "name": "industrynum",
-                "sourceName": "msdyn_industrynum",
+                "name": "industryNum",
+                "sourceName": "msdyn_industryNum",
                 "sourceOrdering": 35,
                 "description": "Contains the mapping to the industry classification code in the form of a range.",
                 "displayName": "Industry number",
@@ -830,8 +830,8 @@
                 ]
               },
               {
-                "name": "industryname",
-                "sourceName": "msdyn_industryname",
+                "name": "industryName",
+                "sourceName": "msdyn_industryName",
                 "sourceOrdering": 36,
                 "description": "Name of the industry.",
                 "displayName": "Industry name",
@@ -893,8 +893,8 @@
                 ]
               },
               {
-                "name": "organizationalprofile",
-                "sourceName": "msdyn_organizationalprofile",
+                "name": "organizationalProfile",
+                "sourceName": "msdyn_organizationalProfile",
                 "sourceOrdering": 37,
                 "description": "Unique identifier for Organizational Profile associated with Industry Classification.",
                 "displayName": "Organizational profile",
@@ -902,14 +902,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "OrganizationalProfile",
+                  "source": "organizationalProfile",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "organizationalprofileId",
+                      "reference": "organizationalProfileId",
                       "replaceWith": {
-                        "name": "organizationalprofile",
+                        "name": "organizationalProfile",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -969,8 +969,8 @@
                 }
               },
               {
-                "name": "subindustryid",
-                "sourceName": "msdyn_subindustryid",
+                "name": "subindustryId",
+                "sourceName": "msdyn_subindustryId",
                 "sourceOrdering": 38,
                 "description": "Subindustry classification code.",
                 "displayName": "Subindustry ID",
@@ -1032,8 +1032,8 @@
                 ]
               },
               {
-                "name": "subindustryname",
-                "sourceName": "msdyn_subindustryname",
+                "name": "subindustryName",
+                "sourceName": "msdyn_subindustryName",
                 "sourceOrdering": 39,
                 "description": "Name of the subindustry.",
                 "displayName": "Subindustry name",

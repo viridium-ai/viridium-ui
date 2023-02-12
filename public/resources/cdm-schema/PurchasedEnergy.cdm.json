@@ -73,8 +73,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "purchasedenergyId",
-                "sourceName": "msdyn_purchasedenergyid",
+                "name": "purchasedEnergyId",
+                "sourceName": "msdyn_purchasedEnergyId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Purchased energy",
@@ -126,7 +126,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_purchasedenergyid"
+                      "msdyn_purchasedEnergyId"
                     ]
                   }
                 ]
@@ -659,8 +659,8 @@
                 ]
               },
               {
-                "name": "contractualinstrumenttypeid",
-                "sourceName": "msdyn_contractualinstrumenttypeid",
+                "name": "contractualInstrumentTypeId",
+                "sourceName": "msdyn_contractualInstrumentTypeId",
                 "sourceOrdering": 33,
                 "description": "Unique identifier for the contractual instrument type associated with the purchased energy.",
                 "displayName": "Contractual Instrument Type",
@@ -673,9 +673,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "contractualinstrumenttypeId",
+                      "reference": "contractualInstrumentTypeId",
                       "replaceWith": {
-                        "name": "contractualinstrumenttypeid",
+                        "name": "contractualInstrumentTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -803,8 +803,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 35,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -819,7 +819,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -879,8 +879,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 36,
                 "description": "Description of the data quality which identifies if the data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data Quality Type",
@@ -928,8 +928,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'PurchasedEnergy' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'PurchasedEnergy' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1045,8 +1045,8 @@
                 ]
               },
               {
-                "name": "energyprovidername",
-                "sourceName": "msdyn_energyprovidername",
+                "name": "energyProviderName",
+                "sourceName": "msdyn_energyProviderName",
                 "sourceOrdering": 39,
                 "description": "Name of the energy provider.",
                 "displayName": "Energy Provider Name",
@@ -1108,8 +1108,8 @@
                 ]
               },
               {
-                "name": "energytype",
-                "sourceName": "msdyn_energytype",
+                "name": "energyType",
+                "sourceName": "msdyn_energyType",
                 "sourceOrdering": 40,
                 "description": "Energ sub-category within Scope 2 emissions. ",
                 "displayName": "Energy Type",
@@ -1163,8 +1163,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'energytype_display' is added to the 'PurchasedEnergy' entity to provide the localized display text for the value of the listLookup attribute 'energytype'",
-                        "name": "energytype_display",
+                        "explanation": "This attribute 'energyType_display' is added to the 'PurchasedEnergy' entity to provide the localized display text for the value of the listLookup attribute 'energyType'",
+                        "name": "energyType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1280,8 +1280,8 @@
                 ]
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 43,
                 "description": "Unique identifier for the facility associated with the purchased energy.",
                 "displayName": "Facility",
@@ -1296,7 +1296,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1356,8 +1356,8 @@
                 }
               },
               {
-                "name": "isrenewable",
-                "sourceName": "msdyn_isrenewable",
+                "name": "isRenewable",
+                "sourceName": "msdyn_isRenewable",
                 "sourceOrdering": 44,
                 "description": "Identifier used to determine if the source electric energy is renewable or not.",
                 "displayName": "Is Renewable",
@@ -1409,8 +1409,8 @@
                 ]
               },
               {
-                "name": "meternumber",
-                "sourceName": "msdyn_meternumber",
+                "name": "meterNumber",
+                "sourceName": "msdyn_meterNumber",
                 "sourceOrdering": 46,
                 "description": "Field representing meter number for purchased energy entity.",
                 "displayName": "Meter number",
@@ -1472,8 +1472,8 @@
                 ]
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 47,
                 "description": "Unique identifier for the organizational unit associated with the purchased energy.",
                 "displayName": "Organizational Unit",
@@ -1486,9 +1486,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1679,8 +1679,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 50,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction Date",
@@ -1732,8 +1732,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 51,
                 "description": "Unit associated with the quantity field ",
                 "displayName": "Quantity unit",
@@ -1748,7 +1748,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

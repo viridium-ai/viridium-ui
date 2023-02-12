@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "countryregionmappingId",
-                "sourceName": "msdyn_countryregionmappingid",
+                "name": "countryRegionMappingId",
+                "sourceName": "msdyn_countryRegionMappingId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Country/Region mapping",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_countryregionmappingid"
+                      "msdyn_countryRegionMappingId"
                     ]
                   }
                 ]
@@ -764,8 +764,8 @@
                 ]
               },
               {
-                "name": "countryisocode",
-                "sourceName": "msdyn_countryisocode",
+                "name": "countryIsoCode",
+                "sourceName": "msdyn_countryIsoCode",
                 "sourceOrdering": 35,
                 "description": "ISO code of the country/region mapped to a group (msndyn_region).",
                 "displayName": "Country/Region",

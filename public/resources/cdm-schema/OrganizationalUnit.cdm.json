@@ -11,7 +11,7 @@
       "extendsEntity": "CdmEntity",
       "displayName": "Organizational unit",
       "description": "A structural division of a company or organization.",
-      "sourceName": "msdyn_sustainabilityorganizationalunit",
+      "sourceName": "msdyn_sustainabilityOrganizationalUnit",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "sustainabilityorganizationalunitId",
-                "sourceName": "msdyn_sustainabilityorganizationalunitid",
+                "name": "sustainabilityOrganizationalUnitId",
+                "sourceName": "msdyn_sustainabilityOrganizationalUnitId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Reporting organizational unit",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_sustainabilityorganizationalunitid"
+                      "msdyn_sustainabilityOrganizationalUnitId"
                     ]
                   }
                 ]
@@ -764,8 +764,8 @@
                 ]
               },
               {
-                "name": "addresscity",
-                "sourceName": "msdyn_addresscity",
+                "name": "addressCity",
+                "sourceName": "msdyn_addressCity",
                 "sourceOrdering": 35,
                 "description": "The city in which the organizational unit is based.",
                 "displayName": "City",
@@ -827,8 +827,8 @@
                 ]
               },
               {
-                "name": "addresscountryisocode",
-                "sourceName": "msdyn_addresscountryisocode",
+                "name": "addressCountryIsoCode",
+                "sourceName": "msdyn_addressCountryIsoCode",
                 "sourceOrdering": 36,
                 "description": "Country/region.",
                 "displayName": "Country/Region",
@@ -890,8 +890,8 @@
                 ]
               },
               {
-                "name": "addresscounty",
-                "sourceName": "msdyn_addresscounty",
+                "name": "addressCounty",
+                "sourceName": "msdyn_addressCounty",
                 "sourceOrdering": 37,
                 "description": "The county in which the organizational unit is based.",
                 "displayName": "County",
@@ -953,8 +953,8 @@
                 ]
               },
               {
-                "name": "addressstateprovince",
-                "sourceName": "msdyn_addressstateprovince",
+                "name": "addressStateProvince",
+                "sourceName": "msdyn_addressStateProvince",
                 "sourceOrdering": 38,
                 "description": "The state or province in which the organizational unit is based.",
                 "displayName": "State/Province",
@@ -1016,8 +1016,8 @@
                 ]
               },
               {
-                "name": "addressstreet1",
-                "sourceName": "msdyn_addressstreet1",
+                "name": "addressStreet1",
+                "sourceName": "msdyn_addressStreet1",
                 "sourceOrdering": 39,
                 "description": "The street address, including the number and street name.",
                 "displayName": "Address line 1",
@@ -1079,8 +1079,8 @@
                 ]
               },
               {
-                "name": "addressstreet2",
-                "sourceName": "msdyn_addressstreet2",
+                "name": "addressStreet2",
+                "sourceName": "msdyn_addressStreet2",
                 "sourceOrdering": 40,
                 "description": "Secondary street address information.",
                 "displayName": "Address line 2",
@@ -1142,8 +1142,8 @@
                 ]
               },
               {
-                "name": "addresszippostalcode",
-                "sourceName": "msdyn_addresszippostalcode",
+                "name": "addressZipPostalCode",
+                "sourceName": "msdyn_addressZipPostalCode",
                 "sourceOrdering": 41,
                 "description": "The zip or postal code in which the organization resides.",
                 "displayName": "ZIP/Postal code",
@@ -1404,8 +1404,8 @@
                 ]
               },
               {
-                "name": "organizationalunittype",
-                "sourceName": "msdyn_organizationalunittype",
+                "name": "organizationalUnitType",
+                "sourceName": "msdyn_organizationalUnitType",
                 "sourceOrdering": 45,
                 "description": "The type of organization unit selected.",
                 "displayName": "Organizational unit type",
@@ -1471,8 +1471,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'organizationalunittype_display' is added to the 'OrganizationalUnit' entity to provide the localized display text for the value of the listLookup attribute 'organizationalunittype'",
-                        "name": "organizationalunittype_display",
+                        "explanation": "This attribute 'organizationalUnitType_display' is added to the 'OrganizationalUnit' entity to provide the localized display text for the value of the listLookup attribute 'organizationalUnitType'",
+                        "name": "organizationalUnitType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true

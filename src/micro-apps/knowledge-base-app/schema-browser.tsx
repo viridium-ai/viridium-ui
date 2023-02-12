@@ -23,7 +23,7 @@ export const ENTITIES = [
     "ContractualInstrumentType",
     "CountryRegionMapping",
     "Emission",
-    "EmissionFactor",
+    "emissionFactor",
     "EmissionsSource",
     "EstimationFactor",
     "Facility",
@@ -33,7 +33,7 @@ export const ENTITIES = [
     "FuelType",
     "FugitiveEmission",
     "GlobalOptionsets",
-    "GreenhouseGas",
+    "greenhouseGas",
     "IndustrialProcess",
     "IndustrialProcessType",
     "Industry",
@@ -41,7 +41,7 @@ export const ENTITIES = [
     "MobileCombustion",
     "MonthlyRevenue",
     "OrganizationalHierarchy",
-    "OrganizationalProfile",
+    "organizationalProfile",
     "OrganizationalUnit",
     "PurchasedEnergy",
     "PurchasedGoodAndService",
@@ -49,12 +49,12 @@ export const ENTITIES = [
     "StationaryCombustion",
     "Subindustry",
     "Sustainability.manifest",
-    "TransportMode",
+    "transportMode",
     "TransportationAndDistribution",
     "Unit",
-    "UnitGroup",
+    "unitGroup",
     "ValueChainPartner",
-    "VehicleType"
+    "vehicleType"
 ]
 class BaseSchemaObj {
     displayName: string = "";

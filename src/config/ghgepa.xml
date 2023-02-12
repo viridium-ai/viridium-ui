@@ -14,7 +14,7 @@
                 <StateIdentity>
                     <StateCode>WI</StateCode>
                 </StateIdentity>
-                <AddressPostalCode>54113</AddressPostalCode>
+                <AddresspostalCode>54113</AddresspostalCode>
             </LocationAddress>
             <CogenerationUnitEmissionsIndicator>Y</CogenerationUnitEmissionsIndicator>
             <PrimaryNAICSCode>322121</PrimaryNAICSCode>

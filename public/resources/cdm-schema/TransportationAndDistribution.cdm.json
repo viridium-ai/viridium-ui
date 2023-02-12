@@ -20,7 +20,7 @@
       "corpusPath": "OrganizationalUnit.cdm.json"
     },
     {
-      "corpusPath": "TransportMode.cdm.json"
+      "corpusPath": "transportMode.cdm.json"
     },
     {
       "corpusPath": "Unit.cdm.json"
@@ -29,7 +29,7 @@
       "corpusPath": "ValueChainPartner.cdm.json"
     },
     {
-      "corpusPath": "VehicleType.cdm.json"
+      "corpusPath": "vehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -88,8 +88,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "transportationanddistributionId",
-                "sourceName": "msdyn_transportationanddistributionid",
+                "name": "transportationAndDistributionId",
+                "sourceName": "msdyn_transportationAndDistributionId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Transportation and Distribution",
@@ -141,7 +141,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_transportationanddistributionid"
+                      "msdyn_transportationAndDistributionId"
                     ]
                   }
                 ]
@@ -742,8 +742,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 34,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -758,7 +758,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -818,8 +818,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 35,
                 "description": "Description of the data quality which identifies if the data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data quality type",
@@ -867,8 +867,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'TransportationAndDistribution' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'TransportationAndDistribution' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1052,8 +1052,8 @@
                 ]
               },
               {
-                "name": "distanceunit",
-                "sourceName": "msdyn_distanceunit",
+                "name": "distanceUnit",
+                "sourceName": "msdyn_distanceUnit",
                 "sourceOrdering": 39,
                 "description": "Unique identifier for the unit associated with distance.",
                 "displayName": "Distance Unit",
@@ -1068,7 +1068,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "distanceunit",
+                        "name": "distanceUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1191,8 +1191,8 @@
                 ]
               },
               {
-                "name": "facilityid",
-                "sourceName": "msdyn_facilityid",
+                "name": "facilityId",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 41,
                 "description": "Unique identifier associated with Transportation and distribution",
                 "displayName": "Facility",
@@ -1207,7 +1207,7 @@
                       "condition": "referenceOnly",
                       "reference": "facilityId",
                       "replaceWith": {
-                        "name": "facilityid",
+                        "name": "facilityId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1267,8 +1267,8 @@
                 }
               },
               {
-                "name": "fuelquantity",
-                "sourceName": "msdyn_fuelquantity",
+                "name": "fuelQuantity",
+                "sourceName": "msdyn_fuelQuantity",
                 "sourceOrdering": 42,
                 "description": "Unique identifier for the fuel consumption data associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel quantity",
@@ -1335,8 +1335,8 @@
                 ]
               },
               {
-                "name": "fuelquantityunit",
-                "sourceName": "msdyn_fuelquantityunit",
+                "name": "fuelQuantityUnit",
+                "sourceName": "msdyn_fuelQuantityUnit",
                 "sourceOrdering": 43,
                 "description": "Unique identifier for the unit associated with fuel data.",
                 "displayName": "Fuel quantity unit",
@@ -1351,7 +1351,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "fuelquantityunit",
+                        "name": "fuelQuantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1411,8 +1411,8 @@
                 }
               },
               {
-                "name": "fueltypeid",
-                "sourceName": "msdyn_fueltypeid",
+                "name": "fuelTypeId",
+                "sourceName": "msdyn_fuelTypeId",
                 "sourceOrdering": 44,
                 "description": "Unique identifier for the fuel type associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel type",
@@ -1425,9 +1425,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "fueltypeId",
+                      "reference": "fuelTypeId",
                       "replaceWith": {
-                        "name": "fueltypeid",
+                        "name": "fuelTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1487,8 +1487,8 @@
                 }
               },
               {
-                "name": "goodsquantity",
-                "sourceName": "msdyn_goodsquantity",
+                "name": "goodsQuantity",
+                "sourceName": "msdyn_goodsQuantity",
                 "sourceOrdering": 45,
                 "description": "The quantity of goods being transported and distributed, which is used for calculation.",
                 "displayName": "Goods quantity (mass)",
@@ -1555,8 +1555,8 @@
                 ]
               },
               {
-                "name": "goodsunit",
-                "sourceName": "msdyn_goodsunit",
+                "name": "goodsUnit",
+                "sourceName": "msdyn_goodsUnit",
                 "sourceOrdering": 46,
                 "description": "Unique identifier for the unit relating to transportation and distribution of goods.",
                 "displayName": "Goods quantity (mass) unit",
@@ -1571,7 +1571,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "goodsunit",
+                        "name": "goodsUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1631,8 +1631,8 @@
                 }
               },
               {
-                "name": "industrialprocesstypeid",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 47,
                 "description": "Unique identifier for the industrial process type associated with activity.",
                 "displayName": "Industrial process type",
@@ -1645,9 +1645,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "industrialprocesstypeId",
+                      "reference": "industrialProcessTypeId",
                       "replaceWith": {
-                        "name": "industrialprocesstypeid",
+                        "name": "industrialProcessTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1707,8 +1707,8 @@
                 }
               },
               {
-                "name": "organizationalunitid",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 48,
                 "description": "Unique identifier for the organizational unit associated with transportation and distribution.",
                 "displayName": "Organizational unit",
@@ -1721,9 +1721,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitid",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1851,8 +1851,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 50,
                 "description": "Unit associated with the quantity field.",
                 "displayName": "Quantity unit",
@@ -1867,7 +1867,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1990,8 +1990,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 52,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction date",
@@ -2043,8 +2043,8 @@
                 ]
               },
               {
-                "name": "transportationanddistributiontype",
-                "sourceName": "msdyn_transportationanddistributiontype",
+                "name": "transportationAndDistributionType",
+                "sourceName": "msdyn_transportationAndDistributionType",
                 "sourceOrdering": 53,
                 "description": "Marks what type of transportation and distribution this record represents.",
                 "displayName": "Transportation and distribution type",
@@ -2086,8 +2086,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'transportationanddistributiontype_display' is added to the 'TransportationAndDistribution' entity to provide the localized display text for the value of the listLookup attribute 'transportationanddistributiontype'",
-                        "name": "transportationanddistributiontype_display",
+                        "explanation": "This attribute 'transportationAndDistributionType_display' is added to the 'TransportationAndDistribution' entity to provide the localized display text for the value of the listLookup attribute 'transportationAndDistributionType'",
+                        "name": "transportationAndDistributionType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -2140,8 +2140,8 @@
                 ]
               },
               {
-                "name": "transportmode",
-                "sourceName": "msdyn_transportmode",
+                "name": "transportMode",
+                "sourceName": "msdyn_transportMode",
                 "sourceOrdering": 55,
                 "description": "The transport mode that corresponds to this transportation and distribution activity.",
                 "displayName": "Transport mode",
@@ -2149,14 +2149,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "TransportMode",
+                  "source": "transportMode",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "transportmodeId",
+                      "reference": "transportModeId",
                       "replaceWith": {
-                        "name": "transportmode",
+                        "name": "transportMode",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2216,8 +2216,8 @@
                 }
               },
               {
-                "name": "vehicletype",
-                "sourceName": "msdyn_vehicletype",
+                "name": "vehicleType",
+                "sourceName": "msdyn_vehicleType",
                 "sourceOrdering": 56,
                 "description": "Unique identifier for the vehicle type associated with combustion or supply chain transportation activities.",
                 "displayName": "Vehicle type",
@@ -2225,14 +2225,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "VehicleType",
+                  "source": "vehicleType",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "vehicletypeId",
+                      "reference": "vehicleTypeId",
                       "replaceWith": {
-                        "name": "vehicletype",
+                        "name": "vehicleType",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2292,8 +2292,8 @@
                 }
               },
               {
-                "name": "spendtypeid",
-                "sourceName": "msdyn_spendtypeid",
+                "name": "spendTypeId",
+                "sourceName": "msdyn_spendTypeId",
                 "sourceOrdering": 57,
                 "description": "Unique identifier for the spend type associated with transportation and distribution.",
                 "displayName": "Spend type",
@@ -2306,9 +2306,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "spendtypeId",
+                      "reference": "spendTypeId",
                       "replaceWith": {
-                        "name": "spendtypeid",
+                        "name": "spendTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2368,8 +2368,8 @@
                 }
               },
               {
-                "name": "valuechainpartnerid",
-                "sourceName": "msdyn_valuechainpartnerid",
+                "name": "valueChainPartnerId",
+                "sourceName": "msdyn_valueChainPartnerId",
                 "sourceOrdering": 58,
                 "description": "Reference to the value chain partner or supplier associated with the transaction.",
                 "displayName": "Value chain partner",
@@ -2382,9 +2382,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "valuechainpartnerId",
+                      "reference": "valueChainPartnerId",
                       "replaceWith": {
-                        "name": "valuechainpartnerid",
+                        "name": "valueChainPartnerId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

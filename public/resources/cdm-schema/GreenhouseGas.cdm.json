@@ -7,11 +7,11 @@
   ],
   "definitions": [
     {
-      "entityName": "GreenhouseGas",
+      "entityName": "greenhouseGas",
       "extendsEntity": "CdmEntity",
       "displayName": "Greenhouse gas",
       "description": "Entity for greenhouse gases.",
-      "sourceName": "msdyn_greenhousegas",
+      "sourceName": "msdyn_greenhouseGas",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "greenhousegasId",
-                "sourceName": "msdyn_greenhousegasid",
+                "name": "greenhouseGasId",
+                "sourceName": "msdyn_greenhouseGasid",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Greenhouse gas",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_greenhousegasid"
+                      "msdyn_greenhouseGasid"
                     ]
                   }
                 ]
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'GreenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'greenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'GreenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'greenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -825,7 +825,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'category_display' is added to the 'GreenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'category'",
+                        "explanation": "This attribute 'category_display' is added to the 'greenhouseGas' entity to provide the localized display text for the value of the listLookup attribute 'category'",
                         "name": "category_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -879,8 +879,8 @@
                 ]
               },
               {
-                "name": "datafield",
-                "sourceName": "msdyn_datafield",
+                "name": "dataField",
+                "sourceName": "msdyn_dataField",
                 "sourceOrdering": 37,
                 "description": "Optional field entity for additional views.",
                 "displayName": "Data field",
@@ -1005,8 +1005,8 @@
                 ]
               },
               {
-                "name": "gwpfactor",
-                "sourceName": "msdyn_gwpfactor",
+                "name": "gwpFactor",
+                "sourceName": "msdyn_gwpFactor",
                 "sourceOrdering": 39,
                 "description": "Global warming potential factor.",
                 "displayName": "GWP factor",
@@ -1082,7 +1082,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/GreenhouseGas.cdm.json/GreenhouseGas/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/greenhouseGas.cdm.json/greenhouseGas/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "industrialprocesstypeId",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Industrial process type",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_industrialprocesstypeid"
+                      "msdyn_industrialProcessTypeId"
                     ]
                   }
                 ]

@@ -62,7 +62,7 @@
             "members": [
               {
                 "name": "facilityId",
-                "sourceName": "msdyn_facilityid",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Facility",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_facilityid"
+                      "msdyn_facilityId"
                     ]
                   }
                 ]
@@ -764,8 +764,8 @@
                 ]
               },
               {
-                "name": "addresscity",
-                "sourceName": "msdyn_addresscity",
+                "name": "addressCity",
+                "sourceName": "msdyn_addressCity",
                 "sourceOrdering": 35,
                 "description": "The city in which the facility resides.",
                 "displayName": "City",
@@ -827,8 +827,8 @@
                 ]
               },
               {
-                "name": "addresscountryisocode",
-                "sourceName": "msdyn_addresscountryisocode",
+                "name": "addressCountryIsoCode",
+                "sourceName": "msdyn_addressCountryIsoCode",
                 "sourceOrdering": 36,
                 "description": "The three letter ISO code of the country/region.",
                 "displayName": "Country/Region",
@@ -890,8 +890,8 @@
                 ]
               },
               {
-                "name": "addresscounty",
-                "sourceName": "msdyn_addresscounty",
+                "name": "addressCounty",
+                "sourceName": "msdyn_addressCounty",
                 "sourceOrdering": 37,
                 "description": "The county/region in which the facility resides.",
                 "displayName": "County",
@@ -953,8 +953,8 @@
                 ]
               },
               {
-                "name": "addressstateprovince",
-                "sourceName": "msdyn_addressstateprovince",
+                "name": "addressStateProvince",
+                "sourceName": "msdyn_addressStateProvince",
                 "sourceOrdering": 38,
                 "description": "The state or province in which the facility resides.",
                 "displayName": "State/Province",
@@ -1016,8 +1016,8 @@
                 ]
               },
               {
-                "name": "addressstreet1",
-                "sourceName": "msdyn_addressstreet1",
+                "name": "addressStreet1",
+                "sourceName": "msdyn_addressStreet1",
                 "sourceOrdering": 39,
                 "description": "The street address including the number and street name of the facility.",
                 "displayName": "Address line 1",
@@ -1079,8 +1079,8 @@
                 ]
               },
               {
-                "name": "addressstreet2",
-                "sourceName": "msdyn_addressstreet2",
+                "name": "addressStreet2",
+                "sourceName": "msdyn_addressStreet2",
                 "sourceOrdering": 40,
                 "description": "Secondary street address information.",
                 "displayName": "Address line 2",
@@ -1142,8 +1142,8 @@
                 ]
               },
               {
-                "name": "addresszippostalcode",
-                "sourceName": "msdyn_addresszippostalcode",
+                "name": "addressZipPostalCode",
+                "sourceName": "msdyn_addressZipPostalCode",
                 "sourceOrdering": 41,
                 "description": "The zip or postal code in which the facility resides.",
                 "displayName": "ZIP/Postal Code",

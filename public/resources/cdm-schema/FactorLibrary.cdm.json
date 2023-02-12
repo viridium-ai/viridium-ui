@@ -11,7 +11,7 @@
       "extendsEntity": "CdmEntity",
       "displayName": "Factor library",
       "description": "Repository for emission and estimation factor sets, including both system and user added.",
-      "sourceName": "msdyn_calculationlibrary",
+      "sourceName": "msdyn_calculationLibrary",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -61,8 +61,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "calculationlibraryId",
-                "sourceName": "msdyn_calculationlibraryid",
+                "name": "calculationLibraryId",
+                "sourceName": "msdyn_calculationLibraryId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Factor library",
@@ -114,7 +114,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_calculationlibraryid"
+                      "msdyn_calculationLibraryId"
                     ]
                   }
                 ]
@@ -890,8 +890,8 @@
                 ]
               },
               {
-                "name": "librarytype",
-                "sourceName": "msdyn_librarytype",
+                "name": "libraryType",
+                "sourceName": "msdyn_libraryType",
                 "sourceOrdering": 37,
                 "description": "Factor library type: estimation or emission.",
                 "displayName": "Library type",
@@ -933,8 +933,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'librarytype_display' is added to the 'FactorLibrary' entity to provide the localized display text for the value of the listLookup attribute 'librarytype'",
-                        "name": "librarytype_display",
+                        "explanation": "This attribute 'libraryType_display' is added to the 'FactorLibrary' entity to provide the localized display text for the value of the listLookup attribute 'libraryType'",
+                        "name": "libraryType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true

@@ -5,7 +5,7 @@
       "corpusPath": "cdm:/core/cdsConcepts.cdm.json"
     },
     {
-      "corpusPath": "UnitGroup.cdm.json"
+      "corpusPath": "unitGroup.cdm.json"
     }
   ],
   "definitions": [
@@ -767,8 +767,8 @@
                 ]
               },
               {
-                "name": "baseunit",
-                "sourceName": "msdyn_baseunit",
+                "name": "baseUnit",
+                "sourceName": "msdyn_baseUnit",
                 "sourceOrdering": 35,
                 "description": "The base or primary unit of the unit group that the entity belongs to.",
                 "displayName": "Base unit",
@@ -783,7 +783,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "baseunit",
+                        "name": "baseUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -843,8 +843,8 @@
                 }
               },
               {
-                "name": "conversionfactor",
-                "sourceName": "msdyn_conversionfactor",
+                "name": "conversionFactor",
+                "sourceName": "msdyn_conversionFactor",
                 "sourceOrdering": 36,
                 "description": "Conversion factor to convert to the base unit.",
                 "displayName": "Conversion factor",
@@ -911,8 +911,8 @@
                 ]
               },
               {
-                "name": "isbaseunit",
-                "sourceName": "msdyn_isbaseunit",
+                "name": "isBaseUnit",
+                "sourceName": "msdyn_isBaseUnit",
                 "sourceOrdering": 37,
                 "description": "Indicates whether the unit is the base unit for the associated unit group.",
                 "displayName": "Is base unit",
@@ -1017,8 +1017,8 @@
                 ]
               },
               {
-                "name": "unitgroup",
-                "sourceName": "msdyn_unitgroup",
+                "name": "unitGroup",
+                "sourceName": "msdyn_unitGroup",
                 "sourceOrdering": 41,
                 "description": "The ID of the unit group that the unit is associated with.",
                 "displayName": "Unit group",
@@ -1026,14 +1026,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "UnitGroup",
+                  "source": "unitGroup",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "unitgroupId",
+                      "reference": "unitGroupId",
                       "replaceWith": {
-                        "name": "unitgroup",
+                        "name": "unitGroup",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

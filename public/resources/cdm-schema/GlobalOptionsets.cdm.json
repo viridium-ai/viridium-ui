@@ -7,7 +7,7 @@
   ],
   "definitions": [
     {
-      "constantEntityName": "FiscalPeriodValues",
+      "constantentityName": "FiscalPeriodValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -206,7 +206,7 @@
       ]
     },
     {
-      "constantEntityName": "FiscalYearValues",
+      "constantentityName": "FiscalYearValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -627,7 +627,7 @@
       ]
     },
     {
-      "constantEntityName": "GoalTypeValues",
+      "constantentityName": "GoalTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -652,7 +652,7 @@
       ]
     },
     {
-      "constantEntityName": "ComponentStateValues",
+      "constantentityName": "ComponentStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -683,7 +683,7 @@
       ]
     },
     {
-      "constantEntityName": "IsEnabledValues",
+      "constantentityName": "IsEnabledValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -702,7 +702,7 @@
       ]
     },
     {
-      "constantEntityName": "EmailAccessValues",
+      "constantentityName": "EmailAccessValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -721,7 +721,7 @@
       ]
     },
     {
-      "constantEntityName": "FacebookAccessValues",
+      "constantentityName": "FacebookAccessValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -740,7 +740,7 @@
       ]
     },
     {
-      "constantEntityName": "PhoneAccessValues",
+      "constantentityName": "PhoneAccessValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -759,7 +759,7 @@
       ]
     },
     {
-      "constantEntityName": "TwitterAccessValues",
+      "constantentityName": "TwitterAccessValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -778,7 +778,7 @@
       ]
     },
     {
-      "constantEntityName": "WebAccessValues",
+      "constantentityName": "WebAccessValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -797,7 +797,7 @@
       ]
     },
     {
-      "constantEntityName": "ViewKnowledgeArticlesValues",
+      "constantentityName": "ViewKnowledgeArticlesValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -816,7 +816,7 @@
       ]
     },
     {
-      "constantEntityName": "ViewArticleRatingValues",
+      "constantentityName": "ViewArticleRatingValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -835,7 +835,7 @@
       ]
     },
     {
-      "constantEntityName": "RateKnowledgeArticlesValues",
+      "constantentityName": "RateKnowledgeArticlesValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -854,7 +854,7 @@
       ]
     },
     {
-      "constantEntityName": "SubmitFeedbackValues",
+      "constantentityName": "SubmitFeedbackValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -873,7 +873,7 @@
       ]
     },
     {
-      "constantEntityName": "IsRegularActivityValues",
+      "constantentityName": "IsRegularActivityValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -892,7 +892,7 @@
       ]
     },
     {
-      "constantEntityName": "FullSyncStateValues",
+      "constantentityName": "FullSyncStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -941,7 +941,7 @@
       ]
     },
     {
-      "constantEntityName": "SelectVersionsValues",
+      "constantentityName": "SelectVersionsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -960,7 +960,7 @@
       ]
     },
     {
-      "constantEntityName": "IsValidatedValues",
+      "constantentityName": "IsValidatedValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -979,7 +979,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkProfileEntityTypeValues",
+      "constantentityName": "SynapseLinkProfileEntityTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -992,7 +992,7 @@
       ]
     },
     {
-      "constantEntityName": "IsEncryptedAttributeValueSetValues",
+      "constantentityName": "IsEncryptedAttributeValueSetValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1011,7 +1011,7 @@
       ]
     },
     {
-      "constantEntityName": "QueueItemRemoveValues",
+      "constantentityName": "QueueItemRemoveValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1030,7 +1030,7 @@
       ]
     },
     {
-      "constantEntityName": "ApproveArticleValues",
+      "constantentityName": "ApproveArticleValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1049,7 +1049,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkProfileTypeValues",
+      "constantentityName": "SynapseLinkProfileTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1068,7 +1068,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkSynapseTableCreationStateValues",
+      "constantentityName": "SynapseLinkSynapseTableCreationStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1099,7 +1099,7 @@
       ]
     },
     {
-      "constantEntityName": "CapabilityValues",
+      "constantentityName": "CapabilityValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1142,7 +1142,7 @@
       ]
     },
     {
-      "constantEntityName": "CopyArticleValues",
+      "constantentityName": "CopyArticleValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1161,7 +1161,7 @@
       ]
     },
     {
-      "constantEntityName": "MonthValues",
+      "constantentityName": "MonthValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1240,7 +1240,7 @@
       ]
     },
     {
-      "constantEntityName": "ConnectorTypeValues",
+      "constantentityName": "ConnectorTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1259,7 +1259,7 @@
       ]
     },
     {
-      "constantEntityName": "CategoryValues",
+      "constantentityName": "CategoryValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1314,7 +1314,7 @@
       ]
     },
     {
-      "constantEntityName": "DialogDefaultOptionValues",
+      "constantentityName": "DialogDefaultOptionValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1333,7 +1333,7 @@
       ]
     },
     {
-      "constantEntityName": "IsComponentManagedValues",
+      "constantentityName": "IsComponentManagedValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1352,7 +1352,7 @@
       ]
     },
     {
-      "constantEntityName": "RepeatValues",
+      "constantentityName": "RepeatValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1383,7 +1383,7 @@
       ]
     },
     {
-      "constantEntityName": "IsPreviewCardValues",
+      "constantentityName": "IsPreviewCardValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1402,7 +1402,7 @@
       ]
     },
     {
-      "constantEntityName": "IsInheritedValues",
+      "constantentityName": "IsInheritedValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1421,7 +1421,7 @@
       ]
     },
     {
-      "constantEntityName": "ChatbotSharingRoleTypeValues",
+      "constantentityName": "ChatbotSharingRoleTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1446,7 +1446,7 @@
       ]
     },
     {
-      "constantEntityName": "IsOperationIntentReadOnlyValues",
+      "constantentityName": "IsOperationIntentReadOnlyValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1465,7 +1465,7 @@
       ]
     },
     {
-      "constantEntityName": "PlotOptionValues",
+      "constantentityName": "PlotOptionValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1538,7 +1538,7 @@
       ]
     },
     {
-      "constantEntityName": "ChatbotSubcomponentReusePolicyValues",
+      "constantentityName": "ChatbotSubcomponentReusePolicyValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1563,7 +1563,7 @@
       ]
     },
     {
-      "constantEntityName": "LocationTypeValues",
+      "constantentityName": "LocationTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1582,7 +1582,7 @@
       ]
     },
     {
-      "constantEntityName": "OnlineMeetingTypeValues",
+      "constantentityName": "OnlineMeetingTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1595,7 +1595,7 @@
       ]
     },
     {
-      "constantEntityName": "PublishValues",
+      "constantentityName": "PublishValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1614,7 +1614,7 @@
       ]
     },
     {
-      "constantEntityName": "DeliveryPriorityValues",
+      "constantentityName": "DeliveryPriorityValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1639,7 +1639,7 @@
       ]
     },
     {
-      "constantEntityName": "QueueItemRouteToOptionsValues",
+      "constantentityName": "QueueItemRouteToOptionsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1658,7 +1658,7 @@
       ]
     },
     {
-      "constantEntityName": "ChatbotLanguageValues",
+      "constantentityName": "ChatbotLanguageValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1809,7 +1809,7 @@
       ]
     },
     {
-      "constantEntityName": "VersionTypeValues",
+      "constantentityName": "VersionTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1828,7 +1828,7 @@
       ]
     },
     {
-      "constantEntityName": "BooleanOptionSetValues",
+      "constantentityName": "BooleanOptionSetValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1847,7 +1847,7 @@
       ]
     },
     {
-      "constantEntityName": "FullsyncrequiredValues",
+      "constantentityName": "FullsyncrequiredValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1866,13 +1866,13 @@
       ]
     },
     {
-      "constantEntityName": "SLANewMDDDialogValues",
+      "constantentityName": "SLANewMDDDialogValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": []
     },
     {
-      "constantEntityName": "IsOnlineMeetingValues",
+      "constantentityName": "IsOnlineMeetingValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1891,7 +1891,7 @@
       ]
     },
     {
-      "constantEntityName": "AssignTypeValues",
+      "constantentityName": "AssignTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -1910,7 +1910,7 @@
       ]
     },
     {
-      "constantEntityName": "ComponentTypeValues",
+      "constantentityName": "ComponentTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2457,7 +2457,7 @@
       ]
     },
     {
-      "constantEntityName": "EmailFollowingValues",
+      "constantentityName": "EmailFollowingValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2476,7 +2476,7 @@
       ]
     },
     {
-      "constantEntityName": "ContentStateValues",
+      "constantentityName": "ContentStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2495,7 +2495,7 @@
       ]
     },
     {
-      "constantEntityName": "ActivityTypeValues",
+      "constantentityName": "ActivityTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2550,7 +2550,7 @@
       ]
     },
     {
-      "constantEntityName": "ExecutingUserValues",
+      "constantentityName": "ExecutingUserValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2569,7 +2569,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkEntityMetadataStateValues",
+      "constantentityName": "SynapseLinkEntityMetadataStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2612,7 +2612,7 @@
       ]
     },
     {
-      "constantEntityName": "LookbackValues",
+      "constantentityName": "LookbackValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2643,7 +2643,7 @@
       ]
     },
     {
-      "constantEntityName": "AutotransactValues",
+      "constantentityName": "AutotransactValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2662,7 +2662,7 @@
       ]
     },
     {
-      "constantEntityName": "ValidationStatusValues",
+      "constantentityName": "ValidationStatusValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2699,7 +2699,7 @@
       ]
     },
     {
-      "constantEntityName": "IsLiveOnlyValues",
+      "constantentityName": "IsLiveOnlyValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2718,7 +2718,7 @@
       ]
     },
     {
-      "constantEntityName": "FeatureenabledValues",
+      "constantentityName": "FeatureenabledValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2737,7 +2737,7 @@
       ]
     },
     {
-      "constantEntityName": "AuthenticationProtocolValues",
+      "constantentityName": "AuthenticationProtocolValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2774,7 +2774,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkExternalTableStateValues",
+      "constantentityName": "SynapseLinkExternalTableStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2805,7 +2805,7 @@
       ]
     },
     {
-      "constantEntityName": "ServiceTypeValues",
+      "constantentityName": "ServiceTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2836,7 +2836,7 @@
       ]
     },
     {
-      "constantEntityName": "DocumentTypeValues",
+      "constantentityName": "DocumentTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2855,7 +2855,7 @@
       ]
     },
     {
-      "constantEntityName": "BlockedProfileValues",
+      "constantentityName": "BlockedProfileValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2874,7 +2874,7 @@
       ]
     },
     {
-      "constantEntityName": "IsGuestProfileValues",
+      "constantentityName": "IsGuestProfileValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -2893,7 +2893,7 @@
       ]
     },
     {
-      "constantEntityName": "MobileOfflineEnabledEntitiesValues",
+      "constantentityName": "MobileOfflineEnabledEntitiesValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3002,7 +3002,7 @@
       ]
     },
     {
-      "constantEntityName": "ChannelActivitiesValues",
+      "constantentityName": "ChannelActivitiesValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3045,7 +3045,7 @@
       ]
     },
     {
-      "constantEntityName": "StatusValues",
+      "constantentityName": "StatusValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3064,13 +3064,13 @@
       ]
     },
     {
-      "constantEntityName": "SelectedMobileOfflineEnabledEntitiesRelationshipsValues",
+      "constantentityName": "SelectedMobileOfflineEnabledEntitiesRelationshipsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": []
     },
     {
-      "constantEntityName": "DayValues",
+      "constantentityName": "DayValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3137,7 +3137,7 @@
       ]
     },
     {
-      "constantEntityName": "ExpirationStateValues",
+      "constantentityName": "ExpirationStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3162,7 +3162,7 @@
       ]
     },
     {
-      "constantEntityName": "ConfirmDeleteAppointmentSeriesValues",
+      "constantentityName": "ConfirmDeleteAppointmentSeriesValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3181,7 +3181,7 @@
       ]
     },
     {
-      "constantEntityName": "PostMessageTypeValues",
+      "constantentityName": "PostMessageTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3200,7 +3200,7 @@
       ]
     },
     {
-      "constantEntityName": "HavePrivilegesChangedValues",
+      "constantentityName": "HavePrivilegesChangedValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3219,7 +3219,7 @@
       ]
     },
     {
-      "constantEntityName": "NumberOfSearchResultsOptionsValues",
+      "constantentityName": "NumberOfSearchResultsOptionsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3268,7 +3268,7 @@
       ]
     },
     {
-      "constantEntityName": "IsDefaultValues",
+      "constantentityName": "IsDefaultValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3287,7 +3287,7 @@
       ]
     },
     {
-      "constantEntityName": "SyncDirectionValues",
+      "constantentityName": "SyncDirectionValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3318,7 +3318,7 @@
       ]
     },
     {
-      "constantEntityName": "WorkflowStageValues",
+      "constantentityName": "WorkflowStageValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3337,7 +3337,7 @@
       ]
     },
     {
-      "constantEntityName": "WeekValues",
+      "constantentityName": "WeekValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3374,13 +3374,13 @@
       ]
     },
     {
-      "constantEntityName": "AssociatedEntityTypeCodeValues",
+      "constantentityName": "AssociatedEntityTypeCodeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": []
     },
     {
-      "constantEntityName": "SendDirectEmailToValues",
+      "constantentityName": "SendDirectEmailToValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3405,7 +3405,7 @@
       ]
     },
     {
-      "constantEntityName": "IsInternalValues",
+      "constantentityName": "IsInternalValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3424,7 +3424,7 @@
       ]
     },
     {
-      "constantEntityName": "IsComputedValues",
+      "constantentityName": "IsComputedValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3443,7 +3443,7 @@
       ]
     },
     {
-      "constantEntityName": "EmailRemainderSetValues",
+      "constantentityName": "EmailRemainderSetValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3462,7 +3462,7 @@
       ]
     },
     {
-      "constantEntityName": "IsDrilldownValues",
+      "constantentityName": "IsDrilldownValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3481,7 +3481,7 @@
       ]
     },
     {
-      "constantEntityName": "DependencyTypeValues",
+      "constantentityName": "DependencyTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3512,7 +3512,7 @@
       ]
     },
     {
-      "constantEntityName": "MetricTypeValues",
+      "constantentityName": "MetricTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3531,7 +3531,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkProfileStateValues",
+      "constantentityName": "SynapseLinkProfileStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3592,7 +3592,7 @@
       ]
     },
     {
-      "constantEntityName": "CustomAPIFieldTypeValues",
+      "constantentityName": "CustomAPIFieldTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3677,7 +3677,7 @@
       ]
     },
     {
-      "constantEntityName": "SocialChannelValues",
+      "constantentityName": "SocialChannelValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3702,7 +3702,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkEntitySyncStateValues",
+      "constantentityName": "SynapseLinkEntitySyncStateValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3757,7 +3757,7 @@
       ]
     },
     {
-      "constantEntityName": "AYesOrNoBooleanValues",
+      "constantentityName": "AYesOrNoBooleanValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3776,7 +3776,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkScheduleTypeValues",
+      "constantentityName": "SynapseLinkScheduleTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3795,7 +3795,7 @@
       ]
     },
     {
-      "constantEntityName": "PhotoResolutionValues",
+      "constantentityName": "PhotoResolutionValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3838,7 +3838,7 @@
       ]
     },
     {
-      "constantEntityName": "OptionsValues",
+      "constantentityName": "OptionsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3857,7 +3857,7 @@
       ]
     },
     {
-      "constantEntityName": "LatestVersionValues",
+      "constantentityName": "LatestVersionValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3876,7 +3876,7 @@
       ]
     },
     {
-      "constantEntityName": "StageCategoryValues",
+      "constantentityName": "StageCategoryValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3931,7 +3931,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkScheduleRecurrenceUnitValues",
+      "constantentityName": "SynapseLinkScheduleRecurrenceUnitValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -3980,7 +3980,7 @@
       ]
     },
     {
-      "constantEntityName": "SynapseLinkEntityPartitionStrategyValues",
+      "constantentityName": "SynapseLinkEntityPartitionStrategyValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4011,7 +4011,7 @@
       ]
     },
     {
-      "constantEntityName": "RangeEndsValues",
+      "constantentityName": "RangeEndsValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4036,7 +4036,7 @@
       ]
     },
     {
-      "constantEntityName": "SharepointGenericYesNoOptionsetValues",
+      "constantentityName": "SharepointGenericYesNoOptionsetValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4055,7 +4055,7 @@
       ]
     },
     {
-      "constantEntityName": "ValidationStatusReasonValues",
+      "constantentityName": "ValidationStatusReasonValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4104,7 +4104,7 @@
       ]
     },
     {
-      "constantEntityName": "MonthOfYearValues",
+      "constantentityName": "MonthOfYearValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4189,7 +4189,7 @@
       ]
     },
     {
-      "constantEntityName": "ConvertActivityValues",
+      "constantentityName": "ConvertActivityValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4208,7 +4208,7 @@
       ]
     },
     {
-      "constantEntityName": "IsBaseCardValues",
+      "constantentityName": "IsBaseCardValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4227,7 +4227,7 @@
       ]
     },
     {
-      "constantEntityName": "DayOfMonthValues",
+      "constantentityName": "DayOfMonthValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4420,7 +4420,7 @@
       ]
     },
     {
-      "constantEntityName": "FactorLibraryTypeValues",
+      "constantentityName": "FactorlibraryTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4439,7 +4439,7 @@
       ]
     },
     {
-      "constantEntityName": "EnergySourceValues",
+      "constantentityName": "energySourceValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4476,7 +4476,7 @@
       ]
     },
     {
-      "constantEntityName": "TransportationAndDistributionTypeValues",
+      "constantentityName": "transportationAndDistributionTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4495,7 +4495,7 @@
       ]
     },
     {
-      "constantEntityName": "TypeValues",
+      "constantentityName": "TypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4520,7 +4520,7 @@
       ]
     },
     {
-      "constantEntityName": "DataQualityTypeValues",
+      "constantentityName": "dataQualityTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4545,7 +4545,7 @@
       ]
     },
     {
-      "constantEntityName": "ScopeValues",
+      "constantentityName": "ScopeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [
@@ -4570,7 +4570,7 @@
       ]
     },
     {
-      "constantEntityName": "EnergyTypeValues",
+      "constantentityName": "energyTypeValues",
       "explanation": "The constantValues below correspond to the attributes of the 'listLookupValues' entityShape which are: {languageTag, displayText, attributeValue, displayOrder}",
       "entityShape": "listLookupValues",
       "constantValues": [

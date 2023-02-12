@@ -20,7 +20,7 @@
       "corpusPath": "Unit.cdm.json"
     },
     {
-      "corpusPath": "VehicleType.cdm.json"
+      "corpusPath": "vehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -79,8 +79,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "mobilecombustionId",
-                "sourceName": "msdyn_mobilecombustionid",
+                "name": "mobileCombustionId",
+                "sourceName": "msdyn_mobileCombustionId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Mobile combustion",
@@ -132,7 +132,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_mobilecombustionid"
+                      "msdyn_mobileCombustionId"
                     ]
                   }
                 ]
@@ -733,8 +733,8 @@
                 ]
               },
               {
-                "name": "costunit",
-                "sourceName": "msdyn_costunit",
+                "name": "costUnit",
+                "sourceName": "msdyn_costUnit",
                 "sourceOrdering": 34,
                 "description": "Unit associated with the cost quantity.",
                 "displayName": "Cost unit",
@@ -749,7 +749,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "costunit",
+                        "name": "costUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -809,8 +809,8 @@
                 }
               },
               {
-                "name": "dataqualitytype",
-                "sourceName": "msdyn_dataqualitytype",
+                "name": "dataQualityType",
+                "sourceName": "msdyn_dataQualityType",
                 "sourceOrdering": 35,
                 "description": "Description of the data quality which identifies if the data is actual, estimated, or other descriptors of the data.",
                 "displayName": "Data Quality Type",
@@ -858,8 +858,8 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'dataqualitytype_display' is added to the 'MobileCombustion' entity to provide the localized display text for the value of the listLookup attribute 'dataqualitytype'",
-                        "name": "dataqualitytype_display",
+                        "explanation": "This attribute 'dataQualityType_display' is added to the 'MobileCombustion' entity to provide the localized display text for the value of the listLookup attribute 'dataQualityType'",
+                        "name": "dataQualityType_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
                         "isReadOnly": true
@@ -1043,8 +1043,8 @@
                 ]
               },
               {
-                "name": "distanceunit",
-                "sourceName": "msdyn_distanceunit",
+                "name": "distanceUnit",
+                "sourceName": "msdyn_distanceUnit",
                 "sourceOrdering": 39,
                 "description": "Unique identifier for the unit associated with distance.",
                 "displayName": "Distance Unit",
@@ -1059,7 +1059,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "distanceunit",
+                        "name": "distanceUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1183,7 +1183,7 @@
               },
               {
                 "name": "facilityId",
-                "sourceName": "msdyn_facilityid",
+                "sourceName": "msdyn_facilityId",
                 "sourceOrdering": 41,
                 "description": "Unique identifier for Facility associated with Mobile combustion.",
                 "displayName": "Facility",
@@ -1258,8 +1258,8 @@
                 }
               },
               {
-                "name": "fuelquantity",
-                "sourceName": "msdyn_fuelquantity",
+                "name": "fuelQuantity",
+                "sourceName": "msdyn_fuelQuantity",
                 "sourceOrdering": 42,
                 "description": "Unique identifier for fuel consumption data that is associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel Quantity",
@@ -1326,8 +1326,8 @@
                 ]
               },
               {
-                "name": "fuelquantityunit",
-                "sourceName": "msdyn_fuelquantityunit",
+                "name": "fuelQuantityUnit",
+                "sourceName": "msdyn_fuelQuantityUnit",
                 "sourceOrdering": 43,
                 "description": "Unique identifier for the unit associated with the fuel data.",
                 "displayName": "Fuel Quantity Unit",
@@ -1342,7 +1342,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "fuelquantityunit",
+                        "name": "fuelQuantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1402,8 +1402,8 @@
                 }
               },
               {
-                "name": "fueltypeid",
-                "sourceName": "msdyn_fueltypeid",
+                "name": "fuelTypeId",
+                "sourceName": "msdyn_fuelTypeId",
                 "sourceOrdering": 44,
                 "description": "Unique identifier for the fuel type associated with combustion or supply chain fuel usage.",
                 "displayName": "Fuel Type",
@@ -1416,9 +1416,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "fueltypeId",
+                      "reference": "fuelTypeId",
                       "replaceWith": {
-                        "name": "fueltypeid",
+                        "name": "fuelTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1478,8 +1478,8 @@
                 }
               },
               {
-                "name": "industrialprocesstypeid",
-                "sourceName": "msdyn_industrialprocesstypeid",
+                "name": "industrialProcessTypeId",
+                "sourceName": "msdyn_industrialProcessTypeId",
                 "sourceOrdering": 45,
                 "description": "Unique identifier for the industrial process type that is associated with mobile combustion.",
                 "displayName": "Industrial Process Type",
@@ -1492,9 +1492,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "industrialprocesstypeId",
+                      "reference": "industrialProcessTypeId",
                       "replaceWith": {
-                        "name": "industrialprocesstypeid",
+                        "name": "industrialProcessTypeId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1554,8 +1554,8 @@
                 }
               },
               {
-                "name": "organizationalunitId",
-                "sourceName": "msdyn_organizationalunitid",
+                "name": "organizationalUnitId",
+                "sourceName": "msdyn_organizationalUnitId",
                 "sourceOrdering": 46,
                 "description": "Unique identifier for Organizational Unit associated with Mobile combustion.",
                 "displayName": "Organizational Unit",
@@ -1568,9 +1568,9 @@
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "sustainabilityorganizationalunitId",
+                      "reference": "sustainabilityOrganizationalUnitId",
                       "replaceWith": {
-                        "name": "organizationalunitId",
+                        "name": "organizationalUnitId",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1698,8 +1698,8 @@
                 ]
               },
               {
-                "name": "quantityunit",
-                "sourceName": "msdyn_quantityunit",
+                "name": "quantityUnit",
+                "sourceName": "msdyn_quantityUnit",
                 "sourceOrdering": 48,
                 "description": "Unit associated with the quantity field ",
                 "displayName": "Quantity unit",
@@ -1714,7 +1714,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "quantityunit",
+                        "name": "quantityUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1837,8 +1837,8 @@
                 ]
               },
               {
-                "name": "transactiondate",
-                "sourceName": "msdyn_transactiondate",
+                "name": "transactionDate",
+                "sourceName": "msdyn_transactionDate",
                 "sourceOrdering": 50,
                 "description": "Date associated with the actual date when the transaction occurred.",
                 "displayName": "Transaction Date",
@@ -1890,8 +1890,8 @@
                 ]
               },
               {
-                "name": "vehicletype",
-                "sourceName": "msdyn_vehicletype",
+                "name": "vehicleType",
+                "sourceName": "msdyn_vehicleType",
                 "sourceOrdering": 51,
                 "description": "Unique identifier for the vehicle type associated with combustion or supply chain transportation activities.",
                 "displayName": "Vehicle Type",
@@ -1899,14 +1899,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "VehicleType",
+                  "source": "vehicleType",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "vehicletypeId",
+                      "reference": "vehicleTypeId",
                       "replaceWith": {
-                        "name": "vehicletype",
+                        "name": "vehicleType",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

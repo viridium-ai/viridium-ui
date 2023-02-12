@@ -67,8 +67,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "facilityannualdetailId",
-                "sourceName": "msdyn_facilityannualdetailid",
+                "name": "facilityAnnualDetailId",
+                "sourceName": "msdyn_facilityAnnualDetailId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Facility annual details",
@@ -120,7 +120,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_facilityannualdetailid"
+                      "msdyn_facilityAnnualDetailId"
                     ]
                   }
                 ]
@@ -838,8 +838,8 @@
                 ]
               },
               {
-                "name": "areaunit",
-                "sourceName": "msdyn_areaunit",
+                "name": "areaUnit",
+                "sourceName": "msdyn_areaUnit",
                 "sourceOrdering": 36,
                 "description": "Unit of measure used to describe the area of a space.",
                 "displayName": "Area unit",
@@ -854,7 +854,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "areaunit",
+                        "name": "areaUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -990,8 +990,8 @@
                 }
               },
               {
-                "name": "headcount",
-                "sourceName": "msdyn_headcount",
+                "name": "headCount",
+                "sourceName": "msdyn_headCount",
                 "sourceOrdering": 38,
                 "description": "The number of people who are employed at a given facility.",
                 "displayName": "Head count",

@@ -10,11 +10,11 @@
   ],
   "definitions": [
     {
-      "entityName": "UnitGroup",
+      "entityName": "unitGroup",
       "extendsEntity": "CdmEntity",
       "displayName": "Unit group",
       "description": "Grouping of units.",
-      "sourceName": "msdyn_unitgroup",
+      "sourceName": "msdyn_unitGroup",
       "exhibitsTraits": [
         {
           "traitReference": "is.localized.describedAs",
@@ -64,8 +64,8 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "unitgroupId",
-                "sourceName": "msdyn_unitgroupid",
+                "name": "unitGroupId",
+                "sourceName": "msdyn_unitGroupid",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
                 "displayName": "Unit group",
@@ -117,7 +117,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "msdyn_unitgroupid"
+                      "msdyn_unitGroupid"
                     ]
                   }
                 ]
@@ -272,7 +272,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'UnitGroup' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'unitGroup' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -387,7 +387,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'UnitGroup' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'unitGroup' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -767,8 +767,8 @@
                 ]
               },
               {
-                "name": "baseunit",
-                "sourceName": "msdyn_baseunit",
+                "name": "baseUnit",
+                "sourceName": "msdyn_baseUnit",
                 "sourceOrdering": 35,
                 "description": "The base or primary unit of the unit group.",
                 "displayName": "Base unit",
@@ -783,7 +783,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "baseunit",
+                        "name": "baseUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -906,8 +906,8 @@
                 ]
               },
               {
-                "name": "reportingunit",
-                "sourceName": "msdyn_reportingunit",
+                "name": "reportingUnit",
+                "sourceName": "msdyn_reportingUnit",
                 "sourceOrdering": 37,
                 "description": "Unique identifier for the unit associated with the unit group which will be used in reports.",
                 "displayName": "Reporting unit",
@@ -922,7 +922,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "reportingunit",
+                        "name": "reportingUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -991,7 +991,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/UnitGroup.cdm.json/UnitGroup/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/unitGroup.cdm.json/unitGroup/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

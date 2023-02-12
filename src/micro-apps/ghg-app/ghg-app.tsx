@@ -2,8 +2,6 @@
 
 import { Route } from "react-router-dom";
 
-import { Help } from "../home/help";
-import { CompanyConfig } from "./inventory-builder/company-config";
 import { MappingCategories } from "./inventory-builder/inventory-categories";
 import { InventoryConfig } from "./inventory-builder/inventory-config";
 import { InventoryExport } from "./inventory-builder/inventory-export";
@@ -35,10 +33,6 @@ class GreenHouseApp extends MicroApp {
     return this.routeItems;
   }
 
-  public getNavItems = () => {
-    return [];
-  }
-
   public getRoutes = () => {
     return (
       <>
@@ -50,7 +44,6 @@ class GreenHouseApp extends MicroApp {
         <Route path="/ghg-app/mappings" element={<MappingCategories next={'/ghg-app/summary'} prev={'/ghg-app/inventoryItems'} />} />
         <Route path="/ghg-app/summary" element={<InventorySummary  next={'/ghg-app/export'} prev={'/ghg-app/mappings'} />} />
         <Route path="/ghg-app/export" element={<InventoryExport prev={'/ghg-app/summary'}/>} />
-        <Route path="/ghg-app/help" element={<Help />} />
       </>
     );
   }

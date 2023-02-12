@@ -6,7 +6,6 @@ import { Products } from "./products";
 import { AboutUs } from "./about-us";
 import { WelcomePage } from "./welcome";
 import './home-app.css';
-import { Help } from "./help";
 import { MicroApp, RouteItem } from "../../components/v-common/v-app";
 import { securityManager } from "../../components/v-security/v-security-manager";
 
@@ -30,8 +29,7 @@ export class HomeApp extends MicroApp {
     new RouteItem().init("Inventory Config", "Inventory Config", "1", "/inventory-app"),
     new RouteItem().init("Data Manager", "Data Manager", "1", "/dm-app"),
     new RouteItem().init("GHG Reports", "GHG Reports", "1", "/ghg-app"),
-    new RouteItem().init("Schema", "Schema", "1", "/schema-app"),
-    new RouteItem().init("Help", "Help", "1", "/help"),
+    new RouteItem().init("Knowledge Base", "Knowledge", "1", "/knowledge-app"),
 
     new RouteItem().init("Sign out", "Sign out", "2", "/signout"),
   ];
@@ -51,16 +49,11 @@ export class HomeApp extends MicroApp {
     return securityManager.isSignedIn() ? this.routeItems : this.routeItems1;
   }
 
-  public getNavItems = () => {
-    return [];
-  }
-
   public getRoutes = () => {
     return (
       <>
         <Route path="/" element={<WelcomePage />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/help" element={<Help />} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/industries" element={<Industries />} />
       </>

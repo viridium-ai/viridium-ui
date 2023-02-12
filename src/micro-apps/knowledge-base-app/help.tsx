@@ -2,9 +2,9 @@
 import { PureComponent } from 'react';
 import { LayoutPage } from '../../components/v-layout/v-layout';
 import { getConfigs } from '../../config/v-config';
-import { homeApp } from './home-app';
 import "./help.css"
 import { StringUtils } from '../../components/v-utils/v-string-utils';
+import { knowledgeApp } from './knowledge-app';
 
 interface HelpState {
     selected: number;
@@ -36,7 +36,7 @@ export class Help extends PureComponent<{}, HelpState> {
     }
     render = () => {
         return (
-            <LayoutPage header={false} microApp={homeApp} >
+            <LayoutPage header={false} microApp={knowledgeApp} >
                     <div className="v-body-nav">
                         <div className="v-list">
                             {

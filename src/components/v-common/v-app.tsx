@@ -2,7 +2,6 @@ import { StringUtils } from "../v-utils/v-string-utils";
 import "./v-app.css"
 export interface IMicroApp {
     getRouteItems(): IRouteItem[];
-    getNavItems(): IRouteItem[];
     getRoutes(): any;
     getName(): string;
     getPageClass(): string;
@@ -48,9 +47,7 @@ export abstract class MicroApp implements IMicroApp {
     getRouteItems(): IRouteItem[] {
         return [];
     }
-    getNavItems(): IRouteItem[] {
-        return []
-    }
+
  
     getIcon(): string {
         return ""

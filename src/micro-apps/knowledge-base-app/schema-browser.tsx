@@ -1,11 +1,11 @@
 import { PureComponent } from "react";
-import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { EntityDetails, EntityList, FieldDef, ValueType } from "../../components/v-entity/entity-form";
+import { RouteItem } from "../../components/v-common/v-app";
+import { EntityDetails, EntityList, FieldDef } from "../../components/v-entity/entity-form";
 import { EntityManager } from "../../components/v-entity/entity-model";
 import { LayoutBodyNav, LayoutPage } from "../../components/v-layout/v-layout";
 import { StringUtils } from "../../components/v-utils/v-string-utils";
-import "./schema-browser.css"
+import { knowledgeApp } from "./knowledge-app";
+
 
 enum DataType {
     decimal,
@@ -15,7 +15,7 @@ enum DataType {
     dateTime,
     reference
 }
-const ENTITIES = [
+export const ENTITIES = [
     "AccommodationType",
     "BusinessTravel",
     "BusinessTravelType",
@@ -137,10 +137,11 @@ class Schema extends BaseSchemaObj {
                 console.log(newEntity);
                 return newEntity;
             })
-        }
-        else {
-            return new Promise(() => {
-                return entity;
+        } else {
+            return new Promise((resolve, reject)  => {
+                setTimeout(() => {
+                    resolve(entity!);
+                  }, 30);
             })
         }
     }
@@ -152,39 +153,6 @@ class SchemaManager extends EntityManager {
 
 }
 
-class SchemaApp extends MicroApp {
-    public getName = () => {
-        return "schema-app";
-    }
-    public getTitle = (): string => {
-        return "Schema Entity Browser";
-    }
-
-    public isSecure = () => false;
-    public getRouteItems = () => {
-        return [];
-    }
-
-    public getNavItems = () => {
-        return ENTITIES.map((entityName, idx: number) => {
-            return new RouteItem().init(entityName, entityName, "1", `/schema-app/${entityName}`)
-        });
-    }
-
-    public getRoutes = () => {
-        return (
-            <>
-                <Route key={`schema_route_default`} path={`/schema-app`} element={<SchemaBrowser entityName="Unit" />} />
-                {ENTITIES.map((entityName, idx: number) => {
-                    return <Route key={`schema_route_${entityName}`} path={`/schema-app/${entityName}`} element={<SchemaBrowser entityName={entityName} />} />
-                }
-                )}
-            </>
-        )
-    }
-}
-
-export const schemaApp = new SchemaApp();
 
 interface SchemaBrowserProps {
     entityName: string
@@ -199,8 +167,16 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
         super(props);
         this.state = { entity: undefined }
     }
+
+    public getNavItems = () => {
+        return ENTITIES.map((entityName, idx: number) => {
+            return new RouteItem().init(entityName, entityName, "1", `/knowledge-app/schema/${entityName}`)
+        });
+    }
+    
     componentDidUpdate(prevProps: Readonly<SchemaBrowserProps>, prevState: Readonly<SchemaBrowserState>, snapshot?: any): void {
         if (this.props.entityName !== prevProps.entityName) {
+            //this.setState({ entity: undefined });
             GHGSchema.getEntity(this.props.entityName).then((entity: any) => {
                 this.setState({ entity: entity });
             }).catch((error) => {
@@ -233,8 +209,8 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
     render = () => {
         let entity = this.state.entity;
         return (
-            <LayoutPage microApp={schemaApp}>
-                <LayoutBodyNav routeItems={schemaApp.getNavItems()} />
+            <LayoutPage microApp={knowledgeApp}>
+                <LayoutBodyNav routeItems={this.getNavItems()} />
                 <div className="v-body-main">
                     {entity ? this.renderEntity(entity) : `Loading...`}
                 </div>

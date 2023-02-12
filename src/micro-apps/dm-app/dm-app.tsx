@@ -29,10 +29,6 @@ class DataSourceManager extends MicroApp {
     return this.routeItems;
   }
 
-  public getNavItems = () => {
-    return [];
-  }
-
   public getRoutes = () => {
 
     return (

@@ -232,8 +232,8 @@
                 ]
               },
               {
-                "name": "statecode",
-                "sourceName": "statecode",
+                "name": "stateCode",
+                "sourceName": "stateCode",
                 "sourceOrdering": 25,
                 "description": "Status of the Facility Annual Details",
                 "displayName": "Status",
@@ -275,7 +275,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'FacilityAnnualDetail' entity to provide the localized display text for the value of the listLookup attribute 'statecode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'FacilityAnnualDetail' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -329,14 +329,14 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "statecode"
+                      "stateCode"
                     ]
                   }
                 ]
               },
               {
-                "name": "statuscode",
-                "sourceName": "statuscode",
+                "name": "statusCode",
+                "sourceName": "statusCode",
                 "sourceOrdering": 27,
                 "description": "Reason for the status of the Facility Annual Details",
                 "displayName": "Status reason",
@@ -347,7 +347,7 @@
                     {
                       "traitReference": "is.correlatedWith",
                       "arguments": [
-                        "statecode"
+                        "stateCode"
                       ]
                     }
                   ]
@@ -390,7 +390,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'FacilityAnnualDetail' entity to provide the localized display text for the value of the listLookup attribute 'statuscode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'FacilityAnnualDetail' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -444,7 +444,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "statuscode"
+                      "statusCode"
                     ]
                   }
                 ]
@@ -1058,7 +1058,7 @@
                 ]
               },
               {
-                "name": "origincorrelationid",
+                "name": "originCorrelationId",
                 "sourceName": "msdyn_origincorrelationid",
                 "sourceOrdering": 39,
                 "description": "An optional identifier to correlate record with data origin.",

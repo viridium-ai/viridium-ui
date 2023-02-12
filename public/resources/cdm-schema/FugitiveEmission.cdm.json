@@ -76,7 +76,7 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "fugitiveemissionId",
+                "name": "fugitiveEmissionId",
                 "sourceName": "msdyn_fugitiveemissionid",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
@@ -556,7 +556,7 @@
                 ]
               },
               {
-                "name": "consumptionenddate",
+                "name": "consumptionEndDate",
                 "sourceName": "msdyn_consumptionenddate",
                 "sourceOrdering": 31,
                 "description": "End date of the activity consumption.",
@@ -609,7 +609,7 @@
                 ]
               },
               {
-                "name": "consumptionstartdate",
+                "name": "consumptionStartDate",
                 "sourceName": "msdyn_consumptionstartdate",
                 "sourceOrdering": 32,
                 "description": "Start date of the activity consumption.",
@@ -1407,7 +1407,7 @@
                 ]
               },
               {
-                "name": "origincorrelationid",
+                "name": "originCorrelationId",
                 "sourceName": "msdyn_origincorrelationid",
                 "sourceOrdering": 44,
                 "description": "An optional identifier to correlate record with data origin",

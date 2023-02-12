@@ -232,8 +232,8 @@
                 ]
               },
               {
-                "name": "statecode",
-                "sourceName": "statecode",
+                "name": "stateCode",
+                "sourceName": "stateCode",
                 "sourceOrdering": 25,
                 "description": "Status of the Estimation Factor",
                 "displayName": "Status",
@@ -275,7 +275,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'EstimationFactor' entity to provide the localized display text for the value of the listLookup attribute 'statecode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'EstimationFactor' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -329,14 +329,14 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "statecode"
+                      "stateCode"
                     ]
                   }
                 ]
               },
               {
-                "name": "statuscode",
-                "sourceName": "statuscode",
+                "name": "statusCode",
+                "sourceName": "statusCode",
                 "sourceOrdering": 27,
                 "description": "Reason for the status of the Estimation Factor",
                 "displayName": "Status reason",
@@ -347,7 +347,7 @@
                     {
                       "traitReference": "is.correlatedWith",
                       "arguments": [
-                        "statecode"
+                        "stateCode"
                       ]
                     }
                   ]
@@ -390,7 +390,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'EstimationFactor' entity to provide the localized display text for the value of the listLookup attribute 'statuscode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'EstimationFactor' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -444,7 +444,7 @@
                   {
                     "traitReference": "is.CDS.sourceNamed",
                     "arguments": [
-                      "statuscode"
+                      "statusCode"
                     ]
                   }
                 ]
@@ -833,7 +833,7 @@
                 ]
               },
               {
-                "name": "documentationreference",
+                "name": "documentationReference",
                 "sourceName": "msdyn_documentationreference",
                 "sourceOrdering": 36,
                 "description": "The documentation reference for the estimation factor.",
@@ -896,7 +896,7 @@
                 ]
               },
               {
-                "name": "factorlibrary",
+                "name": "factorLibrary",
                 "sourceName": "msdyn_factorlibrary",
                 "sourceOrdering": 37,
                 "description": "Library associated with the estimation factor.",
@@ -912,7 +912,7 @@
                       "condition": "referenceOnly",
                       "reference": "calculationlibraryId",
                       "replaceWith": {
-                        "name": "factorlibrary",
+                        "name": "factorLibrary",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -972,7 +972,7 @@
                 }
               },
               {
-                "name": "factorvalue",
+                "name": "factorValue",
                 "sourceName": "msdyn_factorvalue",
                 "sourceOrdering": 38,
                 "description": "Factor value for the estimation factor.",
@@ -1040,7 +1040,7 @@
                 ]
               },
               {
-                "name": "factorvalueunit",
+                "name": "factorValueUnit",
                 "sourceName": "msdyn_factorvalueunit",
                 "sourceOrdering": 39,
                 "description": "Unit of the factor value associated with the estimation factor.",
@@ -1056,7 +1056,7 @@
                       "condition": "referenceOnly",
                       "reference": "unitId",
                       "replaceWith": {
-                        "name": "factorvalueunit",
+                        "name": "factorValueUnit",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -1116,7 +1116,7 @@
                 }
               },
               {
-                "name": "origincorrelationid",
+                "name": "originCorrelationId",
                 "sourceName": "msdyn_origincorrelationid",
                 "sourceOrdering": 40,
                 "description": "An optional identifier to correlate record with data origin.",
@@ -1179,7 +1179,7 @@
                 ]
               },
               {
-                "name": "subtype",
+                "name": "subType",
                 "sourceName": "msdyn_subtype",
                 "sourceOrdering": 41,
                 "description": "The sub-type of the estimation factor.",

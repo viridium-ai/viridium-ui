@@ -553,7 +553,7 @@
                 ]
               },
               {
-                "name": "consumptionenddate",
+                "name": "consumptionEndDate",
                 "sourceName": "msdyn_consumptionenddate",
                 "sourceOrdering": 31,
                 "description": "End date of the activity consumption.",
@@ -606,7 +606,7 @@
                 ]
               },
               {
-                "name": "consumptionstartdate",
+                "name": "consumptionStartDate",
                 "sourceName": "msdyn_consumptionstartdate",
                 "sourceOrdering": 32,
                 "description": "Start date of the activity consumption.",
@@ -1328,7 +1328,7 @@
                 ]
               },
               {
-                "name": "origincorrelationid",
+                "name": "originCorrelationId",
                 "sourceName": "msdyn_origincorrelationid",
                 "sourceOrdering": 43,
                 "description": "An optional identifier to correlate record with data origin",

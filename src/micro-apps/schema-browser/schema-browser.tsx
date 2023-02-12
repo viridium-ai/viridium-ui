@@ -68,13 +68,14 @@ class Attribute extends BaseSchemaObj {
     sourceOrdering: number = -1;
     nullable: string = "true";
     purpose: string = "";
-    dataType: DataType = DataType.string; //list of values
+    dataType: string = "string"; //list of values
     maximumValue?: number;
     minimumValue?: number
     maximumLength?: number;
     static fieldDefs = () => {
         return [
             FieldDef.new("name"),
+            FieldDef.new("dataType"),
             FieldDef.new("description"),
             FieldDef.new("nullable"),
             FieldDef.new("displayName"),
@@ -127,6 +128,9 @@ class Schema extends BaseSchemaObj {
                     Object.assign(attribute, member);
                     attribute.group = group["attributeGroupName"];
                     attribute.nullable = "" + member["isNullable"];
+                    if (typeof member.dataType !== 'string' && !(member.dataType instanceof String)) {
+                        attribute.dataType = "reference";
+                    }   
                     return attribute;
                 });
                 this.entities.push(newEntity);

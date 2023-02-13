@@ -26,7 +26,7 @@ export const SiteList = (props: any) => {
         console.log(formData, site);
         if (company) {
             let s = Site.new(formData);
-            let c = configs.companies.find((c: Company) => c.id === company.id);
+            let c = configs.companies.find((c: Company) => c.name === company.name);
             c.sites.push(s);
             setCompany(updateCompany(c));
             setSites([...c.sites]);
@@ -38,14 +38,14 @@ export const SiteList = (props: any) => {
             title: "Add a site",
             fieldDefs: Site.newFields,
             onSubmit: addASite,
-            entity:Site.new(undefined)
+            entity: Site.defaultEntity()
         })
         setShowForm(true);
     }
     const [formAction, setFormAction] = useState<FormAction>({
         title: "Add a site",
         fieldDefs: Site.newFields,
-        entity: Site.new(undefined),
+        entity: Site.defaultEntity(),
         onSubmit: addASite
     }
     );

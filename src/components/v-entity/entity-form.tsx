@@ -490,11 +490,14 @@ interface FormProp {
     fieldDefs?: Function;
     onSubmit?: Function;
     onChange?: Function;
+    onCancel?: Function;
+    onSubmitClose? : Function;
     mode?: string;
     labelPosition?: string,
     columns?: number,
     inline?: boolean;
 }
+
 interface FormPropState {
     hasError: boolean;
     entity: Entity,
@@ -635,6 +638,12 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
                                 this.props.onSubmit ? <Button className={'v-button-' + mode}
                                     disabled={this.state.hasError} id="submit1" variant="primary" type="submit">
                                     {StringUtils.t(mode)}
+                                </Button> : ""
+                            }
+                            {
+                                this.props.onSubmitClose ? <Button className={'v-button-submit'}
+                                    disabled={this.state.hasError} id="submit1" variant="primary" type="submit">
+                                    {"Submit and Close"}
                                 </Button> : ""
                             }
                         </Form.Group>

@@ -136,10 +136,10 @@ export const Dashboard = (props: any) => {
                             </Toast.Header>
                             <Toast.Body>
                                 <Row >
-                                    <Col xs={2}>
+                                    <Col xs={3}>
                                         Acme Goal
                                     </Col>
-                                    <Col xs={9}>
+                                    <Col xs={8}>
                                         <ProgressBar variant="warning" now={30} />
                                     </Col>
                                     <Col xs={1}>
@@ -147,10 +147,10 @@ export const Dashboard = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Row >
-                                    <Col xs={2}>
+                                    <Col xs={3}>
                                         Acme Special Project
                                     </Col>
-                                    <Col xs={9}>
+                                    <Col xs={8}>
                                         <ProgressBar variant="warning" now={60} />
                                     </Col>
                                     <Col xs={1}>
@@ -158,10 +158,10 @@ export const Dashboard = (props: any) => {
                                     </Col>
                                 </Row>
                                 <Row >
-                                    <Col xs={2}>
+                                    <Col xs={3}>
                                         Acme  Supply Chain Initiative
                                     </Col>
-                                    <Col xs={9}>
+                                    <Col xs={8}>
                                         <ProgressBar variant="danger" now={80} />
                                     </Col>
                                     <Col xs={1}>

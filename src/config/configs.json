@@ -2436,7 +2436,341 @@
             "name": "farm"
         }
     ],
-    "industries": [
+    "sectors" : [
+        {
+            "name": "Consumer Discretionary"
+        },
+        {
+            "name": "Technology"
+        },
+        {
+            "name": "Financials"
+        },
+        {
+            "name": "Communication Services"
+        },
+        {
+            "name": "Industrials"
+        },
+        {
+            "name": "Energy"
+        },
+        {
+            "name": "Real Estate"
+        },
+        {
+            "name": "Healthcare"
+        },
+        {
+            "name": "Consumer Staples"
+        },
+        {
+            "name": "Utilities"
+        },
+        {
+            "name": "Materials"
+        }
+    ],
+    "industries" : [
+        {
+            "name": "Auto Manufacturers"
+        },
+        {
+            "name": "Semiconductors"
+        },
+        {
+            "name": "Internet Retail"
+        },
+        {
+            "name": "Consumer Electronics"
+        },
+        {
+            "name": "Credit Services"
+        },
+        {
+            "name": "Internet Content & Information"
+        },
+        {
+            "name": "Software - Infrastructure"
+        },
+        {
+            "name": "Airlines"
+        },
+        {
+            "name": "Software - Application"
+        },
+        {
+            "name": "Electrical Equipment & Parts"
+        },
+        {
+            "name": "Entertainment"
+        },
+        {
+            "name": "Telecom Services"
+        },
+        {
+            "name": "Railroads"
+        },
+        {
+            "name": "Leisure"
+        },
+        {
+            "name": "Gambling"
+        },
+        {
+            "name": "Communication Equipment"
+        },
+        {
+            "name": "Oil & Gas Midstream"
+        },
+        {
+            "name": "Banks - Regional"
+        },
+        {
+            "name": "REIT - Mortgage"
+        },
+        {
+            "name": "Drug Manufacturers - Specialty & Generic"
+        },
+        {
+            "name": "Travel Services"
+        },
+        {
+            "name": "Semiconductor Equipment & Materials"
+        },
+        {
+            "name": "Electronic Components"
+        },
+        {
+            "name": "Confectioners"
+        },
+        {
+            "name": "Restaurants"
+        },
+        {
+            "name": "REIT - Hotel & Motel"
+        },
+        {
+            "name": "Solar"
+        },
+        {
+            "name": "Beverages - Non-Alcoholic"
+        },
+        {
+            "name": "Pharmaceutical Retailers"
+        },
+        {
+            "name": "Oil & Gas Equipment & Services"
+        },
+        {
+            "name": "Electronic Gaming & Multimedia"
+        },
+        {
+            "name": "Computer Hardware"
+        },
+        {
+            "name": "Oil & Gas E&P"
+        },
+        {
+            "name": "Packaged Foods"
+        },
+        {
+            "name": "Staffing & Employment Services"
+        },
+        {
+            "name": "Utilities - Regulated Electric"
+        },
+        {
+            "name": "Resorts & Casinos"
+        },
+        {
+            "name": "Health Information Services"
+        },
+        {
+            "name": "Drug Manufacturers - General"
+        },
+        {
+            "name": "Auto Parts"
+        },
+        {
+            "name": "Information Technology Services"
+        },
+        {
+            "name": "Silver"
+        },
+        {
+            "name": "Capital Markets"
+        },
+        {
+            "name": "Biotechnology"
+        },
+        {
+            "name": "Financial Data & Stock Exchanges"
+        },
+        {
+            "name": "Household & Personal Products"
+        },
+        {
+            "name": "Farm & Heavy Construction Machinery"
+        },
+        {
+            "name": "Steel"
+        },
+        {
+            "name": "Oil & Gas Drilling"
+        },
+        {
+            "name": "Industrial Distribution"
+        },
+        {
+            "name": "Real Estate Services"
+        },
+        {
+            "name": "Medical Instruments & Supplies"
+        },
+        {
+            "name": "Rental & Leasing Services"
+        },
+        {
+            "name": "Asset Management"
+        },
+        {
+            "name": "Conglomerates"
+        },
+        {
+            "name": "Apparel Retail"
+        },
+        {
+            "name": "Discount Stores"
+        },
+        {
+            "name": "Diagnostics & Research"
+        },
+        {
+            "name": "Insurance - Diversified"
+        },
+        {
+            "name": "Utilities - Regulated Gas"
+        },
+        {
+            "name": "Lodging"
+        },
+        {
+            "name": "Utilities - Renewable"
+        },
+        {
+            "name": "Medical Devices"
+        },
+        {
+            "name": "Banks - Diversified"
+        },
+        {
+            "name": "Specialty Retail"
+        },
+        {
+            "name": "Auto & Truck Dealerships"
+        },
+        {
+            "name": "Integrated Freight & Logistics"
+        },
+        {
+            "name": "Grocery Stores"
+        },
+        {
+            "name": "Gold"
+        },
+        {
+            "name": "Trucking"
+        },
+        {
+            "name": "Consulting Services"
+        },
+        {
+            "name": "REIT - Specialty"
+        },
+        {
+            "name": "Aerospace & Defense"
+        },
+        {
+            "name": "Medical Distribution"
+        },
+        {
+            "name": "Scientific & Technical Instruments"
+        },
+        {
+            "name": "Medical Care Facilities"
+        },
+        {
+            "name": "Footwear & Accessories"
+        },
+        {
+            "name": "REIT - Retail"
+        },
+        {
+            "name": "Electronics & Computer Distribution"
+        },
+        {
+            "name": "Specialty Industrial Machinery"
+        },
+        {
+            "name": "Insurance Brokers"
+        },
+        {
+            "name": "Insurance - Property & Casualty"
+        },
+        {
+            "name": "Tools & Accessories"
+        },
+        {
+            "name": "Packaging & Containers"
+        },
+        {
+            "name": "Utilities - Diversified"
+        },
+        {
+            "name": "Apparel Manufacturing"
+        },
+        {
+            "name": "Insurance - Life"
+        },
+        {
+            "name": "Shell Companies"
+        },
+        {
+            "name": "Building Products & Equipment"
+        },
+        {
+            "name": "Specialty Business Services"
+        },
+        {
+            "name": "Advertising Agencies"
+        },
+        {
+            "name": "Engineering & Construction"
+        },
+        {
+            "name": "Waste Management"
+        },
+        {
+            "name": "Education & Training Services"
+        },
+        {
+            "name": "Lumber & Wood Production"
+        },
+        {
+            "name": "Specialty Chemicals"
+        },
+        {
+            "name": "Insurance - Specialty"
+        },
+        {
+            "name": "Airports & Air Services"
+        },
+        {
+            "name": "Recreational Vehicles"
+        }
+    ],
+    "industries1": [
         {
             "name": "Industry "
         },

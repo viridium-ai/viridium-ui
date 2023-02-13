@@ -1,10 +1,9 @@
 
 import labels from "../v-resources/labels.json";
 export class StringUtils {
-    
-    public static firstLower(text: string) : string{
-        if (text.length === 0)
-        {
+
+    public static firstLower(text: string): string {
+        if (text.length === 0) {
             return text;
         }
         return text[0].toLocaleLowerCase() + text.slice(1);
@@ -167,6 +166,16 @@ export class StringUtils {
             }
             return response.text();
         })
+    }
+    
+    static getUnique = (c8: Array<string>) => {
+        let uniqs: Array<string> = [];
+        c8.forEach((c) => {
+            if (!uniqs.includes(c)) {
+                uniqs.push(c);
+            }
+        })
+        return uniqs;
     }
 
     static loadJson = async (url: string): Promise<any> => {

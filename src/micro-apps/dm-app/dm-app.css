@@ -13,6 +13,7 @@
 .dm-app .v-dashboard-panel {
     margin-top: 0.0rem;
     margin-bottom: 1rem;
+    font-size: 0.8rem;
 }
 .dm-app .v-pie-chart {
     max-width: 200px;

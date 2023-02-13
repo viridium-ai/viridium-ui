@@ -1,8 +1,14 @@
 
 import labels from "../v-resources/labels.json";
-
 export class StringUtils {
-
+    
+    public static firstLower(text: string) : string{
+        if (text.length === 0)
+        {
+            return text;
+        }
+        return text[0].toLocaleLowerCase() + text.slice(1);
+    }
     /**
      * Returns the plural of an English word.
      *
@@ -163,7 +169,6 @@ export class StringUtils {
         })
     }
 
-
     static loadJson = async (url: string): Promise<any> => {
         return fetch(url).then((response) => {
             if (response.status !== 200) {
@@ -174,4 +179,12 @@ export class StringUtils {
         })
     }
 
+    static download = (text: string, name: string, type: string) => {
+        console.log("downloading " + name);
+        var a = document.createElement("a");
+        var file = new Blob([text], { type: type });
+        a.href = URL.createObjectURL(file);
+        a.download = name;
+        a.click();
+    }
 }

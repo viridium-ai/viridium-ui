@@ -72,4 +72,8 @@ export class CodeViewer extends PureComponent<CodeViewerProps, CodeViewerState> 
             <pre className="v-code-viewer"> {this.state.src} </pre>
         </div>
     };
+
+    save(path: string) {
+       
+    }
 }

@@ -7,7 +7,7 @@
   ],
   "definitions": [
     {
-      "entityName": "organizationalProfile",
+      "entityName": "OrganizationalProfile",
       "extendsEntity": "CdmEntity",
       "displayName": "Organizational profile",
       "description": "The base information of the organization, for which the solution is built.",
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -1495,7 +1495,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'reportingStartDay_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartDay'",
+                        "explanation": "This attribute 'reportingStartDay_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartDay'",
                         "name": "reportingStartDay_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -1652,7 +1652,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'reportingStartMonth_display' is added to the 'organizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartMonth'",
+                        "explanation": "This attribute 'reportingStartMonth_display' is added to the 'OrganizationalProfile' entity to provide the localized display text for the value of the listLookup attribute 'reportingStartMonth'",
                         "name": "reportingStartMonth_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -1778,7 +1778,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/organizationalProfile.cdm.json/organizationalProfile/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/OrganizationalProfile.cdm.json/OrganizationalProfile/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

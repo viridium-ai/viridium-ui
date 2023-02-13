@@ -20,7 +20,7 @@
       "corpusPath": "OrganizationalUnit.cdm.json"
     },
     {
-      "corpusPath": "transportMode.cdm.json"
+      "corpusPath": "TransportMode.cdm.json"
     },
     {
       "corpusPath": "Unit.cdm.json"
@@ -29,7 +29,7 @@
       "corpusPath": "ValueChainPartner.cdm.json"
     },
     {
-      "corpusPath": "vehicleType.cdm.json"
+      "corpusPath": "VehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -147,7 +147,7 @@
                 ]
               },
               {
-                "name": "TTLInSeconds",
+                "name": "ttlInSeconds",
                 "sourceName": "ttlinseconds",
                 "sourceOrdering": 2,
                 "description": "Time to live in seconds.",
@@ -2140,7 +2140,7 @@
                 ]
               },
               {
-                "name": "transportMode",
+                "name": "TransportMode",
                 "sourceName": "msdyn_transportMode",
                 "sourceOrdering": 55,
                 "description": "The transport mode that corresponds to this transportation and distribution activity.",
@@ -2149,14 +2149,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "transportMode",
+                  "source": "TransportMode",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "transportModeId",
                       "replaceWith": {
-                        "name": "transportMode",
+                        "name": "TransportMode",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {
@@ -2216,7 +2216,7 @@
                 }
               },
               {
-                "name": "vehicleType",
+                "name": "VehicleType",
                 "sourceName": "msdyn_vehicleType",
                 "sourceOrdering": 56,
                 "description": "Unique identifier for the vehicle type associated with combustion or supply chain transportation activities.",
@@ -2225,14 +2225,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "vehicleType",
+                  "source": "VehicleType",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "vehicleTypeId",
                       "replaceWith": {
-                        "name": "vehicleType",
+                        "name": "VehicleType",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

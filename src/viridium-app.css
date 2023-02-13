@@ -31,16 +31,12 @@
 .toast {
   --bs-toast-max-width:100%;
   --bs-toast-border-width:1px;
+  --bs-toast-font-size:1em;
   box-shadow: none;
   border: none;
 }
-.toast-header {
-  font-weight: 400;
-  font-size: 1.2em;
-}
 
 body {
-  font: 1em sans-serif;
   color: #1A1A1A;
 }
 
@@ -71,7 +67,6 @@ a :visited {
 
 .v-container {
   width: 100%;
-  padding:.5em;
 }
 
 .v-header {
@@ -90,6 +85,14 @@ a :visited {
   margin: 0.5em;
   cursor: pointer;
 }
+
+.v-icon-button {
+  margin: 5px;
+  font-size: 1.0em;
+  color: rgb(65, 65, 65);
+}
+
+
 .v-footer {
   padding: 1rem;
   color: rgb(55, 55, 55);
@@ -192,7 +195,6 @@ a :visited {
 
 .viridium-app .v-panel-header {
   padding: .5em;
-  font-size: medium;
   font-weight: 600;
 }
 .viridium-app .v-summary {

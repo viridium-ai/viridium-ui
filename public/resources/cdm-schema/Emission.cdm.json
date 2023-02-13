@@ -8,7 +8,7 @@
       "corpusPath": "FactorLibrary.cdm.json"
     },
     {
-      "corpusPath": "emissionFactor.cdm.json"
+      "corpusPath": "EmissionFactor.cdm.json"
     },
     {
       "corpusPath": "FactorMapping.cdm.json"
@@ -141,7 +141,7 @@
                 ]
               },
               {
-                "name": "TTLInSeconds",
+                "name": "ttlInSeconds",
                 "sourceName": "ttlinseconds",
                 "sourceOrdering": 2,
                 "description": "Time to live in seconds.",
@@ -3281,7 +3281,7 @@
                 }
               },
               {
-                "name": "emissionFactor",
+                "name": "EmissionFactor",
                 "sourceName": "msdyn_emissionFactor",
                 "sourceOrdering": 74,
                 "description": "Emission factor used for emission calculations.",
@@ -3290,14 +3290,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "emissionFactor",
+                  "source": "EmissionFactor",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
-                      "reference": "emissionfactorId",
+                      "reference": "emissionFactorId",
                       "replaceWith": {
-                        "name": "emissionFactor",
+                        "name": "EmissionFactor",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

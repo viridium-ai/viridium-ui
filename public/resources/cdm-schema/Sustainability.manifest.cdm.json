@@ -46,8 +46,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "emissionFactor",
-      "entityPath": "emissionFactor.cdm.json/emissionFactor"
+      "entityName": "EmissionFactor",
+      "entityPath": "EmissionFactor.cdm.json/EmissionFactor"
     },
     {
       "type": "LocalEntity",
@@ -86,8 +86,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "greenhouseGas",
-      "entityPath": "greenhouseGas.cdm.json/greenhouseGas"
+      "entityName": "GreenhouseGas",
+      "entityPath": "GreenhouseGas.cdm.json/GreenhouseGas"
     },
     {
       "type": "LocalEntity",
@@ -116,8 +116,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "organizationalProfile",
-      "entityPath": "organizationalProfile.cdm.json/organizationalProfile"
+      "entityName": "OrganizationalProfile",
+      "entityPath": "OrganizationalProfile.cdm.json/OrganizationalProfile"
     },
     {
       "type": "LocalEntity",
@@ -166,8 +166,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "transportMode",
-      "entityPath": "transportMode.cdm.json/transportMode"
+      "entityName": "TransportMode",
+      "entityPath": "TransportMode.cdm.json/TransportMode"
     },
     {
       "type": "LocalEntity",
@@ -176,8 +176,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "unitGroup",
-      "entityPath": "unitGroup.cdm.json/unitGroup"
+      "entityName": "UnitGroup",
+      "entityPath": "UnitGroup.cdm.json/UnitGroup"
     },
     {
       "type": "LocalEntity",
@@ -186,8 +186,8 @@
     },
     {
       "type": "LocalEntity",
-      "entityName": "vehicleType",
-      "entityPath": "vehicleType.cdm.json/vehicleType"
+      "entityName": "VehicleType",
+      "entityPath": "VehicleType.cdm.json/VehicleType"
     }
   ],
   "documentVersion": "2.0"

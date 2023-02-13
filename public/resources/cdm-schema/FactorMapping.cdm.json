@@ -17,7 +17,7 @@
       "corpusPath": "ContractualInstrumentType.cdm.json"
     },
     {
-      "corpusPath": "emissionFactor.cdm.json"
+      "corpusPath": "EmissionFactor.cdm.json"
     },
     {
       "corpusPath": "EstimationFactor.cdm.json"
@@ -41,13 +41,13 @@
       "corpusPath": "OrganizationalUnit.cdm.json"
     },
     {
-      "corpusPath": "transportMode.cdm.json"
+      "corpusPath": "TransportMode.cdm.json"
     },
     {
       "corpusPath": "ValueChainPartner.cdm.json"
     },
     {
-      "corpusPath": "vehicleType.cdm.json"
+      "corpusPath": "VehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -965,7 +965,7 @@
                         {
                           "name": "emissionFactorOption",
                           "entity": {
-                            "source": "emissionFactor"
+                            "source": "EmissionFactor"
                           }
                         },
                         {
@@ -982,7 +982,7 @@
                     {
                       "$type": "combineAttributes",
                       "select": [
-                        "emissionfactorId",
+                        "emissionFactorId",
                         "estimationfactorId"
                       ],
                       "mergeInto": {
@@ -1132,7 +1132,7 @@
                         {
                           "name": "transportModeOption",
                           "entity": {
-                            "source": "transportMode"
+                            "source": "TransportMode"
                           }
                         },
                         {
@@ -1144,7 +1144,7 @@
                         {
                           "name": "vehicleTypeOption",
                           "entity": {
-                            "source": "vehicleType"
+                            "source": "VehicleType"
                           }
                         }
                       ]

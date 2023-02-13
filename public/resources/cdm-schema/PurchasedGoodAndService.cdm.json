@@ -138,7 +138,7 @@
                 ]
               },
               {
-                "name": "TTLInSeconds",
+                "name": "ttlInSeconds",
                 "sourceName": "ttlinseconds",
                 "sourceOrdering": 2,
                 "description": "Time to live in seconds.",

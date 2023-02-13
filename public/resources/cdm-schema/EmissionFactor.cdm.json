@@ -13,7 +13,7 @@
   ],
   "definitions": [
     {
-      "entityName": "emissionFactor",
+      "entityName": "EmissionFactor",
       "extendsEntity": "CdmEntity",
       "displayName": "Emission factor",
       "description": "Conversion factor which takes activity data and converts quantities into greenhouse gas amounts and units.",
@@ -67,7 +67,7 @@
             "attributeGroupName": "attributesAddedAtThisScope",
             "members": [
               {
-                "name": "emissionfactorId",
+                "name": "emissionFactorId",
                 "sourceName": "msdyn_emissionfactorId",
                 "sourceOrdering": 1,
                 "description": "Unique identifier for entity instances",
@@ -275,7 +275,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'emissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'EmissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -390,7 +390,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'emissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'EmissionFactor' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -2946,7 +2946,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/emissionFactor.cdm.json/emissionFactor/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/EmissionFactor.cdm.json/EmissionFactor/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

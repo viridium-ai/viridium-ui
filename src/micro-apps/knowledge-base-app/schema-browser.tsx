@@ -1,6 +1,6 @@
 import { PureComponent } from "react";
 import { Toast } from "react-bootstrap";
-import { ImMagicWand } from "react-icons/im";
+import { ImDownload, ImMagicWand } from "react-icons/im";
 import { CodeViewer } from "../../components/v-code-view/code";
 import { RouteItem } from "../../components/v-common/v-app";
 import { EntityDetails, EntityList, FieldDef } from "../../components/v-entity/entity-form";
@@ -27,7 +27,7 @@ export const ENTITIES = [
     "ContractualInstrumentType",
     "CountryRegionMapping",
     "Emission",
-    "emissionFactor",
+    "EmissionFactor",
     "EmissionsSource",
     "EstimationFactor",
     "Facility",
@@ -36,8 +36,7 @@ export const ENTITIES = [
     "FactorMapping",
     "FuelType",
     "FugitiveEmission",
-    "GlobalOptionsets",
-    "greenhouseGas",
+    "GreenhouseGas",
     "IndustrialProcess",
     "IndustrialProcessType",
     "Industry",
@@ -45,7 +44,7 @@ export const ENTITIES = [
     "MobileCombustion",
     "MonthlyRevenue",
     "OrganizationalHierarchy",
-    "organizationalProfile",
+    "OrganizationalProfile",
     "OrganizationalUnit",
     "PurchasedEnergy",
     "PurchasedGoodAndService",
@@ -53,12 +52,12 @@ export const ENTITIES = [
     "StationaryCombustion",
     "Subindustry",
     "Sustainability.manifest",
-    "transportMode",
+    "TransportMode",
     "TransportationAndDistribution",
     "Unit",
-    "unitGroup",
+    "UnitGroup",
     "ValueChainPartner",
-    "vehicleType"
+    "VehicleType"
 ]
 export class BaseSchemaObj {
     displayName: string = "";
@@ -179,8 +178,18 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
 
     public getNavItems = () => {
         return ENTITIES.map((entityName, idx: number) => {
-            return new RouteItem().init(entityName, entityName, "1", `/knowledge-app/schema/${entityName}`)
+            return {
+                name: entityName,
+                route: `/knowledge-app/schema/${entityName}`
+            }
         });
+    }
+
+    public getNavItem = () => {
+        return this.state.entity ? {
+            name: this.state.entity.entityName,
+            route: `/knowledge-app/schema/${this.state.entity.entityName}`
+        } : undefined
     }
 
     componentDidUpdate(prevProps: Readonly<SchemaBrowserProps>, prevState: Readonly<SchemaBrowserState>, snapshot?: any): void {
@@ -194,7 +203,6 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
         }
     }
     componentDidMount(): void {
-        console.log("Load entity")
         GHGSchema.getEntity(this.props.entityName).then((entity: any) => {
             this.setState({ entity: entity });
         }).catch((error) => {
@@ -206,18 +214,19 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
             let contorllerCode = controllerClass(this.state.entity);
             let modelCode = modelClass(this.state.entity);
             let serviceCode = serviceClass(this.state.entity);
-            this.setState({code:contorllerCode+"\n\n"+modelCode+"\n\n"+serviceCode, showCode:true});
+            this.setState({ code: contorllerCode + "\n\n" + modelCode + "\n\n" + serviceCode, showCode: true });
         }
     }
     hideCodeViewer = () => {
-        this.setState({ showCode: false});
+        this.setState({ showCode: false });
     }
     renderEntity = (entity: Entity) => {
         return (
-            <div className="v-panel">
-                 <Toast.Header closeButton={false}>
+            <div >
+                <Toast.Header className="v-header" closeButton={false}>
                     <div className="me-auto">{entity.displayName}</div>
-                    <span onClick={this.generateCode}><ImMagicWand /></span>
+                    <span className="v-icon-button" onClick={this.download}><ImDownload /></span>
+                    <span className="v-icon-button" onClick={this.generateCode}><ImMagicWand /></span>
                 </Toast.Header>
                 <div className="v-panel">
                     <EntityDetails title={""} entity={entity} fieldDefs={Entity.fieldDefs} />
@@ -228,13 +237,48 @@ export class SchemaBrowser extends PureComponent<SchemaBrowserProps, SchemaBrows
             </div>
         )
     }
+    download = (evt: any) => {
+        if (this.state.entity) {
+            let entity = this.state.entity;
+            StringUtils.download(modelClass(this.state.entity), entity.entityName + ".java", "text/plain");
+            StringUtils.download(serviceClass(this.state.entity), entity.entityName + "Repo.java", "text/plain");
+            StringUtils.download(controllerClass(this.state.entity), entity.entityName + "Controller.java", "text/plain");
+        }
+    }
+    sleep = (delay: number) => {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }
+    downloadAll = (evt: any) => {
+        ENTITIES.forEach((entityName) => {
+            GHGSchema.getEntity(entityName).then((entity: any) => {
+                this.sleep(500);
+                try {
+                    StringUtils.download(modelClass(entity), entity.entityName + ".java", "text/plain");
+                    StringUtils.download(serviceClass(entity), entity.entityName + "Repo.java", "text/plain");
+                    StringUtils.download(controllerClass(entity), entity.entityName + "Controller.java", "text/plain");
+                } catch {
+                    console.log("Failed to proces " + entityName);
+                }
 
+            }).catch((error) => {
+                console.log("Failed to get entity", error);
+            });
+        })
+
+    }
     //UI 
     render = () => {
         let entity = this.state.entity;
         return (
             <LayoutPage microApp={knowledgeApp}>
-                <LayoutBodyNav routeItems={this.getNavItems()} />
+                <div className="v-body-nav">
+                    <Toast.Header className="v-header" closeButton={false}>
+                        <div className="me-auto">Entities</div>
+                        <span className="v-icon-button" onClick={this.downloadAll}><ImDownload /></span>
+                    </Toast.Header>
+                    <LayoutBodyNav selected={this.getNavItem()} routeItems={this.getNavItems()} />
+                </div>
                 <div className="v-body-main">
                     {entity ? this.renderEntity(entity) : `Loading...`}
                 </div>

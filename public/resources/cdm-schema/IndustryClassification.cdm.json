@@ -5,7 +5,7 @@
       "corpusPath": "cdm:/core/cdsConcepts.cdm.json"
     },
     {
-      "corpusPath": "organizationalProfile.cdm.json"
+      "corpusPath": "OrganizationalProfile.cdm.json"
     }
   ],
   "definitions": [
@@ -893,7 +893,7 @@
                 ]
               },
               {
-                "name": "organizationalProfile",
+                "name": "OrganizationalProfile",
                 "sourceName": "msdyn_organizationalProfile",
                 "sourceOrdering": 37,
                 "description": "Unique identifier for Organizational Profile associated with Industry Classification.",
@@ -902,14 +902,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "organizationalProfile",
+                  "source": "OrganizationalProfile",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "organizationalProfileId",
                       "replaceWith": {
-                        "name": "organizationalProfile",
+                        "name": "OrganizationalProfile",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

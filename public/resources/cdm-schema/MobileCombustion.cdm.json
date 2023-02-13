@@ -20,7 +20,7 @@
       "corpusPath": "Unit.cdm.json"
     },
     {
-      "corpusPath": "vehicleType.cdm.json"
+      "corpusPath": "VehicleType.cdm.json"
     }
   ],
   "definitions": [
@@ -138,7 +138,7 @@
                 ]
               },
               {
-                "name": "TTLInSeconds",
+                "name": "ttlInSeconds",
                 "sourceName": "ttlinseconds",
                 "sourceOrdering": 2,
                 "description": "Time to live in seconds.",
@@ -1890,7 +1890,7 @@
                 ]
               },
               {
-                "name": "vehicleType",
+                "name": "VehicleType",
                 "sourceName": "msdyn_vehicleType",
                 "sourceOrdering": 51,
                 "description": "Unique identifier for the vehicle type associated with combustion or supply chain transportation activities.",
@@ -1899,14 +1899,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "vehicleType",
+                  "source": "VehicleType",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "vehicleTypeId",
                       "replaceWith": {
-                        "name": "vehicleType",
+                        "name": "VehicleType",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

@@ -5,7 +5,7 @@
       "corpusPath": "cdm:/core/cdsConcepts.cdm.json"
     },
     {
-      "corpusPath": "unitGroup.cdm.json"
+      "corpusPath": "UnitGroup.cdm.json"
     }
   ],
   "definitions": [
@@ -1017,7 +1017,7 @@
                 ]
               },
               {
-                "name": "unitGroup",
+                "name": "UnitGroup",
                 "sourceName": "msdyn_unitGroup",
                 "sourceOrdering": 41,
                 "description": "The ID of the unit group that the unit is associated with.",
@@ -1026,14 +1026,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "unitGroup",
+                  "source": "UnitGroup",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "unitGroupId",
                       "replaceWith": {
-                        "name": "unitGroup",
+                        "name": "UnitGroup",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

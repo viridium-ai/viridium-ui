@@ -10,7 +10,7 @@
   ],
   "definitions": [
     {
-      "entityName": "unitGroup",
+      "entityName": "UnitGroup",
       "extendsEntity": "CdmEntity",
       "displayName": "Unit group",
       "description": "Grouping of units.",
@@ -272,7 +272,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'unitGroup' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'UnitGroup' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -387,7 +387,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'unitGroup' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'UnitGroup' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -991,7 +991,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/unitGroup.cdm.json/unitGroup/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/UnitGroup.cdm.json/UnitGroup/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

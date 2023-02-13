@@ -22,14 +22,14 @@
 }
 
 .mission-title {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     font-weight: 600;
     padding-top: 2em;
 }
 
 .mission-blurb {
     font-weight: 300;
-    font-size: 1.2em;
+    font-size: 1.2rem;
     margin-top: 1em;
 }
 
@@ -43,7 +43,7 @@
 .v-contact-us {
     margin:auto;
     padding: 10px 5px;
-    font-size: 20px;
+    font-size: 1.2rem;
 }
 
 .v-contact-us .v-form {
@@ -67,7 +67,7 @@
     padding: 0em;
     padding-left: 1em;
     margin-bottom: 2.75em;
-    font-size: large;
+    font-size: 1.2rem;
 }
 .v-container {
     border: 1px solid rgba(13, 194, 73, 0.09);

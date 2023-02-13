@@ -8,7 +8,7 @@
       "corpusPath": "Facility.cdm.json"
     },
     {
-      "corpusPath": "greenhouseGas.cdm.json"
+      "corpusPath": "GreenhouseGas.cdm.json"
     },
     {
       "corpusPath": "IndustrialProcessType.cdm.json"
@@ -135,7 +135,7 @@
                 ]
               },
               {
-                "name": "TTLInSeconds",
+                "name": "ttlInSeconds",
                 "sourceName": "ttlinseconds",
                 "sourceOrdering": 2,
                 "description": "Time to live in seconds.",
@@ -1111,7 +1111,7 @@
                 }
               },
               {
-                "name": "greenhouseGas",
+                "name": "GreenhouseGas",
                 "sourceName": "msdyn_greenhouseGas",
                 "sourceOrdering": 40,
                 "description": "Unique identifier for the greenhouse gas associated with the fugitive emission.",
@@ -1120,14 +1120,14 @@
                 "purpose": "hasA",
                 "dataType": "entityId",
                 "entity": {
-                  "source": "greenhouseGas",
+                  "source": "GreenhouseGas",
                   "operations": [
                     {
                       "$type": "replaceAsForeignKey",
                       "condition": "referenceOnly",
                       "reference": "greenhouseGasId",
                       "replaceWith": {
-                        "name": "greenhouseGas",
+                        "name": "GreenhouseGas",
                         "dataType": "entityId",
                         "appliedTraits": [
                           {

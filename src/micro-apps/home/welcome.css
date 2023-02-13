@@ -31,18 +31,18 @@
     padding-top: 9vh;
     padding-left: 10%;
     text-align: left;
-    font-size: 4em;
+    font-size: 3.5rem;
     font-weight: 600;
 }
 
 .home-app .home-blurb {
     filter: brightness(200%);
     height: 100%;
-    padding-top: 60vh;
+    padding-top: 58vh;
     padding-left: 15%;
     padding-right: 5%;
     text-align: left;
-    font-size: 1.8em;
+    font-size: 1.8rem;
     font-weight: 300;
 }
 

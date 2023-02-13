@@ -7,7 +7,7 @@
   ],
   "definitions": [
     {
-      "entityName": "transportMode",
+      "entityName": "TransportMode",
       "extendsEntity": "CdmEntity",
       "displayName": "Transport mode",
       "description": "The mode of transportation or distribution used in an activity, such as air, rail, or storage.",
@@ -269,7 +269,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statecode_display' is added to the 'transportMode' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
+                        "explanation": "This attribute 'statecode_display' is added to the 'TransportMode' entity to provide the localized display text for the value of the listLookup attribute 'stateCode'",
                         "name": "statecode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -384,7 +384,7 @@
                       "$type": "addSupportingAttribute",
                       "condition": "virtual",
                       "supportingAttribute": {
-                        "explanation": "This attribute 'statuscode_display' is added to the 'transportMode' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
+                        "explanation": "This attribute 'statuscode_display' is added to the 'TransportMode' entity to provide the localized display text for the value of the listLookup attribute 'statusCode'",
                         "name": "statuscode_display",
                         "purpose": "hasA",
                         "dataType": "localizedDisplayText",
@@ -952,7 +952,7 @@
                       "entityShape": "attributeGroupSet",
                       "constantValues": [
                         [
-                          "/Sustainability/transportMode.cdm.json/transportMode/hasAttributes/attributesAddedAtThisScope"
+                          "/Sustainability/TransportMode.cdm.json/TransportMode/hasAttributes/attributesAddedAtThisScope"
                         ]
                       ]
                     }

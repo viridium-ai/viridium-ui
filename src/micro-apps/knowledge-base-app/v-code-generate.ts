@@ -1,21 +1,15 @@
+import { StringUtils } from "../../components/v-utils/v-string-utils";
 import { Entity } from "./schema-browser";
-
-const packageStatement = "package com.viridium.data.model;"
-const importsStatement = [
-    "import com.fasterxml.jackson.annotation.JsonInclude;",
-    "import com.viridium.CommonEntity;",
-    "import lombok.Data;",
-    "import java.sql.Date;",
-    "import com.viridium.common.MyBuilder;",
-    "import javax.persistence.Entity;",
-];
-const anoontationStmts = [
-    "@JsonInclude(JsonInclude.Include.NON_NULL)",
-    "@Entity @Data"
+const commonAttr = [
+    "createdOn",
+    "modifiedOn",
+    "stateCode",
+    "statusCode",
+    "importSequenceNumber",
+    "overriddenCreatedOn",
+    "timeZoneRuleVersionNumber",
+    "UTCConversionTimeZoneCode"
 ]
-
-const className = "public class className extends CommonEntity {"
-const attributeDef = "private $type $name;"
 const javaType = (dataType: string) => {
     switch (dataType) {
         case "entityId":
@@ -41,20 +35,47 @@ const javaType = (dataType: string) => {
     }
 }
 export const modelClass = (entity: Entity) => {
+    const comments = [
+        "/**",
+        ` * ${entity.description}`,
+        "**/",
+    ]
+    const packageStatement = "package com.viridium.ghg.model;"
+    const importsStatements = [
+        "import com.fasterxml.jackson.annotation.JsonInclude;",
+        "import com.viridium.ghg.CommonEntity;",
+        "import lombok.Data;",
+        "import com.viridium.common.MyBuilder;",
+        "import javax.persistence.Entity;",
+    ];
 
-    let code = [packageStatement, ...importsStatement, ...anoontationStmts];
+    const anoontationStmts = [
+        "@JsonInclude(JsonInclude.Include.NON_NULL)",
+        "@Entity @Data"
+    ]
+
+    const className = "public class className extends CommonEntity {"
+    const attributeDef = "private $type $name;"
+
+    let attrs = entity.attributes.filter((attribute)=> !commonAttr.includes(attribute.name));
+    if(attrs.find((attr) => attr.dataType === "dateTime")) {
+        importsStatements.push("import java.sql.Date;");
+    }
+
+    let code = [packageStatement, ...importsStatements, ...comments, ...anoontationStmts];
     let classNameStmt = className.replace("className", entity.entityName);
     code.push(classNameStmt);
-    entity.attributes.forEach((attribute) => {
+
+    attrs.forEach((attribute) => {
         let attrstmt = attributeDef.replace("$type", javaType(attribute.dataType));
         attrstmt = attrstmt.replace("$name", attribute.name);
         code.push("\t" + attrstmt);
     });
     code.push("\tpublic String toString() {\n\n\tMyBuilder mb = new MyBuilder(super.toString())");
-    entity.attributes.forEach((attribute, idx) => {
+    attrs.forEach((attribute, idx) => {
         let attrstmt = attributeDef.replace("$type", javaType(attribute.dataType));
         attrstmt = attrstmt.replace("$name", attribute.name);
-        let isLast = idx === entity.attributes.length - 1;
+        let isLast = idx === attrs.length - 1;
         code.push("\t\t\t.append(" + attribute.name + ")" + (isLast ? ";" : ""));
     });
     code.push("\t\treturn mb.toString();\n\t}\n}");
@@ -64,30 +85,30 @@ export const modelClass = (entity: Entity) => {
 
 export const controllerClass = (entity: Entity) => {
     let imports = [
-        "package com.viridium.data.controller;",
+        "package com.viridium.ghg.controller;",
         "import com.viridium.common.BaseController;",
         "import org.springframework.beans.factory.annotation.Autowired;",
         "import org.springframework.web.bind.annotation.*;",
         "import javax.ws.rs.QueryParam;",
-        `import com.viridium.data.model.${entity.entityName};`,
-        `import com.viridium.data.service.${entity.entityName}Repo;`
+        `import com.viridium.ghg.model.${entity.entityName};`,
+        `import com.viridium.ghg.service.${entity.entityName}Repo;`
     ]
 
     let annotations = [
         "@RestController",
-        "@RequestMapping(\"data\")"
+        "@RequestMapping(\"ghg\")"
     ]
 
-    let code = [...importsStatement, ...anoontationStmts];
+    let code = [...imports, ...annotations];
 
+    let serviceName = StringUtils.plural(entity.entityName.toLocaleLowerCase());
+
+    let repoName = StringUtils.firstLower(entity.entityName) + "Repo";
     code.push(`public class ${entity.entityName}Controller extends BaseController {`);
 
     code.push("    @Autowired");
-    code.push(`    ${entity.entityName}Repo ${entity.entityName}Repo;`);
+    code.push(`    ${entity.entityName}Repo ${repoName};`);
 
-    let serviceName = entity.entityName.toLocaleLowerCase() + "s";
-
-    let repoName = entity.entityName.toLocaleLowerCase() + "Repo";
 
     let methtods = `    @GetMapping("/${serviceName}")
     public Iterable<${entity.entityName}> search(@QueryParam("text") String text) {
@@ -138,8 +159,8 @@ export const controllerClass = (entity: Entity) => {
 
 export const serviceClass = (entity: Entity) => {
     let imports = [
-        "package com.viridium.data.service;",
-        `import com.viridium.data.model.${entity.entityName};`,
+        "package com.viridium.ghg.service;",
+        `import com.viridium.ghg.model.${entity.entityName};`,
         "import org.springframework.data.domain.Page;",
         "import org.springframework.data.domain.Pageable;",
         "import org.springframework.data.jpa.repository.JpaSpecificationExecutor;",
@@ -156,3 +177,4 @@ export const serviceClass = (entity: Entity) => {
     code.push(methtods);
     return code.join("\n");
 }
+

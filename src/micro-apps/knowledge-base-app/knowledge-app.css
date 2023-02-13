@@ -1,12 +1,5 @@
-.knowledge-app .list-group {
-    font-size: 1.2em;
-    --bs-list-group-action-hover-bg: rgb(203, 203, 203);
-    --bs-list-group-action-active-bg: rgb(206, 206, 206); 
-}
-
-.knowledge-app .list-group-item {
-    padding: .5em;
-    border-bottom: 0.5px solid rgb(229, 229, 229);
+.knowledge-app {
+    font-size: 1.0em;
 }
 
 .knowledge-app .v-page-body {
@@ -17,5 +10,14 @@
 }
 
 .knowledge-app .v-body-main {
-     overflow:revert;
+     padding: 0px;
+     border-left:solid 1px gray;
+}
+
+.knowledge-app .v-layout .v-body-nav {
+    padding: 0px;
+}
+
+.knowledge-app .v-header {
+    padding: 0.5em;
 }

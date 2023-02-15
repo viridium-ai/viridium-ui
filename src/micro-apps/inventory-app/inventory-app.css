@@ -3,3 +3,12 @@
     border-radius: 0px;
     overflow: hidden;
 }
+
+.inventory-app .v-select-container {
+    display: flex;
+}
+
+.inventory-app .v-select {
+    margin: 2%;
+    width: 95%;
+}

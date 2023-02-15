@@ -1,5 +1,6 @@
 
 import { localCache } from "../components/v-utils/v-cache-manager";
+import { StringUtils } from "../components/v-utils/v-string-utils";
 import { Company } from "../micro-apps/viridium-model";
 
 export class EventManager {
@@ -48,11 +49,28 @@ export const getValueChainConfigs = (): any => {
         let seededVersion = parseFloat(configs.version);
         //we need merge TODO
         if (seededVersion > cachedVersion) {
-            localCache.set("ValueChain.Config", seededVersion);
+            localCache.set("ValueChain.Config", configs);
         }
-        cached = seededVersion;
+        cached = configs;
     }
     return cached;
+}
+
+export const getTreeData = () => {
+    let valueChain = getValueChainConfigs();
+    return toTreeNode(valueChain);
+}
+
+export const toTreeNode = (taxonomyNode: any) => {
+    let children = taxonomyNode["children"];
+    return {
+        id: StringUtils.guid(),
+        text: StringUtils.t(taxonomyNode["value"]),
+        selectable: children === undefined || children.length === 0,
+        children: children ? children.map((node: any) => {
+            return toTreeNode(node)
+        }) : []
+    }
 }
 
 export const updateConfigs = (configs: any) => {

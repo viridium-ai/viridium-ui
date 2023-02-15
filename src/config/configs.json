@@ -989,7 +989,6 @@
         "headers": [
             "Select",
             "Sub Category",
-            "GHG Scope",
             "Standard / Custom",
             "Carbon",
             "Waster",
@@ -1000,7 +999,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Manufacturing",
-                "Scope 1",
                 "Standard",
                 "CWsWt"
             ],
@@ -1008,7 +1006,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Building Management",
-                "Scope 1",
                 "Standard",
                 "CWsWt"
             ],
@@ -1016,7 +1013,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Transportation - Goods",
-                "Scope 1",
                 "Standard",
                 "C"
             ],
@@ -1024,7 +1020,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Transportation - Fleet",
-                "Scope 1",
                 "Standard",
                 "C"
             ],
@@ -1032,7 +1027,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Waste Management",
-                "Scope 1",
                 "Standard",
                 "Ws"
             ],
@@ -1040,7 +1034,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Storage Systems",
-                "Scope 1",
                 "Custom",
                 "C"
             ],
@@ -1048,7 +1041,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Facilities - Sites",
-                "Scope 1",
                 "Standard",
                 "CWsWt"
             ],
@@ -1056,7 +1048,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Facilities - Non-Sites",
-                "Scope 1",
                 "Custom",
                 "CWsWt"
             ],
@@ -1064,7 +1055,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Building Management",
-                "Scope 1",
                 "Standard",
                 "CWsWt"
             ],
@@ -1072,7 +1062,6 @@
                 "Direct",
                 "Product Manufacturing",
                 "Water Management",
-                "Scope 1",
                 "Custom",
                 "Wt"
             ]

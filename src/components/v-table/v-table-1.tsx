@@ -208,12 +208,16 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
 
     renderCell = (cellData: any, row: number, col: number) => {
         const id = `${row}.${col}`;
-        return cellData.type === 'checkbox' ? <Form.Check id={id} checked={cellData.value} type="checkbox" onChange={this.onValueChange} />
-            : cellData.type === 'button' ? <Button id={id} onClick={cellData.onClick} >{cellData.text}</Button>
-                : cellData.type === 'input' ? <Form.Control type="text" id={id} onChange={this.onValueChange} value={cellData.value} />
-                    : cellData.type === 'select' ? <Form.Select id={id} onChange={this.onValueChange} value={cellData.value || ''}>
-                        {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
-                    </Form.Select> : cellData.text
+        return cellData.type === 'checkbox' ?
+            <Form.Check id={id} checked={cellData.value} type="checkbox" onChange={this.onValueChange} />
+            : cellData.type === 'button' ?
+                <Button id={id} onClick={cellData.onClick} >{cellData.text}</Button>
+                : cellData.type === 'input' ?
+                    <Form.Control type="text" id={id} onChange={this.onValueChange} value={cellData.value} />
+                    : cellData.type === 'select' ?
+                        <Form.Select id={id} onChange={this.onValueChange} value={cellData.value || ''}>
+                            {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
+                        </Form.Select> : cellData.text
     }
 
     handleFilterUpdate = (value: Filter) => {

@@ -56,6 +56,8 @@ export const updateCompany = (company: Company) => {
         configs.companies.push(c);
     } else {
         c = Company.new(company);
+        configs.companies = configs.companies.filter((c: Company) => c.name !== company.name);
+        configs.companies.push(c);
     }
     updateConfigs(configs);
     if (c) {

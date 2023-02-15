@@ -1,0 +1,134 @@
+{
+    "name": "airport",
+    "version": "1.0",
+    "categories": [
+        {
+            "value": "infrastructure",
+            "children": [
+                {
+                    "value": "construction",
+                    "children": [
+                        {
+                            "value": "runways"
+                        },
+                        {
+                            "value": "taxiways"
+                        },
+                        {
+                            "value": "terminals"
+                        },
+                        {
+                            "value": "parkingFacilities"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "maintenance",
+                    "children": [
+                        {
+                            "value": "runways"
+                        },
+                        {
+                            "value": "taxiways"
+                        },
+                        {
+                            "value": "terminals"
+                        },
+                        {
+                            "value": "parkingFacilities"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "value": "operations",
+            "children": [
+                {
+                    "value": "trafficControl"
+                },
+                {
+                    "value": "baggageHandling"
+                },
+                {
+                    "value": "security"
+                },
+                {
+                    "value": "cleaning"
+                },
+                {
+                    "value": "others"
+                }
+            ]
+        },
+        {
+            "value": "customerService",
+            "children": [
+                {
+                    "value": "checkIn"
+                },
+                {
+                    "value": "securityScreen"
+                },
+                {
+                    "value": "boarding"
+                },
+                {
+                    "value": "retail"
+                },
+                {
+                    "value": "foodAndBeverage"
+                },
+                {
+                    "value": "others"
+                }
+            ]
+        },
+        {
+            "value": "commercialActivities",
+            "children": [
+                {
+                    "value": "leasingSpace"
+                },
+                {
+                    "value": "retailTenants"
+                },
+                {
+                    "value": "parking"
+                },
+                {
+                    "value": "others"
+                }
+            ]
+        },
+        {
+            "value": "supportServices",
+            "children": [
+                {
+                    "value": "finance"
+                },
+                {
+                    "value": "humanResources"
+                },
+                {
+                    "value": "legal"
+                },
+                {
+                    "value": "informationTechnology"
+                },
+                {
+                    "value": "marketing"
+                },
+                {
+                    "value": "others"
+                }
+            ]
+        }
+    ]
+}

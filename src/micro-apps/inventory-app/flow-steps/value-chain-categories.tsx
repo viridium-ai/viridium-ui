@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { PureComponent, useState } from "react";
 
 import { Toast, Col, Row } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable, DimensionView } from "../../../components/v-table/v-table-1";
+import TreeView from "../../../components/v-tree-view/v-tree-view";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
-import { getConfigs } from "../../../config/v-config";
+import { getConfigs, getValueChainConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire } from "../inventory-questionaire";
 
@@ -27,6 +29,36 @@ export const QuestionniarView = (props: any) => {
             </Row>
         </>
     )
+}
+
+
+export class ValueChainConfig extends PureComponent<any, { valueChainTaxonomy: any }> {
+    constructor(props: any) {
+        super(props);
+        this.state = ({ valueChainTaxonomy: getValueChainConfigs() });
+    }
+    getTreeData = () => {
+        let valueChain = this.state.valueChainTaxonomy;
+        return this.toTreeNode(valueChain);
+    }
+
+    toTreeNode = (taxonomyNode: any) => {
+        return {
+            id: taxonomyNode["name"],
+            text: StringUtils.t(taxonomyNode["name"]),
+            as: "list",
+            children: taxonomyNode["children"].map((node: any) => {
+                return this.toTreeNode(node)
+            })
+        }
+    }
+
+    render = () => {
+        return <LayoutPage microApp={inventoryConfigApp} >
+            <TreeView data={this.getTreeData()} />
+        </LayoutPage>
+    }
+
 }
 
 export const ValueChainCategories = (props: any) => {

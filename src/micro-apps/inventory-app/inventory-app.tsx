@@ -1,9 +1,8 @@
 import { Route } from "react-router-dom";
 
 import { DataCollectionWizard } from "./flow-steps/company-summary";
-import { ValueChainCategories } from "./flow-steps/value-chain-categories";
-import { Questionnaires } from "./flow-steps/questionnaires";
-import { Help } from "./help";
+import {ValueChainConfig } from "./flow-steps/value-chain-categories";
+
 import './inventory-app.css';
 import { HomeApp } from "../home/home-app";
 import { RouteItem } from "../../components/v-common/v-app";
@@ -30,7 +29,7 @@ export class InventoryConfigApp extends HomeApp {
       <>
         <Route path="/inventory-app" element={<DataCollectionWizard next={'/inventory-app/categories'} />} />
         <Route path="/inventory-app/config" element={<DataCollectionWizard next={'/inventory-app/categories'} />} />
-         <Route path="/inventory-app/categories" element={<ValueChainCategories prev='/inventory-app/config' />} />
+         <Route path="/inventory-app/categories" element={<ValueChainConfig prev='/inventory-app/config' />} />
       </>
     );
   }

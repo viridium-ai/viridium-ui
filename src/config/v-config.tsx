@@ -1,5 +1,4 @@
 
-import { count } from "console";
 import { localCache } from "../components/v-utils/v-cache-manager";
 import { Company } from "../micro-apps/viridium-model";
 
@@ -36,6 +35,24 @@ export const getConfigs = (): any => {
         localCache.set("Viridium.Config", configs);
     }
     return configs;
+}
+
+export const getValueChainConfigs = (): any => {
+    let cached = localCache.get("ValueChain.Config");
+    if (cached === undefined) {
+        cached = require("./value-chain.json");
+        localCache.set("ValueChain.Config", cached);
+    } else {
+        let configs = require("./value-chain.json");
+        let cachedVersion = parseFloat(cached.version);
+        let seededVersion = parseFloat(configs.version);
+        //we need merge TODO
+        if (seededVersion > cachedVersion) {
+            localCache.set("ValueChain.Config", seededVersion);
+        }
+        cached = seededVersion;
+    }
+    return cached;
 }
 
 export const updateConfigs = (configs: any) => {

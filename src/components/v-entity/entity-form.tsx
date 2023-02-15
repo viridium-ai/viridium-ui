@@ -75,6 +75,9 @@ export class FieldDef {
             return value;
         }
     }
+    public getAttributeValue = (entity: any) => {
+        return this.getDisplayValue(entity[this.name]);
+    }
     //get visible text from name, for example firstName => First Name
     public getLabel = (key: string | undefined = undefined) => {
         return StringUtils.t(key ? key : this.label ? this.label : this.name);
@@ -203,6 +206,18 @@ export class FieldDef {
         let dv = defaultValue ? defaultValue : new Date();
         field.placeHolder = dv.toISOString().slice(0, 10);
         field.defaultValue = field.placeHolder;
+        return field;
+    }
+    static number(name: string, defaultValue?: number): FieldDef {
+        let field = new FieldDef();
+        field.name = name;
+        field.type = ValueType.NUMBER;
+        field.defaultValue = defaultValue;
+        return field;
+    }
+    static money(name: string, defaultValue?: number): FieldDef {
+        let field = this.number(name, defaultValue);
+        field.useFormatter(Money);
         return field;
     }
 }
@@ -702,6 +717,7 @@ interface ListTableProp {
     view?: string,
     actions?: Array<any>,
     showTitle?: boolean;
+    pageSize?: number;
 }
 interface ListTableState {
     selected?: any,
@@ -741,7 +757,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             this.props.onEdit(entity);
         }
     }
-
     getFieldDefs = (entity: any | undefined = undefined) => {
         let fieldDefs;
         if (this.props.fieldDefs) {
@@ -836,24 +851,27 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                 <div className='v-container'>
                     {
                         entities.length > 0 ? this.viewMode === 'Table' ?
-                            <Table striped bordered hover>
-                                <thead>
-                                    <tr>
-                                        {this.renderHeaders(entities[0])}
-                                        {hasActions ? <th>{StringUtils.t("actions")}</th> : ""}
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        entities.map((entity, idx) =>
-                                            <tr key={idx}>
-                                                {this.renderRow(entity, idx)}
-                                                {this.renderActions(entity, idx)}
-                                            </tr>
-                                        )
-                                    }
-                                </tbody>
-                            </Table>
+                            <>
+                                
+                                <Table striped bordered hover>
+                                    <thead>
+                                        <tr>
+                                            {this.renderHeaders(entities[0])}
+                                            {hasActions ? <th>{StringUtils.t("actions")}</th> : ""}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            entities.map((entity, idx) =>
+                                                <tr key={idx}>
+                                                    {this.renderRow(entity, idx)}
+                                                    {this.renderActions(entity, idx)}
+                                                </tr>
+                                            )
+                                        }
+                                    </tbody>
+                                </Table>
+                            </>
                             : <>
                                 {
                                     entities.map((entity, idx) =>

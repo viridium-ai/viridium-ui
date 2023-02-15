@@ -2,7 +2,7 @@ import { Row, Col, Toast, ProgressBar, Table } from 'react-bootstrap';
 import { LayoutPage } from '../../components/v-layout/v-layout'
 import { QuickLine, QuickPie } from '../../components/v-chart/v-quick-charts';
 import { dataSourceManager } from './dm-app';
-import { DataTable } from '../../components/v-table/v-table';
+import { DataTable } from '../../components/v-table/v-table-1';
 import { getConfigs } from '../../config/v-config';
 export const Dashboard = (props: any) => {
     const options = {

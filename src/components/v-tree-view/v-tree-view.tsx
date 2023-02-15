@@ -119,7 +119,6 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
             children.forEach((child: Node) => {
                 child.state = state;
                 child.state.selected = state.selected;
-                //  this.setChildrenState(child.children, state);
             });
     }
     setParentSelectable(node: Node) {

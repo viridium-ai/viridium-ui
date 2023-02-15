@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Toast, Col, Row } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { DataTable, DimensionView } from "../../../components/v-table/v-table";
+import { DataTable, DimensionView } from "../../../components/v-table/v-table-1";
 
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
@@ -113,7 +113,6 @@ export const ValueChainCategories = (props: any) => {
                         Viridium Industry:   {report.category}
                     </Toast.Header>
                     <Toast.Body>
-                        <QuestionniarView />
                         <Row className="v-filters">
                             <Col className="v-summary">Value Chain:
                             </Col>

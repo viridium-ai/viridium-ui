@@ -1,10 +1,10 @@
 
-import React, { Component, PureComponent, useEffect, useState } from "react";
-import { Navbar, Nav, NavDropdown, ListGroup, Offcanvas, Alert } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Navbar, Nav, NavDropdown, Offcanvas } from "react-bootstrap";
 import { securityManager } from "../v-security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
-import { IMicroApp, IRouteItem, MicroApp } from "../v-common/v-app";
+import { IMicroApp, MicroApp } from "../v-common/v-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";
@@ -120,11 +120,15 @@ export const LayoutHeader = (props: any) => {
             }) : ""
     }
     const ui = () => (
-        <Navbar expand="lg">
+        <Navbar id={microApp.getName() + "-nav"} expand="lg">
             <Navbar.Brand href={v_link("/")}>
                 {props.brand !== undefined ? props.brand :
-                    <><img src="../resources/green.png" className="viridium-logo" alt={configs.title} ></img>
-                        <span>{configs.title}</span></>
+                    <>
+                        {
+                            configs.icon ? <img src={configs.icon} className="v-logo" alt={configs.title} ></img> : ""
+                        }
+                        <span>{configs.title}</span>
+                    </>
                 }
             </Navbar.Brand>
 
@@ -176,7 +180,7 @@ export const LayoutBodyNav = (props: BodyNavProps) => {
     const navigate = useNavigate();
     useEffect(() => {
         //console.log("useEffect is called", props);
-        if(selected === undefined && props.selected) {
+        if (selected === undefined && props.selected) {
             setSelected(props.selected);
         }
     });

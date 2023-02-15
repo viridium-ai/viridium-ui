@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Toast, Form, Col, Row, Button } from 'react-bootstrap';
 import { LayoutPage } from '../../components/v-layout/v-layout';
-import { DataTable } from '../../components/v-table/v-table';
+import { DataTable } from '../../components/v-table/v-table-1';
 import TreeView from '../../components/v-tree-view/v-tree-view';
 import { getConfigs } from '../../config/v-config';
 import { dataSourceManager } from './dm-app';

@@ -13,8 +13,9 @@
 
 .v-message {
   min-height: 100px;
-  font-size: 2em;
+  font-size: 2rem;
   color: rgb(158, 193, 172);
+  padding: 2rem;
   background-color: rgb(239, 239, 239);
   margin-top: 4px;
 }

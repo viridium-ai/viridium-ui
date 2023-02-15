@@ -3216,7 +3216,128 @@
             "name": "Writing/Editing"
         }
     ],
-    "companies": [],
+    "companies": [
+        {
+            "id": "VA12312i3",
+            "name": "Big Airport",
+            "industry": "Transportation",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "SF123141",
+            "source": "Source CRM Account ID",
+            "street1": "555, Airport Way",
+            "city": "Big City",
+            "state": "CA",
+            "zipCode": "45678",
+            "firstName": "John",
+            "lastName": "Doe",
+            "email": "john.deo@viridium.ai",
+            "phone": "425-456-7896",
+            "sites": [
+                {
+                    "id": "2",
+                    "name": "San Jose",
+                    "companyId": "VA12312i3"
+                },
+                {
+                    "id": "3",
+                    "name": "Dallas",
+                    "companyId": "VA12312i3"
+                },
+                {
+                    "id": "1",
+                    "name": "Chicago",
+                    "companyId": "VA12312i3"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i4",
+            "name": "Acme Appliances",
+            "industry": "Manufacturing",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Water Way",
+            "city": "Las Vegas",
+            "state": "NV",
+            "zipCode": "56789",
+            "firstName": "Joe",
+            "lastName": "Bro",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites": [
+                {
+                    "id": "2",
+                    "name": "Georgia",
+                    "companyId": "VA12312i4"
+                },
+                {
+                    "id": "3",
+                    "name": "Denver",
+                    "companyId": "VA12312i4"
+                },
+                {
+                    "id": "1",
+                    "name": "Paris",
+                    "companyId": "VA12312i4"
+                }
+            ]
+        },
+        {
+            "id": "VA12312i5",
+            "name": "Tesla",
+            "industry": "Manufactory",
+            "viridiumCategory": "",
+            "lastUpdatedDate": 12213212312,
+            "lastUpdatedBy": "vid",
+            "sourceId": "CRM23145",
+            "source": "Source CRM Account ID",
+            "street1": "555, Tesla Way",
+            "city": "Austin",
+            "state": "TX",
+            "zipCode": "56789",
+            "firstName": "Elon",
+            "lastName": "Dusk",
+            "email": "joe.bro@drinkaway.ai",
+            "phone": "345-456-2314",
+            "sites": [
+                {
+                    "id": "1",
+                    "name": "Headquarters",
+                    "companyId": "VA12312i5",
+                    "location": "Austin TX, USA"
+                },
+                {
+                    "id": "2",
+                    "name": "Giga-Factory Fremont",
+                    "companyId": "VA12312i5",
+                    "location": "Fremont CA, USA"
+                },
+                {
+                    "id": "3",
+                    "name": "Giga-Factory Berlin",
+                    "companyId": "VA12312i5",
+                    "location": "Berlin, DEU"
+                },
+                {
+                    "id": "4",
+                    "name": "Giga-Factory Shanghai",
+                    "companyId": "VA12312i5",
+                    "location": "Shanghai, China"
+                },
+                {
+                    "id": "5",
+                    "name": "Giga-Factory Austin",
+                    "companyId": "VA12312i5",
+                    "location": "Austin TX, USA"
+                }
+            ]
+        }
+    ],
     "reportMockData": {
         "id": "1",
         "headers": [
@@ -3343,19 +3464,14 @@
             "label": "Introduction"
         },
         {
+            "id": "8",
+            "url": "./resources/help/value-chain.html",
+            "label": "The Value Chain"
+        },
+        {
             "id": "1",
-            "url": "./resources/help/scope1.html",
-            "label": "Scope 1"
-        },
-        {
-            "id": "2",
-            "url": "./resources/help/scope2.html",
-            "label": "Scope 2"
-        },
-        {
-            "id": "3",
-            "url": "./resources/help/scope3.html",
-            "label": "Scope 3"
+            "url": "./resources/help/scopes.html",
+            "label": "GHG Scopes"
         },
         {
             "id": "4",

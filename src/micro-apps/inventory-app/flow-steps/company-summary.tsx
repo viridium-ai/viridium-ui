@@ -76,8 +76,7 @@ export const DataCollectionWizard = (props: any) => {
     return (
         <LayoutPage microApp={inventoryConfigApp}  >
             <Toast >
-                <Toast.Header closeButton={false}>
-                    <span className="me-auto">Generate Questionnaires</span>
+                <Toast.Header closeButton={false}> <span className="me-auto">Generate Questionnaires</span>
                 </Toast.Header>
                 <Toast.Body>
                     <Question label="Customer Name">
@@ -90,9 +89,9 @@ export const DataCollectionWizard = (props: any) => {
                             }
                         </Form.Select>
                     </Question>
-                    <Question label="Viridium Industry">
+                    <Question label="Value Chain Template">
                         <Form.Select value={report.categoryId} onChange={onSelectCategory} aria-label="">
-                            <option>Select a category</option>
+                            <option>Select a template</option>
                             {
                                 viridiumIndustries.map((v, idx) =>
                                     <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
@@ -107,7 +106,7 @@ export const DataCollectionWizard = (props: any) => {
                     <Question label="Notes">
                         <Form.Control value={report.description} onChange={onUpdateNotes} as="textarea" rows={3} />
                     </Question>
-                    <Action next={{ label: "Next", path: "/inventory-app/config" }} />
+                    <Action next={{ label: "Next", path: props.next }} />
                 </Toast.Body>
             </Toast>
         </LayoutPage >

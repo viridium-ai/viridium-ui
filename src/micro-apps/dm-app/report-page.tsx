@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Row, Col, Toast, Tabs, Tab, Form, Button } from "react-bootstrap";
 import { LayoutPage } from "../../components/v-layout/v-layout"
-import { DataTable, DimensionView } from "../../components/v-table/v-table";
+import { DataTable, DimensionView } from "../../components/v-table/v-table-1";
 import { getConfigs, getState, saveState } from "../../config/v-config";
 
 import { dataSourceManager } from "./dm-app";

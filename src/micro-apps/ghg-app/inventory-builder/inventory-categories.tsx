@@ -3,7 +3,7 @@ import { Col, Row, Toast } from "react-bootstrap";
 import { EntityList } from "../../../components/v-entity/entity-form";
 import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { DataTable } from "../../../components/v-table/v-table";
+import { DataTable } from "../../../components/v-table/v-table-1";
 import { StringUtils } from "../../../components/v-utils/v-string-utils";
 import { getCompany } from "../../../config/v-config";
 import { InventoryItem } from "../../viridium-model";

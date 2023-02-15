@@ -27,6 +27,12 @@
     margin-top: 1em;
 }
 
+.knowledge-app .v-help-content h3{
+    font-size: 1.2rem;
+    margin-bottom: .5em;
+    margin-top: 1em;
+}
+
 .knowledge-app .v-help-content li{
     padding: 0.2em;
 }

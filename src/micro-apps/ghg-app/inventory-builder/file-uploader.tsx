@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { Button, Form } from "react-bootstrap";
-import { DataTable } from "../../../components/v-table/v-table";
+import { DataTable } from "../../../components/v-table/v-table-1";
 
 type FileUploaderProps = {
     onReceiveData: Function,

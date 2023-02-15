@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { DataTable } from "../../../components/v-table/v-table";
+import { DataTable } from "../../../components/v-table/v-table-1";
 import { getConfigs } from "../../../config/v-config";
 
 type ViridiumDatasetProp = {

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PureComponent, useState } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
@@ -6,72 +6,105 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
+import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
 import { QuestionniarView } from "./value-chain-categories";
 
-export const InventoryCategories = (props: any) => {
-    const configs = getConfigs();
-
-    const [report, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
-
-    const onSelectScope1 = (evt: any) => {
-        if (!report.scope1Needs.includes(evt.target.id)) {
-            report.scope1Needs.push(evt.target.id);
+export class InventoryCategories extends PureComponent<any, { report: any, toggleAll: boolean }>{
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            report: getQuestionnaire(), toggleAll: false
         }
-        let clone = { ...report };
-        setQuestionnaire(clone);
+    }
+    onSelectScope1 = (evt: any) => {
+        let clone = { ...this.state.report };
+        if (!clone.scope1Needs.includes(evt.target.id)) {
+            clone.scope1Needs.push(evt.target.id);
+        }
+        this.setState({ report: clone });
         updateQuestionnaire(clone);
     }
 
-    const onSelectScope3 = (evt: any) => {
-        if (!report.scope3Needs.includes(evt.target.id)) {
-            report.scope3Needs.push(evt.target.id);
+    onSelectScope3 = (evt: any) => {
+        let clone = { ...this.state.report };
+        if (!clone.scope3Needs.includes(evt.target.id)) {
+            clone.scope3Needs.push(evt.target.id);
         }
-        let clone = { ...report };
-        setQuestionnaire(clone);
+        this.setState({ report: clone });
         updateQuestionnaire(clone);
     }
 
-    const scope1Category = (): Array<{ id: string, label: string }> => {
-        return configs.categories.scope1.map((value: string, idx: number) => {
-            return { id: "" + idx + 1, label: value }
+    scope1Category = (): Array<{ id: string, label: string }> => {
+        return getConfigs().categories.scope1.map((value: string, idx: number) => {
+            return { id:value, label: value }
         })
     };
-    const scope3Category = (): Array<{ id: string, label: string }> => {
-        return configs.categories.scope3.map((value: string, idx: number) => {
-            return { id: "" + idx + 1, label: value }
+
+    scope3Category = (): Array<{ id: string, label: string }> => {
+        return getConfigs().categories.scope3.map((value: string, idx: number) => {
+            return { id: value, label: value }
         })
     };
-    const ui = () => {
+
+    toggleAll = (evt: any) => {
+        let clone = { ...this.state.report };
+        if (evt.target.checked) {
+            clone.scope1Needs = getConfigs().categories.scope1.map((value: string, idx: number) => {
+                return value
+            })
+            clone.scope3Needs = getConfigs().categories.scope3.map((value: string, idx: number) => {
+                return value
+            });
+        } else {
+            clone.scope1Needs = [];
+            clone.scope3Needs = [];
+        }
+
+        this.setState({ report: clone, toggleAll: evt.target.checked });
+        updateQuestionnaire(clone);
+    }
+
+    render = () => {
         return (
             <LayoutPage microApp={inventoryConfigApp}  >
                 <Toast >
                     <Toast.Header closeButton={false}>
                         <span className="me-auto">
-                            {report.companyName}
+                            {this.state.report.companyName}
                         </span>
-                        Viridium Industry:   {report.category}
+                        Viridium Industry:   {this.state.report.category}
                     </Toast.Header>
                     <Toast.Body>
                         <QuestionniarView />
                         <Row>
-                            <Col className="v-title">
-                                Select Data Source Based on your knowledge of the Account
+                            <Col className="v-title" style={{ display: "flex" }}>
+                                <span className="me-auto">
+                                    Select Data Source Based on your knowledge of the Account
+                                </span>
+                                <span>
+                                    <Form.Check onChange={this.toggleAll}
+                                        type="checkbox"
+                                        id="check-all-boxes"
+                                        label={"Toggle All"}
+                                        checked={this.state.toggleAll}
+                                    />
+                                </span>
+
                             </Col>
                         </Row>
                         <Row>
                             <Col className="v-panel">
                                 <div className="v-panel-header">Scope 1/2 Needs</div>
                                 <div className="v-panel-content">
-                                    {scope1Category().map((item, idx) => {
+                                    {this.scope1Category().map((item, idx) => {
                                         return (
                                             <div key={`default-${idx}`} className="mb-2">
                                                 <Form.Check
-                                                    onChange={onSelectScope1}
+                                                    onChange={this.onSelectScope1}
                                                     type="checkbox"
                                                     id={item.id}
                                                     label={item.label}
-                                                    checked={report.scope1Needs.includes(item.id)}
+                                                    checked={this.state.report.scope1Needs.includes(item.id)}
                                                 />
                                             </div>
                                         )
@@ -80,26 +113,25 @@ export const InventoryCategories = (props: any) => {
                             </Col>
                             <Col className="v-panel">
                                 <div className="v-panel-header">Scope 3 Needs</div>
-                                <div className="v-panel-content">{scope3Category().map((item, idx) => (
+                                <div className="v-panel-content">{this.scope3Category().map((item, idx) => (
                                     <div key={`default-${idx}`} className="mb-2">
                                         <Form.Check
-                                            onChange={onSelectScope3}
+                                            onChange={this.onSelectScope3}
                                             type="checkbox"
                                             id={item.id}
                                             label={item.label}
-                                            checked={report.scope3Needs.includes(item.id)}
+                                            checked={this.state.report.scope3Needs.includes(item.id)}
                                         />
                                     </div>
                                 ))}</div>
                             </Col>
                         </Row>
-                        <Action report={report}
-                            next={{ label: "Next", path: props.next }}
-                            prev={{ label: "Back", path: props.prev }} />
+                        <Action report={this.state.report}
+                            next={{ label: "Next", path: this.props.next }}
+                            prev={{ label: "Back", path: this.props.prev }} />
                     </Toast.Body>
                 </Toast>
             </LayoutPage >
         )
     }
-    return ui();
 }

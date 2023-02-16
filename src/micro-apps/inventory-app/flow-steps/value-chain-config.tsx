@@ -1,79 +1,14 @@
 import { PureComponent } from "react";
 import { Col, Form, Row } from "react-bootstrap";
-import { EntityForm, EntityList, FieldDef, ValueType } from "../../../components/v-entity/entity-form";
-import { Entity } from "../../../components/v-entity/entity-model";
+import { EntityForm, EntityList } from "../../../components/v-entity/entity-form";
+
 
 import { LayoutPage } from "../../../components/v-layout/v-layout";
-import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
 import { getTreeData } from "../../../config/v-config";
+import { InventoryItem } from "../../viridium-model";
 import { inventoryConfigApp } from "../inventory-app";
 
-const taxonomy = getTreeData();
-export class InventoryItem implements Entity {
-    id: string = StringUtils.guid();
-    name: string = "";
-    company: string = "";
-    template: string = "";
-    category: string = "";
-    secondaryCategory: string = "";
-    tertiaryCategory: string = "";
-    createdAt: Date = new Date();
-    validated: boolean = false;
-    carbon: boolean = true;
-    water: boolean = false;
-    waste: boolean = true;
-    public static fieldDefs = () => {
-        return [
-            FieldDef.select("category", (entity: any) => {
-                return [{ id: "-1", label: "Please select a category" },
-                ...taxonomy.children.map((v: any) => {
-                    return {
-                        id:v.id,
-                        value: v.id,
-                        label: v.text
-                    }
-                })];
-            }).useDefault("-1"),
-            FieldDef.select("secondaryCategory", (entity: any) => {
-                let category = entity["category"];
-                if (category === undefined) {
-                    return [{ id: "-1", label: "Please select a category first" }]
-                } else {
-                    let child = taxonomy.children.find((cat: any) => cat.id === category);
-                    return child ? [{ id: "-1", label: "Please select sub category" },
-                    ...child.children.map((v: any) => {
-                        return {
-                            id:v.id,
-                            value: v.id,
-                            label: v.text
-                        }
-                    })] : [{ id: "-1", label: "Please select a category first" }];
-                }
-            }).useDefault("-1"),
-            FieldDef.select("tertiaryCategory", (entity: any) => {
-                let category = entity["secondaryCategory"];
-                if (category === undefined) {
-                    return [{ id: "-1", label: "Please select a secondary Category first" }]
-                } else {
-                    let child = taxonomy.children.find((cat: any) => cat.id === category);
-                    return child ? [{ id: "-1", label: "Please select sub category" },
-                    ...child.children.map((v: any) => {
-                        return {
-                            id: v.id,
-                            value: v.text,
-                            label: v.text
-                        }
-                    })] : [{ id: "-1", label: "Please select a secondary Category first" }];
-                }
-            }).useDefault("-1"),
-            FieldDef.new("name"),
-            FieldDef.new("carbon", ValueType.BOOLEAN).useDefault(true),
-            FieldDef.new("water", ValueType.BOOLEAN),
-            FieldDef.new("waste", ValueType.BOOLEAN)
-        ]
-    }
-}
 
 export class ValueChainBrowser extends PureComponent<any, { inventories: any, entity: any, subcategories: any }> {
     constructor(props: any) {
@@ -81,23 +16,21 @@ export class ValueChainBrowser extends PureComponent<any, { inventories: any, en
         this.state = ({ inventories: [], entity: new InventoryItem(), subcategories: [] });
     }
     onSubmit = (v: any, entity: any) => {
-
+        console.log(v, entity);
     }
     onSelect = (v: any, entity: any) => {
 
     }
     render = () => {
         return <>
-            <EntityForm inline={true} columns={1} fieldDefs={InventoryItem.fieldDefs} onSubmit={this.onSubmit} entity={this.state.entity} />
+            <EntityForm inline={true} columns={1} fieldDefs={InventoryItem.fieldDefs2} onSubmit={this.onSubmit} entity={this.state.entity} />
             <div>
-                <EntityList fieldDefs={InventoryItem.fieldDefs} onSelect={this.onSelect} entities={this.state.inventories} title={""} />
+                <EntityList fieldDefs={InventoryItem.fieldDefs2} onSelect={this.onSelect} entities={this.state.inventories} title={""} />
             </div>
 
         </>
     }
-
 }
-
 
 export class ValueChainBrowser2 extends PureComponent<any, { taxonomy: any, selected: any, subcategories: any }> {
     constructor(props: any) {
@@ -144,7 +77,6 @@ export class ValueChainConfig extends PureComponent<any, { taxonomy: any, select
         this.state = ({ taxonomy: data, selected: undefined });
     }
 
-
     onSelect = (v: any, node: any) => {
         this.setState({ selected: node });
         console.log(node);
@@ -153,7 +85,6 @@ export class ValueChainConfig extends PureComponent<any, { taxonomy: any, select
     render = () => {
         return <LayoutPage microApp={inventoryConfigApp} >
             <Row>
-
                 <Col>
                     <ValueChainBrowser />
                 </Col>

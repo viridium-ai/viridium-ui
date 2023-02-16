@@ -175,8 +175,7 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     }
 
     componentDidUpdate(prevProps: Readonly<DataTableProps>, prevState: Readonly<DataTableState>, snapshot?: any): void {
-        if (this.props.data.rows.length !== prevProps.data.rows.length
-            || this.props.filters !== prevProps.filters) {
+        if (this.props.data.updatedAt !== prevProps.data.updatedAt || this.props.filters !== prevProps.filters) {
             this.setState({ data: this.props.data, filters: this.props.filters });
         }
     }

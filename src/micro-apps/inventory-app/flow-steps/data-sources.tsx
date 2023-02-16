@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { PureComponent, } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
@@ -6,55 +6,80 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
+import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
 import { QuestionniarView } from "./value-chain-categories";
 
-export const DataSources = (props: any) => {
-    const configs = getConfigs();
-    const item = getQuestionnaire();
-    const [report, setQuestionnaire] = useState<Questionnaire>(item);
+export class DataSources extends PureComponent<any, { report: any, toggleAll: boolean, dataSources: Array<any> }>{
+    constructor(props: any) {
+        super(props);
+        const configs = getConfigs();
+        const ds = configs.dataSources.map((value: string, idx: number) => {
+            return { id: value, label: value }
+        }).filter((value: any) => value !== null);
 
-    const ds = configs.dataSources.map((value: string, idx: number) => {
-        return { id: "" + (idx + 1), label: value }
-    }).filter((value: any) => value !== null);
-
-    const [dataSources, setDataSources] = useState<Array<{ id: string, label: string }>>(ds);
-
-    const onSelectItem = (evt: any) => {
-        if (!report.dataSources.includes(evt.target.id)) {
-            report.dataSources.push(evt.target.id);
+        this.state = {
+            report: getQuestionnaire(), toggleAll: false, dataSources: ds
         }
-        let clone = { ...report };
-        setQuestionnaire(clone);
+    }
+
+    onSelectItem = (evt: any) => {
+        let clone = { ...this.state.report };
+        if (evt.target.checked && !clone.dataSources.includes(evt.target.id)) {
+            clone.dataSources.push(evt.target.id);
+        } else if (!evt.target.checked)
+        {
+            clone.dataSources = clone.dataSources.filter((source : any)=> source !== evt.target.id);
+        }
+        this.setState({ report: clone });
         updateQuestionnaire(clone);
     }
 
-    const onSearch = (evt: any) => {
+    onSearch = (evt: any) => {
         let key = evt.target.value;
+        const configs = getConfigs();
+        const ds = configs.dataSources.map((value: string, idx: number) => {
+            return { id: value, label: value }
+        }).filter((value: any) => value !== null);
         if (key.trim() === "") {
-            setDataSources(ds);
+            this.setState({ dataSources: [...ds] });
         } else {
             let filteredDSs = ds.filter((ds: any) => {
                 return ds.label.toLocaleLowerCase().includes(key.toLocaleLowerCase());
             }
             );
-            setDataSources([...filteredDSs]);
+            this.setState({ dataSources: [...filteredDSs] });
         }
     }
 
-    const ds1 = (): Array<{ id: string, label: string }> => {
-        return dataSources.filter((value, idx: number) => {
+    ds1 = (): Array<{ id: string, label: string }> => {
+        let configs = getConfigs();
+        return this.state.dataSources.filter((value: any, idx: number) => {
             return idx < configs.dataSources.length / 2
         });
     };
 
-    const ds2 = (): Array<{ id: string, label: string }> => {
-        return dataSources.filter((value, idx: number) => {
+    ds2 = (): Array<{ id: string, label: string }> => {
+        let configs = getConfigs();
+        return this.state.dataSources.filter((value: any, idx: number) => {
             return idx >= configs.dataSources.length / 2
         });
     };
+    toggleAll = (evt: any) => {
+        let clone = { ...this.state.report };
+        if (!evt.target.checked) {
+            clone.dataSources = [];
+        } else {
+            let configs = getConfigs();
+            clone.dataSources = configs.dataSources.map((value: any, idx: number) => {
+                return value;
+            })
+        }
+        this.setState({ report: clone, toggleAll: evt.target.checked });
+        updateQuestionnaire(clone);
 
-    const ui = () => {
+    }
+    render = () => {
+        let report = this.state.report;
         return (
             <LayoutPage microApp={inventoryConfigApp}  >
                 <Toast >
@@ -65,23 +90,32 @@ export const DataSources = (props: any) => {
                         Viridium Industry:   {report.category}
                     </Toast.Header>
                     <Toast.Body>
-                    <QuestionniarView />
-                        <Row>
-                            <Col sm={6} className="v-title">
+                        <QuestionniarView />
+                        <Row className="v-title">
+                            <Col sm={6} >
                                 <Form.Group controlId="searchDataSource">
-                                    <Form.Label>Select Data Sources:</Form.Label>
                                     <Form.Control className="v-search-box" type="text"
-                                        onChange={onSearch} placeholder="Search" />
+                                        onChange={this.onSearch} placeholder="Search" />
                                 </Form.Group>
+                            </Col>
+                            <Col>
+                                <span style={{ float: "right"}}>
+                                    <Form.Check onChange={this.toggleAll}
+                                        type="checkbox"
+                                        id="check-all-boxes"
+                                        label={"Toggle All"}
+                                        checked={this.state.toggleAll}
+                                    />
+                                </span>
                             </Col>
                         </Row>
                         <Row>
                             <Col className="v-panel">
                                 <div className="v-panel-content">
-                                    {ds1().map((item, idx) => (
+                                    {this.ds1().map((item, idx) => (
                                         <div key={`default-${idx}`} className="mb-2">
                                             <Form.Check
-                                                onChange={onSelectItem}
+                                                onChange={this.onSelectItem}
                                                 type="checkbox"
                                                 id={item.id}
                                                 label={item.label}
@@ -90,13 +124,12 @@ export const DataSources = (props: any) => {
                                         </div>
                                     ))}
                                 </div>
-
                             </Col>
                             <Col className="v-panel">
-                                <div className="v-panel-content">{ds2().map((item, idx) => (
+                                <div className="v-panel-content">{this.ds2().map((item, idx) => (
                                     <div key={`default-${idx}`} className="mb-2">
                                         <Form.Check
-                                            onChange={onSelectItem}
+                                            onChange={this.onSelectItem}
                                             type="checkbox"
                                             id={item.id}
                                             label={item.label}
@@ -108,13 +141,11 @@ export const DataSources = (props: any) => {
                             </Col>
                         </Row>
                         <Action report={report}
-                            next={{ label: "Next", path: props.next }}
-                            prev={{ label: "Back", path: props.prev }} />
+                            next={{ label: "Next", path: this.props.next }}
+                            prev={{ label: "Back", path: this.props.prev }} />
                     </Toast.Body>
                 </Toast>
             </LayoutPage >
         )
     }
-
-    return ui();
 }

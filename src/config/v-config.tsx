@@ -64,7 +64,7 @@ export const getTreeData = () => {
 export const toTreeNode = (taxonomyNode: any) => {
     let children = taxonomyNode["children"];
     return {
-        id: StringUtils.guid(),
+        id: taxonomyNode["value"],
         value:taxonomyNode["value"],
         text: StringUtils.t(taxonomyNode["value"]),
         selectable: children === undefined || children.length === 0,

@@ -113,7 +113,10 @@ export class FieldDef {
                 return this.type;
         }
     }
-
+    isRequired = (flag : boolean) => {
+        this.required = flag;
+        return this;
+    }
     useFormatter = (f: Formatter | Function | undefined) => {
         this.formatter = f;
         return this;
@@ -306,11 +309,13 @@ export class TextField extends PureComponent<FormFieldProp, FormFieldState>{
             <>
                 <Form.Group className="v-form-field" controlId={this.props.entity.id}>
                     {
-                        def.labelMode.includes("label") ? <Form.Label className="v-form-label">{def.getLabel()}</Form.Label> : ""
+                        def.labelMode.includes("label") ? 
+                            <Form.Label className={`v-form-label${def.required ? ' v-required': ''}`}>{def.getLabel()}</Form.Label> 
+                            : ""
                     }
                     {
                         <div className='v-input-container'>
-                            <Form.Control className="v-input" type={def.getUIType()}
+                            <Form.Control className={`v-input${def.required ? ' v-required': ''}`} type={def.getUIType()}
                                 value={this.state.value}
                                 onInput={this.onChange}
                                 placeholder={def.getPlaceHolder()}

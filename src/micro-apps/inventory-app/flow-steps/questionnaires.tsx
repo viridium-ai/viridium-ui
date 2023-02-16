@@ -4,6 +4,7 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { inventoryConfigApp } from "../inventory-app";
 import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-questionaire";
 import { getConfigs, updateConfigs } from "../../../config/v-config";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
 export const Questionnaires = (props: any) => {
     const [questionnaire, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
@@ -83,8 +84,8 @@ export const Questionnaires = (props: any) => {
         removeToList(evt.target.id);
     }
 
-    const getDownloadData = () => {
-        return "text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(questionnaire));
+    const downloadData = () => {
+        return StringUtils.download(JSON.stringify(questionnaire, undefined, 2), questionnaire.companyName, "application/json");
     }
 
     const ui = () => {
@@ -160,8 +161,8 @@ export const Questionnaires = (props: any) => {
                             </Col>
                         </Row>
                         <Form.Group className="v-actions" controlId="formButtons">
-                            <Button as="a" href={props.prev}>Back</Button> &nbsp;
-                            <Button as="a" href={"data:'" + getDownloadData() + "'"} download={`${questionnaire.companyName}-questionnaire.json`}>Download Questionnaire</Button>
+                            <Button href={props.prev}>Back</Button> &nbsp;
+                            <Button onClick={downloadData} >Download Questionnaire</Button>
                         </Form.Group>
                     </Toast.Body>
                 </Toast>

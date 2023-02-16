@@ -166,7 +166,7 @@ const taxonomy = getTreeData();
 const categories = taxonomy.children.map((v: any) => {
     return {
         id: v.id,
-        value: v.id,
+        value: v.value,
         label: v.text
     }
 });
@@ -203,8 +203,6 @@ const getAccountable = () => {
             }
         })
     } );
-
-    console.log(list, taxonomy);
     return list;   
 };
 
@@ -288,7 +286,6 @@ export const ValueChainCategories = (props: any) => {
 
     const getAccountableSet = () => {
         let accountable = getAccountable();
-        console.log(accountable, selectedCategory);
         const filtered = accountable.filter((row: any) => {
             let inSet = row.cat0.id === selectedCategory &&
                 row.cat1.id === selectedSubCategory;
@@ -297,16 +294,21 @@ export const ValueChainCategories = (props: any) => {
             }
             return inSet;
         });
-        
         return {
             id: "accountable-ds",
+            updatedAt : Date.now(),
             headers: ["Select", "Accountable", "Carbon", "Water", "Waste", "Category",
-                     "Secondary Category", "Ternitary Category"]
+                     "Secondary Category", "Tertiary Category"]
                 .map((v: any, idx: number) => {
                     return { id: idx, text: v }
                 }),
             rows: filtered.map((v: any, idx: number) => {
-                let item = inventoryList?.find((item)=>item.id === "r" + idx);
+                let item = inventoryList?.find(
+                    (item)=>item.id === "r" + idx 
+                        && item.category===selectedCategory 
+                        && item.secondaryCategory === selectedSubCategory
+                        && item.tertiaryCategory === selectedTertiaryCategory
+                        );
                 return {
                     id: 'r' + idx,
                     cols: [{
@@ -400,7 +402,6 @@ export const ValueChainCategories = (props: any) => {
 
     const ui = () => {
         let accountable = getAccountableSet();
-
         return (
             <LayoutPage microApp={inventoryConfigApp} >
                 <Toast >

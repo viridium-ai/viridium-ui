@@ -226,6 +226,15 @@ export class InventoryItem extends BaseEntity {
     uom = "";
     quantity: number = 0;
     frequency: Freq = Freq.Yearly;
+    template: string = "";
+    secondaryCategory: string = "";
+    tertiaryCategory: string = "";
+    createdAt: Date = new Date();
+    validated: boolean = false;
+    carbon: boolean = true;
+    water: boolean = false;
+    waste: boolean = false;
+
     static new = (data: any) => {
         const c = new InventoryItem();
         Object.assign(c, data);

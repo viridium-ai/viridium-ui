@@ -10,7 +10,7 @@ import { getTreeData } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
 
 const taxonomy = getTreeData();
-class InventoryItem implements Entity {
+export class InventoryItem implements Entity {
     id: string = StringUtils.guid();
     name: string = "";
     company: string = "";

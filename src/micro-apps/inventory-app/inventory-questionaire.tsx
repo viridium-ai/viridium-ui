@@ -1,5 +1,6 @@
 import { localCache } from "../../components/v-utils/v-cache-manager";
 import { getConfigs } from "../../config/v-config";
+import { InventoryItem } from "../viridium-model";
 
 export interface Question { id?: string, name: string, notes?: string };
 
@@ -26,6 +27,7 @@ export class Questionnaire {
     dataSources: Array<string> = [];
     functionCategories: Array<string> = [];
     questions: Array<Question> = [];
+    inventoryItems: Array<InventoryItem> = [];
 
     static getType(q:Questionnaire) {
         let c = getConfigs();

@@ -8,8 +8,9 @@ import { DataTable, DimensionView } from "../../../components/v-table/v-table-1"
 import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
 import { getConfigs, getTreeData, getValueChainConfigs } from "../../../config/v-config";
+import { InventoryItem } from "../../viridium-model";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire } from "../inventory-questionaire";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
 
 export const QuestionniarView = (props: any) => {
     const [report] = useState<Questionnaire>(getQuestionnaire());
@@ -122,10 +123,10 @@ export const ValueChainCategories1 = (props: any) => {
                                     <Col>Value Chain:</Col>
                                 </Row>
                                 <Row>
-                                    <Form.Group style={{ padding: "1em" }}>
+                                    {/* <Form.Group style={{ padding: "1em" }}>
                                         <Form.Check type="checkbox" inline checked={true} label="Company" id="companyOrPartner" />
                                         <Form.Check type="checkbox" inline checked={false} label={"Partners"} id="companyOrPartner" />
-                                    </Form.Group>
+                                    </Form.Group> */}
                                 </Row>
                             </Col>
                             <Col className="v-summary">
@@ -173,9 +174,40 @@ const categories = taxonomy.children.map((v: any) => {
 const getCategory = (id: string) => {
     return taxonomy.children.find((cat: any) => cat.id === id);
 };
+
 const getAccountable = () => {
-    return getValueChainConfigs()["accountable"];
+    let list : Array<any> = [];
+    let accountable = getValueChainConfigs()["accountable"];
+
+    taxonomy.children.forEach((cat0 : any) => {
+        cat0.children.forEach((cat1 : any) => {
+            if(cat1.children && cat1.children.length > 0) {
+                cat1.children.forEach((cat2:any)=> {
+                    accountable.forEach((a:any) => {
+                        list.push({
+                            cat0:cat0,
+                            cat1:cat1,
+                            cat2:cat2, 
+                            value: a.value
+                        });
+                    });
+                })
+            } else {
+                accountable.forEach((a:any) => {
+                    list.push({
+                        cat0:cat0,
+                        cat1:cat1,
+                        value: a.value
+                    });
+                });
+            }
+        })
+    } );
+
+    console.log(list, taxonomy);
+    return list;   
 };
+
 const getSubcategories = (entity: any) => {
     return entity.children.map((v: any) => {
         return {
@@ -198,16 +230,15 @@ const getSubCategory = (id: string) => {
 };
 
 export const ValueChainCategories = (props: any) => {
-    var configs = getConfigs();
+    let questionaire = getQuestionnaire();
     const [report] = useState<Questionnaire>(getQuestionnaire());
     const [subCategories, setSubCategories] = useState<Array<{ id: string, label: string }>>([]);
     const [tertiaryCategories, setTertiaryCategories] = useState<Array<{ id: string, label: string }>>([]);
-
     const [selectedCategory, setCategory] = useState("");
     const [selectedSubCategory, setSubCategory] = useState("");
     const [selectedTertiaryCategory, setTertiaryCategory] = useState("");
-
-    const selectCategory = (v: any) => {
+    const [inventoryList, setInventoryList] = useState(questionaire.inventoryItems);
+    const selectCategory = (v: {id:string, label:string}) => {
         if (v) {
             let c = getCategory(v.id);
             if (c) {
@@ -226,7 +257,7 @@ export const ValueChainCategories = (props: any) => {
         }
     }
 
-    const selectSubCategory = (v: any) => {
+    const selectSubCategory = (v: {id:string, label:string} | undefined) => {
         if (v) {
             let c = getSubCategory(v.id);
             if (c) {
@@ -244,53 +275,132 @@ export const ValueChainCategories = (props: any) => {
 
     const onSelectCategory = (v: any) => {
         selectCategory(v);
+        selectSubCategory(undefined);
+        setTertiaryCategory("");
     }
     const onSelectSubCategory = (v: any) => {
-        setSubCategory(v ? v.id : "");
         selectSubCategory(v);
+        setTertiaryCategory("");
     }
     const onSelectTertiaryCategory = (v: any) => {
-        setTertiaryCategory(v);
+        setTertiaryCategory(v.id);
     }
+
     const getAccountableSet = () => {
+        let accountable = getAccountable();
+        console.log(accountable, selectedCategory);
+        const filtered = accountable.filter((row: any) => {
+            let inSet = row.cat0.id === selectedCategory &&
+                row.cat1.id === selectedSubCategory;
+            if (selectedTertiaryCategory) {
+                inSet = inSet && row.cat2?.id === selectedTertiaryCategory;
+            }
+            return inSet;
+        });
+        
         return {
             id: "accountable-ds",
-            headers: ["Select", "Accountable", "Carbon", "Water", "Waste"].map((v: any, idx: number) => {
-                return { id: idx, text: v }
-            }),
-            rows: getAccountable().map((v: any, idx: number) => {
+            headers: ["Select", "Accountable", "Carbon", "Water", "Waste", "Category",
+                     "Secondary Category", "Ternitary Category"]
+                .map((v: any, idx: number) => {
+                    return { id: idx, text: v }
+                }),
+            rows: filtered.map((v: any, idx: number) => {
+                let item = inventoryList?.find((item)=>item.id === "r" + idx);
                 return {
                     id: 'r' + idx,
                     cols: [{
                         id: "select-" + idx,
                         text: "Select",
-                        type: "checkbox"
+                        type: "checkbox",
+                        value: item !== undefined,
                     },
                     {
                         id: 'c' + idx,
-                        text: StringUtils.t(v.value)
+                        text: StringUtils.t(v.value),
+                        value:v.value
                     }, {
                         id: "carbon-" + idx,
                         text: "Select",
                         type: "checkbox",
-                        value: true,
+                        value: item?item.carbon:true
                     }, {
                         id: "water-" + idx,
                         text: "Select",
-                        type: "checkbox"
+                        type: "checkbox",
+                        value: item?item.water:false
                     }, {
                         id: "waste-" + idx,
                         text: "Select",
-                        type: "checkbox"
+                        type: "checkbox",
+                        value: item?item.waste:false,
+                    }, {
+                        id: "cat0-" + idx,
+                        text: StringUtils.t(v.cat0.value),
+                        value:v.cat0.value
+                    }, {
+                        id: "cat1-" + idx,
+                        text: StringUtils.t(v.cat1.value),
+                        value:v.cat1.value
+                    }, {
+                        id: "cat2-" + idx,
+                        text: v.cat2 ? StringUtils.t(v.cat2.value) : "",
+                        value:v.cat2?.value
                     }]
                 }
             })
         }
     }
 
+    const updateInventoryList = (list : Array<InventoryItem>) => {
+        let q = {...questionaire};
+        q.inventoryItems = [...list];
+        updateQuestionnaire(q);
+        setInventoryList(list);
+    }
+
+    const valueChanged = (v: any, row: any, col: any, value: any) => {
+        if (col === 0) {
+            let list = inventoryList?.filter((item: any) => item.id !== 'r' + row);
+            if (list === undefined) {
+                list = new Array<InventoryItem>();
+            }
+            if (value === true) {
+                let invItem = new InventoryItem();
+                invItem.id = 'r' + row;
+                invItem.activity =  v.rows[row].cols[1].value
+                invItem.category = selectedCategory;
+                invItem.secondaryCategory = selectedSubCategory;
+                invItem.tertiaryCategory = selectedTertiaryCategory;
+                invItem.water = v.rows[row].cols[3].value;
+                invItem.carbon = v.rows[row].cols[2].value;;
+                invItem.waste = v.rows[row].cols[4].value;;
+                list.push(invItem);
+            }
+            updateInventoryList([...list]);
+        } else {
+            let list = [...inventoryList];
+            let item = list.find((item: any) => item.id === 'r' + row);
+            if (item !== undefined) {
+                switch (col) {
+                    case 2:
+                        item.carbon = value;
+                        break;
+                    case 3:
+                        item.water = value;
+                        break;
+                    case 4:
+                        item.waste = value;
+                        break;
+                }
+                updateInventoryList(list);
+            }
+        }
+    }
+
     const ui = () => {
         let accountable = getAccountableSet();
-        console.log(accountable);
+
         return (
             <LayoutPage microApp={inventoryConfigApp} >
                 <Toast >
@@ -303,18 +413,12 @@ export const ValueChainCategories = (props: any) => {
                     <Toast.Body>
                         <QuestionniarView />
                         <Row className="v-filters">
-                            <Col className="v-summary">
+                            <Col sm={6} className="v-summary">
                                 <Row>
-                                    <Col>Value Chain:</Col>
-                                </Row>
-                                <Row>
-                                    <Form.Group style={{ padding: "1em" }}>
-                                        <Form.Check type="checkbox" inline checked={true} label="Company" id="companyOrPartner" />
-                                        <Form.Check type="checkbox" inline checked={false} label={"Partners"} id="companyOrPartner" />
-                                    </Form.Group>
+                                    <Col>Value Chain Impact:</Col>
                                 </Row>
                             </Col>
-                            <Col className="v-summary">
+                            <Col sm={6} className="v-summary">
                                 <Row>
                                     <Col>
                                         <DimensionView data={categories} options={{
@@ -347,7 +451,9 @@ export const ValueChainCategories = (props: any) => {
                         <Row >
                             <Col>
                                 {
-                                    selectedCategory !== "" ? <DataTable data={accountable} /> : <div>Please select a category</div>
+                                    selectedCategory !== "" ? 
+                                        <DataTable onDataChanged={valueChanged} data={accountable} /> : 
+                                        <div>Please select a category</div>
                                 }
                             </Col>
                         </Row>

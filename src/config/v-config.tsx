@@ -65,6 +65,7 @@ export const toTreeNode = (taxonomyNode: any) => {
     let children = taxonomyNode["children"];
     return {
         id: StringUtils.guid(),
+        value:taxonomyNode["value"],
         text: StringUtils.t(taxonomyNode["value"]),
         selectable: children === undefined || children.length === 0,
         children: children ? children.map((node: any) => {

@@ -198,10 +198,15 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         const row = parseInt(row_col[0]);
         const col = parseInt(row_col[1]);
         let newData = { ...this.state.data };
-        newData.rows[row].cols[col].value = evt.target.value;
+        let cell = newData.rows[row].cols[col];
+        if (cell.type === "checkbox") {
+            cell.value = evt.target.checked;
+        } else {
+            cell.value = evt.target.value;
+        }
         this.setState({ data: newData });
-        if (this.props.options?.onDataChanged) {
-            this.props.options.onDataChanged(this.state.data);
+        if (this.props.onDataChanged) {
+            this.props.onDataChanged(this.state.data, row, col, cell.value);
         }
         this.forceUpdate();
     }

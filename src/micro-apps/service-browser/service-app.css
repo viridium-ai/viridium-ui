@@ -1,34 +1,35 @@
-.knowledge-app {
+.service-app {
     font-size: 1.0em;
 }
 
-.knowledge-app .v-page-body {
+.service-app .v-page-body {
     width: 100%;
     display: flex;
     max-height: 90vh;
     overflow: scroll;
 }
 
-.knowledge-app .v-body-main {
+.service-app .v-body-main {
      padding: 0px;
      border-left:solid 1px gray;
 }
 
-.knowledge-app .v-layout .v-body-nav {
+.service-app .v-layout .v-body-nav {
     padding: 0px;
 }
 
-.knowledge-app .v-header {
+.service-app .v-header {
     padding: 0.5em;
+    border-radius: 0px;
 }
 
-.knowledge-app .v-nav-items {
+.service-app .v-nav-items {
     height: calc(100vh - 220px);
     overflow-y: scroll;
     overflow-x: hidden;
 }
 
-.knowledge-app .v-entity-form .v-container{
+.service-app .v-entity-form .v-container{
     height: calc(100vh - 400px);
     overflow-y: scroll;
     width: 100%;

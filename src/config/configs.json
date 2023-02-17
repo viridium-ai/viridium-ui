@@ -2,6 +2,7 @@
     "title": "VIRIDIUM.AI",
     "description": "Viridium Sustainability Data Platform",
     "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
+    "online" : false,
     "jobs": [
         {
             "name": "daily-travel-job",

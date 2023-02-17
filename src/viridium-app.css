@@ -64,7 +64,9 @@ a :visited {
 .v-shadow {
   box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
 }
-
+.v-flex {
+  display: flex;
+}
 .v-container {
   width: 100%;
 }

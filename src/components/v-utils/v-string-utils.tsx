@@ -113,7 +113,7 @@ export class StringUtils {
             return name;
         }
         if (name.replace) {
-            const result = name.replace(/(?=[A-Z][a-z])/, " ");
+            const result = name.replace(/([A-Z])/g, " $1");//name.replace(/([A-Z])/, " $1").trim();
             const finalResult = result.charAt(0).toUpperCase() + result.slice(1);
             return finalResult;
         }

@@ -26,7 +26,7 @@ export class HomeApp extends MicroApp {
   }
 
   public routeItems: Array<RouteItem> = [
-    new RouteItem().init("Value Chain Config", "Value Chain Config", "1", "/inventory-app"),
+    new RouteItem().init("Inventory Config", "Inventory Config", "1", "/inventory-app"),
     new RouteItem().init("Data Manager", "Data Manager", "1", "/dm-app"),
     new RouteItem().init("GHG Reports", "GHG Reports", "1", "/ghg-app"),
     new RouteItem().init("Knowledge Base", "Knowledge", "1", "/knowledge-app"),

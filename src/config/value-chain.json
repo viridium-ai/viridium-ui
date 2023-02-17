@@ -1,7 +1,7 @@
 {
-    "name": "airport",
-    "version": "1.0",
-    "categories": [
+    "value": "airport",
+    "version": "1.1",
+    "children": [
         {
             "value": "infrastructure",
             "children": [
@@ -129,6 +129,53 @@
                     "value": "others"
                 }
             ]
+        }
+    ],
+    "accountable": [
+        {
+            "value": "fuelConsumption"
+        },
+        {
+            "value": "electricity"
+        },
+        {
+            "value": "water"
+        },
+        {
+            "value": "waste"
+        },
+        {
+            "value": "purchaseGood"
+        },
+        {
+            "value": "transportation"
+        },
+        {
+            "value": "capitalGoods"
+        },
+        {
+            "value": "businessTravel"
+        },
+        {
+            "value": "employeeCommute"
+        },
+        {
+            "value": "soldProduct"
+        },
+        {
+            "value": "lease"
+        },
+        {
+            "value": "employeeCommute"
+        },
+        {
+            "value": "employees"
+        },
+        {
+            "value": "investment"
+        },
+        {
+            "value": "franchises"
         }
     ]
 }

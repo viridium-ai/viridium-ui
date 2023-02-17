@@ -1,9 +1,10 @@
 import { Route } from "react-router-dom";
 import { ServiceBrowser } from "./services-ui";
-import { serviceApp } from './service-micro-app';
+import { serviceApp } from './service-app';
 import { FieldDef } from '../../components/v-entity/entity-form';
 import { IRouteItem } from "../../components/v-common/v-app";
 import { StringUtils } from "../../components/v-utils/v-string-utils";
+import { INavItem } from "../../components/v-layout/v-layout";
 
 
 
@@ -24,13 +25,16 @@ export const objectToArray = (obj: any): Array<any> => {
 }
 
 const noneUiFields: Array<string> = [
-    'id', 'tenantId',  'tenantKey', 'dateUpdated', 'updatedBy', 'dateCreated', 'createdBy', 'active', 'deleted', 'text'
+    'id', 'tenantId',  'tenantKey', 'dateUpdated', 'updatedBy', 
+    'dateCreated', 'createdBy', 'active', 'deleted', 'text', "createdOn", "modifiedOn", "statusCode", "stateCode",
+    "importSequenceNumber", "overriddenCreatedOn", "timeZoneRuleVersionNumber", "utcConversionTimeZoneCode", "ttlInSeconds", "description"
 ]
 
 export class Service implements IRouteItem {
     name: string = '';
     label: Function | string | undefined = () => {
-        return StringUtils.t(this.name);
+        let label = (this.name.replaceAll("-", " "));
+        return label[0].toLocaleUpperCase() + label.slice(1);
     };
 
     group?: string;
@@ -54,10 +58,17 @@ export class Service implements IRouteItem {
             return this.name;
         }
     }
+
+    public toNavItem = () => {
+        return {
+            name:this.name,
+            route:`/service/${this.name}`,
+            label:this.getLabel()
+        } as INavItem
+    }
     
     public static new(path: any): Service {
         let service = new Service();
-        // /sales/products
         let paths = path.name.split('/');
         paths.shift();
         service.group = paths[0];
@@ -65,8 +76,9 @@ export class Service implements IRouteItem {
         service.depth = paths.length;
         service.path = path.name;
         service.route = () => {
+            let path = `/service/${service.name}`;
             return (
-                <Route key={`service_route_${service.name}`} path={`/service/${service.name}`} element={<ServiceBrowser service={service} />} />
+                <Route key={`service_route_${service.name}`} path={path} element={<ServiceBrowser service={service} />} />
             )
         };
         return service;
@@ -88,14 +100,16 @@ export class ServiceSchema {
         return this.name;
     }
 
-    public getServiceName(): string {
-        return StringUtils.plural(this.name.toLocaleLowerCase());
+    public getServiceName() {
+        return this.name.replace(/([A-Z])/g, "-$1").slice(1).toLowerCase();
     }
 
     public getFieldDefs(): Array<FieldDef> {
         let props = objectToArray(this.properties);
         return props.filter((p: any) => {
-            return !noneUiFields.includes(p.name);
+            return !noneUiFields.includes(p.name)
+             && (p.name.toUpperCase() !== (this.name + "Id").toUpperCase())
+             ;
         }).map((p: any) => {
             let fd;
             if (p.type) {

@@ -1,11 +1,11 @@
-import { MicroApp } from "../../components/v-common/v-app";
+import { MicroApp, RouteItem } from "../../components/v-common/v-app";
 import { restClient } from "../../components/v-common/v-client";
 import { localCache } from "../../components/v-utils/v-cache-manager";
 import { ServiceSchema, objectToArray, Service } from "./service-types";
-
+import "./service-app.css"
 class ServiceApp extends MicroApp {
 
-    public getApiDoc = (callback : any = undefined) => {
+    public _getApiDoc = (callback: any = undefined) => {
         let res = localCache.get('/v3/api-docs');
         if (res) {
             if (callback) {
@@ -13,7 +13,6 @@ class ServiceApp extends MicroApp {
             }
             return res;
         }
-        //TODO
         restClient.get('/v3/api-docs').then((json) => {
             localCache.set('/v3/api-docs', json);
             if (callback) {
@@ -24,6 +23,16 @@ class ServiceApp extends MicroApp {
             console.log("Failed to get api doc", error);
         });
         return undefined;
+    }
+
+    public getApiDoc = (callback: any = undefined) => {
+        let res = require('./cached.json');
+        if (res.value) {
+            if (callback) {
+                callback(res.value);
+            }
+            return res.value;
+        }
     }
 
     public getName = () => {
@@ -51,20 +60,24 @@ class ServiceApp extends MicroApp {
     }
 
     public getNavItems = () => {
-        return this.getServices()
-            .filter(service => {
-              return  service.getSchema() && service.depth === 2
-            });
+        let items = this.getServices().filter(service => {
+            return service.getSchema() && service.depth === 2
+        });
+        return items;
     }
 
     public getRouteItems = () => {
-        return [];
+        return [
+            new RouteItem().init("Services", "Services", "2", "/service/emission"),
+            new RouteItem().init("Schema", "Schema", "2", "/knowledge-app/schema"),
+            new RouteItem().init("Help", "Help", "2", "/knowledge-app/help")
+        ];
     }
 
     public getRoutes = () => {
         return (
             <>
-                {this.getNavItems().map((service: Service, idx: number) => service.route())}
+                {this.getNavItems().map((service) => service.route())}
             </>
         )
     }
@@ -74,7 +87,7 @@ class ServiceApp extends MicroApp {
         let services = paths.map((path, idx) => {
             return Service.new(path);
         });
-        
+
         services = services.filter((s) => {
             return !['{*path}',
                 'fielddefinitions',

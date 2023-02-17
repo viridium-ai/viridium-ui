@@ -57,7 +57,10 @@ export const ENTITIES = [
     "Unit",
     "UnitGroup",
     "ValueChainPartner",
-    "VehicleType"
+    "VehicleType",
+    "Connector",
+    "DataSource",
+    "DataJob"
 ]
 export class BaseSchemaObj {
     displayName: string = "";

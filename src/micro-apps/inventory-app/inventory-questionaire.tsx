@@ -10,7 +10,7 @@ export class Questionnaire {
     companyName: string = "Test";
 
     category?: string = "";
-    categoryId: string = "";
+    templateName: string = "";
 
     context: string = "Carbon";
 

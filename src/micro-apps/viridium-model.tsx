@@ -2,7 +2,7 @@ import { FieldDef, SelectOption, ValueType } from "../components/v-entity/entity
 import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
 import { securityManager } from "../components/v-security/v-security-manager";
 import { StringUtils } from "../components/v-utils/v-string-utils";
-import { getCompany, getConfigs, getCountry, getTreeData } from "../config/v-config";
+import { getCompany, getConfigs, getCountry } from "../config/v-config";
 export interface NamedObject {
     id: string,
     name: string
@@ -305,70 +305,14 @@ export class InventoryItem extends BaseEntity {
         ]
     }
 
-    static fieldDefs2 = () => {
-        const taxonomy = getTreeData();
-        return [
-            FieldDef.select("category", (entity: any) => {
-                return [{ id: "-1", label: "Please select a category" },
-                ...taxonomy.children.map((v: any) => {
-                    return {
-                        id: v.id,
-                        value: v.id,
-                        label: v.text
-                    }
-                })];
-            }).useDefault("-1"),
-            FieldDef.select("secondaryCategory", (entity: any) => {
-                let category = entity["category"];
-                if (category === undefined) {
-                    return [{ id: "-1", label: "Please select a category first" }]
-                } else {
-                    let child = taxonomy.children.find((cat: any) => cat.id === category);
-                    return child ? [{ id: "-1", label: "Please select sub category" },
-                    ...child.children.map((v: any) => {
-                        return {
-                            id: v.id,
-                            value: v.id,
-                            label: v.text
-                        }
-                    })] : [{ id: "-1", label: "Please select a category first" }];
-                }
-            }).useDefault("-1"),
-            FieldDef.select("tertiaryCategory", (entity: any) => {
-                let category = entity["category"];
-                let secondaryCategory = entity["secondaryCategory"];
-                if (category === undefined || secondaryCategory === undefined) {
-                    return [{ id: "-1", label: "Please select a secondary Category first" }]
-                } else {
-                    let child = taxonomy.children.find((cat: any) => cat.id === category);
-                    if (child) {
-                        child = child.children.find((cat: any) => cat.id === secondaryCategory);
-                        return child ? [{ id: "-1", label: "Please select sub category" },
-                        ...child.children.map((v: any) => {
-                            return {
-                                id: v.id,
-                                value: v.text,
-                                label: v.text
-                            }
-                        })] : [{ id: "-1", label: "Please select a secondary Category first" }];
-                    }
-                }
-                return [{ id: "-1", label: "Please select a secondary Category first" }];
-            }).useDefault("-1"),
-            FieldDef.new("name").isRequired(true),
-            FieldDef.new("activity").isRequired(true),
-            FieldDef.new("carbon", ValueType.BOOLEAN).useDefault(true),
-            FieldDef.new("water", ValueType.BOOLEAN),
-            FieldDef.new("waste", ValueType.BOOLEAN)
-        ]
-    }
+
 
     static defaultEntity = () => {
         let newEntity = { id: StringUtils.guid() } as any;
         this.fieldDefs().forEach((def) => {
             newEntity[def.name] = def.defaultValue;
         });
-        console.debug("Defaut entity", newEntity);
+        console.debug("Default entity", newEntity);
         return newEntity;
     }
 }

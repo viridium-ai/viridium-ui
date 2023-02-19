@@ -66,6 +66,24 @@ class ServiceApp extends MicroApp {
         return items;
     }
 
+    public getGroupedNavItems =() => {
+        let items = this.getNavItems();
+        let groupedItems = [{
+            name:"LookUp",
+            items:[...items].filter((item)=> item.name[0] === 'a')
+        },
+        {
+            name:"Factory",
+            items:[...items].filter((item)=> item.name[0] === 'b')
+        },
+        {
+            name:"Inventory",
+            items:[...items].filter((item)=> item.name[0] === 'o')
+        }];
+        //console.log(groupedItems, items);
+        return groupedItems
+    }
+
     public getRouteItems = () => {
         return [
             new RouteItem().init("Services", "Services", "2", "/service/emission"),

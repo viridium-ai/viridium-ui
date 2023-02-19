@@ -1,0 +1,325 @@
+{
+    "version": "1.0",
+    "templates": [
+        {
+            "name": "genericTemplate",
+            "value": "Generic",
+            "children": [
+                {
+                    "value": "infrastructure",
+                    "children": [
+                        {
+                            "value": "construction"
+                        },
+                        {
+                            "value": "maintenance"
+                        }
+                    ]
+                },
+                {
+                    "value": "operations",
+                    "children": [
+                        {
+                            "value": "production"
+                        },
+                        {
+                            "value": "security"
+                        },
+                        {
+                            "value": "cleaning"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "customerService",
+                    "children": [
+                        {
+                            "value": "callCenter"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "corporate",
+                    "children": [
+                        {
+                            "value": "finance"
+                        },
+                        {
+                            "value": "humanResources"
+                        },
+                        {
+                            "value": "legal"
+                        },
+                        {
+                            "value": "informationTechnology"
+                        },
+                        {
+                            "value": "marketing"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "airportTemplate",
+            "value": "airport",
+            "children": [
+                {
+                    "value": "infrastructure",
+                    "children": [
+                        {
+                            "value": "construction",
+                            "children": [
+                                {
+                                    "value": "runways"
+                                },
+                                {
+                                    "value": "taxiways"
+                                },
+                                {
+                                    "value": "terminals"
+                                },
+                                {
+                                    "value": "parkingFacilities"
+                                },
+                                {
+                                    "value": "others"
+                                }
+                            ]
+                        },
+                        {
+                            "value": "maintenance",
+                            "children": [
+                                {
+                                    "value": "runways"
+                                },
+                                {
+                                    "value": "taxiways"
+                                },
+                                {
+                                    "value": "terminals"
+                                },
+                                {
+                                    "value": "parkingFacilities"
+                                },
+                                {
+                                    "value": "others"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "value": "operations",
+                    "children": [
+                        {
+                            "value": "trafficControl"
+                        },
+                        {
+                            "value": "baggageHandling"
+                        },
+                        {
+                            "value": "security"
+                        },
+                        {
+                            "value": "cleaning"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "customerService",
+                    "children": [
+                        {
+                            "value": "checkIn"
+                        },
+                        {
+                            "value": "securityScreen"
+                        },
+                        {
+                            "value": "boarding"
+                        },
+                        {
+                            "value": "retail"
+                        },
+                        {
+                            "value": "foodAndBeverage"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "commercialActivities",
+                    "children": [
+                        {
+                            "value": "leasingSpace"
+                        },
+                        {
+                            "value": "retailTenants"
+                        },
+                        {
+                            "value": "parking"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                },
+                {
+                    "value": "supportServices",
+                    "children": [
+                        {
+                            "value": "finance"
+                        },
+                        {
+                            "value": "humanResources"
+                        },
+                        {
+                            "value": "legal"
+                        },
+                        {
+                            "value": "informationTechnology"
+                        },
+                        {
+                            "value": "marketing"
+                        },
+                        {
+                            "value": "others"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "hotelTemplate",
+            "value": "hotel",
+            "children": [
+                {
+                    "value": "houseKeeping",
+                    "children": [
+                        {
+                            "value": "cleaning"
+                        },
+                        {
+                            "value": "security"
+                        }
+                    ]
+                },
+                {
+                    "value": "foodBeverage",
+                    "children": [
+                        {
+                            "value": "restaurant"
+                        },
+                        {
+                            "value": "catering"
+                        },
+                        {
+                            "value": "procurement"
+                        }
+                    ]
+                },
+                {
+                    "value": "healthClub",
+                    "children": [
+                        {
+                            "value": "checkIn"
+                        },
+                        {
+                            "value": "securityScreen"
+                        }
+                    ]
+                },
+                {
+                    "value": "administration",
+                    "children": [
+                        {
+                            "value": "selfService"
+                        },
+                        {
+                            "value": "Nasturtiums"
+                        }
+                    ]
+                },
+                {
+                    "value": "warehouse"
+                }
+            ]
+        }
+    ],
+    "accountable": [
+        {
+            "value": "fuel"
+        },
+        {
+            "value": "electricity"
+        },
+        {
+            "value": "steam"
+        },
+        {
+            "value": "naturalGas"
+        },
+        {
+            "value": "refrigerants"
+        },
+        {
+            "value": "waste"
+        },
+        {
+            "value": "purchaseGood"
+        },
+        {
+            "value": "transportation"
+        },
+        {
+            "value": "capitalGoods"
+        },
+        {
+            "value": "businessTravel"
+        },
+        {
+            "value": "employeeCommute"
+        },
+        {
+            "value": "customerCommute"
+        },
+        {
+            "value": "soldProduct"
+        },
+        {
+            "value": "lease"
+        },
+        {
+            "value": "employeeCommute"
+        },
+        {
+            "value": "Number of employees"
+        },
+        {
+            "value": "Area"
+        },
+        {
+            "value": "servicesUsed"
+        },
+        {
+            "value": "investment"
+        },
+        {
+            "value": "franchises"
+        }
+    ]
+}

@@ -470,6 +470,7 @@ export class SelectField extends PureComponent<FormFieldProp, FormFieldState>{
         this.props.onInput({ def: def, value: v, hasError: msg !== undefined, errorMsg: msg, ...evt });
     }
     getOptions = () => {
+        //this.setState({value:""});
         let options = this.props.options;
         if (options instanceof Function) {
             return options(this.props.entity);
@@ -485,10 +486,12 @@ export class SelectField extends PureComponent<FormFieldProp, FormFieldState>{
             options = [{
                 value: "",
                 label: StringUtils.t("noOptionsToSelectFrom")
-            }]
+            }];
+            this.setState({value:""});
         }
         if (options.length === 1) {
             value = options[0].value;
+            this.setState({value:value});
         }
         //console.log("render select field", this.props.entity, value, def.name, options);
         return (
@@ -520,7 +523,7 @@ interface FormProp {
 
 interface FormPropState {
     hasError: boolean;
-    entity: Entity,
+    entity?: Entity,
     columns: number
 }
 export class EntityForm extends PureComponent<FormProp, FormPropState> {
@@ -533,7 +536,12 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
         let entity = this.props.entity ? this.props.entity : EntityManager.emptyEntity()
         this.state = { hasError: false, entity: entity, columns: 1 };
     }
-
+    // componentDidUpdate(prevProps: Readonly<FormProp>, prevState: Readonly<FormPropState>, snapshot?: any): void {
+    //     if(this.props.entity?.id !== prevState.entity?.id) {
+    //         //console.log(this.props.entity, prevProps.entity);
+    //         //this.setState({entity:this.props.entity});
+    //     }
+    // }
     screenSizeListener = (evnt: any) => {
         let screenSize = window.innerWidth;
         console.debug(screenSize);
@@ -568,7 +576,7 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
         entity[evt.def.name] = evt.value;
         this.setState({ entity: entity });
         if (entity && this.props.onChange) {
-            this.props.onChange(entity, this);
+            this.props.onChange(entity, this, evt.def);
         }
     }
 

@@ -26,7 +26,6 @@ export const ServiceBrowser = (props: any) => {
                 console.log("error", error);
             });
         }
-        
     }, [refreshState, service.path]);
 
     //schema of the service
@@ -68,6 +67,7 @@ export const ServiceBrowser = (props: any) => {
                     <Toast.Header className="v-header" closeButton={false}>
                         <div className="me-auto">Services</div>
                     </Toast.Header>
+                    
                     <LayoutBodyNav selected={getNavItem()} routeItems={serviceApp.getNavItems().map((service) => service.toNavItem())
                     } />
                 </div>

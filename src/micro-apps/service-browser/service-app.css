@@ -23,8 +23,15 @@
     border-radius: 0px;
 }
 
+.service-app .v-title {
+    padding: 0.5em;
+    border-radius: 0px;
+    margin: .2em 0em;
+    background-color: antiquewhite;
+}
+
 .service-app .v-nav-items {
-    height: calc(100vh - 220px);
+    max-height: calc(100vh - 220px);
     overflow-y: scroll;
     overflow-x: hidden;
 }

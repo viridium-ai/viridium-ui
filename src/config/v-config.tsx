@@ -39,24 +39,37 @@ export const getConfigs = (): any => {
 }
 
 export const getValueChainConfigs = (): any => {
-    let cached = localCache.get("ValueChain.Config");
+    let cached = localCache.get("ValueChainTemplates.Config");
     if (cached === undefined) {
-        cached = require("./value-chain.json");
-        localCache.set("ValueChain.Config", cached);
+        cached = require("./value-chain-templates.json");
+        localCache.set("ValueChainTemplates.Config", cached);
     } else {
-        let configs = require("./value-chain.json");
+        let configs = require("./value-chain-templates.json");
         let cachedVersion = parseFloat(cached.version);
         let seededVersion = parseFloat(configs.version);
         //we need merge TODO
         if (seededVersion > cachedVersion) {
-            localCache.set("ValueChain.Config", configs);
+            localCache.set("ValueChainTemplates.Config", configs);
         }
         cached = configs;
     }
     return cached;
 }
 
-export const getTreeData = () => {
+export const getValueChainAccountable = () => {
+    return getValueChainConfigs()["accountable"] as Array<any>;
+}
+
+export const getValueChainTemplates = () => {
+    let templates = getValueChainConfigs()["templates"] as Array<any>;
+    return templates.map((template)=> {
+        return {
+            name:template.name,
+            valueChain: toTreeNode(template)
+        }
+    })
+}
+export const _getTreeData = () => {
     let valueChain = getValueChainConfigs();
     return toTreeNode(valueChain);
 }

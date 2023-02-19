@@ -6,9 +6,9 @@ import { LayoutPage } from '../../../components/v-layout/v-layout';
 import { inventoryConfigApp } from '../inventory-app';
 import { Company } from '../../viridium-model';
 import { Questionnaire, getQuestionnaire, updateQuestionnaire, NamedObject } from '../inventory-questionaire';
-import { getConfigs } from '../../../config/v-config';
+import { getConfigs, getValueChainTemplates } from '../../../config/v-config';
 import { Question, Action } from '../../../components/v-flow/wizard';
-
+import { StringUtils } from '../../../components/v-utils/v-string-utils';
 
 export const CompanyDetails = (props: any) => {
     const ui = () => {
@@ -61,8 +61,7 @@ export const DataCollectionWizard = (props: any) => {
 
     const onSelectCategory = (evt: any) => {
         let clone = { ...report };
-        clone.categoryId = evt.target.value;
-        clone.category = viridiumIndustries.find(v => v.id === clone.categoryId)?.name;
+        clone.templateName = evt.target.value;
         setQuestionnaire(clone);
         updateQuestionnaire(clone);
     }
@@ -90,11 +89,11 @@ export const DataCollectionWizard = (props: any) => {
                         </Form.Select>
                     </Question>
                     <Question label="Value Chain Template">
-                        <Form.Select value={report.categoryId} onChange={onSelectCategory} aria-label="">
+                        <Form.Select value={report.templateName} onChange={onSelectCategory} aria-label="">
                             <option>Select a template</option>
                             {
-                                viridiumIndustries.map((v, idx) =>
-                                    <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
+                                getValueChainTemplates().map((v, idx) =>
+                                    <option key={"type-" + idx} value={"" + v.name}>{StringUtils.t(v.name)}</option>
                                 )
                             }
                         </Form.Select>

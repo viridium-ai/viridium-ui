@@ -56,17 +56,41 @@ export const getValueChainConfigs = (): any => {
     return cached;
 }
 
-export const getValueChainAccountable = () => {
-    return getValueChainConfigs()["accountable"] as Array<any>;
+interface Accountable {
+    value:string,
+    description?:string,
+    label?:string
 }
 
-export const getValueChainTemplates = () => {
-    let templates = getValueChainConfigs()["templates"] as Array<any>;
+export const getValueChainAccountable = () => {
+    return getValueChainConfigs()["accountable"] as Array<Accountable>;
+}
+interface Template {
+    name?:string,
+    description?:string,
+    label?:string,
+    value : string,
+    children?:Array<Template>
+}
+
+interface TreeNode {
+    id:string,
+    value : string;
+    text : string;
+    children : Array<TreeNode>
+}
+interface ValueChainTemplate {
+    name:string,
+    valueChain: TreeNode;
+}
+
+export const getValueChainTemplates = () : Array<ValueChainTemplate>=> {
+    let templates = getValueChainConfigs()["templates"] as Array<Template>;
     return templates.map((template)=> {
         return {
             name:template.name,
             valueChain: toTreeNode(template)
-        }
+        } as ValueChainTemplate
     })
 }
 export const _getTreeData = () => {

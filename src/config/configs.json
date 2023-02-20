@@ -909,6 +909,21 @@
         ]
     },
     "dataSources": [
+        "SQL Databases",
+        "Oracle Legacy ERP",
+        "Oracle Fusion",
+        "SAP ERP",
+        "Microsoft Dynamics 365",
+        "Data management",
+        "File upload (Excel, CSV etc)",
+        "Cosmos DB",
+        "Azure Cloud",
+        "Salesforce",
+        "Amazon Cloud Storage",
+        "Google Cloud Storage",
+        "Internal File System (ftp)"
+    ],
+    "dataSources-v1": [
         "Oracle ERP Financial Management",
         "Oracle ERP Procurement",
         "Oracle ERP Project Management",

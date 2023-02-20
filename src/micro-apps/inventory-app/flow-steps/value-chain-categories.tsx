@@ -1,18 +1,17 @@
-
 import { PureComponent, useState } from "react";
 
-import { Toast, Col, Row, Form } from "react-bootstrap";
+import { Toast, Col, Row, Form, Table } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DataTable, DimensionView } from "../../../components/v-table/v-table-1";
 import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
-import { getConfigs, getValueChainTemplates, getValueChainAccountable } from "../../../config/v-config";
+import { getValueChainTemplates, getValueChainAccountable } from "../../../config/v-config";
 import { InventoryItem } from "../../viridium-model";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionnaire";
 
-export const QuestionniarView = (props: any) => {
+export const QuestionnaireView = (props: any) => {
     const [report] = useState<Questionnaire>(getQuestionnaire());
     return (
         <>
@@ -31,6 +30,50 @@ export const QuestionniarView = (props: any) => {
         </>
     )
 }
+interface AccountableState {
+    report: any
+}
+interface AccountableProps {
+    data: any,
+    valueChanged: Function,
+    onAction: Function
+}
+export class Accountable extends PureComponent<AccountableProps, AccountableState> {
+
+    constructor(props: AccountableProps) {
+        super(props);
+        this.state = { report: props.data }
+    }
+
+    render = () => (
+        <div className="v-accountable">
+            <div className="v-flex"><div>
+                Select:
+            </div>
+                <div className="v-button v-flex-end" id="v-select-rec" onClick={
+                    () => {
+                        this.props.onAction("recommended");
+                    }
+                }
+                > Recommended</div>
+                <div className="v-button v-flex-end" id="v-select-all" onClick={
+                    () => {
+                        this.props.onAction("all");
+                    }
+                }
+                >  All</div>
+
+                <div className="v-button v-flex-end" id="v-select-clear" onClick={
+                    () => {
+                        this.props.onAction("clear");
+                    }
+                }
+                > Clear </div>
+            </div>
+            <DataTable onDataChanged={this.props.valueChanged} data={this.props.data} />
+        </div>
+    )
+}
 
 interface ValueChainCategoriesState {
     report: any,
@@ -40,18 +83,17 @@ interface ValueChainCategoriesState {
     selectedCategory: any,
     selectedSubCategory: any,
     selectedTertiaryCategory: any,
-    inventoryList: Array<any>
+    inventoryList: Array<InventoryItem>
 }
 export class ValueChainCategories extends PureComponent<any, ValueChainCategoriesState> {
-
     taxonomy: any;
     constructor(props: any) {
         super(props);
         let questionnaire = getQuestionnaire();
-        let template = getValueChainTemplates().find((template : any) => {
+        let template = getValueChainTemplates().find((template: any) => {
             return template.name === questionnaire.templateName;
         });
-        this.taxonomy = template? template.valueChain : getValueChainTemplates()[0];
+        this.taxonomy = template ? template.valueChain : getValueChainTemplates()[0];
         let categories = this.taxonomy.children.map((v: any) => {
             return {
                 id: v.id,
@@ -102,34 +144,8 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
     };
 
     getAccountable = () => {
-        let list: Array<any> = [];
         let accountable = getValueChainAccountable();
-
-        this.taxonomy.children.forEach((cat0: any) => {
-            cat0.children.forEach((cat1: any) => {
-                if (cat1.children && cat1.children.length > 0) {
-                    cat1.children.forEach((cat2: any) => {
-                        accountable.forEach((a: any) => {
-                            list.push({
-                                cat0: cat0,
-                                cat1: cat1,
-                                cat2: cat2,
-                                value: a.value
-                            });
-                        });
-                    })
-                } else {
-                    accountable.forEach((a: any) => {
-                        list.push({
-                            cat0: cat0,
-                            cat1: cat1,
-                            value: a.value
-                        });
-                    });
-                }
-            })
-        });
-        return list;
+        return accountable;
     };
 
     getSubcategories = (entity: any) => {
@@ -168,37 +184,30 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
 
     onSelectCategory = (v: any) => {
         this.selectCategory(v);
-        this.setState({ selectedSubCategory: undefined, tertiaryCategories: [] })
+        this.setState({ selectedSubCategory: undefined, tertiaryCategories: [], selectedTertiaryCategory: undefined })
     }
+
     onSelectSubCategory = (v: any) => {
         this.selectSubCategory(v);
         this.setState({ selectedTertiaryCategory: undefined })
     }
+
     onSelectTertiaryCategory = (v: any) => {
         this.setState({ selectedTertiaryCategory: v.id })
     }
 
     getAccountableSet = () => {
         let accountable = this.getAccountable();
-        const filtered = accountable.filter((row: any) => {
-            let inSet = row.cat0.id === this.state.selectedCategory &&
-                row.cat1.id === this.state.selectedSubCategory;
-            if (this.state.selectedTertiaryCategory) {
-                inSet = inSet && row.cat2?.id === this.state.selectedTertiaryCategory;
-            }
-            return inSet;
-        });
         return {
             id: "accountable-ds",
             updatedAt: Date.now(),
-            headers: ["Select", "Accountable", "Carbon", "Water", "Waste", "Category",
-                "Secondary Category", "Tertiary Category"]
+            headers: ["Select", "Accountable", "Carbon", "Water", "Waste"]
                 .map((v: any, idx: number) => {
                     return { id: idx, text: v }
                 }),
-            rows: filtered.map((v: any, idx: number) => {
+            rows: accountable.map((v: any, idx: number) => {
                 let item = this.state.inventoryList?.find(
-                    (item) => item.id === "r" + idx
+                    (item) => item.activity === v.value
                         && item.category === this.state.selectedCategory
                         && item.secondaryCategory === this.state.selectedSubCategory
                         && item.tertiaryCategory === this.state.selectedTertiaryCategory
@@ -230,18 +239,6 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
                         text: "Select",
                         type: "checkbox",
                         value: item ? item.waste : false,
-                    }, {
-                        id: "cat0-" + idx,
-                        text: StringUtils.t(v.cat0.value),
-                        value: v.cat0.value
-                    }, {
-                        id: "cat1-" + idx,
-                        text: StringUtils.t(v.cat1.value),
-                        value: v.cat1.value
-                    }, {
-                        id: "cat2-" + idx,
-                        text: v.cat2 ? StringUtils.t(v.cat2.value) : "",
-                        value: v.cat2?.value
                     }]
                 }
             })
@@ -255,47 +252,132 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
         this.setState({ inventoryList: list })
     }
 
-    valueChanged = (v: any, row: any, col: any, value: any) => {
-        if (col === 0) {
-            let list = this.state.inventoryList?.filter((item: any) => item.id !== 'r' + row);
-            if (list === undefined) {
-                list = new Array<InventoryItem>();
-            }
-            if (value === true) {
-                let invItem = new InventoryItem();
-                invItem.id = 'r' + row;
-                invItem.activity = v.rows[row].cols[1].value
-                invItem.category = this.state.selectedCategory;
-                invItem.secondaryCategory = this.state.selectedSubCategory;
-                invItem.tertiaryCategory = this.state.selectedTertiaryCategory;
-                invItem.water = v.rows[row].cols[3].value;
-                invItem.carbon = v.rows[row].cols[2].value;;
-                invItem.waste = v.rows[row].cols[4].value;;
-                list.push(invItem);
-            }
-            this.setState({ inventoryList: [...list] });
-        } else {
-            let list = [...this.state.inventoryList];
-            let item = list.find((item: any) => item.id === 'r' + row);
-            if (item !== undefined) {
-                switch (col) {
-                    case 2:
-                        item.carbon = value;
-                        break;
-                    case 3:
-                        item.water = value;
-                        break;
-                    case 4:
-                        item.waste = value;
-                        break;
+    isRecommended = (row: any, idx: number) => {
+        return idx % 2 === 0;
+    }
+
+    onAction = (action: "clear" | "all" | "recommended") => {
+        if (action === "clear") {
+            const list = [...this.state.inventoryList].filter((item) => {
+                let matchCategories = item.category === this.state.selectedCategory
+                    && item.secondaryCategory === this.state.selectedSubCategory
+                    && item.tertiaryCategory === this.state.selectedTertiaryCategory;
+                return !matchCategories;
+            });
+            this.updateInventoryList(list);
+        }
+        if (action === "all") {
+            const onTheList = [...this.state.inventoryList].filter((item) => {
+                let matchCategories = item.category === this.state.selectedCategory
+                    && item.secondaryCategory === this.state.selectedSubCategory
+                    && item.tertiaryCategory === this.state.selectedTertiaryCategory;
+                return !matchCategories;
+            });
+
+            this.getAccountableSet().rows.forEach((row: any, idx: number) =>
+                onTheList.push(this.newItem(row, idx))
+            );
+            this.updateInventoryList(onTheList);
+        }
+        if (action === "recommended") {
+            const onTheList = [...this.state.inventoryList].filter((item) => {
+                let matchCategories = item.category === this.state.selectedCategory
+                    && item.secondaryCategory === this.state.selectedSubCategory
+                    && item.tertiaryCategory === this.state.selectedTertiaryCategory;
+                return !matchCategories;
+            });
+
+            this.getAccountableSet().rows.forEach((row: any, idx: number) => {
+                if ([2, 5, 6].includes(idx)) {
+                    onTheList.push(this.newItem(row, idx))
                 }
-                this.setState({ inventoryList: [...list] });
             }
+            );
+            this.updateInventoryList(onTheList);
         }
     }
 
-    render = () => {
+    newItem = (row: any, idx: number) => {
+        let invItem = new InventoryItem();
+        invItem.id = 'r' + row.cols[1].value;
+        invItem.activity = row.cols[1].value;
+        invItem.category = this.state.selectedCategory;
+        invItem.secondaryCategory = this.state.selectedSubCategory;
+        invItem.tertiaryCategory = this.state.selectedTertiaryCategory;
+        invItem.water = row.cols[3].value;
+        invItem.carbon = row.cols[2].value;
+        invItem.waste = row.cols[4].value;
+        return invItem;
+    }
+
+    valueChanged = (v: any, row: any, col: any, checked: any) => {
+        let selectedRow = v.rows[row];
+        let selectedValue = selectedRow.cols[1].value;
+        if (col === 0) {
+            let list = [...this.state.inventoryList].filter((item) => {
+                let matchCategories = item.id === 'r' + selectedValue
+                    && item.category === this.state.selectedCategory
+                    && item.secondaryCategory === this.state.selectedSubCategory
+                    && item.tertiaryCategory === this.state.selectedTertiaryCategory;
+                return !matchCategories;
+            });
+            if (list === undefined) {
+                list = new Array<InventoryItem>();
+            }
+            if (checked === true) {
+                list.push(this.newItem(v.rows[row], row));
+            }
+            this.updateInventoryList(list);
+        } else {
+            let list = [...this.state.inventoryList];
+            let item = list.find((item: any) => item.id === 'r' + selectedValue);
+            if (item !== undefined) {
+                switch (col) {
+                    case 2:
+                        item.carbon = checked;
+                        break;
+                    case 3:
+                        item.water = checked;
+                        break;
+                    case 4:
+                        item.waste = checked;
+                        break;
+                }
+                this.updateInventoryList(list);
+            }
+        }
+    }
+    renderAccountable = () => {
         let accountable = this.getAccountableSet();
+        return <div className="v-accountable">
+            <div className="v-flex"><div>
+                Select:
+            </div>
+                <div className="v-button v-flex-end" id="v-select-rec" onClick={
+                    () => {
+                        this.onAction("recommended");
+                    }
+                }
+                > Recommended</div>
+                <div className="v-button v-flex-end" id="v-select-all" onClick={
+                    () => {
+                        this.onAction("all");
+                    }
+                }
+                >  All</div>
+
+                <div className="v-button v-flex-end" id="v-select-clear" onClick={
+                    () => {
+                        this.onAction("clear");
+                    }
+                }
+                > Clear </div>
+            </div>
+            <DataTable onDataChanged={this.valueChanged} data={accountable} />
+        </div>
+    }
+    render = () => {
+        let showAccountable = this.state.selectedCategory && this.state.selectedCategory !== "";
         return (
             <LayoutPage microApp={inventoryConfigApp} >
                 <Toast >
@@ -303,14 +385,15 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
                         <span className="me-auto">
                             {this.state.report.companyName}
                         </span>
-                        Viridium Industry:   {this.state.report.category}
+                        Template:   {StringUtils.t(this.state.report.templateName)}
                     </Toast.Header>
                     <Toast.Body>
-                        <QuestionniarView />
+                        <QuestionnaireView />
                         <Row className="v-filters">
                             <Col sm={6} className="v-summary">
                                 <Row>
                                     <Col>Value Chain Impact:</Col>
+                                    <Col>{this.state.inventoryList.length}</Col>
                                 </Row>
                             </Col>
                             <Col sm={6} className="v-summary">
@@ -344,17 +427,40 @@ export class ValueChainCategories extends PureComponent<any, ValueChainCategorie
                             <Col> &nbsp;</Col>
                         </Row>
                         <Row >
-                            <Col>
+                            <Col sm={6}>
+                                <h3>Selected inventory</h3>
+                                <div className="v-table-container">
+                                    <Table >
+                                        <thead><tr>
+                                            <th >Accountable</th>
+                                            <th >Category</th>
+                                            <th >{StringUtils.t("secondaryCategory")}</th>
+                                            <th >{StringUtils.t("tertiaryCategory")}</th>
+                                        </tr></thead>
+                                        <tbody>
+                                            {this.state.inventoryList.map((item, idx) => {
+                                                return <tr key={"tr-" + idx}>
+                                                    <td >{StringUtils.t(item.activity)}</td>
+                                                    <td >{StringUtils.t(item.category)}</td>
+                                                    <td >{StringUtils.t(item.secondaryCategory)}</td>
+                                                    <td >{StringUtils.t(item.tertiaryCategory)}</td>
+                                                </tr>
+                                            })}
+                                        </tbody>
+                                    </Table>
+                                </div>
+                            </Col>
+                            <Col sm={6}>
                                 {
-                                    this.state.selectedCategory !== "" ?
-                                        <DataTable onDataChanged={this.valueChanged} data={accountable} /> :
-                                        <div>Please select a category</div>
+                                    showAccountable ? this.renderAccountable() : <div>Please select a category</div>
                                 }
                             </Col>
                         </Row>
-                        <Action
-                            next={{ label: "Next", path: this.props.next }}
-                            prev={{ label: "Back", path: this.props.prev }} />
+                        <div className="v-footer v-flex">
+                            <Action
+                                next={{ label: "Next", path: this.props.next }}
+                                prev={{ label: "Back", path: this.props.prev }} />
+                        </div>
                     </Toast.Body>
                 </Toast>
             </LayoutPage >

@@ -1,5 +1,5 @@
 .inventory-app .v-page-body {
-    border: 1px solid rgb(233, 233, 233);
+    border: 0px solid rgb(233, 233, 233);
     border-radius: 0px;
     overflow: hidden;
 }
@@ -11,4 +11,54 @@
 .inventory-app .v-select {
     margin: 2%;
     width: 95%;
+}
+
+.inventory-app .v-flex .form-check {
+    margin-left: 1rem;
+}
+
+.inventory-app .selected-questions {
+    padding: 1rem;
+}
+
+.inventory-app .v-table-container {
+    height: 50vh;
+    overflow: scroll;
+}
+
+.inventory-app .v-panel {
+    padding: .5rem;
+    border-bottom: 0px solid lightblue;
+    max-height: 50vh;
+    overflow-y: scroll;
+}
+.inventory-app .v-form {
+    border: 1px solid rgb(229, 228, 228);
+}
+.inventory-app .v-question-label {
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 0px solid rgb(247, 247, 247);
+}
+
+.inventory-app .v-footer {
+    background-color: rgba(232, 232, 232, 0.5);
+    position: absolute;
+    bottom: 40px;
+    margin: 0px;
+    left:0px;
+    padding: 0.2rem 1rem;
+    width: 100%;
+    
+}
+
+.inventory-app  .col {
+      line-height: 1rem;
+      font-size: .8rem;
+}
+
+.inventory-app  .table {
+    line-height: 1rem;
+    font-size: .8rem;
 }

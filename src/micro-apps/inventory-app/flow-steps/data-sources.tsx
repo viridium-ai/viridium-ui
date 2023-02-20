@@ -3,13 +3,14 @@ import { PureComponent, } from "react";
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
-import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
-import { QuestionniarView } from "./value-chain-categories";
+import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionnaire";
+import { QuestionnaireView } from "./value-chain-categories";
 
-export class DataSources extends PureComponent<any, { report: any, toggleAll: boolean, dataSources: Array<any> }>{
+export class DataSources extends PureComponent<any, { report: any, dataSources: Array<any> }>{
     constructor(props: any) {
         super(props);
         const configs = getConfigs();
@@ -18,7 +19,7 @@ export class DataSources extends PureComponent<any, { report: any, toggleAll: bo
         }).filter((value: any) => value !== null);
 
         this.state = {
-            report: getQuestionnaire(), toggleAll: false, dataSources: ds
+            report: getQuestionnaire(), dataSources: ds
         }
     }
 
@@ -26,9 +27,8 @@ export class DataSources extends PureComponent<any, { report: any, toggleAll: bo
         let clone = { ...this.state.report };
         if (evt.target.checked && !clone.dataSources.includes(evt.target.id)) {
             clone.dataSources.push(evt.target.id);
-        } else if (!evt.target.checked)
-        {
-            clone.dataSources = clone.dataSources.filter((source : any)=> source !== evt.target.id);
+        } else if (!evt.target.checked) {
+            clone.dataSources = clone.dataSources.filter((source: any) => source !== evt.target.id);
         }
         this.setState({ report: clone });
         updateQuestionnaire(clone);
@@ -64,20 +64,27 @@ export class DataSources extends PureComponent<any, { report: any, toggleAll: bo
             return idx >= configs.dataSources.length / 2
         });
     };
-    toggleAll = (evt: any) => {
+
+    selectAll = (evt: any) => {
         let clone = { ...this.state.report };
-        if (!evt.target.checked) {
-            clone.dataSources = [];
-        } else {
-            let configs = getConfigs();
-            clone.dataSources = configs.dataSources.map((value: any, idx: number) => {
-                return value;
-            })
-        }
-        this.setState({ report: clone, toggleAll: evt.target.checked });
+        let configs = getConfigs();
+        clone.dataSources = configs.dataSources.map((value: any, idx: number) => {
+            return value;
+        });
+        this.setState({ report: clone });
         updateQuestionnaire(clone);
 
     }
+    clearAll = (evt: any) => {
+        let clone = { ...this.state.report };
+        clone.dataSources = [];
+        this.setState({ report: clone });
+        updateQuestionnaire(clone);
+    }
+    addNew = (evt: any) => {
+        alert('to be implemented');
+    }
+
     render = () => {
         let report = this.state.report;
         return (
@@ -87,26 +94,34 @@ export class DataSources extends PureComponent<any, { report: any, toggleAll: bo
                         <span className="me-auto">
                             {report.companyName}
                         </span>
-                        Viridium Industry:   {report.category}
+                        Template:   {StringUtils.t(this.state.report.templateName)}
                     </Toast.Header>
                     <Toast.Body>
-                        <QuestionniarView />
-                        <Row className="v-title">
+                        <Row className="v-panel">
+                            <QuestionnaireView />
+                        </Row>
+                        <Row className="v-panel">
+                            <div className="v-title">
+                                Possible data sources
+                            </div>
+                            <div>
+                                Please select ones in the following enterprise information systems would
+                                provide information for the report?
+                            </div>
+                        </Row>
+                        <Row className="v-panel">
                             <Col sm={6} >
                                 <Form.Group controlId="searchDataSource">
                                     <Form.Control className="v-search-box" type="text"
                                         onChange={this.onSearch} placeholder="Search" />
                                 </Form.Group>
                             </Col>
-                            <Col>
-                                <span style={{ float: "right"}}>
-                                    <Form.Check onChange={this.toggleAll}
-                                        type="checkbox"
-                                        id="check-all-boxes"
-                                        label={"Toggle All"}
-                                        checked={this.state.toggleAll}
-                                    />
-                                </span>
+                            <Col sm={6} >
+                                <div className="v-right">
+                                    <span className="v-icon-button" onClick={this.selectAll} >Select All </span>
+                                    <span className="v-icon-button" onClick={this.clearAll} >Clear </span>
+                                    <span className="v-icon-button" onClick={this.addNew} >Add </span>
+                                </div>
                             </Col>
                         </Row>
                         <Row>
@@ -140,9 +155,12 @@ export class DataSources extends PureComponent<any, { report: any, toggleAll: bo
 
                             </Col>
                         </Row>
-                        <Action report={report}
-                            next={{ label: "Next", path: this.props.next }}
-                            prev={{ label: "Back", path: this.props.prev }} />
+                        <div className="v-footer v-flex">
+                            <Action report={report}
+                                next={{ label: "Next", path: this.props.next }}
+                                prev={{ label: "Back", path: this.props.prev }} />
+                        </div>
+
                     </Toast.Body>
                 </Toast>
             </LayoutPage >

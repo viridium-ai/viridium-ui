@@ -5,7 +5,7 @@ import { Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../../inventory-app/inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionaire";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../../inventory-app/inventory-questionnaire";
 
 export const InventoryTypes = (props: any) => {
     var configs = getConfigs();

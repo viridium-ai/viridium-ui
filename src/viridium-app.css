@@ -66,7 +66,16 @@ a :visited {
 }
 .v-flex {
   display: flex;
+  align-items: center;
 }
+
+.v-flex-item {
+  margin: 0px .5em;
+}
+.v-flex-end {
+  margin-left: auto;
+}
+
 .v-container {
   width: 100%;
 }
@@ -89,9 +98,11 @@ a :visited {
 }
 
 .v-icon-button {
-  margin: 5px;
-  font-size: 1.0em;
-  color: rgb(65, 65, 65);
+  margin: .5rem;
+  padding: .0rem .5rem;
+  font-size: 1.0rem;
+  border-radius: 0.2rem;
+  cursor: default;
 }
 
 

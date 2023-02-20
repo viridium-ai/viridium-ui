@@ -4,9 +4,10 @@ import { Toast } from "react-bootstrap";
 import { Question, Action } from "../../../components/v-flow/wizard";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { DimensionView } from "../../../components/v-table/v-table-1";
+import { StringUtils } from "../../../components/v-utils/v-string-utils";
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
+import { Questionnaire, getQuestionnaire, updateQuestionnaire } from "../inventory-questionnaire";
 
 export const InventoryConfig = (props: any) => {
     const configs = getConfigs();
@@ -46,7 +47,7 @@ export const InventoryConfig = (props: any) => {
                         <strong className="me-auto">
                             {questionnaire.companyName}
                         </strong>
-                        Viridium Industry: {questionnaire.category}
+                        Template:   {StringUtils.t(questionnaire.templateName)}
                     </Toast.Header>
                     <Toast.Body>
                         <Question label="Sustainability Category">
@@ -64,9 +65,11 @@ export const InventoryConfig = (props: any) => {
                         <Question label="Regulations">
                             <DimensionView data={configs.regulations} options={{ value: questionnaire.regulation, placeHolder: "Select a regulation", onSelectValue: onSelectRegulation }} />
                         </Question>
-                        <Action report={questionnaire}
-                            next={{ label: "Next", path: props.next }}
-                            prev={{ label: "Back", path: props.prev }} />
+                        <div className="v-footer v-flex">
+                            <Action report={questionnaire}
+                                next={{ label: "Next", path: props.next }}
+                                prev={{ label: "Back", path: props.prev }} />
+                        </div>
                     </Toast.Body>
                 </Toast>
             </LayoutPage >

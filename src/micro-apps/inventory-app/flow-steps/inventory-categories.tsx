@@ -1,4 +1,4 @@
-import { PureComponent, useState } from "react";
+import { PureComponent } from "react";
 
 import { Toast, Form, Row, Col } from "react-bootstrap";
 import { Action } from "../../../components/v-flow/wizard";
@@ -6,8 +6,8 @@ import { LayoutPage } from "../../../components/v-layout/v-layout";
 
 import { getConfigs } from "../../../config/v-config";
 import { inventoryConfigApp } from "../inventory-app";
-import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionaire";
-import { QuestionniarView } from "./value-chain-categories";
+import { getQuestionnaire, updateQuestionnaire } from "../inventory-questionnaire";
+import { QuestionnaireView } from "./value-chain-categories";
 
 export class InventoryCategories extends PureComponent<any, { report: any, toggleAll: boolean }>{
     constructor(props: any) {
@@ -36,7 +36,7 @@ export class InventoryCategories extends PureComponent<any, { report: any, toggl
 
     scope1Category = (): Array<{ id: string, label: string }> => {
         return getConfigs().categories.scope1.map((value: string, idx: number) => {
-            return { id:value, label: value }
+            return { id: value, label: value }
         })
     };
 
@@ -75,7 +75,7 @@ export class InventoryCategories extends PureComponent<any, { report: any, toggl
                         Viridium Industry:   {this.state.report.category}
                     </Toast.Header>
                     <Toast.Body>
-                        <QuestionniarView />
+                        <QuestionnaireView />
                         <Row>
                             <Col className="v-title" style={{ display: "flex" }}>
                                 <span className="me-auto">
@@ -126,9 +126,11 @@ export class InventoryCategories extends PureComponent<any, { report: any, toggl
                                 ))}</div>
                             </Col>
                         </Row>
-                        <Action report={this.state.report}
-                            next={{ label: "Next", path: this.props.next }}
-                            prev={{ label: "Back", path: this.props.prev }} />
+                        <div className="v-footer v-flex">
+                            <Action report={this.state.report}
+                                next={{ label: "Next", path: this.props.next }}
+                                prev={{ label: "Back", path: this.props.prev }} />
+                        </div>
                     </Toast.Body>
                 </Toast>
             </LayoutPage >

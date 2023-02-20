@@ -1,94 +1,131 @@
-import { useEffect, useState } from "react";
+import { PureComponent } from "react";
 import { Button, Col, Form, Row, Toast } from "react-bootstrap";
 import { LayoutPage } from "../../../components/v-layout/v-layout";
 import { inventoryConfigApp } from "../inventory-app";
-import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-questionaire";
+import { Questionnaire, getQuestionnaire, Question, updateQuestionnaire } from "../inventory-questionnaire";
 import { getConfigs, updateConfigs } from "../../../config/v-config";
-import { StringUtils } from "../../../components/v-utils/v-string-utils";
+import { ExcelUtils, StringUtils } from "../../../components/v-utils/v-string-utils";
+import { BiTrash } from "react-icons/bi";
+import { VscAdd } from "react-icons/vsc";
+import { Action } from "../../../components/v-flow/wizard";
+interface QuestionsState {
+    questionnaire: Questionnaire,
+    selectedQuestion?: string,
+    addQuestion: boolean,
+    selectedQuestions: Array<Question>,
+    unselectedQuestions: Array<Question>,
+    newName: string,
+    newNotes: string,
+}
+export class Questionnaires extends PureComponent<any, QuestionsState> {
+    questions: Array<Question>;
+    constructor(props: any) {
+        super(props);
+        let configs = getConfigs();
+        this.questions = configs.questions;
+        let questionnaire = getQuestionnaire();
 
-export const Questionnaires = (props: any) => {
-    const [questionnaire, setQuestionnaire] = useState<Questionnaire>(getQuestionnaire());
-    const [selectedQuestion, selectQuestion] = useState("");
-    const [addQuestion, setAddQuestion] = useState(false);
-    const [selectedQuestions, setSelectedQuestions] = useState<Array<Question>>([]);
-    const [unselectedQuestions, setUnselectedQuestions] = useState<Array<Question>>([]);
-    const [newName, setName] = useState<string>("");
-    const [newNotes, setNotes] = useState<string>("");
-    var configs = getConfigs();
-    const questions: Array<Question> = configs.questions;
-    
-    useEffect(() => {
-        setUnselectedQuestions(configs.questions);
-        let r = getQuestionnaire();
-        if (r) {
-            setQuestionnaire(r);
-            if (r.questions) {
-                setSelectedQuestions(r.questions);
-                setUnselectedQuestions(questions.filter((q) => {
-                    return r.questions.find((sq) => sq.id === q.id) === undefined;
-                }));
-            }
+        this.state = {
+            questionnaire: questionnaire,
+            selectedQuestion: "",
+            addQuestion: false,
+            selectedQuestions: questionnaire.questions,
+            unselectedQuestions: this.selectNotIn(questionnaire.questions, this.questions),
+            newName: "",
+            newNotes: ""
         }
-    },[]);
-    const onSelectQuestion = (event: any) => {
-        selectQuestion(event.target.value);
     }
-    const onUpdateNewName = (evt: any) => {
-        setName(evt.target.value);
+
+    selectNotIn = (a1: Array<Question>, total: Array<Question>) => {
+        let selectedIds = a1.map((q) => q.id);
+        return total.filter((q) => {
+            return !selectedIds.includes(q.id);
+        });
     }
-    const onUpdateNewDesc = (evt: any) => {
-        setNotes(evt.target.value);
+
+    onSelectQuestion = (evt: any) => {
+        this.setState({ selectedQuestion: evt.target.value })
     }
-    const addNew = () => {
-        let q = { id: "q" + questions.length, name: newName, notes: newNotes };
-        let qs = [...selectedQuestions];
+    onUpdateNewName = (evt: any) => {
+        this.setState({ newName: evt.target.value })
+    }
+    onUpdateNewDesc = (evt: any) => {
+        this.setState({ newNotes: evt.target.value })
+    }
+
+    addNew = () => {
+        let questions = this.questions
+        let q = { id: "q" + questions.length, name: this.state.newName, notes: this.state.newNotes };
+        let qs = [...this.state.selectedQuestions];
         qs.push(q);
         questions.push(q);
-        setName("");
-        setNotes("");
-        setSelectedQuestions(qs);
-        configs.questions.push(q);
+        this.setState({
+            newName: "",
+            newNotes: "",
+            selectedQuestions: qs
+        })
+        let configs = getConfigs();
+        this.questions = configs.questions;
+        questions.push(q);
         updateConfigs(configs);
     }
-    const onToggleAdd = () => {
-        setAddQuestion(!addQuestion);
+
+    onToggleAdd = () => {
+        this.setState({ addQuestion: !this.state.addQuestion })
     }
-    const addToList = () => {
+
+    addToList = () => {
+        let unselectedQuestions = this.state.unselectedQuestions;
+        let selectedQuestion = this.state.selectedQuestion;
         let q = unselectedQuestions.find(q => q.id === selectedQuestion);
         if (q) {
-            let qs = [...selectedQuestions];
+            let qs = [...this.state.selectedQuestions];
             qs.push(q);
-            setSelectedQuestions(qs);
-            setUnselectedQuestions([...unselectedQuestions.filter(q => q.id !== selectedQuestion)]);
-            let clone = { ...questionnaire };
+            let clone = { ...this.state.questionnaire };
             clone.questions = [...qs];
-            setQuestionnaire(clone);
+            this.setState({
+                selectedQuestions: qs,
+                unselectedQuestions: [...unselectedQuestions.filter(q => q.id !== selectedQuestion)],
+                questionnaire: clone
+            });
             updateQuestionnaire(clone);
         }
     }
-    const removeToList = (id: string) => {
-        let q = selectedQuestions.find(q => q.id === id);
+    removeToList = (id: string) => {
+        let q = this.state.selectedQuestions.find(q => q.id === id);
         if (q) {
-            let qs = [...unselectedQuestions];
+            let qs = [...this.state.unselectedQuestions];
             qs.push(q);
-            setUnselectedQuestions(qs);
-            let ss = [...selectedQuestions.filter(q => q.id !== id)];
-            setSelectedQuestions(ss);
-            let clone = { ...questionnaire };
+            let ss = [...this.state.selectedQuestions.filter(q => q.id !== id)];
+            let clone = { ...this.state.questionnaire };
             clone.questions = [...ss];
-            setQuestionnaire(clone);
+
+            this.setState({
+                selectedQuestions: ss,
+                unselectedQuestions: qs,
+                questionnaire: clone
+            });
             updateQuestionnaire(clone);
         }
     }
-    const handleRemove = (evt: any) => {
-        removeToList(evt.target.id);
+    handleRemove = (evt: any) => {
+        this.removeToList(evt.currentTarget.id);
     }
 
-    const downloadData = () => {
-        return StringUtils.download(JSON.stringify(questionnaire, undefined, 2), questionnaire.companyName, "application/json");
+    downloadData = () => {
+        let questionnaire = this.state.questionnaire;
+        let q = new Questionnaire();
+        Object.assign(q, questionnaire);
+         
+        let csv = q.toTsv().join("\n");
+        return StringUtils.download(csv, questionnaire.companyName + ".tsv", "application/csv");
     }
 
-    const ui = () => {
+    render = () => {
+        let questionnaire = this.state.questionnaire;
+        let selectedQuestion = this.state.selectedQuestion;
+        let unselectedQuestions = this.state.unselectedQuestions;
+        let selectedQuestions = this.state.selectedQuestions;
         return (
             <LayoutPage microApp={inventoryConfigApp} >
                 <Toast >
@@ -96,78 +133,80 @@ export const Questionnaires = (props: any) => {
                         <span className="me-auto">
                             {questionnaire.companyName}
                         </span>
-                        Viridium Industry:   {questionnaire.category}
+                        Template:   {StringUtils.t(questionnaire.templateName)}
                     </Toast.Header>
                     <Toast.Body>
-                        <Row className="inventory-questions">
-                            <Col sm={3} className="inventory-label">Select a Question
-                            </Col>
-                            <Col sm={8} className="v-summary">
-                                <Form.Select value={selectedQuestion} onChange={onSelectQuestion} aria-label="">
-                                    <option key={"type-" + 10} value={""}>Select a question to add</option>
-                                    {
-                                        unselectedQuestions.map((v, idx) =>
-                                            <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
-                                        )
-                                    }
-                                </Form.Select>
-                            </Col>
-                            <Col sm={1} style={{ textAlign: 'left' }} className="v-summary">
-                                <Button style={{ minWidth: '1px', height: '36px', paddingTop: "4px", position: 'relative', left: '-40px' }} onClick={addToList}>+</Button>
-                            </Col>
-                        </Row>
-                        <Row className="inventory-questions">
-                            <Col sm={3} className="inventory-label">Selected Questions
+                        <Row className="v-questions">
+                            <Col sm={3} className="v-question-label">Select a Question
                             </Col>
                             <Col sm={8} >
-                                <div className="selected-questions">
-                                    {selectedQuestions.map((v, idx) =>
-                                        <Row className="selected-question" key={"type-" + idx}>
-                                            <Col>{v.name}</Col><Col id={v.id} style={{ textAlign: "right", display: "inline-block", paddingRight: "10px" }} onClick={handleRemove}>x</Col></Row>
-                                    )}
+                                <div className="v-flex">
+                                    <Form.Select value={selectedQuestion} onChange={this.onSelectQuestion} >
+                                        <option key={"type-" + 10} value={""}>Select a question to add</option>
+                                        {
+                                            unselectedQuestions.map((v, idx) =>
+                                                <option key={"type-" + idx} value={"" + v.id}>{v.name}</option>
+                                            )
+                                        }
+                                    </Form.Select>
+                                    <span className="v-icon-button" onClick={this.addToList}><VscAdd />
+                                    </span>
                                 </div>
                             </Col>
                         </Row>
+                        <Row >
+                            <Col sm={3} className="v-question-label">Selected Questions
+                            </Col>
+                            <Col sm={8} >
+                                {selectedQuestions.map((v, idx) =>
+                                    <div className="v-flex" key={"type-" + idx}>
+                                        <span className="me-auto"> {v.name} </span>
+                                        <span className="v-icon-button" id={v.id} onClick={this.handleRemove}>
+                                            <BiTrash />
+                                        </span>
+                                    </div>
+                                )}
+                            </Col>
+                        </Row>
                         {/* make the following offcanvas */}
-                        <Row className="inventory-questions">
+                        <Row >
                             <Col sm={3} className="inventory-label">
-                                <span onClick={onToggleAdd}>Add a Question</span>
+                                <span className='v-icon-button' onClick={this.onToggleAdd}>Add a Question  <VscAdd /></span>
                             </Col>
                             <Col sm={8} className="v-summary">
-                                {addQuestion ? <div className="v-form">
+                                {this.state.addQuestion ? <div className="v-form">
                                     <Row>
                                         <Col className="v-summary">
                                             <Form.Label>Name</Form.Label>
-                                            <Form.Control value={newName} type="text" onChange={onUpdateNewName} aria-label="">
+                                            <Form.Control value={this.state.newName} type="text" onChange={this.onUpdateNewName} aria-label="">
                                             </Form.Control>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col className="v-summary">
                                             <Form.Label>Notes</Form.Label>
-                                            <Form.Control value={newNotes} as="textarea" rows={3} onChange={onUpdateNewDesc} aria-label="">
+                                            <Form.Control value={this.state.newNotes} as="textarea" rows={3} onChange={this.onUpdateNewDesc} aria-label="">
                                             </Form.Control>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col className="v-summary">
-                                            <Button onClick={addNew}>
+                                            <span className="v-icon-button" onClick={this.addNew}>
                                                 Add
-                                            </Button>
+                                            </span>
                                         </Col>
                                     </Row>
                                 </div> : ""
                                 }
                             </Col>
                         </Row>
-                        <Form.Group className="v-actions" controlId="formButtons">
-                            <Button href={props.prev}>Back</Button> &nbsp;
-                            <Button onClick={downloadData} >Download Questionnaire</Button>
-                        </Form.Group>
+                        <div className="v-footer v-flex">
+                            <Action prev={{ label: "Back", path: this.props.prev }} />
+                            <Button onClick={this.downloadData} >Download Questionnaire</Button>
+                        </div>
                     </Toast.Body>
                 </Toast>
             </LayoutPage >
         )
     }
-    return ui();
 }

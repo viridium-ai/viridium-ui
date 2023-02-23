@@ -311,12 +311,6 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                         </tbody>
                     </Table>
                 </div>
-                {
-                    this.state.filters ? <div className="v-filters">
-                        {this.state.filters.map((filter: Filter, idx: number) =>
-                            <TableFilter key={'h' + idx} value={filter.value} options={filter.options} onChange={this.handleFilterUpdate} name={filter.name} />)}
-                    </div> : ""
-                }
             </div>
         );
     }

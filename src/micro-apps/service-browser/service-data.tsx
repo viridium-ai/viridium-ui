@@ -49,9 +49,6 @@ export class ServiceManager extends PureComponent<ServiceManagerProps, ServiceMa
         let schema = this.schema!;
         let service = this.state.service;
         let entity = this.state.selectedObject ? this.state.selectedObject : schema.getEmptyObject();
-
-
-
         return (
             <div className='schema-app'>
                 <LayoutPage microApp={serviceApp}>

@@ -4,7 +4,6 @@ import { localCache } from "../../components/v-utils/v-cache-manager";
 import { ServiceSchema, objectToArray, Service } from "./service-types";
 import "./service-app.css"
 class ServiceApp extends MicroApp {
-
     public _getApiDoc = (callback: any = undefined) => {
         let res = localCache.get('/v3/api-docs');
         if (res) {
@@ -24,7 +23,6 @@ class ServiceApp extends MicroApp {
         });
         return undefined;
     }
-
     public getApiDoc = (callback: any = undefined) => {
         let res = require('./cached.json');
         if (res.value) {
@@ -34,21 +32,18 @@ class ServiceApp extends MicroApp {
             return res.value;
         }
     }
-
     public getName = () => {
         return "service-app";
     }
     public getTitle = (): string => {
         return "Service Schema Browser";
     }
-
     public toPayload(schemaName: string, entity: any, mode: string): any {
         if (mode === 'create') {
             delete entity["id"]
         }
         return entity;
     }
-
     public getSchemas(): ServiceSchema[] {
         let schemas = objectToArray(this.getApiDoc().components.schemas)
             .map((s: any) => {
@@ -58,14 +53,12 @@ class ServiceApp extends MicroApp {
             });
         return schemas;
     }
-
     public getNavItems = () => {
         let items = this.getServices().filter(service => {
             return service.getSchema() && service.depth === 2
         });
         return items;
     }
-
     public getGroupedNavItems =() => {
         let items = this.getNavItems();
         let groupedItems = [{
@@ -80,18 +73,14 @@ class ServiceApp extends MicroApp {
             name:"Inventory",
             items:[...items].filter((item)=> item.name[0] === 'o')
         }];
-        //console.log(groupedItems, items);
         return groupedItems
     }
-
     public getRouteItems = () => {
         return [
-            new RouteItem().init("Services", "Services", "2", "/service/emission"),
-            new RouteItem().init("Schema", "Schema", "2", "/knowledge-app/schema"),
+            new RouteItem().init("Services", "Services", "2", "/service-app/emission"),
             new RouteItem().init("Help", "Help", "2", "/knowledge-app/help")
         ];
     }
-
     public getRoutes = () => {
         return (
             <>
@@ -99,13 +88,12 @@ class ServiceApp extends MicroApp {
             </>
         )
     }
-
     public getServices(): Array<Service> {
         let paths = objectToArray(this.getApiDoc().paths);
+
         let services = paths.map((path, idx) => {
             return Service.new(path);
         });
-
         services = services.filter((s) => {
             return !['{*path}',
                 'fielddefinitions',
@@ -117,7 +105,8 @@ class ServiceApp extends MicroApp {
         });
         return services;
     }
-
+    ///proxy/4028d697868a3c3801868a3c65700000?symbol=tsla&function=GLOBAL_QUOTE&apikey=__apikey__
+    ///proxy/4028d697868a3c3801868a3c65700000?function=SYMBOL_SEARCH&keywords=tesco&apikey=__apikey__
     public getPath(name: string): string | undefined {
         let paths: Array<string> = Object.keys(this.getApiDoc().paths);
         let path: string | undefined = paths.find(p => {
@@ -126,5 +115,4 @@ class ServiceApp extends MicroApp {
         return path;
     }
 }
-
 export const serviceApp = new ServiceApp();

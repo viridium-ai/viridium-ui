@@ -2,7 +2,6 @@ import { PureComponent } from "react";
 import { Toast } from "react-bootstrap";
 import { ImDownload, ImMagicWand } from "react-icons/im";
 import { CodeViewer } from "../../components/v-code-view/code";
-import { RouteItem } from "../../components/v-common/v-app";
 import { EntityDetails, EntityList, FieldDef } from "../../components/v-entity/entity-form";
 import { EntityManager } from "../../components/v-entity/entity-model";
 import { LayoutBodyNav, LayoutPage, ViridiumOffcanvas } from "../../components/v-layout/v-layout";

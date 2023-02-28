@@ -1,43 +1,138 @@
 .service-app {
-    font-size: 1.0em;
+    font-size: 1.0rem;
 }
-
+.service-app .nav-link {
+   --bs-nav-link-padding-y: 0.1rem;
+   --bs-nav-link-padding-x: 2.5rem;
+}
+.service-app .v-button {
+    padding: 0.2rem 1.5rem;
+    border-color: rgb(19, 141, 141);
+}
+.service-app .v-button:hover {
+    background-color: blue;
+    color: whitesmoke;
+}
 .service-app .v-page-body {
     width: 100%;
     display: flex;
     max-height: 90vh;
-    overflow: scroll;
+    display: flex;
 }
-
 .service-app .v-body-main {
      padding: 0px;
      border-left:solid 1px gray;
 }
-
-.service-app .v-layout .v-body-nav {
+.service-app .v-body-nav {
     padding: 0px;
+    min-width: 12rem;
 }
-
 .service-app .v-header {
     padding: 0.5em;
     border-radius: 0px;
 }
-
 .service-app .v-title {
     padding: 0.5em;
     border-radius: 0px;
     margin: .2em 0em;
-    background-color: antiquewhite;
 }
-
 .service-app .v-nav-items {
-    max-height: calc(100vh - 220px);
+    max-height: calc(100vh - 120px);
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
-.service-app .v-entity-form .v-container{
-    height: calc(100vh - 400px);
+.service-app  .v-container{
+    padding: .5rem 0rem;
+}
+.service-app .v-rest-client  {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.service-app .v-request-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.2rem 0.2rem;
+    border-bottom: 1px solid #ccc;
+}
+.service-app .v-method-path {
+    display: flex;
+    gap:.2rem;
+    width: 100%;
+    padding: 0.5rem;
+}
+.service-app .v-method-path select{
+    display: inline-block;
+    width: 8rem;
+    height: 1.8rem;
+    border-radius: .2rem;
+    padding: .2rem .5rem;
+    border: 1px solid #ccc;
+}
+.service-app .v-method-path .rest-client-input{
+    display: inline-block;
+    border-radius: .2rem;
+    padding: .0rem .2rem;
+    width: 90%;
+    height: 1.8rem;
+    overflow: hidden;
+    border: 1px solid #ccc;
+}
+.service-app .v-method-path .rest-client-input .rest-client-params {
+    width: 100%;
+    border: 0px;
+    height: 1.8rem;
+}
+.service-app .v-request-response{
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
     overflow-y: scroll;
     width: 100%;
+}
+.service-app .v-request-response .v-title {
+    padding: 0.1rem .2rem;
+    margin: 0px;
+    border-radius: 0px;
+    font-size: 1rem;
+    font-weight: 400;
+}
+.service-app .v-request-body {
+    padding: 0px 0.5rem;
+}
+.service-app .v-response-body {
+    padding: 0px 0.5rem;
+}
+.service-app textarea {
+    width: 100%;
+    height: calc(50vh - 10.5rem);
+    border: 1px solid #ccc;
+    resize: none;
+    padding: 0.4rem;
+    border-radius: .2rem;
+    font-size: 0.8rem;
+}
+.service-app .v-high {
+    height: calc(100vh - 18rem);
+}
+.service-app .v-entity-form .v-entity-form-row {
+    margin-bottom: .0rem;
+}
+.service-app .v-entity-form.inline .v-form-label {
+    width: 14rem;
+    overflow: scroll;
+    display: block;
+    margin-left: 0.2rem;
+    margin-bottom: 0rem;
+    white-space: nowrap;
+}
+.service-app .v-entity-form.inline .v-input-container {
+    width: 100%;
+    overflow: scroll;
+    white-space: nowrap;
+}
+.service-app .v-entity-form .v-input {
+    padding: 4px 8px;
 }

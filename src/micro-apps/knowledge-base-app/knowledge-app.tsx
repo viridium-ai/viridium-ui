@@ -1,8 +1,8 @@
 import { Route } from "react-router-dom";
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { ENTITIES, SchemaBrowser } from "./schema-browser";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
+import { ENTITIES, SchemaBrowser } from "./pages/schema-browser";
 import "./knowledge-app.css"
-import { Help } from "./help";
+import { Help } from "./pages/help";
 class KnowledgeApp extends MicroApp {
     public getName = () => {
         return "knowledge-app";

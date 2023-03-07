@@ -1,9 +1,9 @@
 import { PureComponent } from 'react';
-import { LayoutBodyNav, LayoutPage } from '../../components/v-layout/v-layout'
+import { LayoutBodyNav, LayoutPage } from 'components/v-layout/v-layout'
 import { Service, ServiceSchema } from './service-types';
 import { serviceApp } from './service-app';
-import { FieldDef, EntityList, EntityForm } from '../../components/v-entity/entity-form';
-import { restClient } from '../../components/v-common/v-client';
+import { FieldDef, EntityList, EntityForm } from 'components/v-entity/entity-form';
+import { restClient } from 'components/v-common/v-client';
 import { Tabs, Tab } from 'react-bootstrap';
 export class ServiceClient extends PureComponent<any, any> {
     service: Service;

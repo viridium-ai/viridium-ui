@@ -1,8 +1,8 @@
 .v-layout {
     --v-body-nav-width:20%;
     --v-body-main-width:80%;
-    --v-body-main-padding: 0.5em;
-    --v-body-nav-padding: 0.5em;
+    --v-body-main-padding: 0em;
+    --v-body-nav-padding: 0em;
     --v-layout-footer-bg: rgba(240, 238, 238, 0.5);
     --v-layout-footer-color: rgb(144, 144, 144);
     --v-app-header-bg:rgb(245, 245, 245);
@@ -19,100 +19,83 @@
     align-items: center;
     border-radius: 5px 5px 0px 0px;
 }
-
 .v-panel-header-title {
     font-weight: bold;
 }
-
 .v-panel-header-actions {
     display: flex;
     align-items: center;
 }
-
 .v-layout .navbar-brand {
     margin-left: 0.4em;
 }
-
 .v-layout .nav-link {
     margin: 0.0em 4px;
 }
-
 .v-layout .v-layout-header-end {
     margin-right: 2em;
 }
-
 .v-layout .v-body-nav {
     padding: var(--v-body-nav-padding);
     flex: var(--v-body-nav-width);
     max-width: 300px;
     height: calc(100vh - 110px);
 }
-
 .v-layout .v-nav-item {
     padding: var(--v-nav-item-padding);
     cursor: default;
     background-color: var(--v-nav-item-bg);
 }
-
 .v-layout .v-nav-item.selected {
     background-color: var(--v-nav-item-selected-bg);
 }
-
 .v-layout .v-nav-item:hover {
     background-color: var(--v-nav-item-hover-bg);;
 }
-
 .v-layout .v-body-main {
     flex: var(--v-body-main-width);
     padding: var(--v-body-main-padding);
     overflow: scroll;
 }
-
 .v-layout .v-logo {
     height: 36px;
     width: 36px;
     margin-right: 4px;
     margin-top: -8px;
 }
-
 .v-layout .nav-icon {
     width: 1.4rem;
     margin-right: 4px;
 }
-
 .v-layout .search-input {
     min-width: 24rem;
     border: 1px solid lightblue;
     padding: 0.2rem 0.4rem;
     border-radius: 0.2rem;
 }
-
 .v-layout .list-group-item {
     border: 0px;
     padding: 2px;
 }
-
 .v-layout ul {
     padding-inline-start: 4px;
 }
 .v-layout .v-app-header {
     background-color: var(--v-app-header-bg);
 }
-
 .v-layout .v-page-header {
     width: 100%;
 }
-
 .v-layout .dropdown-menu {
     left : -20px;
     top: 2.5em;
     border-radius: 0px 0px 6px 6px;
 }
-
 .v-layout .v-page-body {
     width: 100%;
+    display: flex;
+    gap:2px
 }
-
 .v-layout .v-page-footer {
     padding: 12px;
     background-color: var(--v-layout-footer-bg);
@@ -137,11 +120,14 @@
     margin-right: 1em;
     --bs-nav-link-color: black;
 }
-
-.v-layout .v-body-nav .toast {
+.v-layout .v-body-nav {
+    margin-bottom: 1rem;
+    width: var(--v-body-nav-width);
+}
+.v-layout .v-body-main {
+    width: var(--v-body-main-width);
     margin-bottom: 1rem;
 }
-
 .v-layout .offcanvas {
     width:30%;
 }

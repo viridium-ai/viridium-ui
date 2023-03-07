@@ -500,7 +500,7 @@
             "children": [
                 {
                     "id": "2",
-                    "text": "Sources >"
+                    "text": "Sources"
                 }
             ]
         },
@@ -513,19 +513,19 @@
             "children": [
                 {
                     "id": "114",
-                    "text": "Microsoft Sustainability >"
+                    "text": "Microsoft Sustainability"
                 },
                 {
                     "id": "4",
-                    "text": "SAP Carbon Data Network >"
+                    "text": "SAP Carbon Data Network"
                 },
                 {
                     "id": "6",
-                    "text": "Salesforce Net Zero Cloud >"
+                    "text": "Salesforce Net Zero Cloud"
                 },
                 {
                     "id": "7",
-                    "text": "Mapping >"
+                    "text": "Mapping"
                 }
             ]
         },
@@ -564,15 +564,15 @@
             "children": [
                 {
                     "id": "13",
-                    "text": "Jobs >"
+                    "text": "Jobs"
                 },
                 {
                     "id": "14",
-                    "text": "Enrichment >"
+                    "text": "Enrichment"
                 },
                 {
                     "id": "15",
-                    "text": "Aggregation >"
+                    "text": "Aggregation"
                 }
             ]
         },
@@ -3465,37 +3465,37 @@
     "help-content": [
         {
             "id": "0",
-            "url": "./resources/help/introduction.html",
+            "url": "./viridium-ui/resources/help/introduction.html",
             "label": "Introduction"
         },
         {
             "id": "8",
-            "url": "./resources/help/value-chain.html",
+            "url": "./viridium-ui/resources/help/value-chain.html",
             "label": "The Value Chain"
         },
         {
             "id": "1",
-            "url": "./resources/help/scopes.html",
+            "url": "./viridium-ui/resources/help/scopes.html",
             "label": "GHG Scopes"
         },
         {
             "id": "4",
-            "url": "./resources/help/data-sources.html",
+            "url": "./viridium-ui/resources/help/data-sources.html",
             "label": "Data Sources"
         },
         {
             "id": "5",
-            "url": "./resources/help/connectors.html",
+            "url": "./viridium-ui/resources/help/connectors.html",
             "label": "Connectors"
         },
         {
             "id": "6",
-            "url": "./resources/help/data-mappings.html",
+            "url": "./viridium-ui/resources/help/data-mappings.html",
             "label": "Data Mapping"
         },
         {
             "id": "7",
-            "url": "./resources/help/emission-factors.html",
+            "url": "./viridium-ui/resources/help/emission-factors.html",
             "label": "Emission Factors"
         }
     ]

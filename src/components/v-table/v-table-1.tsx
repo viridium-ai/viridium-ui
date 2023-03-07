@@ -1,10 +1,7 @@
 import React, { PureComponent } from "react";
 import { Button, Form, Table } from "react-bootstrap";
 import { FormFieldOption } from "../v-entity/entity-form";
-
-
 import "./v-table-1.css";
-
 interface DimensionViewProps {
     data: Array<{ id: string, label: string }>,
     options?: {
@@ -14,11 +11,9 @@ interface DimensionViewProps {
         placeHolder?: string
     }
 }
-
 interface DimensionViewState {
     selected: string
 }
-
 export class DimensionView extends React.Component<DimensionViewProps, DimensionViewState> {
     constructor(props: DimensionViewProps) {
         super(props);
@@ -72,7 +67,6 @@ interface FilterProps {
     options?: Array<FormFieldOption>,
     onChange: Function
 }
-
 export class OptionFilter extends React.Component<FilterProps, TableFilterState> {
     onChange = (v: any) => {
         if (this.props.onChange) {
@@ -92,7 +86,6 @@ export class OptionFilter extends React.Component<FilterProps, TableFilterState>
         )
     }
 }
-
 export class TextFilter extends React.Component<FilterProps, TableFilterState> {
     onChange = (v: any) => {
         if (this.props.onChange) {
@@ -110,7 +103,6 @@ export class TextFilter extends React.Component<FilterProps, TableFilterState> {
         )
     }
 }
-
 export class TableFilter extends PureComponent<TableFilterProps, TableFilterState> {
     constructor(props: TableFilterProps) {
         super(props);
@@ -173,13 +165,12 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
     componentDidMount(): void {
         this.setState({ data: this.props.data, filters: this.props.filters });
     }
-
     componentDidUpdate(prevProps: Readonly<DataTableProps>, prevState: Readonly<DataTableState>, snapshot?: any): void {
-        if (this.props.data.updatedAt !== prevProps.data.updatedAt || this.props.filters !== prevProps.filters) {
+        if (this.props.data.rows.length !== prevProps.data.rows.length
+            || this.props.filters !== prevProps.filters) {
             this.setState({ data: this.props.data, filters: this.props.filters });
         }
     }
-
     onSelectRow = (evt: any) => {
         evt.stopPropagation();
         if (this.props.onSelectRow) {
@@ -187,43 +178,30 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
             this.props.onSelectRow(evt.currentTarget.id, row, evt.currentTarget);
         }
     }
-
     onRowChecked = (evt: any) => {
         console.log(evt);
     }
-
     onValueChange = (evt: any) => {
         let row_col = evt.target.id.split(".");
         const row = parseInt(row_col[0]);
         const col = parseInt(row_col[1]);
         let newData = { ...this.state.data };
-        let cell = newData.rows[row].cols[col];
-        if (cell.type === "checkbox") {
-            cell.value = evt.target.checked;
-        } else {
-            cell.value = evt.target.value;
-        }
+        newData.rows[row].cols[col].value = evt.target.value;
         this.setState({ data: newData });
-        if (this.props.onDataChanged) {
-            this.props.onDataChanged(this.state.data, row, col, cell.value);
+        if (this.props.options?.onDataChanged) {
+            this.props.options.onDataChanged(this.state.data);
         }
         this.forceUpdate();
     }
-
     renderCell = (cellData: any, row: number, col: number) => {
         const id = `${row}.${col}`;
-        return cellData.type === 'checkbox' ?
-            <Form.Check id={id} checked={cellData.value} type="checkbox" onChange={this.onValueChange} />
-            : cellData.type === 'button' ?
-                <Button id={id} onClick={cellData.onClick} >{cellData.text}</Button>
-                : cellData.type === 'input' ?
-                    <Form.Control type="text" id={id} onChange={this.onValueChange} value={cellData.value} />
-                    : cellData.type === 'select' ?
-                        <Form.Select id={id} onChange={this.onValueChange} value={cellData.value || ''}>
-                            {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
-                        </Form.Select> : cellData.text
+        return cellData.type === 'checkbox' ? <Form.Check id={id} checked={cellData.value} type="checkbox" onChange={this.onValueChange} />
+            : cellData.type === 'button' ? <Button id={id} onClick={cellData.onClick} >{cellData.text}</Button>
+                : cellData.type === 'input' ? <Form.Control type="text" id={id} onChange={this.onValueChange} value={cellData.value} />
+                    : cellData.type === 'select' ? <Form.Select id={id} onChange={this.onValueChange} value={cellData.value || ''}>
+                        {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
+                    </Form.Select> : cellData.text
     }
-
     handleFilterUpdate = (value: Filter) => {
         let filters = [...this.state.filters ? this.state.filters : []];
         filters = filters.filter((f) => f.name !== value.name);
@@ -231,11 +209,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         this.setState({ filters: filters });
         this.forceUpdate();
     }
-
     onSelectPage = (page: number) => {
         console.log(page + " selected");
     }
-
     render = () => {
         let tableData = this.state.data;
         if (!tableData) {
@@ -270,7 +246,6 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                 }
             });
         }
-
         return (
             <div className="v-table" >
                 {
@@ -315,4 +290,3 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
         );
     }
 }
-

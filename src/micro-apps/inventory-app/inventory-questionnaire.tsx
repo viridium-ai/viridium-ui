@@ -1,6 +1,6 @@
-import { localCache } from "../../components/v-utils/v-cache-manager";
-import { StringUtils } from "../../components/v-utils/v-string-utils";
-import { getConfigs } from "../../config/v-config";
+import { localCache } from "components/v-utils/v-cache-manager";
+import { StringUtils } from "components/v-utils/v-string-utils";
+import { getConfigs } from "config/v-config";
 import { InventoryItem } from "../viridium-model";
 
 export interface Question { id?: string, name: string, notes?: string };

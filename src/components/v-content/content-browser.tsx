@@ -1,15 +1,23 @@
 import { PureComponent } from "react";
+import { Link } from "react-router-dom";
 import { LayoutBodyNav } from "../v-layout/v-layout";
 import { StringUtils } from "../v-utils/v-string-utils";
 import "./content-browser.css";
 
+interface Topic {
+    title: string;
+    summary?: string;
+    url: string;
+    img?: string
+}
+
 interface ContentBrowserProps {
-    topics: any,
+    topics: Array<Topic>,
     selected?: any
 }
 
 interface ContentBrowserState {
-    topics?: any,
+    topics: Array<Topic>,
     selected?: any
 }
 
@@ -26,7 +34,7 @@ export default class ContentBrowser extends PureComponent<ContentBrowserProps, C
             this.load(s.url);
             this.setState({
                 selected: {
-                    name: s.label,
+                    name: s.title,
                     route: s.url
                 }
             })
@@ -41,16 +49,18 @@ export default class ContentBrowser extends PureComponent<ContentBrowserProps, C
             }
         });
     }
+
     onSelect = (topic: any) => {
         this.load(topic.route);
     }
-    render = () => {
+
+    sideNav = () => {
         return (
             <div className="v-content-browser">
                 <div className="v-content-nav">
                     <LayoutBodyNav routeItems={this.state.topics.map((s: any) => {
                         return {
-                            name: s.label,
+                            name: s.title,
                             route: s.url
                         }
                     })
@@ -63,5 +73,32 @@ export default class ContentBrowser extends PureComponent<ContentBrowserProps, C
                 </div>
             </div>
         )
+    }
+
+    renderTopic = (topic: Topic, idx: number) => {
+        return (
+            <div key={`idx-` + idx} className="v-content-topic">
+                <div>
+                    {topic.summary}
+                </div>
+                {topic.img ? <img src={topic.img} /> : ""
+                }
+                <Link to={topic.url} >{topic.title}</Link>
+            </div>
+        )
+    }
+
+    topicNav = () => {
+        return (
+            <div className="v-blog-topics">
+                {
+                    this.state.topics.map((s: any, idx: number) => this.renderTopic(s, idx))
+                }
+            </div>
+        )
+    }
+
+    render = () => {
+        return this.topicNav()
     }
 }

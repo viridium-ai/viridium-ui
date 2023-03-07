@@ -1,11 +1,11 @@
 import { Route } from "react-router-dom";
-import { Dashboard } from "./dashboard";
-import { SourceManager } from "./source-manager";
-import { ReportConfigPage } from "./report-page";
+import { Dashboard } from "./pages/dashboard";
+import { SourceManager } from "./pages/source-manager";
+import { ReportConfigPage } from "./pages/report-page";
 import './dm-app.css';
-import { SchedulerPage } from "./scheduler-page";
-import { ConnectManagerView } from "./connector-manager";
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
+import { SchedulerPage } from "./pages/scheduler-page";
+import { ConnectManagerView } from "./pages/connector-manager";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
 
 
 class DataSourceManager extends MicroApp {

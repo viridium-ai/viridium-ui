@@ -1,0 +1,24 @@
+.v-diagram {
+    background-color: aliceblue;
+
+}
+
+.v-diagram .v-diagram-tools {
+    padding: .5rem;
+    background-color: antiquewhite;
+}
+
+.v-diagram canvas {
+    background-color: aliceblue;
+}
+
+.v-diagram .v-icon-button {
+    display: inline-block;
+    padding: 0.2rem .5rem;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+}
+
+.v-diagram .v-icon-button.v-selected {
+    background-color: rgb(225, 112, 51);
+}

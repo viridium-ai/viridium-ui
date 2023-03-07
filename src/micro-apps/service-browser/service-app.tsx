@@ -1,6 +1,6 @@
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { restClient } from "../../components/v-common/v-client";
-import { localCache } from "../../components/v-utils/v-cache-manager";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
+import { restClient } from "components/v-common/v-client";
+import { localCache } from "components/v-utils/v-cache-manager";
 import { ServiceSchema, objectToArray, Service } from "./service-types";
 import "./service-app.css"
 class ServiceApp extends MicroApp {

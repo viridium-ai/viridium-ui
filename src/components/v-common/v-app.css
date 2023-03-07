@@ -1,6 +1,6 @@
 .v-divider-y {
   height: 0.3em;
-  background-color: var(--v-dividier-bg);
+  background-color: var(--v-divider-bg);
 }
 
 .v-shadow {
@@ -62,9 +62,8 @@
 }
 
 .v-header {
-  font-size: calc(10px + 2vmin);
+  font-size: 1.2rem;
   background-color: rgb(212, 212, 212);
-  border-radius: 12px 12px 0px 0px;
   padding: 4px 12px;
 }
 
@@ -134,16 +133,7 @@
   padding: 0.5em 1.5em;
 }
 
-.v-field-label {
-  padding: 0.6em 1rem;
-  color: rgb(83, 83, 83);
-  background-color: rgb(244, 244, 244);
-}
 
-.v-field-value {
-  padding: 0.6em 1rem;
-  color: rgb(62, 62, 62);
-}
 
 .v-text-body {
   line-height: 1.8em;

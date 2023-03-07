@@ -1,3 +1,5 @@
+import { PureComponent } from "react";
+
 export type Intersect = {
   type?: number | undefined
   ua: number | undefined,

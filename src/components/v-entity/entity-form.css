@@ -1,6 +1,7 @@
 .v-entity-form {
     --v-component-header-border-color:red;
     --v-component-header-border-color:rgb(233, 233, 233);
+    --v-component-header-bg : rgb(233, 233, 233);
     flex-wrap: nowrap;
     overflow-x: hidden;
 }
@@ -33,8 +34,9 @@
     width: 25%;
     overflow: hidden;
     display: block;
-    margin-bottom: 0.5em;
-    margin-left: 0.2em;
+    margin: 0.5em;
+    white-space: nowrap;
+    overflow: auto;
 }
 
 .v-entity-form.inline  .v-input-container {
@@ -81,8 +83,13 @@
     font-weight: bold;
 }
 
-.v-entity-form .entity-value {
-    padding: 2px 20px;
+.v-entity-form .v-entity-value {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.v-entity-form .v-entity-value div{
+    display: inline-block;
 }
 
 .v-entity-form .v-component-actions {
@@ -91,26 +98,15 @@
     float: right;
 }
 
-.v-entity-form .component-action {
+.v-entity-form .v-component-action {
     padding: 6px;
     display: inline-block;
     cursor: pointer;
 }
 
-.v-entity-form .toast {
-    display: inline-block;
-    margin: 4px;
-}
-
-.v-entity-form .panel-header {
+.v-entity-form .v-panel-header {
     background-color: rgb(214, 230, 241);
     border-radius: 0.0rem;
-}
-
-.v-entity-form .toast-body {
-    padding: 0em 2em;
-    height: 12em;
-    overflow: scroll;
 }
 
 .v-entity-form .v-row {
@@ -132,24 +128,43 @@
     padding-top: 4px;
     padding-bottom: 4px;
 }
+ 
 
-.v-entity-container {
-    border: 1px solid lavender;
-    overflow: hidden;
-    border-radius: 6px;
-}
-
-.v-entity-container-title {
+.v-entity-form-title {
     padding: 12px;
     font-size: large;
     font-weight: 600;
     background-color: rgb(242, 242, 242);
 }
 
-.v-entity-container-body {
+.v-entity-form-body {
     padding: 1px 12px;
 }
 
-.v-entity-container-body .entity-value{
+.v-entity-form-body .v-entity-value{
     border-bottom: 1px solid rgb(238, 238, 238);
+}
+
+.v-entity-form-body .v-entity-value .v-field-label{
+
+    padding: 0.6em 1rem;
+    width: 20%;
+    border-right: 1px solid var(--v-component-header-bg);
+}
+.v-entity-form-body .v-entity-value .v-field-value{
+
+    padding: 0.6em 1rem;
+    width: 80%;
+}
+
+
+.v-entity-form .toast {
+    display: inline-block;
+    margin: 4px;
+}
+
+.v-entity-form .toast-body {
+    padding: 0em 2em;
+    height: 12em;
+    overflow: scroll;
 }

@@ -1,6 +1,6 @@
 
-import { localCache } from "../components/v-utils/v-cache-manager";
-import { StringUtils } from "../components/v-utils/v-string-utils";
+import { localCache } from "components/v-utils/v-cache-manager";
+import { StringUtils } from "components/v-utils/v-string-utils";
 import { Company } from "../micro-apps/viridium-model";
 
 export class EventManager {

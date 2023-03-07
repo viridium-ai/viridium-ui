@@ -1,5 +1,5 @@
-import { StringUtils } from "../../components/v-utils/v-string-utils";
-import { Entity } from "./schema-browser";
+import { StringUtils } from "components/v-utils/v-string-utils";
+import { Entity } from "./pages/schema-browser";
 const commonAttr = [
     "createdOn",
     "modifiedOn",

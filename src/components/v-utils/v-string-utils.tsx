@@ -3,6 +3,7 @@ import { Table } from "../../micro-apps/inventory-app/inventory-questionnaire";
 import labels from "../v-resources/labels.json";
 export class StringUtils {
 
+
     public static firstLower(text: string): string {
         if (text.length === 0) {
             return text;
@@ -168,7 +169,7 @@ export class StringUtils {
             return response.text();
         })
     }
-
+    
     static getUnique = (c8: Array<string>) => {
         let uniqs: Array<string> = [];
         c8.forEach((c) => {

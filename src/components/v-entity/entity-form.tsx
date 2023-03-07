@@ -1,8 +1,6 @@
 import { Component, PureComponent } from 'react';
 import { Form, Button, Row, Table, Col, Toast } from 'react-bootstrap';
-
 import './entity-form.css';
-
 import { TitleProp, Action } from '../v-common/v-app';
 import { StringUtils } from '../v-utils/v-string-utils';
 import { Entity, EntityManager, Formatter, Money, Severity, ValidationMessage, Validator } from './entity-model';
@@ -29,13 +27,11 @@ export enum ValueType {
     MONEY = "Money",
     COMPANY = "company"
 }
-
 export enum Visibility {
     ALL = "all",
     LIMITED = "limited",
     NONE = "none"
 }
-
 export class FieldDef {
     name: string = ''; //field name, related to object attribute, such as firstName
     type: ValueType = ValueType.STRING; //type, 
@@ -44,6 +40,7 @@ export class FieldDef {
     labelMode: string = "label placeholder";
     readonly?: boolean = false;
     updatable?: boolean;
+    sortable: boolean = false;
     required: boolean = false;
     visibility: Visibility = Visibility.ALL;
     validator?: Validator | Function; //called to validate a field if specified
@@ -60,7 +57,7 @@ export class FieldDef {
             definition: { ...this }
         } as FieldValue;
     }
-    isVisible = (): boolean => {
+    public isVisible = (): boolean => {
         return this.visibility === Visibility.ALL
             && this.type !== ValueType.PASSWORD
     }
@@ -82,7 +79,6 @@ export class FieldDef {
     public getLabel = (key: string | undefined = undefined) => {
         return StringUtils.t(key ? key : this.label ? this.label : this.name);
     }
-
     //get placeholder, if specified, if not, return getLabel
     public getPlaceHolder = () => {
         if (!this.labelMode.includes('placeholder')) {
@@ -121,12 +117,10 @@ export class FieldDef {
         this.formatter = f;
         return this;
     }
-
     useValidator = (v: Validator | Function | undefined) => {
         this.validator = v;
         return this;
     }
-
     validate(value: any, entity: any): ValidationMessage | undefined {
         if (value === undefined || value.length === 0) {
             if (this.required) {
@@ -145,30 +139,25 @@ export class FieldDef {
             return validator.validate(value, entity);
         }
     }
-
     getValue(entity: any): any {
         if (entity === null || entity === undefined) {
             return undefined;
         }
         return entity[this.name];
     }
-
     useDefault(value: Date | number | string | boolean | Array<any> | undefined) {
         this.defaultValue = value;
         return this;
     }
-
     //set attributes
     public options = (key: string, value: any) => {
         (this as any)[key] = value;
         return this;
     }
-
     public optional = () => {
         this.required = false;
         return this;
     }
-
     public static new(name: string, type: ValueType | undefined = undefined,
         required: boolean = true,
         placeHolder: string | undefined = undefined,
@@ -186,7 +175,6 @@ export class FieldDef {
         }
         return field;
     }
-
     public static select(name: string, options: Function | Array<SelectOption>,
         hint: string | undefined = undefined,
         placeHolder: string | undefined = undefined) {
@@ -201,8 +189,7 @@ export class FieldDef {
         }
         return field;
     }
-
-    static date(name: string, defaultValue?: Date): FieldDef {
+    public static date(name: string, defaultValue?: Date): FieldDef {
         let field = new FieldDef();
         field.name = name;
         field.type = ValueType.DATE;
@@ -211,14 +198,14 @@ export class FieldDef {
         field.defaultValue = field.placeHolder;
         return field;
     }
-    static number(name: string, defaultValue?: number): FieldDef {
+    public static number(name: string, defaultValue?: number): FieldDef {
         let field = new FieldDef();
         field.name = name;
         field.type = ValueType.NUMBER;
         field.defaultValue = defaultValue;
         return field;
     }
-    static money(name: string, defaultValue?: number): FieldDef {
+    public static money(name: string, defaultValue?: number): FieldDef {
         let field = this.number(name, defaultValue);
         field.useFormatter(Money);
         return field;
@@ -252,7 +239,6 @@ export class Title extends Component<TitleProp> {
         )
     }
 }
-
 export type FormFieldOption = {
     name: string;
     value: string;
@@ -470,7 +456,6 @@ export class SelectField extends PureComponent<FormFieldProp, FormFieldState>{
         this.props.onInput({ def: def, value: v, hasError: msg !== undefined, errorMsg: msg, ...evt });
     }
     getOptions = () => {
-        //this.setState({value:""});
         let options = this.props.options;
         if (options instanceof Function) {
             return options(this.props.entity);
@@ -516,35 +501,26 @@ interface FormProp {
     onCancel?: Function;
     onSubmitClose? : Function;
     mode?: string;
-    labelPosition?: string,
     columns?: number,
     inline?: boolean;
 }
-
 interface FormPropState {
     hasError: boolean;
-    entity?: Entity,
-    columns: number
+    entity: Entity,
+    columns: number, 
+    clearOnSubmit : boolean;
 }
 export class EntityForm extends PureComponent<FormProp, FormPropState> {
     id: string;
     errors: Array<{ def: FieldDef, msg: ValidationMessage }> = [];
-
     constructor(props: FormProp) {
         super(props)
         this.id = props.id ? props.id : StringUtils.guid();
         let entity = this.props.entity ? this.props.entity : EntityManager.emptyEntity()
-        this.state = { hasError: false, entity: entity, columns: 1 };
+        this.state = { hasError: false, entity: entity, columns: 1 , clearOnSubmit: false};
     }
-    // componentDidUpdate(prevProps: Readonly<FormProp>, prevState: Readonly<FormPropState>, snapshot?: any): void {
-    //     if(this.props.entity?.id !== prevState.entity?.id) {
-    //         //console.log(this.props.entity, prevProps.entity);
-    //         //this.setState({entity:this.props.entity});
-    //     }
-    // }
     screenSizeListener = (evnt: any) => {
         let screenSize = window.innerWidth;
-        console.debug(screenSize);
         if (screenSize > 800) {
             this.setState({ columns: 2 });
         }
@@ -552,11 +528,9 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             this.setState({ columns: 1 });
         }
     };
-
     componentDidMount(): void {
         window.addEventListener("resize", this.screenSizeListener);
     }
-
     componentWillUnmount(): void {
         window.removeEventListener("resize", this.screenSizeListener);
     }
@@ -565,12 +539,14 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
         let entity = { ...this.state.entity } as any;
         if (entity && this.props.onSubmit) {
             this.props.onSubmit(entity, this);
-            (document.getElementById(this.id) as any).reset();
-            this.setState({ entity: EntityManager.emptyEntity() });
-            this.forceUpdate();
+            if(this.state.clearOnSubmit) {
+                (document.getElementById(this.id) as any).reset();
+                this.setState({ entity: EntityManager.emptyEntity() });
+                this.forceUpdate();
+            }
+
         }
     }
-
     onChange = (evt: any) => {
         let entity = { ...this.state.entity } as any;
         entity[evt.def.name] = evt.value;
@@ -579,11 +555,9 @@ export class EntityForm extends PureComponent<FormProp, FormPropState> {
             this.props.onChange(entity, this, evt.def);
         }
     }
-
     onUpdateState = (state: any) => {
         this.setState({ entity: { ...state } });
     }
-
     renderField = (def: FieldDef, entity: any, idx: number) => {
         if (def.selectOptions) {
             return <SelectField entity={entity} def={def} onInput={this.onChange}
@@ -692,10 +666,10 @@ interface EntityDetailsProp {
 export class EntityDetails extends Component<EntityDetailsProp> {
     renderField = (field: { id: any, name?: string, value: any }) => {
         return (
-            <Row key={"" + field.id} className='entity-value'>
-                <Col sm={3} className='v-field-label'>{field.name}</Col>
-                <Col sm={9} className='v-field-value'>{field.value}</Col>
-            </Row>
+            <div key={"" + field.id} className='v-entity-value'>
+                <div className='v-field-label'>{field.name}</div>
+                <div className='v-field-value'>{field.value}</div>
+            </div>
         )
     }
     renderFields = () => {
@@ -719,9 +693,9 @@ export class EntityDetails extends Component<EntityDetailsProp> {
     }
     render() {
         return (
-            <div className="v-entity-container">
-                <div className="v-entity-container-title">{this.props.title}</div>
-                <div className="v-entity-container-body">
+            <div className="v-entity-form">
+                <div className="v-entity-form-title">{this.props.title}</div>
+                <div className="v-entity-form-body">
                     {this.renderFields()}
                 </div>
             </div>
@@ -793,7 +767,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
         }
         return fieldDefs;
     }
-
     renderHeaders = (entity: any) => {
         let fieldDefs = this.getFieldDefs(entity);
         return (
@@ -801,7 +774,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                 .map((def: any, idx: number) => { return (<th key={idx.toString()}>{def.getLabel()}</th>) })
         )
     }
-
     renderRow = (entity: any, idx: number) => {
         let fieldDefs = this.getFieldDefs(entity);
         return (
@@ -816,7 +788,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                 })
         )
     }
-
     renderActions = (entity: any, idx: number) => {
         return this.props.onDelete || this.props.onEdit ? <td>
             {
@@ -829,7 +800,6 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             }
         </td> : ""
     }
-
     renderCard = (entity: any, idx: number) => {
         let fieldDefs = this.getFieldDefs(entity);
         return (
@@ -848,14 +818,12 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
             </div>
         )
     }
-
     changeView = (view: string) => {
         this.viewMode = this.viewMode === 'Table' ? 'Grid' : 'Table';
         this.setState({
             view: this.viewMode === 'Table' ? 'Grid' : 'Table'
         })
     }
-
     render() {
         let state = this.props;
         let actions = this.props.actions ? [...this.props.actions] : [];
@@ -873,27 +841,24 @@ export class EntityList extends Component<ListTableProp, ListTableState> {
                 <div className='v-container'>
                     {
                         entities.length > 0 ? this.viewMode === 'Table' ?
-                            <>
-                                
-                                <Table striped bordered hover>
-                                    <thead>
-                                        <tr>
-                                            {this.renderHeaders(entities[0])}
-                                            {hasActions ? <th>{StringUtils.t("actions")}</th> : ""}
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {
-                                            entities.map((entity, idx) =>
-                                                <tr key={idx}>
-                                                    {this.renderRow(entity, idx)}
-                                                    {this.renderActions(entity, idx)}
-                                                </tr>
-                                            )
-                                        }
-                                    </tbody>
-                                </Table>
-                            </>
+                            <Table striped bordered hover>
+                                <thead>
+                                    <tr>
+                                        {this.renderHeaders(entities[0])}
+                                        {hasActions ? <th>{StringUtils.t("actions")}</th> : ""}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        entities.map((entity, idx) =>
+                                            <tr key={idx}>
+                                                {this.renderRow(entity, idx)}
+                                                {this.renderActions(entity, idx)}
+                                            </tr>
+                                        )
+                                    }
+                                </tbody>
+                            </Table>
                             : <>
                                 {
                                     entities.map((entity, idx) =>

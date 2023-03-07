@@ -3,21 +3,22 @@
     overflow-y: scroll;
 }
 
-.v-code .v-code-viewer {
-    margin: auto;
-    border: 3px solid whitesmoke;
-    padding: 10px;
-    background: rgb(255, 255, 255);
-    color: rgb(146, 146, 146);
-    overflow: scroll;
-    height: calc(100% - 4rem);
-}
-
 .v-code .v-code-header {
-    padding: 12px;
+    padding: 0.6rem;
     font-weight: bold;
-    font-size: large;
+    font-size: 1.2rem;
+    line-height: 1.4rem;
     background-color: rgb(239, 239, 239);
     border-radius: 6px  6px 0px 0px;
     display: flex;
+}
+
+.v-code .v-code-viewer {
+    margin: auto;
+    border: 1px solid whitesmoke;
+    padding: 1.0rem;
+    background: rgb(255, 255, 255);
+    color: rgb(146, 146, 146);
+    overflow: scroll;
+    height: calc(100% - 2.6rem);
 }

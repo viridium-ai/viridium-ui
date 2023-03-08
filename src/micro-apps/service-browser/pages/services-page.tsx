@@ -1,10 +1,13 @@
 import { PureComponent } from 'react';
-import { LayoutBodyNav, LayoutPage } from 'components/v-layout/v-layout'
-import { Service, ServiceSchema } from './service-types';
-import { serviceApp } from './service-app';
+import { Service } from '../service-types';
+import { serviceApp } from '../service-app';
 import { FieldDef, EntityList, EntityForm } from 'components/v-entity/entity-form';
 import { restClient } from 'components/v-common/v-client';
 import { Tabs, Tab } from 'react-bootstrap';
+import "./service-page.css";
+import { ListView } from 'components/v-list/v-list';
+import { LayoutPage } from 'components/v-layout/v-layout';
+
 export class ServiceClient extends PureComponent<any, any> {
     service: Service;
     constructor(props: any) {
@@ -14,7 +17,7 @@ export class ServiceClient extends PureComponent<any, any> {
             response: undefined,
             path: "",
             method: "get",
-            request: JSON.stringify(this.service.getSchema()?.getEmptyObject(), null, 2)
+            request: JSON.stringify(this.service?.getSchema()?.getEmptyObject(), null, 2)
         }
     }
     updateService = () => {
@@ -118,49 +121,48 @@ export class ServiceClient extends PureComponent<any, any> {
     }
 }
 export class ServiceBrowser extends PureComponent<any, any> {
-    schema: ServiceSchema;
-    service: Service;
     constructor(props: any) {
         super(props);
-        this.service = props.service;
-        this.schema = this.service?.getSchema()!;
-        let keys = Object.keys(this.schema.properties);
+        let services = serviceApp.getEntityServices();
+        console.log(services);
+        let service = services[0];
+        let schema = service.getSchema()!;
+        let keys = Object.keys(schema.properties);
         let properties = keys.map((key: any) => {
             return {
                 name: key,
-                ...this.schema.properties[key]
+                ...schema.properties[key]
             }
         });
         this.state = {
             selectedObject: undefined,
             entities: properties,
             data: undefined,
-            errors : [],
-            service: this.service,
-            routeItems: serviceApp.getNavItems().map((service) => service.toNavItem())
+            errors: [],
+            service: service,
+            routeItems:  services.map((service) => {
+                return {
+                    value: service.name,
+                    label: service.getLabel()
+                } 
+            })
         }
     }
     updateService = () => {
-        this.schema = this.service?.getSchema()!;
-        let keys = Object.keys(this.schema.properties);
+        const schema = this.state.service.getSchema()!;
+        let keys = Object.keys(schema.properties);
         let properties = keys.map((key: any) => {
             return {
                 name: key,
-                ...this.schema.properties[key]
+                ...schema.properties[key]
             }
         });
         this.setState({
             selectedObject: undefined,
             entities: properties,
-            service: this.service
         })
     }
-    componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any): void {
-        if (prevProps.service !== this.props.service) {
-            this.service = this.props.service;
-            this.updateService();
-        }
-    }
+
     serviceFields = (data: any): Array<FieldDef> => {
         return [
             FieldDef.new("name"),
@@ -170,24 +172,24 @@ export class ServiceBrowser extends PureComponent<any, any> {
     showErrors(errors: string[]) {
         throw new Error('Method not implemented.');
     }
+
     fieldDefs = (data: any): Array<FieldDef> => {
-        return this.schema.getFieldDefs();
+        return this.state.service.getSchema().getFieldDefs();
     }
 
-    getNavItem = () => {
-        return undefined;
-    }
     handleEdit = (object: any) => {
         this.setState({ selectedObject: object });
     }
-
+    onSelect = (item: any) => {
+        this.setState({ service: serviceApp.getEntityService(item.value) }, this.updateService);
+    }
     onSubmit = (data: any, form: any) => {
-        let errors = this.schema.validate(data);
+        let errors = this.state.service.getSchema().validate(data);
         if (errors.length > 0) {
             this.showErrors(errors);
             //form.setErrors(errors);
         } else {
-            this.service.path && restClient.post(this.service.path, data).then((json) => {
+            this.state.service.path && restClient.post(this.state.service.path, data).then((json) => {
                 this.setState({ response: JSON.stringify(json, null, 2) });
             }).catch((error) => {
                 console.log("Failed to get api doc", error);
@@ -196,41 +198,36 @@ export class ServiceBrowser extends PureComponent<any, any> {
     }
     //UI 
     render = () => {
+        let schema = this.state.service.getSchema()!;
         let ui = (
-            <div className='schema-app' >
-                <LayoutPage microApp={serviceApp}>
-                    <div className="v-page-body">
-                        <div className="v-body-nav">
-                            <LayoutBodyNav selected={this.getNavItem()} routeItems={this.state.routeItems} />
-                        </div>
-                        <div className="v-body-main">
-                            <div className="v-flex v-header">
-                                <span className="me-auto">{this.service.getLabel()}</span>
-                                <span>{this.service.path}</span>
-                            </div>
-                            <div className='v-container'>
-                                <Tabs defaultActiveKey="client" id="service-browser-tabs" >
-                                    <Tab eventKey="client" title="Client">
-                                        <ServiceClient service={this.state.service} />
-                                    </Tab>
-                                    <Tab eventKey="schema" title="Schema">
-                                        <EntityList view='Table' title={`${this.schema.getLabel()}`} entities={this.state.entities}
-                                            onSelect={(res: any) => { this.setState({ selectedObject: res }) }} fieldDefs={this.serviceFields}
-                                        />
-                                    </Tab>
-                                    <Tab eventKey="data" title="Data">
-                                        {
-                                            <EntityForm inline entity={this.schema.getEmptyObject()}
-                                                onSubmit={this.onSubmit}
-                                                title={`${this.schema.getLabel()} Details`} fieldDefs={this.fieldDefs} />
-                                        }
-                                    </Tab>
-                                </Tabs>
-                            </div>
-                        </div>
+            <LayoutPage microApp={serviceApp} pageName="service-page">
+                <div slot="side-nav" >
+                    <ListView showFilter={true} list={this.state.routeItems} onSelect={this.onSelect} />
+                </div>
+                <div className="v-flex-c">
+                    <div className="v-flex v-header">
+                        <span className="me-auto">{this.state.service.getLabel()}</span>
+                        <span>{this.state.service.path}</span>
                     </div>
-                </LayoutPage>
-            </div >
+                    <Tabs defaultActiveKey="client" id="service-browser-tabs" >
+                        <Tab eventKey="client" title="Client">
+                            <ServiceClient service={this.state.service} />
+                        </Tab>
+                        <Tab eventKey="schema" title="Schema">
+                            <EntityList view='Table' title={`${schema.getLabel()}`} entities={this.state.entities}
+                                onSelect={(res: any) => { this.setState({ selectedObject: res }) }} fieldDefs={this.serviceFields}
+                            />
+                        </Tab>
+                        <Tab eventKey="data" title="Data">
+                            {
+                                <EntityForm inline entity={schema.getEmptyObject()}
+                                    onSubmit={this.onSubmit}
+                                    title={`${schema.getLabel()} Details`} fieldDefs={this.fieldDefs} />
+                            }
+                        </Tab>
+                    </Tabs>
+                </div>
+            </LayoutPage>
         );
         return ui;
     }

@@ -57,7 +57,7 @@ export class ServiceManager extends PureComponent<ServiceManagerProps, ServiceMa
                             <div className="me-auto">Services</div>
                         </Toast.Header>
                         {
-                            serviceApp.getGroupedNavItems().map((item) => {
+                            serviceApp.getGroupedServices().map((item) => {
                                 return <div>
                                     <div className="v-title">{item.name}</div>
                                     <LayoutBodyNav selected={this.getNavItem()} routeItems={item.items.map((s) => s.toNavItem())} />

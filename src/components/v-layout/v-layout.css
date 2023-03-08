@@ -124,10 +124,7 @@
     margin-bottom: 1rem;
     width: var(--v-body-nav-width);
 }
-.v-layout .v-body-main {
-    width: var(--v-body-main-width);
-    margin-bottom: 1rem;
-}
+
 .v-layout .offcanvas {
     width:30%;
 }

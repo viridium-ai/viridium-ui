@@ -1,5 +1,5 @@
 import { Route } from "react-router-dom";
-import { ServiceBrowser } from "./services-page";
+import { ServiceBrowser } from "./pages/services-page";
 import { serviceApp } from './service-app';
 import { FieldDef } from 'components/v-entity/entity-form';
 import { IRouteItem } from "components/v-common/v-app";

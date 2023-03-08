@@ -21,7 +21,6 @@
 }
 .v-list .v-list-container {
     overflow-y: scroll;
-    height: 700px;
 }
 .v-list .v-list-item {
     padding: 0.6rem 1.5rem;

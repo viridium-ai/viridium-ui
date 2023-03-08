@@ -14,7 +14,7 @@ class KnowledgeApp extends MicroApp {
     public isSecure = () => false;
     public getRouteItems = () => {
         return [
-            new RouteItem().init("Services", "Services", "2", "/service-app/emission"),
+            new RouteItem().init("Services", "Services", "2", "/service-app"),
             new RouteItem().init("Schema", "Schema", "2", "/knowledge-app/schema"),
             new RouteItem().init("Help", "Help", "2", "/knowledge-app/help")
         ];

@@ -18,7 +18,7 @@ function App(props: any) {
   const [state] = useState<UserContextType>(securityManager.getUserContext());
   return (
     <UserContext.Provider value={state} >
-      <div className="viridium-app">
+      <div className="main-app">
         <Router basename='/'>
           <Routes>
             {homeApp.getRoutes()}

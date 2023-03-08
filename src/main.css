@@ -48,7 +48,7 @@ a {
 a :visited {
   color:#0042A5;
 }
-.viridium-app {
+.main-app {
   text-align: left;
   height: 100vh;
 }
@@ -67,6 +67,19 @@ a :visited {
 .v-flex {
   display: flex;
   align-items: center;
+}
+
+.v-flex-r {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+  align-items: center;
+}
+
+.v-flex-c {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
 }
 
 .v-flex-item {
@@ -206,63 +219,61 @@ a :visited {
   text-align: left;
 }
 
-.viridium-app .v-panel-header {
+.main-app .v-panel-header {
   padding: .5em;
   font-weight: 600;
 }
-.viridium-app .v-summary {
+.main-app .v-summary {
   padding:  2.0rem 0.5rem;
   font-size: large;
 }
-.viridium-app .v-body-main {
-  flex: 80%;
-  padding: 0.5rem;
-}
-.viridium-app .v-body-help {
+
+
+.main-app .v-body-help {
   flex: 20%;
   padding: 0.5rem;
   display: none;
 }
-.viridium-app .v-actions {
+.main-app .v-actions {
   display: flex;
   padding: 2rem 1rem;
   border-bottom: 1px solid rgb(237, 237, 237);
 }
-.viridium-app .v-question {
+.main-app .v-question {
   padding: 0.2rem 1rem;
   border-bottom: 1px solid rgb(237, 237, 237);
 }
-.viridium-app .v-sub-questions {
+.main-app .v-sub-questions {
   margin-top: 0.1em;
   padding: 0.5rem;
   background-color: rgb(244, 244, 244);
 }
-.viridium-app .v-form-row {
+.main-app .v-form-row {
   padding: 0.2rem;
 }
-.viridium-app .v-form-label {
+.main-app .v-form-label {
   padding: 0.7rem;
   font-size: medium;
 }
-.viridium-app .v-form-input {
+.main-app .v-form-input {
   padding: 0.2rem;
 }
-.viridium-app .main-checkbox {
+.main-app .main-checkbox {
   padding: 1em;
 }
-.viridium-app .company-details{
+.main-app .company-details{
   padding: .5rem;
   margin-top: .5em;
 }
-.viridium-app .v-summary {
+.main-app .v-summary {
   font-size: small;
   font-weight: 600;
   padding: .5rem 1.5rem;
 }
-.viridium-app .toast-header {
+.main-app .toast-header {
   border-radius: 0px;
 }
 
-.viridium-app .toast {
+.main-app .toast {
  overflow: hidden;
 }

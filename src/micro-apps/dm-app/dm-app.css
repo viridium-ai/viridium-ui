@@ -3,41 +3,69 @@
     display: flex;
 }
 
+.dm-app .treeview {
+    width: 20vw;
+    height: 100%;
+    overflow: auto;
+    background-color: white;
+}
+
+.dm-app .data-cloud .v-body-nav {
+    width: 22vw;
+    max-width: none;
+    height: calc(100vh - 110px);
+    border-right: 1px solid rgb(248, 248, 248);
+}
+
 .dm-app .row {
     padding: 1px;
+    padding: .2rem 0rem;
+}
+
+.dm-app .list-group-item {
+    padding: 0.5rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .dm-app .v-chart-item {
     height: 200px;
 }
+
 .dm-app .v-dashboard-panel {
-    margin-top: 0.0rem;
     margin-bottom: 1rem;
+    padding: .3rem;
     font-size: 0.8rem;
 }
+
 .dm-app .v-pie-chart {
     max-width: 200px;
 }
+
 .dm-app .v-chart-item {
     height: 160px;
     overflow: hidden;
 }
+
 .dm-app .v-chart-item {
     height: 320px;
-    width:600px;
+    width: 600px;
     overflow: hidden;
     margin: 0px auto;
 }
+
 .dm-app .v-pie-item {
     height: 300px;
     width: 200px;
     overflow: hidden;
     margin: 0px auto;
 }
+
 .dm-app .v-sub-panel {
     text-align: center;
 }
- 
+
 .dm-app .me-end {
     margin-right: 1rem;
 }
@@ -55,6 +83,7 @@
 .dm-app .v-details-value {
     padding: 0px 2px;
 }
+
 .dm-app .v-details-btn {
     text-align: right;
     margin: .5em 0em;
@@ -67,6 +96,7 @@
 .dm-app .v-list {
     margin-bottom: 1em;
 }
+
 .dm-app .v-filters .v-label {
     padding: 10px 14px;
 }
@@ -76,14 +106,16 @@
     display: flex;
     align-items: center;
 }
+
 .dm-app .v-footer .v-field-label {
     background-color: white;
 }
+
 .dm-app .v-footer .v-input {
     padding: 0.5em;
 }
 
-.dm-app .v-footer .v-dimension-container{
+.dm-app .v-footer .v-dimension-container {
     margin-bottom: 0px;
 }
 

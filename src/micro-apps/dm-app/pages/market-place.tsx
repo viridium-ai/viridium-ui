@@ -2,31 +2,25 @@
 import { Row, Col, Toast, Form, Button } from 'react-bootstrap';
 import { LayoutPage } from 'components/v-layout/v-layout'
 import { dataSourceManager } from '../dm-app';
+import { PureComponent } from 'react';
+import TreeView from 'components/v-tree-view/v-tree-view';
+import { getConfigs } from 'config/v-config';
 
-export const MarketPlace = (props: any) => {
-    const ui = () => {
+export class MarketPlace extends PureComponent {
+    getTaxonomy = () => {
+        const taxonomy = getConfigs()["taxonomy"];
+        console.log(taxonomy);
+        return {
+            id: "Taxonomy",
+            text:"Taxonomy",
+            children:taxonomy
+        };
+    }
+    render = () => {
         return (
-            <LayoutPage microApp={dataSourceManager} >
-                <div className="v-body-nav">
-                    <Toast >
-                        <Toast.Body className="v-list">
-                            <div className="v-list-item">
-                                Current Status
-                            </div>
-                            <div className="v-list-item">
-                                Status YoY
-                            </div >
-                            <div className="v-list-item">
-                                Activities
-                            </div>
-                            <div className="v-list-item">
-                                Sources
-                            </div>
-                            <div className="v-list-item">
-                                Scope
-                            </div>
-                        </Toast.Body>
-                    </Toast>
+            <LayoutPage microApp={dataSourceManager} pageName="data-cloud">
+                <div slot="side-nav">
+                    <TreeView options={{ selectable: false, enableLinks: true, selectChildren: false }}  data={this.getTaxonomy()} />
                 </div>
                 <div className="v-body-main">
                     <div className="v-dashboard-panel">
@@ -136,5 +130,4 @@ export const MarketPlace = (props: any) => {
             </LayoutPage >
         )
     }
-    return ui();
 }

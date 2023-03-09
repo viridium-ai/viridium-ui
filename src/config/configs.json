@@ -1,5 +1,6 @@
 {
     "title": "VIRIDIUM.AI",
+    "version": "1.0.1",
     "description": "Viridium Sustainability Data Platform",
     "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
     "online" : false,
@@ -3497,6 +3498,157 @@
             "id": "7",
             "url": "./viridium-ui/resources/help/emission-factors.html",
             "label": "Emission Factors"
+        }
+    ],
+    "taxonomy": [
+        {
+            "id": "1",
+            "text": "Air / Carbon Data",
+            "state": {
+                "expanded": true
+            },
+            "children": [
+                {
+                    "id": "1.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "2",
+            "text": "Water Data",
+            "state": {
+                "expanded": false
+            },
+            "children": [
+                {
+                    "id": "2.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "3",
+            "text": "Land Data",
+            "state": {
+                "expanded": false
+            },
+            "children": [
+                {
+                    "id": "3.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "4",
+            "text": "Industry Specific Data",
+            "state": {
+                "expanded": false
+            },
+            "children": [
+                {
+                    "id": "4.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "5",
+            "text": "Process Library",
+            "state": {
+                "expanded": false
+            },
+            "children": [
+                {
+                    "id": "5.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "6",
+            "text": "Standards Data",
+            "state": {
+                "expanded": false
+            },
+            "children": [
+                {
+                    "id": "6.1",
+                    "text": "Emission Factors"
+                }
+            ]
+        },
+        {
+            "id": "7",
+            "text": "Other Public Data",
+            "state": {
+                "expanded": true
+            },
+            "children": [
+                {
+                    "id": "7.1",
+                    "text": "Product Life Cycle Data"
+                },
+                {
+                    "id": "7.2",
+                    "text": "Granular Process Data",
+                    "children":[
+                        {
+                            "id": "7.2.1",
+                            "text": "Emission Categories and Life Cycle Data​​",
+                            "children":[
+                                {
+                                    "id": "7.2.1.1",
+                                    "text": "Bla​​"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "7.3",
+                    "text": "US EPA Climate Data​​"
+                },
+                {
+                    "id": "7.4",
+                    "text": "IEA National Electricity Data"
+                },
+                {
+                    "id": "7.5",
+                    "text": "IEA National Electricity Data"
+                },
+                {
+                    "id": "7.6",
+                    "text": "Environmental Metrics​​"
+                },
+                {
+                    "id": "7.7",
+                    "text": "Climate Risks"
+                },
+                {
+                    "id": "7.8",
+                    "text": "Fuel Categories, Price, History, and Forecast"
+                },
+                {
+                    "id": "7.9",
+                    "text": "DEFRA – Emission Coefficients​"
+                },
+                {
+                    "id": "7.9",
+                    "text": "Population Data​"
+                }
+                ,
+                {
+                    "id": "7.9",
+                    "text": "Survey/panel data (e.g. car, appliance ownership)​"
+                },
+                {
+                    "id": "7.9",
+                    "text": "Database of PPA Incentives Globally/Nationally/Locally​"
+                }
+            
+            ]
         }
     ]
 }

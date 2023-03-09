@@ -140,11 +140,11 @@ export class ServiceBrowser extends PureComponent<any, any> {
             data: undefined,
             errors: [],
             service: service,
-            routeItems:  services.map((service) => {
+            routeItems: services.map((service) => {
                 return {
                     value: service.name,
                     label: service.getLabel()
-                } 
+                }
             })
         }
     }

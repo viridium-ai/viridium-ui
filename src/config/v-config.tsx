@@ -30,13 +30,15 @@ export class EventManager {
 export const eventManager = new EventManager();
 
 export const getConfigs = (): any => {
-    let configs = localCache.get("Viridium.Config");
-    if (configs === undefined) {
-        configs = require("./configs.json");
+    let cachedConfigs = localCache.get("Viridium.Config");
+    let configs = require("./configs.json");
+    if (cachedConfigs === undefined || cachedConfigs.version !== configs.version ) {
         localCache.set("Viridium.Config", configs);
+        cachedConfigs = configs;
     }
-    return configs;
+    return cachedConfigs;
 }
+
 
 export const getValueChainConfigs = (): any => {
     let cached = localCache.get("ValueChainTemplates.Config");

@@ -4,7 +4,7 @@ import { LayoutPage } from "../v-layout/v-layout";
 
 import { securityApp } from "./security-app";
 import { LoremIpsum } from "lorem-ipsum";
-import { getConfigs } from "../../config/v-config";
+import { getConfigs } from "config/v-config";
 const lorem = new LoremIpsum({
     sentencesPerParagraph: {
         max: 8,

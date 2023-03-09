@@ -1,4 +1,5 @@
 {
+    "version": "1.0.0",
     "companies": {
         "header": [
             "No.",
@@ -9012,62 +9013,22 @@
             "id": "31cd605f",
             "name": "Anping Wang",
             "type": "Personal",
-            "accounts": [],
-            "total": 0,
+            "balance": 20000,
+            "cash": 20000,
             "createdAt": "2023-01-28T09:26:02.113Z"
         }
     ],
-    "Transaction": [
-        {
-            "id": "78bdbb0c",
-            "name": "",
-            "createdAt": "2023-02-13T07:22:52.743Z",
-            "createdBy": "anpwang@gmail.com",
-            "validated": false,
-            "accountId": "d3d28a0b",
-            "symbol": "TSLA",
-            "txType": "Buy",
-            "securityType": "Stock",
-            "shares": 123,
-            "price": 456,
-            "txDate": "2023-02-13",
-            "date": "2023-02-13T00:00:00.000Z"
-        }
-    ],
-    "Holding": [
-        {
-            "id": "15ebb230",
-            "name": "TSLA",
-            "createdAt": "2023-02-13T07:22:52.746Z",
-            "createdBy": "anpwang@gmail.com",
-            "validated": false,
-            "symbol": "TSLA",
-            "accountId": "d3d28a0b",
-            "shares": 123,
-            "price": 456,
-            "value": 56088,
-            "cost": 456,
-            "totalChange": 0,
-            "txDate": "2023-02-13T07:22:52.746Z"
-        }
-    ],
+    "Transaction": [],
+    "Holding": [],
     "Account": [
         {
             "id": "d3d28a0b",
             "name": "E*Trade Margin Account",
             "customerId": "31cd605f",
-            "holdings": [],
             "type": "Margin Trading",
-            "total": 0,
-            "cash": 0,
+            "balance": 20000,
+            "cash": 20000,
             "createdAt": "2023-01-28T09:26:16.399Z"
-        }
-    ],
-    "EntityObject": [
-        {
-            "name": "Good",
-            "salary": "234",
-            "birthDate": "2023-02-13"
         }
     ]
 }

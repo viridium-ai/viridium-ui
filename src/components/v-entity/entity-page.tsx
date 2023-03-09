@@ -1,31 +1,28 @@
 import { Component } from 'react';
-
 import { ViridiumOffcanvas } from '../v-layout/v-layout';
-
 import { Entity, EntityManager } from './entity-model';
-import { EntityForm, EntityList } from './entity-form';
+import { EntityForm } from './entity-form';
 import { StringUtils } from '../v-utils/v-string-utils';
-
+import ViridiumTable from '../v-table/v-table';
 interface EntityPageProps {
-    manager: EntityManager;
-    readonly?: boolean;
-    onSelect?: Function
+    manager: EntityManager<Entity>;
+    mode?: "readOnly" | "create" | "update" | "delete";
+    onSelect?: Function;
+    closeOnSubmit?: boolean;
     emptyListMsg?: string
 }
-
 interface EntityPageState {
     entity?: Entity;
     entities?: Array<Entity>,
     showForm: boolean,
-    editorMode: string;
+    editorMode: "readOnly" | "create" | "update" | "delete";
 }
-
 export class EntityPage extends Component<EntityPageProps, EntityPageState> {
     constructor(props: EntityPageProps) {
         super(props);
         this.state = {
             entity: undefined, entities: this.props.manager.get()
-            , showForm: false, editorMode: "create"
+            , showForm: false, editorMode: props.mode ? props.mode : "create"
         };
     }
     hideForm = () => {
@@ -45,7 +42,11 @@ export class EntityPage extends Component<EntityPageProps, EntityPageState> {
         } else {
             this.props.manager.update(formData);
         }
-        this.setState({ entities: this.props.manager.get(), showForm:false });
+        if (this.props.closeOnSubmit) {
+            this.setState({ entities: this.props.manager.get(), showForm: false });
+        } else {
+            this.setState({ entities: this.props.manager.get() });
+        }
     }
     onDelete = (entity: any) => {
         if (entity) {
@@ -53,7 +54,7 @@ export class EntityPage extends Component<EntityPageProps, EntityPageState> {
             this.setState({ entities: this.props.manager.get() });
         }
     }
-    onSelect = (entity: any) => {
+    onSelect = (id: any, entity: any, target: any) => {
         if (entity) {
             this.props.manager.select(entity.id);
             if (this.props.onSelect) {
@@ -82,12 +83,11 @@ export class EntityPage extends Component<EntityPageProps, EntityPageState> {
                 <div id="wrap" className="v-container">
                     {
                         this.state.entities && this.state.entities.length > 0 ?
-                            <EntityList
+                            <ViridiumTable
                                 onSelect={canSelect ? this.onSelect : undefined}
                                 onEdit={canEdit ? this.onEdit : undefined}
                                 onDelete={canDelete ? this.onDelete : undefined}
-                                view={"Table"}
-                                entities={this.state.entities}
+                                rows={this.state.entities}
                                 fieldDefs={this.props.manager.getFieldDefs}
                                 title={this.props.manager.name()}
                             />
@@ -96,18 +96,15 @@ export class EntityPage extends Component<EntityPageProps, EntityPageState> {
                                 {this.props.emptyListMsg ? this.props.emptyListMsg : <span>
                                     No {entityName} yet
                                 </span>}
-                                {this.props.readonly ? ", this data can not be added from this page" : ", click button below to add some"}
+                                {this.props.mode === "readOnly" ? ", this data can not be added from this page" : ", click button below to add some"}
                             </div>
                     }
                 </div>
                 {
-                    this.props.readonly ? "" : <span className="v-link" onClick={this.onCreate}>Add a {entityName}</span>
+                    this.props.mode === "readOnly" ? "" : <span className="v-link" onClick={this.onCreate}>Add a {entityName}</span>
                 }
-                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
-                    showForm={this.state.showForm}
-                    title={"Add a " + entityName} >
-                    <EntityForm title="" onSubmit={this.onSubmit} entity={this.state.entity}
-                        fieldDefs={this.props.manager.getFieldDefs} mode={this.state.editorMode} />
+                <ViridiumOffcanvas showTitle={false} onHide={this.hideForm} showForm={this.state.showForm} title={"Add a " + entityName} >
+                    <EntityForm title="" onSubmit={this.onSubmit} entity={this.state.entity} fieldDefs={this.props.manager.getFieldDefs} mode={this.state.editorMode} />
                 </ViridiumOffcanvas>
             </>
         );

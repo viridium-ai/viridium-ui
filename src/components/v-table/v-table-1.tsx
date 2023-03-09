@@ -220,8 +220,8 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                     <Form.Control type="text" id={id} onChange={this.onValueChange} value={cellData.value} />
                     : cellData.type === 'select' ?
                         <Form.Select id={id} onChange={this.onValueChange} value={cellData.value || ''}>
-                            {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
-                        </Form.Select> : cellData.text
+                        {cellData.options.map((o: any, idx: number) => <option key={'o' + idx} value={o.value}>{o.text}</option>)}
+                    </Form.Select> : cellData.text
     }
 
     handleFilterUpdate = (value: Filter) => {
@@ -311,6 +311,12 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                         </tbody>
                     </Table>
                 </div>
+                {
+                    this.state.filters ? <div className="v-filters">
+                        {this.state.filters.map((filter: Filter, idx: number) =>
+                            <TableFilter key={'h' + idx} value={filter.value} options={filter.options} onChange={this.handleFilterUpdate} name={filter.name} />)}
+                    </div> : ""
+                }
             </div>
         );
     }

@@ -1,28 +1,27 @@
 
 
 import { Route } from "react-router-dom";
-import { Industries } from "./industries";
-import { Products } from "./products";
-import { AboutUs } from "./about-us";
-import { WelcomePage } from "./welcome";
+import { Industries } from "./pages/industries";
+import { Products } from "./pages/products";
+import { AboutUs } from "./pages/about-us";
+import { WelcomePage } from "./pages/welcome";
 import './home-app.css';
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { securityManager } from "../../components/v-security/v-security-manager";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
+import { securityManager } from "components/v-security/v-security-manager";
 
 export class HomeApp extends MicroApp {
 
   public getName = () => {
     return "home-app";
   }
+  public getTitle = () => {
+    return "Viridium.AI"
+  }
+  public getIcon = () => {
+    return "./resources/green.png";
+  }
   public isSecure = (): boolean => {
     return false;
-  }
-
-  getHeader = (): any => {
-    return {
-      title: this.getTitle(),
-      visible: false
-    };
   }
 
   public routeItems: Array<RouteItem> = [

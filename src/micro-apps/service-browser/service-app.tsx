@@ -1,8 +1,10 @@
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { restClient } from "../../components/v-common/v-client";
-import { localCache } from "../../components/v-utils/v-cache-manager";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
+import { restClient } from "components/v-common/v-client";
+import { localCache } from "components/v-utils/v-cache-manager";
 import { ServiceSchema, objectToArray, Service } from "./service-types";
 import "./service-app.css"
+import { Route } from "react-router-dom";
+import { ServiceBrowser } from "./pages/services-page";
 class ServiceApp extends MicroApp {
     public _getApiDoc = (callback: any = undefined) => {
         let res = localCache.get('/v3/api-docs');
@@ -53,14 +55,17 @@ class ServiceApp extends MicroApp {
             });
         return schemas;
     }
-    public getNavItems = () => {
+    public getEntityServices = () => {
         let items = this.getServices().filter(service => {
             return service.getSchema() && service.depth === 2
         });
         return items;
     }
-    public getGroupedNavItems =() => {
-        let items = this.getNavItems();
+    public getEntityService = (name : string) => {
+        return this.getEntityServices().find((item)=> item.name === name);
+    }
+    public getGroupedServices =() => {
+        let items = this.getEntityServices();
         let groupedItems = [{
             name:"LookUp",
             items:[...items].filter((item)=> item.name[0] === 'a')
@@ -77,14 +82,14 @@ class ServiceApp extends MicroApp {
     }
     public getRouteItems = () => {
         return [
-            new RouteItem().init("Services", "Services", "2", "/service-app/emission"),
+            new RouteItem().init("Services", "Services", "2", "/service-app"),
             new RouteItem().init("Help", "Help", "2", "/knowledge-app/help")
         ];
     }
     public getRoutes = () => {
         return (
             <>
-                {this.getNavItems().map((service) => service.route())}
+                <Route path="/service-app" element={<ServiceBrowser  />} />
             </>
         )
     }

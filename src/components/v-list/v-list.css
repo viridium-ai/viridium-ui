@@ -1,0 +1,71 @@
+.v-list {
+    --v-list-padding-x: 0.4rem;
+    --v-list-padding-y: 0.6rem;
+    --v-list-padding-left: 3rem;
+    --v-list-icon-size:4rem;
+    --v-list-bg:white;
+    --v-list-header-bg:rgb(244, 244, 244);
+    --v-list-selected-bg:rgb(244, 244, 244);
+    --v-list-hover-bg:rgb(244, 244, 244);
+    --v-list-header-color:rgb(18, 85, 58);
+    --search-input-padding: 0.4rem;
+    --search-icon-padding: 0.6rem 0.7rem;
+    --search-input-padding-left: 3rem;
+    --search-icon-size-x:2.6rem;
+    --search-icon-size-y:2.4rem;
+    width: 100%;
+    border: 0px solid rgb(209, 209, 209);
+    font-size: 1rem;
+    border-radius: 4px;
+    background-color: var(--v-list-bg);
+}
+.v-list .v-list-container {
+    overflow-y: scroll;
+}
+.v-list .v-list-item {
+    padding: 0.6rem 1.5rem;
+    border-bottom: 1px solid rgb(244, 244, 244);
+    cursor: default;
+}
+
+.v-list .v-list-item:hover {
+    background-color: var(--v-list-hover-bg);
+}
+
+.v-list .v-selected {
+    background-color:var(--v-list-selected-bg);
+}
+
+.v-list .v-list-group-header {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--v-list-header-color);
+    background-color: var(--v-list-header-bg);
+    border-bottom: 1px solid rgb(216, 216, 216);
+    cursor: default;
+    white-space: nowrap;
+}
+
+.v-list .v-list-header {
+    position: relative;
+}
+.v-list .v-search-input {
+    width: 100%;
+    padding: var(--search-input-padding);
+    padding-left: var(--search-input-padding-left);
+    border: 0px;
+    font-size: 1.2rem;
+    height: 2.4rem;
+
+}
+
+.v-search-x-icon {
+    width: var(--search-icon-size-x);
+    height: var(--search-icon-size-y);
+    padding: var(--search-icon-padding);
+    border-right: 1px solid rgb(173, 173, 173);
+    margin: 0px 0px;
+    position: absolute;
+    left: 0em;
+}

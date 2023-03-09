@@ -1,0 +1,30 @@
+.v-master-details-browser {
+    --v-etailsmaster-d-browser-bg:rgb(255, 255, 255);
+    --v-master-details-nav-bg:rgb(237, 235, 235);
+    --v-master-details-body-bg:rgb(135, 88, 88);
+    --v-master-details-nav-width:20%;
+    --v-master-details-body-width:80%;
+    background-color: var(--v-master-details-browser-bg);
+    display: flex;
+}
+
+.v-master-details-browser .v-master-details-nav{
+    background-color: var(--v-master-details-nav-bg);
+    width: var(--v-master-details-nav-width);
+    display: block;
+}
+
+.v-master-details-browser .v-master-details-nav .v-nav-items {
+    width: 100%;
+    padding: 0.5rem 0rem;
+}
+
+.v-master-details-browser .v-master-details-body {
+    width: var(--v-master-details-body-width);
+    background-color: var(--v-master-details-body-bg);
+}
+
+.v-master-details-browser  .v-master-details-body .v-content{ 
+    padding: 1rem;
+
+}

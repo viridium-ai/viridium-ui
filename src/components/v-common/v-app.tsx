@@ -38,7 +38,6 @@ export class EventManager {
 
 export const eventManager = new EventManager();
 
-
 export abstract class MicroApp implements IMicroApp {
 
     getRoutes() {
@@ -48,7 +47,6 @@ export abstract class MicroApp implements IMicroApp {
         return [];
     }
 
- 
     getIcon(): string {
         return ""
     }

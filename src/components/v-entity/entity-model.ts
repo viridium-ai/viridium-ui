@@ -39,24 +39,24 @@ export interface Validator {
     validate(v: any, entity: any): ValidationMessage
 }
 
-export const CREDIT_CARD = (value : string) =>{
+export const CREDIT_CARD = (value: string) => {
     return undefined;
 }
 
 export const EMAIL = (v: string) => {
     return v.includes("@") ? undefined : {
-        message:"Valid email should have @",
-        severity:Severity.INFO,
+        message: "Valid email should have @",
+        severity: Severity.INFO,
         hint: "Email address must have @"
     };
 }
 
 export const PHONE = (v: string) => {
-    return v.length < 12 || v.match(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g) === null ?  {
-        message:"Please user format 123 456-7890",
-        severity:Severity.INFO,
-        hint: "Valid phone number should be like 123 456-7890" 
-    }: undefined;
+    return v.length < 12 || v.match(/^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g) === null ? {
+        message: "Please user format 123 456-7890",
+        severity: Severity.INFO,
+        hint: "Valid phone number should be like 123 456-7890"
+    } : undefined;
 }
 
 export const Money = new Intl.NumberFormat('en-US', {
@@ -67,21 +67,19 @@ export const Money = new Intl.NumberFormat('en-US', {
 const db = new DataService();
 export const getDB = db.getDB;
 
-export class EntityManager {
- 
+export class EntityManager<T extends Entity> {
     entityName: string;
     db: any;
     constructor(name: string) {
         this.entityName = name;
     }
     name = () => this.entityName;
-
     getPermissions = () => {
         return ["create", "update", "delete", "select"]
     }
-    get(): Array<Entity> {
+    get(): Array<T> {
         this.db = db.getDB();
-        let entities = this.db[this.entityName]?.map((c: any) => {
+        let entities = this.entities().map((c: any) => {
             return this.load(c);
         })
         return entities ? entities : [];
@@ -102,7 +100,12 @@ export class EntityManager {
         }
     }
     entities() {
-        return this.db[this.entityName];
+        this.db = db.getDB();
+        let entities = this.db[this.entityName];
+        if (entities === undefined) {
+            entities = [];
+        }
+        return entities;
     }
 
     delete(entityId: string) {
@@ -114,11 +117,28 @@ export class EntityManager {
         console.log(entityId + " is selected");
     }
 
-    update(entity: Entity | undefined = undefined) {
+    update(entity: T | undefined = undefined) {
         if (entity) {
             let entities = this.entities().filter((c: Entity) => c.id !== entity.id);
             entities.push(entity);
             this.db[this.entityName] = entities;
+            db.updateDB(this.db);
+        }
+    }
+    
+    archivedEntities() {
+        return this.db[this.entityName + "-archive"];
+    }
+
+    archive(entity: T | undefined = undefined) {
+        if (entity) {
+            let entities = this.archivedEntities();
+            if (!entities) {
+                entities = [];
+            }
+            entities.filter((c: Entity) => c.id !== entity.id);
+            entities.push(entity);
+            this.db[this.entityName + "-archive"] = entities;
             db.updateDB(this.db);
         }
     }
@@ -131,8 +151,8 @@ export class EntityManager {
         return this.create(data);
     }
 
-    defaultEntity(): Entity {
-        let newEntity = {id :  StringUtils.guid()} as any;
+    defaultEntity(): T {
+        let newEntity = { id: StringUtils.guid() } as any;
         this.getFieldDefs().forEach((def) => {
             newEntity[def.name] = def.defaultValue;
         });
@@ -141,8 +161,8 @@ export class EntityManager {
     }
 
     static emptyEntity(): Entity {
-        let newEntity = {id :  StringUtils.guid()} as any;
-    
+        let newEntity = { id: StringUtils.guid() } as any;
+
         return newEntity;
     }
 
@@ -152,7 +172,7 @@ export class EntityManager {
             FieldDef.new("name")
         ]
     }
-    
+
     static toValueType = (value: any) => {
         switch (typeof value) {
             case "string":
@@ -175,7 +195,7 @@ export class EntityManager {
 
         console.debug("entity defs", typeof entity, Object.getOwnPropertyNames(entity));
         try {
-            let fieldDefs = Object.keys(entity).filter((key)=>{
+            let fieldDefs = Object.keys(entity).filter((key) => {
                 let value = entity[key];
                 if (value instanceof Function) {
                     return false;
@@ -190,7 +210,7 @@ export class EntityManager {
                 }
                 return FieldDef.new(name, this.toValueType(value));
             }) as Array<FieldDef>;
-            return fieldDefs.filter((d : any) => !exclusions.includes(d.name) && !(d instanceof Array));
+            return fieldDefs.filter((d: any) => !exclusions.includes(d.name) && !(d instanceof Array));
         } catch (error) {
             console.error(entity, path);
             return [];
@@ -203,12 +223,14 @@ export class BaseEntity implements Entity {
     name: string;
     createdAt: Date;
     createdBy: string;
-    validated : boolean = false;
+    validated: boolean = false;
+    version: number;
     constructor() {
         this.id = StringUtils.guid();
         this.name = "";
         this.createdAt = new Date();
         this.createdBy = securityManager.getUserName();
+        this.version = -1;
     }
 
     clone = (c: any): any => {
@@ -218,15 +240,22 @@ export class BaseEntity implements Entity {
         this.createdBy = securityManager.getUserName();
         return this;
     }
+
+    nextVersion = (): any => {
+        let next = this.clone(this);
+        next.version = this.version + 1;
+        return next;
+    }
+
     assign = (c: any): any => {
         Object.assign(this, c);
         return this;
     }
 }
 export enum Gender {
-    MALE="Male",
-    FEMALE="Female",
-    OTHER="Other"
+    MALE = "Male",
+    FEMALE = "Female",
+    OTHER = "Other"
 }
 
 export class Audit {
@@ -244,16 +273,13 @@ export class Audit {
         this.recordDate = new Date();
     }
 }
-export class MetaDataManager extends EntityManager {
-    constructor() {
-        super("Metadata");
-    }
+export class MetaDataManager {
 
     getCountries = () => {
-        return getDB()["countries"].map((c:any)=>{
+        return getDB()["countries"].map((c: any) => {
             return {
-                label:c.name,
-                value:c.code
+                label: c.name,
+                value: c.code
             }
         });
     }
@@ -272,11 +298,12 @@ export class MetaDataManager extends EntityManager {
         return companies.rows.map((r: any) => {
             return {
                 value: r[1],
-                label: r[2]
+                label: r[2],
+                company: this.rowToCompany(r)
             }
         })
     }
-    
+
     getCompanies = () => {
         let companies = getDB()["companies"];
         return companies.rows.map((r: any) => {

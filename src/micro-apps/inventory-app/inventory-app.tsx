@@ -1,16 +1,16 @@
 import { Route } from "react-router-dom";
 
-import { DataSources } from "./flow-steps/data-sources";
-import { CompanySummary } from "./flow-steps/company-summary";
-import { ValueChainCategories } from "./flow-steps/value-chain-categories";
-import { Questionnaires } from "./flow-steps/questionnaires";
-import { Help } from "./help";
-import { InventoryCategories } from "./flow-steps/inventory-categories";
-import { InventoryConfig } from "./flow-steps/inventory-config";
+import { DataSources } from "./pages/data-sources";
+import { CompanySummary } from "./pages/company-summary";
+import { ValueChainCategories } from "./pages/value-chain-categories";
+import { Questionnaires } from "./pages/questionnaires";
+import { Help } from "./pages/help";
+import { InventoryCategories } from "./pages/inventory-categories";
+import { InventoryConfig } from "./pages/inventory-config";
 import './inventory-app.css';
 import { HomeApp } from "../home/home-app";
-import { RouteItem } from "../../components/v-common/v-app";
-import { ValueChainConfig } from "./flow-steps/value-chain-config";
+import { RouteItem } from "components/v-common/v-app";
+import { ValueChainConfig } from "./pages/value-chain-config";
 
 export class InventoryConfigApp extends HomeApp {
 

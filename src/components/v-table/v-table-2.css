@@ -1,0 +1,175 @@
+.v-table-2 {
+    --v-table-bg: rgb(245, 245, 245);
+    --v-table-color: rgb(46, 46, 46);
+    --v-table-border-color: rgb(213, 213, 213);
+    --v-table-header-bg: rgb(233, 233, 233);
+    --v-table-header-color: var(--v-table-color);
+    --v-table-cell-bg: var(--v-table-bg);
+    --v-table-cell-color: var(--v-table-color);
+    --v-table-container-bg: rgb(252, 252, 252);
+    --v-table-row-selected-bg: rgb(202, 244, 185);
+    --v-table-row-odd-bg: rgb(255, 255, 255);
+    --v-table-row-even-bg: rgb(245, 245, 245);
+    --v-paginator-hight: 2.5rem;
+    --v-paginator-color: rgb(98, 98, 98);
+    --v-paginator-bg: rgb(244, 244, 244);
+    --v-paginator-border: 1px rgb(236, 236, 236) solid;
+    --v-paginator-btn-bg: rgb(231, 231, 231);
+    --v-paginator-btn-hover-bg: var(--v-table-row-selected-bg);
+    --v-paginator-btn-selected-bg: var(--v-paginator-btn-hover-bg);
+    background-color: var(--v-table-bg);
+    padding: .5rem;
+    width: 100%;
+    cursor: default;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: column;
+}
+.v-table-2 .v-table-fixed-container {
+    border: 0.5px solid var(--v-table-border-color); 
+    height: calc(100% - 2.6rem);
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: red;
+}
+.v-table-2 .v-fixed {
+    width: 20%;
+    overflow-x: hidden
+}
+
+.v-table-2 .v-scrollable {
+    width: 80%;
+    overflow-x: scroll;
+}
+
+.v-table-2 .v-table-container_fixed {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 1234px;
+}
+
+.v-table-2 .v-table-container {
+    border: 0.5px solid var(--v-table-border-color); 
+    height: calc(100% - 2.6rem);
+}
+
+.v-table-2 .v-table-container .v-thead {
+    background-color: var(--v-table-header-bg);
+    color: var(--v-table-header-color);
+    display: flex;
+    border-bottom: 0.5px solid var(--v-table-border-color);
+}
+.v-table-2 .v-table-container .v-tbody {
+    background-color: var(--v-table-cell-bg);
+    color: var(--v-table-cell-color);
+    display: flex;
+    flex-direction: column;
+    height: calc(100% - 3rem);
+    overflow-y: scroll;
+}
+.v-table-2 .v-table-container .v-tbody .v-table-row {
+    display: flex;
+}
+.v-table-2 .v-table-container .v-tbody .v-table-row:not(:last-child) {
+    border-bottom: 0.5px solid var(--v-table-border-color);
+}
+.v-table-2 .v-table-container .v-th {
+    flex-grow: 1;
+    display: inline-block;
+    text-align: left;
+    padding: 1rem 0.5rem;
+    font-weight: bolder;
+    font-size: larger;
+    position: relative;
+}
+
+.v-table-2 .v-th-divider {
+    position: absolute;
+    display: inline-block;
+    right :-5px;
+    top: 0px;
+    width: 10px;
+    height: 100%;
+    display: inline-block;
+    z-index: 100;
+}
+
+.v-table-2 .v-th-divider:hover {
+    cursor: col-resize;
+}
+
+.v-table-2 .v-table-container .v-th:not(:first-child) {
+    border-left: 0.5px solid var(--v-table-border-color);
+}
+.v-table-2 .v-table-container .v-table-row .v-td {
+    flex-grow: 1;
+    display: inline-block;
+    text-align: left;
+    padding: 0.8rem 0.5rem;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.v-table-2 .v-table-container .v-table-row:not(.v-selected):hover {
+    background-color: rgba(202, 202, 202, 0.67);
+}
+.v-table-2 .v-table-container .v-table-row .v-td:not(:first-child) {
+    border-left: 0.5px solid var(--v-table-border-color);
+}
+.v-table-2 .v-table-container {
+    background-color: var(--v-table-container-bg);
+}
+.v-table-2 .v-paginator {
+    background-color: var(--v-paginator-bg);
+    color: var(--v-paginator-color);
+    display: flex;
+    align-items: center;
+    padding: 0px 1rem;
+    min-height: var(--v-paginator-hight);
+    border: var(--v-paginator-border);
+}
+.v-table-2 .v-paginator .v-page-prev, .v-page-next {
+    display: inline-block;
+    margin: 2px 2px;
+    padding: 2px;
+    background-color: var(--v-paginator-bg);
+    min-width: 1.5rem;
+    text-align: center;
+    cursor: default;
+    border-radius: 2px;
+}
+.v-table-2 .v-paginator .v-page-no {
+    display: inline-block;
+    margin: 4px 2px;
+    padding: 4px;
+    background-color: var(--v-paginator-bg);
+    min-width: 2em;
+    text-align: center;
+    cursor: default;
+    border-radius: 2px;
+}
+.v-table-2 .v-paginator .v-page-no.v-selected {
+    background-color: var(--v-paginator-btn-selected-bg);
+}
+.v-table-2 .v-paginator .v-page-no:hover {
+    background-color: var(--v-paginator-btn-hover-bg);
+}
+.v-table-2 .v-sort {
+    visibility: hidden;
+    margin: 0px .5rem;
+}
+.v-table-2 .v-th:hover .v-sort {
+    visibility: visible;
+}
+.v-table-2 .v-table-row.v-even {
+    background-color: var(--v-table-row-even-bg);
+}
+.v-table-2 .v-table-row.v-odd {
+    background-color: var(--v-table-row-odd-bg);
+}
+.v-table-2 .v-table-row.v-selected {
+    background-color: var(--v-table-row-selected-bg);
+}
+
+

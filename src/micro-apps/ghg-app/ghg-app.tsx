@@ -2,17 +2,17 @@
 
 import { Route } from "react-router-dom";
 
-import { MappingCategories } from "./inventory-builder/inventory-categories";
-import { InventoryConfig } from "./inventory-builder/inventory-config";
-import { InventoryExport } from "./inventory-builder/inventory-export";
-import { InventoryItemsView } from "./inventory-builder/inventory-items";
-import { InventorySummary } from "./inventory-builder/inventory-summary";
+import { MappingCategories } from "./pages/inventory-categories";
+import { InventoryConfig } from "./pages/inventory-config";
+import { InventoryExport } from "./pages/inventory-export";
+import { InventoryItemsView } from "./pages/inventory-items";
+import { InventorySummary } from "./pages/inventory-summary";
 
 
 import './ghg-app.css';
-import { CompanyList } from "./inventory-builder/companies";
-import { MicroApp, RouteItem } from "../../components/v-common/v-app";
-import { SiteList } from "./inventory-builder/sites";
+import { CompanyList } from "./pages/companies";
+import { MicroApp, RouteItem } from "components/v-common/v-app";
+import { SiteList } from "./pages/sites";
 
 class GreenHouseApp extends MicroApp {
 

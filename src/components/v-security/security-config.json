@@ -2,18 +2,18 @@
     "users": [
         {
             "id": "1",
-            "username": "anpwang@gmail.com",
+            "username": "demo@viridium.ai",
             "password": "welcome.1234",
             "roles": [
                 "admin",
                 "developer"
             ],
-            "firstName": "Tim",
-            "lastName": "Wang",
+            "firstName": "Demo",
+            "lastName": "Viridium",
             "title": "Engineer",
-            "avatar": "./anping.png",
+            "avatar": "./viridium.png",
             "gender": "m",
-            "email": "anpwang@gmail.com",
+            "email": "demo@viridium.ai",
             "phone": "650-576-2123"
         },
         {
@@ -44,7 +44,7 @@
             "avatar": "./sarah.png",
             "gender": "f",
             "email": "sarah.wang@viridium.ai",
-            "phone": "925-576-2123"
+            "phone": "925-576-4123"
         }
     ],
     "roles": [

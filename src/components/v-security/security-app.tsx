@@ -170,7 +170,7 @@ export const LoginForm = (props: any) => {
                                     </Row>
                                 </div>
                                 <div id="create-account">
-                                    New to Viridium? <a href="/signup">Create account</a>
+                                    New to Luckie? <a href="/signup">Create account</a>
                                 </div>
                             </div>
                         </LayoutPage>

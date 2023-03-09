@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
  
-import RootApp from './viridium-app';
+import RootApp from './main';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

@@ -1,8 +1,8 @@
-import { FieldDef, SelectOption, ValueType } from "../components/v-entity/entity-form";
-import { EMAIL, Entity, PHONE } from "../components/v-entity/entity-model";
-import { securityManager } from "../components/v-security/v-security-manager";
-import { StringUtils } from "../components/v-utils/v-string-utils";
-import { getCompany, getConfigs, getCountry } from "../config/v-config";
+import { FieldDef, SelectOption, ValueType } from "components/v-entity/entity-form";
+import { EMAIL, Entity, PHONE } from "components/v-entity/entity-model";
+import { securityManager } from "components/v-security/v-security-manager";
+import { StringUtils } from "components/v-utils/v-string-utils";
+import { getCompany, getConfigs, getCountry } from "config/v-config";
 export interface NamedObject {
     id: string,
     name: string

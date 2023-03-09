@@ -1,9 +1,9 @@
 import { PureComponent } from 'react';
 
-import { LayoutBodyNav, LayoutPage } from '../../components/v-layout/v-layout'
+import { LayoutBodyNav, LayoutPage } from 'components/v-layout/v-layout'
 import { Service, ServiceSchema } from './service-types';
 import { serviceApp } from './service-app';
-import { FieldDef, EntityList, EntityForm } from '../../components/v-entity/entity-form';
+import { FieldDef, EntityList, EntityForm } from 'components/v-entity/entity-form';
 
 import { Toast } from 'react-bootstrap';
 
@@ -57,7 +57,7 @@ export class ServiceManager extends PureComponent<ServiceManagerProps, ServiceMa
                             <div className="me-auto">Services</div>
                         </Toast.Header>
                         {
-                            serviceApp.getGroupedNavItems().map((item) => {
+                            serviceApp.getGroupedServices().map((item) => {
                                 return <div>
                                     <div className="v-title">{item.name}</div>
                                     <LayoutBodyNav selected={this.getNavItem()} routeItems={item.items.map((s) => s.toNavItem())} />

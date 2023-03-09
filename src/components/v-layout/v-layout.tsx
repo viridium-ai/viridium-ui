@@ -8,7 +8,7 @@ import { IMicroApp, MicroApp } from "../v-common/v-app";
 import { VscMail } from "react-icons/vsc";
 
 import "./v-layout.css";
-import { clearCachedConfigs, getConfigs } from "../../config/v-config";
+import { clearCachedConfigs, getConfigs } from "config/v-config";
 import Badge from "@mui/material/Badge";
 import { StringUtils } from "../v-utils/v-string-utils";
 
@@ -42,7 +42,6 @@ export const Search = (props: any) => {
         </div>
     )
 }
-
 
 export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
     const navigate = useNavigate();
@@ -83,7 +82,6 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
         </Navbar> : <></>
     );
     return ui();
-
 }
 
 export const PanelHeader = (props: { className?: string, title: Function, actions: Function }) => {
@@ -102,13 +100,13 @@ export const PanelHeader = (props: { className?: string, title: Function, action
     );
 }
 
-
 export const LayoutHeader = (props: any) => {
     const microApp = props.microApp as MicroApp;
     let routeItems = microApp.getRouteItems();
     let group1 = routeItems.filter((item) => item.group === "1");
     let group2 = routeItems.filter((item) => item.group === "2");
     const configs = getConfigs();
+
     const renderGroup1 = () => {
         if ((microApp as any).searchBar) {
             return (microApp as any).searchBar();
@@ -119,45 +117,47 @@ export const LayoutHeader = (props: any) => {
                     href={v_link(routeItem.route)}>{routeItem.name}</Nav.Link>
             }) : ""
     }
-    const ui = () => (
-        <Navbar id={microApp.getName() + "-nav"} expand="lg">
-            <Navbar.Brand href={v_link("/")}>
-                {props.brand !== undefined ? props.brand :
-                    <>
-                        {
-                            configs.icon ? <img src={configs.icon} className="v-logo" alt={configs.title} ></img> : ""
-                        }
-                        <span>{configs.title}</span>
-                    </>
-                }
-            </Navbar.Brand>
-
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-                <Nav className="me-auto">
-                    {renderGroup1()}
-                </Nav>
-                <Nav className="layout-header-end me-end">
-                    {
-                        group2.length > 0 ?
-                            group2.map((routeItem, idx) => {
-
-                                return <Nav.Link id={"nav-end-" + idx}
-                                    key={"menu_item_" + idx}
-                                    href={v_link(routeItem.route)}>{routeItem.name}</Nav.Link>
-                            }) : ""
+    const ui = () => {
+        const iconImg = microApp.getIcon() ? microApp.getIcon() : configs.icon;    
+        const title = microApp.getTitle() ? microApp.getTitle() : configs.title;
+        return (
+            <Navbar id={microApp.getName() + "-nav"} expand="lg">
+                <Navbar.Brand href={v_link("/")}>
+                    {props.brand !== undefined ? props.brand :
+                        <>
+                            {
+                                iconImg ? <img src={iconImg} className="v-logo" alt={configs.title} ></img> : ""
+                            }
+                            <span>{title}</span>
+                        </>
                     }
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    )
+                </Navbar.Brand>
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                    <Nav className="me-auto">
+                        {renderGroup1()}
+                    </Nav>
+                    <Nav className="layout-header-end me-end">
+                        {
+                            group2.length > 0 ?
+                                group2.map((routeItem, idx) => {
+
+                                    return <Nav.Link id={"nav-end-" + idx}
+                                        key={"menu_item_" + idx}
+                                        href={v_link(routeItem.route)}>{routeItem.name}</Nav.Link>
+                                }) : ""
+                        }
+                    </Nav>
+                </Navbar.Collapse>
+            </Navbar>
+        )
+    }
     return ui();
 }
 
 export interface WrapperProps {
     children?: React.ReactNode
 }
-
 
 export interface INavItem {
     group?: string;
@@ -166,46 +166,6 @@ export interface INavItem {
     icon?: string,
     type?: string,
     route: string
-}
-
-export interface BodyNavProps {
-    children?: React.ReactNode,
-    routeItems: INavItem[];
-    onSelect?: Function,
-    selected?: INavItem
-}
-
-export const LayoutBodyNav = (props: BodyNavProps) => {
-    const [selected, setSelected] = useState<INavItem | undefined>(props.selected);
-    const navigate = useNavigate();
-    useEffect(() => {
-        //console.log("useEffect is called", props);
-        if (selected === undefined && props.selected) {
-            setSelected(props.selected);
-        }
-    });
-    const onClick = (item: INavItem) => {
-        setSelected({ ...item });
-        if (props.onSelect) {
-            props.onSelect(item);
-        } else {
-            navigate(`${item.route}`, { replace: true });
-        }
-    };
-    //console.log("Render result", selected);
-    return (
-        <div className="v-nav-items">
-            {
-                props.routeItems.map((item, idx) => {
-                    let cName = "v-nav-item" + (item.name === selected?.name ? " selected" : "");
-                    return <div key={item.name} className={cName}
-                        onClick={(e: any) => { onClick(item) }}>
-                        {item.label ? item.label : StringUtils.t(item.name)}
-                    </div>
-                })
-            }
-        </div>
-    )
 }
 
 export const LayoutFooter = (props: { microApp?: IMicroApp, children: any }) => {
@@ -228,12 +188,29 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
         }
     });
 
+    const renderBody = (sideNav: any, main: any) => {
+        if (sideNav && sideNav.length > 0) {
+            return <>
+                <div className="v-body-nav">
+                    {sideNav}
+                </div>
+                <div className="v-body-main">
+                    {main}
+                </div>
+            </>
+        } else {
+            return main
+        }
+    }
+
     const ui = () => {
         let main = props.children;
         let footer = undefined;
         let brand = undefined;
+        let sideNav = undefined;
         if (props.children instanceof Array) {
             main = props.children.filter((c: any) => c.props.slot === undefined || c.props.slot === "main");
+            sideNav = props.children.filter((c: any) => c.props.slot === "side-nav");
             brand = props.children.find((c: any) => c.props.slot === "brand");
             footer = props.children.find((c: any) => c.props.slot === "footer");
         }
@@ -244,7 +221,7 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
                         <LayoutHeader brand={brand} microApp={microApp} />
                         {props.header ? <ApplicationHeader microApp={microApp} /> : ""}
                         <div className={'v-page-body'}>
-                            {main}
+                            {renderBody(sideNav, main)}
                         </div>
                         <LayoutFooter>
                             {footer === undefined ? "" : footer}
@@ -255,4 +232,43 @@ export const LayoutPage = (props: { microApp: IMicroApp, children: any, header?:
         )
     };
     return ui();
+}
+
+
+export interface BodyNavProps {
+    children?: React.ReactNode,
+    routeItems: INavItem[];
+    onSelect?: Function,
+    selected?: INavItem
+}
+
+export const LayoutBodyNav = (props: BodyNavProps) => {
+    const [selected, setSelected] = useState<INavItem | undefined>(props.selected);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (selected === undefined && props.selected) {
+            setSelected(props.selected);
+        }
+    });
+    const onClick = (item: INavItem) => {
+        setSelected({ ...item });
+        if (props.onSelect) {
+            props.onSelect(item);
+        } else {
+            navigate(`${item.route}`, { replace: true });
+        }
+    };
+    return (
+        <div className="v-nav-items">
+            {
+                props.routeItems.map((item, idx) => {
+                    let cName = "v-nav-item" + (item.name === selected?.name ? " selected" : "");
+                    return <div key={item.name} className={cName}
+                        onClick={(e: any) => { onClick(item) }}>
+                        {item.label ? item.label : StringUtils.t(item.name)}
+                    </div>
+                })
+            }
+        </div>
+    )
 }

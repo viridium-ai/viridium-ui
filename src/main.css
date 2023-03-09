@@ -1,0 +1,271 @@
+.navbar {
+  --bs-navbar-padding-y: 6px;
+  --bs-navbar-padding-x: 24px;
+  --bs-navbar-color: rgb(255, 255, 255);
+  --bs-navbar-hover-color: rgba(236, 236, 236, 0.7);
+  --bs-navbar-disabled-color: rgba(0, 0, 0, 0.3);
+  --bs-navbar-active-color: rgba(236, 236, 236, 0.9);
+  --bs-navbar-brand-padding-y: 0.3125rem;
+  --bs-navbar-brand-margin-end: 1rem;
+  --bs-navbar-brand-font-size: 1.25rem;
+  --bs-navbar-brand-color: rgba(245, 245, 245, 0.9);
+  --bs-navbar-brand-hover-color: rgba(245, 245, 245, 0.9);
+  --bs-navbar-nav-link-padding-x: 0.5rem;
+  --bs-navbar-toggler-padding-y: 0.25rem;
+  --bs-navbar-toggler-padding-x: 0.75rem;
+  --bs-navbar-toggler-font-size: 1.0;
+  --bs-navbar-toggler-icon-bg: url(data:image/svg+xml,%3csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 30 30%27%3e%3cpath stroke=%27rgba%280, 0, 0, 0.55%29%27 stroke-linecap=%27round%27 stroke-miterlimit=%2710%27 stroke-width=%272%27 d=%27M4 7h22M4 15h22M4 23h22%27/%3e%3c/svg%3e);
+  --bs-navbar-toggler-border-color: rgba(255, 255, 255, 0.1);
+  --bs-navbar-toggler-border-radius: 0.375rem;
+  --bs-navbar-toggler-focus-width: 0.1rem;
+  --bs-navbar-toggler-transition: box-shadow 0.15s ease-in-out;
+  --bs-navbar-bg:#3d77ba;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bs-navbar-bg);
+}
+
+.toast {
+  --bs-toast-max-width:100%;
+  box-shadow: none;
+}
+
+body {
+  color: #1A1A1A;
+}
+
+a {
+  text-decoration: underline;
+  color:#0042A5;
+}
+
+a :visited {
+  color:#0042A5;
+}
+.main-app {
+  text-align: left;
+  height: 100vh;
+}
+.v-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.v-shadow {
+  box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
+}
+.v-flex {
+  display: flex;
+  align-items: center;
+}
+
+.v-flex-r {
+  display: flex;
+  flex-direction: row;
+  gap: .5rem;
+  align-items: center;
+}
+
+.v-flex-c {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+}
+
+.v-flex-item {
+  margin: 0px .5em;
+}
+.v-flex-end {
+  margin-left: auto;
+}
+
+.v-container {
+  width: 100%;
+}
+
+.v-header {
+  font-size: calc(10px + 2vmin);
+  background-color: rgb(179, 179, 179);
+  border-radius: 12px 12px 0px 0px;
+}
+.v-body {
+  color: rgb(55, 55, 55);
+  padding: 1em;
+  background-color: rgb(242, 242, 242);
+}
+.v-link {
+  color: #0042A5;
+  text-decoration: none;
+  margin: 0.5em;
+  cursor: pointer;
+}
+
+.v-icon-button {
+  margin: .5rem;
+  padding: .0rem .5rem;
+  font-size: 1.0rem;
+  border-radius: 0.2rem;
+  cursor: default;
+}
+
+
+.v-footer {
+  padding: 1rem;
+  color: rgb(55, 55, 55);
+  background-color: var(--bs-toast-header-border-color);
+}
+.v-title {
+  padding: 12px;
+  font-size: larger;
+  font-weight: 500;
+  color: rgb(64, 64, 64);
+}
+
+.v-list {
+  padding: 0px 0px;
+}
+
+.v-list-header {
+  padding: 8px 8px 8px 8px;
+  font-size: 1.2em;
+  border-bottom: 1px solid var(--bs-toast-header-border-color);
+}
+.v-list-body {
+  padding: 12px 2px;
+}
+
+.v-list-item {
+  padding: 0.8em;
+  cursor: pointer;
+  color : rgb(59, 59, 59);
+  background-color: white;
+  border-bottom: solid 1px var(--bs-toast-header-border-color);
+}
+.v-actions {
+  text-align: right;
+  font-size: large;
+}
+.v-buttons {
+  padding: .5rem;
+}
+.v-button {
+  cursor: pointer;
+  border: 1px white solid;
+  border-radius: 18px;
+  text-align: center;
+  padding: 0.5em 1.5em;
+}
+.wizard-actions {
+  padding: 10px;
+}
+.v-field-label {
+  padding: 0.6em 1rem;
+  color: rgb(83, 83, 83);
+  background-color: rgb(244, 244, 244);
+}
+.v-field-value {
+  padding: 0.6em 1rem;
+  color: rgb(62, 62, 62);
+}
+.v-text-body {
+  line-height: 1.8em;
+  padding: 1em;
+}
+
+.wizard-form-row {
+  margin-bottom: .5rem;
+}
+.viridium-logo {
+  width: 30px;
+  margin-top: -10px;
+  margin-right: 0px;
+  height: 30px;
+}
+/*
+@media (prefers-reduced-motion: no-preference) {
+  .v-logo {
+    animation: v-logo-spin infinite 20s linear;
+  }
+}
+ @keyframes v-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+.v-panel {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+.v-panel-content {
+  padding: 1em
+}
+
+.v-right {
+  text-align: right;
+}
+
+.v-left {
+  text-align: left;
+}
+
+.main-app .v-panel-header {
+  padding: .5em;
+  font-weight: 600;
+}
+.main-app .v-summary {
+  padding:  2.0rem 0.5rem;
+  font-size: large;
+}
+
+
+.main-app .v-body-help {
+  flex: 20%;
+  padding: 0.5rem;
+  display: none;
+}
+.main-app .v-actions {
+  display: flex;
+  padding: 2rem 1rem;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+.main-app .v-question {
+  padding: 0.2rem 1rem;
+  border-bottom: 1px solid rgb(237, 237, 237);
+}
+.main-app .v-sub-questions {
+  margin-top: 0.1em;
+  padding: 0.5rem;
+  background-color: rgb(244, 244, 244);
+}
+.main-app .v-form-row {
+  padding: 0.2rem;
+}
+.main-app .v-form-label {
+  padding: 0.7rem;
+  font-size: medium;
+}
+.main-app .v-form-input {
+  padding: 0.2rem;
+}
+.main-app .main-checkbox {
+  padding: 1em;
+}
+.main-app .company-details{
+  padding: .5rem;
+  margin-top: .5em;
+}
+.main-app .v-summary {
+  font-size: small;
+  font-weight: 600;
+  padding: .5rem 1.5rem;
+}

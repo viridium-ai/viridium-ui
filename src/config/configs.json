@@ -364,11 +364,11 @@
     "inventory": [
         {
             "id": "1",
-            "name": "Data Inventory for Acme Appliances",
+            "name": "Data Inventory for Big Airport",
             "updatedAt": "26/12/2022",
             "status": "Uploaded",
             "updatedBy": "Val",
-            "notes": "This is final onboarding data inventory for Acme Appliances",
+            "notes": "This is final onboarding data inventory for Big Airport",
             "items": [
                 {
                     "id": "1",
@@ -383,7 +383,7 @@
                 {
                     "id": "2",
                     "dataSourceName": "Central APU system",
-                    "description": "Illinois Giga Factory",
+                    "description": "Maintenance POD 3",
                     "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "SAP",
                     "type": "API",
@@ -443,7 +443,7 @@
                 {
                     "id": "2",
                     "dataSourceName": "Central APU system",
-                    "description": "Illinois Giga Factory",
+                    "description": "Maintenance Pod 3",
                     "notes": "Added by Viridium.AI Data Operations team",
                     "tech": "SAP",
                     "type": "API",
@@ -640,8 +640,8 @@
         },
         {
             "id": "2",
-            "value": "Shipping",
-            "label": "Shipping"
+            "value": "Airside",
+            "label": "Airside"
         },
         {
             "id": "3",
@@ -657,8 +657,8 @@
         },
         {
             "id": "2",
-            "value": "Shipping",
-            "label": "Shipping"
+            "value": "Taxiing",
+            "label": "Taxiing"
         },
         {
             "id": "3",
@@ -674,8 +674,8 @@
         },
         {
             "id": "2",
-            "value": "Shipping",
-            "label": "Shipping"
+            "value": "Taxiing Below 3K Feet",
+            "label": "Taxiing Below 3K Feet "
         },
         {
             "id": "3",

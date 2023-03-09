@@ -3,20 +3,6 @@
     display: flex;
 }
 
-.dm-app .treeview {
-    width: 20vw;
-    height: 100%;
-    overflow: auto;
-    background-color: white;
-}
-
-.dm-app .data-cloud .v-body-nav {
-    width: 22vw;
-    max-width: none;
-    height: calc(100vh - 110px);
-    border-right: 1px solid rgb(248, 248, 248);
-}
-
 .dm-app .row {
     padding: 1px;
     padding: .2rem 0rem;
@@ -56,7 +42,7 @@
 }
 
 .dm-app .v-pie-item {
-    height: 300px;
+    height: 200px;
     width: 200px;
     overflow: hidden;
     margin: 0px auto;

@@ -158,17 +158,19 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
     nodeSelected = (nodeId: string, selected: boolean) => {
         let node = this.findNodeById(this.state.data, nodeId);
         if (node) {
-            node.state.selected = selected;
-            if (this.props.options?.selectChildren) {
-                this.setChildrenState(node.children, node.state);
-            } else {
-                if (selected) this.unsetSiblingState(node, node.state);
+            if (this.props.options?.selectable) {
+                node.state.selected = selected;
+                if (this.props.options?.selectChildren) {
+                    this.setChildrenState(node.children, node.state);
+                } else {
+                    if (selected) this.unsetSiblingState(node, node.state);
+                }
+                this.setState({ data: this.state.data });
+                this.updateTree();
             }
-            this.setState({ data: this.state.data });
             if (this.props.onClick) {
                 this.props.onClick(this.state.data, node);
             }
-            this.updateTree();
         }
     }
     nodeDoubleClicked = (nodeId: any, selected: any) => {

@@ -1,6 +1,6 @@
 {
     "title": "VIRIDIUM.AI",
-    "version": "1.0.1",
+    "version": "1.0.0",
     "description": "Viridium Sustainability Data Platform",
     "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
     "online" : false,
@@ -3635,16 +3635,16 @@
                     "text": "DEFRA – Emission Coefficients​"
                 },
                 {
-                    "id": "7.9",
+                    "id": "7.10",
                     "text": "Population Data​"
                 }
                 ,
                 {
-                    "id": "7.9",
+                    "id": "7.11",
                     "text": "Survey/panel data (e.g. car, appliance ownership)​"
                 },
                 {
-                    "id": "7.9",
+                    "id": "7.12",
                     "text": "Database of PPA Incentives Globally/Nationally/Locally​"
                 }
             

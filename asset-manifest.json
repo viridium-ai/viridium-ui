@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/viridium-ui/static/css/main.b8af4945.css",
-    "main.js": "/viridium-ui/static/js/main.916cec18.js",
+    "main.css": "/viridium-ui/static/css/main.9d7f9729.css",
+    "main.js": "/viridium-ui/static/js/main.8de1f2c1.js",
     "static/media/home-bg.jpg": "/viridium-ui/static/media/home-bg.75c34fa01de919b4cab6.jpg",
     "index.html": "/viridium-ui/index.html"
   },
   "entrypoints": [
-    "static/css/main.b8af4945.css",
-    "static/js/main.916cec18.js"
+    "static/css/main.9d7f9729.css",
+    "static/js/main.8de1f2c1.js"
   ]
 }

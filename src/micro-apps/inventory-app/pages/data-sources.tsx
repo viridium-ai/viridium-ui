@@ -117,7 +117,7 @@ export class DataSources extends PureComponent<any, { report: any, dataSources: 
                                 </Form.Group>
                             </Col>
                             <Col sm={6} >
-                                <div className="v-right">
+                                <div className="v-flex">
                                     <span className="v-icon-button" onClick={this.selectAll} >Select All </span>
                                     <span className="v-icon-button" onClick={this.clearAll} >Clear </span>
                                     <span className="v-icon-button" onClick={this.addNew} >Add </span>

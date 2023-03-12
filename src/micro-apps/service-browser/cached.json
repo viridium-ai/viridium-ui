@@ -3242,7 +3242,7 @@
           }
         }
       },
-      "/ghg/capital-goods/{id}": {
+      "/ghg/capital-good/{id}": {
         "get": {
           "tags": [
             "capital-good-controller"
@@ -3870,7 +3870,7 @@
           "tags": [
             "data-source-controller"
           ],
-          "operationId": "get_42",
+          "operationId": "get_41",
           "parameters": [
             {
               "name": "id",
@@ -3959,7 +3959,7 @@
           "tags": [
             "customer-controller"
           ],
-          "operationId": "get_43",
+          "operationId": "get_42",
           "parameters": [
             {
               "name": "id",
@@ -4048,7 +4048,7 @@
           "tags": [
             "connector-controller"
           ],
-          "operationId": "get_44",
+          "operationId": "get_43",
           "parameters": [
             {
               "name": "id",
@@ -4137,7 +4137,7 @@
           "tags": [
             "company-controller"
           ],
-          "operationId": "get_45",
+          "operationId": "get_44",
           "parameters": [
             {
               "name": "id",
@@ -4226,7 +4226,7 @@
           "tags": [
             "address-controller"
           ],
-          "operationId": "get_46",
+          "operationId": "get_45",
           "parameters": [
             {
               "name": "id",
@@ -4315,7 +4315,7 @@
           "tags": [
             "account-controller"
           ],
-          "operationId": "get_47",
+          "operationId": "get_46",
           "parameters": [
             {
               "name": "id",
@@ -4404,7 +4404,7 @@
           "tags": [
             "user-controller"
           ],
-          "operationId": "get_48",
+          "operationId": "get_47",
           "parameters": [
             {
               "name": "id",
@@ -4493,7 +4493,7 @@
           "tags": [
             "permission-controller"
           ],
-          "operationId": "get_50",
+          "operationId": "get_49",
           "parameters": [
             {
               "name": "id",
@@ -6647,7 +6647,7 @@
           }
         }
       },
-      "/ghg/capital-goods": {
+      "/ghg/capital-good": {
         "get": {
           "tags": [
             "capital-good-controller"
@@ -7036,6 +7036,46 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/Gateway"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/data/gateway/proxy/{gatewayId}": {
+        "post": {
+          "tags": [
+            "gateway-controller"
+          ],
+          "operationId": "execute",
+          "parameters": [
+            {
+              "name": "gatewayId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
                   }
                 }
               }
@@ -7699,6 +7739,44 @@
           }
         }
       },
+      "/data/gateway/metadata/{gatewayId}": {
+        "get": {
+          "tags": [
+            "gateway-controller"
+          ],
+          "operationId": "metadata",
+          "parameters": [
+            {
+              "name": "gatewayId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "query",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/GatewayRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/admin/users/{id}/roles": {
         "get": {
           "tags": [
@@ -7802,7 +7880,7 @@
           "tags": [
             "role-controller"
           ],
-          "operationId": "get_49",
+          "operationId": "get_48",
           "parameters": [
             {
               "name": "id",
@@ -11254,6 +11332,31 @@
             }
           }
         },
+        "GatewayRequest": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "offset": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "limit": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "orderBy": {
+              "type": "string"
+            },
+            "config": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "Grant": {
           "type": "object",
           "properties": {
@@ -11344,5 +11447,5 @@
     }
   },
   "ttl": 86400000,
-  "time": 1677560550795
+  "time": 1678587900888
 }

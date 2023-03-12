@@ -43,7 +43,9 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
         return (
             <LayoutPage microApp={dataSourceManager} pageName="data-cloud">
                 <div slot="side-nav">
-                    <TreeView onClick={this.onSelect} options={{ selectable: false, enableLinks: false, selectChildren: true }} data={this.getTaxonomy()} />
+                    <div className="v-dashboard-panel">
+                        <TreeView onClick={this.onSelect} options={{ selectable: false, enableLinks: false, selectChildren: true }} data={this.getTaxonomy()} />
+                    </div>
                 </div>
                 <div className="v-dashboard-panel">
                     <Row >

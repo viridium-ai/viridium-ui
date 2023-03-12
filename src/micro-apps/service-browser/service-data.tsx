@@ -50,33 +50,32 @@ export class ServiceManager extends PureComponent<ServiceManagerProps, ServiceMa
         let service = this.state.service;
         let entity = this.state.selectedObject ? this.state.selectedObject : schema.getEmptyObject();
         return (
-            <div className='schema-app'>
-                <LayoutPage microApp={serviceApp}>
-                    <div className="v-body-nav">
-                        <Toast.Header className="v-header" closeButton={false}>
-                            <div className="me-auto">Services</div>
-                        </Toast.Header>
-                        {
-                            serviceApp.getGroupedServices().map((item) => {
-                                return <div>
-                                    <div className="v-title">{item.name}</div>
-                                    <LayoutBodyNav selected={this.getNavItem()} routeItems={item.items.map((s) => s.toNavItem())} />
-                                </div>
-                            })
-                        }
+            <LayoutPage microApp={serviceApp}>
+                <div className="v-body-nav">
+                    <Toast.Header className="v-header" closeButton={false}>
+                        <div className="me-auto">Services</div>
+                    </Toast.Header>
+                    {
+                        serviceApp.getGroupedServices().map((item) => {
+                            return <div>
+                                <div className="v-title">{item.name}</div>
+                                <LayoutBodyNav selected={this.getNavItem()} routeItems={item.items.map((s) => s.toNavItem())} />
+                            </div>
+                        })
+                    }
+                </div>
+                <div className="v-body-main">
+                    <div className="v-flex v-header">
+                        <span className="me-auto">{service.getLabel()}</span>
                     </div>
-                    <div className="v-body-main">
-                        <div className="v-flex v-header">
-                            <span className="me-auto">{service.getLabel()}</span>
-                        </div>
-                        <EntityForm inline={true} title='' entity={entity}
-                            onSubmit={this.onSubmit}
-                            mode={"create"}
-                            fieldDefs={this.fieldDefs} />
-                        <EntityList view='Table' title={`${schema.getLabel()}`} entities={this.state.entities}
-                            fieldDefs={this.fieldDefs} />
-                    </div>
-                </LayoutPage>
-            </div>)
+                    <EntityForm inline={true} title='' entity={entity}
+                        onSubmit={this.onSubmit}
+                        mode={"create"}
+                        fieldDefs={this.fieldDefs} />
+                    <EntityList view='Table' title={`${schema.getLabel()}`} entities={this.state.entities}
+                        fieldDefs={this.fieldDefs} />
+                </div>
+            </LayoutPage>
+        )
     }
 }

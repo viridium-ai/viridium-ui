@@ -29,6 +29,13 @@ export enum Severity {
     VERBOSE = "verbose"
 }
 
+export type NameValuePair = {
+    name: string,
+    type: string,
+    value?: string
+    description?: string,
+}
+
 export type ValidationMessage = {
     message: string,
     severity: Severity,
@@ -64,12 +71,13 @@ export const Money = new Intl.NumberFormat('en-US', {
     currency: 'USD',
 });
 
-const db = new DataService();
-export const getDB = db.getDB;
+const service = new DataService();
 
 export class EntityManager<T extends Entity> {
     entityName: string;
-    db: any;
+
+    service: DataService = service;
+    db: any = this.service.getDB();
     constructor(name: string) {
         this.entityName = name;
     }
@@ -78,7 +86,7 @@ export class EntityManager<T extends Entity> {
         return ["create", "update", "delete", "select"]
     }
     get(): Array<T> {
-        this.db = db.getDB();
+        this.db = this.service.getDB();
         let entities = this.entities().map((c: any) => {
             return this.load(c);
         })
@@ -86,7 +94,7 @@ export class EntityManager<T extends Entity> {
     }
 
     clear() {
-        db.clearDB();
+        this.service.clearDB();
     }
 
     add(c: any) {
@@ -95,12 +103,12 @@ export class EntityManager<T extends Entity> {
             let e = this.create(c);
             entities.push(e);
             this.db[this.entityName] = entities;
-            db.updateDB(this.db);
+            this.service.updateDB(this.db);
             return e;
         }
     }
     entities() {
-        this.db = db.getDB();
+        this.db = this.service.getDB();
         let entities = this.db[this.entityName];
         if (entities === undefined) {
             entities = [];
@@ -110,7 +118,7 @@ export class EntityManager<T extends Entity> {
 
     delete(entityId: string) {
         this.db[this.entityName] = this.entities().filter((e: Entity) => e.id !== entityId);
-        db.updateDB(this.db);
+        this.service.updateDB(this.db);
     }
 
     select(entityId: string) {
@@ -122,7 +130,7 @@ export class EntityManager<T extends Entity> {
             let entities = this.entities().filter((c: Entity) => c.id !== entity.id);
             entities.push(entity);
             this.db[this.entityName] = entities;
-            db.updateDB(this.db);
+            this.service.updateDB(this.db);
         }
     }
     
@@ -139,7 +147,7 @@ export class EntityManager<T extends Entity> {
             entities.filter((c: Entity) => c.id !== entity.id);
             entities.push(entity);
             this.db[this.entityName + "-archive"] = entities;
-            db.updateDB(this.db);
+            this.service.updateDB(this.db);
         }
     }
 
@@ -274,9 +282,9 @@ export class Audit {
     }
 }
 export class MetaDataManager {
-
+    service: DataService = new DataService();
     getCountries = () => {
-        return getDB()["countries"].map((c: any) => {
+        return this.service.getDB()["countries"].map((c: any) => {
             return {
                 label: c.name,
                 value: c.code
@@ -284,17 +292,17 @@ export class MetaDataManager {
         });
     }
     getStates = (country: string) => {
-        return getDB()["states"];
+        return this.service.getDB()["states"];
     }
     getCities = (state: string, country: string) => {
-        return getDB()["cities"];
+        return this.service.getDB()["cities"];
     }
     getZipCode = (city: string, state: string, country: string) => {
-        return getDB()["zipCode"];
+        return this.service.getDB()["zipCode"];
     }
 
     getCompanies1 = () => {
-        let companies = getDB()["companies"];
+        let companies = this.service.getDB()["companies"];
         return companies.rows.map((r: any) => {
             return {
                 value: r[1],
@@ -305,7 +313,7 @@ export class MetaDataManager {
     }
 
     getCompanies = () => {
-        let companies = getDB()["companies"];
+        let companies = this.service.getDB()["companies"];
         return companies.rows.map((r: any) => {
             return this.rowToCompany(r);
         })
@@ -331,7 +339,7 @@ export class MetaDataManager {
     }
 
     getCompany = (symbol: string) => {
-        let db = getDB();
+        let db = this.service.getDB();
         let companies = db["companies"];
         let row = companies.rows.find((cols: any) => cols[1] === symbol);
         let company = this.rowToCompany(row);

@@ -1,0 +1,31 @@
+.dm-app .reports .v-page-body {
+    width: 100%;
+    display: flex;
+}
+
+.dm-app .reports .v-filters {
+    display: flex;
+    gap: 0.3rem;
+    padding: 0.5rem;
+    align-items: center;
+}
+
+.dm-app .reports .v-filter-item {
+    height: 262px;
+    width: 200px;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+.dm-app .reports .export-panel {
+    display: flex;
+    gap: .5rem;
+    padding: 0.5rem;
+    align-items: center;
+}
+
+.dm-app .reports .v-list-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

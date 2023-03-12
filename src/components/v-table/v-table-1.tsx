@@ -252,8 +252,9 @@ export class DataTable extends React.Component<DataTableProps, DataTableState> {
                 return filtered;
             });
         }
-        rowsToShow = rowsToShow.slice(0, this.props.options?.pageSize ? this.props.options?.pageSize : 200);
-
+        const rows = this.props.options?.pageSize ? this.props.options?.pageSize : this.props.options?.show ? this.props.options?.show : 20;
+        rowsToShow = rowsToShow.slice(0, rows);
+        
         if (this.props.columns) {
             let cIdx: Array<number> = [];
             headers = headers.filter((h, idx: number) => {

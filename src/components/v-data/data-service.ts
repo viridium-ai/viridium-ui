@@ -7,12 +7,14 @@ export type Quote = {
     date: Date
 }
 
+const defaultServiceData = require("./db.json");
+
 export class DataService {
     namespace: string;
-    seedPath: string;
-    constructor(namespace: string = "DB.Config", seed: string = "./db.json") {
+    defaultData: any;
+    constructor(namespace: string = "DB.Config", defaultData: any = defaultServiceData) {
         this.namespace = namespace;
-        this.seedPath = seed;
+        this.defaultData = defaultData;
     }
     getCompanies = (): Array<{ value: string, label: string }> => {
         return metadataManager.getCompanies1();
@@ -20,9 +22,9 @@ export class DataService {
     getDB = (): any => {
         let db = localCache.get(this.namespace);
         if (db === undefined) {
-            db = require("./db.json");
+            db = this.defaultData;
             localCache.set(this.namespace, db);
-            console.debug(`${this.namespace} is loaded from seed data ${this.seedPath}`);
+            console.debug(`${this.namespace} is loaded from seed data`);
         } else {
             console.debug(`${this.namespace} is loaded from local cache`);
         }

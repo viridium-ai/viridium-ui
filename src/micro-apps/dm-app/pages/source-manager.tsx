@@ -327,7 +327,7 @@ class SourceInventory extends React.Component<SourceInventoryProps, SourceInvent
 export const SourceManager = (props: any) => {
     const [selectedInventory, setInventory] = useState<Inventory>();
     var configs = getConfigs();
- 
+
     const inventories: Array<Inventory> = configs.inventory;
 
     const onSelectInventory = (evt: any) => {
@@ -341,87 +341,87 @@ export const SourceManager = (props: any) => {
     const getManagedSources = () => {
         return {
             id: "Managed Sources",
-            text:"Managed Source",
-            children:configs.managedDataSource
+            text: "Managed Source",
+            children: configs.managedDataSource
         }
     }
     const getManagedData = () => {
         return {
             id: "Managed Data",
-            text:"Managed Data",
-            children:configs.managedData
+            text: "Managed Data",
+            children: configs.managedData
         }
     }
     const ui = () => {
         return (
             <LayoutPage microApp={dataSourceManager}>
-                    <div className="v-body-nav">
-                        <Toast >
-                            <Toast.Body className="v-list">
-                                <div className="v-list-header">
-                                    Manage Data Sources
-                                </div>
-                                <div className="v-list-body">
-                                    <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
-                                </div >
-                            </Toast.Body>
-                        </Toast>
-                        <Toast >
-                            <Toast.Body className="v-list">
-                                <div className="v-list-header">
-                                    Manage Data
-                                </div>
-                                <div className="v-list-body">
-                                    <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
-                                </div >
-                            </Toast.Body>
-                        </Toast>
-                    </div>
-                    <div className="v-body-main">
-                        <div className="v-dashboard-panel">
-                            <Toast >
-                                <Toast.Header closeButton={false}>
-                                Import Data Inventory
-                                </Toast.Header>
-                                <Toast.Body>
-                                    {<Row>
-                                        <Col className="v-label" sm={4}>Import Data Inventory</Col>
-                                        <Col sm={8}>
-                                            <Form.Select value={selectedInventory?.id} onChange={onSelectInventory} aria-label="">
-                                                <option >Select an inventory</option>
-                                                {
-                                                    inventories.map((v, idx) => <option key={"cat-" + idx} value={"" + v.id}>{v.name}</option>)
-                                                }
-                                            </Form.Select>
+                <div slot="side-nav" >
+                    <Toast>
+                        <Toast.Body className="v-list">
+                            <div className="v-list-header">
+                                Manage Data Sources
+                            </div>
+                            <div className="v-list-body">
+                                <TreeView data={getManagedSources()} options={{ selectable: false, enableLinks: false }} />
+                            </div >
+                        </Toast.Body>
+                    </Toast>
+                    <Toast>
+                        <Toast.Body className="v-list">
+                            <div className="v-list-header">
+                                Manage Data
+                            </div>
+                            <div className="v-list-body">
+                                <TreeView data={getManagedData()} options={{ selectable: false, enableLinks: false }} />
+                            </div >
+                        </Toast.Body>
+                    </Toast>
+                </div>
+
+                <div className="v-dashboard-panel">
+                    <Toast >
+                        <Toast.Header closeButton={false}>
+                            Import Data Inventory
+                        </Toast.Header>
+                        <Toast.Body>
+                            {<Row>
+                                <Col className="v-label" sm={4}>Import Data Inventory</Col>
+                                <Col sm={8}>
+                                    <Form.Select value={selectedInventory?.id} onChange={onSelectInventory} aria-label="">
+                                        <option >Select an inventory</option>
+                                        {
+                                            inventories.map((v, idx) => <option key={"cat-" + idx} value={"" + v.id}>{v.name}</option>)
+                                        }
+                                    </Form.Select>
+                                </Col>
+                            </Row>
+                            }
+                            {
+                                selectedInventory ? <>
+                                    <Row>
+                                        <Col sm={4}></Col>
+                                        <Col sm={8} className="v-summary">
+                                            {selectedInventory.status} at {selectedInventory.updatedAt} by {selectedInventory.updatedBy}
                                         </Col>
                                     </Row>
-                                    }
-                                    {
-                                        selectedInventory ? <>
-                                            <Row>
-                                                <Col sm={4}></Col>
-                                                <Col sm={8} className="v-summary">
-                                                    {selectedInventory.status} at {selectedInventory.updatedAt} by {selectedInventory.updatedBy}
-                                                </Col>
-                                            </Row>
-                                            <Row>
-                                                <Col sm={4}></Col>
-                                                <Col sm={8} className="v-summary">
-                                                    Notes: {selectedInventory ? selectedInventory.notes : " "}
-                                                </Col>
-                                            </Row>
-                                        </> : <></>
-                                    }
-
-                                </Toast.Body>
-                            </Toast>
-                        </div>
-                        <div className="v-dashboard-panel">
-                            {
-                                selectedInventory ? <SourceInventory inventory={selectedInventory} /> : <div />
+                                    <Row>
+                                        <Col sm={4}></Col>
+                                        <Col sm={8} className="v-summary">
+                                            Notes: {selectedInventory ? selectedInventory.notes : " "}
+                                        </Col>
+                                    </Row>
+                                </> : <></>
                             }
-                        </div>
-                    </div>
+
+                        </Toast.Body>
+                    </Toast>
+                </div>
+                <div className="v-dashboard-panel">
+                    {
+                        selectedInventory ? <SourceInventory inventory={selectedInventory} /> : <div />
+                    }
+                </div>
+
             </LayoutPage>
         )
     }

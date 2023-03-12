@@ -1,0 +1,23 @@
+.dm-app .dashboard .v-dashboard-panel {
+    padding: 0.2rem;
+} 
+
+.dm-app .dashboard .v-page-body {
+    width: 100%;
+    display: flex;
+
+}
+
+.dm-app .v-chart-item {
+    height: 320px;
+    overflow: hidden;
+}
+
+.dm-app .v-pie-item {
+    height: 262px;
+    width: 15vw;
+    overflow: hidden;
+    margin: 15px auto;
+}
+
+

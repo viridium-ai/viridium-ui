@@ -93,20 +93,7 @@ export const SchedulerPage = (props: any) => {
                             <Col className="v-text-body" sm={9}>
                                 ongue commodo kevin burgdoggen nisi eiusmod. Rump pork belly veniam picanha nisi mollit, shank
                                 laboris. Bresaola pancetta ut sirloin, nulla strip steak esse bacon consequat officia spare ribs.
-                                Boudin ad pork belly voluptate, jerky ullamco officia.","Veniam boudin cow, magna bacon cupim dolore tail
-                                nostrud dolor tempor cupidatat consequat tri-tip. Pastrami enim boudin, minim sint andouille excepteur non.
-                                Doner beef strip steak jowl meatball cupim sausage picanha in. Boudin esse dolore ut. Pork loin tempor velit dolore
-                                salami, kevin nulla beef ribs tongue shank veniam in.","Consectetur biltong ball tip prosciutto mollit short
-                                loin shankle t-bone. In short loin cillum turkey mollit esse, excepteur andouille tongue kevin magna swine culpa.
-                                Pariatur alcatra chicken, anim consectetur culpa deserunt ut drumstick ball tip buffalo pastrami leberkas in.
-                                Tail biltong ball tip t-bone meatball, tenderloin drumstick reprehenderit pork chop shankle shoulder. Ribeye short loin
-                                cillum dolore aute minim consequat shoulder. Picanha pancetta tail dolor enim leberkas proident.","Irure in landjaeger minim
-                                pork chislic ribeye buffalo. Aute biltong drumstick, jerky ut brisket t-bone laborum shankle kielbasa. Doner strip steak in ut
-                                exercitation flank deserunt officia aute in landjaeger ribeye adipisicing labore occaecat. Jowl tempor cillum corned beef filet
-                                mignon aliqua venison ex ad flank. Landjaeger voluptate shoulder culpa. Corned beef picanha dolor drumstick. Meatloaf ex frankfurter,
-                                leberkas cupidatat cillum aliqua exercitation shankle pork flank.","Picanha consectetur voluptate
-                                leberkas pancetta meatloaf in do cupidatat filet mignon exercitation ham hock. Do sunt porchetta beef ribs
-                                commodo swine chislic ut cupim biltong alcatra landjaeger incididunt. Cupidatat bresaola sirloin laborum sunt dolore
+                                Boudin ad pork belly voluptate, jerky ullamco officia.",
                             </Col>
                         </Row>
                         <Row>

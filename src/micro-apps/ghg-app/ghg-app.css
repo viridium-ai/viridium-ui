@@ -2,6 +2,18 @@
     --bs-offcanvas-width: 50vw;
 }
 
+.ghg-app .v-icon-button {
+    border:none;
+    height: 2rem;
+    width: 2rem;
+}
+
+.ghg-app .v-icon-button:hover {
+    background-color: rgb(45, 89, 201);
+    color:white;
+
+}
+
 .ghg-app .tab-content {
     overflow: scroll;
 }

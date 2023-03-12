@@ -1,131 +1,13 @@
 import React, { Component } from "react";
-import { Row, Toast } from "react-bootstrap";
+import {  Toast } from "react-bootstrap";
 import { FieldDef, EntityDetails, EntityList, EntityForm, ValueType } from "components/v-entity/entity-form";
 
 import { LayoutPage, ViridiumOffcanvas } from "components/v-layout/v-layout";
-import { securityManager } from "components/v-security/v-security-manager";
 import TreeView from "components/v-tree-view/v-tree-view";
 import { getConfigs, updateConfigs } from "config/v-config";
 import { dataSourceManager } from "../dm-app";
+import { Connector, ConnectorInstance, NameValuePair } from "micro-apps/viridium-model";
 
-/**
- * A connector is the software that can connect to a dataset in a different system. It must be 
- * implemented as Viridium Connector Plugin, and configuration the same way. A connector
- * does not connect to remote system, instead, an instance of a connect will be able
- * connect to a remote dataset, and pull the data per a schedule and/or a job.
- * 
- * A connector defines how the instance of such a connect should be configured, and how the security
- * works. A connect normally is capable connect to multiple datasets in one location.
- * 
- * Each dataset must be created and mapped to that of Viridium datasets.
- * 
- */
-export type NameValuePair = {
-    name: string,
-    type: string,
-    value?: string
-}
-export type ConnectorConfig = {
-    driver: string;
-    properties: Array<NameValuePair>
-}
-export class Connector {
-    id: string = crypto.randomUUID().slice(0, 8);
-    type: string = "";
-    version: string = ""
-    name: string = "";
-    description: string = "";
-    status?: string;
-    config?: ConnectorConfig;
-    direction: string = "Inbound"
-    createdBy?: string;
-    createdAt?: Date;
-    updatedBy?: string;
-    updatedAt?: Date
-    instances: Array<ConnectorInstance> = [];
-    static newFields = () => {
-        return [
-            FieldDef.new("name"),
-            FieldDef.new("description"),
-            FieldDef.select("type",
-                ["", "Database", "API", "Platform", "Files"].map((type: any) => { return { name: type, label: type.length === 0 ? "Select a type" : type, value: type } })),
-            FieldDef.select("direction",
-                ["Inbound", "Outbound", "Both"].map((type: any) => { return { name: type, label: type, value: type } })),
-        ]
-    }
-
-    static new = (formData: any) => {
-        let c = new Connector();
-        Object.assign(c, formData);
-        c.createdAt = new Date();
-        c.createdBy = securityManager.getUserName();
-        c.updatedAt = new Date();
-        c.updatedBy = securityManager.getUserName();
-        c.status = "active";
-        return c;
-    }
-}
-export class ConnectorInstance {
-    id: string = crypto.randomUUID().slice(0, 8);
-    connectorId: string = "";
-    version: string = ""
-    name: string = "";
-    description: string = "";
-    instanceConfig: Array<NameValuePair> = []
-    status?: string;
-    createdBy?: string;
-    createdAt?: Date;
-    updatedBy?: string;
-    updatedAt?: Date
-
-    static newFields = () => {
-        return [
-            FieldDef.new("name"),
-            FieldDef.new("description"),
-            FieldDef.new("status"),
-            FieldDef.new("connectorId"),
-        ]
-    }
-}
-interface ConnectorViewState {
-    connector: Connector
-}
-interface ConnectorViewProps {
-    connector: Connector
-}
-export class ConnectorView extends React.Component<ConnectorViewProps, ConnectorViewState> {
-    constructor(props: ConnectorViewProps) {
-        super(props);
-        this.state = { connector: props.connector };
-    }
-    componentDidMount(): void {
-
-    }
-    componentDidUpdate = (prevRow: ConnectorViewProps) => {
-        if (this.props.connector.id !== prevRow.connector.id) {
-            this.setState({ connector: this.props.connector });
-        }
-    }
-
-    hideFilter = (def: any) => {
-        return ["id", "name"].includes(def.name);
-    }
-
-    render() {
-        let connector = this.state.connector!;
-        return (
-            <div className="v-panel">
-                <Row>
-                    <EntityDetails hide={this.hideFilter} entity={connector} title={"Properties"} />
-                </Row>
-                <Row><EntityDetails entity={connector.config} title={"Implementation"} /></Row>
-                <Row>
-                    <EntityDetails entity={connector.config?.properties} title={"Implementation Properties"} />
-                </Row>
-            </div>
-        );
-    }
-}
 
 type ConnectManagerState = {
     connector?: Connector,
@@ -279,7 +161,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
         let connector = this.state.connector;
         return (
             <LayoutPage microApp={dataSourceManager}  >
-                <div className="v-body-nav">
+                <div slot="side-nav">
                     <Toast >
                         <Toast.Body className="v-list">
                             <div className="v-list-header">
@@ -287,7 +169,7 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                             </div>
                             <div className="v-list-body">
                                 <TreeView onClick={this.selectConnector} data={this.getTreeData()}
-                                    options={{ selectable: true, enableLinks: false }} />
+                                    options={{ selectable: false, enableLinks: false }} />
                             </div >
                         </Toast.Body>
                     </Toast>
@@ -298,12 +180,11 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                             </div>
                             <div className="v-list-body">
                                 <TreeView onClick={this.selectAPI} data={this.getPublicAPIs()}
-                                    options={{ selectable: true, enableLinks: false }} />
+                                    options={{ selectable: false, enableLinks: false }} />
                             </div >
                         </Toast.Body>
                     </Toast>
                 </div>
-                <div className="v-body-main">
                     <Toast >
                         <Toast.Header closeButton={false}>
                             <div className="me-auto">{connector ? connector.name : "Connector"}
@@ -343,7 +224,6 @@ export class ConnectManagerView extends Component<any, ConnectManagerState> {
                             </div >
                         </Toast.Body>
                     </Toast>
-                </div>
 
                 <ViridiumOffcanvas showTitle={false} onHide={this.hideForm}
                     showForm={this.state.showForm} title={"Add Connector"} >

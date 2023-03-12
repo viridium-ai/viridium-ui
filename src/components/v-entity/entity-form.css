@@ -1,7 +1,7 @@
 .v-entity-form {
     --v-component-header-border-color:red;
     --v-component-header-border-color:rgb(233, 233, 233);
-    --v-component-header-bg : rgb(233, 233, 233);
+    --v-component-header-bg : rgb(244, 244, 244);
     flex-wrap: nowrap;
     overflow-x: hidden;
 }
@@ -39,7 +39,7 @@
     overflow: auto;
 }
 
-.v-entity-form.inline  .v-input-container {
+.v-entity-form.inline .v-input-container {
     width: 75%;
     overflow: scroll;
     white-space: nowrap;
@@ -74,28 +74,32 @@
 
 .v-entity-form .v-component-header {
     border-bottom: 1px solid var(--v-component-header-border-color);
-    background-color: 1px solid var(--v-component-header-bg);
+    background-color: var(--v-component-header-bg);
+}
+
+.v-entity-form .v-component-header  .row {
+    display: flex;
+    align-items: center;
 }
 
 .v-entity-form .v-component-title {
     padding: 12px;
-    font-size: 20px;
+    font-size: 1rem;
     font-weight: bold;
+    display:flex;
+    align-items: center;
 }
 
 .v-entity-form .v-entity-value {
     width: 100%;
-    display: flex;
-    align-items: center;
 }
 .v-entity-form .v-entity-value div{
     display: inline-block;
 }
 
 .v-entity-form .v-component-actions {
-    font-size: 14px;
-    padding: 16px;
     float: right;
+    padding: 0rem 1rem;
 }
 
 .v-entity-form .v-component-action {
@@ -132,9 +136,9 @@
 
 .v-entity-form-title {
     padding: 12px;
-    font-size: large;
+    font-size: 1rem;
     font-weight: 600;
-    background-color: rgb(242, 242, 242);
+    background-color: var(--v-component-header-bg);
 }
 
 .v-entity-form-body {

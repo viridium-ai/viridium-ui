@@ -5,20 +5,6 @@
     background-color: white;
 }
 
-.v-layout #app-header {
-    color:rgb(28, 28, 28);
-    background-color: white;
-}
-.v-layout #app-header .navbar-brand {
-    color:rgb(28, 28, 28);
-}
-.v-layout #app-header   {
-    --bs-navbar-hover-color: rgb(30, 30, 30);
-    --bs-navbar-active-color: var(--bs-navbar-hover-color)
-}
-.MuiBadge-badge {
-    top: 0.5rem!important;
-}
 .dm-app .data-cloud .v-body-nav {
     width: 22vw;
     max-width: none;

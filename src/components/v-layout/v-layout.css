@@ -159,3 +159,18 @@
     color:rgb(252, 252, 252);
     font-weight: bold;
 }
+
+.v-layout #app-header {
+    color:rgb(28, 28, 28);
+    background-color: white;
+}
+.v-layout #app-header .navbar-brand {
+    color:rgb(28, 28, 28);
+}
+.v-layout #app-header   {
+    --bs-navbar-hover-color: rgb(30, 30, 30);
+    --bs-navbar-active-color: var(--bs-navbar-hover-color)
+}
+.v-layout .MuiBadge-badge {
+    top: 0.5rem!important;
+}

@@ -4,12 +4,11 @@
     --search-box-input-padding-left: 3rem;
     --search-box-icon-size:2.4rem;
     --search-box-bg:white;
-    width: 100%;
     height: 100%;
-    position: relative;
     border: 1px solid rgb(209, 209, 209);
     border-radius: 4px;
     background-color: var(--search-box-bg);
+    position: relative;
 }
 
 .v-search-select-container .v-select-label {
@@ -27,7 +26,7 @@
     height: 2.4rem;
 }
 
-.v-search-select-container ul {
+.v-search-select-container .v-select-list {
     padding: 4px;
     width: 100%;
     height: 100%;

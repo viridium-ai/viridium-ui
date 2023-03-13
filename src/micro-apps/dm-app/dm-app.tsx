@@ -12,15 +12,15 @@ import { MarketPlace } from "./pages/market-place";
 class DataSourceManager extends MicroApp {
   private routeItems: Array<RouteItem> = [
     new RouteItem().init("Dashboard", "Dashboard", "2", "/dm-app/dashboard"),
-    new RouteItem().init("Data Sources", "Source", "2", "/dm-app/sources"),
-    new RouteItem().init("Connectors", "Connector", "2", "/dm-app/connectors"),
+    new RouteItem().init("Data Management", "Source", "2", "/dm-app/sources"),
     new RouteItem().init("Data Cloud", "Data Cloud", "2", "/dm-app/datacloud"),
-    new RouteItem().init("Scheduler", "Scheduler", "2", "/dm-app/scheduler"),
-    new RouteItem().init("Reports", "Reports", "2", "/dm-app/reports"),
+    new RouteItem().init("Intelligence Workspace", "Connector", "2", "/dm-app/connectors"),
+    new RouteItem().init("Analytics", "Reports", "2", "/dm-app/reports"),
+    new RouteItem().init("Help", "Help", "2", "/dm-app/scheduler"),
   ];
 
   public getTitle = () => {
-    return "Viridium Data Manager";
+    return "Viridium.AI";
   }
   
   public getName = () => {
@@ -32,7 +32,6 @@ class DataSourceManager extends MicroApp {
   }
 
   public getRoutes = () => {
-
     return (
       <>
         <Route path="/dm-app" element={<Dashboard />} />

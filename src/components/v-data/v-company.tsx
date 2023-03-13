@@ -38,7 +38,7 @@ export class SelectCompany extends Component<CompanyProps, CompanyState> {
 
     render = () => {
         return <div className="v-select-company" id={this.props.id ? this.props.id : StringUtils.guid()}>
-            <Select placeholder={StringUtils.t("company")} options={this.getCompanies()}
+            <Select placeHolder={StringUtils.t("company")} options={this.getCompanies()}
                 onChange={this.onChange} value={this.state.selected?.value} />
         </div>
     };

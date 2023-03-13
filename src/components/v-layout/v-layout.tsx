@@ -5,7 +5,7 @@ import { securityManager } from "../v-security/v-security-manager";
 import { useNavigate } from "react-router-dom";
 
 import { IMicroApp, MicroApp } from "../v-common/v-app";
-import { VscMail } from "react-icons/vsc";
+import { VscMail, VscSettings } from "react-icons/vsc";
 
 import "./v-layout.css";
 import { clearCachedConfigs, getConfigs } from "config/v-config";
@@ -64,17 +64,19 @@ export const ApplicationHeader = (props: { microApp: IMicroApp }) => {
                             </Badge>
                         </Nav>
                         <Nav className="actions-menu" >
-                            <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
-                                <NavDropdown.Item href={v_link("/security-app/profile")}>Profile</NavDropdown.Item>
-                                <NavDropdown.Item href={v_link("/security-app/notifications")}>Notifications</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={clearCachedConfigs}>Clear Cached</NavDropdown.Item>
-                                <NavDropdown.Divider />
-                                <NavDropdown.Item onClick={(e: any) => {
-                                    securityManager.signout();
-                                    navigate("/", { replace: true });
-                                }}> Sign out</NavDropdown.Item>
-                            </NavDropdown>
+                            
+                                <NavDropdown title={securityManager.getProfileName()} id="profile-nav-dropdown">
+                                    <NavDropdown.Item href={v_link("/security-app/profile")}>Profile</NavDropdown.Item>
+                                    <NavDropdown.Item href={v_link("/security-app/notifications")}>Notifications</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={clearCachedConfigs}>Clear Cached</NavDropdown.Item>
+                                    <NavDropdown.Divider />
+                                    <NavDropdown.Item onClick={(e: any) => {
+                                        securityManager.signout();
+                                        navigate("/", { replace: true });
+                                    }}> Sign out</NavDropdown.Item>
+                                </NavDropdown>
+                        
                         </Nav>
                     </> : <></>
                 }
@@ -118,7 +120,7 @@ export const LayoutHeader = (props: any) => {
             }) : ""
     }
     const ui = () => {
-        const iconImg = microApp.getIcon() ? microApp.getIcon() : configs.icon;    
+        const iconImg = microApp.getIcon() ? microApp.getIcon() : configs.icon;
         const title = microApp.getTitle() ? microApp.getTitle() : configs.title;
         return (
             <Navbar id={microApp.getName() + "-nav"} expand="lg">

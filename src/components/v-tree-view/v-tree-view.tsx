@@ -82,7 +82,8 @@ class TreeView extends React.Component<TreeViewProperty, TreeViewState> {
                 },
                 text: childNode.text,
                 icon: childNode.icon,
-                href: childNode.href
+                href: childNode.href,
+                data: childNode
             });
             return newNode;
         });

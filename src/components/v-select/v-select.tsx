@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form } from 'react-bootstrap';
 import { VscArrowDown, VscSearch } from 'react-icons/vsc';
 import { FieldDef } from '../v-entity/entity-form';
 import { StringUtils } from '../v-utils/v-string-utils';
@@ -14,10 +15,11 @@ type SelectProps = {
     onChange?: Function;
     value?: any;
     label?: string;
-    placeholder?: string;
-    def?:FieldDef;
-    entity? : any;
-    optionRender?:Function
+    placeHolder?: string;
+    def?: FieldDef;
+    entity?: any;
+    optionRender?: Function;
+    noSearch?: boolean;
 }
 
 type SelectState = {
@@ -43,7 +45,7 @@ export class Select extends React.Component<SelectProps, SelectState>{
         if (option) {
             this.setState({ searchValue: option.label });
             if (this.props.onChange) {
-                this.props.onChange({value:option.value, def:this.props.def, ...evt}, option);
+                this.props.onChange({ value: option.value, def: this.props.def, ...evt }, option);
             }
             this.hideList();
         }
@@ -63,7 +65,7 @@ export class Select extends React.Component<SelectProps, SelectState>{
         } else {
             list.style.display = "block";
             this.setState({ searchValue: "" });
-        
+
         }
     }
     onDropdown = (evt: any) => {
@@ -89,16 +91,16 @@ export class Select extends React.Component<SelectProps, SelectState>{
         evt.currentTarget.classList.add("v-highlight");
     }
     render = () => {
-        let ph = this.props.placeholder ? this.props.placeholder : StringUtils.t("search");
+        let ph = this.props.placeHolder ? this.props.placeHolder : StringUtils.t("search");
         return (
             <div id={this.id} className="v-search-select-container">
                 {
                     this.props.label ? <label className="v-select-label">{this.props.label}</label> : ""
                 }
                 <div className="v-select-input-box">
-                    <input placeholder={ph} className="v-select-input" value={this.state.searchValue} onChange={this.onChange}></input>
+                    <input placeholder={ph} readOnly={this.props.noSearch} className="v-select-input" value={this.state.searchValue} onChange={this.onChange}></input>
                     <VscArrowDown className="v-select-drop-icon" onClick={this.onDropdown} />
-                    <VscSearch className="v-select-x-icon" onClick={this.onClear} />
+                    {this.props.noSearch ? "" : <VscSearch className="v-select-x-icon" onClick={this.onClear} />}
                 </div>
                 <ul id={this.id + "_list"} className="v-select-list" >
                     {
@@ -116,5 +118,49 @@ export class Select extends React.Component<SelectProps, SelectState>{
                 </ul>
             </div >
         )
+    }
+}
+
+interface SelectOneProps {
+    id?: string,
+    options: Array<OptionValue>,
+    onChange?: Function;
+    value?: any;
+    label?: string;
+    placeHolder?: string;
+}
+
+interface SelectOneState {
+    selected: string
+}
+
+export class SelectOne extends React.Component<SelectOneProps, SelectOneState> {
+    constructor(props: SelectOneProps) {
+        super(props);
+        this.state = { selected: props.value };
+    }
+    onSelect = (evt: any) => {
+        let v = this.props.options.find((v: any) => v.value === evt.target.value);
+        this.setState({ selected: evt.target.value });
+        if (this.props.onChange) {
+            this.props.onChange(v);
+        }
+        evt.stopPropagation();
+    }
+    render = () => {
+        return (
+            <div className="v-select-container">
+                {
+                    this.props.label ? <div className="v-select-title">{this.props.label}</div> : ""
+                }
+                <Form.Select className="v-select-control" value={this.state.selected} onChange={this.onSelect}>
+                    <option className="v-select-item" value="" >{this.props.placeHolder} </option>
+                    {
+                        this.props.options.map((v: any, idx: number) => <option key={idx} value={v.value} >{v.label}</option>)
+                    }
+                </Form.Select>
+            </div>
+
+        );
     }
 }

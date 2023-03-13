@@ -1,3 +1,11 @@
 .service-app {
     font-size: 1.0rem;
 }
+
+.service-app .nav-tabs {
+    --bs-nav-tabs-link-hover-border-color: #e9ecef #e9ecef #fff;
+}
+
+.service-app .v-list-text {
+    text-overflow: ellipsis;
+}

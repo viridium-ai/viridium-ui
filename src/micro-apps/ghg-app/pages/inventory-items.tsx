@@ -7,9 +7,10 @@ import { greenHouseApp } from "../ghg-app";
 import { Inventory, InventoryItem } from "../../viridium-model";
 import { EntityForm, EntityList } from "components/v-entity/entity-form";
 import { VscAdd, VscCloseAll, VscCloudUpload, VscDatabase, VscJson } from "react-icons/vsc";
-import { FileUploader } from "./file-uploader";
-import { ConnectorConfig } from "./v-connector";
+
 import { ViridiumDataset } from "./v-dataset";
+import { FileUploader } from "components/v-data-process/file-uploader";
+import { ConnectorConfig } from "components/v-data-process/v-connector";
 
 export const InventoryItemsView = (props: any) => {
     let c = getCompany();

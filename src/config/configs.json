@@ -3650,5 +3650,76 @@
             
             ]
         }
-    ]
+    ],
+    "serviceGroups" :[
+        {
+            "group":"Meta Data",
+            "services" : [
+                "Unit Group",
+                "Unit",
+                "Industry",
+                "Industry Classification",
+                "Subindustry",
+                "Industrial Process Type",
+                "Fuel Type",
+                "Business Travel Type",
+                "Accommodation Type",
+                "Contractual Instrument Type",
+                "Spend Type",
+                "Vehicle Type",
+                "Greenhouse Gas",
+                "Transport Mode",
+                "Country Region Mapping"
+            ]
+        },
+        {
+            "group":"Organization Data",
+            "services" : [
+                "Organization",
+                "Organizational Unit",
+                "Organizational Profile",
+                "Organizational Hierarchy",
+                "Facility",
+                "Value Chain Partner"
+            ]
+        },
+        {
+            "group":"Activity Data",
+            "services" : [
+                "Capital Good",
+                "Transportation and Distribution",
+                "Business Travel",
+                "Stationary Combustion",
+                "Purchased Good and Service",
+                "Purchased Energy",
+                "Mobile Combustion",
+                "Industrial Process",
+                "Facility Annual Details",
+                "Monthly Revenue"
+            ]
+        },
+        {
+            "group":"Factor Tables",
+            "services" : [
+                "Emission Factor",
+                "Estimation Factor",
+                "Factor Mapping",
+                "Factor Library"
+            ]
+        },
+        {
+            "group":"Emissions",
+            "services" : [
+                "Emission",
+                "Fugitive Emission",
+                "Emissions Source"
+            ]
+        }
+    ],
+    "keys" :[{
+        "openAI" : {
+            "apiKey" : "stored in in mysql db",
+            "orgId" :"stored in my sql db"  
+        }
+    }]
 }

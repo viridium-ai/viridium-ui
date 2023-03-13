@@ -4,6 +4,8 @@ import { QuickLine, QuickPie } from 'components/v-chart/v-quick-charts';
 import { dataSourceManager } from '../dm-app';
 import { DataTable } from 'components/v-table/v-table-1';
 import { getConfigs } from 'config/v-config';
+import "./dashboard.css";
+
 export const Dashboard = (props: any) => {
     const options = {
         responsive: true,
@@ -87,8 +89,8 @@ export const Dashboard = (props: any) => {
     }
     const ui = () => {
         return (
-            <LayoutPage microApp={dataSourceManager}  >
-                <div className="v-body-nav">
+            <LayoutPage microApp={dataSourceManager} pageName="dashboard" >
+                <div slot="side-nav">
                     <Toast >
                         <Toast.Body className="v-list">
                             <div className="v-list-item">
@@ -128,7 +130,7 @@ export const Dashboard = (props: any) => {
                         </Toast.Body>
                     </Toast>
                 </div>
-                <div className="v-body-main">
+                < >
                     <div className="v-dashboard-panel">
                         <Toast >
                             <Toast.Header closeButton={false}>
@@ -228,7 +230,7 @@ export const Dashboard = (props: any) => {
                             </Toast.Body>
                         </Toast>
                     </div>
-                </div>
+                </>
             </LayoutPage >
         )
     }

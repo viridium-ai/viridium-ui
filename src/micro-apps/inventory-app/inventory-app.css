@@ -4,6 +4,11 @@
     overflow: hidden;
 }
 
+.inventory-app .wizard-question {
+    padding: .5rem;
+    border-bottom: 1px solid rgb(233, 233, 233);
+}
+
 .inventory-app .v-select-container {
     display: flex;
 }

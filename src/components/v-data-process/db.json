@@ -1,0 +1,151 @@
+{
+    "version": "1.0.0",
+    "Connector": [
+        {
+            "id" :"com.viridium.connector.aws.FileSource",
+            "name": "Amazon S3",
+            "description": "AWS cloud storage",
+            "direction": "Both",
+            "pluginId": "com.viridium.connector.aws.FileSource",
+            "properties": [
+                {
+                    "name": "bucket",
+                    "type": "string",
+                    "description": "S3 bucket name"
+                },
+                {
+                    "name": "directory",
+                    "type": "string",
+                    "description": "S3 directory name"
+                },
+                {
+                    "name": "partition",
+                    "type": "string",
+                    "description": "S3 partition name"
+                },
+                {
+                    "name": "format",
+                    "type": "string",
+                    "description": "S3 file format"
+                },
+                {
+                    "name": "fields",
+                    "type": "array",
+                    "description": "S3 file fields"
+                }
+            ]
+        },
+        {
+            "id" :"com.viridium.connector.oracle.JDBCSource",
+            "name": "Oracle Database Table",
+            "description": "Oracle Database",
+            "direction": "Both",
+            "pluginId": "com.viridium.connector.oracle.JDBCSource",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "Oracle JDBC URL"
+                },
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "Oracle username"
+                },
+                {
+                    "name": "password",
+                    "type": "passowrd",
+                    "description": "Oracle password"
+                },
+                {
+                    "name": "table",
+                    "type": "string",
+                    "description": "Oracle table name"
+                },
+                {
+                    "name": "fields",
+                    "type": "array",
+                    "description": "Oracle table fields"
+                }
+            ]
+        },
+        {
+            "id": "com.viridium.connector.sap.BAPISource",
+            "name": "SAP BAPI",
+            "description": "SAP API",
+            "direction": "Both",
+            "pluginId": "com.viridium.connector.sap.BAPISource",
+            "properties" :[
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "SAP BAPI URL"
+                },
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "SAP username"
+                },
+                {
+                    "name": "password",
+                    "type": "passowrd",
+                    "description": "SAP password"
+                },
+                {
+                    "name": "bapi",
+                    "type": "string",
+                    "description": "SAP BAPI name"
+                },
+                {
+                    "name": "fields",
+                    "type": "array",
+                    "description": "SAP BAPI fields"
+                },
+                {
+                    "name": "partitionBy",
+                    "type": "string",
+                    "description": "SAP BAPI partition field"
+                }
+            ]
+        },
+        {
+            "id": "com.viridium.connector.hadoop.PartitionSource",
+            "name": "Hadoop HDFS",
+            "direction": "Both",
+            "description": "Apache Hadoop File System",
+            "pluginId": "com.viridium.connector.hadoop.PartitionSource",
+            "properties": [
+                {
+                    "name": "url",
+                    "type": "string",
+                    "description": "Hadoop HDFS URL"
+                },
+                {
+                    "name": "username",
+                    "type": "string",
+                    "description": "Hadoop username"
+                },
+                {
+                    "name": "password",
+                    "type": "password",
+                    "description": "Hadoop password"
+                },
+                {
+                    "name": "partitionBy",
+                    "type": "string",
+                    "description": "Hadoop partition field"
+                },
+                {
+                    "name": "format",
+                    "type": "string",
+                    "description": "Hadoop file format"
+                },
+                {
+                    "name": "fields",
+                    "type": "array",
+                    "description": "Hadoop file fields"
+                }
+            ]
+        }
+    ]
+}

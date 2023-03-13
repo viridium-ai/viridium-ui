@@ -29,33 +29,11 @@
 }
 
 .toast {
-  --bs-toast-max-width:100%;
   box-shadow: none;
-}
-
-body {
-  color: #1A1A1A;
-}
-
-a {
-  text-decoration: underline;
-  color:#0042A5;
-}
-
-a :visited {
-  color:#0042A5;
-}
-.main-app {
-  text-align: left;
-  height: 100vh;
-}
-.v-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-.v-shadow {
-  box-shadow: 1em 1em 1em rgb(187, 187, 187, 0.6);
+  overflow: hidden;
+  border-radius: 0rem;
+  border: #f6f6f6 1px solid;
+  width: 100%;
 }
 .v-flex {
   display: flex;
@@ -75,197 +53,26 @@ a :visited {
   gap: .5rem;
 }
 
-.v-flex-item {
-  margin: 0px .5em;
-}
 .v-flex-end {
   margin-left: auto;
 }
 
-.v-container {
-  width: 100%;
-}
-
-.v-header {
-  font-size: calc(10px + 2vmin);
-  background-color: rgb(179, 179, 179);
-  border-radius: 12px 12px 0px 0px;
-}
-.v-body {
-  color: rgb(55, 55, 55);
-  padding: 1em;
-  background-color: rgb(242, 242, 242);
-}
-.v-link {
-  color: #0042A5;
-  text-decoration: none;
-  margin: 0.5em;
-  cursor: pointer;
+.v-flex-start {
+  margin-right: auto;
 }
 
 .v-icon-button {
-  margin: .5rem;
-  padding: .0rem .5rem;
-  font-size: 1.0rem;
-  border-radius: 0.2rem;
-  cursor: default;
-}
-
-
-.v-footer {
-  padding: 1rem;
-  color: rgb(55, 55, 55);
-  background-color: var(--bs-toast-header-border-color);
-}
-.v-title {
-  padding: 12px;
-  font-size: larger;
-  font-weight: 500;
-  color: rgb(64, 64, 64);
-}
-
-.v-list {
-  padding: 0px 0px;
-}
-
-.v-list-header {
-  padding: 8px 8px 8px 8px;
-  font-size: 1.2em;
-  border-bottom: 1px solid var(--bs-toast-header-border-color);
-}
-.v-list-body {
-  padding: 12px 2px;
-}
-
-.v-list-item {
-  padding: 0.8em;
+  background-color: transparent;
+  border: 1px solid rgb(68, 114, 179);
+  padding: .2rem .5rem;
+  margin: 0px 4px;
   cursor: pointer;
-  color : rgb(59, 59, 59);
-  background-color: white;
-  border-bottom: solid 1px var(--bs-toast-header-border-color);
-}
-.v-actions {
-  text-align: right;
-  font-size: large;
-}
-.v-buttons {
-  padding: .5rem;
-}
-.v-button {
-  cursor: pointer;
-  border: 1px white solid;
-  border-radius: 18px;
+  border-radius: .5rem;
   text-align: center;
-  padding: 0.5em 1.5em;
-}
-.wizard-actions {
-  padding: 10px;
-}
-.v-field-label {
-  padding: 0.6em 1rem;
-  color: rgb(83, 83, 83);
-  background-color: rgb(244, 244, 244);
-}
-.v-field-value {
-  padding: 0.6em 1rem;
-  color: rgb(62, 62, 62);
-}
-.v-text-body {
-  line-height: 1.8em;
-  padding: 1em;
-}
+  white-space: nowrap;
+} 
 
-.wizard-form-row {
-  margin-bottom: .5rem;
-}
-.viridium-logo {
-  width: 30px;
-  margin-top: -10px;
-  margin-right: 0px;
-  height: 30px;
-}
-/*
-@media (prefers-reduced-motion: no-preference) {
-  .v-logo {
-    animation: v-logo-spin infinite 20s linear;
-  }
-}
- @keyframes v-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-} */
-
-.v-panel {
-  margin-top: 4px;
-  margin-bottom: 8px;
-  overflow: hidden;
-}
-
-.v-panel-content {
-  padding: 1em
-}
-
-.v-right {
-  text-align: right;
-}
-
-.v-left {
-  text-align: left;
-}
-
-.main-app .v-panel-header {
-  padding: .5em;
-  font-weight: 600;
-}
-.main-app .v-summary {
-  padding:  2.0rem 0.5rem;
-  font-size: large;
-}
-
-
-.main-app .v-body-help {
-  flex: 20%;
-  padding: 0.5rem;
-  display: none;
-}
-.main-app .v-actions {
-  display: flex;
-  padding: 2rem 1rem;
-  border-bottom: 1px solid rgb(237, 237, 237);
-}
-.main-app .v-question {
-  padding: 0.2rem 1rem;
-  border-bottom: 1px solid rgb(237, 237, 237);
-}
-.main-app .v-sub-questions {
-  margin-top: 0.1em;
-  padding: 0.5rem;
-  background-color: rgb(244, 244, 244);
-}
-.main-app .v-form-row {
-  padding: 0.2rem;
-}
-.main-app .v-form-label {
-  padding: 0.7rem;
-  font-size: medium;
-}
-.main-app .v-form-input {
-  padding: 0.2rem;
-}
-.main-app .main-checkbox {
-  padding: 1em;
-}
-.main-app .company-details{
-  padding: .5rem;
-  margin-top: .5em;
-}
-.main-app .v-summary {
-  font-size: small;
-  font-weight: 600;
-  padding: .5rem 1.5rem;
+.v-icon-button:hover {
+  background-color: rgb(68, 114, 179);
+  color: white;
 }

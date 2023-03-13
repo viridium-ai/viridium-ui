@@ -30,7 +30,9 @@
     max-height: 90vh;
     display: flex;
 }
-
+#service-browser-tabs {
+    margin-top: 4px;
+}
 .service-app .service-page .v-header {
     padding: 0.5em;
     border-radius: 0px;
@@ -156,3 +158,11 @@
 .service-app .service-page .v-entity-form .v-input {
     padding: 4px 8px;
 }
+
+.service-app .service-page .v-entity-form .v-form-field {
+    margin-bottom: 0.2rem;
+}
+
+.service-app .service-page .v-entity-form .v-form-field .v-form-label {
+    text-overflow: ellipsis;
+}   

@@ -1,7 +1,7 @@
 import { Route } from "react-router-dom";
 import { Dashboard } from "./pages/dashboard";
 import { SourceManager } from "./pages/source-manager";
-import { ReportConfigPage } from "./pages/report-page";
+import { ReportConfigPage } from "./pages/reports";
 import './dm-app.css';
 import { SchedulerPage } from "./pages/scheduler-page";
 import { ConnectManagerView } from "./pages/connector-manager";

@@ -1,5 +1,5 @@
 .dm-app .data-cloud .treeview {
-    width: 20vw;
+    width: 18vw;
     height: 100%;
     overflow: auto;
     background-color: white;
@@ -19,6 +19,7 @@
     height: calc(100vh - 120px);
     overflow-x: hidden;
     overflow-y: scroll;
+    gap: 1rem;
 }
 
 .dm-app .data-cloud .shopping-card-item {

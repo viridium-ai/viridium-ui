@@ -130,11 +130,7 @@ export class ValueChainBrowser extends PureComponent<any, { inventories: any, en
 export class ValueChainConfig extends PureComponent<any, { taxonomy: any, selected: any }> {
     render = () => {
         return <LayoutPage microApp={inventoryConfigApp} >
-            <Row>
-                <Col>
-                    <ValueChainBrowser />
-                </Col>
-            </Row>
+            <ValueChainBrowser />
         </LayoutPage>
     }
 }

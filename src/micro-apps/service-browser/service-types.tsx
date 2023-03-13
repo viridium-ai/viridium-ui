@@ -22,8 +22,8 @@ export const objectToArray = (obj: any): Array<any> => {
 const noneUiFields: Array<string> = [
     'id', 'tenantId', 'tenantKey', 'dateUpdated', 'updatedBy', 'updatedOn','originCorrelationId',
     'dateCreated', 'createdBy', 'active', 'deleted', 'text', "createdOn", "modifiedOn", "statusCode", "stateCode",
-    "importSequenceNumber", "overriddenCreatedOn", "timeZoneRuleVersionNumber", "utcConversionTimeZoneCode", "ttlInSeconds",
-    "description", "originalCorrelationId"
+    "importSequenceNumber", "overriddenCreatedOn", "timeZoneRuleVersionNumber", "utcConversionTimeZoneCode", "ttlInSeconds"
+    , "originalCorrelationId"
 ]
 export class Service implements IRouteItem {
     name: string = '';

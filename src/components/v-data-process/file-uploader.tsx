@@ -1,7 +1,7 @@
-import { Component } from "react";
-import { Button, Form } from "react-bootstrap";
+import { PureComponent } from "react";
+import { Form } from "react-bootstrap";
 import { DataTable } from "components/v-table/v-table-1";
-
+import "./file-uploader.css";
 type FileUploaderProps = {
     onReceiveData: Function,
     buttonTxt?: string
@@ -10,7 +10,7 @@ type FileUploaderState = {
     status: string,
     data: any
 }
-export class FileUploader extends Component<FileUploaderProps, FileUploaderState> {
+export class FileUploader extends PureComponent<FileUploaderProps, FileUploaderState> {
     guid: string = crypto.randomUUID();
     constructor(props: FileUploaderProps) {
         super(props);
@@ -91,21 +91,21 @@ export class FileUploader extends Component<FileUploaderProps, FileUploaderState
     }
     render = () => {
         return (
-            <div className="v-container">
-                <Form.Group className="mb-3">
-                    <Form.Label>Upload File</Form.Label>
-                    <Form.Control id={this.guid} type="file" onChange={this.onChooseFile} />
-                </Form.Group>
-                <Form.Group className="connector-config-form-btns">
-                    <Button disabled={this.state.status === "Choose File"} variant="light" onClick={this.doUpload} name="submit">{this.state.status}</Button>
-                </Form.Group>
-                <div className="preview-container">
+            <>
+                <div className="v-uploader-container">
+                    <span className="v-label">Upload File</span>
+                    <div className="v-file-uploader">
+                        <Form.Control id={this.guid} type="file" onChange={this.onChooseFile} />
+                        <button className="v-icon-button" disabled={this.state.status === "Choose File"} onClick={this.doUpload} name="submit">{this.state.status}</button>
+                    </div>
+
+                </div>
+                <div className="v-preview-container">
                     {
                         this.state.status === "Mapping" ? this.mappingData() : this.state.status === "Preview" ? this.preview() : ""
                     }
                 </div>
-
-            </div>
+            </>
         )
     };
 }

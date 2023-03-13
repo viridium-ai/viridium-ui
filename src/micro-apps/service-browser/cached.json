@@ -3242,7 +3242,7 @@
           }
         }
       },
-      "/ghg/capital-goods/{id}": {
+      "/ghg/capital-good/{id}": {
         "get": {
           "tags": [
             "capital-good-controller"
@@ -3870,7 +3870,7 @@
           "tags": [
             "data-source-controller"
           ],
-          "operationId": "get_42",
+          "operationId": "get_41",
           "parameters": [
             {
               "name": "id",
@@ -3959,7 +3959,7 @@
           "tags": [
             "customer-controller"
           ],
-          "operationId": "get_43",
+          "operationId": "get_42",
           "parameters": [
             {
               "name": "id",
@@ -4048,7 +4048,7 @@
           "tags": [
             "connector-controller"
           ],
-          "operationId": "get_44",
+          "operationId": "get_43",
           "parameters": [
             {
               "name": "id",
@@ -4137,7 +4137,7 @@
           "tags": [
             "company-controller"
           ],
-          "operationId": "get_45",
+          "operationId": "get_44",
           "parameters": [
             {
               "name": "id",
@@ -4226,7 +4226,7 @@
           "tags": [
             "address-controller"
           ],
-          "operationId": "get_46",
+          "operationId": "get_45",
           "parameters": [
             {
               "name": "id",
@@ -4315,7 +4315,7 @@
           "tags": [
             "account-controller"
           ],
-          "operationId": "get_47",
+          "operationId": "get_46",
           "parameters": [
             {
               "name": "id",
@@ -4404,7 +4404,7 @@
           "tags": [
             "user-controller"
           ],
-          "operationId": "get_48",
+          "operationId": "get_47",
           "parameters": [
             {
               "name": "id",
@@ -4493,7 +4493,7 @@
           "tags": [
             "permission-controller"
           ],
-          "operationId": "get_50",
+          "operationId": "get_49",
           "parameters": [
             {
               "name": "id",
@@ -6647,7 +6647,7 @@
           }
         }
       },
-      "/ghg/capital-goods": {
+      "/ghg/capital-good": {
         "get": {
           "tags": [
             "capital-good-controller"
@@ -7036,6 +7036,46 @@
                 "*/*": {
                   "schema": {
                     "$ref": "#/components/schemas/Gateway"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/data/gateway/proxy/{gatewayId}": {
+        "post": {
+          "tags": [
+            "gateway-controller"
+          ],
+          "operationId": "execute",
+          "parameters": [
+            {
+              "name": "gatewayId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GatewayRequest"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
                   }
                 }
               }
@@ -7699,6 +7739,44 @@
           }
         }
       },
+      "/data/gateway/metadata/{gatewayId}": {
+        "get": {
+          "tags": [
+            "gateway-controller"
+          ],
+          "operationId": "metadata",
+          "parameters": [
+            {
+              "name": "gatewayId",
+              "in": "path",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "query",
+              "in": "query",
+              "required": true,
+              "schema": {
+                "$ref": "#/components/schemas/GatewayRequest"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "content": {
+                "*/*": {
+                  "schema": {
+                    "type": "object"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
       "/admin/users/{id}/roles": {
         "get": {
           "tags": [
@@ -7802,7 +7880,7 @@
           "tags": [
             "role-controller"
           ],
-          "operationId": "get_49",
+          "operationId": "get_48",
           "parameters": [
             {
               "name": "id",
@@ -8040,13 +8118,10 @@
             "statusCode": {
               "type": "string"
             },
-            "vehicleTypeId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "isOnRoad": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -8086,34 +8161,36 @@
             "statusCode": {
               "type": "string"
             },
-            "valueChainPartnerId": {
+            "originCorrelationId": {
               "type": "string"
             },
-            "addressCity": {
+            "addressLine1": {
               "type": "string"
             },
-            "addressCountryIsoCode": {
+            "addressLine2": {
               "type": "string"
             },
-            "addressCounty": {
+            "city": {
               "type": "string"
             },
-            "addressStateProvince": {
+            "countryIsoCode": {
               "type": "string"
             },
-            "addressStreet1": {
+            "latitude": {
+              "type": "number",
+              "format": "double"
+            },
+            "longitude": {
+              "type": "number",
+              "format": "double"
+            },
+            "postalCode": {
               "type": "string"
             },
-            "addressStreet2": {
-              "type": "string"
-            },
-            "addressZipPostalCode": {
+            "stateProvince": {
               "type": "string"
             },
             "companyRegistrationNumber": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -8153,7 +8230,7 @@
             "statusCode": {
               "type": "string"
             },
-            "unitId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "baseUnit": {
@@ -8209,7 +8286,7 @@
             "statusCode": {
               "type": "string"
             },
-            "unitGroupId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "baseUnit": {
@@ -8255,12 +8332,8 @@
             "statusCode": {
               "type": "string"
             },
-            "transportationAndDistributionId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -8273,6 +8346,28 @@
               "type": "string",
               "format": "date-time"
             },
+            "dataQualityType": {
+              "type": "string"
+            },
+            "evidence": {
+              "type": "string"
+            },
+            "organizationalUnitId": {
+              "type": "string"
+            },
+            "quantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
             "cost": {
               "type": "number",
               "format": "double"
@@ -8280,20 +8375,19 @@
             "costUnit": {
               "type": "string"
             },
-            "dataQualityType": {
-              "type": "string"
+            "transactionDate": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
             },
             "distance": {
               "type": "number",
               "format": "double"
             },
             "distanceUnit": {
-              "type": "string"
-            },
-            "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
               "type": "string"
             },
             "fuelQuantity": {
@@ -8313,33 +8407,7 @@
             "goodsUnit": {
               "type": "string"
             },
-            "industrialProcessTypeId": {
-              "type": "string"
-            },
-            "organizationalUnitId": {
-              "type": "string"
-            },
-            "quantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "quantityUnit": {
-              "type": "string"
-            },
-            "originCorrelationId": {
-              "type": "string"
-            },
-            "transactionDate": {
-              "type": "string",
-              "format": "date-time"
-            },
             "transportationAndDistributionType": {
-              "type": "string"
-            },
-            "spendTypeId": {
-              "type": "string"
-            },
-            "valueChainPartnerId": {
               "type": "string"
             },
             "transportMode": {
@@ -8385,13 +8453,10 @@
             "statusCode": {
               "type": "string"
             },
-            "transportModeId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "isSharedLoad": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -8431,7 +8496,7 @@
             "statusCode": {
               "type": "string"
             },
-            "subindustryId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "industry": {
@@ -8477,12 +8542,8 @@
             "statusCode": {
               "type": "string"
             },
-            "stationaryCombustionId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -8495,29 +8556,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "fuelTypeId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
-              "type": "string"
-            },
-            "meterNumber": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -8527,14 +8569,34 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "quantityUnit": {
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "fuelTypeId": {
+              "type": "string"
+            },
+            "meterNumber": {
               "type": "string"
             }
           }
@@ -8572,9 +8634,6 @@
               "type": "string"
             },
             "statusCode": {
-              "type": "string"
-            },
-            "spendTypeId": {
               "type": "string"
             },
             "originCorrelationId": {
@@ -8626,12 +8685,8 @@
             "statusCode": {
               "type": "string"
             },
-            "purchasedGoodAndServiceId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -8644,30 +8699,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "goodsQuantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "goodsUnit": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -8680,14 +8715,32 @@
             "quantityUnit": {
               "type": "string"
             },
-            "originCorrelationId": {
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "spendTypeId": {
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "goodsQuantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "goodsUnit": {
               "type": "string"
             },
             "valueChainPartnerId": {
@@ -8730,12 +8783,8 @@
             "statusCode": {
               "type": "string"
             },
-            "purchasedEnergyId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -8748,35 +8797,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "contractualInstrumentTypeId": {
-              "type": "string"
-            },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
-            "energyProviderName": {
-              "type": "string"
-            },
-            "energyType": {
-              "type": "string"
-            },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "isRenewable": {
-              "type": "string"
-            },
-            "meterNumber": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -8786,14 +8810,43 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "quantityUnit": {
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "contractualInstrumentTypeId": {
+              "type": "string"
+            },
+            "energyProviderName": {
+              "type": "string"
+            },
+            "energyType": {
+              "type": "string"
+            },
+            "isRenewable": {
+              "type": "string"
+            },
+            "meterNumber": {
               "type": "string"
             }
           }
@@ -8833,28 +8886,19 @@
             "statusCode": {
               "type": "string"
             },
-            "sustainabilityOrganizationalUnitId": {
+            "originCorrelationId": {
               "type": "string"
             },
-            "addressCity": {
+            "addressLine1": {
               "type": "string"
             },
-            "addressCountryIsoCode": {
+            "addressLine2": {
               "type": "string"
             },
-            "addressCounty": {
+            "city": {
               "type": "string"
             },
-            "addressStateProvince": {
-              "type": "string"
-            },
-            "addressStreet1": {
-              "type": "string"
-            },
-            "addressStreet2": {
-              "type": "string"
-            },
-            "addressZipPostalCode": {
+            "countryIsoCode": {
               "type": "string"
             },
             "latitude": {
@@ -8865,10 +8909,13 @@
               "type": "number",
               "format": "double"
             },
-            "organizationalUnitType": {
+            "postalCode": {
               "type": "string"
             },
-            "originCorrelationId": {
+            "stateProvince": {
+              "type": "string"
+            },
+            "organizationalUnitType": {
               "type": "string"
             }
           }
@@ -8908,7 +8955,7 @@
             "statusCode": {
               "type": "string"
             },
-            "organizationalProfileId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "addressLine1": {
@@ -8918,9 +8965,6 @@
               "type": "string"
             },
             "city": {
-              "type": "string"
-            },
-            "companyProfileLogoBase64": {
               "type": "string"
             },
             "countryIsoCode": {
@@ -8937,13 +8981,16 @@
             "postalCode": {
               "type": "string"
             },
+            "stateProvince": {
+              "type": "string"
+            },
+            "companyProfileLogoBase64": {
+              "type": "string"
+            },
             "reportingStartDay": {
               "type": "string"
             },
             "reportingStartMonth": {
-              "type": "string"
-            },
-            "stateProvince": {
               "type": "string"
             }
           }
@@ -8983,7 +9030,7 @@
             "statusCode": {
               "type": "string"
             },
-            "sustainabilityOrganizationalHierarchyId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "effectiveEndDate": {
@@ -8998,9 +9045,6 @@
               "type": "string"
             },
             "parentId": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -9040,7 +9084,7 @@
             "statusCode": {
               "type": "string"
             },
-            "organizationalUnitRevenueId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "year": {
@@ -9049,13 +9093,10 @@
             "amount": {
               "type": "string"
             },
-            "amount_Base": {
+            "amountBase": {
               "type": "string"
             },
             "month": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             },
             "sustainabilityOrganizationalUnit": {
@@ -9098,12 +9139,8 @@
             "statusCode": {
               "type": "string"
             },
-            "mobileCombustionId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -9116,40 +9153,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
-            "distance": {
-              "type": "number",
-              "format": "double"
-            },
-            "distanceUnit": {
-              "type": "string"
-            },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "fuelQuantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "fuelQuantityUnit": {
-              "type": "string"
-            },
-            "fuelTypeId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -9162,12 +9169,43 @@
             "quantityUnit": {
               "type": "string"
             },
-            "originCorrelationId": {
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
+            },
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "distance": {
+              "type": "number",
+              "format": "double"
+            },
+            "distanceUnit": {
+              "type": "string"
+            },
+            "fuelQuantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "fuelQuantityUnit": {
+              "type": "string"
+            },
+            "fuelTypeId": {
+              "type": "string"
             },
             "vehicleType": {
               "type": "string"
@@ -9209,7 +9247,7 @@
             "statusCode": {
               "type": "string"
             },
-            "industryId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "industryNum": {
@@ -9252,7 +9290,7 @@
             "statusCode": {
               "type": "string"
             },
-            "industryClassificationId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "industryNum": {
@@ -9261,13 +9299,13 @@
             "industryName": {
               "type": "string"
             },
+            "organizationalProfile": {
+              "type": "string"
+            },
             "subindustryId": {
               "type": "string"
             },
             "subindustryName": {
-              "type": "string"
-            },
-            "organizationalProfile": {
               "type": "string"
             }
           }
@@ -9307,12 +9345,8 @@
             "statusCode": {
               "type": "string"
             },
-            "industrialProcessId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -9325,23 +9359,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -9351,15 +9372,29 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "quantityUnit": {
-              "type": "string"
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         },
@@ -9396,9 +9431,6 @@
               "type": "string"
             },
             "statusCode": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "originCorrelationId": {
@@ -9441,7 +9473,7 @@
             "statusCode": {
               "type": "string"
             },
-            "greenhouseGasId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "category": {
@@ -9491,12 +9523,8 @@
             "statusCode": {
               "type": "string"
             },
-            "fugitiveEmissionId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -9509,23 +9537,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnitId": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -9535,15 +9550,29 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "quantityUnit": {
-              "type": "string"
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
             },
             "greenhouseGas": {
               "type": "string"
@@ -9583,9 +9612,6 @@
               "type": "string"
             },
             "statusCode": {
-              "type": "string"
-            },
-            "fuelTypeId": {
               "type": "string"
             },
             "originCorrelationId": {
@@ -9628,7 +9654,7 @@
             "statusCode": {
               "type": "string"
             },
-            "emissionLookupId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "calculationLibraryId": {
@@ -9638,9 +9664,6 @@
               "type": "string"
             },
             "referenceDataId": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -9680,16 +9703,13 @@
             "statusCode": {
               "type": "string"
             },
-            "calculationLibraryId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "documentationReference": {
               "type": "string"
             },
             "libraryType": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             },
             "version": {
@@ -9738,28 +9758,19 @@
             "statusCode": {
               "type": "string"
             },
-            "facilityId": {
+            "originCorrelationId": {
               "type": "string"
             },
-            "addressCity": {
+            "addressLine1": {
               "type": "string"
             },
-            "addressCountryIsoCode": {
+            "addressLine2": {
               "type": "string"
             },
-            "addressCounty": {
+            "city": {
               "type": "string"
             },
-            "addressStateProvince": {
-              "type": "string"
-            },
-            "addressStreet1": {
-              "type": "string"
-            },
-            "addressStreet2": {
-              "type": "string"
-            },
-            "addressZipPostalCode": {
+            "countryIsoCode": {
               "type": "string"
             },
             "latitude": {
@@ -9770,7 +9781,10 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "postalCode": {
+              "type": "string"
+            },
+            "stateProvince": {
               "type": "string"
             }
           }
@@ -9810,7 +9824,7 @@
             "statusCode": {
               "type": "string"
             },
-            "facilityAnnualDetailId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "year": {
@@ -9829,9 +9843,6 @@
             "headCount": {
               "type": "integer",
               "format": "int32"
-            },
-            "originCorrelationId": {
-              "type": "string"
             }
           }
         },
@@ -9870,7 +9881,7 @@
             "statusCode": {
               "type": "string"
             },
-            "estimationfactorId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "documentationReference": {
@@ -9884,9 +9895,6 @@
               "format": "double"
             },
             "factorValueUnit": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             },
             "subType": {
@@ -9935,10 +9943,10 @@
             "statusCode": {
               "type": "string"
             },
-            "emissionSourceId": {
+            "originCorrelationId": {
               "type": "string"
             },
-            "activityTypedataField": {
+            "activityTypeDataField": {
               "type": "string"
             },
             "entityName": {
@@ -9950,7 +9958,7 @@
             "scope": {
               "type": "string"
             },
-            "sourcedataField": {
+            "sourceDataField": {
               "type": "string"
             },
             "sourceDataValue": {
@@ -9996,7 +10004,7 @@
             "statusCode": {
               "type": "string"
             },
-            "emissionId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "ttlInSeconds": {
@@ -10009,7 +10017,7 @@
             "activity": {
               "type": "string"
             },
-            "activityentityName": {
+            "activityEntityName": {
               "type": "string"
             },
             "activityId": {
@@ -10130,9 +10138,6 @@
             "sf6Unit": {
               "type": "string"
             },
-            "originCorrelationId": {
-              "type": "string"
-            },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
@@ -10183,17 +10188,17 @@
             "statusCode": {
               "type": "string"
             },
-            "emissionFactorId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "calculationLibraryId": {
               "type": "string"
             },
-            "biogenicco2Factor": {
+            "biogenIcco2Factor": {
               "type": "number",
               "format": "double"
             },
-            "biogenicco2FactorUnit": {
+            "biogenIcco2FactorUnit": {
               "type": "string"
             },
             "ch4": {
@@ -10275,9 +10280,6 @@
             "sf6Unit": {
               "type": "string"
             },
-            "originCorrelationId": {
-              "type": "string"
-            },
             "subType": {
               "type": "string"
             },
@@ -10324,16 +10326,13 @@
             "statusCode": {
               "type": "string"
             },
-            "countryRegionMappingId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "countryIsoCode": {
               "type": "string"
             },
             "region": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             }
           }
@@ -10373,13 +10372,10 @@
             "statusCode": {
               "type": "string"
             },
-            "contractualInstrumentTypeId": {
+            "originCorrelationId": {
               "type": "string"
             },
             "energySource": {
-              "type": "string"
-            },
-            "originCorrelationId": {
               "type": "string"
             },
             "valueChainPartnerId": {
@@ -10422,12 +10418,8 @@
             "statusCode": {
               "type": "string"
             },
-            "capitalGoodId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
               "type": "string"
@@ -10440,23 +10432,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -10466,15 +10445,29 @@
               "type": "number",
               "format": "double"
             },
-            "originCorrelationId": {
+            "quantityUnit": {
+              "type": "string"
+            },
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
             },
-            "quantityUnit": {
-              "type": "string"
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
             },
             "spendTypeId": {
               "type": "string"
@@ -10519,20 +10512,10 @@
             "statusCode": {
               "type": "string"
             },
-            "businessTravelId": {
+            "originCorrelationId": {
               "type": "string"
-            },
-            "ttlInSeconds": {
-              "type": "integer",
-              "format": "int32"
             },
             "partitionId": {
-              "type": "string"
-            },
-            "accommodationTypeId": {
-              "type": "string"
-            },
-            "businessTravelTypeId": {
               "type": "string"
             },
             "consumptionEndDate": {
@@ -10543,50 +10526,10 @@
               "type": "string",
               "format": "date-time"
             },
-            "cost": {
-              "type": "number",
-              "format": "double"
-            },
-            "costUnit": {
-              "type": "string"
-            },
             "dataQualityType": {
               "type": "string"
             },
-            "destinationcountryIsoCode": {
-              "type": "string"
-            },
-            "distance": {
-              "type": "number",
-              "format": "double"
-            },
-            "distanceUnit": {
-              "type": "string"
-            },
             "evidence": {
-              "type": "string"
-            },
-            "facilityId": {
-              "type": "string"
-            },
-            "fuelQuantity": {
-              "type": "number",
-              "format": "double"
-            },
-            "fuelQuantityUnit": {
-              "type": "string"
-            },
-            "fuelTypeId": {
-              "type": "string"
-            },
-            "industrialProcessTypeId": {
-              "type": "string"
-            },
-            "nightStay": {
-              "type": "number",
-              "format": "double"
-            },
-            "nightStayUnit": {
               "type": "string"
             },
             "organizationalUnitId": {
@@ -10599,12 +10542,59 @@
             "quantityUnit": {
               "type": "string"
             },
-            "originCorrelationId": {
+            "facilityId": {
+              "type": "string"
+            },
+            "industrialProcessTypeId": {
+              "type": "string"
+            },
+            "cost": {
+              "type": "number",
+              "format": "double"
+            },
+            "costUnit": {
               "type": "string"
             },
             "transactionDate": {
               "type": "string",
               "format": "date-time"
+            },
+            "ttlInSeconds": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "accommodationTypeId": {
+              "type": "string"
+            },
+            "businessTravelTypeId": {
+              "type": "string"
+            },
+            "destinationCountryIsoCode": {
+              "type": "string"
+            },
+            "distance": {
+              "type": "number",
+              "format": "double"
+            },
+            "distanceUnit": {
+              "type": "string"
+            },
+            "fuelQuantity": {
+              "type": "number",
+              "format": "double"
+            },
+            "fuelQuantityUnit": {
+              "type": "string"
+            },
+            "fuelTypeId": {
+              "type": "string"
+            },
+            "nightStay": {
+              "type": "number",
+              "format": "double"
+            },
+            "nightStayUnit": {
+              "type": "string"
             },
             "valueChainPartnerId": {
               "type": "string"
@@ -10649,9 +10639,6 @@
             "statusCode": {
               "type": "string"
             },
-            "businessTravelTypeId": {
-              "type": "string"
-            },
             "originCorrelationId": {
               "type": "string"
             }
@@ -10692,9 +10679,6 @@
             "statusCode": {
               "type": "string"
             },
-            "accommodationTypeId": {
-              "type": "string"
-            },
             "originCorrelationId": {
               "type": "string"
             }
@@ -10733,6 +10717,9 @@
               "type": "string"
             },
             "statusCode": {
+              "type": "string"
+            },
+            "originCorrelationId": {
               "type": "string"
             },
             "enabled": {
@@ -10793,6 +10780,9 @@
               "type": "string"
             },
             "statusCode": {
+              "type": "string"
+            },
+            "originCorrelationId": {
               "type": "string"
             },
             "enabled": {
@@ -10900,6 +10890,9 @@
               "type": "string"
             },
             "statusCode": {
+              "type": "string"
+            },
+            "originCorrelationId": {
               "type": "string"
             },
             "query": {
@@ -11036,6 +11029,9 @@
               "type": "string"
             },
             "statusCode": {
+              "type": "string"
+            },
+            "originCorrelationId": {
               "type": "string"
             },
             "connectorId": {
@@ -11254,6 +11250,31 @@
             }
           }
         },
+        "GatewayRequest": {
+          "type": "object",
+          "properties": {
+            "query": {
+              "type": "string"
+            },
+            "offset": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "limit": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "orderBy": {
+              "type": "string"
+            },
+            "config": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "Grant": {
           "type": "object",
           "properties": {
@@ -11344,5 +11365,5 @@
     }
   },
   "ttl": 86400000,
-  "time": 1677560550795
+  "time": 1678604457683
 }

@@ -20,7 +20,7 @@ class DataSourceManager extends MicroApp {
   ];
 
   public getTitle = () => {
-    return "Viridium Data Manager";
+    return "Viridium.AI Process Manufacturing";
   }
   
   public getName = () => {

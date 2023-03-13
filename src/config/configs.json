@@ -1,9 +1,9 @@
 {
     "title": "VIRIDIUM.AI",
-    "version": "1.0.",
+    "version": "1.0.0",
     "description": "Viridium Sustainability Data Platform",
     "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
-    "online" : false,
+    "online": false,
     "jobs": [
         {
             "name": "daily-travel-job",
@@ -789,7 +789,7 @@
                 "chemicalProduction",
                 "other"
             ],
-            "units" : [
+            "units": [
                 "tonnes"
             ]
         },
@@ -801,7 +801,7 @@
                 "manureManagement",
                 "other"
             ],
-            "units" : [
+            "units": [
                 "kgs"
             ]
         },
@@ -813,8 +813,9 @@
                 "Usage change",
                 "other"
             ],
-            "units" : [
-                "acres", "squareMiles"
+            "units": [
+                "acres",
+                "squareMiles"
             ]
         },
         {
@@ -824,8 +825,8 @@
                 "wasteWater",
                 "landfills",
                 "other"
-            ], 
-            "units" :  [
+            ],
+            "units": [
                 "kwh"
             ]
         },
@@ -836,9 +837,10 @@
                 "truck",
                 "airplane",
                 "other"
-            ], 
-            "units" :  [
-                "km", "miles"
+            ],
+            "units": [
+                "km",
+                "miles"
             ]
         },
         {
@@ -848,9 +850,10 @@
                 "cooling",
                 "lighting",
                 "other"
-            ], 
-            "units" :  [
-                "kwh", "mwh"
+            ],
+            "units": [
+                "kwh",
+                "mwh"
             ]
         },
         {
@@ -860,9 +863,10 @@
                 "treating",
                 "distributing",
                 "other"
-            ], 
-            "units" :  [
-                "tonne", "kg"
+            ],
+            "units": [
+                "tonne",
+                "kg"
             ]
         }
     ],
@@ -2442,7 +2446,7 @@
             "name": "farm"
         }
     ],
-    "sectors" : [
+    "sectors": [
         {
             "name": "Consumer Discretionary"
         },
@@ -2477,7 +2481,7 @@
             "name": "Materials"
         }
     ],
-    "industries" : [
+    "industries": [
         {
             "name": "Auto Manufacturers"
         },
@@ -3561,28 +3565,216 @@
                                 {
                                     "id": "Engine",
                                     "text": "Engine",
-                                    "values":[
+                                    "values": [
                                         {
-                                            "id": "cylinder_block",
+                                            "id": "Cylinder Block",
                                             "text": "Cylinder Block"
                                         },
                                         {
-                                            "id": "cylinder_head",
-                                            "text" :"Cylinder Head"
+                                            "id": "Cylinder Head",
+                                            "text": "Cylinder Head"
                                         },
                                         {
-                                            "id": "crankshaft",
-                                            "text" :"Crank Shaft"
+                                            "id": "Crankshaft",
+                                            "text": "Crank Shaft"
                                         },
                                         {
-                                            "id": "camshaft",
-                                            "text" :"Cam Shaft"
+                                            "id": "Pistons",
+                                            "text": "Pistons"
                                         },
                                         {
-                                            "id": "valve_train",
-                                            "text" :"Valve Train"
-                                        } 
-                                    ]
+                                            "id": "Valves",
+                                            "text": "Valves"
+                                        },
+                                        {
+                                            "id": "Fuel Injectors",
+                                            "text": "Fuel Injectors"
+                                        },
+                                        {
+                                            "id": "Spark Plugs",
+                                            "text": "Spark Plugs"
+                                        },
+                                        {
+                                            "id": "Timing Belt/Chain",
+                                            "text": "Timing Belt/Chain"
+                                        }
+                                    ],
+                            "samples": [
+                                [
+                                    "Cylinder Block",
+                                    "Small",
+                                    65,
+                                    162.5,
+                                    "Cast Iron"
+                                ],
+                                [
+                                    "Cylinder Block",
+                                    "Medium",
+                                    100,
+                                    250,
+                                    "Cast Iron"
+                                ],
+                                [
+                                    "Cylinder Block",
+                                    "Large",
+                                    160,
+                                    400,
+                                    "Cast Iron"
+                                ],
+                                [
+                                    "Cylinder Head",
+                                    "Small",
+                                    30,
+                                    35.7,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Cylinder Head",
+                                    "Medium",
+                                    50,
+                                    59.5,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Cylinder Head",
+                                    "Large",
+                                    80,
+                                    95.2,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Pistons",
+                                    "Small",
+                                    0.4,
+                                    0.476,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Pistons",
+                                    "Medium",
+                                    0.6,
+                                    0.714,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Pistons",
+                                    "Large",
+                                    0.85,
+                                    1.0115,
+                                    "Aluminum Alloy"
+                                ],
+                                [
+                                    "Crankshaft",
+                                    "Small",
+                                    25,
+                                    457.5,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Crankshaft",
+                                    "Medium",
+                                    35,
+                                    640.5,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Crankshaft",
+                                    "Large",
+                                    50,
+                                    915,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Camshaft",
+                                    "Small",
+                                    7.5,
+                                    137.25,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Camshaft",
+                                    "Medium",
+                                    15,
+                                    274.5,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Camshaft",
+                                    "Large",
+                                    25,
+                                    457.5,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Valves",
+                                    "Small",
+                                    0.5,
+                                    9.15,
+                                    "Inconel or Nimonic"
+                                ],
+                                [
+                                    "Valves",
+                                    "Medium",
+                                    0.5,
+                                    9.15,
+                                    "Inconel or Nimonic"
+                                ],
+                                [
+                                    "Valves",
+                                    "Large",
+                                    0.5,
+                                    9.15,
+                                    "Inconel or Nimonic"
+                                ],
+                                [
+                                    "Fuel Injectors",
+                                    "Small",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Fuel Injectors",
+                                    "Medium",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Fuel Injectors",
+                                    "Large",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Spark Plugs",
+                                    "Small",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Spark Plugs",
+                                    "Medium",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Spark Plugs",
+                                    "Large",
+                                    0.2,
+                                    0.254,
+                                    "High strength steel"
+                                ],
+                                [
+                                    "Timing Belt/Chain",
+                                    "Medium", 1,
+                                    3.08,
+                                    "Durable Rubber"
+                                ]
+                            ]
                                 },
                                 {
                                     "id": "Transmission",
@@ -3609,8 +3801,6 @@
                                     "text": "Paint"
                                 }
                             ]
-                                
-                            
                         }
                     ]
                 }
@@ -3656,11 +3846,11 @@
                 {
                     "id": "7.2",
                     "text": "Granular Process Data",
-                    "children":[
+                    "children": [
                         {
                             "id": "7.2.1",
                             "text": "Emission Categories and Life Cycle Data​​",
-                            "children":[
+                            "children": [
                                 {
                                     "id": "7.2.1.1",
                                     "text": "Bla​​"
@@ -3700,8 +3890,7 @@
                 {
                     "id": "7.10",
                     "text": "Population Data​"
-                }
-                ,
+                },
                 {
                     "id": "7.11",
                     "text": "Survey/panel data (e.g. car, appliance ownership)​"
@@ -3710,14 +3899,13 @@
                     "id": "7.12",
                     "text": "Database of PPA Incentives Globally/Nationally/Locally​"
                 }
-            
             ]
         }
     ],
-    "serviceGroups" :[
+    "serviceGroups": [
         {
-            "group":"Meta Data",
-            "services" : [
+            "group": "Meta Data",
+            "services": [
                 "Unit Group",
                 "Unit",
                 "Industry",
@@ -3736,8 +3924,8 @@
             ]
         },
         {
-            "group":"Organization Data",
-            "services" : [
+            "group": "Organization Data",
+            "services": [
                 "Organization",
                 "Organizational Unit",
                 "Organizational Profile",
@@ -3747,8 +3935,8 @@
             ]
         },
         {
-            "group":"Activity Data",
-            "services" : [
+            "group": "Activity Data",
+            "services": [
                 "Capital Good",
                 "Transportation and Distribution",
                 "Business Travel",
@@ -3762,8 +3950,8 @@
             ]
         },
         {
-            "group":"Factor Tables",
-            "services" : [
+            "group": "Factor Tables",
+            "services": [
                 "Emission Factor",
                 "Estimation Factor",
                 "Factor Mapping",
@@ -3771,18 +3959,20 @@
             ]
         },
         {
-            "group":"Emissions",
-            "services" : [
+            "group": "Emissions",
+            "services": [
                 "Emission",
                 "Fugitive Emission",
                 "Emissions Source"
             ]
         }
     ],
-    "keys" :[{
-        "openAI" : {
-            "apiKey" : "stored in in mysql db",
-            "orgId" :"stored in my sql db"  
+    "keys": [
+        {
+            "openAI": {
+                "apiKey": "stored in in mysql db",
+                "orgId": "stored in my sql db"
+            }
         }
-    }]
+    ]
 }

@@ -70,17 +70,17 @@
             ]
         },
         {
-            "name": "airportTemplate",
-            "value": "airport",
+            "name": "processManufacturingTemplate",
+            "value": "processManufacturer",
             "children": [
                 {
-                    "value": "infrastructure",
+                    "value": "inboundLogistics",
                     "children": [
                         {
-                            "value": "construction",
+                            "value": "transportation",
                             "children": [
                                 {
-                                    "value": "runways"
+                                    "value": "rawMaterial"
                                 },
                                 {
                                     "value": "taxiways"

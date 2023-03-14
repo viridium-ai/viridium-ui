@@ -172,7 +172,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                 <div className="v-flex v-filters-box">
                     <span>Export Dataset</span>
                     <div className="v-flex">
-                        <Form.Control type="text" value={"datasetname"} onChange={()=>{}}/>
+                        <Form.Control type="text" value={"Product_Carbon_Water"} onChange={()=>{}}/>
                         <Form.Select value={1} onChange ={()=>{}}  >
                             <option>Open this select menu</option>
                             <option value="1">Microsoft Power BI</option>

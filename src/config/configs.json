@@ -1,6 +1,6 @@
 {
     "title": "VIRIDIUM.AI",
-    "version": "1.0.",
+    "version": "1.0.0",
     "description": "Viridium Sustainability Data Platform",
     "copyright": "Copyright © 2022 VIRIDIUM.AI - All Rights Reserved.",
     "online" : false,
@@ -365,11 +365,11 @@
     "inventory": [
         {
             "id": "1",
-            "name": "Data Inventory for Big Airport",
+            "name": "Data Inventory for Big Process Manufacturer",
             "updatedAt": "26/12/2022",
             "status": "Uploaded",
             "updatedBy": "Val",
-            "notes": "This is final onboarding data inventory for Big Airport",
+            "notes": "This is final onboarding data inventory for Big Process Manufacturer",
             "items": [
                 {
                     "id": "1",
@@ -396,7 +396,7 @@
                     "dataSourceName": "Transportation System",
                     "description": "All inbound raw materials",
                     "notes": "Added by Viridium.AI Data Operations team",
-                    "tech": "Oracle",
+                    "tech": "Oracle Transportation Management",
                     "type": "API",
                     "Integration Status": 2,
                     "configuration": {}
@@ -3295,8 +3295,8 @@
         },
         {
             "id": "VA12312i5",
-            "name": "Tesla",
-            "industry": "Manufactory",
+            "name": "Big Process Manufacturer",
+            "industry": "Process Manufacturing",
             "viridiumCategory": "",
             "lastUpdatedDate": 12213212312,
             "lastUpdatedBy": "vid",

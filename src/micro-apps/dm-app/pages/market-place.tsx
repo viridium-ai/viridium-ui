@@ -14,7 +14,9 @@ interface MarketPlaceProps {
 interface MarketPlaceState {
     selected: any,
     path?: string,
-    categories?: any[]
+    categories?: any[],
+    samples?: any[],
+    selectedCategory?: any
 }
 export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceState> {
     constructor(props: MarketPlaceProps) {
@@ -40,7 +42,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
     }
     onSelect = (event: any, node: any) => {
         console.log("onSelect", node);
-        this.setState({ selected: node, path: this.getPath(node) });
+        this.setState({ selected: node, path: this.getPath(node), categories: undefined, samples: undefined, selectedCategory: undefined });
     }
     onCancel = (event: any) => {
         console.log("onSelect", event);
@@ -56,23 +58,22 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
         let attributes = selected.data.attributes;
         let attribute = attributes.find((a: any) => a.id === event.value);
         if (attribute && attribute.values) {
-            let values = attribute.values.map((v: any) => 
-            {
+            let values = attribute.values.map((v: any) => {
                 return {
-                    value:v.id,
-                    label:v.text
+                    value: v.id,
+                    label: v.text
                 }
             });
-            this.setState({categories:values});
+            this.setState({ categories: values, samples: attribute.samples });
         } else {
-            this.setState({categories:undefined});
+            this.setState({ categories: undefined, samples: undefined, selectedCategory: undefined });
         }
     }
     onSelectCategory = (event: any) => {
-        console.log("onSelect", event);
+        this.setState({ selectedCategory: event.value });
     }
     getSampleSet = () => {
-        let samples: Array<any> = [{value:"test"}];
+        let samples: Array<Array<any>> = this.state.samples ? this.state.samples : [];
         return {
             id: "samples-ds",
             updatedAt: Date.now(),
@@ -80,8 +81,14 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                 .map((v: any, idx: number) => {
                     return { id: idx, text: v }
                 }),
-            rows: samples.map((v: any, idx: number) => {
+            rows: samples.filter((value) => {
+                if (this.state.selectedCategory) {
+                    return value[0] === this.state.selectedCategory;
+                }
+                return true;
+            }).map((v: Array<any>, idx: number) => {
                 let item = v;
+                let col = 0;
                 return {
                     id: 'r' + idx,
                     cols: [{
@@ -92,39 +99,58 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                     },
                     {
                         id: 'c' + idx,
-                        text: StringUtils.t(v.value),
-                        value: v.value
+                        text: StringUtils.t(v[col++]),
+                        value: v[col]
+                    },
+                    {
+                        id: 's' + idx,
+                        text: StringUtils.t(v[col++]),
+                        value: v[col]
                     },
                     {
                         id: 'w' + idx,
-                        text: StringUtils.t(v.value),
-                        value: v.value
+                        text: StringUtils.t(v[col++]),
+                        value: v[col]
                     },
                     {
                         id: 'cf' + idx,
-                        text: StringUtils.t(v.value),
-                        value: v.value
+                        text: StringUtils.t(v[col++]),
+                        value: v[col]
                     },
                     {
                         id: 'm' + idx,
-                        text: StringUtils.t(v.value),
-                        value: v.value
+                        text: StringUtils.t(v[col++]),
+                        value: v[col]
                     },
                     {
                         id: 'lud' + idx,
-                        text: StringUtils.t(v.value),
-                        value: v.value
+                        text: new Date().toLocaleString(),
+                        value: "d" + idx
                     }]
                 }
             })
         }
     }
-    valueChanged = (v: any, row: any, col: any, checked: any) => {
+
+    handleSampleTableValueChange = (v: any, row: any, col: any, checked: any) => {
         let selectedRow = v.rows[row];
         if (col === 0) {
 
         }
     }
+    renderEntity = () => {
+        let selected = this.state.selected;
+        let attributes = selected.data.attributes;
+        return attributes ? this.renderDetails() : <Toast >
+            <Toast.Header closeButton={false}>
+                {this.state.path}
+            </Toast.Header>
+            <Toast.Body>
+                {selected.text} is not available yet, please select another node.
+            </Toast.Body>
+        </Toast>
+    }
+
     renderDetails = () => {
         let selected = this.state.selected;
         let attributes = selected.data.attributes;
@@ -145,7 +171,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                     {
                         attributes ? <SelectOne placeHolder="Please select a category" options={attributes} onChange={this.onSelectAttribute} /> : ""
                     }
-                    {this.state.categories ? <SelectOne  placeHolder="Please select a sub category" options={this.state.categories} onChange={this.onSelectCategory} /> : ""}
+                    {this.state.categories ? <SelectOne placeHolder="Please select a sub category" options={this.state.categories} onChange={this.onSelectCategory} /> : ""}
                     <div className="v-flex v-flex-end">
                         <Form.Check type="checkbox" onChange={this.onCheckAll} checked={true} label="Select All" />
                         <div className="v-icon-button" onClick={this.onCancel}>
@@ -162,7 +188,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                     Sample Data
                 </Toast.Header>
                 <div className="v-flex v-filters-box">
-                    <DataTable onDataChanged={this.valueChanged} data={this.getSampleSet()} />
+                    <DataTable onDataChanged={this.handleSampleTableValueChange} data={this.getSampleSet()} />
                 </div>
             </Toast>
             <Toast >
@@ -172,7 +198,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                 <div className="v-flex v-filters-box">
                     <span>Export Dataset</span>
                     <div className="v-flex">
-                        <Form.Control type="text" value={"Product_Carbon_Water"} onChange={()=>{}}/>
+                        <Form.Control type="text" value={"datasetname"} onChange={()=>{}}/>
                         <Form.Select value={1} onChange ={()=>{}}  >
                             <option>Open this select menu</option>
                             <option value="1">Microsoft Power BI</option>
@@ -188,6 +214,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
         </>
         )
     }
+
     renderWelcome = () => {
         return (<>
             <div className="v-dashboard-panel"> <Row >
@@ -202,12 +229,12 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                                     <Form>
                                         <Form.Group className="mb-3" controlId="formDataDesc">
                                             <Form.Label>Data Description</Form.Label>
-                                            <Form.Control onChange={()=>{}}  type="text" placeholder="Data Description" />
+                                            <Form.Control onChange={() => { }} type="text" placeholder="Data Description" />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="formBizModel">
                                             <Form.Label>Expected Business Model</Form.Label>
-                                            <Form.Control onChange={()=>{}} type="text" placeholder="Business Model" />
+                                            <Form.Control onChange={() => { }} type="text" placeholder="Business Model" />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="formButtons">
@@ -236,12 +263,12 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                                     <Form>
                                         <Form.Group className="mb-3" controlId="formDataDesc">
                                             <Form.Label>Data Description</Form.Label>
-                                            <Form.Control onChange={()=>{}} type="text" placeholder="Data Description" />
+                                            <Form.Control onChange={() => { }} type="text" placeholder="Data Description" />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="formBizModel">
                                             <Form.Label>When do you need the data</Form.Label>
-                                            <Form.Control onChange={()=>{}} type="text" placeholder="date" />
+                                            <Form.Control onChange={() => { }} type="text" placeholder="date" />
                                         </Form.Group>
 
                                         <Form.Group className="mb-3" controlId="formButtons">
@@ -289,7 +316,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
         )
     }
     render = () => {
-        dataSourceManager.headerOption = () =>  {
+        dataSourceManager.headerOption = () => {
             return {
                 title: "User Persona: Data Analyst from the Sustainability Org / CIO org",
                 visible: true
@@ -308,7 +335,7 @@ export class MarketPlace extends PureComponent<MarketPlaceProps, MarketPlaceStat
                     </div>
                 </div>
                 {
-                    this.state.selected ? this.renderDetails() : this.renderWelcome()
+                    this.state.selected ? this.renderEntity() : this.renderWelcome()
                 }
             </LayoutPage >
         )
